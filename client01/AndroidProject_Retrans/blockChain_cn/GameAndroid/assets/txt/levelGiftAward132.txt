@@ -1,0 +1,3 @@
+id	等级1	ImageBG	ImageTitle	ImagePage	title	Pagetext	奖励
+301	10	popsale_132_bg.png	popsale_132_img.png	popsale_132_icon.png	@popsale_132_info_1	@popsale_132_title	10000_1001_600,70000_8_200,30000_7001_20000,30000_7181_1000
+302	20	popsale_190_bg.png	popsale_191_img.png	popsale_190_icon.png	@popsale_191_info	@popsale_191_title	10000_1001_6

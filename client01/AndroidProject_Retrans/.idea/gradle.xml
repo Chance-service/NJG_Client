@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="testRunner" value="GRADLE" />
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleHome" value="D:/DevToolChain/gradle/gradle-4.10.2" />
+        <option name="gradleJvm" value="Android Studio java home" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/blockChain_en" />
+            <option value="$PROJECT_DIR$/blockChain_en/GameAndroid" />
+            <option value="$PROJECT_DIR$/sdklibs" />
+            <option value="$PROJECT_DIR$/sdklibs/GameLibBC" />
+            <option value="$PROJECT_DIR$/sdklibs/h365app" />
+            <option value="$PROJECT_DIR$/sdklibs/libcocos2dx" />
+          </set>
+        </option>
+        <option name="resolveModulePerSourceSet" value="false" />
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

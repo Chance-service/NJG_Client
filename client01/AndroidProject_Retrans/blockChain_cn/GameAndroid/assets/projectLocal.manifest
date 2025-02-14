@@ -1,0 +1,275 @@
+{
+    "assets": [
+        {
+            "crc": "50320", 
+            "md5": "0a4f15b638b831607fe2ae0900622372", 
+            "name": "Announce.zip", 
+            "size": 2.201
+        }, 
+        {
+            "crc": "54889", 
+            "md5": "5115fc64479733907275c063e499aa4d", 
+            "name": "audio.zip", 
+            "size": 52557.258
+        }, 
+        {
+            "crc": "36956", 
+            "md5": "365837f4f3b64166a49f560b4634105b", 
+            "name": "audio_1.zip", 
+            "size": 54060.511
+        }, 
+        {
+            "crc": "31857", 
+            "md5": "f8986e7702993f4a7148a542146f87ea", 
+            "name": "audio_2.zip", 
+            "size": 53512.24
+        }, 
+        {
+            "crc": "21318", 
+            "md5": "7a8917411727dd9453fe6ccac6dcc419", 
+            "name": "audio_3.zip", 
+            "size": 53018.079
+        }, 
+        {
+            "crc": "64665", 
+            "md5": "cf707820908ab45f8229483f29f02978", 
+            "name": "audio_4.zip", 
+            "size": 17960.083
+        }, 
+        {
+            "crc": "61018", 
+            "md5": "ef02091842eadecd89a039081d7cb14a", 
+            "name": "BG.zip", 
+            "size": 52484.32
+        }, 
+        {
+            "crc": "20700", 
+            "md5": "33fc4fe780c1ea961bbcdd167fa23c54", 
+            "name": "BG_1.zip", 
+            "size": 52531.613
+        }, 
+        {
+            "crc": "59099", 
+            "md5": "520e4ccb0cf963bca2fb7520adf3a36a", 
+            "name": "BG_2.zip", 
+            "size": 29718.166
+        }, 
+        {
+            "crc": "28572", 
+            "md5": "37747085f09012adccc083e7b5f9ed28", 
+            "name": "ccbi.zip", 
+            "size": 408.474
+        }, 
+        {
+            "crc": "17900", 
+            "md5": "94cf842262c936663aa4f74aade0c6b1", 
+            "name": "HalfBody.zip", 
+            "size": 29496.171
+        }, 
+        {
+            "crc": "51713", 
+            "md5": "04e5fbf1b2e66e32240316b0092fde2f", 
+            "name": "i18n.zip", 
+            "size": 243.069
+        }, 
+        {
+            "crc": "47158", 
+            "md5": "1cfc04386740aec00653aa0c30a45ae6", 
+            "name": "Imagesetfile.zip", 
+            "size": 48799.461
+        }, 
+        {
+            "crc": "374", 
+            "md5": "ee31bc6217da34d66e1fefe627dde06d", 
+            "name": "Lang.zip", 
+            "size": 6233.759
+        }, 
+        {
+            "crc": "54925", 
+            "md5": "9700051f2c275eac936415a409ba0ca4", 
+            "name": "LoadingUI_JP.zip", 
+            "size": 824.12
+        }, 
+        {
+            "crc": "43588", 
+            "md5": "10c2a89dfe41b15150195030876b9dc3", 
+            "name": "lua.zip", 
+            "size": 2945.691
+        }, 
+        {
+            "crc": "47248", 
+            "md5": "0dc5ab0e57c22fe8b8635514df231acd", 
+            "name": "map.zip", 
+            "size": 10568.063
+        }, 
+        {
+            "crc": "53044", 
+            "md5": "c835414117e01892b97c6a6427810134", 
+            "name": "monster.zip", 
+            "size": 1170.194
+        }, 
+        {
+            "crc": "49459", 
+            "md5": "1166a145e1c02e46ba4a4fc43bf2a8e3", 
+            "name": "shader.zip", 
+            "size": 8.718
+        }, 
+        {
+            "crc": "38288", 
+            "md5": "89ce97be69801e6132d924758e1e29a6", 
+            "name": "skill.zip", 
+            "size": 1335.365
+        }, 
+        {
+            "crc": "44765", 
+            "md5": "a430ec5c3055a85a9af27343518c74f9", 
+            "name": "Spine.zip", 
+            "size": 52589.962
+        }, 
+        {
+            "crc": "60022", 
+            "md5": "a27cbe5b69bf14d6670465700e6906a6", 
+            "name": "Spine_1.zip", 
+            "size": 52657.929
+        }, 
+        {
+            "crc": "5725", 
+            "md5": "3445836dd61ae8005609648e2cdc22df", 
+            "name": "Spine_10.zip", 
+            "size": 53062.12
+        }, 
+        {
+            "crc": "15601", 
+            "md5": "a12bbc134615ca1cb9d77976844b8422", 
+            "name": "Spine_11.zip", 
+            "size": 52943.936
+        }, 
+        {
+            "crc": "53225", 
+            "md5": "69719875608fff949022117e5209a9d4", 
+            "name": "Spine_12.zip", 
+            "size": 54488.673
+        }, 
+        {
+            "crc": "24177", 
+            "md5": "b811082ae23042f817a8a60085448e08", 
+            "name": "Spine_13.zip", 
+            "size": 53226.661
+        }, 
+        {
+            "crc": "11161", 
+            "md5": "62497f7f3a2a2ca9ba2e6d42ba561ca9", 
+            "name": "Spine_14.zip", 
+            "size": 55018.839
+        }, 
+        {
+            "crc": "60969", 
+            "md5": "491adeb69f536b2e885679865e85eb63", 
+            "name": "Spine_15.zip", 
+            "size": 52617.071
+        }, 
+        {
+            "crc": "23349", 
+            "md5": "fd47497b9ad565f2bf21fe06417543d7", 
+            "name": "Spine_16.zip", 
+            "size": 59461.744
+        }, 
+        {
+            "crc": "51978", 
+            "md5": "ad7de3127012aa17b41cdc53f05dff35", 
+            "name": "Spine_17.zip", 
+            "size": 52541.461
+        }, 
+        {
+            "crc": "24178", 
+            "md5": "beb662a82c3314adc9656ef1be441ee4", 
+            "name": "Spine_18.zip", 
+            "size": 52506.511
+        }, 
+        {
+            "crc": "59376", 
+            "md5": "8c07a22d133fd349c464899d6a0ac4eb", 
+            "name": "Spine_2.zip", 
+            "size": 52457.649
+        }, 
+        {
+            "crc": "5843", 
+            "md5": "7b94789361743423f3c79a767585831c", 
+            "name": "Spine_3.zip", 
+            "size": 53639.683
+        }, 
+        {
+            "crc": "12817", 
+            "md5": "53bb22b815d7e63636ef7d42958e4ad2", 
+            "name": "Spine_4.zip", 
+            "size": 53834.903
+        }, 
+        {
+            "crc": "50094", 
+            "md5": "34226547c1a7b16789ce2f7b748ba538", 
+            "name": "Spine_5.zip", 
+            "size": 56017.633
+        }, 
+        {
+            "crc": "41150", 
+            "md5": "5ae36cc50534f5e1003f2f116721884f", 
+            "name": "Spine_6.zip", 
+            "size": 52689.521
+        }, 
+        {
+            "crc": "33114", 
+            "md5": "e0048374e926cdb7b27f86efc884c0e6", 
+            "name": "Spine_7.zip", 
+            "size": 53317.127
+        }, 
+        {
+            "crc": "38655", 
+            "md5": "93c06828431f483b7e12eeab37b2189a", 
+            "name": "Spine_8.zip", 
+            "size": 55719.404
+        }, 
+        {
+            "crc": "60647", 
+            "md5": "1ac673224666519369c9fe1d10ed1423", 
+            "name": "Spine_9.zip", 
+            "size": 53648.397
+        }, 
+        {
+            "crc": "36020", 
+            "md5": "e26234f9f9e9aa54b5ea8b3e13e1f1d8", 
+            "name": "txt.zip", 
+            "size": 769.306
+        }, 
+        {
+            "crc": "23338", 
+            "md5": "5e44ecbe75acc95b3421c7cc6d14c643", 
+            "name": "UI.zip", 
+            "size": 52519.053
+        }, 
+        {
+            "crc": "38763", 
+            "md5": "d5f7649b211f674e327c5d59cca8ef9c", 
+            "name": "UI_1.zip", 
+            "size": 42998.124
+        }, 
+        {
+            "crc": "9144", 
+            "md5": "fd1843ba980d189483e2fa806ae3610e", 
+            "name": "Video.zip", 
+            "size": 77919.463
+        }, 
+        {
+            "crc": "65049", 
+            "md5": "35e107e1cdb500b9e52522558b5d4200", 
+            "name": "Video_1.zip", 
+            "size": 70518.388
+        }, 
+        {
+            "crc": "38990", 
+            "md5": "22cc39a3a24e2deb632d569287f610d0", 
+            "name": "Video_2.zip", 
+            "size": 53556.006
+        }
+    ], 
+    "time": 1733823438.204
+}

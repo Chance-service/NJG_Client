@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/AndroidProject_Retrans.iml" filepath="$PROJECT_DIR$/.idea/modules/AndroidProject_Retrans.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/blockChain_en/AndroidProject_Retrans.blockChain_en.iml" filepath="$PROJECT_DIR$/.idea/modules/blockChain_en/AndroidProject_Retrans.blockChain_en.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/blockChain_en/GameAndroid/AndroidProject_Retrans.blockChain_en.GameAndroid.iml" filepath="$PROJECT_DIR$/.idea/modules/blockChain_en/GameAndroid/AndroidProject_Retrans.blockChain_en.GameAndroid.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sdklibs/AndroidProject_Retrans.sdklibs.iml" filepath="$PROJECT_DIR$/.idea/modules/sdklibs/AndroidProject_Retrans.sdklibs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sdklibs/GameLibBC/AndroidProject_Retrans.sdklibs.GameLibBC.iml" filepath="$PROJECT_DIR$/.idea/modules/sdklibs/GameLibBC/AndroidProject_Retrans.sdklibs.GameLibBC.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sdklibs/h365app/AndroidProject_Retrans.sdklibs.h365app.iml" filepath="$PROJECT_DIR$/.idea/modules/sdklibs/h365app/AndroidProject_Retrans.sdklibs.h365app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sdklibs/libcocos2dx/AndroidProject_Retrans.sdklibs.libcocos2dx.iml" filepath="$PROJECT_DIR$/.idea/modules/sdklibs/libcocos2dx/AndroidProject_Retrans.sdklibs.libcocos2dx.iml" />
+    </modules>
+  </component>
+</project>

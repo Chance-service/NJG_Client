@@ -1,0 +1,15 @@
+{
+  "packageUrl": "http://220.130.219.201:8787/NinjaGirl_CN",
+  "IOSAppStoreURL": "https://www.baidu.com/",
+  "remoteVersionUrl": "http://220.130.219.201:8787/NinjaGirl_CN",
+  "versionApp": "1.3.43",
+  "remoteProjectManifestUrl": "http://220.130.219.201:8787/NinjaGirl_CN",
+  "AndroidStoreURL": "http://220.130.219.201:9999/#tab-3",
+  "AppUpdateUrlH365": "http://220.130.219.201:9999/#tab-3",
+  "AppUpdateUrlR18": "http://220.130.219.201:9999/#tab-3",
+  "AppUpdateUrlKUSO": "http://220.130.219.201:9999/#tab-3",
+  "AppUpdateUrlJSG": "http://220.130.219.201:9999/#tab-3",
+  "versionCode": 1,
+  "versionResource": "1.3.43",
+  "isNeedGoAppStore": 1
+}

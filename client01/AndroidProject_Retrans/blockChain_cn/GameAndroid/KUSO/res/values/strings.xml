@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+ 	 <string name="app_name" translatable="false">忍娘24內部KUSO</string>
+	 <string name="app_id" translatable="false">620376484839054</string>
+  	 <string name="bindconfirm" translatable="false">Bound Google Play account detected. Do you want to switch? Yes: Switch to bound account. No: Use temporary login account.</string>
+  	 <string name="bindyes" translatable="false">Yes</string>
+  	 <string name="bindno" translatable="false">No</string>
+  	 <string name="paygoodserr" translatable="false">Failure! Please contact customer service.</string>
+ 	 <string name="paygoodsok" translatable="false">Success!</string>
+ 	 <string name="payok" translatable="false">Payment success!</string>
+ 	 <string name="paynotsuport" translatable="false">Google does not support this service. Cannot pay.</string>
+ 	 <string name="payggerr" translatable="false">Google server exception.</string>
+ 	 <string name="loginfailed" translatable="false">"Login Google account failed"</string>
+ 	 <string name="login_case_one" translatable="false">You have logged into a new Google Account.Would you like to create a new account and start form scratch?</string>
+	 <string name="login_case_two" translatable="false">This Google ID is already linked to another.Do you want to switch to that account?</string>
+	 <bool name="ga_reportUncaughtExceptions" translatable="false">true</bool>
+ 	 <string name="nomatch" translatable="false">登录的账号未绑定，请切换账号。</string>
+	 <string name="login_failed" translatable="false">登录失败。请确认连接网络，重新尝试。</string>
+	 <string name="login_timeout" translatable="false">登录失败。请确认连接网络，重新尝试。</string>
+	 <string name="moveaccount_failed" translatable="false">帐号转移失败</string>
+	 <string name="moveaccount_timeout" translatable="false">帐号转移失败</string>
+	 <string name="changepwd_failed" translatable="false">帐号密码设定失败</string>
+	 <string name="changepwd_timeout" translatable="false">帐号密码设定失败。请重新尝试</string>
+</resources>

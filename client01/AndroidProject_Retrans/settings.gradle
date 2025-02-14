@@ -1,0 +1,3 @@
+include ':blockChain_cn:GameAndroid'
+include ':sdklibs:libcocos2dx'
+include ':sdklibs:GameLibBC'

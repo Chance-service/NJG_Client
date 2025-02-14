@@ -1,0 +1,2 @@
+id	动态	特效	chibi
+23	Spine/NG2D,NG2D_23	Spine/NGUI,NGUI_53_Gacha1Summon_Dark	Spine/CharacterSpine,NG_23000

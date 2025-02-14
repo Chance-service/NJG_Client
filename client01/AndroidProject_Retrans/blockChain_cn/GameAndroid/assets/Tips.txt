@@ -1,0 +1,11 @@
+ID	TIP
+1	You can buy items that can increase hero stats in "SHOP".
+2	Perform and complete "QUEST" to get REO and Sky COINS.
+3	You can go to Marketplace to buy and sell NFTs.
+4	You can go to Marketplace to buy and sell NFTs.
+5	You can go to Marketplace to buy and sell NFTs.
+6	You can go to Marketplace to buy and sell NFTs.
+7	You can go to Marketplace to buy and sell NFTs.
+8	You can go to Marketplace to buy and sell NFTs.
+9	You can go to Marketplace to buy and sell NFTs.
+10	You can go to Marketplace to buy and sell NFTs.

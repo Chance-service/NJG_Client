@@ -1,0 +1,25 @@
+local function a(str) str = string.gsub(str,"%<","[") str = string.gsub(str,"%>","]") return str end 
+local SaveChatRecordIdList = {
+getChatPlayerIdList17={},
+getChatPlayerIdList12={},
+getChatPlayerIdList1132={},
+getChatPlayerIdList4={},
+getChatPlayerIdList482={},
+getChatPlayerIdList2={},
+getChatPlayerIdList13={},
+getChatPlayerIdList7={},
+getChatPlayerIdList295={},
+getChatPlayerIdList15={},
+getChatPlayerIdList86={},
+getChatPlayerIdList128={},
+getChatPlayerIdList3={},
+getChatPlayerIdList8={},
+getChatPlayerIdList123={},
+getChatPlayerIdList151={},
+getChatPlayerIdList73={},
+getChatPlayerIdList118={},
+getChatPlayerIdList586={},
+getChatPlayerIdList1326={},
+getChatPlayerIdList113={},
+}
+return SaveChatRecordIdList

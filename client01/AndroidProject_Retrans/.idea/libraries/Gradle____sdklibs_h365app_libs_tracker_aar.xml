@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: ./sdklibs/h365app/libs/tracker.aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/tracker.aar/6ae7387b266d98303814b5448091b5b5/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/tracker.aar/6ae7387b266d98303814b5448091b5b5/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/tracker.aar/6ae7387b266d98303814b5448091b5b5/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

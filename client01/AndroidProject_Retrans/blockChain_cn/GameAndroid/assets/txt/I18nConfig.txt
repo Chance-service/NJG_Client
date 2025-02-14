@@ -1,0 +1,17 @@
+id	languageType	srcPath	textIsLeft2Right	isForce	r2MvpRecharge	languageName	icon	usingLanguage
+1	0	English	1	0	1	en	0.png	@LangEN
+2	1	Chinese	1	0	0	zh	0.png	@LangCN
+3	2	French	1	0	1	fr	2.png	@LangFR
+4	3	Italian	1	0	0	it	0.png	@LangEN
+5	4	German	1	0	1	de	4.png	@LangDE
+6	5	Spanish	1	0	1	es	5.png	@LangES
+7	6	Dutch	1	0	0	nl	0.png	@LangEN
+8	7	Russian	1	0	1	ru	7.png	@LangRU
+9	8	Korean	1	0	0	ko	0.png	@LangEN
+10	9	Japanese	1	0	0	ja	0.png	@LangEN
+11	10	Hungarian	1	0	0	hu	0.png	@LangEN
+12	11	Portuguese	1	0	1	pt	11.png	@LangPT
+13	12	Arabic	0	1	0	ar	12.png	@LangAR
+14	13	CH_TW	1	0	0	zh	0.png	@LangEN
+15	14	Turkish	1	0	1	tr	14.png	@LangTR
+16	15	Thai	1	0	1	th	15.png	@LangTH

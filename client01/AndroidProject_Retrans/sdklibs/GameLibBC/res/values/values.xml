@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="authentication">authentication</string>
+    <string name="back_to_game">Back</string>
+    <string name="change_password">Password</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="deepLink">deepLink</string>
+    <string name="faq">FAQ</string>
+    <string name="mail">mail</string>
+    <string name="need_login_tips_msg">Please login or register to H365 first</string>
+    <string name="need_login_tips_title">Member Only</string>
+    <string name="notice">Notice</string>
+    <string name="payment">payment</string>
+    <string name="top_up">Top Up</string>
+    <string name="understand">OK</string>
+    <string name="updating">Updating</string>
+    <string name="webPage">webPage</string>
+    <string name="webView">webView</string>
+</resources>

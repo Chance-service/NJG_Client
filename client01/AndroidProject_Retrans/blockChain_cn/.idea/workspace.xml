@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="4f0e1df7-291d-4320-8538-ea707b4b09a9" name="Default" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="PlatformSDKActivity.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/GameAndroid/src/com/nuclear/gjwow/platform/PlatformSDKActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-3111">
+              <caret line="790" lean-forward="true" selection-start-line="790" selection-end-line="790" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#31553#32184#0" />
+                <element signature="e#36270#36328#0" />
+                <element signature="e#39242#39353#0" />
+                <element signature="e#40694#40769#0" />
+                <element signature="e#43618#46209#0" />
+                <element signature="e#46216#48682#0" />
+                <element signature="e#48684#48734#0" />
+                <element signature="e#48951#49095#0" />
+                <element signature="e#49097#53167#0" />
+                <element signature="e#53169#58840#0" />
+                <element signature="e#61269#61300#0" />
+                <element signature="e#66052#66214#0" />
+                <element signature="e#66217#66522#0" />
+                <element signature="e#66525#66915#0" />
+                <element signature="e#66917#67967#0" />
+                <element signature="e#67971#68995#0" />
+                <element signature="e#68999#69207#0" />
+                <element signature="e#69209#69508#0" />
+                <element signature="e#69573#71032#0" />
+                <element signature="e#71034#72584#0" />
+                <element signature="e#72586#72917#0" />
+                <element signature="e#72921#73000#0" />
+                <element signature="e#73002#73562#0" />
+                <element signature="e#73564#75074#0" />
+                <element signature="e#75078#76083#0" />
+                <element signature="e#76091#76705#0" />
+                <element signature="e#77772#77796#0" />
+                <element signature="e#85838#87268#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LoginInfo.java" pinned="false" current-in-tab="false">
+        <entry file="file://C:/Gjwow_work/client01/AndroidProject/sdklibs/GameLib2.0/src/com/nuclear/bean/LoginInfo.java">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>callPlatformLogin</find>
+      <find>PlatformLogin</find>
+      <find>login</find>
+      <find>callLogin</find>
+      <find>LoginInfo</find>
+      <find>mUserCode</find>
+    </findStrings>
+    <dirStrings>
+      <dir>D:\Gjwow_work\SchoolBattle_Build\client01</dir>
+    </dirStrings>
+  </component>
+  <component name="GradleLocalSettings">
+    <option name="projectSyncType">
+      <map>
+        <entry key="C:/HappyGaming/HappyGaming_work/SDK/Android/wechat" value="PREVIEW" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-1840" />
+    <option name="y" value="35" />
+    <option name="width" value="1640" />
+    <option name="height" value="940" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="AndroidView" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="sanguo_cn" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sanguo_cn" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sanguo_cn" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sanguo_cn" type="462c0819:PsiDirectoryNode" />
+              <item name="GameAndroid" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sanguo_cn" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sanguo_cn" type="462c0819:PsiDirectoryNode" />
+              <item name="GameAndroid" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sanguo_cn" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sanguo_cn" type="462c0819:PsiDirectoryNode" />
+              <item name="GameAndroid" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sanguo_cn" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sanguo_cn" type="462c0819:PsiDirectoryNode" />
+              <item name="GameAndroid" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="nuclear" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sanguo_cn" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sanguo_cn" type="462c0819:PsiDirectoryNode" />
+              <item name="GameAndroid" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="nuclear" type="462c0819:PsiDirectoryNode" />
+              <item name="gjwow" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sanguo_cn" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sanguo_cn" type="462c0819:PsiDirectoryNode" />
+              <item name="GameAndroid" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="nuclear" type="462c0819:PsiDirectoryNode" />
+              <item name="gjwow" type="462c0819:PsiDirectoryNode" />
+              <item name="platform" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
+    <property name="settings.editor.selected.configurable" value="terminal" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <properties />
+      <listeners />
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4f0e1df7-291d-4320-8538-ea707b4b09a9" name="Default" comment="" />
+      <created>1585543532536</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1585543532536</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-1927" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="3" />
+      <window_info id="Image Layers" order="2" />
+      <window_info anchor="right" id="Capture Analysis" order="3" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info anchor="right" id="Maven Projects" order="3" />
+      <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info id="Capture Tool" order="2" />
+      <window_info id="Designer" order="2" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info id="UI Designer" order="2" />
+      <window_info anchor="right" id="Theme Preview" order="3" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GameAndroid/src/com/nuclear/gjwow/platform/PlatformSDKActivity.java</url>
+          <line>788</line>
+          <properties />
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GameAndroid/src/com/nuclear/gjwow/platform/PlatformSDKActivity.java</url>
+          <line>981</line>
+          <properties />
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GameAndroid/src/com/nuclear/gjwow/platform/PlatformSDKActivity.java</url>
+          <line>900</line>
+          <properties />
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="5" />
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/GameAndroid/src/com/nuclear/gjwow/platform/MyGameApp.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GameAndroid/src/com/nuclear/gjwow/platform/BindCallBack.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://C:/Gjwow_work/client01/AndroidProject/sdklibs/GameLib2.0/src/com/nuclear/bean/LoginInfo.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GameAndroid/src/com/nuclear/gjwow/platform/PlatformSDKActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3111">
+          <caret line="790" lean-forward="true" selection-start-line="790" selection-end-line="790" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#31553#32184#0" />
+            <element signature="e#36270#36328#0" />
+            <element signature="e#39242#39353#0" />
+            <element signature="e#40694#40769#0" />
+            <element signature="e#43618#46209#0" />
+            <element signature="e#46216#48682#0" />
+            <element signature="e#48684#48734#0" />
+            <element signature="e#48951#49095#0" />
+            <element signature="e#49097#53167#0" />
+            <element signature="e#53169#58840#0" />
+            <element signature="e#61269#61300#0" />
+            <element signature="e#66052#66214#0" />
+            <element signature="e#66217#66522#0" />
+            <element signature="e#66525#66915#0" />
+            <element signature="e#66917#67967#0" />
+            <element signature="e#67971#68995#0" />
+            <element signature="e#68999#69207#0" />
+            <element signature="e#69209#69508#0" />
+            <element signature="e#69573#71032#0" />
+            <element signature="e#71034#72584#0" />
+            <element signature="e#72586#72917#0" />
+            <element signature="e#72921#73000#0" />
+            <element signature="e#73002#73562#0" />
+            <element signature="e#73564#75074#0" />
+            <element signature="e#75078#76083#0" />
+            <element signature="e#76091#76705#0" />
+            <element signature="e#77772#77796#0" />
+            <element signature="e#85838#87268#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

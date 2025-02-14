@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="main$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="C:\source\NG_Client\client01\AndroidProject_Retrans\sdklibs\GameLibBC\res"/><source path="C:\source\NG_Client\client01\AndroidProject_Retrans\sdklibs\GameLibBC\build\generated\res\rs\debug"/><source path="C:\source\NG_Client\client01\AndroidProject_Retrans\sdklibs\GameLibBC\build\generated\res\resValues\debug"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="main" generated-set="main$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="C:\source\NG_Client\client01\AndroidProject_Retrans\sdklibs\GameLibBC\res"><file name="assets_unzip_progressbar" path="C:\source\NG_Client\client01\AndroidProject_Retrans\sdklibs\GameLibBC\res\drawable\assets_unzip_progressbar.xml" qualifiers="" type="drawable"/><file name="btn_p" path="C:\source\NG_Client\client01\AndroidProject_Retrans\sdklibs\GameLibBC\res\drawable\btn_p.png" qualifiers="" type="drawable"/><file name="btn_s" path="C:\source\NG_Client\client01\AndroidProject_Retrans\sdklibs\GameLibBC\res\drawable\btn_s.png" qualifiers="" type="drawable"/><file name="moviejump" path="C:\source\NG_Client\client01\AndroidProject_Retrans\sdklibs\GameLibBC\res\drawable\moviejump.xml" qualifiers="" type="drawable"/><file name="nuclear_loading" path="C:\source\NG_Client\client01\AndroidProject_Retrans\sdklibs\GameLibBC\res\drawable\nuclear_loading.xml" qualifiers="" type="drawable"/><file name="nuclear_loading_01" path="C:\source\NG_Client\client01\AndroidProject_Retrans\sdklibs\GameLibBC\res\drawable\nuclear_loading_01.png" qualifiers="" type="drawable"/><file name="nuclear_loading_02" path="C:\source\NG_Client\client01\AndroidProject_Retrans\sdklibs\GameLibBC\res\drawable\nuclear_loading_02.png" qualifiers="" type="drawable"/><file name="nuclear_loading_03" path="C:\source\NG_Client\client01\AndroidProject_Retrans\sdklibs\GameLibBC\res\drawable\nuclear_loading_03.png" qualifiers="" type="drawable"/><file name="nuclear_loading_04" path="C:\source\NG_Client\client01\AndroidProject_Retrans\sdklibs\GameLibBC\res\drawable\nuclear_loading_04.png" qualifiers="" type="drawable"/><file name="nuclear_loading_05" path="C:\source\NG_Client\client01\AndroidProject_Retrans\sdklibs\GameLibBC\res\drawable\nuclear_loading_05.png" qualifiers="" type="drawable"/><file name="nuclear_loading_06" path="C:\source\NG_Client\client01\AndroidProject_Retrans\sdklibs\GameLibBC\res\drawable\nuclear_loading_06.png" qualifiers="" type="drawable"/><file name="nuclear_loading_07" path="C:\source\NG_Client\client01\AndroidProject_Retrans\sdklibs\GameLibBC\res\drawable\nuclear_loading_07.png" qualifiers="" type="drawable"/><file name="activity_game" path="C:\source\NG_Client\client01\AndroidProject_Retrans\sdklibs\GameLibBC\res\layout\activity_game.xml" qualifiers="" type="layout"/><file name="activity_main" path="C:\source\NG_Client\client01\AndroidProject_Retrans\sdklibs\GameLibBC\res\layout\activity_main.xml" qualifiers="" type="layout"/><file name="logo_layout" path="C:\source\NG_Client\client01\AndroidProject_Retrans\sdklibs\GameLibBC\res\layout\logo_layout.xml" qualifiers="" type="layout"/><file name="waiting_layout" path="C:\source\NG_Client\client01\AndroidProject_Retrans\sdklibs\GameLibBC\res\layout\waiting_layout.xml" qualifiers="" type="layout"/><file name="bbsconfig" path="C:\source\NG_Client\client01\AndroidProject_Retrans\sdklibs\GameLibBC\res\raw\bbsconfig.txt" qualifiers="" type="raw"/><file name="gamelogo" path="C:\source\NG_Client\client01\AndroidProject_Retrans\sdklibs\GameLibBC\res\raw\gamelogo.mp4" qualifiers="" type="raw"/><file name="hohstory" path="C:\source\NG_Client\client01\AndroidProject_Retrans\sdklibs\GameLibBC\res\raw\hohstory.mp4" qualifiers="" type="raw"/><file name="module" path="C:\source\NG_Client\client01\AndroidProject_Retrans\sdklibs\GameLibBC\res\raw\module.properties" qualifiers="" type="raw"/><file name="shortstory" path="C:\source\NG_Client\client01\AndroidProject_Retrans\sdklibs\GameLibBC\res\raw\shortstory.mp4" qualifiers="" type="raw"/><file path="C:\source\NG_Client\client01\AndroidProject_Retrans\sdklibs\GameLibBC\res\values\attrs.xml" qualifiers=""><declare-styleable name="ButtonBarContainerTheme">
+        <attr format="reference" name="buttonBarStyle"/>
+        <attr format="reference" name="buttonBarButtonStyle"/>
+    </declare-styleable></file><file path="C:\source\NG_Client\client01\AndroidProject_Retrans\sdklibs\GameLibBC\res\values\colors.xml" qualifiers=""><color name="black_overlay">#66000000</color><color name="white_text">#66ffffff</color><color name="black_text">#66000000</color><color name="appBlack">#FF000000</color><color name="appWhite">#FFFFFFFF</color><color name="red_text">#620000</color></file><file path="C:\source\NG_Client\client01\AndroidProject_Retrans\sdklibs\GameLibBC\res\values\dimens.xml" qualifiers=""><dimen name="doubansdk_dialog_left_margin">10dp</dimen><dimen name="doubansdk_dialog_top_margin">30dp</dimen><dimen name="doubansdk_dialog_right_margin">10dp</dimen><dimen name="doubansdk_dialog_bottom_margin">10dp</dimen></file><file path="C:\source\NG_Client\client01\AndroidProject_Retrans\sdklibs\GameLibBC\res\values\strings.xml" qualifiers=""><string name="feedback_back"/><string name="feedback"/><string name="app_name">Ninja Girl</string><string name="dummy_content"/><string name="app_exit_msg"/><string name="app_dlg_title"/><string name="app_dlg_newwork_notok_msg"/><string name="app_dlg_externalstorage_notok_msg"/><string name="app_dlg_externalstorage_nofreespace_msg"/><string name="assets_unzip_msg"/><string name="starting_game">START GAME</string><string name="please_wait">Please Waiting</string><string name="download_select"/><string name="download_select_other"/><string name="confirm"/><string name="cancel"/><string name="share"/><string name="loader_notopen"/><string name="download"/><string name="download_fail"/><string name="download_success"/><string name="feedBack_loading"/><string name="screen_capture"/><string name="screen_capture_again"/><string name="version_updates"/><string name="create_shortcut"/><string name="starting_game_one"/><string name="starting_game_two"/><string name="starting_game_three"/><string name="unpack_the_resources_a"/><string name="unpack_the_resources_b"/><string name="unpack_the_resources_c"/><string name="clear_the_resources"/><string name="logining"/><string name="service"/><string name="title_alert"/></file><file path="C:\source\NG_Client\client01\AndroidProject_Retrans\sdklibs\GameLibBC\res\values\styles.xml" qualifiers=""><style name="AppBaseTheme" parent="android:Theme.Light">
+        
+    </style><style name="AppTheme" parent="AppBaseTheme">
+        
+    </style><style name="FullscreenTheme" parent="android:Theme.NoTitleBar">
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowBackground">@null</item>
+        <item name="buttonBarStyle">@style/ButtonBar</item>
+        <item name="buttonBarButtonStyle">@style/ButtonBarButton</item>
+    </style><style name="ButtonBar">
+        <item name="android:paddingLeft">2dp</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingRight">2dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:background">@android:drawable/bottom_bar</item>
+    </style><style name="ButtonBarButton"/><style name="FloatingWindowStyle">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+    </style><style name="DialogActivity" parent="@android:style/Theme">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style><style name="text_18_ffffff">
+        <item name="android:textSize">18.0dip</item>
+        <item name="android:textColor">#ffffffff</item>
+    </style><style name="text_16_666666">
+        <item name="android:textSize">16.0dip</item>
+        <item name="android:textColor">#ff666666</item>
+    </style><style name="sdw_79351b">
+        <item name="android:shadowColor">#ff79351b</item>
+        <item name="android:shadowDx">0.0</item>
+        <item name="android:shadowDy">1.0</item>
+        <item name="android:shadowRadius">1.0</item>
+    </style><style name="sdw_white">
+        <item name="android:shadowColor">#7fffffff</item>
+        <item name="android:shadowDx">0.0</item>
+        <item name="android:shadowDy">0.65</item>
+        <item name="android:shadowRadius">1.0</item>
+    </style><style name="text_15_ffffff_sdw" parent="@style/sdw_79351b">
+        <item name="android:textSize">15.0dip</item>
+        <item name="android:textColor">#ffffffff</item>
+    </style><style name="text_15_666666_sdw" parent="@style/sdw_white">
+        <item name="android:textSize">17.0dip</item>
+        <item name="android:textColor">#7e4635</item>
+    </style><style name="Dialog" parent="android:style/Theme.Dialog">
+        <item name="android:background">#00000000</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+    </style></file><file path="C:\source\NG_Client\client01\AndroidProject_Retrans\sdklibs\GameLibBC\res\values\values.xml" qualifiers=""><string name="authentication">authentication</string><string name="back_to_game">Back</string><string name="change_password">Password</string><string name="contact_us">Contact Us</string><string name="deepLink">deepLink</string><string name="faq">FAQ</string><string name="mail">mail</string><string name="need_login_tips_msg">Please login or register to H365 first</string><string name="need_login_tips_title">Member Only</string><string name="notice">Notice</string><string name="payment">payment</string><string name="top_up">Top Up</string><string name="understand">OK</string><string name="updating">Updating</string><string name="webPage">webPage</string><string name="webView">webView</string></file><file path="C:\source\NG_Client\client01\AndroidProject_Retrans\sdklibs\GameLibBC\res\values-en\values-en.xml" qualifiers="en"><string name="authentication">authentication</string><string name="back_to_game">Back</string><string name="change_password">Password</string><string name="contact_us">Contact Us</string><string name="deepLink">deepLink</string><string name="faq">FAQ</string><string name="mail">mail</string><string name="need_login_tips_msg">Please login or register to H365 first</string><string name="need_login_tips_title">Member Only</string><string name="notice">Notice</string><string name="payment">payment</string><string name="top_up">Top Up</string><string name="understand">OK</string><string name="updating">Updating</string><string name="webPage">webPage</string><string name="webView">webView</string></file><file path="C:\source\NG_Client\client01\AndroidProject_Retrans\sdklibs\GameLibBC\res\values-ja\attrs.xml" qualifiers="ja"><declare-styleable name="ButtonBarContainerTheme">
+        <attr format="reference" name="buttonBarStyle"/>
+        <attr format="reference" name="buttonBarButtonStyle"/>
+    </declare-styleable></file><file path="C:\source\NG_Client\client01\AndroidProject_Retrans\sdklibs\GameLibBC\res\values-ja\colors.xml" qualifiers="ja"><color name="black_overlay">#66000000</color><color name="white_text">#66ffffff</color><color name="black_text">#66000000</color><color name="appBlack">#FF000000</color><color name="appWhite">#FFFFFFFF</color><color name="red_text">#620000</color></file><file path="C:\source\NG_Client\client01\AndroidProject_Retrans\sdklibs\GameLibBC\res\values-ja\dimens.xml" qualifiers="ja"><dimen name="doubansdk_dialog_left_margin">10dp</dimen><dimen name="doubansdk_dialog_top_margin">30dp</dimen><dimen name="doubansdk_dialog_right_margin">10dp</dimen><dimen name="doubansdk_dialog_bottom_margin">10dp</dimen></file><file path="C:\source\NG_Client\client01\AndroidProject_Retrans\sdklibs\GameLibBC\res\values-ja\strings.xml" qualifiers="ja"><string name="feedback_back"/><string name="feedback"/><string name="app_name">Ninja Girl</string><string name="dummy_content"/><string name="app_exit_msg"/><string name="app_dlg_title"/><string name="app_dlg_newwork_notok_msg"/><string name="app_dlg_externalstorage_notok_msg"/><string name="app_dlg_externalstorage_nofreespace_msg"/><string name="assets_unzip_msg"/><string name="starting_game"/><string name="please_wait">Please Waiting</string><string name="download_select"/><string name="download_select_other"/><string name="confirm"/><string name="cancel"/><string name="share"/><string name="loader_notopen"/><string name="download"/><string name="download_fail"/><string name="download_success"/><string name="feedBack_loading"/><string name="screen_capture"/><string name="screen_capture_again"/><string name="version_updates"/><string name="create_shortcut"/><string name="starting_game_one"/><string name="starting_game_two"/><string name="starting_game_three"/><string name="unpack_the_resources_a"/><string name="unpack_the_resources_b"/><string name="unpack_the_resources_c"/><string name="clear_the_resources"/><string name="logining"/><string name="service"/><string name="title_alert"/></file><file path="C:\source\NG_Client\client01\AndroidProject_Retrans\sdklibs\GameLibBC\res\values-ja\styles.xml" qualifiers="ja"><style name="AppBaseTheme" parent="android:Theme.Light">
+        
+    </style><style name="AppTheme" parent="AppBaseTheme">
+        
+    </style><style name="FullscreenTheme" parent="android:Theme.NoTitleBar">
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowBackground">@null</item>
+        <item name="buttonBarStyle">@style/ButtonBar</item>
+        <item name="buttonBarButtonStyle">@style/ButtonBarButton</item>
+    </style><style name="ButtonBar">
+        <item name="android:paddingLeft">2dp</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingRight">2dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:background">@android:drawable/bottom_bar</item>
+    </style><style name="ButtonBarButton"/><style name="FloatingWindowStyle">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+    </style><style name="DialogActivity" parent="@android:style/Theme">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style><style name="text_18_ffffff">
+        <item name="android:textSize">18.0dip</item>
+        <item name="android:textColor">#ffffffff</item>
+    </style><style name="text_16_666666">
+        <item name="android:textSize">16.0dip</item>
+        <item name="android:textColor">#ff666666</item>
+    </style><style name="sdw_79351b">
+        <item name="android:shadowColor">#ff79351b</item>
+        <item name="android:shadowDx">0.0</item>
+        <item name="android:shadowDy">1.0</item>
+        <item name="android:shadowRadius">1.0</item>
+    </style><style name="sdw_white">
+        <item name="android:shadowColor">#7fffffff</item>
+        <item name="android:shadowDx">0.0</item>
+        <item name="android:shadowDy">0.65</item>
+        <item name="android:shadowRadius">1.0</item>
+    </style><style name="text_15_ffffff_sdw" parent="@style/sdw_79351b">
+        <item name="android:textSize">15.0dip</item>
+        <item name="android:textColor">#ffffffff</item>
+    </style><style name="text_15_666666_sdw" parent="@style/sdw_white">
+        <item name="android:textSize">17.0dip</item>
+        <item name="android:textColor">#7e4635</item>
+    </style><style name="Dialog" parent="android:style/Theme.Dialog">
+        <item name="android:background">#00000000</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+    </style></file><file path="C:\source\NG_Client\client01\AndroidProject_Retrans\sdklibs\GameLibBC\res\values-ja\values.xml" qualifiers="ja"><string name="authentication">authentication</string><string name="back_to_game">Back</string><string name="change_password">Password</string><string name="contact_us">Contact Us</string><string name="deepLink">deepLink</string><string name="faq">FAQ</string><string name="mail">mail</string><string name="need_login_tips_msg">Please login or register to H365 first</string><string name="need_login_tips_title">Member Only</string><string name="notice">Notice</string><string name="payment">payment</string><string name="top_up">Top Up</string><string name="understand">OK</string><string name="updating">Updating</string><string name="webPage">webPage</string><string name="webView">webView</string></file><file path="C:\source\NG_Client\client01\AndroidProject_Retrans\sdklibs\GameLibBC\res\values-large-long\dimens.xml" qualifiers="large-long-v4"><dimen name="doubansdk_dialog_left_margin">30dp</dimen><dimen name="doubansdk_dialog_top_margin">30dp</dimen><dimen name="doubansdk_dialog_right_margin">30dp</dimen><dimen name="doubansdk_dialog_bottom_margin">15dp</dimen></file><file path="C:\source\NG_Client\client01\AndroidProject_Retrans\sdklibs\GameLibBC\res\values-normal-notlong\dimens.xml" qualifiers="normal-notlong-v4"><dimen name="doubansdk_dialog_left_margin">30dp</dimen><dimen name="doubansdk_dialog_top_margin">30dp</dimen><dimen name="doubansdk_dialog_right_margin">30dp</dimen><dimen name="doubansdk_dialog_bottom_margin">15dp</dimen></file><file path="C:\source\NG_Client\client01\AndroidProject_Retrans\sdklibs\GameLibBC\res\values-v11\styles.xml" qualifiers="v11"><style name="AppBaseTheme" parent="android:Theme.Holo.Light">
+        
+    </style><style name="FullscreenTheme" parent="android:Theme.Holo">
+        <item name="android:actionBarStyle">@style/FullscreenActionBarStyle</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowBackground">@null</item>
+        <item name="buttonBarStyle">?android:attr/buttonBarStyle</item>
+        <item name="buttonBarButtonStyle">?android:attr/buttonBarButtonStyle</item>
+    </style><style name="FullscreenActionBarStyle" parent="android:Widget.Holo.ActionBar">
+        <item name="android:background">@color/black_overlay</item>
+    </style></file><file path="C:\source\NG_Client\client01\AndroidProject_Retrans\sdklibs\GameLibBC\res\values-v14\styles.xml" qualifiers="v14"><style name="AppBaseTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+        
+    </style></file><file path="C:\source\NG_Client\client01\AndroidProject_Retrans\sdklibs\GameLibBC\res\values-zh\values-zh.xml" qualifiers="zh"><string name="authentication">authentication</string><string name="back_to_game">回到游戏</string><string name="change_password">更改密码</string><string name="contact_us">联络客服</string><string name="deepLink">deepLink</string><string name="faq">常见问题</string><string name="mail">mail</string><string name="need_login_tips_msg">请先登入或注册H365会员</string><string name="need_login_tips_title">尚未登入H365</string><string name="notice">公告</string><string name="payment">payment</string><string name="top_up">立即充值</string><string name="understand">我知道了</string><string name="updating">刷新中</string><string name="webPage">webPage</string><string name="webView">webView</string></file><file path="C:\source\NG_Client\client01\AndroidProject_Retrans\sdklibs\GameLibBC\res\values-zh-rHK\values-zh-rHK.xml" qualifiers="zh-rHK"><string name="authentication">authentication</string><string name="back_to_game">回到遊戲</string><string name="change_password">更改密碼</string><string name="contact_us">聯絡客服</string><string name="deepLink">deepLink</string><string name="faq">常見問題</string><string name="mail">mail</string><string name="need_login_tips_msg">請先登入或註冊H365會員</string><string name="need_login_tips_title">尚未登入H365</string><string name="notice">公告</string><string name="payment">payment</string><string name="top_up">立即充值</string><string name="understand">我知道了</string><string name="updating">刷新中</string><string name="webPage">webPage</string><string name="webView">webView</string></file><file path="C:\source\NG_Client\client01\AndroidProject_Retrans\sdklibs\GameLibBC\res\values-zh-rTW\values-zh-rTW.xml" qualifiers="zh-rTW"><string name="authentication">authentication</string><string name="back_to_game">回到遊戲</string><string name="change_password">更改密碼</string><string name="contact_us">聯絡客服</string><string name="deepLink">deepLink</string><string name="faq">常見問題</string><string name="mail">mail</string><string name="need_login_tips_msg">請先登入或註冊H365會員</string><string name="need_login_tips_title">尚未登入H365</string><string name="notice">公告</string><string name="payment">payment</string><string name="top_up">立即充值</string><string name="understand">我知道了</string><string name="updating">刷新中</string><string name="webPage">webPage</string><string name="webView">webView</string></file></source><source path="C:\source\NG_Client\client01\AndroidProject_Retrans\sdklibs\GameLibBC\build\generated\res\rs\debug"/><source path="C:\source\NG_Client\client01\AndroidProject_Retrans\sdklibs\GameLibBC\build\generated\res\resValues\debug"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="debug$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="C:\source\NG_Client\client01\AndroidProject_Retrans\sdklibs\GameLibBC\build-types\debug\res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="debug" generated-set="debug$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="C:\source\NG_Client\client01\AndroidProject_Retrans\sdklibs\GameLibBC\build-types\debug\res"/></dataSet><mergedItems><configuration qualifiers=""><declare-styleable name="ButtonBarContainerTheme">
+        <attr format="reference" name="buttonBarStyle"/>
+        <attr format="reference" name="buttonBarButtonStyle"/>
+    </declare-styleable></configuration></mergedItems></merger>

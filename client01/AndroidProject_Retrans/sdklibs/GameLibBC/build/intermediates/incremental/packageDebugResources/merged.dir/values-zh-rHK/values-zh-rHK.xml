@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="authentication">authentication</string>
+    <string name="back_to_game">回到遊戲</string>
+    <string name="change_password">更改密碼</string>
+    <string name="contact_us">聯絡客服</string>
+    <string name="deepLink">deepLink</string>
+    <string name="faq">常見問題</string>
+    <string name="mail">mail</string>
+    <string name="need_login_tips_msg">請先登入或註冊H365會員</string>
+    <string name="need_login_tips_title">尚未登入H365</string>
+    <string name="notice">公告</string>
+    <string name="payment">payment</string>
+    <string name="top_up">立即充值</string>
+    <string name="understand">我知道了</string>
+    <string name="updating">刷新中</string>
+    <string name="webPage">webPage</string>
+    <string name="webView">webView</string>
+</resources>

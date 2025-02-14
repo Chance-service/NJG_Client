@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Gradle: ./sdklibs/GameLibBC/libs/libTyrantdbGameTracker.jar">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/sdklibs/GameLibBC/libs/libTyrantdbGameTracker.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  <string name="feedback_back"></string>
+  <string name="feedback"></string>
+  <string name="app_name">忍娘24內部KUSO</string>
+  <string name="dummy_content" />
+  <string name="app_exit_msg"></string>
+  <string name="app_dlg_title"></string>
+  <string name="app_dlg_newwork_notok_msg"></string>
+  <string name="app_dlg_externalstorage_notok_msg"></string>
+  <string name="app_dlg_externalstorage_nofreespace_msg"></string>
+  <string name="assets_unzip_msg"></string>
+  <string name="starting_game">加載中</string>
+  <string name="please_wait">Please Waiting</string>
+  <string name="download_select"></string>
+  <string name="download_select_other"></string>
+  <string name="confirm"></string>
+  <string name="cancel"></string>
+  <string name="share"></string>
+  <string name="loader_notopen"></string>
+  <string name="download"></string>
+  <string name="download_fail"></string>
+  <string name="download_success"></string>
+  <string name="feedBack_loading"></string>
+  <string name="screen_capture"></string>
+  <string name="screen_capture_again"></string>
+  <string name="version_updates"></string>
+  <string name="create_shortcut"></string>
+  <string name="starting_game_one"></string>
+  <string name="starting_game_two"></string>
+  <string name="starting_game_three"></string>
+  <string name="unpack_the_resources_a"></string>
+  <string name="unpack_the_resources_b"></string>
+  <string name="unpack_the_resources_c"></string>
+  <string name="clear_the_resources"></string>
+  <string name="logining"></string>
+  <string name="service"></string>
+  <string name="title_alert"></string>
+</resources>

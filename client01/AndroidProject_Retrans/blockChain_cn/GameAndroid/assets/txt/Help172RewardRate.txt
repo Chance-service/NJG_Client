@@ -1,0 +1,2 @@
+id	content
+1	<font color="#999933" face="Barlow-SemiBold28" ><p style="margin:10px">提供机率（1次）：</p></font><font color="#6f2f00" face="Barlow-SemiBold24" ><p style="margin:10px"> <br/> ● SSR英雄碎片(整只)              12.27%<br/>● SR英雄碎片(整只)               17.73%<br/>● SSR英雄碎片(30)                 8.18%<br/>● SR英雄碎片(30)                 11.82%<br/>●SSR英雄碎片(10)                16.36%<br/>● SR英雄碎片(10)                 23.64%<br/>● SSR英雄碎片(5)                  4.09%<br/>● SR英雄碎片(5)                   5.91%<br/><br/>提供机率（每80次）：<br/>● 光暗系英雄(整只)                100%</p></font><br/>

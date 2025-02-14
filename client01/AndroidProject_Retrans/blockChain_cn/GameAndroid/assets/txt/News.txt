@@ -1,0 +1,7 @@
+id	banner	是否有跳轉	describe
+1	EventNews_banner002.png	0	封測公告
+2	EventNews_banner001.png	1	壁尻
+3	EventNews_banner003.png	1	儲值反饋
+4	EventNews_banner004.png	1	月卡
+5	EventNews_banner005.png	1	官方社群discord
+6	EventNews_banner006.png	1	問券

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/source/NG_Client/client01/AndroidProject_trans/blockChain_en/GameAndroid/res/layout/sbpaymentkit.xml" value="0.11197916666666667" />
+        <entry key="..\:/source/NG_Client/client01/AndroidProject_trans/sdklibs/GameLibBC/res/drawable-hdpi/dialog_bottom_bg.xml" value="0.1453125" />
+        <entry key="..\:/source/NG_Client/client01/AndroidProject_trans/sdklibs/GameLibBC/res/drawable/assets_unzip_progressbar.xml" value="0.128125" />
+        <entry key="..\:/source/NG_Client/client01/AndroidProject_trans/sdklibs/GameLibBC/res/drawable/bitmaps.xml" value="0.128125" />
+        <entry key="..\:/source/NG_Client/client01/AndroidProject_trans/sdklibs/GameLibBC/res/drawable/btn_cancel_selector.xml" value="0.128125" />
+        <entry key="..\:/source/NG_Client/client01/AndroidProject_trans/sdklibs/GameLibBC/res/drawable/btn_ok_selector.xml" value="0.128125" />
+        <entry key="..\:/source/NG_Client/client01/AndroidProject_trans/sdklibs/GameLibBC/res/drawable/third_dialog_xml_bg.xml" value="0.1453125" />
+        <entry key="..\:/source/NG_Client/client01/AndroidProject_trans/sdklibs/GameLibBC/res/drawable/thirdloginqq.xml" value="0.1453125" />
+        <entry key="..\:/source/NG_Client/client01/AndroidProject_trans/sdklibs/GameLibBC/res/drawable/thirdloginrenren.xml" value="0.1453125" />
+        <entry key="..\:/source/NG_Client/client01/AndroidProject_trans/sdklibs/GameLibBC/res/drawable/thirdloginweibo.xml" value="0.1453125" />
+        <entry key="..\:/source/NG_Client/client01/AndroidProject_trans/sdklibs/GameLibBC/res/drawable/titlebt_bg.xml" value="0.1453125" />
+        <entry key="..\:/source/NG_Client/client01/AndroidProject_trans/sdklibs/GameLibBC/res/drawable/u_announcementb_xml.xml" value="0.1453125" />
+        <entry key="..\:/source/NG_Client/client01/AndroidProject_trans/sdklibs/GameLibBC/res/drawable/widget_float_button_reddot.xml" value="0.1453125" />
+        <entry key="..\:/source/NG_Client/client01/AndroidProject_trans/sdklibs/GameLibBC/res/layout/activity_game.xml" value="0.11197916666666667" />
+        <entry key="..\:/source/NG_Client/client01/AndroidProject_trans/sdklibs/GameLibBC/res/layout/activity_main.xml" value="0.11197916666666667" />
+        <entry key="..\:/source/NG_Client/client01/AndroidProject_trans/sdklibs/GameLibBC/res/layout/announce_dialog.xml" value="0.12916666666666668" />
+        <entry key="..\:/source/NG_Client/client01/AndroidProject_trans/sdklibs/GameLibBC/res/layout/app_download_notification.xml" value="0.12916666666666668" />
+        <entry key="..\:/source/NG_Client/client01/AndroidProject_trans/sdklibs/GameLibBC/res/layout/increment_popup_dialog.xml" value="0.12916666666666668" />
+        <entry key="..\:/source/NG_Client/client01/AndroidProject_trans/sdklibs/GameLibBC/res/layout/jgg_splash.xml" value="0.11197916666666667" />
+        <entry key="..\:/source/NG_Client/client01/AndroidProject_trans/sdklibs/GameLibBC/res/layout/logo_layout.xml" value="0.11197916666666667" />
+        <entry key="..\:/source/NG_Client/client01/AndroidProject_trans/sdklibs/GameLibBC/res/layout/view_float_right.xml" value="0.11197916666666667" />
+        <entry key="..\:/source/NG_Client/client01/AndroidProject_trans/sdklibs/GameLibBC/res/layout/waiting_layout.xml" value="0.11197916666666667" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
