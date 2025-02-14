@@ -1,0 +1,28 @@
+﻿生成启动时间为 2018/7/18 15:01:47。
+     1>项目“G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\protoc.vcxproj”在节点 2 上(rebuild 个目标)。
+     1>InitializeBuildStatus:
+         正在对“Debug\protoc.unsuccessfulbuild”执行 Touch 任务。
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I../src /I. /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt ..\src\google\protobuf\compiler\main.cc /wd4244 /wd4267 /wd4018 /wd4355 /wd4800 /wd4251 /wd4996 /wd4146 /wd4305 
+         main.cc
+       ManifestResourceCompile:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /nologo /fo"Debug\protoc.exe.embed.manifest.res" Debug\protoc_manifest.rc 
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"Debug\protoc.exe" /INCREMENTAL /NOLOGO /LIBPATH:"G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32" /LIBPATH:"G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\Debug" liblua.lib libprotobuf.lib "libprotobuf-lite.lib" libprotoc.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\protoc.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\Debug\protoc.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"Debug\protoc.lib" /MACHINE:X86 Debug\protoc.exe.embed.manifest.res
+         Debug\main.obj
+       Manifest:
+         正在删除文件“Debug\protoc.exe.embed.manifest”。
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /out:"Debug\protoc.exe.embed.manifest" /manifest Debug\protoc.exe.intermediate.manifest
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /nologo /fo"Debug\protoc.exe.embed.manifest.res" Debug\protoc_manifest.rc 
+       LinkEmbedManifest:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"Debug\protoc.exe" /INCREMENTAL /NOLOGO /LIBPATH:"G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32" /LIBPATH:"G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\Debug" liblua.lib libprotobuf.lib "libprotobuf-lite.lib" libprotoc.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\protoc.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\Debug\protoc.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"Debug\protoc.lib" /MACHINE:X86 Debug\protoc.exe.embed.manifest.res
+         Debug\main.obj
+         protoc.vcxproj -> G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\Debug\protoc.exe
+       FinalizeBuildStatus:
+         正在删除文件“Debug\protoc.unsuccessfulbuild”。
+         正在对“Debug\protoc.lastbuildstate”执行 Touch 任务。
+     1>已完成生成项目“G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\protoc.vcxproj”(rebuild 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:04.16

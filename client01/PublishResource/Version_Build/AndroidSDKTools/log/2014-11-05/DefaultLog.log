@@ -1,0 +1,440 @@
+19:14:04:9312  INFO:Microsoft Windows [版本 6.1.7601]
+19:14:04:9332  INFO:版权所有 (c) 2009 Microsoft Corporation。保留所有权利。
+19:14:04:9342  INFO:
+19:14:04:9362  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn cleanup D:/test//sdklibs/ 
+19:14:05:4572  INFO:Microsoft Windows [版本 6.1.7601]
+19:14:05:4592  INFO:版权所有 (c) 2009 Microsoft Corporation。保留所有权利。
+19:14:05:4602  INFO:
+19:14:05:4612  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn cleanup D:/test/GameAndroid/ 
+19:14:05:4632  INFO:
+19:14:05:4642  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:14:05:4652  INFO:
+19:14:05:4672  ERROR:
+19:14:05:4692  INFO:Microsoft Windows [版本 6.1.7601]版权所有 (c) 2009 Microsoft Corporation。保留所有权利。F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn cleanup D:/test/GameAndroid/ F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:14:05:4702  INFO:Microsoft Windows [版本 6.1.7601]
+19:14:05:4742  INFO:版权所有 (c) 2009 Microsoft Corporation。保留所有权利。
+19:14:05:5132  INFO:
+19:14:05:5182  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn cleanup D:/test/Platforms/ 
+19:14:05:5252  INFO:
+19:14:05:5382  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:14:05:5432  INFO:
+19:14:05:5672  INFO:Microsoft Windows [版本 6.1.7601]
+19:14:05:6052  INFO:版权所有 (c) 2009 Microsoft Corporation。保留所有权利。
+19:14:05:6392  INFO:
+19:14:05:6732  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn revert --depth=infinity D:/test/GameAndroid/ --no-auth-cache --trust-server-cert --non-interactive --username dev_android --password dev_android 
+19:14:05:7422  INFO:
+19:14:05:7662  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:14:05:7722  INFO:
+19:14:05:8342  INFO:
+19:14:05:8362  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:14:05:8452  INFO:
+19:14:05:8502  ERROR:
+19:14:05:8502  ERROR:
+19:14:05:8582  INFO:Microsoft Windows [版本 6.1.7601]版权所有 (c) 2009 Microsoft Corporation。保留所有权利。F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn cleanup D:/test/Platforms/ F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:14:05:8592  ERROR:
+19:14:05:8812  INFO:Microsoft Windows [版本 6.1.7601]版权所有 (c) 2009 Microsoft Corporation。保留所有权利。F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn revert --depth=infinity D:/test/GameAndroid/ --no-auth-cache --trust-server-cert --non-interactive --username dev_android --password dev_android F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:14:05:8832  INFO:Microsoft Windows [版本 6.1.7601]版权所有 (c) 2009 Microsoft Corporation。保留所有权利。F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn cleanup D:/test//sdklibs/ F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:14:05:9402  INFO:Microsoft Windows [版本 6.1.7601]
+19:14:05:9642  INFO:版权所有 (c) 2009 Microsoft Corporation。保留所有权利。
+19:14:05:9722  INFO:
+19:14:05:9932  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn update D:/test/GameAndroid/ --no-auth-cache --trust-server-cert --non-interactive --username dev_android --password dev_android 
+19:14:06:0522  INFO:Updating 'D:\test\GameAndroid':
+19:14:06:0852  ERROR:svn: E170001: Unable to connect to a repository at URL 'http://192.168.1.222:3690/svn/SilkRoad/Version/trunk/Code_Android/GameAndroid'
+19:14:06:1502  INFO:
+19:14:06:1722  ERROR:svn: E170001: OPTIONS of 'http://192.168.1.222:3690/svn/SilkRoad/Version/trunk/Code_Android/GameAndroid': authorization failed: Could not authenticate to server: rejected Basic challenge (http://192.168.1.222:3690)
+19:14:06:1742  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:14:06:1862  ERROR:
+19:14:06:1872  INFO:
+19:14:06:3642  INFO:Microsoft Windows [版本 6.1.7601]版权所有 (c) 2009 Microsoft Corporation。保留所有权利。F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn update D:/test/GameAndroid/ --no-auth-cache --trust-server-cert --non-interactive --username dev_android --password dev_android Updating 'D:\test\GameAndroid':F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:14:06:4272  INFO:Microsoft Windows [版本 6.1.7601]
+19:14:06:4292  INFO:版权所有 (c) 2009 Microsoft Corporation。保留所有权利。
+19:14:06:4332  INFO:
+19:14:06:4642  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn revert --depth=infinity D:/test/Platforms/ --no-auth-cache --trust-server-cert --non-interactive --username dev_android --password dev_android 
+19:14:06:4662  ERROR:
+19:14:06:4672  INFO:
+19:14:06:4752  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:14:06:4762  INFO:Microsoft Windows [版本 6.1.7601]
+19:14:06:4802  INFO:
+19:14:06:4822  INFO:版权所有 (c) 2009 Microsoft Corporation。保留所有权利。
+19:14:06:4832  INFO:
+19:14:06:4862  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn revert --depth=infinity D:/test//sdklibs/ --no-auth-cache --trust-server-cert --non-interactive --username dev_android --password dev_android 
+19:14:06:4882  INFO:Microsoft Windows [版本 6.1.7601]版权所有 (c) 2009 Microsoft Corporation。保留所有权利。F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn revert --depth=infinity D:/test/Platforms/ --no-auth-cache --trust-server-cert --non-interactive --username dev_android --password dev_android F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:14:07:4543  INFO:Microsoft Windows [版本 6.1.7601]
+19:14:07:4553  INFO:版权所有 (c) 2009 Microsoft Corporation。保留所有权利。
+19:14:07:4573  INFO:
+19:14:07:4593  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn update D:/test/Platforms/ --no-auth-cache --trust-server-cert --non-interactive --username dev_android --password dev_android 
+19:14:07:4603  INFO:Updating 'D:\test\Platforms':
+19:14:07:4623  INFO:
+19:14:07:4633  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:14:07:4653  INFO:
+19:14:07:4663  ERROR:svn: E170001: Unable to connect to a repository at URL 'http://192.168.1.222:3690/svn/SilkRoad/Version/trunk/Code_Android/Platforms'
+19:14:07:4683  ERROR:svn: E170001: OPTIONS of 'http://192.168.1.222:3690/svn/SilkRoad/Version/trunk/Code_Android/Platforms': authorization failed: Could not authenticate to server: rejected Basic challenge (http://192.168.1.222:3690)
+19:14:07:4693  ERROR:
+19:14:07:4713  INFO:Microsoft Windows [版本 6.1.7601]版权所有 (c) 2009 Microsoft Corporation。保留所有权利。F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn update D:/test/Platforms/ --no-auth-cache --trust-server-cert --non-interactive --username dev_android --password dev_android Updating 'D:\test\Platforms':F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:14:07:5883  INFO:
+19:14:07:5903  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:14:07:6013  ERROR:
+19:14:07:6033  INFO:
+19:14:07:6123  INFO:Microsoft Windows [版本 6.1.7601]版权所有 (c) 2009 Microsoft Corporation。保留所有权利。F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn revert --depth=infinity D:/test//sdklibs/ --no-auth-cache --trust-server-cert --non-interactive --username dev_android --password dev_android F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:14:07:6503  INFO:Microsoft Windows [版本 6.1.7601]
+19:14:07:6603  INFO:版权所有 (c) 2009 Microsoft Corporation。保留所有权利。
+19:14:07:6623  INFO:
+19:14:07:6643  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn update D:/test//sdklibs/ --no-auth-cache --trust-server-cert --non-interactive --username dev_android --password dev_android 
+19:14:07:6973  INFO:Updating 'D:\test\sdklibs':
+19:14:08:5544  INFO:At revision 2862.
+19:14:08:5714  INFO:
+19:14:08:5754  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:14:08:5854  ERROR:
+19:14:08:5874  INFO:
+19:14:08:5994  INFO:Microsoft Windows [版本 6.1.7601]版权所有 (c) 2009 Microsoft Corporation。保留所有权利。F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn update D:/test//sdklibs/ --no-auth-cache --trust-server-cert --non-interactive --username dev_android --password dev_android Updating 'D:\test\sdklibs':At revision 2862.F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:16:55:5919  INFO:Microsoft Windows [版本 6.1.7601]
+19:16:55:5939  INFO:版权所有 (c) 2009 Microsoft Corporation。保留所有权利。
+19:16:55:5959  INFO:
+19:16:55:5979  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn cleanup D:/test/GameAndroid/ 
+19:16:55:5989  INFO:
+19:16:55:6009  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:16:55:6019  INFO:
+19:16:55:6049  ERROR:
+19:16:55:6069  INFO:Microsoft Windows [版本 6.1.7601]版权所有 (c) 2009 Microsoft Corporation。保留所有权利。F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn cleanup D:/test/GameAndroid/ F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:16:55:6139  INFO:Microsoft Windows [版本 6.1.7601]
+19:16:55:6179  INFO:版权所有 (c) 2009 Microsoft Corporation。保留所有权利。
+19:16:55:6219  INFO:
+19:16:55:6469  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn cleanup D:/test/Platforms/ 
+19:16:55:6519  INFO:
+19:16:55:6529  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:16:55:6549  INFO:
+19:16:55:6599  INFO:Microsoft Windows [版本 6.1.7601]
+19:16:55:6619  INFO:版权所有 (c) 2009 Microsoft Corporation。保留所有权利。
+19:16:55:6759  INFO:
+19:16:55:6989  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn revert --depth=infinity D:/test/GameAndroid/ --no-auth-cache --trust-server-cert --non-interactive --username dev_android --password dev_android 
+19:16:55:9789  INFO:
+19:16:55:9809  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:16:56:0049  INFO:
+19:16:56:0089  ERROR:
+19:16:56:0109  INFO:Microsoft Windows [版本 6.1.7601]版权所有 (c) 2009 Microsoft Corporation。保留所有权利。F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn revert --depth=infinity D:/test/GameAndroid/ --no-auth-cache --trust-server-cert --non-interactive --username dev_android --password dev_android F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:16:56:0179  ERROR:
+19:16:56:0219  INFO:Microsoft Windows [版本 6.1.7601]
+19:16:56:0419  INFO:Microsoft Windows [版本 6.1.7601]版权所有 (c) 2009 Microsoft Corporation。保留所有权利。F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn cleanup D:/test/Platforms/ F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:16:56:0709  INFO:版权所有 (c) 2009 Microsoft Corporation。保留所有权利。
+19:16:56:0829  INFO:
+19:16:56:0969  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn cleanup D:/test//sdklibs/ 
+19:16:56:4780  INFO:
+19:16:56:4950  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:16:56:5020  INFO:
+19:16:56:5060  INFO:Microsoft Windows [版本 6.1.7601]
+19:16:56:5110  INFO:版权所有 (c) 2009 Microsoft Corporation。保留所有权利。
+19:16:56:5140  INFO:
+19:16:56:5170  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn update D:/test/GameAndroid/ --no-auth-cache --trust-server-cert --non-interactive --username dev_android --password dev_android 
+19:16:56:5200  INFO:Updating 'D:\test\GameAndroid':
+19:16:56:5220  INFO:
+19:16:56:5240  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:16:56:5260  INFO:
+19:16:56:5280  ERROR:svn: E170001: Unable to connect to a repository at URL 'http://192.168.1.222:3690/svn/SilkRoad/Version/trunk/Code_Android/GameAndroid'
+19:16:56:5300  ERROR:svn: E170001: OPTIONS of 'http://192.168.1.222:3690/svn/SilkRoad/Version/trunk/Code_Android/GameAndroid': authorization failed: Could not authenticate to server: rejected Basic challenge (http://192.168.1.222:3690)
+19:16:56:5320  ERROR:
+19:16:56:5350  INFO:Microsoft Windows [版本 6.1.7601]版权所有 (c) 2009 Microsoft Corporation。保留所有权利。F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn update D:/test/GameAndroid/ --no-auth-cache --trust-server-cert --non-interactive --username dev_android --password dev_android Updating 'D:\test\GameAndroid':F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:16:56:5360  INFO:Microsoft Windows [版本 6.1.7601]
+19:16:56:5440  INFO:版权所有 (c) 2009 Microsoft Corporation。保留所有权利。
+19:16:56:5460  INFO:
+19:16:56:5470  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn revert --depth=infinity D:/test/Platforms/ --no-auth-cache --trust-server-cert --non-interactive --username dev_android --password dev_android 
+19:16:56:5480  INFO:
+19:16:56:5500  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:16:56:5510  INFO:
+19:16:56:5520  ERROR:
+19:16:56:5570  ERROR:
+19:16:56:5580  INFO:Microsoft Windows [版本 6.1.7601]版权所有 (c) 2009 Microsoft Corporation。保留所有权利。F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn revert --depth=infinity D:/test/Platforms/ --no-auth-cache --trust-server-cert --non-interactive --username dev_android --password dev_android F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:16:56:5590  INFO:Microsoft Windows [版本 6.1.7601]版权所有 (c) 2009 Microsoft Corporation。保留所有权利。F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn cleanup D:/test//sdklibs/ F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:16:56:6170  INFO:Microsoft Windows [版本 6.1.7601]
+19:16:56:6250  INFO:版权所有 (c) 2009 Microsoft Corporation。保留所有权利。
+19:16:56:6280  INFO:
+19:16:56:6310  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn update D:/test/Platforms/ --no-auth-cache --trust-server-cert --non-interactive --username dev_android --password dev_android 
+19:16:56:6420  INFO:Microsoft Windows [版本 6.1.7601]
+19:16:56:6710  INFO:版权所有 (c) 2009 Microsoft Corporation。保留所有权利。
+19:16:56:6790  INFO:
+19:16:56:6810  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn revert --depth=infinity D:/test//sdklibs/ --no-auth-cache --trust-server-cert --non-interactive --username dev_android --password dev_android 
+19:16:56:7010  INFO:Updating 'D:\test\Platforms':
+19:16:56:7330  ERROR:svn: E170001: Unable to connect to a repository at URL 'http://192.168.1.222:3690/svn/SilkRoad/Version/trunk/Code_Android/Platforms'
+19:16:56:7460  INFO:
+19:16:56:7510  ERROR:svn: E170001: OPTIONS of 'http://192.168.1.222:3690/svn/SilkRoad/Version/trunk/Code_Android/Platforms': authorization failed: Could not authenticate to server: rejected Basic challenge (http://192.168.1.222:3690)
+19:16:56:7860  ERROR:
+19:16:56:7870  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:16:56:8210  INFO:
+19:16:56:8400  INFO:Microsoft Windows [版本 6.1.7601]版权所有 (c) 2009 Microsoft Corporation。保留所有权利。F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn update D:/test/Platforms/ --no-auth-cache --trust-server-cert --non-interactive --username dev_android --password dev_android Updating 'D:\test\Platforms':F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:16:58:1811  INFO:
+19:16:58:1821  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:16:58:1931  INFO:
+19:16:58:1951  ERROR:
+19:16:58:2051  INFO:Microsoft Windows [版本 6.1.7601]版权所有 (c) 2009 Microsoft Corporation。保留所有权利。F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn revert --depth=infinity D:/test//sdklibs/ --no-auth-cache --trust-server-cert --non-interactive --username dev_android --password dev_android F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:16:58:2431  INFO:Microsoft Windows [版本 6.1.7601]
+19:16:58:2491  INFO:版权所有 (c) 2009 Microsoft Corporation。保留所有权利。
+19:16:58:2511  INFO:
+19:16:58:2561  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn update D:/test//sdklibs/ --no-auth-cache --trust-server-cert --non-interactive --username dev_android --password dev_android 
+19:16:58:2911  INFO:Updating 'D:\test\sdklibs':
+19:16:59:1541  INFO:At revision 2862.
+19:16:59:1711  INFO:
+19:16:59:1721  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:16:59:1841  INFO:
+19:16:59:1841  ERROR:
+19:16:59:1941  INFO:Microsoft Windows [版本 6.1.7601]版权所有 (c) 2009 Microsoft Corporation。保留所有权利。F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn update D:/test//sdklibs/ --no-auth-cache --trust-server-cert --non-interactive --username dev_android --password dev_android Updating 'D:\test\sdklibs':At revision 2862.F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:25:45:4042  INFO:Microsoft Windows [版本 6.1.7601]
+19:25:45:4062  INFO:版权所有 (c) 2009 Microsoft Corporation。保留所有权利。
+19:25:45:4072  INFO:
+19:25:45:4082  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn cleanup D:/test//sdklibs/ 
+19:25:45:9372  INFO:Microsoft Windows [版本 6.1.7601]
+19:25:45:9392  INFO:版权所有 (c) 2009 Microsoft Corporation。保留所有权利。
+19:25:45:9412  INFO:
+19:25:45:9422  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn cleanup D:/test/GameAndroid/ 
+19:25:45:9432  INFO:
+19:25:45:9452  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:25:45:9482  INFO:
+19:25:45:9502  ERROR:
+19:25:45:9512  INFO:Microsoft Windows [版本 6.1.7601]版权所有 (c) 2009 Microsoft Corporation。保留所有权利。F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn cleanup D:/test/GameAndroid/ F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:25:45:9952  INFO:Microsoft Windows [版本 6.1.7601]
+19:25:46:0313  INFO:版权所有 (c) 2009 Microsoft Corporation。保留所有权利。
+19:25:46:0423  INFO:
+19:25:46:1103  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn cleanup D:/test/Platforms/ 
+19:25:46:2373  INFO:
+19:25:46:2453  INFO:
+19:25:46:2553  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:25:46:2563  INFO:
+19:25:46:2583  INFO:Microsoft Windows [版本 6.1.7601]
+19:25:46:2603  INFO:版权所有 (c) 2009 Microsoft Corporation。保留所有权利。
+19:25:46:2613  INFO:
+19:25:46:2633  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn revert --depth=infinity D:/test/GameAndroid/ --no-auth-cache --trust-server-cert --non-interactive --username dev_android --password dev_android 
+19:25:46:2653  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:25:46:2663  INFO:
+19:25:46:3453  INFO:
+19:25:46:3473  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:25:46:3573  INFO:
+19:25:46:3623  ERROR:
+19:25:46:3633  ERROR:
+19:25:46:3683  ERROR:
+19:25:46:3713  INFO:Microsoft Windows [版本 6.1.7601]版权所有 (c) 2009 Microsoft Corporation。保留所有权利。F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn cleanup D:/test//sdklibs/ F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:25:46:3733  INFO:Microsoft Windows [版本 6.1.7601]版权所有 (c) 2009 Microsoft Corporation。保留所有权利。F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn revert --depth=infinity D:/test/GameAndroid/ --no-auth-cache --trust-server-cert --non-interactive --username dev_android --password dev_android F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:25:46:3753  INFO:Microsoft Windows [版本 6.1.7601]版权所有 (c) 2009 Microsoft Corporation。保留所有权利。F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn cleanup D:/test/Platforms/ F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:25:48:7334  INFO:Microsoft Windows [版本 6.1.7601]
+19:25:48:7454  INFO:版权所有 (c) 2009 Microsoft Corporation。保留所有权利。
+19:25:48:7624  INFO:
+19:25:50:5645  ERROR:
+19:25:51:4756  INFO:Microsoft Windows [版本 6.1.7601]
+19:25:51:4816  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn revert --depth=infinity D:/test//sdklibs/ --no-auth-cache --trust-server-cert --non-interactive --username dev_android --password dev_android 
+19:25:51:7146  INFO:版权所有 (c) 2009 Microsoft Corporation。保留所有权利。
+19:25:52:1676  INFO:
+19:25:56:9749  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn revert --depth=infinity D:/test/Platforms/ --no-auth-cache --trust-server-cert --non-interactive --username dev_android --password dev_android 
+19:25:56:9939  INFO:
+19:25:57:0069  INFO:
+19:25:57:0089  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:25:57:0119  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:25:59:0210  INFO:
+19:25:59:0310  ERROR:
+19:25:59:0320  INFO:
+19:26:01:1411  INFO:Microsoft Windows [版本 6.1.7601]版权所有 (c) 2009 Microsoft Corporation。保留所有权利。F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn revert --depth=infinity D:/test//sdklibs/ --no-auth-cache --trust-server-cert --non-interactive --username dev_android --password dev_android F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:26:02:4622  INFO:Microsoft Windows [版本 6.1.7601]版权所有 (c) 2009 Microsoft Corporation。保留所有权利。F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn revert --depth=infinity D:/test/Platforms/ --no-auth-cache --trust-server-cert --non-interactive --username dev_android --password dev_android F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:27:55:0416  INFO:Microsoft Windows [版本 6.1.7601]
+19:27:55:0516  INFO:版权所有 (c) 2009 Microsoft Corporation。保留所有权利。
+19:27:55:0546  INFO:
+19:27:55:0586  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn cleanup D:/test/GameAndroid/ 
+19:27:55:0616  INFO:
+19:27:55:0646  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:27:55:0686  INFO:
+19:27:55:0776  ERROR:
+19:27:55:0836  INFO:Microsoft Windows [版本 6.1.7601]
+19:27:55:0856  INFO:Microsoft Windows [版本 6.1.7601]版权所有 (c) 2009 Microsoft Corporation。保留所有权利。F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn cleanup D:/test/GameAndroid/ F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:27:55:0926  INFO:版权所有 (c) 2009 Microsoft Corporation。保留所有权利。
+19:27:56:7987  INFO:
+19:27:56:8037  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn cleanup D:/test/Platforms/ 
+19:27:56:8057  INFO:
+19:27:56:8087  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:27:56:8107  INFO:
+19:27:56:8137  ERROR:
+19:27:56:8177  INFO:Microsoft Windows [版本 6.1.7601]版权所有 (c) 2009 Microsoft Corporation。保留所有权利。F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn cleanup D:/test/Platforms/ F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:27:56:8727  INFO:Microsoft Windows [版本 6.1.7601]
+19:27:56:8757  INFO:版权所有 (c) 2009 Microsoft Corporation。保留所有权利。
+19:27:56:8857  INFO:
+19:27:56:8947  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn revert --depth=infinity D:/test/GameAndroid/ --no-auth-cache --trust-server-cert --non-interactive --username dev_android --password dev_android 
+19:27:57:1928  INFO:
+19:27:57:2288  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:27:57:2388  INFO:
+19:27:57:2398  ERROR:
+19:27:57:2418  INFO:Microsoft Windows [版本 6.1.7601]
+19:27:57:2428  INFO:Microsoft Windows [版本 6.1.7601]版权所有 (c) 2009 Microsoft Corporation。保留所有权利。F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn revert --depth=infinity D:/test/GameAndroid/ --no-auth-cache --trust-server-cert --non-interactive --username dev_android --password dev_android F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:27:57:2488  INFO:版权所有 (c) 2009 Microsoft Corporation。保留所有权利。
+19:27:57:2578  INFO:
+19:28:00:6219  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn revert --depth=infinity D:/test/Platforms/ --no-auth-cache --trust-server-cert --non-interactive --username dev_android --password dev_android 
+19:28:00:6359  INFO:
+19:28:03:2921  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:28:03:7531  INFO:
+19:39:14:3355  INFO:Microsoft Windows [版本 6.1.7601]
+19:39:14:3455  INFO:版权所有 (c) 2009 Microsoft Corporation。保留所有权利。
+19:39:14:3485  INFO:
+19:39:14:3505  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn cleanup D:/test//sdklibs/ 
+19:39:15:6226  INFO:
+19:39:15:6286  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:39:15:6386  ERROR:
+19:39:15:6396  INFO:
+19:39:15:6446  INFO:Microsoft Windows [版本 6.1.7601]版权所有 (c) 2009 Microsoft Corporation。保留所有权利。F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn cleanup D:/test//sdklibs/ F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:39:15:7386  INFO:Microsoft Windows [版本 6.1.7601]
+19:39:15:7406  INFO:版权所有 (c) 2009 Microsoft Corporation。保留所有权利。
+19:39:15:7426  INFO:
+19:39:15:7446  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn revert --depth=infinity D:/test//sdklibs/ --no-auth-cache --trust-server-cert --non-interactive --username dev_android --password dev_android 
+19:39:17:2647  INFO:
+19:39:17:2677  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:39:17:2777  INFO:
+19:39:17:2787  ERROR:
+19:39:17:2847  INFO:Microsoft Windows [版本 6.1.7601]版权所有 (c) 2009 Microsoft Corporation。保留所有权利。F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn revert --depth=infinity D:/test//sdklibs/ --no-auth-cache --trust-server-cert --non-interactive --username dev_android --password dev_android F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:39:17:3287  INFO:Microsoft Windows [版本 6.1.7601]
+19:39:17:3377  INFO:版权所有 (c) 2009 Microsoft Corporation。保留所有权利。
+19:39:17:3437  INFO:
+19:39:17:3457  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn update D:/test//sdklibs/ --no-auth-cache --trust-server-cert --non-interactive --username dev_android --password dev_android 
+19:39:17:3777  INFO:Updating 'D:\test\sdklibs':
+19:39:18:3937  INFO:At revision 2862.
+19:39:18:4117  INFO:
+19:39:18:4157  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:39:18:4257  ERROR:
+19:39:18:4257  INFO:
+19:39:18:4327  INFO:Microsoft Windows [版本 6.1.7601]版权所有 (c) 2009 Microsoft Corporation。保留所有权利。F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn update D:/test//sdklibs/ --no-auth-cache --trust-server-cert --non-interactive --username dev_android --password dev_android Updating 'D:\test\sdklibs':At revision 2862.F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:39:18:5187  INFO:Microsoft Windows [版本 6.1.7601]
+19:39:18:5377  INFO:版权所有 (c) 2009 Microsoft Corporation。保留所有权利。
+19:39:18:5697  INFO:
+19:39:18:7057  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn cleanup D:/test/GameAndroid/ 
+19:39:18:8737  INFO:
+19:39:18:8907  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:39:18:8917  ERROR:
+19:39:18:9007  INFO:
+19:39:18:9027  INFO:Microsoft Windows [版本 6.1.7601]
+19:39:18:9057  INFO:Microsoft Windows [版本 6.1.7601]版权所有 (c) 2009 Microsoft Corporation。保留所有权利。F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn cleanup D:/test/GameAndroid/ F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:39:18:9477  ERROR:
+19:39:18:9617  INFO:版权所有 (c) 2009 Microsoft Corporation。保留所有权利。
+19:39:18:9937  INFO:
+19:39:18:9977  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn cleanup D:/test/Platforms/ 
+19:39:18:9987  INFO:Microsoft Windows [版本 6.1.7601]
+19:39:19:0118  INFO:版权所有 (c) 2009 Microsoft Corporation。保留所有权利。
+19:39:19:0398  INFO:
+19:39:19:0898  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn revert --depth=infinity D:/test/GameAndroid/ --no-auth-cache --trust-server-cert --non-interactive --username wangzhenyu --password 20040910 
+19:39:19:0988  INFO:
+19:39:19:1088  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:39:19:2948  INFO:
+19:39:19:2968  INFO:Microsoft Windows [版本 6.1.7601]版权所有 (c) 2009 Microsoft Corporation。保留所有权利。F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn cleanup D:/test/Platforms/ F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:39:19:3258  INFO:
+19:39:19:3448  ERROR:
+19:39:19:3468  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:39:19:3978  INFO:
+19:39:19:4218  INFO:Microsoft Windows [版本 6.1.7601]
+19:39:19:4468  INFO:Microsoft Windows [版本 6.1.7601]版权所有 (c) 2009 Microsoft Corporation。保留所有权利。F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn revert --depth=infinity D:/test/GameAndroid/ --no-auth-cache --trust-server-cert --non-interactive --username wangzhenyu --password 20040910 F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:39:19:4978  INFO:版权所有 (c) 2009 Microsoft Corporation。保留所有权利。
+19:39:19:5038  INFO:
+19:39:19:5058  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn revert --depth=infinity D:/test/Platforms/ --no-auth-cache --trust-server-cert --non-interactive --username wangzhenyu --password 20040910 
+19:39:19:7978  INFO:
+19:39:19:8128  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:39:19:8148  ERROR:
+19:39:19:8308  INFO:
+19:39:19:8558  INFO:Microsoft Windows [版本 6.1.7601]
+19:39:19:8578  INFO:版权所有 (c) 2009 Microsoft Corporation。保留所有权利。
+19:39:19:8598  INFO:
+19:39:19:8608  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn update D:/test/GameAndroid/ --no-auth-cache --trust-server-cert --non-interactive --username wangzhenyu --password 20040910 
+19:39:19:8628  INFO:Microsoft Windows [版本 6.1.7601]版权所有 (c) 2009 Microsoft Corporation。保留所有权利。F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn revert --depth=infinity D:/test/Platforms/ --no-auth-cache --trust-server-cert --non-interactive --username wangzhenyu --password 20040910 F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:39:19:8878  ERROR:
+19:39:19:9778  INFO:Updating 'D:\test\GameAndroid':
+19:39:20:0008  INFO:At revision 11131.
+19:39:20:0248  INFO:Microsoft Windows [版本 6.1.7601]
+19:39:20:0428  INFO:
+19:39:20:0758  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:39:20:1058  INFO:
+19:39:20:2278  INFO:Microsoft Windows [版本 6.1.7601]版权所有 (c) 2009 Microsoft Corporation。保留所有权利。F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn update D:/test/GameAndroid/ --no-auth-cache --trust-server-cert --non-interactive --username wangzhenyu --password 20040910 Updating 'D:\test\GameAndroid':At revision 11131.F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:39:20:3948  INFO:版权所有 (c) 2009 Microsoft Corporation。保留所有权利。
+19:39:20:4188  ERROR:
+19:39:20:4428  INFO:
+19:39:20:4448  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn update D:/test/Platforms/ --no-auth-cache --trust-server-cert --non-interactive --username wangzhenyu --password 20040910 
+19:39:20:4468  INFO:Updating 'D:\test\Platforms':
+19:39:20:4488  INFO:At revision 11131.
+19:39:20:4498  INFO:
+19:39:20:4518  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:39:20:4538  INFO:
+19:39:20:4568  INFO:Microsoft Windows [版本 6.1.7601]版权所有 (c) 2009 Microsoft Corporation。保留所有权利。F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn update D:/test/Platforms/ --no-auth-cache --trust-server-cert --non-interactive --username wangzhenyu --password 20040910 Updating 'D:\test\Platforms':At revision 11131.F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:39:24:1000  INFO:Microsoft Windows [版本 6.1.7601]
+19:39:24:1040  INFO:版权所有 (c) 2009 Microsoft Corporation。保留所有权利。
+19:39:24:1070  INFO:
+19:39:24:1080  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn cleanup D:/test//sdklibs/ 
+19:39:25:3481  INFO:
+19:39:25:3501  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:39:25:3611  INFO:
+19:39:25:3621  ERROR:
+19:39:25:3651  INFO:Microsoft Windows [版本 6.1.7601]版权所有 (c) 2009 Microsoft Corporation。保留所有权利。F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn cleanup D:/test//sdklibs/ F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:39:25:4111  INFO:Microsoft Windows [版本 6.1.7601]
+19:39:25:4191  INFO:版权所有 (c) 2009 Microsoft Corporation。保留所有权利。
+19:39:25:4211  INFO:
+19:39:25:4261  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn revert --depth=infinity D:/test//sdklibs/ --no-auth-cache --trust-server-cert --non-interactive --username dev_android --password dev_android 
+19:39:26:8792  INFO:
+19:39:26:8812  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:39:26:8922  ERROR:
+19:39:26:9122  INFO:
+19:39:26:9142  INFO:Microsoft Windows [版本 6.1.7601]版权所有 (c) 2009 Microsoft Corporation。保留所有权利。F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn revert --depth=infinity D:/test//sdklibs/ --no-auth-cache --trust-server-cert --non-interactive --username dev_android --password dev_android F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:39:26:9532  INFO:Microsoft Windows [版本 6.1.7601]
+19:39:26:9552  INFO:版权所有 (c) 2009 Microsoft Corporation。保留所有权利。
+19:39:26:9692  INFO:
+19:39:26:9712  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn update D:/test//sdklibs/ --no-auth-cache --trust-server-cert --non-interactive --username dev_android --password dev_android 
+19:39:27:0022  INFO:Updating 'D:\test\sdklibs':
+19:39:27:8493  INFO:At revision 2862.
+19:39:27:8673  INFO:
+19:39:27:8683  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:39:27:8803  ERROR:
+19:39:27:8803  INFO:
+19:39:27:8863  INFO:Microsoft Windows [版本 6.1.7601]版权所有 (c) 2009 Microsoft Corporation。保留所有权利。F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn update D:/test//sdklibs/ --no-auth-cache --trust-server-cert --non-interactive --username dev_android --password dev_android Updating 'D:\test\sdklibs':At revision 2862.F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:39:27:9993  INFO:Microsoft Windows [版本 6.1.7601]
+19:39:28:0123  INFO:版权所有 (c) 2009 Microsoft Corporation。保留所有权利。
+19:39:28:0183  INFO:
+19:39:28:0303  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn cleanup D:/test/GameAndroid/ 
+19:39:28:3303  INFO:
+19:39:28:3463  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:39:28:3583  INFO:
+19:39:28:3603  INFO:Microsoft Windows [版本 6.1.7601]
+19:39:28:3613  INFO:版权所有 (c) 2009 Microsoft Corporation。保留所有权利。
+19:39:28:3623  INFO:
+19:39:28:3643  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn cleanup D:/test/Platforms/ 
+19:39:28:3653  INFO:
+19:39:28:3673  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:39:28:3683  INFO:
+19:39:28:3693  ERROR:
+19:39:28:3703  INFO:Microsoft Windows [版本 6.1.7601]版权所有 (c) 2009 Microsoft Corporation。保留所有权利。F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn cleanup D:/test/Platforms/ F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:39:28:3713  ERROR:
+19:39:28:3853  INFO:Microsoft Windows [版本 6.1.7601]版权所有 (c) 2009 Microsoft Corporation。保留所有权利。F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn cleanup D:/test/GameAndroid/ F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:39:28:4253  INFO:Microsoft Windows [版本 6.1.7601]
+19:39:28:4293  INFO:版权所有 (c) 2009 Microsoft Corporation。保留所有权利。
+19:39:28:4763  INFO:
+19:39:28:5043  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn revert --depth=infinity D:/test/Platforms/ --no-auth-cache --trust-server-cert --non-interactive --username wangzhenyu --password 20040910 
+19:39:28:7813  INFO:
+19:39:28:7963  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:39:28:8283  ERROR:
+19:39:28:8433  INFO:
+19:39:28:8453  INFO:Microsoft Windows [版本 6.1.7601]
+19:39:28:8463  INFO:版权所有 (c) 2009 Microsoft Corporation。保留所有权利。
+19:39:28:8623  INFO:
+19:39:28:8653  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn revert --depth=infinity D:/test/GameAndroid/ --no-auth-cache --trust-server-cert --non-interactive --username wangzhenyu --password 20040910 
+19:39:28:8793  INFO:
+19:39:28:8923  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:39:28:8943  INFO:
+19:39:28:8953  ERROR:
+19:39:28:8973  INFO:Microsoft Windows [版本 6.1.7601]版权所有 (c) 2009 Microsoft Corporation。保留所有权利。F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn revert --depth=infinity D:/test/GameAndroid/ --no-auth-cache --trust-server-cert --non-interactive --username wangzhenyu --password 20040910 F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:39:28:9003  INFO:Microsoft Windows [版本 6.1.7601]版权所有 (c) 2009 Microsoft Corporation。保留所有权利。F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn revert --depth=infinity D:/test/Platforms/ --no-auth-cache --trust-server-cert --non-interactive --username wangzhenyu --password 20040910 F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:39:28:9783  INFO:Microsoft Windows [版本 6.1.7601]
+19:39:29:0643  INFO:版权所有 (c) 2009 Microsoft Corporation。保留所有权利。
+19:39:29:0903  INFO:
+19:39:29:1983  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn update D:/test/Platforms/ --no-auth-cache --trust-server-cert --non-interactive --username wangzhenyu --password 20040910 
+19:39:29:2013  INFO:Updating 'D:\test\Platforms':
+19:39:29:2363  INFO:At revision 11131.
+19:39:29:2613  INFO:
+19:39:29:2963  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:39:29:2973  ERROR:
+19:39:29:3083  INFO:
+19:39:29:3153  INFO:Microsoft Windows [版本 6.1.7601]
+19:39:29:3283  INFO:版权所有 (c) 2009 Microsoft Corporation。保留所有权利。
+19:39:29:3313  INFO:
+19:39:29:3453  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn update D:/test/GameAndroid/ --no-auth-cache --trust-server-cert --non-interactive --username wangzhenyu --password 20040910 
+19:39:29:3593  INFO:Updating 'D:\test\GameAndroid':
+19:39:29:3613  INFO:At revision 11131.
+19:39:29:3643  INFO:Microsoft Windows [版本 6.1.7601]版权所有 (c) 2009 Microsoft Corporation。保留所有权利。F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn update D:/test/Platforms/ --no-auth-cache --trust-server-cert --non-interactive --username wangzhenyu --password 20040910 Updating 'D:\test\Platforms':At revision 11131.F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:39:29:3653  ERROR:
+19:39:29:3663  INFO:
+19:39:29:3673  INFO:F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit
+19:39:29:3703  INFO:
+19:39:29:3733  INFO:Microsoft Windows [版本 6.1.7601]版权所有 (c) 2009 Microsoft Corporation。保留所有权利。F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>svn update D:/test/GameAndroid/ --no-auth-cache --trust-server-cert --non-interactive --username wangzhenyu --password 20040910 Updating 'D:\test\GameAndroid':At revision 11131.F:\workspace\SilkRoad\Version\trunk\Version_Build\AndroidSDKTools>exit

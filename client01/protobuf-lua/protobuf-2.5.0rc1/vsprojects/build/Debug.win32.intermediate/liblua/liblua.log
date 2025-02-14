@@ -1,0 +1,175 @@
+﻿生成启动时间为 2018/5/21 17:03:14。
+     1>项目“G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Core\scripting\lua\proj.win32\liblua.vcxproj”在节点 2 上(rebuild 个目标)。
+       项目文件包含 ToolsVersion="12.0"。此工具集可能未知或缺失。在这种情况下，通过安装 MSBuild 的正确版本，或许可以解决此问题。否则，该 build 可能已因策略原因而被强制为某个特定 ToolsVersion。将该项目视为其已具有 ToolsVersion="4.0"。有关详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=291333。
+     1>InitializeBuildStatus:
+         正在对“G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\liblua.unsuccessfulbuild”执行 Touch 任务。
+       PreBuildEvent:
+         if not exist "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32\" mkdir "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32\"
+         xcopy /Y /Q "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Core\scripting\lua\proj.win32\..\luajit\win32\*.*" "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32\"
+         :VCEnd
+         复制了 2 个文件
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /IG:\Company\project\code\client\trunk\cocoJapanbackup\Code_Core\scripting\lua\proj.win32\..\..\..\cocos2dx /IG:\Company\project\code\client\trunk\cocoJapanbackup\Code_Core\scripting\lua\proj.win32\..\..\..\cocos2dx\include /IG:\Company\project\code\client\trunk\cocoJapanbackup\Code_Core\scripting\lua\proj.win32\..\..\..\cocos2dx\kazmath\include /IG:\Company\project\code\client\trunk\cocoJapanbackup\Code_Core\scripting\lua\proj.win32\..\..\..\cocos2dx\platform\win32 /IG:\Company\project\code\client\trunk\cocoJapanbackup\Code_Core\scripting\lua\proj.win32\..\..\..\cocos2dx\platform\third_party\win32\OGLES /IG:\Company\project\code\client\trunk\cocoJapanbackup\Code_Core\scripting\lua\proj.win32\..\..\..\cocos2dx\platform\third_party\win32\zlib /IG:\Company\project\code\client\trunk\cocoJapanbackup\Code_Core\scripting\lua\proj.win32\..\..\..\CocosDenshion\include /IG:\Company\project\code\client\trunk\cocoJapanbackup\Code_Core\scripting\lua\proj.win32\..\tolua /IG:\Company\project\code\client\trunk\cocoJapanbackup\Code_Core\scripting\lua\proj.win32\..\luajit\include /IG:\Company\project\code\client\trunk\cocoJapanbackup\Code_Core\scripting\lua\proj.win32\..\..\..\extensions /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _WINDOWS /D COCOS2D_DEBUG=1 /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\\" /Fd"G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\vc100.pdb" /Gd /TP /wd4996 /wd4800 /wd4267 /wd4251 /wd4244 /analyze- /errorReport:prompt ..\cocos2dx_support\CCLuaBridge.cpp ..\cocos2dx_support\CCLuaEngine.cpp ..\cocos2dx_support\CCLuaStack.cpp ..\cocos2dx_support\CCLuaValue.cpp ..\cocos2dx_support\Cocos2dxLuaLoader.cpp ..\cocos2dx_support\LuaCocos2d.cpp
+         LuaCocos2d.cpp
+         Cocos2dxLuaLoader.cpp
+     1>g:\company\project\code\client\trunk\cocojapanbackup\code_core\scripting\lua\cocos2dx_support\cocos2dxlualoader.cpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+         CCLuaValue.cpp
+         CCLuaStack.cpp
+         CCLuaEngine.cpp
+         CCLuaBridge.cpp
+         正在生成代码...
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /IG:\Company\project\code\client\trunk\cocoJapanbackup\Code_Core\scripting\lua\proj.win32\..\..\..\cocos2dx /IG:\Company\project\code\client\trunk\cocoJapanbackup\Code_Core\scripting\lua\proj.win32\..\..\..\cocos2dx\include /IG:\Company\project\code\client\trunk\cocoJapanbackup\Code_Core\scripting\lua\proj.win32\..\..\..\cocos2dx\kazmath\include /IG:\Company\project\code\client\trunk\cocoJapanbackup\Code_Core\scripting\lua\proj.win32\..\..\..\cocos2dx\platform\win32 /IG:\Company\project\code\client\trunk\cocoJapanbackup\Code_Core\scripting\lua\proj.win32\..\..\..\cocos2dx\platform\third_party\win32\OGLES /IG:\Company\project\code\client\trunk\cocoJapanbackup\Code_Core\scripting\lua\proj.win32\..\..\..\cocos2dx\platform\third_party\win32\zlib /IG:\Company\project\code\client\trunk\cocoJapanbackup\Code_Core\scripting\lua\proj.win32\..\..\..\CocosDenshion\include /IG:\Company\project\code\client\trunk\cocoJapanbackup\Code_Core\scripting\lua\proj.win32\..\tolua /IG:\Company\project\code\client\trunk\cocoJapanbackup\Code_Core\scripting\lua\proj.win32\..\luajit\include /IG:\Company\project\code\client\trunk\cocoJapanbackup\Code_Core\scripting\lua\proj.win32\..\..\..\extensions /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _WINDOWS /D COCOS2D_DEBUG=1 /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\\" /Fd"G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\vc100.pdb" /Gd /TC /wd4996 /wd4800 /wd4267 /wd4251 /wd4244 /analyze- /errorReport:prompt ..\cocos2dx_support\lua_extensions.c ..\cocos2dx_support\tolua_fix.c ..\lua\auxiliar.c ..\lua\buffer.c ..\lua\except.c ..\lua\inet.c ..\lua\io.c ..\lua\lapi.c ..\lua\lauxlib.c ..\lua\lbaselib.c ..\lua\lcode.c ..\lua\ldblib.c ..\lua\ldebug.c ..\lua\ldo.c ..\lua\ldump.c ..\lua\lfunc.c ..\lua\lgc.c ..\lua\linit.c ..\lua\liolib.c ..\lua\llex.c ..\lua\lmathlib.c ..\lua\lmem.c ..\lua\loadlib.c ..\lua\lobject.c ..\lua\lopcodes.c ..\lua\loslib.c ..\lua\lparser.c ..\lua\lstate.c ..\lua\lstring.c ..\lua\lstrlib.c ..\lua\ltable.c ..\lua\ltablib.c ..\lua\ltm.c ..\lua\lua.c ..\lua\luasocket.c ..\lua\luasocket_buffer.c ..\lua\luasocket_io.c ..\lua\luasocket_scripts.c ..\lua\lundump.c ..\lua\lvm.c ..\lua\lzio.c ..\lua\mime.c ..\lua\options.c ..\lua\print.c ..\lua\select.c ..\lua\socket_scripts.c ..\lua\tcp.c ..\lua\timeout.c ..\lua\udp.c ..\lua\wsocket.c ..\tolua\tolua_event.c ..\tolua\tolua_is.c ..\tolua\tolua_map.c ..\tolua\tolua_push.c ..\tolua\tolua_to.c
+         tolua_to.c
+         tolua_push.c
+         tolua_map.c
+         tolua_is.c
+         tolua_event.c
+         wsocket.c
+         udp.c
+         timeout.c
+         tcp.c
+         socket_scripts.c
+         select.c
+         print.c
+         options.c
+         mime.c
+         lzio.c
+         lvm.c
+         lundump.c
+         luasocket_scripts.c
+         luasocket_io.c
+         luasocket_buffer.c
+         正在生成代码...
+         正在编译...
+         luasocket.c
+         lua.c
+         ltm.c
+         ltablib.c
+         ltable.c
+         lstrlib.c
+         lstring.c
+         lstate.c
+         lparser.c
+         loslib.c
+         lopcodes.c
+         lobject.c
+         loadlib.c
+         lmem.c
+         lmathlib.c
+         llex.c
+         liolib.c
+         linit.c
+         lgc.c
+         lfunc.c
+         正在生成代码...
+         正在编译...
+         ldump.c
+         ldo.c
+         ldebug.c
+         ldblib.c
+         lcode.c
+         lbaselib.c
+         lauxlib.c
+         lapi.c
+         io.c
+         inet.c
+         except.c
+         buffer.c
+         auxiliar.c
+         tolua_fix.c
+         lua_extensions.c
+         正在生成代码...
+       Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\Lib.exe /OUT:"G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32\liblua.lib" /NOLOGO "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\CCLuaBridge.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\CCLuaEngine.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\CCLuaStack.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\CCLuaValue.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\Cocos2dxLuaLoader.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\LuaCocos2d.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\lua_extensions.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\tolua_fix.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\auxiliar.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\buffer.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\except.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\inet.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\io.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\lapi.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\lauxlib.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\lbaselib.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\lcode.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\ldblib.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\ldebug.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\ldo.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\ldump.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\lfunc.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\lgc.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\linit.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\liolib.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\llex.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\lmathlib.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\lmem.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\loadlib.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\lobject.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\lopcodes.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\loslib.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\lparser.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\lstate.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\lstring.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\lstrlib.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\ltable.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\ltablib.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\ltm.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\lua.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\luasocket.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\luasocket_buffer.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\luasocket_io.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\luasocket_scripts.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\lundump.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\lvm.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\lzio.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\mime.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\options.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\print.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\select.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\socket_scripts.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\tcp.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\timeout.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\udp.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\wsocket.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\tolua_event.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\tolua_is.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\tolua_map.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\tolua_push.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\tolua_to.obj"
+     1>luasocket_scripts.obj : warning LNK4006: _luaopen_lua_m_ltn12 已在 socket_scripts.obj 中定义；已忽略第二个定义
+     1>luasocket_scripts.obj : warning LNK4006: _luaopen_lua_m_mime 已在 socket_scripts.obj 中定义；已忽略第二个定义
+     1>luasocket_scripts.obj : warning LNK4006: _luaopen_lua_m_socket_ftp 已在 socket_scripts.obj 中定义；已忽略第二个定义
+     1>luasocket_scripts.obj : warning LNK4006: _luaopen_lua_m_socket_headers 已在 socket_scripts.obj 中定义；已忽略第二个定义
+     1>luasocket_scripts.obj : warning LNK4006: _luaopen_lua_m_socket_http 已在 socket_scripts.obj 中定义；已忽略第二个定义
+     1>luasocket_scripts.obj : warning LNK4006: _luaopen_lua_m_socket_mbox 已在 socket_scripts.obj 中定义；已忽略第二个定义
+     1>luasocket_scripts.obj : warning LNK4006: _luaopen_lua_m_socket_smtp 已在 socket_scripts.obj 中定义；已忽略第二个定义
+     1>luasocket_scripts.obj : warning LNK4006: _luaopen_lua_m_socket_tp 已在 socket_scripts.obj 中定义；已忽略第二个定义
+     1>luasocket_scripts.obj : warning LNK4006: _luaopen_lua_m_socket_url 已在 socket_scripts.obj 中定义；已忽略第二个定义
+     1>luasocket_scripts.obj : warning LNK4006: _luaopen_lua_m_socket 已在 socket_scripts.obj 中定义；已忽略第二个定义
+     1>luasocket_scripts.obj : warning LNK4006: _luaopen_luasocket_scripts 已在 socket_scripts.obj 中定义；已忽略第二个定义
+     1>luasocket_scripts.obj : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>io.obj : warning LNK4006: _io_init 已在 luasocket_io.obj 中定义；已忽略第二个定义
+     1>io.obj : warning LNK4006: _io_strerror 已在 luasocket_io.obj 中定义；已忽略第二个定义
+     1>io.obj : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>buffer.obj : warning LNK4006: _buffer_open 已在 luasocket_buffer.obj 中定义；已忽略第二个定义
+     1>buffer.obj : warning LNK4006: _buffer_init 已在 luasocket_buffer.obj 中定义；已忽略第二个定义
+     1>buffer.obj : warning LNK4006: _buffer_meth_getstats 已在 luasocket_buffer.obj 中定义；已忽略第二个定义
+     1>buffer.obj : warning LNK4006: _buffer_meth_setstats 已在 luasocket_buffer.obj 中定义；已忽略第二个定义
+     1>buffer.obj : warning LNK4006: _buffer_meth_send 已在 luasocket_buffer.obj 中定义；已忽略第二个定义
+     1>buffer.obj : warning LNK4006: _buffer_meth_receive 已在 luasocket_buffer.obj 中定义；已忽略第二个定义
+     1>buffer.obj : warning LNK4006: _buffer_isempty 已在 luasocket_buffer.obj 中定义；已忽略第二个定义
+     1>buffer.obj : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+         liblua.vcxproj -> G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32\liblua.lib
+       FinalizeBuildStatus:
+         正在删除文件“G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\liblua.unsuccessfulbuild”。
+         正在对“G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\liblua\liblua.lastbuildstate”执行 Touch 任务。
+     1>已完成生成项目“G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Core\scripting\lua\proj.win32\liblua.vcxproj”(rebuild 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:34.78

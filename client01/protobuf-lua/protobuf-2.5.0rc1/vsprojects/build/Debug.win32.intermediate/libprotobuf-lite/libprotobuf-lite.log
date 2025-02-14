@@ -1,0 +1,42 @@
+﻿生成启动时间为 2018/7/18 15:00:14。
+     1>项目“G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\libprotobuf-lite.vcxproj”在节点 2 上(rebuild 个目标)。
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\Microsoft.CppBuild.targets(298,5): warning MSB8004: Intermediate 目录未以斜杠结尾。此生成实例将添加斜杠，因为必须有这个斜杠才能正确计算 Intermediate 目录。
+     1>InitializeBuildStatus:
+         正在创建“G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\libprotobuf-lite\libprotobuf-lite.unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I../src /I. /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D LIBPROTOBUF_EXPORTS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\libprotobuf-lite\\" /Fd"G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\libprotobuf-lite\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt ..\src\google\protobuf\io\coded_stream.cc ..\src\google\protobuf\stubs\common.cc ..\src\google\protobuf\extension_set.cc ..\src\google\protobuf\generated_message_util.cc ..\src\google\protobuf\message_lite.cc ..\src\google\protobuf\stubs\once.cc ..\src\google\protobuf\stubs\atomicops_internals_x86_msvc.cc ..\src\google\protobuf\repeated_field.cc ..\src\google\protobuf\wire_format_lite.cc ..\src\google\protobuf\io\zero_copy_stream.cc ..\src\google\protobuf\io\zero_copy_stream_impl_lite.cc ..\src\google\protobuf\stubs\stringprintf.cc /wd4244 /wd4267 /wd4018 /wd4355 /wd4800 /wd4251 /wd4996 /wd4146 /wd4305 
+         stringprintf.cc
+         zero_copy_stream_impl_lite.cc
+         zero_copy_stream.cc
+         wire_format_lite.cc
+         repeated_field.cc
+         atomicops_internals_x86_msvc.cc
+         once.cc
+         message_lite.cc
+         generated_message_util.cc
+         extension_set.cc
+         common.cc
+         coded_stream.cc
+         正在生成代码...
+       Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\Lib.exe /OUT:"Debug\libprotobuf-lite.lib" /NOLOGO "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\libprotobuf-lite\coded_stream.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\libprotobuf-lite\common.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\libprotobuf-lite\extension_set.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\libprotobuf-lite\generated_message_util.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\libprotobuf-lite\message_lite.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\libprotobuf-lite\once.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\libprotobuf-lite\atomicops_internals_x86_msvc.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\libprotobuf-lite\repeated_field.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\libprotobuf-lite\wire_format_lite.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\libprotobuf-lite\zero_copy_stream.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\libprotobuf-lite\zero_copy_stream_impl_lite.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\libprotobuf-lite\stringprintf.obj"
+         libprotobuf-lite.vcxproj -> G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\Debug\libprotobuf-lite.lib
+       FinalizeBuildStatus:
+         正在删除文件“G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\libprotobuf-lite\libprotobuf-lite.unsuccessfulbuild”。
+         正在对“G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\libprotobuf-lite\libprotobuf-lite.lastbuildstate”执行 Touch 任务。
+     1>已完成生成项目“G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\libprotobuf-lite.vcxproj”(rebuild 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:10.26

@@ -1,0 +1,33 @@
+option java_package = "com.guaji.game.protocol";
+
+
+//角色穿徽章
+message HPBadgeDress {
+	//徽章ID
+	required int64 badgeId = 1;
+	//角色Id
+	required int32 roleId = 2;
+	//1 表示穿上 2 表示卸下
+	required int32 type = 3;
+}
+
+message HPBadgeDressRet {
+	//徽章ID
+	optional int64 onBadgeId = 1;
+	//角色Id
+	required int32 roleId = 2;
+	// 卸下的徽章
+	optional int64 offBadgeId = 3;
+}
+
+
+//徽章吞噬
+message HPBadgeUpgrade {
+	required int64 badgeId = 1;
+	//被吞噬的徽章
+	repeated int64 swallowedBadgeId = 2;
+}
+
+message HPEquipUpgradeRet {
+	required int64 badgeId = 1;
+}

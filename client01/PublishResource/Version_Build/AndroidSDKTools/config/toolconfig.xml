@@ -1,0 +1,8 @@
+<toolCfg>
+  <enableSvn value="false" />
+  <enableAutoInstall value="false" />
+  <enableRunOnBoot value="false" />
+  <ipaFolder value="" />
+  <resFolder value="" />
+  <outputFolder value="" />
+</toolCfg>

@@ -1,0 +1,84 @@
+﻿生成启动时间为 2018/7/18 15:01:04。
+     1>项目“G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\libprotoc.vcxproj”在节点 2 上(rebuild 个目标)。
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\Microsoft.CppBuild.targets(298,5): warning MSB8004: Intermediate 目录未以斜杠结尾。此生成实例将添加斜杠，因为必须有这个斜杠才能正确计算 Intermediate 目录。
+     1>InitializeBuildStatus:
+         正在创建“G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\libprotoc\libprotoc.unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I../src /I. /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D LIBPROTOC_EXPORTS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\libprotoc\\" /Fd"G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\libprotoc\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt ..\src\google\protobuf\compiler\java\java_doc_comment.cc ..\src\google\protobuf\compiler\code_generator.cc ..\src\google\protobuf\compiler\command_line_interface.cc ..\src\google\protobuf\compiler\subprocess.cc ..\src\google\protobuf\compiler\zip_writer.cc ..\src\google\protobuf\compiler\plugin.cc ..\src\google\protobuf\compiler\plugin.pb.cc ..\src\google\protobuf\compiler\cpp\cpp_enum.cc ..\src\google\protobuf\compiler\cpp\cpp_enum_field.cc ..\src\google\protobuf\compiler\cpp\cpp_extension.cc ..\src\google\protobuf\compiler\cpp\cpp_field.cc ..\src\google\protobuf\compiler\cpp\cpp_file.cc ..\src\google\protobuf\compiler\cpp\cpp_generator.cc ..\src\google\protobuf\compiler\cpp\cpp_helpers.cc ..\src\google\protobuf\compiler\cpp\cpp_message.cc ..\src\google\protobuf\compiler\cpp\cpp_message_field.cc ..\src\google\protobuf\compiler\cpp\cpp_primitive_field.cc ..\src\google\protobuf\compiler\cpp\cpp_service.cc ..\src\google\protobuf\compiler\cpp\cpp_string_field.cc ..\src\google\protobuf\compiler\java\java_enum.cc ..\src\google\protobuf\compiler\java\java_enum_field.cc ..\src\google\protobuf\compiler\java\java_extension.cc ..\src\google\protobuf\compiler\java\java_field.cc ..\src\google\protobuf\compiler\java\java_file.cc ..\src\google\protobuf\compiler\java\java_generator.cc ..\src\google\protobuf\compiler\java\java_helpers.cc ..\src\google\protobuf\compiler\java\java_message.cc ..\src\google\protobuf\compiler\java\java_message_field.cc ..\src\google\protobuf\compiler\java\java_primitive_field.cc ..\src\google\protobuf\compiler\java\java_service.cc ..\src\google\protobuf\compiler\java\java_string_field.cc ..\src\google\protobuf\compiler\python\python_generator.cc /wd4244 /wd4267 /wd4018 /wd4355 /wd4800 /wd4251 /wd4996 /wd4146 /wd4305 
+         python_generator.cc
+         java_string_field.cc
+         java_service.cc
+         java_primitive_field.cc
+         java_message_field.cc
+         java_message.cc
+         java_helpers.cc
+         java_generator.cc
+         java_file.cc
+         java_field.cc
+         java_extension.cc
+         java_enum_field.cc
+         java_enum.cc
+         cpp_string_field.cc
+         cpp_service.cc
+         cpp_primitive_field.cc
+         cpp_message_field.cc
+         cpp_message.cc
+         cpp_helpers.cc
+         cpp_generator.cc
+         正在生成代码...
+         正在编译...
+         cpp_file.cc
+         cpp_field.cc
+         cpp_extension.cc
+         cpp_enum_field.cc
+         cpp_enum.cc
+         plugin.pb.cc
+         plugin.cc
+         zip_writer.cc
+         subprocess.cc
+         command_line_interface.cc
+         code_generator.cc
+         java_doc_comment.cc
+         正在生成代码...
+       Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\Lib.exe /OUT:"Debug\libprotoc.lib" /NOLOGO "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\libprotoc\java_doc_comment.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\libprotoc\code_generator.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\libprotoc\command_line_interface.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\libprotoc\subprocess.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\libprotoc\zip_writer.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\libprotoc\plugin.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\libprotoc\plugin.pb.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\libprotoc\cpp_enum.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\libprotoc\cpp_enum_field.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\libprotoc\cpp_extension.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\libprotoc\cpp_field.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\libprotoc\cpp_file.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\libprotoc\cpp_generator.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\libprotoc\cpp_helpers.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\libprotoc\cpp_message.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\libprotoc\cpp_message_field.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\libprotoc\cpp_primitive_field.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\libprotoc\cpp_service.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\libprotoc\cpp_string_field.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\libprotoc\java_enum.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\libprotoc\java_enum_field.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\libprotoc\java_extension.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\libprotoc\java_field.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\libprotoc\java_file.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\libprotoc\java_generator.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\libprotoc\java_helpers.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\libprotoc\java_message.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\libprotoc\java_message_field.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\libprotoc\java_primitive_field.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\libprotoc\java_service.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\libprotoc\java_string_field.obj"
+         "G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\libprotoc\python_generator.obj"
+         libprotoc.vcxproj -> G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\Debug\libprotoc.lib
+       FinalizeBuildStatus:
+         正在删除文件“G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\libprotoc\libprotoc.unsuccessfulbuild”。
+         正在对“G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\build\Debug.win32.intermediate\libprotoc\libprotoc.lastbuildstate”执行 Touch 任务。
+     1>已完成生成项目“G:\Company\project\code\client\trunk\cocoJapanbackup\Code_Client\protobuf-lua\protobuf-2.5.0rc1\vsprojects\libprotoc.vcxproj”(rebuild 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:35.59

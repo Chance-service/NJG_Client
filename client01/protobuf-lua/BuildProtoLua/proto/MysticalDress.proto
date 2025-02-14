@@ -1,0 +1,75 @@
+option java_package = "com.guaji.game.protocol";
+
+
+enum DRESS_SYNC_TYPE
+{
+    UPDATE = 1;
+    All    = 2;
+}
+
+//私装结构体
+message MysticalDressInfo {
+	required int64 id = 1;
+	required int32 equipId = 2;
+	required int32 level = 3;
+	required int32 exp = 4;
+	optional int32 roleId = 5;
+}
+
+//私装信息同步
+message HPMysticalDressInfoSync {
+
+	required DRESS_SYNC_TYPE type = 1;
+	repeated MysticalDressInfo dresses = 2;
+}
+
+//删除私装
+message HPMysticalDressRemoveInfoSync {
+        repeated int64 remIds = 1;
+}
+
+//穿戴或卸载私装
+message HPMysticalDressChange {
+	required int32 roleId = 1;
+	
+	required int32 loc = 2;
+
+	required int32 type = 3;
+
+	optional int64 onEquipId = 4;
+
+	optional int64 offEquipId = 5;
+
+}
+//吸收 私装列表
+message HPMysticalDressAbsorbReq {
+	required int64 id = 1;
+
+	repeated int64 dressIds = 2;
+
+	optional int32 roleId = 3;
+}
+
+//点亮私装
+message HPMysticalDressHuntingReq {
+
+	required int32 id = 1;
+}
+
+//激活私装
+message HPMysticalDressActivateReq {
+
+	required int32 id = 1;
+}
+
+
+message HPMysticalHunting {
+
+	required int32 id = 1;
+}
+
+message MysticalResponse{
+
+
+     required  bool result = 1 ;
+}
