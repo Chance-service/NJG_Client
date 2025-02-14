@@ -1,0 +1,11 @@
+{
+  "packageUrl": "http://file.bigwin-tech.com/dev.schoolbattle/hotUpdate/Version", 
+  "IOSAppStoreURL": "https://www.baidu.com/", 
+  "remoteVersionUrl": "http://file.bigwin-tech.com/dev.schoolbattle/hotUpdate/Version", 
+  "versionApp": "1.1.1", 
+  "remoteProjectManifestUrl": "http://file.bigwin-tech.com/dev.schoolbattle/hotUpdate/Version", 
+  "AndroidStoreURL": "http://10.0.1.147:9999/#tab-3", 
+  "versionCode": 1, 
+  "versionResource": "1.6.1",
+  "isNeedGoAppStore": 1
+}

@@ -1,0 +1,11 @@
+{
+  "packageUrl": "http://10.2.2.14:8787/NinjaGirl_CN", 
+  "IOSAppStoreURL": "https://www.baidu.com/", 
+  "remoteVersionUrl": "http://10.2.2.14:8787/NinjaGirl_CN", 
+  "versionApp": "1.60.3", 
+  "remoteProjectManifestUrl": "http://10.2.2.14:8787/NinjaGirl_CN", 
+  "AndroidStoreURL": "http://10.2.2.14:9999/#tab-3", 
+  "versionCode": 1, 
+  "versionResource": "1.60.3",
+  "isNeedGoAppStore": 1
+}

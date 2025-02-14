@@ -1,0 +1,11 @@
+<p>
+  <font color="#5d3627" face = "SourceSansPro-Semibold24">Take control Your Destiny in the SkyArk Chronicles!</font><br />
+  <br />
+  <font color="#079507" face = "SourceSansPro-Semibold28">Welcome to House of Heroes</font><br />
+  <br />
+  <p style="margin:10"><font color="#5d3627" face = "SourceSansPro-Semibold24">Once upon a time, the God of Creation named Satoshi Nakamoto created the SkyArkVerse. The SkyArkVerse is </font></p><p style="margin:14"><font color="#5d3627" face = "SourceSansPro-Semibold24">a safe house for all sentient life in the Metaverse. It is </font></p><p style="margin:10"><font color="#5d3627" face = "SourceSansPro-Semibold24">the place that many intelligent species seek refuge in when their worlds are under threat by the Dark Forces </font></p><p style="margin:0"><font color="#5d3627" face = "SourceSansPro-Semibold24">that invade the Non-corrupted areas of the Metaverse.</font></p><br />
+  <font color="#079507" face = "SourceSansPro-Semibold28">How to Update Game Client</font><br />
+  <br />
+  <p style="margin:10"><font color="#5d3627" face = "SourceSansPro-Semibold24">PC: Close the game, open the House of Heroes Impact Launcher, and click Update.<br />APK: Open the App Store and tap Update.</font></p><br />
+  <br />
+</p>

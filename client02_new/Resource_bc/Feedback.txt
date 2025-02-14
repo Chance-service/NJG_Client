@@ -1,0 +1,8 @@
+﻿<font color="#625141" face="Kanit" size="5"><p style="text-align:center" >Customer Service Information</p></font><br />
+<br />
+<br />
+<font  color="#625141" face="Kanit" size="3"><p style="margin:5px" >Contact Customer Service</p></font><br />
+<p><font color="#3179b6"><button name = "URL" value="https://www.skyarkchronicles.com/contact-us/"><font color="#066fff">https://www.skyarkchronicles.com/contact-us/</font></button></font></p><br/>
+<br/>
+<font  color="#625141" face="Kanit" size ="1"><p style="margin:5px" >Telegram Group</p></font><br />
+<p><font color="#3179b6"><button name = "URL" value="https://t.me/SkyArkC"><font color="#066fff">https://t.me/SkyArkC</font></button></font></p><br/>

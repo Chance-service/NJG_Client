@@ -1,0 +1,131 @@
+{
+    "assets": [
+        {
+            "crc": "46311", 
+            "md5": "c0038f369cf4ba40fced8c29785c3a65", 
+            "name": "Announce.zip", 
+            "size": 2.229
+        }, 
+        {
+            "crc": "29752", 
+            "md5": "f4db7ca1d8a67c91402f76a9ee94e0dd", 
+            "name": "audio.zip", 
+            "size": 39978.947
+        }, 
+        {
+            "crc": "62235", 
+            "md5": "acf06ed2852fed696e5bd6e502d2b39a", 
+            "name": "BG.zip", 
+            "size": 52423.601
+        }, 
+        {
+            "crc": "39640", 
+            "md5": "9ae53e62c5b8e40739ffe18fc08f6098", 
+            "name": "ccbi.zip", 
+            "size": 1384.587
+        }, 
+        {
+            "crc": "15788", 
+            "md5": "cbf1fe95676a322aae32621878e35e88", 
+            "name": "effect.zip", 
+            "size": 123.705
+        }, 
+        {
+            "crc": "53485", 
+            "md5": "af945cd6fdcd9afd4b63d658e6740ff8", 
+            "name": "HalfBody.zip", 
+            "size": 4908.43
+        }, 
+        {
+            "crc": "63151", 
+            "md5": "174f62234160298d38365baa227ad070", 
+            "name": "Imagesetfile.zip", 
+            "size": 38740.27
+        }, 
+        {
+            "crc": "23747", 
+            "md5": "6ac5a7a0e3dfa52f4870da84962a57c9", 
+            "name": "Lang.zip", 
+            "size": 6427.797
+        }, 
+        {
+            "crc": "37254", 
+            "md5": "709af6c893fb6e80a7a6e4d9e4134832", 
+            "name": "LoadingUI.zip", 
+            "size": 59.032
+        }, 
+        {
+            "crc": "57362", 
+            "md5": "01932f24925d3d8f6fb9d9648b6eefce", 
+            "name": "LoadingUI_JP.zip", 
+            "size": 3764.375
+        }, 
+        {
+            "crc": "6563", 
+            "md5": "cb75215474df0f5f80f4bc9a9735bedf", 
+            "name": "lua.zip", 
+            "size": 2205.34
+        }, 
+        {
+            "crc": "46941", 
+            "md5": "5f1df0d8ef1a100215407e6c97a44b70", 
+            "name": "map.zip", 
+            "size": 1738.692
+        }, 
+        {
+            "crc": "38222", 
+            "md5": "ca9d9d10fa27990400f5077db344ff2e", 
+            "name": "monster.zip", 
+            "size": 2575.708
+        }, 
+        {
+            "crc": "62207", 
+            "md5": "118c32c2ddefc666419b3a75ad8573b2", 
+            "name": "shader.zip", 
+            "size": 8.718
+        }, 
+        {
+            "crc": "51857", 
+            "md5": "654927a36b78d6a766ca6dd301f10401", 
+            "name": "skill.zip", 
+            "size": 2829.283
+        }, 
+        {
+            "crc": "18271", 
+            "md5": "ccf5f04724f8cb4377ca68b8195c1722", 
+            "name": "Spine.zip", 
+            "size": 52745.818
+        }, 
+        {
+            "crc": "59255", 
+            "md5": "aa2898eb4350af5f36a5a6ae2532b986", 
+            "name": "Spine_1.zip", 
+            "size": 53152.299
+        }, 
+        {
+            "crc": "53647", 
+            "md5": "e63098bb7c6e509267ba3f5b7f30758c", 
+            "name": "Spine_2.zip", 
+            "size": 52592.065
+        }, 
+        {
+            "crc": "30948", 
+            "md5": "a82904d7b8ed97850d49ceb359b3b436", 
+            "name": "Spine_3.zip", 
+            "size": 18429.375
+        }, 
+        {
+            "crc": "7645", 
+            "md5": "9a5cef8ca9df031d0f5e0d17c1612b2b", 
+            "name": "txt.zip", 
+            "size": 639.207
+        }, 
+        {
+            "crc": "22962", 
+            "md5": "15851deec3bfa1d0ac4a4f4bbcaaa86e", 
+            "name": "UI.zip", 
+            "size": 41258.771
+        }
+    ], 
+    "time": 1618287144.503
+}

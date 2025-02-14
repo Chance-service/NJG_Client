@@ -1,0 +1,446 @@
+
+LoginBG01.png
+size: 2026,2026
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+BG FX animation/BG FX animation/splash BG FX_00000
+  rotate: false
+  xy: 2, 675
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1
+BG FX animation/BG FX animation/splash BG FX_00002
+  rotate: false
+  xy: 591, 1722
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1
+BG FX animation/BG FX animation/splash BG FX_00004
+  rotate: false
+  xy: 2, 371
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1
+BG FX animation/BG FX animation/splash BG FX_00006
+  rotate: false
+  xy: 591, 1418
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1
+BG FX animation/BG FX animation/splash BG FX_00008
+  rotate: false
+  xy: 912, 1722
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1
+BG FX animation/BG FX animation/splash BG FX_00010
+  rotate: false
+  xy: 2, 67
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1
+BG FX animation/BG FX animation/splash BG FX_00012
+  rotate: false
+  xy: 591, 1114
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1
+BG FX animation/BG FX animation/splash BG FX_00014
+  rotate: false
+  xy: 912, 1418
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1
+BG FX animation/BG FX animation/splash BG FX_00016
+  rotate: false
+  xy: 1233, 1722
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1
+BG FX animation/BG FX animation/splash BG FX_00018
+  rotate: false
+  xy: 912, 1114
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1
+BG FX animation/BG FX animation/splash BG FX_00020
+  rotate: false
+  xy: 1233, 1418
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1
+BG FX animation/BG FX animation/splash BG FX_00022
+  rotate: false
+  xy: 1554, 1722
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1
+BG FX animation/BG FX animation/splash BG FX_00024
+  rotate: false
+  xy: 1233, 1114
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1
+BG FX animation/BG FX animation/splash BG FX_00026
+  rotate: false
+  xy: 1554, 1418
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1
+BG FX animation/BG FX animation/splash BG FX_00028
+  rotate: false
+  xy: 1554, 1114
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1
+BG FX animation/BG FX animation/splash BG FX_00030
+  rotate: true
+  xy: 323, 658
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1
+BG FX animation/BG FX animation/splash BG FX_00032
+  rotate: true
+  xy: 323, 337
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1
+BG FX animation/BG FX animation/splash BG FX_00034
+  rotate: false
+  xy: 323, 33
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1
+BG FX animation/BG FX animation/splash BG FX_00036
+  rotate: false
+  xy: 627, 810
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1
+BG FX animation/BG FX animation/splash BG FX_00038
+  rotate: false
+  xy: 627, 506
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1
+BG FX animation/BG FX animation/splash BG FX_00040
+  rotate: false
+  xy: 948, 810
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1
+BG FX animation/BG FX animation/splash BG FX_00042
+  rotate: false
+  xy: 948, 506
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1
+BG FX animation/BG FX animation/splash BG FX_00044
+  rotate: false
+  xy: 1269, 810
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1
+BG FX animation/BG FX animation/splash BG FX_00046
+  rotate: false
+  xy: 1269, 506
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1
+BG FX animation/BG FX animation/splash BG FX_00048
+  rotate: true
+  xy: 1590, 793
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1
+BG FX animation/BG FX animation/splash BG FX_00050
+  rotate: false
+  xy: 1590, 489
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1
+BG FX animation/BG FX animation/splash BG FX_00052
+  rotate: false
+  xy: 644, 202
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1
+BG FX animation/BG FX animation/splash BG FX_00054
+  rotate: false
+  xy: 965, 202
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1
+BG FX animation/BG FX animation/splash BG FX_00056
+  rotate: true
+  xy: 1286, 185
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1
+BG FX animation/BG FX animation/splash BG FX_00058
+  rotate: false
+  xy: 1590, 185
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1
+NG splash BG
+  rotate: false
+  xy: 2, 979
+  size: 587, 1045
+  orig: 587, 1045
+  offset: 0, 0
+  index: -1
+NGsplash1080-assets/NG2DOP_03
+  rotate: false
+  xy: 2, 2
+  size: 146, 63
+  orig: 146, 63
+  offset: 0, 0
+  index: -1
+
+LoginBG012.png
+size: 1826,1826
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+BG FX animation/BG FX animation/splash BG FX_00060
+  rotate: false
+  xy: 2, 1522
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1
+BG FX animation/BG FX animation/splash BG FX_00062
+  rotate: false
+  xy: 2, 1218
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1
+BG FX animation/BG FX animation/splash BG FX_00064
+  rotate: false
+  xy: 323, 1522
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1
+BG FX animation/BG FX animation/splash BG FX_00066
+  rotate: false
+  xy: 2, 914
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1
+BG FX animation/BG FX animation/splash BG FX_00068
+  rotate: false
+  xy: 323, 1218
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1
+BG FX animation/BG FX animation/splash BG FX_00070
+  rotate: false
+  xy: 644, 1522
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1
+BG FX animation/BG FX animation/splash BG FX_00072
+  rotate: false
+  xy: 2, 610
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1
+BG FX animation/BG FX animation/splash BG FX_00074
+  rotate: false
+  xy: 323, 914
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1
+BG FX animation/BG FX animation/splash BG FX_00076
+  rotate: false
+  xy: 644, 1218
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1
+BG FX animation/BG FX animation/splash BG FX_00078
+  rotate: false
+  xy: 965, 1522
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1
+BG FX animation/BG FX animation/splash BG FX_00080
+  rotate: false
+  xy: 2, 306
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1
+BG FX animation/BG FX animation/splash BG FX_00082
+  rotate: false
+  xy: 323, 610
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1
+BG FX animation/BG FX animation/splash BG FX_00084
+  rotate: false
+  xy: 644, 914
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1
+BG FX animation/BG FX animation/splash BG FX_00086
+  rotate: false
+  xy: 965, 1218
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1
+BG FX animation/BG FX animation/splash BG FX_00088
+  rotate: false
+  xy: 1286, 1522
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1
+BG FX animation/BG FX animation/splash BG FX_00090
+  rotate: false
+  xy: 2, 2
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1
+BG FX animation/BG FX animation/splash BG FX_00092
+  rotate: false
+  xy: 323, 306
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1
+BG FX animation/BG FX animation/splash BG FX_00094
+  rotate: false
+  xy: 644, 610
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1
+BG FX animation/BG FX animation/splash BG FX_00096
+  rotate: false
+  xy: 965, 914
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1
+BG FX animation/BG FX animation/splash BG FX_00098
+  rotate: false
+  xy: 1286, 1218
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1
+BG FX animation/BG FX animation/splash BG FX_00100
+  rotate: false
+  xy: 323, 2
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1
+BG FX animation/BG FX animation/splash BG FX_00102
+  rotate: false
+  xy: 644, 306
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1
+BG FX animation/BG FX animation/splash BG FX_00104
+  rotate: false
+  xy: 965, 610
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1
+BG FX animation/BG FX animation/splash BG FX_00106
+  rotate: false
+  xy: 1286, 914
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1
+BG FX animation/BG FX animation/splash BG FX_00108
+  rotate: false
+  xy: 644, 2
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1
+BG FX animation/BG FX animation/splash BG FX_00110
+  rotate: false
+  xy: 965, 306
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1
+BG FX animation/BG FX animation/splash BG FX_00112
+  rotate: false
+  xy: 1286, 610
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1
+BG FX animation/BG FX animation/splash BG FX_00114
+  rotate: false
+  xy: 965, 2
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1
+BG FX animation/BG FX animation/splash BG FX_00116
+  rotate: false
+  xy: 1286, 306
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1
+BG FX animation/BG FX animation/splash BG FX_00118
+  rotate: false
+  xy: 1286, 2
+  size: 319, 302
+  orig: 319, 302
+  offset: 0, 0
+  index: -1

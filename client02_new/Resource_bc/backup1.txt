@@ -1,0 +1,11 @@
+ShowFps WinSize 900 1600 Scale 0.45f
+
+
+<?xml version="1.0"?>
+<Project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <propertyGroup>
+    <StartProgram>C:\Gjwow\client02_new\Resource_en\Game.exe</StartProgram>
+    <StartArguments>ShowFps WinSize 900 1600 Scale 0.45f</StartArguments>
+    <StartWorkingDirectory>C:\Gjwow\client02_new\Resource_en</StartWorkingDirectory>
+  </propertyGroup>
+</Project>
