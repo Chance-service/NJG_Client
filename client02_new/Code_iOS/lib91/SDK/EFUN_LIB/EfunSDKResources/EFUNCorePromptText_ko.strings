@@ -1,0 +1,244 @@
+/* 
+  EFUNCorePrompText_ko.strings
+  EFUN_FUNCTION_PROJECT_AddUserInterface
+
+  Created by Mac mini on 14-9-28.
+  Copyright (c) 2014年 zhangguangyang. All rights reserved.
+*/
+
+//交易历史记录界面
+"REG_SE_alert_content"="하기 내용은 본 장비에서 진행한 20건의 충전이력입니다. 이 부분은 이펀 유저에 대한 서비스입니다. 만약 부동한 계정으로 충전하였다면 주문시간순서로 최근의 20건을 노출합니다. 게임 삭제 시 충전이력도 같이 삭제됩니다. 충전이력을 확인하시고 의문이 있으실 경우 해당 충전내역의 “신고”버튼을 이용하여 이펀서버에 신고해 주시기 바랍니다. 각 주문내역은 두번만 신고가능합니다.";
+"REG_SE_alert_content01"="해당 주문내역은 이미 두번 전송하였습니다. 직접 고객센터에 문의해 주세요. ";
+"REG_SE_alert_content02"="각 주문내역은 두번만 신고가능합니다. 신고 후 해당내용은 이펀 서버에 저장되기에 별도로 반복 신고하시지 않으셔도 됩니다. 해당 주문을 신고하시겠습니까? ";
+"REG_SE_alert_content03"="현재 최신 주문내역을 이펀 서버에 전송합니다. 전송성공 시 한시간 후 재발송 가능합니다. 전송성공 후 시간표기를 캡쳐하여 고객센터에 문의하시기 바랍니다. 주문내역을 전송하시겠습니까? ";
+"REG_SE_alert_content04"="주문내역이 없습니다.";
+"REG_SE_alert_sure_btn_title"="확인";
+"REG_SE_alert_cancel_btn_title"="취소";
+"REG_SE_closs_btn_title"="종료";
+"REG_SE_post_current_btn_title"="현재주문신고";
+
+"REG_SE_date_title"="일자";
+"REG_SE_state_title"="상태";
+"REG_SE_orderId_title"="주문번호";
+"REG_SE_role_title"="캐릭터";
+"REG_SE_feedback_btn_title"="신고";
+"REG_SE_post_times_title"="현재 신고 회수";
+
+"REG_SE_state_finished"="결제 성공";
+"REG_SE_state_payFail"="결제 실패";
+"REG_SE_state_efunServerCheckPayFail"="이펀 서버 인증실패";
+"REG_SE_state_userCancel"="주문취소";
+"REG_SE_state_inPaying"="결제중";
+
+"REG_SE_post_log_fail"="주문내역 전송실패! 다시 한번 진행해 주세요";
+"REG_SE_post_log_success"="주문내역 전송성공!";
+"REG_SE_is_posting"="전송중…";
+"REG_SE_post_time_sign_text"="하기는 전송 시간표기입니다. 캡쳐하여 고객센터에 문의해 주세요.";
+"REG_SE_post_current_too_mutch_text"="한시간 한번만 전송가능합니다. 남은시간: \n";
+
+//FB绑定过程中的一些提示
+"__UI_ACCOUNTBIND_FACEBOOK_INFO__"                            ="您目前登錄的Facebook賬號為: %@，是否綁定該賬號？";
+"__UI_ACCOUNTBIND_FACEBOOK_COMFIRM__"                         ="使用該賬號";
+"__UI_ACCOUNTBIND_FACEBOOK_CANCLE__"                          ="使用其他賬號";
+"__UI_ACCOUNTBIND_FACEBOOK_INFO_LOGOUT__"                     ="請先登錄你想要綁定的facebook賬號";
+"__UI_INVITE_GET_GIFT_MESSAGE__"                              ="%@，조건:%@，당신은 초대 번호 %d ";
+
+"textNoNet"                     = "네트웍이 원활하지 않습니다.";
+"textServerReturnError"         = "서버 리턴값 오류. 다시 접속해 주세요.";
+"textServerReturnNull"          = "서버 리턴값 없음. 다시 접속해 주세요.";
+"textParameterNull"             = "파라미터값이 비여 진행할수 없습니다. 다시 접속해 주세요.";
+/*按钮文字*/
+"titleAlertSureBtnTitle"        = "확인";
+
+
+//关于购买的提示
+"textIapParameterNil"       = "구매 데이터 이상, 다시 시도해 주세요.";
+"textIapNoNet"              = "네트웍이 원활하지 않습니다. 구매시 네트웍상태을 확인해 주세요.";
+"textIapOneIsPaying"        = "진행중인 트랜잭션이 있습니다.";
+"textIapNoMakePayments"     = "PaymentQueue지불 기능을 지원하지 않습니다.";
+"textIapServerInMaintain"   = "서버 점검중입니다.\n잠시후에 다시 구매진행하시기 바랍니다.감사합니다.\nE_code：%@";
+"textIapNoThisItem"         = "해당 상품이 존재하지 않습니다.";
+"textIapPostCheckNoNet"     = "주문번호:%@ \n네트웍이 불안정하기에 잠시 %@를 수령할수 없습니다.네트웍 원활한 환경이거나 다시 로그인 해고 \"확인\" 버튼을 클릭하면 재수령할수 있습니다.";
+"textIapBuyError"           = "거래주문번호:%@\n인증error！화면캡쳐 후 고객센터에 문의하시기 바랍니다.\n캡쳐 이미지가 충전실패 해결할때의 유일한 증거가 됩니다.";
+"textIapAppStorePayFail"    = "AppStore지불실패！\nE_code:%@";
+"textIapBuyFail"            = "구매실패:\n주문번호: %@\n 화면캡쳐 후 고객센터에 문의하시기 바랍니다.\n캡쳐 이미지가 충전실패 해결할때의 유일한 증거가 됩니다.";
+"textIapUserCancelToPay"    = "구매 취소하였습니다.";
+"textIapHaveSendGameStone"  = "거래주문번호: %@\n상품을 지급완료하였습니다. 확인 부탁합니다.";
+"textIapBuySuccess"         = "구매성공! 이 이미 지급되였습니다.:\n거래주문번호：%@\n즐거운 하루가 되세요~";
+
+
+//关于facebook的提示
+/*facebook登录提示*/
+"textFbInviteGetFbIDFail"               = "페이스북 사용자정보 가져오기 실패!";
+"textLoginGetFBTokenFail"               = "페이스북 토큰 가져오기 실패! \n네트웍 상태를 확인해 주세요.";
+"textLoginGetFBInfoFail"                = "페이스북 사용자 정보 가져오기 실패!\n네트웍 상태를 확인해 주세요.";
+/*facebook邀请好友*/
+"textFbInviteActivityNotOpen"           = "페이스북 친구초대 이벤트가 아직 열려있지 않습니다.";
+"textFbInviteGetPublicRightFial"        = "초대권한 신청 실패! 다시 시도해 주세요.";
+"textFbInviteGetCanInvitedFriendsFail"  = "초대한 친구정보 가져오기 실패!";
+"textFbInviteUserCancelInvite"          = "초대를 취소하였습니다.";
+"textFbInviteUserCloseInvite"           = "초대를 중단하였습니다.";
+/*facebook分享*/
+"textFbShareGetPublicFail"              = "공유 과정에서 권한 신청 실패!";
+"textFbShareGetTokenFail"               = "공유 과정에서 토큰 가져오기 실패!";
+"textFbShareFail"                       = "공유 포스팅 실패!";
+"textFbShareSuccess"                    = "공유 성공!";
+
+//陌陌
+"_ASIA_USER_ACCOUNT_"                                            ="ID";
+"_ASIA_PASSWORD_"                                                ="비밀번호";
+"_ASIA_LOGIN_"                                                   ="로그인";
+"_ASIA_REGISTER_RIGHTNOW_"                                       ="바로 가입";
+"_ASIA_FORGET_PASSWORD_"                                         ="비밀번호 찾기";
+"_ASIA_THIRD_LOGIN_"                                             =" 기타 로그인";
+"_ASIA_PLAY_NOW_"                                                ="회원가입없이";
+"_ASIA_TWITTER_LOGIN"                                            ="Twitter";
+"_ASIA_BAHA_LOGIN_"                                              ="BaHa";
+
+"_ASIA_REGISTER_TITLE_"                                          ="회원가입";
+"_ASIA_REPEAT_PASSWORD_"                                         ="비밀번호 다시 입력하기";
+"_ASIA_EMAIL_AT_TEXTFIELD_"                                      ="Email(비밀번호 분실시 사용)";
+"_ASIA_I_HAVE_READED"                                            ="이용약관 및 관리규약에 동의하기 ";
+"_ASIA_REGULATION_"                                              ="이용약관 및 관리규약";
+"_ASIA_REGISTER_"                                                ="회원가입";
+"_ASIA_READ_AND_AGREE"                                           ="이용약관/개인정보 취급방침 동의 해주세요";
+
+"_ASIA_FORGET_PASSWORD_TITLE_"                                   ="비밀번호 분실";
+"_ASIA_FIND_PASSWORD_"                                           ="비밀번호 찾기";
+"_ASIA_EMAIL_"                                                   ="Email";
+
+"_ASIA_ACCOUNT_MANAGEMENT_TITLE_"                                ="계정관리";
+"_ASIA_RESET_PASSWORD_"                                          ="비밀번호 변경";
+"_ASIA_BIND_ACCOUNT_"                                            ="비회원 통합";
+"_ASIA_FB_BIND_ACCOUNT_"                                         ="fb 계정통합";
+
+"_ASIA_ORIGINAL_PASSWORD_"                                       ="현재 비밀번호";
+"_ASIA_NEW_PASSWORD_"                                            ="새로운 비밀번호";
+"_ASIA_CONFIRM_PASSWORD_"                                        ="비밀번호 재확인";
+"_ASIA_CONFIRM_RESET_"                                           ="변경확인";
+
+"_ASIA_BIND_ACCOUNT_TITLE_"                                      ="계정통합";
+
+"_ASIA_CANCEL_"                                                  ="취소";
+"_ASIA_CONFIRM_"                                                 ="확인";
+"_ASIA_SYSTEM_NOTICE_"                                           ="시스템공지";
+
+//KR
+"_STR_LOGIN_WITH_FACEBOOK_"                                     ="Login with Facebook";
+"_STR_PLAY_NOW_"                                                ="PLAY NOW";
+"_STR_REGISTER_TITLE_"                                          ="REGISTER";
+"_STR_LOGIN_TITLE_"                                             ="LOGIN";
+"_STR_RESET_PASSWORD_TITLE_"                                    ="RESET PASSWORD";
+"_STR_FORGET_PASSWORD_TITLE_"                                   ="FORGET PASSWORD";
+"_STR_BIND_ACCOUNT_TITLE_"                                      ="BIND ACCOUNT";
+"_STR_FOR_MORE_ACCOUNT_"                                        ="For More Account";
+"_STR_USER_ACCOUNT_"                                            ="User Account";
+"_STR_PASSWORD_"                                                ="Password";
+"_STR_REGISTER_"                                                ="Register";
+"_STR_LOGIN_"                                                   ="Login";
+"_STR_RESET_PASSWORD_"                                          ="Reset Password";
+"_STR_FORGET_PASSWORD_"                                         ="Forget Password";
+"_STR_CONFIRM_PASSWORD_"                                        ="Confirm Password";
+"_STR_EMAIL_AT_TEXTFIELD_"                                      ="Email (To retrieve password)";
+"_STR_NEW_PASSWORD_"                                            ="New Password";
+"_STR_EMAIL_"                                                   ="Email";
+"_STR_BIND_ACCOUNT_"                                            ="Bind Account";
+"_STR_FB_BIND_ACCOUNT_"                                         ="Bind Facebook";
+"_STR_BACK_"                                                    ="Back";
+"_STR_FIND_PASSWORD_"                                           ="Find Password";
+"_STR_TAP_THE_SCREEN_TO_LOG_IN_"                                ="Tap the screen to log in";
+"_STR_FB_INVITE_TOP_TITILE_"                                    ="친구요청";
+"_STR_FB_INVITE_CHECK_REWARDS_TITLE_"                           ="보상보기";
+"_STR_FB_INVITE_NUMBER_OF_INVITATIONS_TITLE_"                   ="친구요청";
+"_STR_FB_INVITE_REWARDS_BTN_"                                   ="보상보기";
+"_STR_FB_INVITE_SEND_INVITATION_BTN_"                           ="요청발송";
+"_STR_FB_INVITE_INFO_"                                          ="Facebook 클릭후 홈으로 갈수 있습니다.";
+"_STR_REGISTER_INFO_"                                           ="계정이 없음? ";
+
+"_STR_FB_INVITE_SHARE_MORE_BTN_"                                ="更多分享";
+"_STR_FB_INVITE_RANK_TITLE_"                                    ="好友排行榜";
+"_STR_FB_INVITE_RANK_PRESTIGE_"                                 ="威望";
+"_STR_FB_INVITE_RANK_GIVE_"                                     ="贈送";
+"_STR_FB_INVITE_RANK_COMMENT_"                                  ="說明";
+"_STR_FB_INVITE_RANK_CLAIM_"                                    ="索取";
+"_STR_FB_INVITE_LABEL_PACKAGE_NAME__"                            = "선물 %d";
+"_STR_FB_INVITE_LABEL_Reward__"                                  = "보상:%@";
+
+"EFUN_PAYING"                                                 ="진행중인 트랜잭션 기다려주세요";
+"EFUN_NoNet"                                                  ="네트워크 오류, Wi-Fi체크해주세요！";
+"EFUN_NoMakePayments"                                         ="AppStore 지불 불가！";
+"EFUN_OneIsBuying"                                            ="한건의 결제가 진행중！";
+"EFUN_NoThisGood"                                             ="상점이 없음！";
+"EFUN_UserCancelToBuy"                                        ="구매를 취소하였습니다！";
+"EFUN_AppStorePayFail"                                        ="AppStore 지불 실패！";
+"EFUN_BuySuccess"                                             ="구매성공,%@ 이미 발급하였습니다,\n거래주문번호：%@\n EfunOrder:%@\n 즐거운 게임되세요！";
+"EFUN_BuyFail"                                                ="구매실패:\n주문번호：%@\n EfunOrder:%@\n ErroCode:%@\n고객센터에 문의해주세요。";
+"EFUN_HaveSendGameGold"                                       ="거래주문번호：%@\n EfunOrder:%@\n %@ 발급되었습니다！";
+"EFUN_PostNoNet"                                              ="거래주문번호：%@\n EfunOrder:%@\n 서버에 발송한 인증이 누락！";
+"EFUN_BuyError"                                               ="거래주문번호：%@\n EfunOrder:%@\n 인증 오류！";
+"EFUN_BuyServerInMaintain"                                    ="서버점검중! 잠시후 재시도해주세요!";
+"__UI_LOGINVIEW_ACCOUNT_TEXTFEILD__"                          =" 이펀 아이디  "; //账号
+"__UI_LOGINVIEW_PASSWORD_TEXTFEILD__"                         =" 비밀번호를 입력하세요"; //密码
+"__UI_LOGINVIEW_CHANGEPASSWORD_BUTTON__"                      =" 비밀번호 변경";  //修改密码
+"__UI_LOGINVIEW_MACBIND_BUTTON__"                             =" 免注册绑定";
+"__UI_LOGINVIEW_FORGOTPASSWORD_BUTTON__"                      =" 비밀번호 찾기"; //找回密码
+"__UI_LOGINVIEW_LOGINWAYS_LABEL__"                            =" 使用以下账号登入";
+"__UI_CHANGEPASSWORD_OLDPASSWORD_TEXTFEILD__"                 =" 기존 비밀번호를 입력하세요";//原始密码
+"__UI_CHANGEPASSWORD_NEWPASSWORD_TEXTFIELD__"                 =" 새 비밀번호를 입력하세요"; //新密码
+"__UI_CHANGEPASSWORD_NEWPASSWORD_CONFIRM_TEXTFIELD__"         =" 비밀번호를 재확인하세요"; //确认新密码
+"__UI_FORGOTPASSWORD_EMAIL__"                                 =" 이메일 주소";//注册邮箱
+"__UI_ACCOUNTBIND_PASSWORD_CONFIRM__"                         =" 비밀번호를 재확인하세요"; //重复密码
+"__UI_ACCOUNTBIND_EMAIL__"                                    =" 이메일 주소를 입력하세요";//Email(可用于找回密码
+"__MESSAGE_ALERTVIEW_TITLE_ERROR__"                           ="오류";//错误
+"__MESSAGE_ALERTVIEW_MESSAGE_PASSWORD_DIFFERENCE__"           ="비밀번호가 일치하지 않습니다.재 입력 해주세요";//两次输入的密码不一样，请重新输入
+"__MESSAGE_WAITTING_LOGIN_STRING__"                           ="로딩중...";//正在登入中
+"__MESSAGE_WAITTING_LOGIN_EVATAR_STRING__"                    ="台湾大玩家登入中...";
+"__MESSAGE_WAITTING_ACCOUNTBIND_STRING__"                     ="가입중...";//正在注册中
+"__MESSAGE_WAITTING_FACEBOOKBIND_STRING__"                    ="가입중...";
+"__MESSAGE_WAITTING_CHANGEPASSWORD_STRING__"                  ="접속중...";//正在提交处理
+"__MESSAGE_WAITTING_FORGOTPASSWORD_STRING__"                  ="접속중...";//正在提交处理
+"__MESSAGE_WAITTING_BIND_STRING__"                            ="접속중...";//正在提交处理
+"__MESSAGE_ERROR_MESSAGE_ACCOUNT_LENGTH_45__"                 ="아이디 45자이내 입력하세요 ！";//所输入的用户名长度不能超过45个字符!
+"__MESSAGE_ERROR_MESSAGE_ACCOUNT_NULL__"                      ="아이디 입력!";//账号不能为空
+"__MESSAGE_ERROR_MESSAGE_ACCOUNT_SPACILECHAR__"               ="아이디에 특수부호 사용불가(아이디에 영어,숫자만 가능합니다)"; //账号不能有特殊字符!(账号由字母，数字或下划线組成)
+"__MESSAGE_ERROR_MESSAGE_ACCOUNT_UTF8ERROR__"                 ="아이디에 특수부호 사용불가(아이디에 영어,숫자만 가능합니다)";//账号不能有中文字符!(账号由字母，数字或下划线組成)
+"__MESSAGE_ERROR_MESSAGE_PASSWORD_NULL__"                     ="비밀번호를 입력하세요!";//密码不能为空!
+"__MESSAGE_ERROR_MESSAGE_PASSWORD_LENGTH_45__"                ="변경할 비밀번호 45자이내 입력하세요!";//所输入的密碼长度不能超过45個字符
+"__MESSAGE_ERROR_MESSAGE_PASSWORD_SPACILECHAR__"              ="비밀번호에 특수부호 사용불가(비밀번호에 영어,숫자만 가능합니다)";//密码不能有特殊字符!(密码由字母，数字或下划线組成)
+"__MESSAGE_ERROR_MESSAGE_PASSWORD_UTF8ERROR__"                ="비밀번호에 특수부호 사용불가(비밀번호에 영어,숫자만 가능합니다)";//密码不能有中文字符!(密码由字母，数字或下划线組成)+
+"__MESSAGE_ERROR_MESSAGE_EMAIL_NULL__"                        ="Email 입력하세요 !";//Email不能为空
+"__MESSAGE_ERROR_MESSAGE_EMAIL_LENGTH_45__"                   ="email 45자이내 입력하세요！";//所输入的Email长度不能超过45个字符!
+"__MESSAGE_ERROR_MESSAGE_EMAIL_FORMAT__"                      ="Email격식이 잘못되였습니다!";//Email格式不正确
+"__MESSAGE_ERROR_MESSAGE_EMAIL_UTF8ERROR__"                   ="Email에 특수부호 사용불가!";//Email不能有中文字符
+"__MESSAGE_TITLE_NETINTERFACE_LOGIN__"                        ="로그인";//登入
+"__MESSAGE_TITLE_NETINTERFACE_REGISTER__"                     ="회원가입";//注册
+"__MESSAGE_TITLE_NETINTERFACE_RESETPASSWORD__"                ="비밀번호 변경";//修改密碼
+"__MESSAGE_TITLE_NETINTERFACE_FINDPASSWORD__"                 ="비밀번호 찾기";//找回密碼
+"__MESSAGE_TITLE_NETINTERFACE_FASTLOGIN__"                    ="免注册登入";
+"__MESSAGE_TITLE_NETINTERFACE_FACEBOOKLOGIN__"                ="Facebook";
+"__MESSAGE_TITLE_NETINTERFACE_PHONEEVATAR__"                  ="Evatar";
+"__MESSAGE_TITLE_NETINTERFACE_REGISTERBIND__"                 ="免注册绑定";
+"__MESSAGE_TITLE_NETINTERFACE_OTHERCLIENTLOGINEVATAR__"       ="Evatar 客戶端登入";
+"__MESSAGE_ALERTVIEW_MESSAGE_BIND_INFO__"                     ="유저님의 계정정보를 보호하기 위하여 계정전환을 진행하시기 바랍니다.";
+"__MESSAGE_ALERTVIEW_MESSAGE_BIND_LEFT_BTN_PLAYNOW__"         ="계속하기";
+"__MESSAGE_ALERTVIEW_MESSAGE_BIND_RIGHT_BTN_BINDACCOUNT__"    ="계정전환";
+"__MESSAGE_ALERTVIEW_MESSAGE_BINDEDACCOUNT__"                 ="이미 전환 진행한 기기입니다. 전환계정:%@";
+"__MESSAGE_TITLE_NETINTERFACE__"                              ="제시";//提示
+"__MESSAGE_NET_ERROR__"                                       ="인터넷 불안정！";//网络不給力
+"__MESSAGE_TWITTER_SHARE_CONTENTDUPLICATE"                    ="分享内容重复，请改天再试或者更改分享内容!";
+"__MESSAGE_TWITTER_PLEASEWAITING__"                           ="기다려주십시오";//请稍等
+"__UI_TWITTER_TITLE_TWITTERLOGIN__"                           ="Twitter Login";
+"__UI_BTN_LABEL_CHECK_AWARDCONTENT__"                         ="보너스 콘텐츠";
+"__UI_BTN_LABEL_WEBVIEW_PREVIOUS__"                           ="이전";
+"__UI_BTN_LABEL_WEBVIEW_NEXT__"                               ="다음";
+"__UI_BTN_LABEL_WEBVIEW_BACK__"                               ="반환";
+"__UI_BTN_LABEL_WEBVIEW_RELOAD__"                             ="오버로드";
+"__UI_INVITE_LABEL_AlreadyInviteNum__"                        ="초대 총:";
+"__UI_BTN_INVITE__LABEL_SendInvite__"                         ="초대장을 보내";
+"__EFUN_LOADING__"                                            ="접속중...";
+"__UI_INVITE_LABEL_MAX_INVITE_NUM__"                          ="You have reached the limit invited today.The maximum number of invited:%ld";
+"__UI_INVITE_LABEL_Reward__"                                  ="Rewards:%@";
+"__UI_INVITE_LABEL_PACKAGE_NAME__"                            ="Gift Pack %d";
+"__UI_RIGISTER_Alert_Account__"                               ="You can use letters, numbers and underscore. Case insensitive.";
+"__UI_RIGISTER_Alert_Password__"                              ="We recommend combination of 6 characters or above. Case sensitive";
+"__UI_RIGISTER_Alert_Email__"                                 ="Please provide a valid email, which will be used to recover your password";

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>ShareSDKToDifPlatform.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>23</integer>
+		</dict>
+		<key>ShareSDKToFCUUID.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>44</integer>
+		</dict>
+		<key>ShareSDKToGameCenter.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>24</integer>
+		</dict>
+		<key>ShareSDKToYvVoiceSDK.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>25</integer>
+		</dict>
+		<key>ShareSDKToYvVoiceSDKNoJson.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>26</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>17C4A5021AFB0DAB00C761E3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>17C4A53A1AFB0EBE00C761E3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>17E174371AF9CD62001BDF24</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>76C017691CFD6F9500E667C1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B2A4AF561AE50566001BF946</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B2A4AF661AE50566001BF946</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>

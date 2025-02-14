@@ -1,0 +1,12 @@
+//
+// Prefix header for all source files of the 'libOS' target in the 'libOS' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+
+#define IS_IOS7 [[UIDevice currentDevice].systemVersion hasPrefix:@"7"]
+
+#define IS_IOS8 [[UIDevice currentDevice].systemVersion hasPrefix:@"8"]
+
+#endif

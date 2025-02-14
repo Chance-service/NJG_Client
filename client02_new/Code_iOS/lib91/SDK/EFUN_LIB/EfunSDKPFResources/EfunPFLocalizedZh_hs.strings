@@ -1,0 +1,158 @@
+/*
+ Localizable.strings
+ EfunPlatForm
+ 
+ Created by TangTieshan on 14-2-24.
+ Copyright (c) 2014年 TangTieshan. All rights reserved.
+ */
+"Home"="主页";
+"Account Info"="账号资讯";
+"CS Center"="客服中心";
+"Info"="信息";
+"Game"="游戏";
+"Gift"="礼包";
+"Recharge"="储值";
+"News"="新闻";
+"Guide"="攻略";
+"Role ID"="角色ID";
+"Reply"="回复";
+"Free Gift"="免费礼包";
+"Medal Gift"="勋章礼包";
+"My Gift"="我的礼包";
+"Your suggestion"="您的建议";
+"Please input your suggestions for better services"="请输入您的建议，以便我们更好地为您服务";
+"Your Email"="您的邮箱";
+"Email"="邮箱";
+"①MSN/Email:\ncustomer_service@efun.com"="①MSN/邮箱:\ncustomer_service@efun.com";
+"Please input correct email"="请输入正确的邮箱";
+"Please input your suggestions"="请输入您的建议";
+"Please input your Email"="请输入您的邮箱";
+"OK"="確定";
+"Submit"="提交";
+"Timeout! Please check your network"="请求超时！请检查您的网络";
+"Thanks for your suggestion!"="感谢您提出的宝贵意见和建议!";
+"submiting..."="提交中...";
+"internet error, please try again."="网络错误，请稍后重试.";
+"Logging in..."="Logging in...";
+
+
+"Member"="会员";
+"System Message"="系统消息";
+"Login"="登入";
+"Account"="账号";
+"Password"="密码";
+"Facebook Login"="Facebook登入";
+"Change password"="修改密码";
+"Forget password?"="忘记密码?";
+"No account?"="没有账号?";
+"Register now"="立即注册";
+"Click here to find back"="点击这里找回";
+"Third Party Account"="第三方账号";
+"Old password"="旧密码";
+"New password"="新密码";
+"Confirm"="确认修改";
+"Confirm password"="确认密码";
+"Change password successfully"="密码修改成功";
+"Please input new password"="请输入新密码";
+"Please input old password"="请输入旧密码";
+"Please confirm password"="请确认密码";
+"Please input account first"="账号不能为空";
+"The new passwords are inconsistent"="新密码前后不一致";
+"Please input your title"="请输入标题";
+"Title"="标题";
+"Please input password"="请输入密码";
+"Find back password"="找回密码";
+"Account Registration"="账号注册";
+"Agree to Terms"="我已阅读并同意";
+"《Terms of Service and Privacy policy》"="《服务条款及隐私条款》";
+"Please input password first"="密码不能为空";
+"Passwords are inconsistent"="前后密码不一致";
+"You haven't read the related terms"="您还没有阅读相关条款";
+
+"Please select your region"="请选择您所属地区";
+"Thailand"="泰国";
+"Vietnam"="越南";
+"Europe"="欧洲";
+"Japan"="日本";
+"Other regions of Southeast Asia"="东南亚其他地区";
+"The region you choose:"="您选择的地区是:";
+"Cancel"="取消";
+
+"Login error"="登入异常";
+"Recharge error"="储值异常";
+"Abnormal account"="账号异常";
+"Error feedback"="异常反馈";
+"Guides"="攻略咨询";
+"Suggestion"="游戏建议";
+"Violation complaints"="违规投诉";
+"Other"="其他";
+
+"select game"="选择游戏";
+"Server"="选择伺服器";
+"Character"="选择角色";
+"submit"="提交";
+
+"Register successfully"="注册成功";
+"Register"="注册";
+"No blank space for the first place of account"="账号首位不能是空格";
+"No “&！ for account"="账号不能包含\"&!";
+"No “&！ for password"="密码不能包含\"&!";
+"The new password has been sent to your mail. Please pay attention to check it"="您的新密码已经发送到您的邮箱，请注意查收";
+"Failed to obtain the game list. Please try again later!"="获取游戏列表失败，请稍后重试！";
+"Failed to obtain server info. Please try again later!"="获取伺服器失败，请稍后重试！";
+"Failed to obtain character info. Please try again later!"="获取角色信息失败，请稍后重试！";
+
+"The title should be shorter than 32 characters."="标题不能超过32个字.";
+"The content should be shorter than 500 characters."="描述的内容不能超过500个字.";
+"The title can't be empty or containing only spaces."="标题不能为空或者空格.";
+"The content can't be empty or containing only spaces."="内容不能为空或者空格.";
+"Obtaining..."="获取中...";
+
+
+"Application Management"="应用管理";
+"Installed"="已安装";
+"Downloading"="下载中";
+"Change"="更改";
+"Forget"="忘记";
+"Are you sure to change account?"="您确定要切换账号?";
+"The first letter of account can't contain spaces."="账号的首位不能含有空格.";
+"Password："="密码：";
+
+"Wrong password"="密钥错误";
+"Wrong parameter"="参数错误";
+"Null exception"="空值异常";
+"This account has existed already"="此账号已存在";
+"System abnormal"="系统异常";
+"This account does't exist"="无此用户";
+"Wrong original password"="原密码错误";
+"Wrong email input"="邮箱输入错误";
+"Please choose the type of game"="请选择游戏类型";
+"Please choose the type of server"="请选择服务器类型";
+"Please choose the role"="请选择角色";
+"It's now having system maintenance"="系统维护中";
+
+"Failed to login"="登录失败";
+"Shared successfully"="分享成功";
+"Shared failed"="分享失败";
+
+"wrong password!"="密码错误!";
+"More"="More";
+
+"Event area"="活动区域";
+"select game"="选择游戏";
+"server"="伺服器";
+"role name"="角色名";
+"select event"="选择活动";
+"shoot"="拍照";
+"album"="相册";
+
+"Please choose the event"="请选择活动";
+"Your message has been successfully submitted"="活动提交成功";
+"Fail to send your message, please try later"="提交失败，请稍后重试";
+"Please choose an image"="请选择图片";
+
+"Load failed, please check the network connection or contact customer service."="获取失败，请检查网络或联系客服.";
+
+"Notice"="公告";
+"Download"="下载";
+"Don't show today"="今天之内不再显示";

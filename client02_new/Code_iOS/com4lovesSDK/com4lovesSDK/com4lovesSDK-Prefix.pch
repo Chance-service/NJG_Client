@@ -1,0 +1,27 @@
+//
+// Prefix header for all source files of the 'com4lovesSDK' target in the 'com4lovesSDK' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+#endif
+
+//屏幕常量
+#define kDeviceWidth [UIScreen mainScreen].bounds.size.width
+#define KDeviceHeight [UIScreen mainScreen].bounds.size.height
+#define FullScreen [UIScreen mainScreen].bounds
+#define iPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
+
+//log 控制
+#ifdef DEBUG
+#define YALog(format, ...)  NSLog(@"SDKLog : %@",[NSString stringWithFormat:format, ## __VA_ARGS__])
+#else
+#define YALog(format, ...)
+#endif
+
+//安全释放
+#define RELEASE_SAFELY(__POINTER)                                             \
+if((__POINTER) != nil) {                                                  \
+[__POINTER release];                                                  \
+__POINTER = nil;                                                      \
+}

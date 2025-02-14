@@ -1,0 +1,241 @@
+/* 
+  EFUNCorePromptText_en.strings
+  EFUN_FUNCTION_PROJECT_AddUserInterface
+
+  Created by Mac mini on 14-9-24.
+  Copyright (c) 2014年 zhangguangyang. All rights reserved.
+*/
+
+//交易历史记录界面
+"REG_SE_alert_content"="The latest 20 orders in this device will be recorded here. This record is not specific to for any special players; If different players recharge in this device, we will also record 20 orders in total according to the refilling time. If the game is delected, all record will be delected, too. If players have any questions for their orders, they can tap the corresonding record and report it to efun. Each order can be reported twice.";
+
+"REG_SE_alert_content01"="This record had been reported twice. Do not submit it again. Please contact our Customer Service if you have any questions.";
+"REG_SE_alert_content02"="All records can be reported twice. efun server will keep it. You do not need to report it again. Submit this record?";
+"REG_SE_alert_content03"="Send the lastest record to efun server. Please wait 1 hour to send it again if you report it sucessfully. Please make a screenshot and send it to our Customer Service. Submit this record?";
+"REG_SE_alert_content04"="No record!";
+"REG_SE_alert_sure_btn_title"="Confirm";
+"REG_SE_alert_cancel_btn_title"="Cancel";
+"REG_SE_closs_btn_title"="Close";
+"REG_SE_post_current_btn_title"="Report this record";
+
+"REG_SE_date_title"="Date";
+"REG_SE_state_title"="Statues";
+"REG_SE_orderId_title"="Order number";
+"REG_SE_role_title"="Role";
+"REG_SE_feedback_btn_title"="Report";
+"REG_SE_post_times_title"="Report time";
+
+"REG_SE_state_finished"="Completed";
+"REG_SE_state_payFail"="Recharge failed";
+"REG_SE_state_efunServerCheckPayFail"="efun server test ineffective";
+"REG_SE_state_userCancel"="Player cancels the order";
+"REG_SE_state_inPaying"="In transaction";
+
+"REG_SE_post_log_fail"="Fail to report! Please try later";
+"REG_SE_post_log_success"="Report successfully！";
+"REG_SE_is_posting"="Sending";
+"REG_SE_post_time_sign_text"="Please make a screenshot of the report time and send it to our Customer Service";
+"REG_SE_post_current_too_mutch_text"="You can only report once an hour. Time for next chance:\n";
+
+
+//系统的提示
+/*服务器的访问结果异常提示*/
+"textNoNet"                     = "Network speed is terrible!";
+"textServerReturnError"         = "Server returns error. Please try again!";
+"textServerReturnNull"          = "Server returns null. Please try again!";
+"textParameterNull"             = "Null parameter to handle. Please try again!";
+/*按钮文字*/
+"titleAlertSureBtnTitle"        = "OK";
+
+
+//关于购买的提示
+"textIapParameterNil"       = "Abnormal purchase parameter. Please try again!";
+"textIapNoNet"              = "Network speed is terrible. Please purchase under stable net environment.";
+"textIapOneIsPaying"        = "One deal is under way.";
+"textIapNoMakePayments"     = "PaymentQueue is not available for payment.";
+"textIapServerInMaintain"   = "Servers is under maintenance. \nPlease purchase after a while. Thanks for your support.\nE_code：%@";
+"textIapNoThisItem"         = "Inexistent item!";
+"textIapPostCheckNoNet"     = "Order No:%@ \n Because of the unstable network, not able to gain the Game currency. Please click \"OK\" to gain the Game currency agian under stable net environment, or relogin the game to have a check.";
+"textIapBuyError"           = "Trade Order No.%@\n Error! Please contact our customer services with screenshot. The screenshot is the only evidence for compensating your purchasement.";
+"textIapAppStorePayFail"    = "AppStore Pay fail! \nE_code:%@";
+"textIapBuyFail"            = "Purchase fail: \nOrder No. :%@\n Please contact our customer services with screenshot. \nThe screenshot is the only evidence for compensating your purchasement.";
+"textIapUserCancelToPay"    = "Cancled to pay already!";
+"textIapHaveSendGameStone"  = "Trade Order No. : %@\n The commodity has been sent out. Please kindly check.";
+"textIapBuySuccess"         = "Purchase successfully. Game currency has been sent out.\nOrder No. : %@\n Enjoy your game!";
+
+
+//关于facebook的提示
+/*facebook登录提示*/
+"textFbInviteGetFbIDFail"               = "Facebook userinfo receive fail!";
+"textLoginGetFBTokenFail"               = "Facebook token receive fail. Login unsuccessfully! \nPlease check your network and login the game again!";
+"textLoginGetFBInfoFail"                = "Facebook userinfo receive fail. Login unsuccessfully! \nPlease check your network and login the game again!";
+/*facebook邀请好友*/
+"textFbInviteActivityNotOpen"           = "Facebook invite activity is not opened.";
+"textFbInviteGetPublicRightFial"        = "Receive publishing invite permission fail. Please try again.";
+"textFbInviteGetCanInvitedFriendsFail"  = "Receive invited friend info fail!";
+"textFbInviteUserCancelInvite"          = "Canceled the invitation already!";
+"textFbInviteUserCloseInvite"           = "Closed the invitation already!";
+/*facebook分享*/
+"textFbShareGetPublicFail"              = "During the share, receive right fail!";
+"textFbShareGetTokenFail"               = "During the share, receive token fail!";
+"textFbShareFail"                       = "Send share fail!";
+"textFbShareSuccess"                    = "Share successfully!";
+
+//SEA
+"_STR_FANS_PAGE_TITLE_"                                              ="Fans Page";
+"_STR_LOGIN_WITH_FACEBOOK_"                                     ="Login with Facebook";
+"_STR_PLAY_NOW_"                                                ="PLAY NOW";
+"_STR_REGISTER_TITLE_"                                          ="REGISTER";
+"_STR_LOGIN_TITLE_"                                             ="LOGIN";
+"_STR_RESET_PASSWORD_TITLE_"                                    ="RESET PASSWORD";
+"_STR_FORGET_PASSWORD_TITLE_"                                   ="FORGET PASSWORD";
+"_STR_BIND_ACCOUNT_TITLE_"                                      ="BIND ACCOUNT";
+"_STR_FOR_MORE_ACCOUNT_"                                        ="For More Account";
+"_STR_USER_ACCOUNT_"                                            ="User Account";
+"_STR_USER_REGISTER_ACCOUNT_"                                            ="Create an Username";
+"_STR_PASSWORD_"                                                ="Password";
+"_STR_REGISTER_"                                                ="Register";
+"_STR_LOGIN_"                                                   ="Login";
+"_STR_RESET_PASSWORD_"                                          ="Reset Password";
+"_STR_FORGET_PASSWORD_"                                         ="Forget Password";
+"_STR_CONFIRM_PASSWORD_"                                        ="Confirm Password";
+"_STR_EMAIL_AT_TEXTFIELD_"                                      ="Email (To retrieve password)";
+"_STR_NEW_PASSWORD_"                                            ="New Password";
+"_STR_EMAIL_"                                                   ="Email";
+"_STR_BIND_ACCOUNT_"                                            ="Bind Account";
+"_STR_FB_BIND_ACCOUNT_"                                         ="Bind Facebook";
+"_STR_BACK_"                                                    ="Back";
+"_STR_FIND_PASSWORD_"                                           ="Find Password";
+"_STR_TAP_THE_SCREEN_TO_LOG_IN_"                                ="Tap the screen to log in";
+"_STR_FB_INVITE_TOP_TITILE_"                                    ="Friends Invitation";
+"_STR_FB_INVITE_CHECK_REWARDS_TITLE_"                           ="Check Rewards";
+"_STR_FB_INVITE_NUMBER_OF_INVITATIONS_TITLE_"                   ="Number of Invitations";
+"_STR_FB_INVITE_REWARDS_BTN_"                                   ="Check Rewards";
+"_STR_FB_INVITE_SEND_INVITATION_BTN_"                           ="Send Invitation";
+"_STR_FB_INVITE_INFO_"                                          ="Click the Facebook icon and link to our offical forum.";
+"_STR_REGISTER_INFO_"                                           ="Has no account? ";
+
+
+
+"EFUN_PAYING"=                                              "Transaction in progress, please wait"	;
+"EFUN_NoNet"=                                               "Network failure,please check the network!"	;
+"EFUN_NoMakePayments"=                                      "AppStore purchase not available!"	;
+"EFUN_OneIsBuying"=                                         "The order is in progress."	;
+"EFUN_NoThisGood"=                                          "The item does not exist!"	;
+"EFUN_UserCancelToBuy"=                                     "You have canceled the order!"	;
+"EFUN_AppStorePayFail"=                                     "AppStore pay fail!"	;
+"EFUN_BuySuccess"=                                          "Successful purchase %@ already sent,\n Order Number:%@\n Order Num:%@\n Enjoy Your Game!"	;
+"EFUN_BuyFail"=                                             "Purchase FAILED!\n Order Number:%@\n Order Num:%@\n ErroCode:%@\n Please make a screenshot and contact our customer service."	;
+"EFUN_HaveSendGameGold"=                                    "Order Number:%@\n Order Num:%@\n %@ already sent,Please kindly check!"	;
+"EFUN_PostNoNet"=                                           "Order Number:%@\n Order Num:%@\n Fail to send vertification number to the server."	;
+"EFUN_BuyError"=                                            "Order Number:%@\n Order Num:%@\n Verification Error！"	;
+"EFUN_BuyServerInMaintain"=                                 "Server maintenance! Please make a purchase after maintenance is completed"	;
+"__UI_LOGINVIEW_ACCOUNT_TEXTFEILD__"=                       " User account"	;
+"__UI_LOGINVIEW_PASSWORD_TEXTFEILD__"=                      " Password"	;
+"__UI_LOGINVIEW_CHANGEPASSWORD_BUTTON__"=                   " Change password"	;
+"__UI_LOGINVIEW_MACBIND_BUTTON__"=                          " Free registration bind"	;
+"__UI_LOGINVIEW_FORGOTPASSWORD_BUTTON__"=                   " Forgot password"	;
+"__UI_LOGINVIEW_LOGINWAYS_LABEL__"=                         " Use the following account"	;
+"__UI_CHANGEPASSWORD_OLDPASSWORD_TEXTFEILD__"=              " User password"	;
+"__UI_CHANGEPASSWORD_NEWPASSWORD_TEXTFIELD__"=              " New password"	;
+"__UI_CHANGEPASSWORD_NEWPASSWORD_CONFIRM_TEXTFIELD__"=      " Confirm password"	;
+"__UI_FORGOTPASSWORD_EMAIL__"=                              " Registered mail"	;
+"__UI_ACCOUNTBIND_PASSWORD_CONFIRM__"=                      " Confirm password"	;
+"__UI_ACCOUNTBIND_EMAIL__"=                                 " Email (To recover password)"	;
+"__MESSAGE_ALERTVIEW_TITLE_ERROR__"=                        "Error"	;
+"__MESSAGE_ALERTVIEW_MESSAGE_PASSWORD_DIFFERENCE__"=        "two password does not match!"	;
+"__MESSAGE_WAITTING_LOGIN_STRING__"=                        "Processing..."	;
+"__MESSAGE_WAITTING_LOGIN_EVATAR_STRING__"=                 "Taiwan's big players to log in ..."	;
+"__MESSAGE_WAITTING_ACCOUNTBIND_STRING__"=                  "Processing..."	;
+"__MESSAGE_WAITTING_FACEBOOKBIND_STRING__"=                 "Processing..."	;
+"__MESSAGE_WAITTING_CHANGEPASSWORD_STRING__"=               "Processing..."	;
+"__MESSAGE_WAITTING_FORGOTPASSWORD_STRING__"=               "Processing..."	;
+"__MESSAGE_WAITTING_BIND_STRING__"=                         "Processing..."	;
+"__MESSAGE_ERROR_MESSAGE_ACCOUNT_LENGTH_45__"=              "The input password length cannot exceed 45 characters"	;
+"__MESSAGE_ERROR_MESSAGE_ACCOUNT_NULL__"=                   "Account is empty!"	;
+"__MESSAGE_ERROR_MESSAGE_ACCOUNT_SPACILECHAR__"=            "The input account cannot contain Special characters(Accounts consist of letters, numbers or underscores)"	;
+"__MESSAGE_ERROR_MESSAGE_ACCOUNT_UTF8ERROR__"=              "The input account cannot contain utf-8 characters!(Accounts consist of letters, numbers or underscores)"	;
+"__MESSAGE_ERROR_MESSAGE_PASSWORD_NULL__"=                  "Password is empty!"	;
+"__MESSAGE_ERROR_MESSAGE_PASSWORD_LENGTH_45__"=             "The input password length cannot exceed 45 characters"	;
+"__MESSAGE_ERROR_MESSAGE_PASSWORD_SPACILECHAR__"=           "The input password cannot contain Special characters(Accounts consist of letters, numbers or underscores)"	;
+"__MESSAGE_ERROR_MESSAGE_PASSWORD_UTF8ERROR__"=             "The input password cannot contain utf-8 characters!(Accounts consist of letters, numbers or underscores)"	;
+"__MESSAGE_ERROR_MESSAGE_EMAIL_NULL__"=                     "Email is empty!"	;
+"__MESSAGE_ERROR_MESSAGE_EMAIL_LENGTH_45__"=                "The input mailbox length cannot exceed 45 characters!"	;
+"__MESSAGE_ERROR_MESSAGE_EMAIL_FORMAT__"=                   "The format of Email is not correct!"	;
+"__MESSAGE_ERROR_MESSAGE_EMAIL_UTF8ERROR__"=                "The input mailbox cannot contain utf-8 characters"	;
+"__MESSAGE_TITLE_NETINTERFACE_LOGIN__"=                     "Login"	;
+"__MESSAGE_TITLE_NETINTERFACE_REGISTER__"=                  "Register"	;
+"__MESSAGE_TITLE_NETINTERFACE_RESETPASSWORD__"=             "Reset password"	;
+"__MESSAGE_TITLE_NETINTERFACE_FINDPASSWORD__"=              "Find password"	;
+"__MESSAGE_TITLE_NETINTERFACE_FASTLOGIN__"=                 "Fast Login"	;
+"__MESSAGE_TITLE_NETINTERFACE_FACEBOOKLOGIN__"=             "Facebook Login"	;
+"__MESSAGE_TITLE_NETINTERFACE_PHONEEVATAR__"=               "Evatar Login"	;
+"__MESSAGE_TITLE_NETINTERFACE_REGISTERBIND__"=              "Account bind"	;
+"__MESSAGE_TITLE_NETINTERFACE_OTHERCLIENTLOGINEVATAR__"=    "Evatar Login by Other Client "	;
+"__MESSAGE_ALERTVIEW_MESSAGE_BIND_INFO__"=                  "Dear player, to ensure your account security, please bind your account as soon as possible."	;
+"__MESSAGE_ALERTVIEW_MESSAGE_BIND_LEFT_BTN_PLAYNOW__"=      "Play Now"	;
+"__MESSAGE_ALERTVIEW_MESSAGE_BIND_RIGHT_BTN_BINDACCOUNT__"= "Bind Account"	;
+"__MESSAGE_ALERTVIEW_MESSAGE_BINDEDACCOUNT__"=              "The device has been bound. The bound account is %@"	;
+"__MESSAGE_TITLE_NETINTERFACE__"=                           "info"	;
+"__MESSAGE_NET_ERROR__"=                                    "Network failure"	;
+"__MESSAGE_TWITTER_SHARE_CONTENTDUPLICATE"=                 "分享内容重复，请改天再试或者更改分享内容!"	;
+"__MESSAGE_TWITTER_PLEASEWAITING__"=                        "please Waiting..."	;
+"__UI_TWITTER_TITLE_TWITTERLOGIN__"=                        "Twitter Login"	;
+"__UI_BTN_LABEL_CHECK_AWARDCONTENT__"=                      "Rewards"	;
+"__UI_BTN_LABEL_WEBVIEW_PREVIOUS__"=                        "Previous"	;
+"__UI_BTN_LABEL_WEBVIEW_NEXT__"=                            "Next"	;
+"__UI_BTN_LABEL_WEBVIEW_BACK__"=                            "Back"	;
+"__UI_BTN_LABEL_WEBVIEW_RELOAD__"=                          "Reload"	;
+"__UI_INVITE_LABEL_AlreadyInviteNum__"=                     "Total Invited:"	;
+"__UI_BTN_INVITE__LABEL_SendInvite__"=                      "Send Invitation"	;
+"__EFUN_LOADING__"=                                         "Processing..."	;
+"__UI_INVITE_LABEL_MAX_INVITE_NUM__"=                       "You have reached the limit invited today.The maximum number of invited:%ld"	;
+"__UI_INVITE_LABEL_Reward__"=                               "Rewards:%@"	;
+"__UI_INVITE_LABEL_PACKAGE_NAME__"=                         "Gift Pack %d"	;
+"__UI_RIGISTER_Alert_Account__"=                            "You can use letters, numbers and underscore. Case insensitive."	;
+"__UI_RIGISTER_Alert_Password__"=                           "We recommend combination of 6 characters or above. Case sensitive"	;
+"__UI_RIGISTER_Alert_Email__"=                              "Please provide a valid email, which will be used to recover your password"	;
+"__UI_ACCOUNTBIND_FACEBOOK_INFO__"=                         "The Facebook account you login is %@. Bind it or not?"	;
+"__UI_ACCOUNTBIND_FACEBOOK_COMFIRM__"=                      "Use this account"	;
+"__UI_ACCOUNTBIND_FACEBOOK_CANCLE__"=                       "Other accounts"	;
+"__UI_ACCOUNTBIND_FACEBOOK_INFO_LOGOUT__"=                  "Please login the facebook account which you want to bind first."	;
+"__UI_INVITE_GET_GIFT_MESSAGE__"=                  "%@，condition:%@，You currently have invited %d friends"	;
+
+//陌陌
+"_ASIA_USER_ACCOUNT_"                                            ="Account";
+"_ASIA_PASSWORD_"                                                ="Password";
+"_ASIA_LOGIN_"                                                   ="Login";
+"_ASIA_REGISTER_RIGHTNOW_"                                       ="Register Now";
+"_ASIA_FORGET_PASSWORD_"                                         ="Forget password";
+"_ASIA_THIRD_LOGIN_"                                             =" For More Accounts";
+"_ASIA_PLAY_NOW_"                                                ="Play Now";
+"_ASIA_TWITTER_LOGIN"                                            ="Twitter";
+"_ASIA_BAHA_LOGIN_"                                              ="BaHa";
+
+"_ASIA_REGISTER_TITLE_"                                          ="Register";
+"_ASIA_REPEAT_PASSWORD_"                                         ="Repeat Password";
+"_ASIA_EMAIL_AT_TEXTFIELD_"                                      ="Email(To retrieve password)";
+"_ASIA_I_HAVE_READED"                                            ="I've read and agreed the regulation";
+"_ASIA_REGULATION_"                                              ="Member Item and Management Regulation";
+"_ASIA_REGISTER_"                                                ="Register";
+"_ASIA_READ_AND_AGREE"                                           ="Please read and agree to the [Terms of Service]";
+
+"_ASIA_FORGET_PASSWORD_TITLE_"                                   ="Forget Password";
+"_ASIA_FIND_PASSWORD_"                                           ="Retrieve Password";
+"_ASIA_EMAIL_"                                                   ="Email";
+
+"_ASIA_ACCOUNT_MANAGEMENT_TITLE_"                                ="Account Management";
+"_ASIA_RESET_PASSWORD_"                                          ="Reset Password";
+"_ASIA_BIND_ACCOUNT_"                                            ="Reg-free binding";
+"_ASIA_FB_BIND_ACCOUNT_"                                         ="Facebook Account Binding";
+
+"_ASIA_ORIGINAL_PASSWORD_"                                       ="Original Password";
+"_ASIA_NEW_PASSWORD_"                                            ="New Password";
+"_ASIA_CONFIRM_PASSWORD_"                                        ="Confirm Password";
+"_ASIA_CONFIRM_RESET_"                                           ="Modification Confirmed";
+
+"_ASIA_BIND_ACCOUNT_TITLE_"                                      ="Bind Account";
+
+"_ASIA_CANCEL_"                                                  ="Cancel";
+"_ASIA_CONFIRM_"                                                 ="Confirm";
+"_ASIA_SYSTEM_NOTICE_"                                           ="ANNOUNCEMENT";

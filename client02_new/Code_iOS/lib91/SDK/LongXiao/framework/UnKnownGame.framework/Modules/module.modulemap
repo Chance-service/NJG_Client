@@ -1,0 +1,6 @@
+framework module UnKnownGame {
+  umbrella header "UnKnownGame.h"
+
+  export *
+  module * { export * }
+}

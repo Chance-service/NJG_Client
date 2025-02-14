@@ -1,0 +1,246 @@
+/* 
+  EFUNCorePromptText_en.strings
+  EFUN_FUNCTION_PROJECT_AddUserInterface
+
+  Created by Mac mini on 14-9-24.
+  Copyright (c) 2014年 zhangguangyang. All rights reserved.
+*/
+
+//交易历史记录界面
+"REG_SE_alert_content"="这里会显示在该设备玩过该游戏的玩家最近20笔的购买记录。这20笔不是针对某个特定玩家进行记录；如果不同的玩家先后在该设备玩该游戏并且进行了储值，那么会按照不同玩家的购买顺序，先后记录20笔。如果卸载游戏，记录会消失。如果玩家对某次购买存在疑问，可以在这里点击对应记录的“反馈”按钮向efun服务器进行反馈。每笔只能反馈两次";
+"REG_SE_alert_content01"="该记录已经提交了两次，不需要再次提交，联系我们客服人员即可!";
+"REG_SE_alert_content02"="每笔交易信息，只能反馈两次，反馈后efun服务器会保有该记录，无需重复反馈。你确定要反馈该信息吗？";
+"REG_SE_alert_content03"="发送当前最新购买纪录给efun服务器，发送成功以后，需要一个小时以后才能第二次发送。发送成功会有时间标记的提示，记得截图给我们客服人员。确定要发送吗？";
+"REG_SE_alert_content04"="当前没有纪录!";
+"REG_SE_alert_sure_btn_title"="确定";
+"REG_SE_alert_cancel_btn_title"="取消";
+"REG_SE_closs_btn_title"="关闭";
+"REG_SE_post_current_btn_title"="反馈当前纪录";
+
+"REG_SE_date_title"="日期";
+"REG_SE_state_title"="状态";
+"REG_SE_orderId_title"="订单号";
+"REG_SE_role_title"="角色";
+"REG_SE_feedback_btn_title"="反  馈";
+"REG_SE_post_times_title"="目前反馈次数";
+
+"REG_SE_state_finished"="已完成";
+"REG_SE_state_payFail"="付款失败";
+"REG_SE_state_efunServerCheckPayFail"="efun服务器验证无效";
+"REG_SE_state_userCancel"="用户取消购买";
+"REG_SE_state_inPaying"="交易中";
+
+"REG_SE_post_log_fail"="发送购买日志失败!请重新尝试。";
+"REG_SE_post_log_success"="发送购买日志成功!";
+"REG_SE_is_posting"="正在发送中...";
+"REG_SE_post_time_sign_text"="下面是上传的时间标记，请截图并发给客服人员:";
+"REG_SE_post_current_too_mutch_text"="一小时内，只能发送日志一次。距离下次可发送时间还剩下:\n";
+
+//系统的提示
+/*服务器的访问结果异常提示*/
+"textNoNet"                     = "网络不给力!";
+"textServerReturnError"         = "服务器返回非空的错误，请重新尝试!";
+"textServerReturnNull"          = "服务器返回空值!请重新尝试!";
+"textParameterNull"             = "接收参数空，无法处理。请重新尝试!";
+/*按钮文字*/
+"titleAlertSureBtnTitle"        = "确定";
+
+
+//关于购买的提示
+"textIapParameterNil"       = "购买参数异常，请重新尝试!";
+"textIapNoNet"              = "网络不给力,购买时请确保网络通畅!";
+"textIapOneIsPaying"        = "有一笔交易正在进行中";
+"textIapNoMakePayments"     = "PaymentQueue不支持购买支付!";
+"textIapServerInMaintain"   = "服务器维护中!\n请过一段时间进行购买，感谢您的支持。\nE_code:%@";
+"textIapNoThisItem"         = "商品不存在!";
+"textIapPostCheckNoNet"     = "订单号:%@ \n由于网络不稳定，暂时无法获取游戏币。建议在良好的网络环境下，点击“确认”重新获取游戏币；或尝试重新登录游戏查看。";
+"textIapBuyError"           = "交易订单号:%@\n验证error!请截屏后联系我们客服。\n屏幕截图将视为补单唯一凭证!";
+"textIapAppStorePayFail"    = "AppStore支付失败!\nE_code:%@";
+"textIapBuyFail"            = "购买失败:\n订单号:%@\n请截屏后联系客服。\n屏幕截图将视为补单唯一凭证!";
+"textIapUserCancelToPay"    = "您取消了购买!";
+"textIapHaveSendGameStone"  = "交易订单号:%@\n商品已经发送过，请注意查收!";
+"textIapBuySuccess"         = "购买成功，游戏币已经发送:\n交易订单号:%@\n祝您游戏愉快!";
+
+
+//关于facebook的提示
+/*facebook登录提示*/
+"textFbInviteGetFbIDFail"               = "获取facebook用户信息失败!";
+"textLoginGetFBTokenFail"               = "获取facebook的token不成功，登录失败!\n请查看自己的网络，重新尝试登录!";
+"textLoginGetFBInfoFail"                = "获取facebook用户信息失败，登录失败!\n请查看自己的网络，重新尝试登录!";
+/*facebook邀请好友*/
+"textFbInviteActivityNotOpen"           = "facebook邀请好友活动没有开启!";
+"textFbInviteGetPublicRightFial"        = "获取发布邀请权限失败!请重新尝试。";
+"textFbInviteGetCanInvitedFriendsFail"  = "获取可以邀请的好友信息，失败!";
+"textFbInviteUserCancelInvite"          = "您取消了邀请!";
+"textFbInviteUserCloseInvite"           = "您中断了邀请!";
+/*facebook分享*/
+"textFbShareGetPublicFail"              = "分享过程中，获取权利失败!";
+"textFbShareGetTokenFail"               = "分享过程中,获取token失败!";
+"textFbShareFail"                       = "发送分享失败!";
+"textFbShareSuccess"                    = "分享成功!";
+
+//SEA
+"_STR_FANS_PAGE_TITLE_"                                              ="Fans Page";
+"_STR_LOGIN_WITH_FACEBOOK_"                                     ="Facebook账号登陆";
+"_STR_PLAY_NOW_"                                                ="开始游戏";
+"_STR_REGISTER_TITLE_"                                          ="注 册";
+"_STR_LOGIN_TITLE_"                                             ="账 号 登 入";
+"_STR_RESET_PASSWORD_TITLE_"                                    ="重 设 密 码";
+"_STR_FORGET_PASSWORD_TITLE_"                                   ="忘 记 密 码";
+"_STR_BIND_ACCOUNT_TITLE_"                                      ="绑 定 账 号";
+"_STR_FOR_MORE_ACCOUNT_"                                        ="更多登录方式";
+"_STR_USER_ACCOUNT_"                                            ="用户名";
+"_STR_USER_REGISTER_ACCOUNT_"                                            ="创建用户名";
+"_STR_PASSWORD_"                                                ="密码";
+"_STR_REGISTER_"                                                ="注册";
+"_STR_LOGIN_"                                                   ="登入";
+"_STR_RESET_PASSWORD_"                                          ="重设密码";
+"_STR_FORGET_PASSWORD_"                                         ="忘记密码";
+"_STR_CONFIRM_PASSWORD_"                                        ="确认密码";
+"_STR_EMAIL_AT_TEXTFIELD_"                                      ="邮箱(用以找回密码)";
+"_STR_NEW_PASSWORD_"                                            ="新密码";
+"_STR_EMAIL_"                                                   ="邮箱";
+"_STR_BIND_ACCOUNT_"                                            ="绑定账号";
+"_STR_FB_BIND_ACCOUNT_"                                         ="绑定Facebook账号";
+"_STR_BACK_"                                                    ="返回";
+"_STR_FIND_PASSWORD_"                                           ="找回密码";
+"_STR_TAP_THE_SCREEN_TO_LOG_IN_"                                ="请点击屏幕进入";
+"_STR_FB_INVITE_TOP_TITILE_"                                    ="好友邀请";
+"_STR_FB_INVITE_CHECK_REWARDS_TITLE_"                           ="查看礼包";
+"_STR_FB_INVITE_NUMBER_OF_INVITATIONS_TITLE_"                   ="已邀请数";
+"_STR_FB_INVITE_REWARDS_BTN_"                                   ="查看奖励";
+"_STR_FB_INVITE_SEND_INVITATION_BTN_"                           ="发送邀请";
+"_STR_FB_INVITE_INFO_"                                          ="点击Facebook图标进入官方论坛";
+"_STR_REGISTER_INFO_"                                           ="没有账号? ";
+
+"_STR_FB_INVITE_SHARE_MORE_BTN_"                                ="更多分享";
+"_STR_FB_INVITE_RANK_TITLE_"                                    ="好友排行榜";
+"_STR_FB_INVITE_RANK_PRESTIGE_"                                 ="威望";
+"_STR_FB_INVITE_RANK_GIVE_"                                     ="贈送";
+"_STR_FB_INVITE_RANK_COMMENT_"                                  ="說明";
+"_STR_FB_INVITE_RANK_CLAIM_"                                    ="索取";
+"_STR_FB_INVITE_LABEL_PACKAGE_NAME__"                            = "礼包 %d";
+"_STR_FB_INVITE_LABEL_Reward__"                                  = "奖励:%@";
+
+"EFUN_PAYING"                                                   ="交易进行中，请稍等";
+"EFUN_NoNet"                                                    ="网络异常，请检查网络!";
+"EFUN_NoMakePayments"                                           ="AppStore无法支付!";
+"EFUN_OneIsBuying"                                              ="有一笔交易正在进行中!";
+"EFUN_NoThisGood"                                               ="商品不存在!";
+"EFUN_UserCancelToBuy"                                          ="您取消了购买!";
+"EFUN_AppStorePayFail"                                          ="AppStore支付失败!";
+"EFUN_BuySuccess"                                               ="购买成功，%@ 已经发送, \n交易订单号:%@\n 交易号:%@\n祝您游戏愉快!";
+"EFUN_BuyFail"                                                  ="购买失败:\n订单号:%@\n 交易号:%@\n ErroCode:%@\n 请截屏后联系客服。";
+"EFUN_HaveSendGameGold"                                         ="交易订单号:%@\n 交易号:%@\n %@ 已经发送，请注意查收!";
+"EFUN_PostNoNet"                                                ="交易订单号:%@\n 交易号:%@\n 向服务器发送验证失败!";
+"EFUN_BuyError"                                                 ="交易订单号:%@\n 交易号:%@\n 验证error!";
+"EFUN_BuyServerInMaintain"                                      ="服务器维护中!请过一段时间后再进行购买";
+"__UI_LOGINVIEW_ACCOUNT_TEXTFEILD__"                            ="账号";
+"__UI_LOGINVIEW_PASSWORD_TEXTFEILD__"                           ="密码";
+"__UI_LOGINVIEW_CHANGEPASSWORD_BUTTON__"                        ="修改密码";
+"__UI_LOGINVIEW_MACBIND_BUTTON__"                               ="免注册绑定";
+"__UI_LOGINVIEW_FORGOTPASSWORD_BUTTON__"                        ="找回密码";
+"__UI_LOGINVIEW_LOGINWAYS_LABEL__"                              ="使用以下账号登入";
+"__UI_CHANGEPASSWORD_OLDPASSWORD_TEXTFEILD__"                   ="原始密码";
+"__UI_CHANGEPASSWORD_NEWPASSWORD_TEXTFIELD__"                   ="新密码";
+"__UI_CHANGEPASSWORD_NEWPASSWORD_CONFIRM_TEXTFIELD__"           ="确认新密码";
+"__UI_FORGOTPASSWORD_EMAIL__"                                   ="注册邮箱";
+"__UI_ACCOUNTBIND_PASSWORD_CONFIRM__"                           ="重复密码";
+"__UI_ACCOUNTBIND_EMAIL__"                                      ="Email(可用于找回密码)";
+"__MESSAGE_ALERTVIEW_TITLE_ERROR__"                             ="错误";
+"__MESSAGE_ALERTVIEW_MESSAGE_PASSWORD_DIFFERENCE__"             ="两次输入的密码不一样，请重新输入";
+"__MESSAGE_WAITTING_LOGIN_STRING__"                             ="正在提交处理...";
+"__MESSAGE_WAITTING_LOGIN_EVATAR_STRING__"                      ="台湾大玩家登入中...";
+"__MESSAGE_WAITTING_ACCOUNTBIND_STRING__"                       ="正在注册中...";
+"__MESSAGE_WAITTING_FACEBOOKBIND_STRING__"                      ="正在提交处理...";
+"__MESSAGE_WAITTING_CHANGEPASSWORD_STRING__"                    ="正在提交处理...";
+"__MESSAGE_WAITTING_FORGOTPASSWORD_STRING__"                    ="正在提交处理...";
+"__MESSAGE_WAITTING_BIND_STRING__"                              ="正在提交处理...";
+"__MESSAGE_ERROR_MESSAGE_ACCOUNT_LENGTH_45__"                   ="所输入的用户名长度不能超过45个字符!";
+"__MESSAGE_ERROR_MESSAGE_ACCOUNT_NULL__"                        ="账号不能为空!";
+"__MESSAGE_ERROR_MESSAGE_ACCOUNT_SPACILECHAR__"                 ="账号不能有特殊字符!(账号由字母，数字或下划线組成)";
+"__MESSAGE_ERROR_MESSAGE_ACCOUNT_UTF8ERROR__"                   ="账号不能有中文字符!(账号由字母，数字或下划线組成)";
+"__MESSAGE_ERROR_MESSAGE_PASSWORD_NULL__"                       ="密码不能为空!";
+"__MESSAGE_ERROR_MESSAGE_PASSWORD_LENGTH_45__"                  ="所输入的密碼长度不能超过45個字符!";
+"__MESSAGE_ERROR_MESSAGE_PASSWORD_SPACILECHAR__"                ="密码不能有特殊字符!(密码由字母，数字或下划线組成)";
+"__MESSAGE_ERROR_MESSAGE_PASSWORD_UTF8ERROR__"                  ="密码不能有中文字符!(密码由字母，数字或下划线組成)";
+"__MESSAGE_ERROR_MESSAGE_EMAIL_NULL__"                          ="Email不能为空!";
+"__MESSAGE_ERROR_MESSAGE_EMAIL_LENGTH_45__"                     ="所输入的Email长度不能超过45个字符!";
+"__MESSAGE_ERROR_MESSAGE_EMAIL_FORMAT__"                        ="Email格式不正确!";
+"__MESSAGE_ERROR_MESSAGE_EMAIL_UTF8ERROR__"                     ="Email不能有中文字符!";
+"__MESSAGE_TITLE_NETINTERFACE_LOGIN__"                          ="登入";
+"__MESSAGE_TITLE_NETINTERFACE_REGISTER__"                       ="注册";
+"__MESSAGE_TITLE_NETINTERFACE_RESETPASSWORD__"                  ="修改密碼";
+"__MESSAGE_TITLE_NETINTERFACE_FINDPASSWORD__"                   ="找回密碼";
+"__MESSAGE_TITLE_NETINTERFACE_FASTLOGIN__"                      ="免注册登入";
+"__MESSAGE_TITLE_NETINTERFACE_FACEBOOKLOGIN__"                  ="Facebook 登入";
+"__MESSAGE_TITLE_NETINTERFACE_PHONEEVATAR__"                    ="Evatar 登入";
+"__MESSAGE_TITLE_NETINTERFACE_REGISTERBIND__"                   ="免注册绑定";
+"__MESSAGE_TITLE_NETINTERFACE_OTHERCLIENTLOGINEVATAR__"         ="Evatar 客戶端登入";
+"__MESSAGE_ALERTVIEW_MESSAGE_BIND_INFO__"                       ="尊敬的玩家,为了确保您的账号安全,请尽快绑定您的账号。";
+"__MESSAGE_ALERTVIEW_MESSAGE_BIND_LEFT_BTN_PLAYNOW__"           ="进入游戏";
+"__MESSAGE_ALERTVIEW_MESSAGE_BIND_RIGHT_BTN_BINDACCOUNT__"      ="绑定账号";
+"__MESSAGE_ALERTVIEW_MESSAGE_BINDEDACCOUNT__"                   ="您的机器已经有相应的绑定账号，請使用已经绑定的账号进入游戏: %@";
+"__MESSAGE_TITLE_NETINTERFACE__"                                ="提示";
+"__MESSAGE_NET_ERROR__"                                         ="网络不給力!";
+"__MESSAGE_TWITTER_SHARE_CONTENTDUPLICATE"                      ="分享内容重复，请改天再试或者更改分享内容!";
+"__MESSAGE_TWITTER_PLEASEWAITING__"                             ="请稍候";
+"__UI_TWITTER_TITLE_TWITTERLOGIN__"                             ="Twitter 登入";
+"__UI_BTN_LABEL_CHECK_AWARDCONTENT__"                           ="奖励内容";
+"__UI_BTN_LABEL_WEBVIEW_PREVIOUS__"                             ="后退";
+"__UI_BTN_LABEL_WEBVIEW_NEXT__"                                 ="前进";
+"__UI_BTN_LABEL_WEBVIEW_BACK__"                                 ="返回";
+"__UI_BTN_LABEL_WEBVIEW_RELOAD__"                               ="刷新";
+"__UI_INVITE_LABEL_AlreadyInviteNum__"                          ="已经邀请人数:";
+"__UI_BTN_INVITE__LABEL_SendInvite__"                           ="发送邀请";
+"__EFUN_LOADING__"                                              ="正在处理...";
+"__UI_INVITE_LABEL_MAX_INVITE_NUM__"                            ="您今天已经达到邀请人数上限，最大邀請數是:%ld";
+"__UI_INVITE_LABEL_Reward__"                                    ="奖励:%@";
+"__UI_INVITE_LABEL_PACKAGE_NAME__"                              ="礼包 %d";
+"__UI_RIGISTER_Alert_Account__"                                 ="You can use letters, numbers and underscore. Case insensitive.";
+"__UI_RIGISTER_Alert_Password__"                                ="We recommend combination of 6 characters or above. Case sensitive";
+"__UI_RIGISTER_Alert_Email__"                                   ="Please provide a valid email, which will be used to recover your password";
+"__UI_ACCOUNTBIND_FACEBOOK_INFO__"                              ="您目前登入的Facebook账号为: %@，是否绑定该账号？";
+"__UI_ACCOUNTBIND_FACEBOOK_COMFIRM__"                           ="使用该账号";
+"__UI_ACCOUNTBIND_FACEBOOK_CANCLE__"                            ="使用其他账号";
+"__UI_ACCOUNTBIND_FACEBOOK_INFO_LOGOUT__"                       ="请先登入你想要绑定的Facebook账号";
+"__UI_INVITE_GET_GIFT_MESSAGE__"                                ="%@，条件:%@，您已经邀请了 %d";
+
+//陌陌
+"_ASIA_USER_ACCOUNT_"                                            ="账号";
+"_ASIA_PASSWORD_"                                                ="密码";
+"_ASIA_LOGIN_"                                                   ="登入";
+"_ASIA_REGISTER_RIGHTNOW_"                                       ="马上注册";
+"_ASIA_FORGET_PASSWORD_"                                         ="忘记密码";
+"_ASIA_THIRD_LOGIN_"                                             =" 其他登入";
+"_ASIA_PLAY_NOW_"                                                ="免注册";
+"_ASIA_TWITTER_LOGIN"                                            ="Twitter";
+"_ASIA_BAHA_LOGIN_"                                              ="BaHa";
+
+"_ASIA_REGISTER_TITLE_"                                          ="账号注册";
+"_ASIA_REPEAT_PASSWORD_"                                         ="重复密码";
+"_ASIA_EMAIL_AT_TEXTFIELD_"                                      ="Email（可用於找回密碼）";
+"_ASIA_I_HAVE_READED"                                            ="我已阅读并同意《会员条款及管理规章》";
+"_ASIA_REGULATION_"                                              ="会员条款及管理规章";
+"_ASIA_REGISTER_"                                                ="注册";
+"_ASIA_READ_AND_AGREE"                                           ="请阅读并同意《服务条款》。";
+
+"_ASIA_FORGET_PASSWORD_TITLE_"                                   ="忘记密码";
+"_ASIA_FIND_PASSWORD_"                                           ="找回密码";
+"_ASIA_EMAIL_"                                                   ="Email";
+
+"_ASIA_ACCOUNT_MANAGEMENT_TITLE_"                                ="账户管理";
+"_ASIA_RESET_PASSWORD_"                                          ="修改密码";
+"_ASIA_BIND_ACCOUNT_"                                            ="免注册绑定";
+"_ASIA_FB_BIND_ACCOUNT_"                                         ="FB账号绑定";
+
+"_ASIA_ORIGINAL_PASSWORD_"                                       ="原始密码";
+"_ASIA_NEW_PASSWORD_"                                            ="新密码";
+"_ASIA_CONFIRM_PASSWORD_"                                        ="确认新密码";
+"_ASIA_CONFIRM_RESET_"                                           ="确认修改";
+
+"_ASIA_BIND_ACCOUNT_TITLE_"                                      ="绑定账号";
+
+"_ASIA_CANCEL_"                                                  ="取消";
+"_ASIA_CONFIRM_"                                                 ="确认";
+"_ASIA_SYSTEM_NOTICE_"                                           ="系统公告";

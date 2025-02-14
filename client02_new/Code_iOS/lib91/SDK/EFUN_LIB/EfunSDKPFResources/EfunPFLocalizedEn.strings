@@ -1,0 +1,161 @@
+/*
+ Localizable.strings
+ EfunPlatForm
+ 
+ Created by TangTieshan on 14-2-24.
+ Copyright (c) 2014年 TangTieshan. All rights reserved.
+ */
+"Home"="Home";
+"Account Info"="Account Info";
+"CS Center"="CS Center";
+"Info"="Info";
+"Game"="Game";
+"Gift"="Gift";
+"Recharge"="Recharge";
+"News"="News";
+"Guide"="Guide";
+"Role ID"="Role ID";
+"Reply"="Reply";
+"Free Gift"="Free Gift";
+"Medal Gift"="Medal Gift";
+"My Gift"="My Gift";
+"Your suggestion"="Your suggestion";
+"Please input your suggestions for better services"="Please input your suggestions for better services";
+"Your Email"="Your Email";
+"Email"="Email";
+"①MSN/Email:\ncustomer_service@efun.com"="①MSN/Email:\ncustomer_service@efun.com";
+"Please input correct email"="Please input correct email";
+"Please input your suggestions"="Please input your suggestions";
+"Please input your Email"="Please input your Email";
+"OK"="OK";
+"Submit"="Submit";
+"Timeout! Please check your network"="Timeout! Please check your network";
+"Thanks for your suggestion!"="Thanks for your suggestion!";
+"submiting..."="Submitting...";
+"internet error, please try again."="internet error, please try again.";
+"Logging in..."="Logging in...";
+
+
+"Member"="Menbership";
+"System Message"="System Message";
+"Login"="Login";
+"Account"="Account";
+"Password"="Password";
+"Facebook Login"="Facebook Login";
+"Change password"="Change password";
+"Forget password?"="Forget password?";
+"No account?"="No account?";
+"Register now"="Register now";
+"Click here to find back"="Click here to find back";
+"Third Party Account"="Third Party Account";
+"Old Password"="Old password";
+"New Password"="New password";
+"Confirm"="Confirm";
+"Confirm password"="Confirm password";
+"Change password successfully"="Change password successfully";
+"Please input new password"="Please input new password";
+"Please input old password"="Please input old password";
+"Please confirm password"="Please confirm password";
+"Please input account first"="Please input account first";
+"The new passwords are inconsistent"="The new passwords are inconsistent";
+"Please input your title"="Please input your title";
+"Title"="Title";
+"Please input password"="Please input password";
+"Find back password"="Find back password";
+"Account Registration"="Account Registration";
+"Agree to Terms"="Agree to Terms";
+"《Terms of Service and Privacy policy》"="《Terms of Service and Privacy policy》";
+"Please input password first"="Please input password first";
+"Passwords are inconsistent"="Passwords are inconsistent";
+"You haven't read the related terms"="You haven't read the related terms";
+
+"Please select your region"="Please select your region";
+"Thailand"="Thailand";
+"Vietnam"="Vietnam";
+"Europe"="Europe";
+"Japan"="Japan";
+"Other regions of Southeast Asia"="Other regions of Southeast Asia";
+"The region you choose:"="The region you choose:";
+"Cancel"="Cancel";
+
+"Login error"="Login error";
+"Recharge error"="Recharge error";
+"Abnormal account"="Abnormal account";
+"Error feedback"="Error feedback";
+"Guides"="Guides";
+"Suggestion"="Suggestion";
+"Violation complaints"="Violation complaints";
+"Other"="Other";
+
+"select game"="select game";
+"Server"="Server";
+"Character"="character";
+"submit"="submit";
+
+"Register successfully"="Register successfully";
+"Register"="Register";
+"No blank space for the first place of account"="No blank space for the first place of account";
+"No “&！ for account"="No “&！ for account";
+"No “&！ for password"="No “&！ for password";
+"The new password has been sent to your mail. Please pay attention to check it"="The new password has been sent to your mail. Please pay attention to check it";
+"Failed to obtain the game list. Please try again later"="Failed to obtain the game list. Please try again later";
+"Failed to obtain server info. Please try again later!"="Failed to obtain server info. Please try again later!";
+"Failed to obtain character info. Please try again later!"="Failed to obtain character info. Please try again later!";
+
+
+"The title should be shorter than 32 characters."="The title should be shorter than 32 characters.";
+"The content should be shorter than 500 characters."="The content should be shorter than 500 characters.";
+"The title can't be empty or containing only spaces."="The title can't be empty or containing only spaces.";
+"The content can't be empty or containing only spaces."="The content can't be empty or containing only spaces.";
+"Obtaining..."="Obtaining...";
+
+"Application Management"="Application Management";
+"Installed"="Installed";
+"Downloading"="Downloading";
+
+"Change"="Change";
+"Forget"="Forget";
+"Are you sure to change account?"="Are you sure to change account?";
+"The first letter of account can't contain spaces."="The first letter of account can't contain spaces.";
+"Password："="Password：";
+
+"Wrong password"="Wrong password";
+"Wrong parameter"="Wrong parameter";
+"Null exception"="Null exception";
+"This account has existed already"="This account has existed already";
+"System abnormal"="System abnormal";
+"This account does't exist"="This account does't exist";
+"Wrong original password"="Wrong original password";
+"Wrong email input"="Wrong email input";
+"Please choose the type of game"="Please choose the type of game";
+"Please choose the type of server"="Please choose the type of server";
+"Please choose the role"="Please choose the role";
+"It's now having system maintenance"="It's now having system maintenance";
+
+"Failed to login"="Failed to login";
+"Shared successfully"="Shared successfully";
+"Shared failed"="Shared failed";
+
+"wrong password!"="wrong password!";
+"More"="More";
+
+
+"Event area"="Event area";
+"select game"="select game";
+"server"="server";
+"role name"="role name";
+"select event"="select event";
+"shoot"="shoot";
+"album"="album";
+
+"Please choose the event"="Please choose the event";
+"Your message has been successfully submitted"="Your message has been successfully submitted";
+"Fail to send your message, please try later"="Fail to send your message, please try later";
+"Please choose an image"="Please choose an image";
+"Load failed, please check the network connection or contact customer service."="Load failed, please check the network connection or contact customer service.";
+
+
+//公告
+"Notice"="Notice";
+"Download"="Download";
+"Don't show today"="Don't show today";

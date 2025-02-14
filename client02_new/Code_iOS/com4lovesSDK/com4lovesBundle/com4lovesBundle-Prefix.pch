@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'com4lovesBundle' target in the 'com4lovesBundle' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif

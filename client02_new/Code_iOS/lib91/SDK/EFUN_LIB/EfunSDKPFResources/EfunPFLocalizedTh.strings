@@ -1,0 +1,158 @@
+/*
+ Localizable.strings
+ EfunPlatForm
+ 
+ Created by TangTieshan on 14-2-24.
+ Copyright (c) 2014年 TangTieshan. All rights reserved.
+ */
+"Home"="หน้าแรก";
+"Account Info"="ข้อมูลบัญชี";
+"CS Center"="ศูนย์บริการลูกค้า";
+"Info"="ข้อมูล";
+"Game"="เกม";
+"Gift"="แพ็ค";
+"Recharge"="เติมเงิน";
+"News"="ข่าว";
+"Guide"="เรดเดอ";
+"Role ID"="ชื่อตัวละคร";
+"Reply"="รีเพล";
+"Free Gift"="แพ็คฟรี";
+"Medal Gift"="เหรียญเกียรติยศ";
+"My Gift"="แพ็คฉัน";
+"Your suggestion"="ข้อเสนอของคุณ";
+"Please input your suggestions for better services"="โปรดใส่ข้อเสนอของคุณเพื่อบริการที่ดีที่สุด";
+"Your Email"="อีเมล์ของคุณ";
+"Email"="อีเมล์";
+"①MSN/Email:\ncustomer_service@efun.com"="MSN/Email:\ncustomer_service@efun.com";
+"Please input correct email"="โปรดใส่อีเมล์ที่ถูกต้อง";
+"Please input your suggestions"="โปรดใส่ข้อเสนอของคุณ";
+"Please input your Email"="โปรดใส่อีเมล์";
+"OK"="สำเร็จ";
+"Submit"="ยื่นส่ง";
+"Timeout! Please check your network"="หมดเวลา! กรุณาตรวจสอบเน็ตของคุณ";
+"Thanks for your suggestion!"="ขอบคุณสำหรับคำแนะนำและข้อเสนอของคุณ";
+"submiting..."="กำลังส่งอยู๋...";
+"internet error, please try again."="internet error, please try again.";
+"Logging in..."="Logging in...";
+
+
+"Member"="สมาชิก";
+"System Message"="ข้อความระบบ";
+"Login"="ล็อกอิน";
+"Account"="บัญชี";
+"Password"="รหัส";
+"Facebook Login"="ล๊อกอินด้วยFacebook";
+"Change password"="เปลี่ยนรหัสผ่าน";
+"Forget password?"="ลืมรหัสผ่าน?";
+"No account?"="ไม่มีบัญชี?";
+"Register now"="ลงทะเบียนขณะนี้";
+"Click here to find back"="คลิกที่นี่เพื่อขอคืน";
+"Third Party Account"="บัญชีของบุคคลฝ่านที่สาม";
+"Old password"="รหัสผ่านเก่า";
+"New password"="รหัสผ่านใหม่";
+"Confirm password"="ยืนยันรหัสผ่าน";
+"Confirm"="ยืนยันแก้ไข";
+"Change password successfully"="สำเร็จการเปลี่ยนรหัสผ่าน";
+"Please input new password"="โปรดใส่รหัสผ่านใหม่";
+"Please input old password"="โปรดใส่รหัสผ่านเก่า";
+"Please confirm password"="โปรดยืนยันรหัสผ่าน";
+"Please input account first"="ไอดีว่างเปล่าไม่ได้";
+"The new passwords are inconsistent"="รหัสผ่านใหม่ไม่เหมือนกัน";
+"Please input your title"="โปรดใส่หัวข้อของคุณ";
+"Title"="หัวข้อ";
+"Please input password"="โปรดใส่รหัสผ่าน";
+"Find back password"="ขอคือรหัส";
+"Account Registration"="ลงทะเบียนด้วยบัญชี";
+"Agree to Terms"="ฉันได้อ่านแล้วและยอมรับด้วย";
+"《Terms of Service and Privacy policy》"="《เงื่อนไขการให้บริการและนโยบายที่เป็นส่วนตัว》";
+"Please input password first"="รหัสผ่านว่างเปล่าไม่ได้";
+"Passwords are inconsistent"=" รหัสผ่านไม่เหมือนกัน";
+"You haven't read the related terms"="ท่านยังไม่ได้อ่านกฎระเบียบที่เกี่ยวข้อง";
+
+"Please select your region"="กรุณาเลือกที่ตั้งของท่าน";
+"Thailand"=" ประเทศไทย";
+"Vietnam"="เวิยดนาม";
+"Europe"="ยูโรป";
+"Japan"="ญี่ปุ่น";
+"Other regions of Southeast Asia"=" ภาคอื่นในเอเชียตะวันออกเฉียงใต้";
+"The region you choose:"="ภาคที่ท่านเลือกคือ:";
+"Cancel"="ยกเลิก";
+
+"Login error"="เข้าสู่ระบบที่ผิดปกติ";
+"Recharge error"="ปัญหาที่เกี่ยวกับการเติมเงิน";
+"Abnormal account"="เข้าสู่ระบบที่ผิดปกติ";
+"Error feedback"="ข้อเสนอแนะที่ผิดปกติ";
+"Guides"="การให้คำปรึกษาที่บุก";
+"Suggestion"="ข้อเสนอแนะของเกม";
+"Violation complaints"="ข้อร้องเรียนการละเมิด";
+"Other"="อื่น ๆ";
+
+"select game"="เกม";
+"Server"="เซิร์ฟเวอร์";
+"Character"="บทบาท";
+"submit"="เสนอ";
+
+"Register successfully"="ลงทะเบียนสำเร็จ";
+"Register"="การลงทะเบียน";
+"No blank space for the first place of account"="บัญชีตัวแรกไม่สามารถมีช่องว่าง";
+"No “&！ for account"="บัญชีไม่ม่สามารถมี \"&!";
+"No “&！ for password"="รหัสผ่านไม่สามารถมี \"&!";
+"The new password has been sent to your mail. Please pay attention to check it"="รหัสผ่านใหม่ของคุณได้ส่งไปอีเมล์ของคุณ โปรดรับทราบ";
+"Failed to obtain the game list. Please try again later"="ล้มเหลวที่จะได้รับรายชื่อของเกม โปรดลองอีกครั้ง!";
+"Failed to obtain server info. Please try again later!"="การเข้าไปเซิร์ฟเวอร์ล้มเหลว โปรดลองอีกครั้ง!";
+"Failed to obtain character info. Please try again later!"="ได้รับข้อมูลบทบาทล้มเหลว โปรดลองอีกครั้ง!";
+
+
+"The title should be shorter than 32 characters."="หัวข้อไม่สามารถเกิน32ตัว.";
+"The content should be shorter than 500 characters."="เนื้อหาไม่สามารถเกิน500ตัว.";
+"The title can't be empty or containing only spaces."=" หัวข้อไม่สามารถมีว่างเปล่ว.";
+"The content can't be empty or containing only spaces."="เนื้อหาไม่ไม่สามารถมีว่างเปล่วหรือช่องว่าง.";
+"Obtaining..."="ได้รับอย...";
+
+"Application Management"="จัดการโปรแกรมประยุกต์";
+"Installed"="ดาวน์โหลดเสร็จแล้ว";
+"Downloading"="กำลังดาวน์โหลด";
+
+"Change"="เปลี่ยน";
+"Forget"="ลืม";
+"Are you sure to change account?"="คุณแน่ใจว่าคุณต้องการจะเปลี่ยนบัญชี?";
+"The first letter of account can't contain spaces."="บัญชีตัวแรกไม่สามารถมีช่องว่าง.";
+"Password："="รหัส：";
+
+"Wrong password"="รหัสผ่านไม่ถูกต้อง";
+"Wrong parameter"="ข้อผิดพลาดพารามิเตอร์";
+"Null exception"="โมฆะผิดปกติ";
+"This account has existed already"="บัญชีนี้มีอยู่แล้ว";
+"System abnormal"="ความผิดปกติของระบบ";
+"This account does't exist"="ไม่มีผู้ใช";
+"Wrong original password"="รหัสผ่านเก่าไม่ถูกต้อง";
+"Wrong email input"="ใส่อีเมล์ไม่ถูกต้อง";
+"Please choose the type of game"="กรุณาเลือกประเภทเกม";
+"Please choose the type of server"="กรุณาเลือกประเภทเซิร์ฟเวอร์";
+"Please choose the role"="กรุณาเลือกบทบาท";
+"It's now having system maintenance"="ระบบปรับปรุงรักษาอย";
+
+"Failed to login"="ล็อกอินล้มเหลว";
+"Shared successfully"="แชร์สำเร็จ";
+"Shared failed"="แชร์ล้มเหลว";
+
+"wrong password!"="รหัสผ่านไม่ถูกต้อง!";
+"More"="More";
+
+"Event area"="พื้นที่กิจกรรม";
+"select game"="เลือกเกม";
+"server"="เซิร์ฟเวอร์";
+"role name"="ตัวละคร";
+"select event"="เลือกกิจกรรม";
+"shoot"="ถ่ายรูป";
+"album"="รูปถ่าย";
+
+"Please choose the event"="กรุณาเลือกกิจกรรม";
+"Your message has been successfully submitted"="กิจกรรมส่งได้สำเร็จ";
+"Fail to send your message, please try later"="ส่งได้ล้มเหลว  กรุณาลองใหม";
+"Please choose an image"="กรุณาเลือกรูปภาพ";
+"Load failed, please check the network connection or contact customer service."="ล้มเหลวที่จะได้รับข้อมูล  โปรดตรวจสอบเครือข่ายหรือติดต่อศูนย์บริการลูกค้า";
+
+"Notice"="ประกาศ";
+"Download"="โดวโหลด";
+"Don't show today"="วันนี้จะไม่แสดงออกอีกแล้ว";

@@ -1,0 +1,157 @@
+/*
+ Localizable.strings
+ EfunPlatForm
+ 
+ Created by TangTieshan on 14-2-24.
+ Copyright (c) 2014年 TangTieshan. All rights reserved.
+ */
+"Home"="主頁";
+"Account Info"="帳號資訊";
+"CS Center"="客服中心";
+"Info"="信息";
+"Game"="遊戲";
+"Gift"="禮包";
+"Recharge"="儲值";
+"News"="新聞";
+"Guide"="攻略";
+"Role ID"="角色ID";
+"Reply"="回復";
+"Free Gift"="免費禮包";
+"Medal Gift"="勳章禮包";
+"My Gift"="我的禮包";
+"Your suggestion"="您的建議";
+"Please input your suggestions for better services"="請輸入您的建議，以便我們更好地為您服務";
+"Your Email"="您的郵箱";
+"Email"="郵箱";
+"①MSN/Email:\ncustomer_service@efun.com"="①MSN／郵箱:\ncustomer_service@efun.com";
+"Please input correct email"="請輸入正確的郵箱";
+"Please input your suggestions"="請輸入您的建議";
+"Please input your Email"="請輸入您的郵箱";
+"OK"="確定";
+"Submit"="提交";
+"Timeout! Please check your network"="請求超時！請檢查您的網絡";
+"Thanks for your suggestion!"="感謝您提出的寶貴意見和建議!";
+"submiting..."="提交中...";
+"internet error, please try again."="網絡錯誤，請稍後重識";
+"Logging in..."="Logging in...";
+
+
+"Member"="會員";
+"System Message"="系統消息";
+"Login"="登入";
+"Account"="帳號";
+"Password"="密碼";
+"Facebook Login"="Facebook登入";
+"Change password"="修改密碼";
+"Forget password?"="忘記密碼?";
+"No account?"="沒有帳號?";
+"Register now"="立即註冊";
+"Click here to find back"="點擊這裡找回";
+"Third Party Account"="第三方帳號";
+"Old password"="舊密碼";
+"New Password"="新密碼";
+"Confirm password"="確認密碼";
+"Confirm"="確認修改";
+"Change password successfully"="密碼修改成功";
+"Please input new password"="請輸入新密碼";
+"Please input old password"="請輸入舊密碼";
+"Please confirm password"="請確認密碼";
+"Please input account first"="帳號不能為空";
+"The new passwords are inconsistent"="新密碼前後不一致";
+"Please input your title"="請輸入標題";
+"Title"="標題";
+"Please input password"="請輸入密碼";
+"Find back password"="找回密碼";
+"Account Registration"="帳號註冊";
+"Agree to Terms"="我已閱讀並同意";
+"《Terms of Service and Privacy policy》"="《服務條款及隱私條款》";
+"Please input password first"="密碼不能為空";
+"Passwords are inconsistent"="前後密碼不一致";
+"You haven't read the related terms"="您還沒有閱讀相關條款";
+
+"Please select your region"="請選擇您所屬地區";
+"Thailand"="泰國";
+"Vietnam"="越南";
+"Europe"="歐洲";
+"Japan"="日本";
+"Other regions of Southeast Asia"="東南亞其他地區";
+"The region you choose:"="您選擇的地區是:";
+"Cancel"="取消";
+
+"Login error"="登入異常";
+"Recharge error"="儲值異常";
+"Abnormal account"="帳號異常";
+"Error feedback"="異常反饋";
+"Guides"="攻略咨詢";
+"Suggestion"="遊戲建議";
+"Violation complaints"="違規投訴";
+"Other"="其他";
+
+"select game"="選擇遊戲";
+"Server"="選擇伺服器";
+"Character"="選擇角色";
+"submit"="提交";
+
+"Register successfully"="註冊成功";
+"Register"="註冊";
+"No blank space for the first place of account"="帳號的首位不能是空格";
+"No “&！ for account"="帳號不能含有\"&!";
+"No “&！ for password"="密碼不能含有\"&!";
+"The new password has been sent to your mail. Please pay attention to check it"="您的新密碼已發送到您的郵箱，請注意查收！";
+"Failed to obtain the game list. Please try again later"="獲取遊戲列表失敗，請稍後重試！";
+"Failed to obtain server info. Please try again later!"="獲取伺服器失敗，請稍後重試！";
+"Failed to obtain character info. Please try again later!"="獲取角色信息失敗，請稍後重試!";
+
+"The title should be shorter than 32 characters."="標題不能超過32個字.";
+"The content should be shorter than 500 characters."="描述的內容不能超過500個字.";
+"The title can't be empty or containing only spaces."="標題不能為空或者空格.";
+"The content can't be empty or containing only spaces."="內容不能為空或者空格.";
+"Obtaining..."="获取中...";
+
+"Application Management"="應用管理";
+"Installed"="已安裝";
+"Downloading"="下載中";
+"Change"="更改";
+"Forget"="忘記";
+"Are you sure to change account?"="您確定要切換帳號?";
+"The first letter of account can't contain spaces."="帳號的首位不能含有空格.";
+"Password："="密碼：";
+
+"Wrong password"="密鑰錯誤";
+"Wrong parameter"="參數錯誤";
+"Null exception"="空值異常";
+"This account has existed already"="此帳號已存在";
+"System abnormal"="系統異常";
+"This account does't exist"="無此用戶";
+"Wrong original password"="原密碼錯誤";
+"Wrong email input"="郵箱輸入錯誤";
+"Please choose the type of game"="請選擇遊戲類型";
+"Please choose the type of server"="請選擇伺服器類型";
+"Please choose the role"="請選擇角色";
+"It's now having system maintenance"="系統維護中";
+
+"Failed to login"="登錄失敗";
+"Shared successfully"="分享成功";
+"Shared failed"="分享失敗";
+
+"wrong password!"="密碼錯誤!";
+"More"="More";
+
+"Event area"="活動區域";
+"select game"="選擇遊戲";
+"server"="伺服器";
+"role name"="角色名";
+"select event"="選擇活動";
+"shoot"="拍照";
+"album"="相冊";
+
+"Please choose the event"="請選擇活動";
+"Your message has been successfully submitted"="活動提交成功";
+"Fail to send your message, please try later"="提交失敗，請稍後重試";
+"Please choose an image"="請選擇圖片";
+
+"Load failed, please check the network connection or contact customer service."="讀取失敗，請檢查網絡或連繫客服.";
+
+"Notice"="公告";
+"Download"="下載";
+"Don't show today"="今天之內不再顯示";

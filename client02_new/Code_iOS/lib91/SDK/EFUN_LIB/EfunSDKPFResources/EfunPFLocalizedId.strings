@@ -1,0 +1,161 @@
+/* 
+  EfunPFLocalizedId.strings
+  EfunPlatForm
+
+  Created by TangTieshan on 14-8-14.
+  Copyright (c) 2014年 TangTieshan. All rights reserved.
+*/
+"Home"="Beranda";
+"Account Info"="Informasi akun";
+"CS Center"="Pusat layanan";
+"Info"="Informasi";
+"Game"="Game";
+"Gift"="Paket hadiah";
+"Recharge"="Isi Ulang";
+"News"="Berita terbaru";
+"Guide"="Petunjuk";
+"Role ID"="Role ID";
+"Reply"="Kirim";
+"Free Gift"="Paket hadiah gratis";
+"Medal Gift"="Paket medali";
+"My Gift"="Paket hadiah saya";
+"Your suggestion"="Saran Anda";
+"Please input your suggestions for better services"="Silahkan berikan pendapat Anda, sehingga kami dapat melayani Anda dengan lebih baik";
+"Your Email"="Email Anda";
+"Email"="Email";
+"①MSN/Email:\ncustomer_service@efun.com"="①MSN/Email:\ncustomer_service@efun.com";
+"Please input correct email"="Silahkan masukkan alamat email yang benar";
+"Please input your suggestions"="Silahkan masukkan pendapat Anda";
+"Please input your Email"="Silahkan masukkan informasi email";
+"OK"="OK";
+"Submit"="Serahkan";
+"Timeout! Please check your network"="Permohonan melebihi batas waktu! Silahkan cek jaringan Anda.";
+"Thanks for your suggestion!"="Terima kasih komentar berharga dan saran Anda buat!";
+"submiting..."="Serahkan...";
+"internet error, please try again."="internet error, please try again.";
+"Logging in..."="Logging in...";
+
+
+"Member"="Anggota";
+"System Message"="Informasi";
+"Login"="Masuk";
+"Account"="Akun";
+"Password"="Password";
+"Facebook Login"="Login melalui Facebook";
+"Change password"="Mengubah password";
+"Forget password?"="Lupa password?";
+"No account?"="Tidak ada akun?";
+"Register now"="Daftar sekarang";
+"Click here to find back"="Klik sini untuk cari kembali";
+"Third Party Account"="Akun pihak ketiga";
+"Old Password"="Password lama";
+"New Password"="Password baru";
+"Confirm"="Konfirmasi";
+"Confirm password"="Konfirmasi password";
+"Change password successfully"="Mengubah password berhasil";
+"Please input new password"="Silahkan masukkan password baru";
+"Please input old password"="Silahkan masukkan password lama";
+"Please confirm password"="Silahkan konfirmasi password";
+"Please input account first"="Akun tidak boleh kosong";
+"The new passwords are inconsistent"="Kedua password tidak sesuai";
+"Please input your title"="Silahkan masukkan judul";
+"Title"="Judul";
+"Please input password"="Silahkan masukkan password";
+"Find back password"="Cari kembali password";
+"Account Registration"="Pendaftaran akun";
+"Agree to Terms"="Sudah dibaca dan setuju";
+"《Terms of Service and Privacy policy》"="《Ketentuan Servis dan rahasia》";
+"Please input password first"="Password tidak boleh kosong";
+"Passwords are inconsistent"="Kedua password tidak sesuai";
+"You haven't read the related terms"="Ketentuan belum dibaca";
+
+"Please select your region"="Silahkan pilih wilayah Anda";
+"Thailand"="Thailand";
+"Vietnam"="Vietnam";
+"Europe"="Eropa";
+"Japan"="Jepang";
+"Other regions of Southeast Asia"="Wilayah lain di Asia Tenggara";
+"The region you choose:"="Wilayah yg dipilih Anda adalah:";
+"Cancel"="Batal";
+
+"Login error"="Login bermasalah";
+"Recharge error"="Masalah pembayaran";
+"Abnormal account"="Aduan masalah";
+"Error feedback"="Tanggapan bermasalah";
+"Guides"="Menanyakan strategi";
+"Suggestion"="Saran untuk permainan";
+"Violation complaints"="Pengaduan pelanggaran";
+"Other"="Lain-lain";
+
+"select game"="Pilih game";
+"Server"="Pilih server";
+"Character"="Pilih karakter";
+"submit"="Serahkan";
+
+"Register successfully"="Daftar berhasil";
+"Register"="Daftar";
+"No blank space for the first place of account"="Tidak boleh kosong untuk kata pertama akun";
+"No “&！ for account"="Tidak boleh menggunakan“&！ Untuk nama akun";
+"No “&！ for password"="Tidak boleh menggunakan“&！ Untuk password";
+"The new password has been sent to your mail. Please pay attention to check it"="Password baru sudah dikirim ke email Anda, silahkan menceknya.";
+"Failed to obtain the game list. Please try again later"="Gagal mendapatkan list game, mohon coba kembali!";
+"Failed to obtain server info. Please try again later!"="Gagal masuk ke server, mohon coba kembali!";
+"Failed to obtain character info. Please try again later!"="Gagal mendapatkan informasi karakter, mohon coba kembali!";
+
+
+"The title should be shorter than 32 characters."="Jumlah kata untuk judul harus kurang dari 32 huruf.";
+"The content should be shorter than 500 characters."="Jumlah isi harus kurang dari 500 huruf.";
+"The title can't be empty or containing only spaces."="Judul tidak boleh kosong atau hanya memakai spasi.";
+"The content can't be empty or containing only spaces."="Isi judul tidak boleh kosong atau hanya memakai space.";
+"Obtaining..."="Loading...";
+
+"Application Management"="Aplikasi manajemen";
+"Installed"="Telah terpasang";
+"Downloading"="Sedang mengunduh";
+
+"Change"="Ubah";
+"Forget"="/lupa";
+"Are you sure to change account?"="Anda setuju mengganti akun?";
+"The first letter of account can't contain spaces."="Tidak boleh kosong untuk kata pertama akun.";
+"Password："="Password：";
+
+"Wrong password"="Password salah";
+"Wrong parameter"="Parameter salah";
+"Null exception"="Pengecualian Null";
+"This account has existed already"="Akun ini sudah ada.";
+"System abnormal"="Sistem abnormal";
+"This account does't exist"="Akun ini tidak ada.";
+"Wrong original password"="Password asli salah";
+"Wrong email input"="Email yang Anda masukkan salah";
+"Please choose the type of game"="Silahkan pilih tipe game";
+"Please choose the type of server"="Silahkan pilih tipe server";
+"Please choose the role"="Silahkan pilih karakter";
+"It's now having system maintenance"="Sistem sedang dalam proses maintenance";
+
+"Failed to login"="Login gagal";
+"Shared successfully"="Share berhasil";
+"Shared failed"="Share gagal";
+
+"wrong password!"="Password salah!";
+"More"="More";
+
+
+"Event area"="Daerah event";
+"select game"="Pilih game";
+"server"="Pilih server";
+"role name"="Pilih karakter";
+"select event"="Pilih event";
+"shoot"="Gambar";
+"album"="Album";
+
+"Please choose the event"="Please choose the event";
+"Your message has been successfully submitted"="Sukses mengirim";
+"Fail to send your message, please try later"="Gagal mengirim";
+"Please choose an image"="Silakan pilih gambar";
+"Load failed, please check the network connection or contact customer service."="Dapatkan gagal, silahkan cek jaringan atau hubungi Customer Service Anda.";
+
+
+//公告
+"Notice"="Pengumuman";
+"Download"="Unduh";
+"Don't show today"="Tidak muncul lagi hari ini";

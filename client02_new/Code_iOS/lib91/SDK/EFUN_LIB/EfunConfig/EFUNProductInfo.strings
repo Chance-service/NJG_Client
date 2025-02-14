@@ -1,0 +1,42 @@
+/*
+ EFUNProductInfo.strings
+ EFUN_FUNCTION_PROJECT_AddUserInterface
+ 
+ Created by efun_ios on 14-7-30.
+ Copyright (c) 2014年 zhangguangyang. All rights reserved.
+ */
+
+"good0_localizedTitle"      = "60 Diamond";
+"good0_productIdentifier"   = "se.qmgj.1usd";
+"good0_price"               = "$0.99";
+"good0_GameCurrencyCount"   = "60";
+
+"good1_localizedTitle"      = "300 Diamond";
+"good1_productIdentifier"   = "se.qmgj.5usd";
+"good1_price"               = "$4.99";
+"good1_GameCurrencyCount"   = "300";
+
+"good2_localizedTitle"      = "600 Diamond";
+"good2_productIdentifier"   = "se.qmgj.10usd";
+"good2_price"               = "$9.99";
+"good2_GameCurrencyCount"   = "600";
+
+"good3_localizedTitle"      = "1200 Diamond";
+"good3_productIdentifier"   = "se.qmgj.20usd";
+"good3_price"               = "$19.99";
+"good3_GameCurrencyCount"   = "1200";
+
+"good4_localizedTitle"      = "3050 Diamond";
+"good4_productIdentifier"   = "se.qmgj.50usd";
+"good4_price"               = "$49.99";
+"good4_GameCurrencyCount"   = "3050";
+
+"good5_localizedTitle"      = "6200 Diamond";
+"good5_productIdentifier"   = "se.qmgj.100usd";
+"good5_price"               = "$99.99";
+"good5_GameCurrencyCount"   = "6200";
+
+"good6_localizedTitle"      = "Mouthly Card";
+"good6_productIdentifier"   = "se.qmgj.5usd.mc";
+"good6_price"               = "$4.99";
+"good6_GameCurrencyCount"   = "1";

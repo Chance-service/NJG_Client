@@ -1,0 +1,244 @@
+/* 
+  EFUNCorePromptText_en.strings
+  EFUN_FUNCTION_PROJECT_AddUserInterface
+
+  Created by Mac mini on 14-9-24.
+  Copyright (c) 2014年 zhangguangyang. All rights reserved.
+*/
+
+//交易历史记录界面
+"REG_SE_alert_content"="こちらに表示されているのはこの設備でこのゲームをしたプレイヤーの最後の20のオーダーです。この20の購入記録はある特定のプレイヤーのために行われていません；他のプレイヤは相次いでこの設備でゲームをしてリチャージする場合に、他のプレイヤーの購入する順番に従って相次いで、20のオーダーを記録する。あなたがゲームをアンインストールすると、記録は消えられる。もし、あるオーダーに質問を持ったら、ここに記録に対応する「フィードバック」というボタンを押してefunサーバーにフィードバックする。それぞれのオーダーをただ二回しかフィードバックしません。";
+"REG_SE_alert_content01"="このレコードはすでに二回提出された、私たちのカスタマサービスに連絡すればいい、再び提出する必要はありません。";
+"REG_SE_alert_content02"="それぞれの購入する情報を二回しかフィードバックしません、フィードバックした後efunサーバーにこのレコードがあります。この情報をフィードバックしますか？";
+"REG_SE_alert_content03"="まずこの最新の購入記録をefunサーバーに正常に送信します。この後、１時間後再びに送信することができます。成功に送信する時日付ヒントがありますから、私たちのカスタマサービスにスクリーンショットを提供してください。これを送信しますか？";
+"REG_SE_alert_content04"="記録はまだありません。";
+"REG_SE_alert_sure_btn_title"="確定";
+"REG_SE_alert_cancel_btn_title"="キャンセル";
+"REG_SE_closs_btn_title"="闭じ";
+"REG_SE_post_current_btn_title"="当然の記録をフィードバックする";
+
+"REG_SE_date_title"="日付";
+"REG_SE_state_title"="状態";
+"REG_SE_orderId_title"="オーダー番号";
+"REG_SE_role_title"="キャラクター";
+"REG_SE_feedback_btn_title"="フィードバック";
+"REG_SE_post_times_title"="今のフィードバック回数";
+
+"REG_SE_state_finished"="完成した";
+"REG_SE_state_payFail"="支払失敗";
+"REG_SE_state_efunServerCheckPayFail"="efunサーバーの認証が無効です";
+"REG_SE_state_userCancel"="ユーザーはオーダーをキャンセルする";
+"REG_SE_state_inPaying"="取引中";
+
+"REG_SE_post_log_fail"="購入日誌は送信失敗！改めてお試みてください";
+"REG_SE_post_log_success"="購入日誌は送信成功！";
+"REG_SE_is_posting"="送信中。。。";
+"REG_SE_post_time_sign_text"="これはアップロードした日付印です、スクリーンショットして私たちのカスタマサービスに送信してください：";
+"REG_SE_post_current_too_mutch_text"="一時間内、日誌を一回しか送信しません。次回の送信するまでにあと：\n";
+
+"textNoNet"                     = "ネットワークが弱い！";
+"textServerReturnError"         = "サーバーから非ヌルエラーが届き、改めてお試みください！";
+"textServerReturnNull"          = "ヌルがサーバーから届き！改めてお試みください！";
+"textParameterNull"             = "受け取ったパラメーターがヌル、取り扱うことができない。改めてお試みください！";
+/*ボタン文字*/
+"titleAlertSureBtnTitle"        = "確定";
+
+
+//关于购买的提示
+"textIapParameterNil"       = "購入異常、改めてお試みください!";
+"textIapNoNet"              = "ネットワークが弱いので、購入するときネットワークのスムーズを確保してください！";
+"textIapOneIsPaying"        = "取引中";
+"textIapNoMakePayments"     = "PaymentQueueで支払いことができない！";
+"textIapServerInMaintain"   = "サーバーがメンテナンス中！\nしばらくご購入ください、ご支持に感謝いたします。\nE_code：%@";
+"textIapNoThisItem"         = "商品不存在！";
+"textIapPostCheckNoNet"     = "注文番号:%@ \nネットワークの不安定なので、一時ルネストインをゲットすることができない。スムーズなネットにおいて、?確認?を押して改めてルネストインをゲットすると薦める；或いは、リログしてチェックしてください。";
+"textIapBuyError"           = "注文番号：%@\nテストエラー！ショット後、カスタマーサービスを連絡してください。\nスクリーンショットは唯一の証拠とみられる！";
+"textIapAppStorePayFail"    = "AppStore支払い失敗！\nE_code:%@";
+"textIapBuyFail"            = "購入失敗:\n注文番号：%@\nショット後、カスタマーサービスを連絡してください。\nスクリーンショットは唯一の証拠とみられる！";
+"textIapUserCancelToPay"    = "注文をキャンセルした！";
+"textIapHaveSendGameStone"  = "取引番号：%@\n商品は発送済み、お受け取りにご注意ください！";
+"textIapBuySuccess"         = "購入成功、金貨は発送済み:\n取引番号：%@\nゲームを楽しみにしてください！";
+
+
+//facebookについての提示
+/*facebookについてのログインの提示*/
+"textFbInviteGetFbIDFail"               = "facebookユーザーの情報獲得が失敗！";
+"textLoginGetFBTokenFail"               = "facebookのtoken獲得が不成功で、ログイン失敗！\nネットワークをチェックして改めてログインしてください！";
+"textLoginGetFBInfoFail"                = "获取facebook用户信息失败，登陆失败！\n请查看自己的网络，重新尝试登陆！";
+/*facebook友達を誘う*/
+"textFbInviteActivityNotOpen"           = "facebookの友達を誘うと言うイベントがまだ開放しない!";
+"textFbInviteGetPublicRightFial"        = "インビテーション制限の発送が失敗！改めてお試みください。";
+"textFbInviteGetCanInvitedFriendsFail"  = "インビテーション失敗！";
+"textFbInviteUserCancelInvite"          = "インビテーションをキャンセルした！";
+"textFbInviteUserCloseInvite"           = "インビテーションを中止した！";
+/*facebookシェア*/
+"textFbShareGetPublicFail"              = "シェア中、制限の獲得が失敗！";
+"textFbShareGetTokenFail"               = "シェア中、tokenの獲得が失敗!";
+"textFbShareFail"                       = "シェアの発送が失敗!";
+"textFbShareSuccess"                    = "シェア成功！";
+
+//SEA
+"_STR_FANS_PAGE_TITLE_"                                              ="Fans Page";
+"_STR_LOGIN_WITH_FACEBOOK_"                                     ="Login with Facebook";
+"_STR_PLAY_NOW_"                                                ="PLAY NOW";
+"_STR_REGISTER_TITLE_"                                          ="REGISTER";
+"_STR_LOGIN_TITLE_"                                             ="LOGIN";
+"_STR_RESET_PASSWORD_TITLE_"                                    ="RESET PASSWORD";
+"_STR_FORGET_PASSWORD_TITLE_"                                   ="FORGET PASSWORD";
+"_STR_BIND_ACCOUNT_TITLE_"                                      ="BIND ACCOUNT";
+"_STR_FOR_MORE_ACCOUNT_"                                        ="For More Account";
+"_STR_USER_ACCOUNT_"                                            ="User Account";
+"_STR_USER_REGISTER_ACCOUNT_"                                            ="Create an Username";
+"_STR_PASSWORD_"                                                ="Password";
+"_STR_REGISTER_"                                                ="Register";
+"_STR_LOGIN_"                                                   ="Login";
+"_STR_RESET_PASSWORD_"                                          ="Reset Password";
+"_STR_FORGET_PASSWORD_"                                         ="Forget Password";
+"_STR_CONFIRM_PASSWORD_"                                        ="Confirm Password";
+"_STR_EMAIL_AT_TEXTFIELD_"                                      ="Email (To retrieve password)";
+"_STR_NEW_PASSWORD_"                                            ="New Password";
+"_STR_EMAIL_"                                                   ="Email";
+"_STR_BIND_ACCOUNT_"                                            ="Bind Account";
+"_STR_FB_BIND_ACCOUNT_"                                         ="Bind Facebook";
+"_STR_BACK_"                                                    ="Back";
+"_STR_FIND_PASSWORD_"                                           ="Find Password";
+"_STR_TAP_THE_SCREEN_TO_LOG_IN_"                                ="Tap the screen to log in";
+"_STR_FB_INVITE_TOP_TITILE_"                                    ="Friends Invitation";
+"_STR_FB_INVITE_CHECK_REWARDS_TITLE_"                           ="Check Rewards";
+"_STR_FB_INVITE_NUMBER_OF_INVITATIONS_TITLE_"                   ="Number of Invitations";
+"_STR_FB_INVITE_REWARDS_BTN_"                                   ="Rewards";
+"_STR_FB_INVITE_SEND_INVITATION_BTN_"                           ="Send Invitation";
+"_STR_FB_INVITE_INFO_"                                          ="Click the Facebook icon and link to our offical forum.";
+"_STR_REGISTER_INFO_"                                           ="Has no account? ";
+
+"_STR_FB_INVITE_SHARE_MORE_BTN_"                                ="更多分享";
+"_STR_FB_INVITE_RANK_TITLE_"                                    ="好友排行榜";
+"_STR_FB_INVITE_RANK_PRESTIGE_"                                 ="威望";
+"_STR_FB_INVITE_RANK_GIVE_"                                     ="贈送";
+"_STR_FB_INVITE_RANK_COMMENT_"                                  ="說明";
+"_STR_FB_INVITE_RANK_CLAIM_"                                    ="索取";
+"_STR_FB_INVITE_LABEL_PACKAGE_NAME__"                            = "ギフト %d";
+"_STR_FB_INVITE_LABEL_Reward__"                                  = "ボーナス:%@";
+
+"EFUN_PAYING"                                                 = "取引をしていますから、少々お待ち下さい!";
+"EFUN_NoNet"                                                  = "ネットワークを使用できません、ネットワークをチェックしてください!";
+"EFUN_NoMakePayments"                                         = "AppStore支払できません!";
+"EFUN_OneIsBuying"                                            = "1件の取引が行われています!";
+"EFUN_NoThisGood"                                             = "商品なし!";
+"EFUN_UserCancelToBuy"                                        = "購入をキャンセル!";
+"EFUN_AppStorePayFail"                                        = "AppStore支払い失敗!";
+"EFUN_BuySuccess"                                             = "購入成功,%@ 発送しました: \nオーダーナンバー：%@\n Efunオーダーナンバー:%@\n ゲームお楽しみに!";
+"EFUN_BuyFail"                                                = "購入失敗:\nオーダーナンバー：%@\n Efunオーダーナンバー:%@\n ErrorCode:%@\nスクリーンショットを撮ったした後、サビースに連絡してください。";
+"EFUN_HaveSendGameGold"                                       = "オーダーナンバー：%@\n Efunオーダーナンバー:%@\n %@ 発送しました、チェックしてください!";
+"EFUN_PostNoNet"                                              = "オーダーナンバー：%@\n Efunオーダーナンバー:%@\n サーバに検証を発送失敗!";
+"EFUN_BuyError"                                               = "オーダーナンバー：%@\n Efunオーダーナンバー:%@\n 検証error！";
+"EFUN_BuyServerInMaintain"                                    = "サーバがメンテナンスしています！維持した後購買してください";
+"__UI_LOGINVIEW_ACCOUNT_TEXTFEILD__"                          = " アカウント";
+"__UI_LOGINVIEW_PASSWORD_TEXTFEILD__"                         = " パスワード";
+"__UI_LOGINVIEW_CHANGEPASSWORD_BUTTON__"                      = " パスワードの変更";
+"__UI_LOGINVIEW_MACBIND_BUTTON__"                             = " サインアップ";
+"__UI_LOGINVIEW_FORGOTPASSWORD_BUTTON__"                      = " パスワードを忘れた";
+"__UI_LOGINVIEW_LOGINWAYS_LABEL__"                            = " 使用以下账号登入";
+"__UI_CHANGEPASSWORD_OLDPASSWORD_TEXTFEILD__"                 = " 元パスワード";
+"__UI_CHANGEPASSWORD_NEWPASSWORD_TEXTFIELD__"                 = " ニューパスワード";
+"__UI_CHANGEPASSWORD_NEWPASSWORD_CONFIRM_TEXTFIELD__"         = " パスワードの確認)";
+"__UI_FORGOTPASSWORD_EMAIL__"                                 = " メールアドレス";
+"__UI_ACCOUNTBIND_PASSWORD_CONFIRM__"                         = " パスワードの再入力)";
+"__UI_ACCOUNTBIND_EMAIL__"                                    = " Email(パスワードを取り戻るため)";
+"__MESSAGE_ALERTVIEW_TITLE_ERROR__"                           = "エラー";
+"__MESSAGE_ALERTVIEW_MESSAGE_PASSWORD_DIFFERENCE__"           = "二回の入力したパスワードが一致ではありません、再入力してください";
+"__MESSAGE_WAITTING_LOGIN_STRING__"                           = "ロード中...";
+"__MESSAGE_WAITTING_LOGIN_EVATAR_STRING__"                    = "台湾大玩家登入中...";
+"__MESSAGE_WAITTING_ACCOUNTBIND_STRING__"                     = "登録中...";
+"__MESSAGE_WAITTING_FACEBOOKBIND_STRING__"                    = "処理中...";
+"__MESSAGE_WAITTING_CHANGEPASSWORD_STRING__"                  = "処理中...";
+"__MESSAGE_WAITTING_FORGOTPASSWORD_STRING__"                  = "処理中...";
+"__MESSAGE_WAITTING_BIND_STRING__"                            = "処理中...";
+"__MESSAGE_ERROR_MESSAGE_ACCOUNT_LENGTH_45__"                 = "入力したユーザーネームは４５文字に超えできません。!";
+"__MESSAGE_ERROR_MESSAGE_ACCOUNT_NULL__"                      = "アカウントを入力してください!";
+"__MESSAGE_ERROR_MESSAGE_ACCOUNT_SPACILECHAR__"               = "アカウントには特別な符号を入力してはできません。(アカウントは字母、数或いはアンダーラインで組み合わせます。)";
+"__MESSAGE_ERROR_MESSAGE_ACCOUNT_UTF8ERROR__"                 = "アカウントには漢字を入力してはできません。(アカウントは字母、数或いはアンダーラインで組み合わせます。)";
+"__MESSAGE_ERROR_MESSAGE_PASSWORD_NULL__"                     = "パスワードを入力してください";
+"__MESSAGE_ERROR_MESSAGE_PASSWORD_LENGTH_45__"                = "入力したパスワードは４５文字に超えできません。";
+"__MESSAGE_ERROR_MESSAGE_PASSWORD_SPACILECHAR__"              = "パスワードには特別な符号を入力してはできません。(パスワードトは字母、数或いはアンダーラインで組み合わせます。)";
+"__MESSAGE_ERROR_MESSAGE_PASSWORD_UTF8ERROR__"                = "パスワードには漢字を入力してはできません。(パスワードは字母、数或いはアンダーラインで組み合わせます。)";
+"__MESSAGE_ERROR_MESSAGE_EMAIL_NULL__"                        = "メールアドレスを入力してください!";
+"__MESSAGE_ERROR_MESSAGE_EMAIL_LENGTH_45__"                   = "入力したメールアドレスは４５文字に超えできません。";
+"__MESSAGE_ERROR_MESSAGE_EMAIL_FORMAT__"                      = "メールアドレスは不正です!";
+"__MESSAGE_ERROR_MESSAGE_EMAIL_UTF8ERROR__"                   = "メールアドレスには漢字を入力できません!";
+"__MESSAGE_TITLE_NETINTERFACE_LOGIN__"                        = "ログイン";
+"__MESSAGE_TITLE_NETINTERFACE_REGISTER__"                     = "新規アカウント登録";
+"__MESSAGE_TITLE_NETINTERFACE_RESETPASSWORD__"                = "パスワードの変更";
+"__MESSAGE_TITLE_NETINTERFACE_FINDPASSWORD__"                 = "パスワードを忘れた";
+"__MESSAGE_TITLE_NETINTERFACE_FASTLOGIN__"                    = "プレー";
+"__MESSAGE_TITLE_NETINTERFACE_FACEBOOKLOGIN__"                = "Facebookで登録";
+"__MESSAGE_TITLE_NETINTERFACE_PHONEEVATAR__"                  = "Evatar 登入";
+"__MESSAGE_TITLE_NETINTERFACE_REGISTERBIND__"                 = "サインアップ";
+"__MESSAGE_TITLE_NETINTERFACE_OTHERCLIENTLOGINEVATAR__"       = "Evatar 客戶端登入";
+"__MESSAGE_ALERTVIEW_MESSAGE_BIND_INFO__"                     = "ごアカウントの安全性を確保するため、サインアップしてください.";
+"__MESSAGE_ALERTVIEW_MESSAGE_BIND_LEFT_BTN_PLAYNOW__"         = "ゲームスタート";
+"__MESSAGE_ALERTVIEW_MESSAGE_BIND_RIGHT_BTN_BINDACCOUNT__"    = "サインアップ";
+"__MESSAGE_ALERTVIEW_MESSAGE_BINDEDACCOUNT__"                 = "ご設備がサインアップしたアカウントがあります。サインアップしたアカウントをゲームしてください %@";
+"__MESSAGE_TITLE_NETINTERFACE__"                              = "ヒント";
+"__MESSAGE_NET_ERROR__"                                       = "ネットワークが不安定です!";
+"__MESSAGE_TWITTER_SHARE_CONTENTDUPLICATE"                    = "シェア内容は重複しました。シェア内容を変更する或いは明日に試してください!";
+"__MESSAGE_TWITTER_PLEASEWAITING__"                           = "少々お待ちください...";
+"__UI_TWITTER_TITLE_TWITTERLOGIN__"                           = "Twitter Login";
+"__UI_BTN_LABEL_CHECK_AWARDCONTENT__"                         = "賞への招待";
+"__UI_BTN_LABEL_WEBVIEW_PREVIOUS__"                           = "前";
+"__UI_BTN_LABEL_WEBVIEW_NEXT__"                               = "次";
+"__UI_BTN_LABEL_WEBVIEW_BACK__"                               = "リターン";
+"__UI_BTN_LABEL_WEBVIEW_RELOAD__"                             = "リロード";
+"__UI_INVITE_LABEL_AlreadyInviteNum__"                        = "招待した数:";
+"__UI_BTN_INVITE__LABEL_SendInvite__"                         = "招待";
+"__EFUN_LOADING__"                                            = "処理中...";
+"__UI_INVITE_LABEL_MAX_INVITE_NUM__"                          = "You have reached the limit invited today.The maximum number of invited:%ld";
+"__UI_INVITE_LABEL_Reward__"                                  = "Rewards:%@";
+"__UI_INVITE_LABEL_PACKAGE_NAME__"                            = "Gift Pack %d";
+"__UI_RIGISTER_Alert_Account__"                               = "You can use letters, numbers and underscore. Case insensitive.";
+"__UI_RIGISTER_Alert_Password__"                              = "We recommend combination of 6 characters or above. Case sensitive";
+"__UI_RIGISTER_Alert_Email__"                                 = "Please provide a valid email, which will be used to recover your password";
+"__UI_ACCOUNTBIND_FACEBOOK_INFO__"                            = "ログインしたFacebookアカウント：%@,　サインアップしますか?";
+"__UI_ACCOUNTBIND_FACEBOOK_COMFIRM__"                         = "このアカウントで";
+"__UI_ACCOUNTBIND_FACEBOOK_CANCLE__"                          = "ほかのアカウントで";
+"__UI_ACCOUNTBIND_FACEBOOK_INFO_LOGOUT__"                     = "サインアップしたいFacebookアカウントでログイしてください。";
+"__UI_INVITE_GET_GIFT_MESSAGE__"                              = "%@，条件:%@，あなたが招待した数 %d";
+
+//陌陌
+"_ASIA_USER_ACCOUNT_"                                            ="アカウント";
+"_ASIA_PASSWORD_"                                                ="パスワード";
+"_ASIA_LOGIN_"                                                   ="ログイン";
+"_ASIA_REGISTER_RIGHTNOW_"                                       ="新規登録！";
+"_ASIA_FORGET_PASSWORD_"                                         ="パスワードを忘れた";
+"_ASIA_THIRD_LOGIN_"                                             =" 他の方法でログイン";
+"_ASIA_PLAY_NOW_"                                                ="Play Now";
+"_ASIA_TWITTER_LOGIN"                                            ="Twitter";
+"_ASIA_BAHA_LOGIN_"                                              ="BaHa";
+
+"_ASIA_REGISTER_TITLE_"                                          ="アカウント登録";
+"_ASIA_REPEAT_PASSWORD_"                                         ="パスワードを確認する";
+"_ASIA_EMAIL_AT_TEXTFIELD_"                                      ="メール（パスワードを忘れた場合に）";
+"_ASIA_I_HAVE_READED"                                            ="＜会員条項及び管理制度＞に関することを見て同意します";
+"_ASIA_REGULATION_"                                              ="会員条項及び管理制度";
+"_ASIA_REGISTER_"                                                ="新規登録";
+"_ASIA_READ_AND_AGREE"                                           ="<利用規約>をご確認のうえ同意してください。";
+
+"_ASIA_FORGET_PASSWORD_TITLE_"                                   ="パスワードを忘れた";
+"_ASIA_FIND_PASSWORD_"                                           ="パスワードを取り戻す";
+"_ASIA_EMAIL_"                                                   ="メール";
+
+"_ASIA_ACCOUNT_MANAGEMENT_TITLE_"                                ="アカウント設定";
+"_ASIA_RESET_PASSWORD_"                                          ="パスワードのリセット";
+"_ASIA_BIND_ACCOUNT_"                                            ="Play Nowをサインアップ";
+"_ASIA_FB_BIND_ACCOUNT_"                                         ="Facebookをサインアップ";
+
+"_ASIA_ORIGINAL_PASSWORD_"                                       ="ユーザーパスワード";
+"_ASIA_NEW_PASSWORD_"                                            ="ニューパスワード";
+"_ASIA_CONFIRM_PASSWORD_"                                        ="ニューパスワードを確認する";
+"_ASIA_CONFIRM_RESET_"                                           ="変更を確認する";
+
+"_ASIA_BIND_ACCOUNT_TITLE_"                                      ="アカウントと関連する";
+
+"_ASIA_CANCEL_"                                                  ="キャンセル";
+"_ASIA_CONFIRM_"                                                 ="確認";
+"_ASIA_SYSTEM_NOTICE_"                                           ="お知らせ";

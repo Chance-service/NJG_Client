@@ -1,0 +1,244 @@
+/* 
+  EFUNCorePromptText_en.strings
+  EFUN_FUNCTION_PROJECT_AddUserInterface
+
+  Created by Mac mini on 14-9-24.
+  Copyright (c) 2014年 zhangguangyang. All rights reserved.
+*/
+
+//交易历史记录界面
+"REG_SE_alert_content"="Pada perangkat ini akan muncul 20 catatan pembelian pada permainan ini. Karakter berbeda juga akan ikut tercatat; Jika lebih dari 1 gamers bermain pada perangkat yang sama dan melakukan pengisian, maka 20 catatan pembelian akan diurutkan berdasarkan pembelian. Jika game dihapus, maka catatan akan hilang. Jika gamers memiliki masalah dalam pembelian, bisa melakukan laporan dengan klik “Laporan” dan menuju server efun untuk melakukan laporan. Setiap pembelian hanya bisa melakukan laporan sebanyak 2 kali";
+"REG_SE_alert_content01"="Catatan ini telah dikirim sebanyak 2 kali, tidak perlu dikirim lagi, segera hubungi layanan pelanggan kami!";
+"REG_SE_alert_content02"="Setiap laporan transaksi, hanya bisa dilaporkan dua kali, setelah melaporkan, server efun akan menyimpannya, tidak perlu melaporkan lagi. Yakin untuk melaporkan?";
+"REG_SE_alert_content03"="Kirim laporan pembelian terbaru ke server efun, setelah pelaporan sukses, butuh 1 jam untuk pengiriman laporan kedua. Sukses melaporkan maka akan muncul stempel waktu, ingat untuk screenshot dan berikan kepada layanan pelanggan kami. Yakin untuk mengirim?";
+"REG_SE_alert_content04"="Tidak ada catatan!";
+"REG_SE_alert_sure_btn_title"="Yakin";
+"REG_SE_alert_cancel_btn_title"="Batal";
+"REG_SE_closs_btn_title"="Tutup";
+"REG_SE_post_current_btn_title"="Laporkan catatan sekarang";
+
+"REG_SE_date_title"="Tanggal";
+"REG_SE_state_title"="Status";
+"REG_SE_orderId_title"="Nomor Order";
+"REG_SE_role_title"="Karakter";
+"REG_SE_feedback_btn_title"="Laporan";
+"REG_SE_post_times_title"="Jumlah Laporan Sekarang";
+
+"REG_SE_state_finished"="Telah Selesai";
+"REG_SE_state_payFail"="Gagal Bayar";
+"REG_SE_state_efunServerCheckPayFail"="Otentikasi Server Efun Tidak Valid";
+"REG_SE_state_userCancel"="Pemilik Batalkan Pembelian";
+"REG_SE_state_inPaying"="Sedang Transaksi";
+
+"REG_SE_post_log_fail"="Gagal kirim jurnal pembelian! Silahkan coba lagi.";
+"REG_SE_post_log_success"="Sukses kirim jurnal pembelian!";
+"REG_SE_is_posting"="Sedang mengirim...";
+"REG_SE_post_time_sign_text"="Berikut adalah stempel waktu yang telah diunggah, mohon untuk screenshot dan kirimkan kepada layanan pelanggan: ";
+"REG_SE_post_current_too_mutch_text"="Dalam sejam, hanya bisa mengirim 1 buah jurnal. Sisa waktu pengiriman berikutnya: \n";
+
+"textNoNet"                     = "Internet tidak mendukung!";
+"textServerReturnError"         = "Server bermasalah, silahkan coba kembali!";
+"textServerReturnNull"          = "Data yang dikembalikan oleh server kosong! Silahkan coba kembali!";
+"textParameterNull"             = "Parameter yang diberikan kosong, tidak bisa memproses, silahkan coba kembali!";
+/*按钮文字*/
+"titleAlertSureBtnTitle"        = "OK";
+
+
+//关于购买的提示
+"textIapParameterNil"       = "Kriteria pembelian bermasalah, silahkan coba lagi!";
+"textIapNoNet"              = "Jaringan tidak mendukung, pastikan internet mendukung ketika melakukan pembelian";
+"textIapOneIsPaying"        = "Ada 1 transaksi sedang diproses";
+"textIapNoMakePayments"     = "PaymentQueue tidak mendukung proses pembayaran!";
+"textIapServerInMaintain"   = "Perawatan server! \n Silahkan melakukan transaksi beberapa saat lagi, terima kasih atas dukungannya. \nE_code：%@";
+"textIapNoThisItem"         = "Barang tidak ditemukan!";
+"textIapPostCheckNoNet"     = "No. order: %@ \n Karena jaringan tidak stabil, sementara tidak dapat memperoleh koin game. Silahkan klik tombol \"OK\" kembali pada jaringan internet yang stabil untuk mendapatkan koin game; Atau coba login kembali untuk melakukan pengecekan.";
+"textIapBuyError"           = "No. order transaksi: %@\n validasi gagal! Silahkan screenshot dan hubungi customer service kami. \n Hanya screenshot satu-satunya yang menjadi bukti untuk mengganti!";
+"textIapAppStorePayFail"    = "Pembayaran AppStore gagal!\nE_code:%@";
+"textIapBuyFail"            = "Pembelian gagal:\n no. order: %@\n Silahkan screenshot dan hubungi customer service kami. \n Hanya screenshot satu-satunya yang menjadi bukti untuk mengganti!";
+"textIapUserCancelToPay"    = "Anda membatalkan pembelian!";
+"textIapHaveSendGameStone"  = "No. order transaksi: %@\n Barang telah terkirim, mohon untuk dicek!";
+"textIapBuySuccess"         = "Pembelian sukses, koin game telah terkirim :\n no. order transaksi: %@\n Selamat bermain!";
+
+
+//关于facebook的提示
+/*facebook登录提示*/
+"textFbInviteGetFbIDFail"               = "Gagal dapat informasi pengguna facebook！";
+"textLoginGetFBTokenFail"               = "Gagal dapat token facebook, gagal login! \nSilakan memeriksa situasi internet anda, mencoba login kembali！";
+"textLoginGetFBInfoFail"                = "Gagal dapat informasi pengguna facebook, gagal login! \nSilakan memeriksa situasai internet anda,mencoba login kembali！";
+/*facebook邀请好友*/
+"textFbInviteActivityNotOpen"           = "Event mengundang teman via facebook belum dibuka!";
+"textFbInviteGetPublicRightFial"        = "Gagal dapat hak untuk mengundang! Silakan coba lagi";
+"textFbInviteGetCanInvitedFriendsFail"  = "Gagal dapat informasi tentang teman yang bisa diundang！";
+"textFbInviteUserCancelInvite"          = "Anda membantalkan undangan！";
+"textFbInviteUserCloseInvite"           = "Anda berhenti undangan！";
+/*facebook分享*/
+"textFbShareGetPublicFail"              = "Dalam proses berbagi，gagal dapat haknya!";
+"textFbShareGetTokenFail"               = "Dalam proses berbagi,gagal dapat token!";
+"textFbShareFail"                       = "Gagal berbagi!";
+"textFbShareSuccess"                    = "Berhasil berbagi!";
+
+//SEA
+"_STR_FANS_PAGE_TITLE_"                                              ="Fans Page";
+"_STR_LOGIN_WITH_FACEBOOK_"                                  ="Login dengan akun Facebook";
+"_STR_PLAY_NOW_"                                             ="Game dimulai";
+"_STR_REGISTER_TITLE_"                                       ="Daftar";
+"_STR_LOGIN_TITLE_"                                          ="Login";
+"_STR_RESET_PASSWORD_TITLE_"                                 ="Reset password";
+"_STR_FORGET_PASSWORD_TITLE_"                                ="Lupa password";
+"_STR_BIND_ACCOUNT_TITLE_"                                   ="Mengikat akun";
+"_STR_FOR_MORE_ACCOUNT_"                                     ="Login dengan akun lain";
+"_STR_USER_ACCOUNT_"                                         ="Nama pengguna";
+"_STR_USER_REGISTER_ACCOUNT_"                                            ="Buat Nama Pengguna";
+"_STR_PASSWORD_"                                             ="Password";
+"_STR_REGISTER_"                                             ="Daftar";
+"_STR_LOGIN_"                                                ="Login";
+"_STR_RESET_PASSWORD_"                                       ="Reset password";
+"_STR_FORGET_PASSWORD_"                                      ="Lupa password";
+"_STR_CONFIRM_PASSWORD_"                                     ="Password dikonfirmasi";
+"_STR_EMAIL_AT_TEXTFIELD_"                                   ="E-mail(untuk mendapatkan password)";
+"_STR_NEW_PASSWORD_"                                         ="Password baru";
+"_STR_EMAIL_"                                                ="E-mail";
+"_STR_BIND_ACCOUNT_"                                         ="Mengikat akun";
+"_STR_FB_BIND_ACCOUNT_"                                      ="Mengikat akun Facebook";
+"_STR_BACK_"                                                 ="Kembali";
+"_STR_FIND_PASSWORD_"                                        ="Cari Password";
+"_STR_TAP_THE_SCREEN_TO_LOG_IN_"                             ="Masuk dengan klik layar";
+"_STR_FB_INVITE_TOP_TITILE_"                                 ="Undang teman";
+"_STR_FB_INVITE_CHECK_REWARDS_TITLE_"                        ="Cek Hadiah";
+"_STR_FB_INVITE_NUMBER_OF_INVITATIONS_TITLE_"                ="Jumlah terundang";
+"_STR_FB_INVITE_REWARDS_BTN_"                                ="Hadiah";
+"_STR_FB_INVITE_SEND_INVITATION_BTN_"                        ="Kirim undangan";
+"_STR_FB_INVITE_INFO_"                                       ="Klik gambar Facebook untuk masuk ke forum resmi";
+"_STR_REGISTER_INFO_"                                        ="Tidak punya akun?";
+
+"_STR_FB_INVITE_SHARE_MORE_BTN_"                                ="更多分享";
+"_STR_FB_INVITE_RANK_TITLE_"                                    ="好友排行榜";
+"_STR_FB_INVITE_RANK_PRESTIGE_"                                 ="威望";
+"_STR_FB_INVITE_RANK_GIVE_"                                     ="贈送";
+"_STR_FB_INVITE_RANK_COMMENT_"                                  ="說明";
+"_STR_FB_INVITE_RANK_CLAIM_"                                    ="索取";
+"_STR_FB_INVITE_LABEL_PACKAGE_NAME__"                            = "Paket hadiah %d";
+"_STR_FB_INVITE_LABEL_Reward__"                                  = "hadiah:%@";
+
+"EFUN_PAYING"                                                ="Mohon tunggu, transaksi sedang berjalan";
+"EFUN_NoNet"                                                 ="Internet abnormal, mohon cek internet!";
+"EFUN_NoMakePayments"                                        ="Tak dapat bayar di AppStore!";
+"EFUN_OneIsBuying"                                           ="Suatu transaksi sedang berjalan!";
+"EFUN_NoThisGood"                                            ="Tidak ada barang ini!";
+"EFUN_UserCancelToBuy"                                       ="Anda sudah batalkan pembelian ini!";
+"EFUN_AppStorePayFail"                                       ="Gagal pembayaran AppStore!";
+"EFUN_BuySuccess"                                            ="Pembelian suksek, %@ terkirim, Nomor pesanan perdagangan \n：%@\n Nomor transaksi:%@\n Semoga senang!";
+"EFUN_BuyFail"                                               ="Gagal pembelian: \n Nomor pesanan: %@ \n Nomor transaksi:%@\n ErroCode:%@\n Kirimlah Screenshot kepada layanan pelanggan";
+"EFUN_HaveSendGameGold"                                      ="Nomor transaksi: %@\n Nomor transaksi:%@\n %@ terkirim, silakan cek dan terima!";
+"EFUN_PostNoNet"                                             ="Nomor pesanan transaksi:%@ \n Nomor transaksi:%@ \n Gagal kirim vertifikasi kepada server!";
+"EFUN_BuyError"                                              ="Nomor pesanan transaksi: %@\n Nomor transaksi:%@\n Salah vertifikasi！";
+"EFUN_BuyServerInMaintain"                                   ="Server sedang maintenance！Mohon dibeli nanti";
+"__UI_LOGINVIEW_ACCOUNT_TEXTFEILD__"                         ="Akun";
+"__UI_LOGINVIEW_PASSWORD_TEXTFEILD__"                        ="Password";
+"__UI_LOGINVIEW_CHANGEPASSWORD_BUTTON__"                     ="Mengubah password";
+"__UI_LOGINVIEW_MACBIND_BUTTON__"                            ="Mengikat akun Play Now";
+"__UI_LOGINVIEW_FORGOTPASSWORD_BUTTON__"                     ="Lupa password";
+"__UI_LOGINVIEW_LOGINWAYS_LABEL__"                           ="Login dengan akun berikutnya";
+"__UI_CHANGEPASSWORD_OLDPASSWORD_TEXTFEILD__"                ="Password asli";
+"__UI_CHANGEPASSWORD_NEWPASSWORD_TEXTFIELD__"                ="Password baru";
+"__UI_CHANGEPASSWORD_NEWPASSWORD_CONFIRM_TEXTFIELD__"        ="Password baru dikonfirmasi";
+"__UI_FORGOTPASSWORD_EMAIL__"                                ="E-mail terdaftar";
+"__UI_ACCOUNTBIND_PASSWORD_CONFIRM__"                        ="ketik ulang password";
+"__UI_ACCOUNTBIND_EMAIL__"                                   ="E-mail(untuk mendapatkan password)";
+"__MESSAGE_ALERTVIEW_TITLE_ERROR__"                          ="Salah";
+"__MESSAGE_ALERTVIEW_MESSAGE_PASSWORD_DIFFERENCE__"          ="Password yang dimasukkan kedua kali tidak sama, silakan dimasukkan ulang";
+"__MESSAGE_WAITTING_LOGIN_STRING__"                          ="Sedang login…";
+"__MESSAGE_WAITTING_LOGIN_EVATAR_STRING__"                   ="Pemain super sedang login…";
+"__MESSAGE_WAITTING_ACCOUNTBIND_STRING__"                    ="sedang proses..";
+"__MESSAGE_WAITTING_FACEBOOKBIND_STRING__"                   ="sedang proses..";
+"__MESSAGE_WAITTING_CHANGEPASSWORD_STRING__"                 ="sedang proses..";
+"__MESSAGE_WAITTING_FORGOTPASSWORD_STRING__"                 ="sedang proses..";
+"__MESSAGE_WAITTING_BIND_STRING__"                           ="sedang proses..";
+"__MESSAGE_ERROR_MESSAGE_ACCOUNT_LENGTH_45__"                ="Nama akun yang Anda masukan tidak bisa melebihi 45 karakter!";
+"__MESSAGE_ERROR_MESSAGE_ACCOUNT_NULL__"                     ="Nama akun tidak bisa kosong!";
+"__MESSAGE_ERROR_MESSAGE_ACCOUNT_SPACILECHAR__"              ="Nama akun tidak bisa mempunyai karakter istimewa（name akun terdiri dari karakter，nomor atau baris bawah)";
+"__MESSAGE_ERROR_MESSAGE_ACCOUNT_UTF8ERROR__"                ="Nama akun tidak bisa mempunyai karakter UTF8（name akun terdiri dari karakter，nomor atau baris bawah）";
+"__MESSAGE_ERROR_MESSAGE_PASSWORD_NULL__"                    ="Password tidak bisa kosong!";
+"__MESSAGE_ERROR_MESSAGE_PASSWORD_LENGTH_45__"               ="Password yang Anda masukan tidak bisa melebihi 45 karakter!";
+"__MESSAGE_ERROR_MESSAGE_PASSWORD_SPACILECHAR__"             ="Password tidak bisa mempunyai karakter istimewa（password terdiri dari karakter，nomor atau baris bawah）";
+"__MESSAGE_ERROR_MESSAGE_PASSWORD_UTF8ERROR__"               ="Password tidak bisa mempunyai karakter UTF8（password terdiri dari karakter，nomor atau baris bawah）";
+"__MESSAGE_ERROR_MESSAGE_EMAIL_NULL__"                       ="Email tidak bisa kosong!";
+"__MESSAGE_ERROR_MESSAGE_EMAIL_LENGTH_45__"                  ="Email yang Anda masukan tidak bisa melebihi 45 karakter!";
+"__MESSAGE_ERROR_MESSAGE_EMAIL_FORMAT__"                     ="Format email tidak betul！";
+"__MESSAGE_ERROR_MESSAGE_EMAIL_UTF8ERROR__"                  ="Email tidak bisa mempunyai karakter UTF8！";
+"__MESSAGE_TITLE_NETINTERFACE_LOGIN__"                       ="Login";
+"__MESSAGE_TITLE_NETINTERFACE_REGISTER__"                    ="Daftar";
+"__MESSAGE_TITLE_NETINTERFACE_RESETPASSWORD__"               ="mengubah password";
+"__MESSAGE_TITLE_NETINTERFACE_FINDPASSWORD__"                ="mencari kembali password";
+"__MESSAGE_TITLE_NETINTERFACE_FASTLOGIN__"                   ="login tanpa daftar";
+"__MESSAGE_TITLE_NETINTERFACE_FACEBOOKLOGIN__"               ="login facebook";
+"__MESSAGE_TITLE_NETINTERFACE_PHONEEVATAR__"                 ="login evatar";
+"__MESSAGE_TITLE_NETINTERFACE_REGISTERBIND__"                ="daftar tanpa ikat";
+"__MESSAGE_TITLE_NETINTERFACE_OTHERCLIENTLOGINEVATAR__"      ="klien evatar masuk";
+"__MESSAGE_ALERTVIEW_MESSAGE_BIND_INFO__"                    ="gamer yang terhormat，untuk menjaminkan keselamatan nama akun Anda,silakan ikatkan nama akun.";
+"__MESSAGE_ALERTVIEW_MESSAGE_BIND_LEFT_BTN_PLAYNOW__"        ="masuk game";
+"__MESSAGE_ALERTVIEW_MESSAGE_BIND_RIGHT_BTN_BINDACCOUNT__"   ="mengikat akun";
+"__MESSAGE_ALERTVIEW_MESSAGE_BINDEDACCOUNT__"                ="mesin Anda sudah mengikat akun yang tertentu，silakan memakai akun itu masuk game： %@";
+"__MESSAGE_TITLE_NETINTERFACE__"                             ="peringatan";
+"__MESSAGE_NET_ERROR__"                                      ="Internet sedang lambat！";
+"__MESSAGE_TWITTER_SHARE_CONTENTDUPLICATE"                   ="isi yang dibagikan itu mengulang，tolong coba lain hari atau bagikan isi yang lain!";
+"__MESSAGE_TWITTER_PLEASEWAITING__"                          ="tunggu";
+"__UI_TWITTER_TITLE_TWITTERLOGIN__"                          ="login twitter";
+"__UI_BTN_LABEL_CHECK_AWARDCONTENT__"                        ="isi hadiah";
+"__UI_BTN_LABEL_WEBVIEW_PREVIOUS__"                          ="mundur";
+"__UI_BTN_LABEL_WEBVIEW_NEXT__"                              ="maju";
+"__UI_BTN_LABEL_WEBVIEW_BACK__"                              ="kembali";
+"__UI_BTN_LABEL_WEBVIEW_RELOAD__"                            ="refresh";
+"__UI_INVITE_LABEL_AlreadyInviteNum__"                       ="jumlah orang yang sudah diajak";
+"__UI_BTN_INVITE__LABEL_SendInvite__"                        ="mengirim ajakan";
+"__EFUN_LOADING__"                                           ="sedang diproses…";
+"__UI_INVITE_LABEL_MAX_INVITE_NUM__"                         ="Jumlah pengundang sudah capai max， jumlah max pengundang adalah :%ld";
+"__UI_INVITE_LABEL_Reward__"                                 ="hadiah:%@";
+"__UI_INVITE_LABEL_PACKAGE_NAME__"                           ="paket %d";
+"__UI_RIGISTER_Alert_Account__"                              ="Anda bisa memakai karakter， nomor dan garis bawah. Kasus tidak insensitif.";
+"__UI_RIGISTER_Alert_Password__"                             ="Kami menyarankan kombinasi 6 karakter ke atas， kasus sensitif";
+"__UI_RIGISTER_Alert_Email__"                                ="Silakan serahkan email yang ada，yang bisa kembalikan password Anda.";
+"__UI_ACCOUNTBIND_FACEBOOK_INFO__"                           ="Akun facebook yang Anda masuk sekarang adalah: %@，apakah perlu mengikat akun itu?";
+"__UI_ACCOUNTBIND_FACEBOOK_COMFIRM__"                        ="memakai akun itu";
+"__UI_ACCOUNTBIND_FACEBOOK_CANCLE__"                         ="memakai akun lain";
+"__UI_ACCOUNTBIND_FACEBOOK_INFO_LOGOUT__"                    ="silakan login facebook akun yang Anda ikatkan lebih dulu";
+"__UI_INVITE_GET_GIFT_MESSAGE__"                             ="%@，syarat:%@，Anda sudah mengajak %d";
+
+//陌陌
+"_ASIA_USER_ACCOUNT_"                                            ="Akun";
+"_ASIA_PASSWORD_"                                                ="sandi";
+"_ASIA_LOGIN_"                                                   ="Login";
+"_ASIA_REGISTER_RIGHTNOW_"                                       ="";
+"_ASIA_FORGET_PASSWORD_"                                         ="";
+"_ASIA_THIRD_LOGIN_"                                             ="Lebih banyak akun";
+"_ASIA_PLAY_NOW_"                                                ="";
+"_ASIA_TWITTER_LOGIN"                                            ="Twitter";
+"_ASIA_BAHA_LOGIN_"                                              ="BaHa";
+
+"_ASIA_REGISTER_TITLE_"                                          ="Daftar akun";
+"_ASIA_REPEAT_PASSWORD_"                                         ="mengulang sandi";
+"_ASIA_EMAIL_AT_TEXTFIELD_"                                      ="Email(untuk membawa pulang sandi)";
+"_ASIA_I_HAVE_READED"                                            ="Ketentuan dan Peraturan Manajemen Anggota sudah Saya baca dan setujui";
+"_ASIA_REGULATION_"                                              ="Điều khoản hội viên và quy định quản lí";
+"_ASIA_REGISTER_"                                                ="Daftar akun";
+"_ASIA_READ_AND_AGREE"                                           ="Please read and agree to the [Terms of Service]";
+
+"_ASIA_FORGET_PASSWORD_TITLE_"                                   ="Lupa sandi";
+"_ASIA_FIND_PASSWORD_"                                           ="Membawa pulang sandi";
+"_ASIA_EMAIL_"                                                   ="E-mail";
+
+"_ASIA_ACCOUNT_MANAGEMENT_TITLE_"                                ="Mengelola akun";
+"_ASIA_RESET_PASSWORD_"                                          ="Ubah sandi";
+"_ASIA_BIND_ACCOUNT_"                                            ="Tak usah daftar akun dan terhubung aku lain";
+"_ASIA_FB_BIND_ACCOUNT_"                                         ="Terhubung akun Facebook";
+
+"_ASIA_ORIGINAL_PASSWORD_"                                       ="Password Asli";
+"_ASIA_NEW_PASSWORD_"                                            ="sandi baru";
+"_ASIA_CONFIRM_PASSWORD_"                                        ="Menegaskan sandi baru";
+"_ASIA_CONFIRM_RESET_"                                           ="Menegaskan perubahan";
+
+"_ASIA_BIND_ACCOUNT_TITLE_"                                      ="Terhubung akun ini";
+
+"_ASIA_CANCEL_"                                                  ="Batal";
+"_ASIA_CONFIRM_"                                                 ="Sudah menegaskan";
+"_ASIA_SYSTEM_NOTICE_"                                           ="system notice";

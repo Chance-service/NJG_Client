@@ -1,0 +1,6 @@
+framework module R2SDKFramework {
+  umbrella header "R2SDKFramework.h"
+
+  export *
+  module * { export * }
+}

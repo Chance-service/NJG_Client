@@ -1,0 +1,256 @@
+//交易历史记录界面
+"REG_SE_alert_content"="Здесь 20 данных заказа игроков, которые играли эту игру в этом устройстве.Если в этом уствойстве играли разные игроки, 20 данных у всех игроков являются по очереди. Если играудалена, эти данные невожможно найти. Если у игроков вопросы о покупке, нажмите \"Отклик\" изададите его. По каждому заказу можно задаться 2 раза.";
+"REG_SE_alert_content01"="Данные уже задали 2 раза. Не нужно задать ещё раз. Связывайтесь с службой поддержки";
+"REG_SE_alert_content02"="Информация транзакции можно задать только 2 раза. После передачи в сервер efun есть соответственная запись. Задать или нет? ";
+"REG_SE_alert_content03"="Отправите последние данные к серверу efun. Отправив, вы можете снова делать эту операцию через час. Сделайте скриншот и связывайтесь с службой поддержки. Отправить или нет?";
+"REG_SE_alert_content04"="Нет данных!";
+"REG_SE_alert_sure_btn_title"="Подтвердить";
+"REG_SE_alert_cancel_btn_title"="Отменить";
+"REG_SE_closs_btn_title"="Закрыть";
+"REG_SE_post_current_btn_title"="Передача текущих данных";
+
+"REG_SE_date_title"="Дата";
+"REG_SE_state_title"="Состояние";
+"REG_SE_orderId_title"="Номер заказа";
+"REG_SE_role_title"="Роль";
+"REG_SE_feedback_btn_title"="Отклик";
+"REG_SE_post_times_title"="Текущее число отклика";
+
+"REG_SE_state_finished"="Завершён";
+"REG_SE_state_payFail"="Не удалось оплатить";
+"REG_SE_state_efunServerCheckPayFail"="Не удалось проверить сервер efun";
+"REG_SE_state_userCancel"="Отмена покупки ";
+"REG_SE_state_inPaying"="Заплатит...";
+
+"REG_SE_post_log_fail"="Не удалось отправить данные покупки! Повторите попытку.";
+"REG_SE_post_log_success"="Журнал покупки отправлен！";
+"REG_SE_is_posting"="Отправление...";
+"REG_SE_post_time_sign_text"="Загрузка знака времени следующее. Сделайте скриншот и связывайтесь сслужбой поддержки: ";
+"REG_SE_post_current_too_mutch_text"="Журнал можно отправить только один раз в час. От следующегораза останется:  \n";
+
+//系统的提示
+/*服务器的访问结果异常提示*/
+textNoNet                     = "Соединение с сервером не установлено!";
+textServerReturnError         = "Сервер возвращает не пустой ощибки. Повторите попытку";
+textServerReturnNull          = "Сервер возвращает пустое значение. Повторите попытку";
+textParameterNull             = "Параметр получен пустым. Повторите попытку";
+/*按钮文字*/
+titleAlertSureBtnTitle        = "подтвердить";
+
+
+//关于购买的提示
+textIapParameterNil       = "Параметр покупки был ненормальными. Повторите попытку.";
+textIapNoNet              = "Соединение не установлено.  Обеспечите бесперебойную сеть при покупке.";
+textIapOneIsPaying        = "Сделка  обрабатывается.";
+textIapNoMakePayments     = "Не поддерживает оплатить через PaymentQueue. ";
+textIapServerInMaintain   = "Сервер  технического обслуживания，\n Покупайте позже. Спасибо за вашу поддержку.\nE_code：%@";
+textIapNoThisItem         = "Нет товара";
+textIapPostCheckNoNet     = "Номер заказа:%@ \n В связи с нестабильной сети, пока не можите получить золото. Мы советуем вам кликнуть “подтвердить”, чтрбы снова получить золото. Или попробуйте войти в игру и провериться.";
+textIapBuyError           = "Номер заказа: %@\nОщибка подтверждения! Сделайте скриншот и связывайтесь с службой поддержки.\n Скриншот является едиственным документом для докредитования.";
+textIapAppStorePayFail    = "Не удалось оплатить через AppStore.\nE_code:%@";
+textIapBuyFail            = "Оплатить не удалось:\nНомер заказа：%@\nСделайте скриншот и связывайтеся с службой поддержки.\n Скриншот является едиственным документ для докредитования.";
+textIapUserCancelToPay    = "Вы отменили оплату.";
+textIapHaveSendGameStone  = "Номер заказа：%@\n Товар был отправлен,  пожалуйста, проверьте.";
+textIapBuySuccess         = "Ваша оплата прошла успешно. Золото был отправлен. Номер заказа：%@\n Желаем вам веселой игры!";
+
+
+//关于facebook的提示
+/*facebook登录提示*/
+textFbInviteGetFbIDFail               = "Получить информацию о юзере facebook не удалось.";
+textLoginGetFBTokenFail               = "Из-за того, что не может получить token от facebook, войти не удалось. Проверьте  статус сети и  повторите попытку.";
+textLoginGetFBInfoFail                = "Из-за того, что не может получить информацию о юзере facebook, войти не удалось. Проверьте  статус сети и  повторите попытку.";
+/*facebook邀请好友*/
+textFbInviteActivityNotOpen           = "Событие о приглашении друзей в facebook ещё не откроет.";
+textFbInviteGetPublicRightFial        = "Не удалось получить право на  приглашении отправления. Повторьте попытку.";
+textFbInviteGetCanInvitedFriendsFail  = "Не удалось получить информацию о друзьях";
+textFbInviteUserCancelInvite          = "Вы отменили приглашение.";
+textFbInviteUserCloseInvite           = "Вы преврали приглашение.";
+/*facebook分享*/
+textFbShareGetPublicFail              = "Не удалось получить права, когда поделились.";
+textFbShareGetTokenFail               = "Не удалось получить token, когда поделились.";
+textFbShareFail                       = "Поделиться не удалось!";
+textFbShareSuccess                    = "Поделиться прошло успешно.";
+
+//关于VK的提示
+/*vk登录提示*/
+textVKInviteGetVKIDFail               = "Получить информацию о юзере ВКонтакте не удалось.";
+textLoginGetVKTokenFail               = "Из-за того, что не может получить token от ВКонтакте, войти не удалось. Проверьте  статус сети и  повторите попытку.";
+textLoginGetVKInfoFail                = "Из-за того, что не может получить информацию о юзере ВКонтакте, войти не удалось. Проверьте  статус сети и  повторите попытку.";
+/*vk邀请好友*/
+textVKInviteActivityNotOpen           = "Событие о приглашении друзей в ВКонтакте ещё не откроет.";
+textVKInviteGetPublicRightFial        = "Не удалось получить право на  приглашении отправления. Повторьте попытку.";
+textVKInviteGetCanInvitedFriendsFail  = "Не удалось получить информацию о друзьях";
+textVKInviteUserCancelInvite          = "Вы отменили приглашение.";
+textVKInviteUserCloseInvite           = "Вы преврали приглашение.";
+/*vk分享*/
+textVKShareGetPublicFail              = "Не удалось получить права, когда поделились.";
+textVKShareGetTokenFail               = "Не удалось получить token, когда поделились.";
+textVKShareFail                       = "поделиться не удалось";
+textVKShareSuccess                    = "поделиться прошло успешно.";
+
+//SEA
+_STR_FANS_PAGE_TITLE_                                     ="Страница фанатов";
+_STR_LOGIN_WITH_FACEBOOK_                                     ="Войти через Facebook";
+_STR_LOGIN_WITH_VK_                                     ="Войти через ВКонтакте";
+_STR_PLAY_NOW_                                                ="Войти как гость";
+_STR_REGISTER_TITLE_                                          ="зарегистрироваться";
+_STR_LOGIN_TITLE_                                             ="Вход в аккаунт";
+_STR_RESET_PASSWORD_TITLE_                                    ="Восстановить пароль";
+_STR_FORGET_PASSWORD_TITLE_                                   ="забыли пароли";
+_STR_BIND_ACCOUNT_TITLE_                                      ="привязать аккаунт";
+_STR_FOR_MORE_ACCOUNT_                                        ="Вход через другие методы";
+_STR_USER_ACCOUNT_                                            ="Логин";
+_STR_USER_REGISTER_ACCOUNT_                                            ="Логин";
+_STR_PASSWORD_                                                ="Пароль";
+_STR_OLD_PASSWORD_                                                ="Старый пароль";
+_STR_REGISTER_                                                ="зарегистрироваться";
+_STR_LOGIN_                                                   ="войти";
+_STR_RESET_PASSWORD_                                          ="изменить пароль";
+_STR_FORGET_PASSWORD_                                         ="забыли пароль";
+_STR_CONFIRM_PASSWORD_                                        ="Повторите";
+_STR_EMAIL_AT_TEXTFIELD_                                      ="Электронная почта";
+_STR_NEW_PASSWORD_                                            ="новый пароль";
+_STR_EMAIL_                                                   ="Электронная почта";
+_STR_BIND_ACCOUNT_                                            ="Привязать к аккаунту";
+_STR_FB_BIND_ACCOUNT_                                         ="Привязать Facebook";
+_STR_VK_BIND_ACCOUNT_                                         ="Привязать Вконтакте";
+_STR_BACK_                                                    ="вернуться";
+_STR_FIND_PASSWORD_                                           ="восстановить пароль";
+_STR_TAP_THE_SCREEN_TO_LOG_IN_                                ="Нажмите на экран и войдите";
+_STR_FB_INVITE_TOP_TITILE_                                    ="приглашение друзей";
+_STR_FB_INVITE_CHECK_REWARDS_TITLE_                           ="проверить  подарочные пакеты";
+_STR_FB_INVITE_NUMBER_OF_INVITATIONS_TITLE_                   ="Пригласил несколько"; //"количество приглашений пользователя в друзья";
+_STR_FB_INVITE_REWARDS_BTN_                                   ="проверить подарок";
+_STR_FB_INVITE_SEND_INVITATION_BTN_                           ="отправить приглашение";
+_STR_FB_INVITE_INFO_                                          ="Нажмите на кнопку FB, чтобы ввести в официальный форум.";
+_STR_VK_INVITE_INFO_                                          ="Нажмите на кнопку ВКонтакте, чтобы ввести в официальный форум.";
+_STR_REGISTER_INFO_                                           ="нет аккаунта ";
+
+_STR_FB_INVITE_SHARE_MORE_BTN_                                =" дальше поделиться";
+_STR_FB_INVITE_RANK_TITLE_                                    ="список друзей";
+_STR_FB_INVITE_RANK_PRESTIGE_                                 ="престиж";
+_STR_FB_INVITE_RANK_GIVE_                                     ="подарить";
+_STR_FB_INVITE_RANK_COMMENT_                                  ="обьяснить";
+_STR_FB_INVITE_RANK_CLAIM_                                    ="затребовать";
+_STR_FB_INVITE_LABEL_PACKAGE_NAME__                            = "Подарочные пакеты %d";
+_STR_FB_INVITE_LABEL_Reward__                                  = "Подарок:%@";
+
+EFUN_PAYING                                                   ="Сделка  обрабатывается, пожалуйста, пождайте.";
+EFUN_NoNet                                                    ="Соединение не установлено!";
+EFUN_NoMakePayments                                           ="Не можете оплатить через AppStore!";
+EFUN_OneIsBuying                                              ="Сделка  обрабатывается.";
+EFUN_NoThisGood                                               ="нет товара";
+EFUN_UserCancelToBuy                                          ="Вы отменили оплату.";
+EFUN_AppStorePayFail                                          ="Не удалось оплатить через AppStore";
+EFUN_BuySuccess                                               ="Ваша оплата прошла успешно. %@ был отправлен. Номер заказа：%@\n Номер транзакции:%@\nЖелаем вам веселой игры!";
+EFUN_BuyFail                                                  ="Оплатить не удалось:\n Номер заказа：%@\n Номер транзакции:%@\n Ощибка кода:%@\n Сделайте скриншот и связывайтеся с службой поддержки.";
+EFUN_HaveSendGameGold                                         ="Номер заказа：%@\n Номер транзакции:%@\n %@ Товар был отправлен,  пожалуйста, проверьте.";
+EFUN_PostNoNet                                                ="Номер заказа：%@\n Номер транзакции:%@\n  Отправить подтверждение к северу не удалось.";
+EFUN_BuyError                                                 ="Номер заказа：%@\n Номер транзакции:%@\n Ощибка подтверждения";
+EFUN_BuyServerInMaintain                                      ="В связи с серверными причинам технического обслуживания, поосите покупать через несколько времени.";
+__UI_LOGINVIEW_ACCOUNT_TEXTFEILD__                            ="аккаунт";
+__UI_LOGINVIEW_PASSWORD_TEXTFEILD__                           ="пароль";
+__UI_LOGINVIEW_CHANGEPASSWORD_BUTTON__                        ="сменить пароль";
+__UI_LOGINVIEW_MACBIND_BUTTON__                               ="привязать аккаунт без регистрации";
+__UI_LOGINVIEW_FORGOTPASSWORD_BUTTON__                        ="восстановить пароль";
+__UI_LOGINVIEW_LOGINWAYS_LABEL__                              ="войти через следующие аккаунты";
+__UI_CHANGEPASSWORD_OLDPASSWORD_TEXTFEILD__                   ="старый пароль";
+__UI_CHANGEPASSWORD_NEWPASSWORD_TEXTFIELD__                   ="новый пароль";
+__UI_CHANGEPASSWORD_NEWPASSWORD_CONFIRM_TEXTFIELD__           ="подтвердите новый пароль";
+__UI_FORGOTPASSWORD_EMAIL__                                   ="регистрация поточвого ящика";
+__UI_ACCOUNTBIND_PASSWORD_CONFIRM__                           ="повторить пароль";
+__UI_ACCOUNTBIND_EMAIL__                                      ="Электронная почта(использовать для получения пароли)";
+__MESSAGE_ALERTVIEW_TITLE_ERROR__                             ="ощибка";
+__MESSAGE_ALERTVIEW_MESSAGE_PASSWORD_DIFFERENCE__             ="Пароли не совпадают. Введите снова, пожалуйста.";
+__MESSAGE_WAITTING_LOGIN_STRING__                             ="Обработка запроса";
+__MESSAGE_WAITTING_LOGIN_EVATAR_STRING__                      ="Войдёт Evatar";
+__MESSAGE_WAITTING_ACCOUNTBIND_STRING__                       ="Зарегистрируется...";
+__MESSAGE_WAITTING_FACEBOOKBIND_STRING__                      ="Обработка запроса";
+__MESSAGE_WAITTING_CHANGEPASSWORD_STRING__                    ="Обработка запроса";
+__MESSAGE_WAITTING_FORGOTPASSWORD_STRING__                    ="Обработка запроса";
+__MESSAGE_WAITTING_BIND_STRING__                              ="Обработка запроса";
+__MESSAGE_ERROR_MESSAGE_ACCOUNT_LENGTH_45__                   ="логин не должен длине чем 45 символов.";
+__MESSAGE_ERROR_MESSAGE_ACCOUNT_NULL__                        ="Укажите ваш логин";
+__MESSAGE_ERROR_MESSAGE_ACCOUNT_SPACILECHAR__                 ="Логин не должен содержать специальные символы(логин состоит из буквы цифры и подчеркивания букв)";
+__MESSAGE_ERROR_MESSAGE_ACCOUNT_UTF8ERROR__                   ="Логин не должен содержать китайские символы(логин состоит из буквы цифры и подчеркивания букв)";
+__MESSAGE_ERROR_MESSAGE_PASSWORD_NULL__                       ="Укажите ваш пароль";
+__MESSAGE_ERROR_MESSAGE_PASSWORD_LENGTH_45__                  ="Пароль не должен длине чем 45 символов.";
+__MESSAGE_ERROR_MESSAGE_PASSWORD_SPACILECHAR__                ="Пароль  не должен содержать специальные символы(пароль состоит из буквы цифры и подчеркивания букв)";
+__MESSAGE_ERROR_MESSAGE_PASSWORD_UTF8ERROR__                  ="Пароль не должен содержать китайские символы(пароль  состоит из буквы цифры и подчеркивания букв)";
+__MESSAGE_ERROR_MESSAGE_EMAIL_NULL__                          ="Укажите ваш почтовый ящик";
+__MESSAGE_ERROR_MESSAGE_EMAIL_LENGTH_45__                     ="Почтовый ящик не должен длине чем 45 символов.";
+__MESSAGE_ERROR_MESSAGE_EMAIL_FORMAT__                        ="форма электронной почты неправильная";
+__MESSAGE_ERROR_MESSAGE_EMAIL_UTF8ERROR__                     ="Почтовый ящик не должен содержать китайские символы";
+__MESSAGE_TITLE_NETINTERFACE_LOGIN__                          ="вход";
+__MESSAGE_TITLE_NETINTERFACE_REGISTER__                       ="зарегистрироваться";
+__MESSAGE_TITLE_NETINTERFACE_RESETPASSWORD__                  ="сменить пароль";
+__MESSAGE_TITLE_NETINTERFACE_FINDPASSWORD__                   ="восстановить пароль";
+__MESSAGE_TITLE_NETINTERFACE_FASTLOGIN__                      ="войти как гость";
+__MESSAGE_TITLE_NETINTERFACE_FACEBOOKLOGIN__                  ="войти через Facebook";
+__MESSAGE_TITLE_NETINTERFACE_PHONEEVATAR__                    ="войти через Evatar";
+__MESSAGE_TITLE_NETINTERFACE_REGISTERBIND__                   ="привязать аккаунт без регистрации";
+__MESSAGE_TITLE_NETINTERFACE_OTHERCLIENTLOGINEVATAR__         ="войти через Evatar";
+__MESSAGE_ALERTVIEW_MESSAGE_BIND_INFO__                       ="Уважаемый игрок, для обеспечения безопасности аккаунта , привязайтесь как можно быстрее.";
+__MESSAGE_ALERTVIEW_MESSAGE_BIND_LEFT_BTN_PLAYNOW__           ="зайти в игру";
+__MESSAGE_ALERTVIEW_MESSAGE_BIND_RIGHT_BTN_BINDACCOUNT__      ="привязать аккаунт";
+__MESSAGE_ALERTVIEW_MESSAGE_BINDEDACCOUNT__                   ="В вашем устройстве соотвествующую привязку аккаунта. Просите войти в игру, изпользованный   привязкой аккаунта: %@";
+__MESSAGE_TITLE_NETINTERFACE__                                ="подсказка";
+__MESSAGE_NET_ERROR__                                         ="Соединение не установлено";
+__MESSAGE_TWITTER_SHARE_CONTENTDUPLICATE                      ="Опять  поделились.  Попробуйте завтра или сменяйте контент.";
+__MESSAGE_TWITTER_PLEASEWAITING__                             ="Пождайте, пожалуйста.";
+__UI_TWITTER_TITLE_TWITTERLOGIN__                             ="войти через Twitter";
+__UI_BTN_LABEL_CHECK_AWARDCONTENT__                           ="контент подарки";
+__UI_BTN_LABEL_WEBVIEW_PREVIOUS__                             ="Назад";
+__UI_BTN_LABEL_WEBVIEW_NEXT__                                 ="Далее";
+__UI_BTN_LABEL_WEBVIEW_BACK__                                 ="вернуться";
+__UI_BTN_LABEL_WEBVIEW_RELOAD__                               ="обновить";
+__UI_INVITE_LABEL_AlreadyInviteNum__                          ="количество приглашений пользователя:";
+__UI_BTN_INVITE__LABEL_SendInvite__                           ="отправить приглашение";
+__EFUN_LOADING__                                              ="Обработка запроса";
+__UI_INVITE_LABEL_MAX_INVITE_NUM__                            ="Вы уже достигнет наибольшего  количества приглашений пользователя. Наибольшее  количество:%ld";
+__UI_INVITE_LABEL_Reward__                                    ="Подарок:%@";
+__UI_INVITE_LABEL_PACKAGE_NAME__                              ="Подарочные пакеты %d";
+__UI_ACCOUNTBIND_FACEBOOK_INFO__                              ="Ваш входящий аккаунт на facebook : %@ Призавяться или нет?";
+__UI_ACCOUNTBIND_FACEBOOK_COMFIRM__                           ="использовать этот аккаунт";
+__UI_ACCOUNTBIND_FACEBOOK_CANCLE__                            ="использовать другие аккаунты";
+__UI_ACCOUNTBIND_FACEBOOK_INFO_LOGOUT__                       ="Просите войти в аккаунт facebook прежде всего, который хотите привязать.";
+__UI_INVITE_GET_GIFT_MESSAGE__                                ="%@，условие:%@，Вы уже пригласили  %d";
+
+//陌陌
+_ASIA_USER_ACCOUNT_                                            ="аккаунт";
+_ASIA_PASSWORD_                                                ="пароль";
+_ASIA_LOGIN_                                                   ="войти";
+_ASIA_REGISTER_RIGHTNOW_                                       ="Зарегистрироваться";
+_ASIA_FORGET_PASSWORD_                                         ="забыли пароль";
+_ASIA_THIRD_LOGIN_                                             ="войти через другие методы";
+_ASIA_PLAY_NOW_                                                ="войти как гость";
+_ASIA_TWITTER_LOGIN                                            ="Twitter";
+_ASIA_BAHA_LOGIN_                                              ="BaHa";
+
+_ASIA_REGISTER_TITLE_                                          ="Зарегистрироваться";
+_ASIA_REPEAT_PASSWORD_                                         ="повторить пароль";
+_ASIA_EMAIL_AT_TEXTFIELD_                                      ="Электронная почта(использовать для получения пароли)";
+_ASIA_I_HAVE_READED                                            ="Я прочел и согласен с условиями членов и положениями об управлении.";
+_ASIA_REGULATION_                                              ="условие членов и положение об управлении";
+_ASIA_REGISTER_                                                ="Зарегистрироваться";
+_ASIA_READ_AND_AGREE                                           ="Просите прочитать и  принимать условия Пользовательского соглашения";
+
+_ASIA_FORGET_PASSWORD_TITLE_                                   ="забыли пароль";
+_ASIA_FIND_PASSWORD_                                           ="восстановить пароль";
+_ASIA_EMAIL_                                                   ="электронная почта";
+
+_ASIA_ACCOUNT_MANAGEMENT_TITLE_                                ="уплавление аккаунта";
+_ASIA_RESET_PASSWORD_                                          ="сменить пароль";
+_ASIA_BIND_ACCOUNT_                                            ="привязать аккаунт без регистрации";
+_ASIA_FB_BIND_ACCOUNT_                                         ="привязать Facebook аккаунт";
+
+_ASIA_ORIGINAL_PASSWORD_                                       ="старый пароль";
+_ASIA_NEW_PASSWORD_                                            ="новый пароль";
+_ASIA_CONFIRM_PASSWORD_                                        ="подтвердить новый пароль";
+_ASIA_CONFIRM_RESET_                                           ="подтвердить сменить";
+
+_ASIA_BIND_ACCOUNT_TITLE_                                      ="привязать аккаунт";
+
+_ASIA_CANCEL_                                                  ="отменить";
+_ASIA_CONFIRM_                                                 ="подтвердить";
+_ASIA_SYSTEM_NOTICE_                                           ="сообщение   системы";

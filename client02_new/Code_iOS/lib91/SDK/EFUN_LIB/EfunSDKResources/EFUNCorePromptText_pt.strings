@@ -1,0 +1,248 @@
+/* 
+  EFUNCorePromptText_en.strings
+  EFUN_FUNCTION_PROJECT_AddUserInterface
+
+  Created by Mac mini on 14-9-24.
+  Copyright (c) 2014年 zhangguangyang. All rights reserved.
+*/
+
+//交易历史记录界面
+"REG_SE_alert_content"="Os últimos 20 registos de compra deste aparelho serão mostrados aqui. Se jogadores diferentes jogarem e recarregarem neste aparelho, o sistema marcará 20 registros com ordem de horário. Registro será delectado após instalar o jogo. Jogador poderá clicar no botão de \"Feedback\" para entregar as dúvidas e feedback para Efun. Mas só pode enviar 2 vezes por recarga.";
+"REG_SE_alert_content01"="Enregou 2 vezes já, não precisa entregar novamente, contate com GM!";
+"REG_SE_alert_content02"="Feedback de cada pagamento só pode ser entregado 2 vezes, e será registado no servidor de Efun. Não é preciso de repetir o Feedback, confirmar a enviar?";
+"REG_SE_alert_content03"="Depois de enviar o último registro de compra para servidor de Efun com sucesso, tem que esperar 1 hora para enviar novamente. Registro de horário aparecerá na tela, lembre-se de fazer captura e enviar para GM. Comfirmar a enviar?";
+"REG_SE_alert_content04"="Não há registro!";
+"REG_SE_alert_sure_btn_title"="Confirmar";
+"REG_SE_alert_cancel_btn_title"="Cancelar";
+"REG_SE_closs_btn_title"="Fechar";
+"REG_SE_post_current_btn_title"="Enviar este feedback do registo";
+
+"REG_SE_date_title"="Data";
+"REG_SE_state_title"="Estado";
+"REG_SE_orderId_title"="Número.Pedido";
+"REG_SE_role_title"="Personagem";
+"REG_SE_feedback_btn_title"="Feedback";
+"REG_SE_post_times_title"="Vezes.Feedback";
+
+"REG_SE_state_finished"="Pagar com sucesso";
+"REG_SE_state_payFail"="Falha a pagar";
+"REG_SE_state_efunServerCheckPayFail"="Verificação Expirada de Servidor Efun";
+"REG_SE_state_userCancel"="Compra cancelada por cliente";
+"REG_SE_state_inPaying"="Carregando";
+
+"REG_SE_post_log_fail"="Falha a enviar registro de compra! Tente novamente!";
+"REG_SE_post_log_success"="Enviar registro de compra com sucesso!";
+"REG_SE_is_posting"="Enviando...";
+"REG_SE_post_time_sign_text"="O seguinte é horário de carregar, faça o print e envie para funcionário de serviço:";
+"REG_SE_post_current_too_mutch_text"="Só pode enviar 1 vez por hora. Tempo restante a próximo enviamento:\n";
+
+
+"textNoNet"                     = "Internet lenta!";
+"textServerReturnError"         = "Anormal de nulo! Tente de novo!";
+"textServerReturnNull"          = "Servidor volta a nulo! Tente de novo!";
+"textParameterNull"             = "Incapaz de tratar. Tente de novo!";
+/*按钮文字*/
+"titleAlertSureBtnTitle"        = "Confirmar";
+
+
+//关于购买的提示
+"textIapParameterNil"       = "Erro de compra, tente de novo.";
+"textIapNoNet"              = "Internet lenta, garanta conexão de rede estável.";
+"textIapOneIsPaying"        = "Compra em processo";
+"textIapNoMakePayments"     = "PaymentQueue não apoia pagamento de compra!";
+"textIapServerInMaintain"   = "Servidor em manutenção!\nCompre mais tarde, obrigado pelo seu apoio.\nE_code：%@";
+"textIapNoThisItem"         = "Item não existe!";
+"textIapPostCheckNoNet"     = "Número de Pedido:%@ \nRede instável, não pode recolher Pedra.Runa. Clique no \"Confirmar\" para recolher de novo com conexão de rede estável, ou login de novo.";
+"textIapBuyError"           = "Número de Pedido:%@\nerror de verificação! Faça uma captura e contate com GM.\nA captura de tela será a única prova de compra!";
+"textIapAppStorePayFail"    = "Falha ao pagar por AppStore!\nE_code:%@";
+"textIapBuyFail"            = "Falha ao comprar:\n Número de Pedido：%@\nFaça uma captura e contate com GM.\nA captura de tela será a única prova de compra!";
+"textIapUserCancelToPay"    = "Cancelou a compra!";
+"textIapHaveSendGameStone"  = "Número de pedido: %@\nItem já foi mandado, lembre-se de recolher!";
+"textIapBuySuccess"         = "Compra bem sucedida, moedas de jogo foram enviadas:\nNúmero de pedido: %@\nBom jogo para você!";
+
+
+//关于facebook的提示
+/*facebook登录提示*/
+"textFbInviteGetFbIDFail"               = "Falha ao obter info de Facebook!";
+"textLoginGetFBTokenFail"               = "Falha ao obter token de Facebook, falha de login!\nVerifique a rede e login de novo!";
+"textLoginGetFBInfoFail"                = "Falha ao obter token de Facebook, falha de login!\nVerifique a rede e login de novo!";
+/*facebook邀请好友*/
+"textFbInviteActivityNotOpen"           = "Evento de convite de Facebook não aberto!";
+"textFbInviteGetPublicRightFial"        = "Falha ao obter permissão de convite! Tente de novo!";
+"textFbInviteGetCanInvitedFriendsFail"  = "Falha ao obter info de amigo convidado.";
+"textFbInviteUserCancelInvite"          = "Cancelou o convite!";
+"textFbInviteUserCloseInvite"           = "Interrompeu o convite!";
+/*facebook分享*/
+"textFbShareGetPublicFail"              = "Quando tava compartilhando, falha ao obter privilégio!";
+"textFbShareGetTokenFail"               = "Quando tava compartilhando, falha ao obter token!";
+"textFbShareFail"                       = "Falha ao compartilhar!";
+"textFbShareSuccess"                    = "Compartilhou com sucesso!";
+
+//SEA
+"_STR_FANS_PAGE_TITLE_"                                              ="Fans Page";
+"_STR_LOGIN_WITH_FACEBOOK_"                                     ="Login in pelo conta de Facebook";
+"_STR_PLAY_NOW_"                                                ="Começar jogo";
+"_STR_REGISTER_TITLE_"                                          ="Registrar";
+"_STR_LOGIN_TITLE_"                                             ="Login in pelo conta";
+"_STR_RESET_PASSWORD_TITLE_"                                    ="Redefinir senha";
+"_STR_FORGET_PASSWORD_TITLE_"                                   ="Esqueceu a senha";
+"_STR_BIND_ACCOUNT_TITLE_"                                      ="Vincular conta";
+"_STR_FOR_MORE_ACCOUNT_"                                        ="Mais forma de Login";
+"_STR_USER_ACCOUNT_"                                            ="Nome do usuário";
+"_STR_USER_REGISTER_ACCOUNT_"                                            ="Criar Nome de Usuário";
+"_STR_PASSWORD_"                                                ="Senha";
+"_STR_REGISTER_"                                                ="Registrar";
+"_STR_LOGIN_"                                                   ="Login in";
+"_STR_RESET_PASSWORD_"                                          ="Redefinir senha";
+"_STR_FORGET_PASSWORD_"                                         ="Esqueceu a senha";
+"_STR_CONFIRM_PASSWORD_"                                        ="Confirmou a senha";
+"_STR_EMAIL_AT_TEXTFIELD_"                                      ="Email(para recuperar senha)";
+"_STR_NEW_PASSWORD_"                                            ="Senha nova";
+"_STR_EMAIL_"                                                   ="Email";
+"_STR_BIND_ACCOUNT_"                                            ="Vincular conta";
+"_STR_FB_BIND_ACCOUNT_"                                         ="Vincular conta de Facebook";
+"_STR_BACK_"                                                    ="Voltar";
+"_STR_FIND_PASSWORD_"                                           ="Recuperar senha";
+"_STR_TAP_THE_SCREEN_TO_LOG_IN_"                                ="Clique na tela para entrar";
+"_STR_FB_INVITE_TOP_TITILE_"                                    ="Convite dos amigos";
+"_STR_FB_INVITE_CHECK_REWARDS_TITLE_"                           ="Ver os pacotes";
+"_STR_FB_INVITE_NUMBER_OF_INVITATIONS_TITLE_"                   ="Quantidade convidada";
+"_STR_FB_INVITE_REWARDS_BTN_"                                   ="Ver as recompensas";
+"_STR_FB_INVITE_SEND_INVITATION_BTN_"                           ="Enviar convite";
+"_STR_FB_INVITE_INFO_"                                          ="Clique no icon de Facebook para Fórum Oficial";
+"_STR_REGISTER_INFO_"                                           ="Sem conta?";
+
+"_STR_FB_INVITE_SHARE_MORE_BTN_"                                ="更多分享";
+"_STR_FB_INVITE_RANK_TITLE_"                                    ="好友排行榜";
+"_STR_FB_INVITE_RANK_PRESTIGE_"                                 ="威望";
+"_STR_FB_INVITE_RANK_GIVE_"                                     ="贈送";
+"_STR_FB_INVITE_RANK_COMMENT_"                                  ="說明";
+"_STR_FB_INVITE_RANK_CLAIM_"                                    ="索取";
+"_STR_FB_INVITE_LABEL_PACKAGE_NAME__"                            = "礼包 %d";
+"_STR_FB_INVITE_LABEL_Reward__"                                  = "奖励:%@";
+
+"EFUN_PAYING"                                                   ="Transação em andamento, aguarde, por favor";
+"EFUN_NoNet"                                                    ="Erro de rede, verifique sua rede, por favor!";
+"EFUN_NoMakePayments"                                           ="AppStore sem jeito para pagar";
+"EFUN_OneIsBuying"                                              ="Tinha uma transação em andamento!";
+"EFUN_NoThisGood"                                               ="O item não existe!";
+"EFUN_UserCancelToBuy"                                          ="Cancelou a compra!";
+"EFUN_AppStorePayFail"                                          ="AppStore falha ao pagar!";
+"EFUN_BuySuccess"                                               ="Compra com sucesso, %@ foi mandado, \nNúmero dos ordens de negociação：%@\n Número de transação de Efun:%@\nDesejo-lhe bom jogo!";
+"EFUN_BuyFail"                                                  ="Falha ao comprar,:\nNúmero da encomeda%@\n Número de transação de Efun:%@\n ErroCódigo:%@\n Depois captura a tela, contate com atendimento ao cliente.";
+"EFUN_HaveSendGameGold"                                         ="Número dos ordens de negociação：%@\n Número de transação de Efun:%@\n %@ já foi mandado, note receber!";
+"EFUN_PostNoNet"                                                ="Número dos ordens de negociação：%@\n Número de transação de Efun:%@\n Falha ao enviar verificação para servidor!";
+"EFUN_BuyError"                                                 ="Número dos ordens de negociação：%@\n Número de transação de Efun:%@\n erro de verificação";
+"EFUN_BuyServerInMaintain"                                      ="O servidor está mantendo!";
+"__UI_LOGINVIEW_ACCOUNT_TEXTFEILD__"                            ="Conta";
+"__UI_LOGINVIEW_PASSWORD_TEXTFEILD__"                           ="Senha";
+"__UI_LOGINVIEW_CHANGEPASSWORD_BUTTON__"                        ="Mudar senha";
+"__UI_LOGINVIEW_MACBIND_BUTTON__"                               ="Vincular com livre registrado";
+"__UI_LOGINVIEW_FORGOTPASSWORD_BUTTON__"                        ="Recuperar senha";
+"__UI_LOGINVIEW_LOGINWAYS_LABEL__"                              ="Use conta abaixa parar Login";
+"__UI_CHANGEPASSWORD_OLDPASSWORD_TEXTFEILD__"                   ="Senha original";
+"__UI_CHANGEPASSWORD_NEWPASSWORD_TEXTFIELD__"                   ="Senha nova";
+"__UI_CHANGEPASSWORD_NEWPASSWORD_CONFIRM_TEXTFIELD__"           ="Confirmar senha nova";
+"__UI_FORGOTPASSWORD_EMAIL__"                                   ="Registrar Email";
+"__UI_ACCOUNTBIND_PASSWORD_CONFIRM__"                           ="Repetir senha";
+"__UI_ACCOUNTBIND_EMAIL__"                                      ="Email(para recuperar senha)";
+"__MESSAGE_ALERTVIEW_TITLE_ERROR__"                             ="Erro";
+"__MESSAGE_ALERTVIEW_MESSAGE_PASSWORD_DIFFERENCE__"             ="Duas senhas não coincidem, tente novamente.";
+"__MESSAGE_WAITTING_LOGIN_STRING__"                             ="Processando...";
+"__MESSAGE_WAITTING_LOGIN_EVATAR_STRING__"                      ="Jogador de Taiwan está Login in";
+"__MESSAGE_WAITTING_ACCOUNTBIND_STRING__"                       ="Registrando...";
+"__MESSAGE_WAITTING_FACEBOOKBIND_STRING__"                      ="Processando...";
+"__MESSAGE_WAITTING_CHANGEPASSWORD_STRING__"                    ="Processando...";
+"__MESSAGE_WAITTING_FORGOTPASSWORD_STRING__"                    ="Processando...";
+"__MESSAGE_WAITTING_BIND_STRING__"                              ="Processando...";
+"__MESSAGE_ERROR_MESSAGE_ACCOUNT_LENGTH_45__"                   ="O comprimento de nome do ususário de entrada não pode exceder 45 caracteres!";
+"__MESSAGE_ERROR_MESSAGE_ACCOUNT_NULL__"                        ="Conta não está vazio!";
+"__MESSAGE_ERROR_MESSAGE_ACCOUNT_SPACILECHAR__"                 ="A conta de entrada não pode conter caracteres especiais! (Contas consistem em letras, números ou sublinhados)";
+"__MESSAGE_ERROR_MESSAGE_ACCOUNT_UTF8ERROR__"                   ="A conta de entrada não pode conter caracteres chinês! (Contas consistem em letras, números ou sublinhados)";
+"__MESSAGE_ERROR_MESSAGE_PASSWORD_NULL__"                       ="Senha não está vazio!";
+"__MESSAGE_ERROR_MESSAGE_PASSWORD_LENGTH_45__"                  ="O comprimento de senha de entrada não pode exceder 45 caracteres!";
+"__MESSAGE_ERROR_MESSAGE_PASSWORD_SPACILECHAR__"                ="A senha de entrada não pode conter caracteres especiais! (senha consistem em letras, números ou sublinhados)";
+"__MESSAGE_ERROR_MESSAGE_PASSWORD_UTF8ERROR__"                  ="A senha de entrada não pode conter caracteres chinês! (senha consistem em letras, números ou sublinhados)";
+"__MESSAGE_ERROR_MESSAGE_EMAIL_NULL__"                          ="Email não está vazio!";
+"__MESSAGE_ERROR_MESSAGE_EMAIL_LENGTH_45__"                     ="O comprimento de Email de entrada não pode exceder 45 caracteres!";
+"__MESSAGE_ERROR_MESSAGE_EMAIL_FORMAT__"                        ="O forma de Email está erro";
+"__MESSAGE_ERROR_MESSAGE_EMAIL_UTF8ERROR__"                     ="Email não pode conter caracteres chinês!";
+"__MESSAGE_TITLE_NETINTERFACE_LOGIN__"                          ="Login in";
+"__MESSAGE_TITLE_NETINTERFACE_REGISTER__"                       ="Registrar";
+"__MESSAGE_TITLE_NETINTERFACE_RESETPASSWORD__"                  ="Mudar senha";
+"__MESSAGE_TITLE_NETINTERFACE_FINDPASSWORD__"                   ="Recuperar senha";
+"__MESSAGE_TITLE_NETINTERFACE_FASTLOGIN__"                      ="Login in com livre registra";
+"__MESSAGE_TITLE_NETINTERFACE_FACEBOOKLOGIN__"                  ="Login in pelo Facebook";
+"__MESSAGE_TITLE_NETINTERFACE_PHONEEVATAR__"                    ="Evatar Login in";
+"__MESSAGE_TITLE_NETINTERFACE_REGISTERBIND__"                   ="Vincular com livre registrado";
+"__MESSAGE_TITLE_NETINTERFACE_OTHERCLIENTLOGINEVATAR__"         ="Cliente Evater Login";
+"__MESSAGE_ALERTVIEW_MESSAGE_BIND_INFO__"                       ="Caros jogadores, Vincule sua conta é possível rápido para garantir sua segurança conta";
+"__MESSAGE_ALERTVIEW_MESSAGE_BIND_LEFT_BTN_PLAYNOW__"           ="Entrar jogo";
+"__MESSAGE_ALERTVIEW_MESSAGE_BIND_RIGHT_BTN_BINDACCOUNT__"      ="Vincular conta";
+"__MESSAGE_ALERTVIEW_MESSAGE_BINDEDACCOUNT__"                   ="Seu aparelho tinha conta vinculada correspondente,use conta vinculada para entrar jogo: %@";
+"__MESSAGE_TITLE_NETINTERFACE__"                                ="Dica";
+"__MESSAGE_NET_ERROR__"                                         ="A rede está lento";
+"__MESSAGE_TWITTER_SHARE_CONTENTDUPLICATE"                      ="Conteúdo compartilhado foi repetido, Retente no seguinte dia ou mude conteúdo compartilhado";
+"__MESSAGE_TWITTER_PLEASEWAITING__"                             ="Aguarde";
+"__UI_TWITTER_TITLE_TWITTERLOGIN__"                             ="Login in pelo Twitter";
+"__UI_BTN_LABEL_CHECK_AWARDCONTENT__"                           ="Conteúdo da recompensas";
+"__UI_BTN_LABEL_WEBVIEW_PREVIOUS__"                             ="Retirar ";
+"__UI_BTN_LABEL_WEBVIEW_NEXT__"                                 ="Avançar";
+"__UI_BTN_LABEL_WEBVIEW_BACK__"                                 ="Voltar";
+"__UI_BTN_LABEL_WEBVIEW_RELOAD__"                               ="Atualizar";
+"__UI_INVITE_LABEL_AlreadyInviteNum__"                          ="Quantidade convidada:";
+"__UI_BTN_INVITE__LABEL_SendInvite__"                           ="Enviar convite";
+"__EFUN_LOADING__"                                              ="Processing";
+"__UI_INVITE_LABEL_MAX_INVITE_NUM__"                            ="Hoje, convite acima foi chegado, quantidade máximo é:%ld";
+"__UI_INVITE_LABEL_Reward__"                                    ="Recompensas:%@";
+"__UI_INVITE_LABEL_PACKAGE_NAME__"                              ="Pacote %d";
+"__UI_RIGISTER_Alert_Account__"                                 ="Você pode usar letras, números e sublinhado. Caso insensível.";
+"__UI_RIGISTER_Alert_Password__"                                ="Recomendamos combinação de 6 caracteres ou acima. caso sensível";
+"__UI_RIGISTER_Alert_Email__"                                   ="Por favor, forneça um e-mail válido, será usado para recuperar sua senha";
+"__UI_ACCOUNTBIND_FACEBOOK_INFO__"                              ="Atual Login in conta de Facebook: %@，queria vincular esta conta ou não?";
+"__UI_ACCOUNTBIND_FACEBOOK_COMFIRM__"                           ="Ues esta conta";
+"__UI_ACCOUNTBIND_FACEBOOK_CANCLE__"                            ="Use outras contas";
+"__UI_ACCOUNTBIND_FACEBOOK_INFO_LOGOUT__"                       ="Primeiro Login in conta de Facebook que quer vinculada";
+"__UI_INVITE_GET_GIFT_MESSAGE__"                                ="%@，condições: %@，convidou %d";
+//美洲协议
+"__MESSAGE_ERROR_MESSAGE_Clause_READ_ClAUSE__"                  ="Primeiro leia e concorde o <Termos de uso> por favor.";
+
+//陌陌
+"_ASIA_USER_ACCOUNT_"                                            ="Account                              ";
+"_ASIA_PASSWORD_"                                                ="Password                             ";
+"_ASIA_LOGIN_"                                                   ="Login                                ";
+"_ASIA_REGISTER_RIGHTNOW_"                                       ="No account? Regist now!              ";
+"_ASIA_FORGET_PASSWORD_"                                         ="Forget password? Click to retrieve   ";
+"_ASIA_THIRD_LOGIN_"                                             ="For More Accounts                    ";
+"_ASIA_PLAY_NOW_"                                                ="Free Registration                    ";
+"_ASIA_TWITTER_LOGIN"                                            ="Twitter";
+"_ASIA_BAHA_LOGIN_"                                              ="BaHa";
+
+"_ASIA_REGISTER_TITLE_"                                          ="Register                             ";
+"_ASIA_REPEAT_PASSWORD_"                                         ="Repeat Password                      ";
+"_ASIA_EMAIL_AT_TEXTFIELD_"                                      ="Email(To retrieve password)          ";
+"_ASIA_I_HAVE_READED"                                            ="I've read and agreed the regulation  ";
+"_ASIA_REGULATION_"                                              ="Member Item and Management Regulation";
+"_ASIA_REGISTER_"                                                ="Register                             ";
+"_ASIA_READ_AND_AGREE"                                           ="Please read and agree to the [Terms of Service]";
+
+"_ASIA_FORGET_PASSWORD_TITLE_"                                   ="Forget Password                      ";
+"_ASIA_FIND_PASSWORD_"                                           ="Retrieve Password                    ";
+"_ASIA_EMAIL_"                                                   ="Email";
+
+"_ASIA_ACCOUNT_MANAGEMENT_TITLE_"                                ="Account Management                   ";
+"_ASIA_RESET_PASSWORD_"                                          ="Reset Password                       ";
+"_ASIA_BIND_ACCOUNT_"                                            ="Reg-free binding                     ";
+"_ASIA_FB_BIND_ACCOUNT_"                                         ="Facebook Account Binding             ";
+
+"_ASIA_ORIGINAL_PASSWORD_"                                       ="Original Password                    ";
+"_ASIA_NEW_PASSWORD_"                                            ="New Password                         ";
+"_ASIA_CONFIRM_PASSWORD_"                                        ="Confirm Password                     ";
+"_ASIA_CONFIRM_RESET_"                                           ="Modification Confirmed               ";
+
+"_ASIA_BIND_ACCOUNT_TITLE_"                                      ="Bind Account                         ";
+
+"_ASIA_CANCEL_"                                                  ="Cancel                               ";
+"_ASIA_CONFIRM_"                                                 ="Confirm                              ";
+"_ASIA_SYSTEM_NOTICE_"                                           ="system notice";
+

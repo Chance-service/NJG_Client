@@ -1,0 +1,6 @@
+framework module R2SDKLoginKit {
+  umbrella header "R2SDKLoginKit.h"
+
+  export *
+  module * { export * }
+}

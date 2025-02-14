@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>C2A762FC-12AE-45AF-AFEF-D98444FE6C6A</string>
+	<key>IDESourceControlProjectName</key>
+	<string>libOS</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>ed08c6ee-8ad9-dd4a-94a1-7ac060b335e7++9479</key>
+		<string>https://10.0.4.200/svn/develop/Android_IOS_WP_SDK/IOS/Aggregation_SDK/Code_iOS</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>libOS/libOS/libOS.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>ed08c6ee-8ad9-dd4a-94a1-7ac060b335e7++9479</key>
+		<string>../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectRepositoryRootDictionary</key>
+	<dict>
+		<key>ed08c6ee-8ad9-dd4a-94a1-7ac060b335e7++9479</key>
+		<string>https://10.0.4.200/svn/develop</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://10.0.4.200/svn/develop/Android_IOS_WP_SDK/IOS/Aggregation_SDK/Code_iOS/libOS/libOS/libOS.xcodeproj</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>ed08c6ee-8ad9-dd4a-94a1-7ac060b335e7++9479</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.subversion</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>ed08c6ee-8ad9-dd4a-94a1-7ac060b335e7++9479</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Code_iOS</string>
+		</dict>
+	</array>
+</dict>
+</plist>

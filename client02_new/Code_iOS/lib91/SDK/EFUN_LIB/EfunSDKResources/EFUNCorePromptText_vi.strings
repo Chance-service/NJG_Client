@@ -1,0 +1,227 @@
+/* 
+  EFUNCorePromptText_en.strings
+  EFUN_FUNCTION_PROJECT_AddUserInterface
+
+  Created by Mac mini on 14-9-24.
+  Copyright (c) 2014年 zhangguangyang. All rights reserved.
+*/
+
+//交易历史记录界面
+REG_SE_alert_content="Ở đây sẽ hiện thị 20 lần lịch sử giao dịch trên thiết bị này. 20 lần giao dịch này không phải ghi theo gamer nhất định; Nếu có nhiều gamer chơi game này trên thiết bị này và tiến hành giao dịch, hệ thống sẽ ghi lại 20 mục mua của các gamer theo thứ tự giao dịch. Nếu gỡ bỏ game thì lịch sử giao dịch sẽ mất. Nếu gamer có thắc mắc về mục mua nào, có thể nhấn vào \"Phản hồi\" của mục mua ấy để phản hồi cho máy chủ efun. Mỗi mục mua chỉ có thể phản hồi 2 lần.";
+REG_SE_alert_content01="Lịch sử giao dịch này đã phản hồi 2 lần, không cần gửi lại nữa, hãy liên hệ nhân viên hỗ trợ của chúng tôi nhé!";
+REG_SE_alert_content02="Mỗi mục mua có thể phản hồi 2 lần, sau khi phản hồi, máy chủ efun sẽ giữ lịch sử giao dịch này, không cần gửi lặp lại nhiều lần. Xác định phản hồi thông tin này?";
+REG_SE_alert_content03="Gửi lịch sử giao lịch gần nhất cho máy chủ efun, sau khi gửi thành công phải đợi một tiếng mới có thể gửi lại. Gửi thành công sẽ có tiêu chí thời gian, nhớ chụp màn hình cho nhân viên hỗ trợ chúng tôi. Xác định gửi?";
+REG_SE_alert_content04="Bây giờ không có lịch sử!";
+REG_SE_alert_sure_btn_title="Xác định";
+REG_SE_alert_cancel_btn_title="Hủy";
+REG_SE_closs_btn_title="Đóng";
+REG_SE_post_current_btn_title="Phản hồi lịch sử này";
+
+REG_SE_date_title="Ngày tháng";
+REG_SE_state_title="Trạng thái";
+REG_SE_orderId_title="Mã giao dịch";
+REG_SE_role_title="Nhân vật";
+REG_SE_feedback_btn_title="Phản hồi";
+REG_SE_post_times_title="Số lần phản hồi hiện tại";
+
+REG_SE_state_finished="Đã hoàn thành";
+REG_SE_state_payFail="Thanh toán thất bại";
+REG_SE_state_efunServerCheckPayFail="Máy chủ efun nghiệm chứng vô hiệu";
+REG_SE_state_userCancel="Khách hàng hủy giao dịch";
+REG_SE_state_inPaying="Đang giao dịch";
+
+REG_SE_post_log_fail="Gửi nhật ký mua sắm thất bại! Xin vui lòng thử lại.";
+REG_SE_post_log_success="Gửi nhật ký mua sắm thành công!";
+REG_SE_is_posting="Đang gửi...";
+REG_SE_post_time_sign_text="Sau đây là thời gian gửi, xin chụp màn hình và gửi cho nhân viên hỗ trợ";
+REG_SE_post_current_too_mutch_text="Chỉ có thể gửi nhật ký một lần trong 1 tiếng. Cách thời gian gửi lần sau còn: \n";
+
+"textNoNet"                     = "Không kết nối được với máy chủ!";
+"textServerReturnError"         = "Máy chủ trở về Error, xin thử lại!";
+"textServerReturnNull"          = "Máy chủ trở về Null, xin thử lại!";
+"textParameterNull"             = "Thông tin Null, không xử lý được. Xin thử lại!";
+/*按钮文字*/
+"titleAlertSureBtnTitle"        = "Xác nhận";
+
+//关于购买的提示
+"textIapParameterNil"       = "Thông tin mua hàng có lỗi, xin thử lại!";
+"textIapNoNet"              = "Mạng hơi chậm,xin kiểm tra kết nối của mạng khi tiến hành giao dịch!";
+"textIapOneIsPaying"        = "Một giao dịch đang được tiến hành";
+"textIapNoMakePayments"     = "Không hỗ trờ mua bằng PaymentQueue!";
+"textIapServerInMaintain"   = "Máy chủ đang được bảo trì!\nXin mua lại sau, cảm ơn sự ủng hộ của bạn!\nE_code：%@";
+"textIapNoThisItem"         = "Hàng hóa không tồn tại!";
+"textIapPostCheckNoNet"     = "Order number:%@ \nVì mạng không ổn định, tạm thời không thể nhận tiền trong game. Hãy thử lại khi mạng có sóng tốt, hoặc đăng nhập lại để xem.";
+"textIapBuyError"           = "Mã giao dịch:%@\nNghiệm chứng error!Xin chụp màn hình rồi liên hệ CSKH.\nẢnh chụp mành hình này sẽ là bằng chứng duy nhất để chúng tôi đền bù cho bạn!";
+"textIapAppStorePayFail"    = "AppStore thanh toán thất bại!\nE_code:%@";
+"textIapBuyFail"            = "Mua thất bại:\nMã giao dịch：%@\nXin chụp màn hình rồi liên hệ CSKH.\nẢnh chụp mành hình này sẽ là bằng chứng duy nhất để chúng tôi đền bù cho bạn!";
+"textIapUserCancelToPay"    = "Bạn đã hủy giao dịch!";
+"textIapHaveSendGameStone"  = "Mã giao dịch:%@\nHàng hóa đã gửi cho bạn, hãy chú ý nhận!";
+"textIapBuySuccess"         = "Giao dịch thành công, tiền trong game đã gửi cho bạn:\nMã giao dịch:%@\nChúc bạn chơi game vui vẻ!";
+
+//关于facebook的提示
+/*facebook登录提示*/
+"textFbInviteGetFbIDFail"               = "Lấy thông tin FB thất bại!";
+"textLoginGetFBTokenFail"               = "Lấy token của facebook không thành chông, đăng nhập thất bại!\nXin vui lòng kiểm tra kết nối của mạng và đăng nhập lại!";
+"textLoginGetFBInfoFail"                = "Lấy thông tin facebook thất bại, đăng nhập thất bại!\nXin vui lòng kiểm tra kết nối của mạng và đăng nhập lại!";
+/*facebook邀请好友*/
+"textFbInviteActivityNotOpen"           = "Sự kiện mời bạn bè Facebook chưa bắt đầu!";
+"textFbInviteGetPublicRightFial"        = "Lấy quyền hạn gửi lời mời thất bại! Xin thử lại.";
+"textFbInviteGetCanInvitedFriendsFail"  = "Lấy thông tin bạn bè thất bại!";
+"textFbInviteUserCancelInvite"          = "Bạn đã hủy lời mời!";
+"textFbInviteUserCloseInvite"           = "Bạn đã dừng gửi lời mời!";
+/*facebook分享*/
+"textFbShareGetPublicFail"              = "Lấy quyền hạn thất bại trong quá trình chia sẻ!";
+"textFbShareGetTokenFail"               = "Lấy thông tin token thất bại trong quá trình chia sẻ!";
+"textFbShareFail"                       = "Chia sẻ thất bại!";
+"textFbShareSuccess"                    = "Chia sẻ thành công!";
+
+//SEA
+"_STR_FANS_PAGE_TITLE_"                                              ="Fans Page";
+"_STR_LOGIN_WITH_FACEBOOK_"                         ="Đăng nhập bằng Facebook";
+"_STR_PLAY_NOW_"                                         ="Đăng nhập miễn phí";
+"_STR_REGISTER_TITLE_"                                          ="Đăng ký";
+"_STR_LOGIN_TITLE_"                                             ="Đăng nhập";
+"_STR_RESET_PASSWORD_TITLE_"                            ="Đặt lại mật mã";
+"_STR_FORGET_PASSWORD_TITLE_"                              ="Quên mật mã";
+"_STR_BIND_ACCOUNT_TITLE_"                                ="Thiết lập bảo vệ";
+"_STR_FOR_MORE_ACCOUNT_"                             ="Thêm nhiều tài khoản";
+"_STR_USER_ACCOUNT_"                                   ="Tài khoản người dùng";
+"_STR_USER_REGISTER_ACCOUNT_"                                            ="Đặt tên tài khoản";
+"_STR_PASSWORD_"                                                ="Mật mã";
+"_STR_REGISTER_"                                                =" Đăng ký ";
+"_STR_LOGIN_"                                                   =" Đăng nhập ";
+"_STR_RESET_PASSWORD_"                                     =" Đặt lại mật mã ";
+"_STR_FORGET_PASSWORD_"                                 =" Quên mật mã ";
+"_STR_CONFIRM_PASSWORD_"                                  ="xác nhận mật mã";
+"_STR_EMAIL_AT_TEXTFIELD_"                          ="Email (để tìm lại mật mã)";
+"_STR_NEW_PASSWORD_"                                       ="Mật mã mới";
+"_STR_EMAIL_"                                                   ="Email";
+"_STR_BIND_ACCOUNT_"                                         =" Thiết lập bảo vệ ";
+"_STR_FB_BIND_ACCOUNT_"                             ="Tài khoản Facebook";
+"_STR_BACK_"                                                    ="Quay lại";
+"_STR_FIND_PASSWORD_"                                      ="Tìm lại mật mã";
+"_STR_TAP_THE_SCREEN_TO_LOG_IN_"                   ="Chạm màn hình để đăng nhập";
+"_STR_FB_INVITE_TOP_TITILE_"                              ="Lời mời của bạn";
+"_STR_FB_INVITE_CHECK_REWARDS_TITLE_"                     ="Kiểm tra phần thưởng ";
+"_STR_FB_INVITE_NUMBER_OF_INVITATIONS_TITLE_"           ="Số lượng bạn được mời";
+"_STR_FB_INVITE_REWARDS_BTN_"                                =" Phần thưởng ";
+"_STR_FB_INVITE_SEND_INVITATION_BTN_"                           ="Gửi lời mời";
+"_STR_FB_INVITE_INFO_"                 =" Nhấp vào biểu tượng Facebook và liên kết đến diễn đàn chính thức của chúng tôi.";
+"_STR_REGISTER_INFO_"                                      ="Không có tài khoản? ";
+
+"_STR_FB_INVITE_SHARE_MORE_BTN_"                                ="更多分享";
+"_STR_FB_INVITE_RANK_TITLE_"                                    ="好友排行榜";
+"_STR_FB_INVITE_RANK_PRESTIGE_"                                 ="威望";
+"_STR_FB_INVITE_RANK_GIVE_"                                     ="贈送";
+"_STR_FB_INVITE_RANK_COMMENT_"                                  ="說明";
+"_STR_FB_INVITE_RANK_CLAIM_"                                    ="索取";
+"_STR_FB_INVITE_LABEL_PACKAGE_NAME__"                            = "quà tặng %d";
+"_STR_FB_INVITE_LABEL_Reward__"                                  = "phần thưởng:%@";
+
+"EFUN_PAYING"                                                ="Đang tiến hành giao dịch, vui lòng đợi";
+"EFUN_NoNet"                                                 ="Lỗi mạng, hãy kiểm tra kết nối!";
+"EFUN_NoMakePayments"                                        ="Appstore không thể thanh toán!";
+"EFUN_OneIsBuying"                                           ="Đang được thực hiện một giao dịch.";
+"EFUN_NoThisGood"                                            ="Sản phẩm không tồn tại!";
+"EFUN_UserCancelToBuy"                                       ="Giao dịch bị hủy bỏ!";
+"EFUN_AppStorePayFail"                                       ="Appstore thanh toán thất bại!";
+"EFUN_BuySuccess"                                            ="Giao dịch thành công. %@ đã gửi: \n   Mã số giao dịch: %@\n Order Num:%@\n Chúc bạn vui vẻ!";
+"EFUN_BuyFail"                                               ="Giao dịch thất bại:\n Mã số giao dịch: %@\n Order Num:%@\n ErroCode:%@\n hãy chụp ảnh cắt màn hình và liên hệ bộ phận chăm sóc khách hàng.";
+"EFUN_HaveSendGameGold"                                      ="Mã số giao dịch: %@\n Order Num:%@\n %@ đã gửi đi, Hãy chú ý kiểm tra!";
+"EFUN_PostNoNet"                                             ="Mã số giao dịch:　%@\n Order Num:%@\n gửi xác nhận thất bại !";
+"EFUN_BuyError"                                              ="Mã số giao dịch: %@\n Order Num:%@\n xác nhận error";
+"EFUN_BuyServerInMaintain"                                   ="Máy chủ đang bảo hành! Hãy tiến hành giao dịch vào lúc khác.";
+"__UI_LOGINVIEW_ACCOUNT_TEXTFEILD__"                         =" Tài khoản";
+"__UI_LOGINVIEW_PASSWORD_TEXTFEILD__"                        =" Mật mã";
+"__UI_LOGINVIEW_CHANGEPASSWORD_BUTTON__"                     =" Thay đổi mật mã";
+"__UI_LOGINVIEW_MACBIND_BUTTON__"                            =" Thiết lập bảo vệ cho đăng nhập miễn phí";
+"__UI_LOGINVIEW_FORGOTPASSWORD_BUTTON__"                     =" Quên mật mã";
+"__UI_LOGINVIEW_LOGINWAYS_LABEL__"                           =" Đăng nhập bằng tài khoản sau";
+"__UI_CHANGEPASSWORD_OLDPASSWORD_TEXTFEILD__"                =" Mật mã ban đầu";
+"__UI_CHANGEPASSWORD_NEWPASSWORD_TEXTFIELD__"                =" Mật mã mới";
+"__UI_CHANGEPASSWORD_NEWPASSWORD_CONFIRM_TEXTFIELD__"        =" Xác nhận mật mã mới";
+"__UI_FORGOTPASSWORD_EMAIL__"                                =" Email đăng kí";
+"__UI_ACCOUNTBIND_PASSWORD_CONFIRM__"                        =" Nhập lại mật mã";
+"__UI_ACCOUNTBIND_EMAIL__"                                   =" Email( dùng để tìm lại mật mã)";
+"__MESSAGE_ALERTVIEW_TITLE_ERROR__"                          ="Sai";
+"__MESSAGE_ALERTVIEW_MESSAGE_PASSWORD_DIFFERENCE__"          ="Hai lần nhập mật mã không giống nhau, vui lòng nhập lại";
+"__MESSAGE_WAITTING_LOGIN_STRING__"                          ="Đang gửi yêu cầu xử lí…";
+"__MESSAGE_WAITTING_LOGIN_EVATAR_STRING__"                   ="Taiwan's big players to log in ...";
+"__MESSAGE_WAITTING_ACCOUNTBIND_STRING__"                    ="Đang gửi yêu cầu xử lí…";
+"__MESSAGE_WAITTING_FACEBOOKBIND_STRING__"                   ="Đang gửi yêu cầu xử lí…";
+"__MESSAGE_WAITTING_CHANGEPASSWORD_STRING__"                 ="Đang gửi yêu cầu xử lí…";
+"__MESSAGE_WAITTING_FORGOTPASSWORD_STRING__"                 ="Đang gửi yêu cầu xử lí…";
+"__MESSAGE_WAITTING_BIND_STRING__"                           ="Đang gửi yêu cầu xử lí…";
+"__MESSAGE_ERROR_MESSAGE_ACCOUNT_LENGTH_45__"                ="Tên người dùng không được vượt quá 45 kí tự";
+"__MESSAGE_ERROR_MESSAGE_ACCOUNT_NULL__"                     ="Tài khoản không được để trống!";
+"__MESSAGE_ERROR_MESSAGE_ACCOUNT_SPACILECHAR__"              ="Tài khoản không bao gồm những kí tự đặc biệt ( chỉ bao gổm chữ cái, số, gạch dưới)";
+"__MESSAGE_ERROR_MESSAGE_ACCOUNT_UTF8ERROR__"                ="TTài khoản không bao gồm kí tự tiếng Trung (chỉ bao gổm chữ cái, số, gạch dưới)";
+"__MESSAGE_ERROR_MESSAGE_PASSWORD_NULL__"                    ="Mật mã không được để trống!";
+"__MESSAGE_ERROR_MESSAGE_PASSWORD_LENGTH_45__"               ="Độ dài mật mã không được vượt quá 45 kí tự";
+"__MESSAGE_ERROR_MESSAGE_PASSWORD_SPACILECHAR__"             ="Mật mã không bao gồm kí tự đặc biệt (chỉ bao gồm chữ cái, số, gạch dưới)";
+"__MESSAGE_ERROR_MESSAGE_PASSWORD_UTF8ERROR__"               ="Mật mã không bao gồm kí tự tiếng Trung (chỉ bao gồm chữ cái, số, gạch dưới)";
+"__MESSAGE_ERROR_MESSAGE_EMAIL_NULL__"                       ="Email không được để trống!";
+"__MESSAGE_ERROR_MESSAGE_EMAIL_LENGTH_45__"                  ="Độ dài Email không được vượt quá 45 kí tự!";
+"__MESSAGE_ERROR_MESSAGE_EMAIL_FORMAT__"                     ="Email không hợp lệ!";
+"__MESSAGE_ERROR_MESSAGE_EMAIL_UTF8ERROR__"                  ="Email không bao gồm kí tự đặc biệt!";
+"__MESSAGE_TITLE_NETINTERFACE_LOGIN__"                       ="Đăng nhập";
+"__MESSAGE_TITLE_NETINTERFACE_REGISTER__"                    ="Đăng kí";
+"__MESSAGE_TITLE_NETINTERFACE_RESETPASSWORD__"               ="Thay đổi mật mã";
+"__MESSAGE_TITLE_NETINTERFACE_FINDPASSWORD__"                ="Quên mật mã";
+"__MESSAGE_TITLE_NETINTERFACE_FASTLOGIN__"                   ="Đăng nhập miễn phí";
+"__MESSAGE_TITLE_NETINTERFACE_FACEBOOKLOGIN__"               ="Đăng nhập bằng Facebook";
+"__MESSAGE_TITLE_NETINTERFACE_PHONEEVATAR__"                 ="Đăng nhập bằng Evatar";
+"__MESSAGE_TITLE_NETINTERFACE_REGISTERBIND__"                ="Thiết lập bảo vệ cho đăng nhập miễn phí";
+"__MESSAGE_TITLE_NETINTERFACE_OTHERCLIENTLOGINEVATAR__"      ="Đăng nhập qua Evatar";
+"__MESSAGE_ALERTVIEW_MESSAGE_BIND_INFO__"                    ="Để đảm bảo sự an toàn cho tài khoản của bạn, hãy thiết lập bảo vệ cho tài khoản.";
+"__MESSAGE_ALERTVIEW_MESSAGE_BIND_LEFT_BTN_PLAYNOW__"        ="Đăng nhập trò chơi";
+"__MESSAGE_ALERTVIEW_MESSAGE_BIND_RIGHT_BTN_BINDACCOUNT__"   ="Thiết lập bảo vệ";
+"__MESSAGE_ALERTVIEW_MESSAGE_BINDEDACCOUNT__"                ="Thiết bị của bạn đã có tài khoản bảo vệ tương ứng, hãy sử dụng tài khoản đã bảo vệ để đăng nhập trò chơi %@";
+"__MESSAGE_TITLE_NETINTERFACE__"                             ="Chú ý";
+"__MESSAGE_NET_ERROR__"                                      ="Tín hiệu mạng kém";
+"__MESSAGE_TWITTER_SHARE_CONTENTDUPLICATE"                   ="Nội dung chia sẻ trùng lặp, hãy thay đổi nội dung chia sẻ hoặc thử vào ngày khác!";
+"__MESSAGE_TWITTER_PLEASEWAITING__"                          ="Vui lòng đợi...";
+"__UI_TWITTER_TITLE_TWITTERLOGIN__"                          ="Đăng nhập bằng Twitter";
+"__UI_BTN_LABEL_CHECK_AWARDCONTENT__"                        ="Phần thưởng";
+"__UI_BTN_LABEL_WEBVIEW_PREVIOUS__"                          ="Previous";
+"__UI_BTN_LABEL_WEBVIEW_NEXT__"                              ="Next";
+"__UI_BTN_LABEL_WEBVIEW_BACK__"                              ="Back";
+
+//陌陌
+"_ASIA_USER_ACCOUNT_"                                            ="Tài khoản";
+"_ASIA_PASSWORD_"                                                ="Mật khẩu";
+"_ASIA_LOGIN_"                                                   ="Đăng nhập";
+"_ASIA_REGISTER_RIGHTNOW_"                                       ="Đăng kí ngay";
+"_ASIA_FORGET_PASSWORD_"                                         ="Tìm lại mật khẩu";
+"_ASIA_THIRD_LOGIN_"                                             =" Tài khoản khác";
+"_ASIA_PLAY_NOW_"                                                ="Đăng nhập nhanh";
+"_ASIA_TWITTER_LOGIN"                                            ="Twitter";
+"_ASIA_BAHA_LOGIN_"                                              ="BaHa";
+
+"_ASIA_REGISTER_TITLE_"                                          ="Đăng kí tài khoản";
+"_ASIA_REPEAT_PASSWORD_"                                         ="Xác định lại";
+"_ASIA_EMAIL_AT_TEXTFIELD_"                                      ="Email(Tìm lại mật mã)";
+"_ASIA_I_HAVE_READED"                                            =" Tôi đã đọc và đồng ý (Điều khoản hội viên và quy định quản lí)";
+"_ASIA_REGULATION_"                                              ="Điều khoản hội viên và quy định quản lí";
+"_ASIA_REGISTER_"                                                ="Đăng kí";
+"_ASIA_READ_AND_AGREE"                                           ="Đọc kĩ và đồng ý với (Điều khoản phục vụ)";
+
+"_ASIA_FORGET_PASSWORD_TITLE_"                                   ="Quên mật mã";
+"_ASIA_FIND_PASSWORD_"                                           ="Tìm lại mật mã";
+"_ASIA_EMAIL_"                                                   ="Email";
+
+"_ASIA_ACCOUNT_MANAGEMENT_TITLE_"                                ="Quản lí tài khoản";
+"_ASIA_RESET_PASSWORD_"                                          ="Thay đổi mật mã";
+"_ASIA_BIND_ACCOUNT_"                                            ="Bảo vệ cho đăng nhập nhanh";
+"_ASIA_FB_BIND_ACCOUNT_"                                         ="Thiết lập bảo vệ Facebook";
+
+"_ASIA_ORIGINAL_PASSWORD_"                                       ="Mật mã ban đầu";
+"_ASIA_NEW_PASSWORD_"                                            ="Mật mã mới";
+"_ASIA_CONFIRM_PASSWORD_"                                        ="Xác định mật mã mới";
+"_ASIA_CONFIRM_RESET_"                                           ="Xác nhận sửa";
+
+"_ASIA_BIND_ACCOUNT_TITLE_"                                      ="Thiết lập bảo vệ";
+
+"_ASIA_CANCEL_"                                                  ="Hủy";
+"_ASIA_CONFIRM_"                                                 ="Xác nhận";
+"_ASIA_SYSTEM_NOTICE_"                                           ="Thông báo hệ thống";

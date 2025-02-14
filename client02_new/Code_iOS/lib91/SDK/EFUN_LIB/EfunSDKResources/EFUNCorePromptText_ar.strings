@@ -1,0 +1,245 @@
+/* 
+  EFUNCorePromptText_en.strings
+  EFUN_FUNCTION_PROJECT_AddUserInterface
+
+  Created by Mac mini on 14-9-24.
+  Copyright (c) 2014年 zhangguangyang. All rights reserved.
+*/
+
+//交易历史记录界面
+
+REG_SE_alert_content="يظهر سجل 20 الصفقات الآخيرة هنا للاعب يلعب اللعبة بهذا الجهاز.وليس السجل ضد لاعب ما.فاذا يوجد لاعبون مختلفون يشحنون بهذا الجهاز، سيبقى سجل الشحن للاعبين مختلفين ويرتب بوقت الشحن. واذا تحذف اللعبة، فلا يوجد السجل.واذا لديك اي سؤال عن صفقات، انقر الرز الرد لطرح ردك الى سيرفر يفان. ";
+REG_SE_alert_content01="قد ارسل هذا السجل مرتين. ";
+REG_SE_alert_content02="تستطيع إرسال نفس السجل مرتين فقط.وسنسجل ردك بعد نجاح إرسالك. هل متأكد من إرسال السجل؟";
+REG_SE_alert_content03="ارسل سجل الصفقة الآن لسيرفر يفان ووقت بين أرسالين ساعة.وسيظهر إشارة الوقت بعد نجاح الإرسال وعليك أن تصور لقطة الشاشة للإشارة لنا. هل متأكد من الإرسال؟";
+REG_SE_alert_content04="ليس يوجد سجل حاليا";
+REG_SE_alert_sure_btn_title="التأكد";
+REG_SE_alert_cancel_btn_title="الإلغاء";
+REG_SE_closs_btn_title="الإغلاق";
+REG_SE_post_current_btn_title="رد السجل الحالي";
+
+REG_SE_date_title="الموعد";
+REG_SE_state_title="الحالة";
+REG_SE_orderId_title="رقم الصفقة";
+REG_SE_role_title="الدور";
+REG_SE_feedback_btn_title="الرد";
+REG_SE_post_times_title="عدد الرد";
+
+REG_SE_state_finished="النجاح";
+REG_SE_state_payFail="تفشل الدفعة";
+REG_SE_state_efunServerCheckPayFail="ليس فعاليا بعد تحقيق سيرفر يفان";
+REG_SE_state_userCancel="يلغي زبون الدفعة ";
+REG_SE_state_inPaying="تجري الصفقة";
+
+REG_SE_post_log_fail="يفشل إرسال سجل الشراء. حاول إرسال مجدد..";
+REG_SE_post_log_success="ينجح إرسال سجل الشراء";
+REG_SE_is_posting="يجري الارسال";
+REG_SE_post_time_sign_text="هذا إشارة وقت الإرسال.صور لقطة الشاشة لموظفنا";
+REG_SE_post_current_too_mutch_text=" \nيمكن ارسال السجل مرة واحدة فقط خلال مدة ساعة. ويمكنك إرسال السجل مرة أخرى بعد ";
+
+
+"textServerReturnNull"          = "في سيرفر لاغية.حاول مجددا";
+"textParameterNull"             = "يكون البارامتر لاغية.حاول مجددا ";
+/*按钮文字*/
+"titleAlertSureBtnTitle"        = "التأكد";
+
+
+//关于购买的提示
+"textIapParameterNil"       = "يكون البارامتر لاغية. حاول مجددًا ";
+"textIapNoNet"              = "ليس اتصال الإنترنت مستقرا.تأكد من اتصال الإنترنت عند الشراء.";
+"textIapOneIsPaying"        = "تجري صفقة حاليا. ";
+"textIapNoMakePayments"     = "   لا يدعم الشراءPaymentQueue";
+"textIapServerInMaintain"   = "\nE_code：%@قم بالشراء بعد قليل من فضلك.شكرا على دعمك.\nالسيرفر تحت الصيانة";
+"textIapNoThisItem"         = "لا توجد هذه البضاعة！";
+"textIapPostCheckNoNet"     = "لا ممكن الحصول على عملات اللعبة بسبب اتصال الإنترنت غير مستقر.انقر التأكد للحصول عليها في حالة الإنترنت الممتازة او اخرج اللعبة وقم بتسجيل الدخول مجددا%@ \n:رقم الصفقة";
+"textIapBuyError"           = "لقطة الشاشة هي دليل وحيد للصفقة. \nيوجد غلط.قم بصور لقطة الشاشة واتصال موظفنا.%@ \n:رقم الصفقة";
+"textIapAppStorePayFail"    = "！\nE_code:%@ AppStoreفشل الدفع في ";
+"textIapBuyFail"            = "فشل الشراء:\n  رقم الصفقة ：%@\n. قم بتصوير لقطة الشاشة والاتصال بموظفنا. هي دليل الصفقة الوحيدة!";
+"textIapUserCancelToPay"    = "قد ألغيت الصفقة!";
+"textIapHaveSendGameStone"         = "رقم الصفقة ：%@\n قد تم ارسال البضائع.";
+"textIapBuySuccess"         = "تم شراء عملات اللعبة وقد ارسلت اليك :\n رقم الصفقة ：%@\n  استمتع باللعبة. ";
+
+
+//关于facebook的提示
+/*facebook登录提示*/
+"textFbInviteGetFbIDFail"               = "فشل الحصول على معلومات فيس بوك";
+"textLoginGetFBTokenFail"               = "فشل تسجيل الدخول بسبب عدم الحصول على معلومات رمز الفيس بوك! \n تأكد من استقرار انترنتك. حاول تسجيل الدخول مجددا!";
+"textLoginGetFBInfoFail"                = "فشل تسجيل الدخول بسبب عدم الحصول على معلومات الفيس بوك ! \n تأكد من استقرار انترنتك. حاول تسجيل الدخول مجددا!";
+/*facebook邀请好友*/
+"textFbInviteActivityNotOpen"           = "لم يفتح نشاط دعوة أصدقاء الفيس بوك";
+"textFbInviteGetPublicRightFial"        = "فشل الحصول على أذونات الدعوة. حاول مجددا";
+"textFbInviteGetCanInvitedFriendsFail"  = "فشل الحصول على معلومات الأصدقاء";
+"textFbInviteUserCancelInvite"          = "تلغى الدعوة";
+"textFbInviteUserCloseInvite"           = "توقف الدعوة";
+/*facebook分享*/
+"textFbShareGetPublicFail"              = "فشل الحصول على حق المشاركة.";
+"textFbShareGetTokenFail"               = "فشل على رمز عند المشاركة.";
+"textFbShareFail"                       = "فشل ارسال المشاركة.";
+"textFbShareSuccess"                    = "تم ارسال المشاركة.";
+
+//SEA
+"_STR_FANS_PAGE_TITLE_"                                              ="Fans Page";
+"_STR_LOGIN_WITH_FACEBOOK_"                              ="الدخول بحساب فيس بوك";
+"_STR_PLAY_NOW_"                                                ="اللعب الآن";
+"_STR_REGISTER_TITLE_"                                          ="التسجيل";
+"_STR_LOGIN_TITLE_"                                             ="الدخول";
+"_STR_RESET_PASSWORD_TITLE_"                             ="إعادة تعيين كلمة المرور";
+"_STR_FORGET_PASSWORD_TITLE_"                           ="نسيان كلمة المرور";
+"_STR_BIND_ACCOUNT_TITLE_"                                ="ربط الحساب";
+"_STR_FOR_MORE_ACCOUNT_"                                 ="مزيد من الحسابات";
+"_STR_USER_ACCOUNT_"                                            ="حساب المستخدم";
+"_STR_USER_REGISTER_ACCOUNT_"                                            =" إنشاء اسم الحساب";
+"_STR_PASSWORD_"                                                ="كلمة المرور";
+"_STR_REGISTER_"                                                ="التسجيل";
+"_STR_LOGIN_"                                                   ="الدخول";
+"_STR_RESET_PASSWORD_"                                     =" إعادة تعيين كلمة المرور";
+"_STR_FORGET_PASSWORD_"                                     =" نسيان كلمة المرور";
+"_STR_CONFIRM_PASSWORD_"                                 ="تكرير كلمة المرور";
+"_STR_EMAIL_AT_TEXTFIELD_"                       ="إيمال (لبحث عن كلمة المرور)";
+"_STR_NEW_PASSWORD_"                                       ="كلمة المرور الجديدة";
+"_STR_EMAIL_"                                                     ="إيمال";
+"_STR_BIND_ACCOUNT_"                                            ="ربط الحساب";
+"_STR_FB_BIND_ACCOUNT_"                                     ="ربط حساب فيس بوك";
+"_STR_BACK_"                                                    ="رجوع";
+"_STR_FIND_PASSWORD_"                                       ="بحث عن كلمة المرور";
+"_STR_TAP_THE_SCREEN_TO_LOG_IN_"                      ="انقر الشاشة لدخول اللعبة";
+
+"_STR_FB_INVITE_TOP_TITILE_"                                  ="دعوة أصدقائك";
+"_STR_FB_INVITE_CHECK_REWARDS_TITLE_"                           ="تحقق من جوائز";
+"_STR_FB_INVITE_NUMBER_OF_INVITATIONS_TITLE_"             ="عدد دعوتك";
+"_STR_FB_INVITE_REWARDS_BTN_"                                   ="جوائز";
+"_STR_FB_INVITE_SEND_INVITATION_BTN_"                           ="إرسال الدعوة";
+"_STR_FB_INVITE_INFO_"                                      ="انقر صورة فيس البوق لدخول فيس بوكنا الرسمي";
+"_STR_REGISTER_INFO_"                                         ="لا يوجد حساب؟ ";
+
+"_STR_FB_INVITE_SHARE_MORE_BTN_"                                ="更多分享";
+"_STR_FB_INVITE_RANK_TITLE_"                                    ="好友排行榜";
+"_STR_FB_INVITE_RANK_PRESTIGE_"                                 ="威望";
+"_STR_FB_INVITE_RANK_GIVE_"                                     ="贈送";
+"_STR_FB_INVITE_RANK_COMMENT_"                                  ="說明";
+"_STR_FB_INVITE_RANK_CLAIM_"                                    ="索取";
+"_STR_FB_INVITE_LABEL_PACKAGE_NAME__"                            = "حقيبة الهدايا  %d";
+"_STR_FB_INVITE_LABEL_Reward__"                                  = "الجوائز: %@";
+
+"EFUN_PAYING"=                                              "الصفقة في التقدم، يرجي الانتظار";
+"EFUN_NoNet"=                                               "تعطل الشبكة، يرجي الفحص ";
+"EFUN_NoMakePayments"=                                      " فشل الدفع في AppStore";
+"EFUN_OneIsBuying"=                                         "يجري الصفقة";
+"EFUN_NoThisGood"=                                          "لا يوجد السلعة";
+"EFUN_UserCancelToBuy"=                                     "قمت بإلغاء شراء";
+"EFUN_AppStorePayFail"=                                     " فشل الدفع في AppStore";
+"EFUN_BuySuccess"=                                          "الشراء بالنجاح，%@ تم الارسال: \nرقم الصفقة：%@\n Order:%@\n أتمنى لكمالسعادة! ";
+"EFUN_BuyFail"=                                             "فشل الشراء:\n رقم الصفقة: %@\n Order:%@\n رمز الخطأ:%@\n يرجي الإتصال بخدمة العملاء بعد قطة شاشة.";
+"EFUN_HaveSendGameGold"=                                    "رقم الصفقة：%@\n Order:%@\n %@ تم الإرسال，يرجي الاستقبال！";
+"EFUN_PostNoNet"=                                           "رقم الصفقة: %@\n Order:%@\n فشل ارسال كلمة التحقق إلى الخادم!";
+"EFUN_BuyError"=                                            "رقم الصفقة: %@\n Order:%@\n التحقق error!";
+"EFUN_BuyServerInMaintain"=                                 "يكون الخادم تحت الصيانة، يرجي إجراء الشراء بعد دقيقة.";
+"__UI_LOGINVIEW_ACCOUNT_TEXTFEILD__"=                       "الحساب";
+"__UI_LOGINVIEW_PASSWORD_TEXTFEILD__"=                      "كلمة المرور";
+"__UI_LOGINVIEW_CHANGEPASSWORD_BUTTON__"=                   "تغيير كلمة المرور ";
+"__UI_LOGINVIEW_MACBIND_BUTTON__"=                          "ربط الحساب دون التسجيل";
+"__UI_LOGINVIEW_FORGOTPASSWORD_BUTTON__"=                   "نسيان كلمة المرور";
+"__UI_LOGINVIEW_LOGINWAYS_LABEL__"=                         "الدخول عبر الحساب التالي";
+"__UI_CHANGEPASSWORD_OLDPASSWORD_TEXTFEILD__"=              "كلمة المرور الأصلية";
+"__UI_CHANGEPASSWORD_NEWPASSWORD_TEXTFIELD__"=              "كلمة المرور الجديدة";
+"__UI_CHANGEPASSWORD_NEWPASSWORD_CONFIRM_TEXTFIELD__"=      "تأكيد كلمة المرور الجديدة";
+"__UI_FORGOTPASSWORD_EMAIL__"=                              "البريد الإلكتروني للتسجيل";
+"__UI_ACCOUNTBIND_PASSWORD_CONFIRM__"=                      "تكرار كلمة المرور";
+"__UI_ACCOUNTBIND_EMAIL__"=                                 " البريد الإلكتروني (لاسترداد كلمة المرور)";
+"__MESSAGE_ALERTVIEW_TITLE_ERROR__"=                        "الخطأ";
+"__MESSAGE_ALERTVIEW_MESSAGE_PASSWORD_DIFFERENCE__"=        "لا تتطابق كلمات المرور!";
+"__MESSAGE_WAITTING_LOGIN_STRING__"=                        "الدخول";
+"__MESSAGE_WAITTING_LOGIN_EVATAR_STRING__"=                 "台灣大玩家登入中...";
+"__MESSAGE_WAITTING_ACCOUNTBIND_STRING__"=                  "التسجيل";
+"__MESSAGE_WAITTING_FACEBOOKBIND_STRING__"=                 "التسجيل";
+"__MESSAGE_WAITTING_CHANGEPASSWORD_STRING__"=               "تقديم الطلب";
+"__MESSAGE_WAITTING_FORGOTPASSWORD_STRING__"=               "تقديم الطلب";
+"__MESSAGE_WAITTING_BIND_STRING__"=                         "الربط";
+"__MESSAGE_ERROR_MESSAGE_ACCOUNT_LENGTH_45__"=              "لا يتجاوز اسم 45 حرف";
+"__MESSAGE_ERROR_MESSAGE_ACCOUNT_NULL__"=                   "لا يمكن للحساب أن يكون ";
+"__MESSAGE_ERROR_MESSAGE_ACCOUNT_SPACILECHAR__"=             "لا يمكن للحساب أن يحتوى على أحرف خاصة(يتكون الاسم من حرف و رقم و خط سفلي)";
+"__MESSAGE_ERROR_MESSAGE_ACCOUNT_UTF8ERROR__"=               "لا يمكن للحساب أن يحتوى على أحرف صينية(يتكون الاسم من حرف و رقم و خط سفلي)";
+"__MESSAGE_ERROR_MESSAGE_PASSWORD_NULL__"=                   "لا يمكن لكلمة المرور أن تكون فارغا";
+"__MESSAGE_ERROR_MESSAGE_PASSWORD_LENGTH_45__"=              "لا تتجاوز كلمة المرور 45 حرف ";
+"__MESSAGE_ERROR_MESSAGE_PASSWORD_SPACILECHAR__"=           "لا يمكن لكلمة المرور أن تحتوى على أحرف خاصة (يتكون الاسم من حرف و رقم و خط سفلي)";
+"__MESSAGE_ERROR_MESSAGE_PASSWORD_UTF8ERROR__"=             "لا يمكن لكلمة المرور أن تحتوى على أحرف صينية (يتكون الاسم من حرف و رقم و خط سفلي)";
+"__MESSAGE_ERROR_MESSAGE_EMAIL_NULL__"=                     "لا يمكن أن تكون البريد الإلكتروني فارغا";
+"__MESSAGE_ERROR_MESSAGE_EMAIL_LENGTH_45__"=                 "لا يتجاوز البريد الإلكتروني 45 حرف ";
+"__MESSAGE_ERROR_MESSAGE_EMAIL_FORMAT__"=                   "تنسيق البريد الإلكتروني غير صحيح";
+"__MESSAGE_ERROR_MESSAGE_EMAIL_UTF8ERROR__"=                "لا يمكن للبريد الإلكتروني أن يحتوى على أحرف خاصة";
+"__MESSAGE_TITLE_NETINTERFACE_LOGIN__"=                     "الدخول";
+"__MESSAGE_TITLE_NETINTERFACE_REGISTER__"=                  "التسجيل";
+"__MESSAGE_TITLE_NETINTERFACE_RESETPASSWORD__"=             "تغيير كلمة المرور";
+"__MESSAGE_TITLE_NETINTERFACE_FINDPASSWORD__"=              "نسيان كلمة المرور";
+"__MESSAGE_TITLE_NETINTERFACE_FASTLOGIN__"=                 "الدخول دون التسجيل";
+"__MESSAGE_TITLE_NETINTERFACE_FACEBOOKLOGIN__"=             "الدخول عبر فيسبوك";
+"__MESSAGE_TITLE_NETINTERFACE_PHONEEVATAR__"=               "Evatar 登入";
+"__MESSAGE_TITLE_NETINTERFACE_REGISTERBIND__"=              "الربط دون التسجيل";
+"__MESSAGE_TITLE_NETINTERFACE_OTHERCLIENTLOGINEVATAR__"=    "Evatar 客戶端登入";
+"__MESSAGE_ALERTVIEW_MESSAGE_BIND_INFO__"=                  " يا المستخدم، يرجي أن تربط جهازك بحساب ما و تدخل اللعبة بهذا الحساب لكي منع فقدان البيانات.";
+"__MESSAGE_ALERTVIEW_MESSAGE_BIND_LEFT_BTN_PLAYNOW__"=      "الدخول";
+"__MESSAGE_ALERTVIEW_MESSAGE_BIND_RIGHT_BTN_BINDACCOUNT__"= "ربط الحساب";
+"__MESSAGE_ALERTVIEW_MESSAGE_BINDEDACCOUNT__"=              " قد ربط هذا الجهاز بالحساب ، يرجي الدخول بهذا الحساب: %@";
+"__MESSAGE_TITLE_NETINTERFACE__"=                           "الأخبار";
+"__MESSAGE_NET_ERROR__"=                                    "تعطل الشبكة";
+"__MESSAGE_TWITTER_SHARE_CONTENTDUPLICATE"=                 "تكرار المحتوى، يرجي تغيير المحتوى أو المحاولة مرة أحرى";
+"__MESSAGE_TWITTER_PLEASEWAITING__"=                        "يرجي الإنتظار";
+"__UI_TWITTER_TITLE_TWITTERLOGIN__"=                        "الدخول عبر تويتر";
+"__UI_BTN_LABEL_CHECK_AWARDCONTENT__"=                      "المكافآت";
+"__UI_BTN_LABEL_WEBVIEW_PREVIOUS__"=                        "上一頁";
+"__UI_BTN_LABEL_WEBVIEW_NEXT__"=                            "下一頁";
+"__UI_BTN_LABEL_WEBVIEW_BACK__"=                            "返回";
+"__UI_BTN_LABEL_WEBVIEW_RELOAD__"=                          "刷新";
+"__UI_INVITE_LABEL_AlreadyInviteNum__"=                     "عدد الأصدقاء المدعوين";
+"__UI_BTN_INVITE__LABEL_SendInvite__"=                      "ارسال الدعوة";
+"__EFUN_LOADING__"=                                         "العلاج";
+"__UI_INVITE_LABEL_MAX_INVITE_NUM__"=                       " قد وصلت إلى الحد الأقصى لعدد الدعوة و هو:%ld ";
+"__UI_INVITE_LABEL_Reward__"=                               "المكافآت:%@";
+"__UI_INVITE_LABEL_PACKAGE_NAME__"=                         "حزمة الهدية: %d";
+"__UI_RIGISTER_Alert_Account__"=                            "You can use letters, numbers and underscore. Case insensitive.";
+"__UI_RIGISTER_Alert_Password__"=                           "We recommend combination of 6 characters or above. Case sensitive";
+"__UI_RIGISTER_Alert_Email__"=                              "Please provide a valid email, which will be used to recover your password";
+"__UI_ACCOUNTBIND_FACEBOOK_INFO__"=                         "حسابك Facebook هو:%@ تريد ربطه؟";
+"__UI_ACCOUNTBIND_FACEBOOK_COMFIRM__"=                      "استخدام هذا الحساب";
+"__UI_ACCOUNTBIND_FACEBOOK_CANCLE__"=                       "استخدام حساب آخر";
+"__UI_ACCOUNTBIND_FACEBOOK_INFO_LOGOUT__"=                  "سجل الحساب الذي تريد ربطه أولا من فضلك";
+"__UI_INVITE_GET_GIFT_MESSAGE__"=                           "%@，الشروط：%@，  أصدقاء%d قد دعت  ";
+
+//陌陌部分
+"_ASIA_USER_ACCOUNT_"                                            ="تسجيل";
+"_ASIA_PASSWORD_"                                                ="كلمة المرور";
+"_ASIA_LOGIN_"                                                   ="دخول";
+"_ASIA_REGISTER_RIGHTNOW_"                                       ="التسجيل الآن";
+"_ASIA_FORGET_PASSWORD_"                                         ="البحث عن كلمة المرور";
+"_ASIA_THIRD_LOGIN_"                                             ="الحساب الآخر";
+"_ASIA_PLAY_NOW_"                                                ="لعب الآن";
+"_ASIA_TWITTER_LOGIN"                                            ="Twitter";
+"_ASIA_BAHA_LOGIN_"                                              ="BaHa";
+
+"_ASIA_REGISTER_TITLE_"                                          ="انشاء حساب الجديد";
+"_ASIA_REPEAT_PASSWORD_"                                         ="إعادة كتاب كلمة المرور";
+"_ASIA_EMAIL_AT_TEXTFIELD_"                                      ="عنوان البريد إلكتروني (يمكن أن بحث كلمة المرور)";
+"_ASIA_I_HAVE_READED"                                            ="قرات و أوافق بنود العضو و لوائح النظام";
+"_ASIA_REGULATION_"                                              ="بنود العضو و لوائح النظام";
+"_ASIA_REGISTER_"                                                ="تسجيل";
+"_ASIA_READ_AND_AGREE"                                           ="اقرأ و واقف بنود الخدمة أولا";
+
+"_ASIA_FORGET_PASSWORD_TITLE_"                                   ="تنسي كلمة المرور";
+"_ASIA_FIND_PASSWORD_"                                           ="بحث كلمة المرور";
+"_ASIA_EMAIL_"                                                   ="البريد الإلكتروني";
+
+"_ASIA_ACCOUNT_MANAGEMENT_TITLE_"                                ="ادارة الحساب";
+"_ASIA_RESET_PASSWORD_"                                          ="تعديل كلمة المرور";
+"_ASIA_BIND_ACCOUNT_"                                            ="ربط لعب الآن";
+"_ASIA_FB_BIND_ACCOUNT_"                                         ="ربط حساب FB";
+
+"_ASIA_ORIGINAL_PASSWORD_"                                       ="كلمة المرور الأصلية";
+"_ASIA_NEW_PASSWORD_"                                            ="كلمة المرور الجديد";
+"_ASIA_CONFIRM_PASSWORD_"                                        ="تأكيد كلمة المرور الجديد";
+"_ASIA_CONFIRM_RESET_"                                           ="تأكيد التعديل";
+
+"_ASIA_BIND_ACCOUNT_TITLE_"                                      ="ربط حساب";
+
+"_ASIA_CANCEL_"                                                  ="إلغاء";
+"_ASIA_CONFIRM_"                                                 ="تأكيد";
+"_ASIA_SYSTEM_NOTICE_"                                           ="علان النظام";

@@ -1,0 +1,159 @@
+/* 
+  EfunPFLocalizedRu.strings
+  EfunPlatForm
+
+  Created by TangTieshan on 15-1-6.
+  Copyright (c) 2015年 TangTieshan. All rights reserved.
+*/
+"Gashapon"="Гачапон";
+"Home"="Главная";
+"Account Info"="Инфо-Аккаунт";
+"CS Center"="Центр Помощи";
+"Info"="Инфо";
+"Game"="Игры";
+"Gift"="Подарки";
+"Recharge"="Попол.";
+"News"="Новости";
+"Guide"="Вопросы";
+"Role ID"="Role ID";
+"Reply"="Ответ";
+"Free Gift"="Беспл. Подарок";
+"Medal Gift"="Подарок медали";
+"My Gift"="Мои подарки";
+"Your suggestion"="Ваши советы";
+"Please input your suggestions for better services"="Введите ваши советы, чтобы улучщить нашу работу.";
+"Your Email"="Ваша почта";
+"Email"="Почтовый ящик";
+"①MSN/Email:\ncustomer_service@efun.com"="①MSN／Почтовый ящик:\ncustomer_service@efun.com";
+"Please input correct email"="Введите андрес электронной почты верно.";
+"Please input your suggestions"="Введите ваш совет.";
+"Please input your Email"="Введите андрес электронной почты.";
+"OK"="Подтвердить";
+"Submit"="Задать";
+"Timeout! Please check your network"="Запрос просрочен. Проверьте  Интернет-соединение.";
+"Thanks for your suggestion!"="Спасибо за ваш совет!";
+"submiting..."="Задать...";
+"internet error, please try again."="Просить не удалось";
+"Logging in..."="Logging in...";
+
+
+"Member"="Членство";
+"System Message"="Сообщение";
+"Login"="Вход";
+"Account"="Аккаунт";
+"Password"="пароль";
+"Facebook Login"="Войти через Facebook";
+"Change password"="Сменить пароль";
+"Forget password?"="Забыли пароль?";
+"No account?"="Нет аккаунта?";
+"Register now"="Зарегистрироваться";
+"Click here to find back"="Кликните \"Вспомнить Пароль\"";
+"Third Party Account"="Аккаунт от третьего лица";
+"Old password"="Старый пароль";
+"New Password"="Новый пароль";
+"Confirm password"="Подтвердить пароль";
+"Confirm"="Подтвердить";
+"Change password successfully"="Пароль успешно изменён";
+"Please input new password"="Введите  новый пароль";
+"Please input old password"="Введите  старый пароль";
+"Please confirm password"="Подтвердите пароль";
+"Please input account first"="Введите ваш логин.";
+"The new passwords are inconsistent"="Новые пароли не совпадают.";
+"Please input your title"="Введите тему";
+"Title"="Тема";
+"Please input password"="Введите пароль";
+"Find back password"="Восстановить";
+"Account Registration"="Регистрация";
+"Agree to Terms"="Я прочитал и даю своё согласие";
+"《Terms of Service and Privacy policy》"="《Условия Пользовательского соглашения》";
+"Please input password first"="Введите ваш пароль.";
+"Passwords are inconsistent"="Пароли не совпадают.";
+"You haven't read the related terms"="Вы ещё не прочитаете связанные условия.";
+
+"Please select your region"="Выберите регион, пожалуйста.";
+"Thailand"="Таиланд";
+"Vietnam"="Вьетнам";
+"Europe"="Европа";
+"Japan"="Япония";
+"Other regions of Southeast Asia"="Другие регионы  Юго-Восточной Азии";
+"The region you choose:"="Регион  вы выбираете:";
+"Cancel"="Отменить";
+
+"Login error"="Не удалось войти.";
+"Recharge error"="Проблема пополнение";
+"Abnormal account"="Не можете войти в аккаунт";
+"Error feedback"="Отзыв аномалии";
+"Guides"="Вопрос";
+"Suggestion"="Совет";
+"Violation complaints"="жалоба";
+"Other"="Другие";
+
+"select game"="Выберите игры";
+"Server"="Выберите сервер";
+"Character"="Выберите роль";
+"submit"="Задать";
+
+"Register successfully"="Регистрация прошла успешно.";
+"Register"="Регистрация";
+"No blank space for the first place of account"="Логин не должен начинаться с пробела.";
+"No “&！ for account"="Логин не должен содержать  символ\"&！";
+"No “&！ for password"="Пароль не должен содержать  символ\"&！";
+"The new password has been sent to your mail. Please pay attention to check it"="Ваш новый пароль отправлен в ваш почтовый ящик. Проверьте получить.";
+"Failed to obtain the game list. Please try again later"="Не удалось получить список игр. повторите Попытку позже.";
+"Failed to obtain server info. Please try again later!"="Не удалось получить информацию с сервера. Повторите попытку позже.";
+"Failed to obtain character info. Please try again later!"="Не удалось получить информацию о роли. Повторите попытку позже.";
+
+"The title should be shorter than 32 characters."="тема должна быть не длинее 32 символов.";
+"The content should be shorter than 500 characters."="Контент должен быть не длинее 500 символов.";
+"The title can't be empty or containing only spaces."="Введите тему";
+"The content can't be empty or containing only spaces."="Введите контент";
+"Obtaining..."="Получение...";
+
+"Application Management"="Управление ";
+"Installed"="Установлен";
+"Downloading"="Загрузка";
+"Change"="Сменить";
+"Forget"="Забыть";
+"Are you sure to change account?"="Подтвердите ли переключить аккаунт или нет?";
+"The first letter of account can't contain spaces."="Логин не должен начинаться с пробела.";
+"Password："="Пароль：";
+
+"Wrong password"="Пароль неверный";
+"Wrong parameter"="Параметр задан неверно";
+"Null exception"="Ошибка пустого значения";
+"This account has existed already"="уже существует аккаунт";
+"System abnormal"="Ошибка системы";
+"This account does't exist"="Нет аккаунта";
+"Wrong original password"="Старый пароль неправильный";
+"Wrong email input"="Почтовый ящик  введён неправильно";
+"Please choose the type of game"="Выберите тип игр";
+"Please choose the type of server"="Выберите тип сервера";
+"Please choose the role"="Выберите роль";
+"It's now having system maintenance"="Система технического обслуживания";
+
+"Failed to login"="Не удалось войти";
+"Shared successfully"="Успешно поделились";
+"Shared failed"="Не удалось поделились";
+
+"wrong password!"="Неправильный пароль!";
+"More"="More";
+
+"Event area"="События";
+"select game"="Выберите игры";
+"server"="Выберите сервер";
+"role name"="Выберите роль";
+"select event"="Выберите событие";
+"shoot"="фотографировать";
+"album"="фотоальбом";
+
+"Please choose the event"="Выберите событие";
+"Your message has been successfully submitted"="Событие задан";
+"Fail to send your message, please try later"="Не удалось задать, повторите позже.";
+"Please choose an image"="Выбрайте фото";
+
+"Load failed, please check the network connection or contact customer service."="Не удалось получить. Проверьте  Интернет-соединение или обратите к обслуживанию клиентов.";
+
+"Notice"="Обьявления";
+"Download"="Скачать";
+"Don't show today"="Не показать";
+"Please choose the game icon and download"="Нажмите икону и скачать.";

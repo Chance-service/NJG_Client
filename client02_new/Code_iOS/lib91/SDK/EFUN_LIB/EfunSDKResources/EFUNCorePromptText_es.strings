@@ -1,0 +1,199 @@
+/* 
+  EFUNCorePromptText_en.strings
+  EFUN_FUNCTION_PROJECT_AddUserInterface
+
+  Created by Mac mini on 14-9-24.
+  Copyright (c) 2014年 zhangguangyang. All rights reserved.
+*/
+
+//交易历史记录界面
+"REG_SE_alert_content"="Aquí se muestran los recientes 20 registros de compras creado por el jugador quien ha jugado este juego en este aparato.  Estos 20 compras no se dirigen a un cierto jugador；Si varios jugadores han jugado y recargado en este juego usando el mismo aparato, se graban los 20 compras según el orden. Desaparecerán los récords si el juego fuera eliminado. El jugador puede publicar el feedback al servidor de efun pinchando el botón ¨feedback¨ del récord correspondiente si tiene duda sobre la compra. Dos veces como máximo para una compra. ";
+"REG_SE_alert_content01"="Se ha enviado dos veces este récord. No hace falta enviarlo otra vez más. Contácta con nuestros personales de servicio al cliente por favor.";
+"REG_SE_alert_content02"="Solo se puede publicar el feedback dos veces de cada transacción. El servidor de efun guardarán los récords pues no hace falta repetirlo. ¿Está seguro de publicar este mensaje?";
+"REG_SE_alert_content03"="Va a mandar el recién registro de compra al servidor de efun. Cuando lo manda con éxito, solo puede usted mandarlo la segunda vez una hora después. Después de enviarlo exitosamente ,recibirá la pista con la marca del tiempo. Recuérda dar la captura de pantalla de esa pista al nuestro personal de servicio. ¿Está seguro de mandarlo?";
+"REG_SE_alert_content04"="¡No récord de momento!";
+"REG_SE_alert_sure_btn_title"="Aceptar";
+"REG_SE_alert_cancel_btn_title"="Cancelar";
+"REG_SE_closs_btn_title"="Cerrar";
+"REG_SE_post_current_btn_title"="Publicar el feedback del récord actual";
+
+"REG_SE_date_title"="Fecha";
+"REG_SE_state_title"="Estado";
+"REG_SE_orderId_title"="Número de pedido";
+"REG_SE_role_title"="Carácter";
+"REG_SE_feedback_btn_title"="Feedback";
+"REG_SE_post_times_title"="Veces de feedback";
+
+"REG_SE_state_finished"="Terminado";
+"REG_SE_state_payFail"="Pago fracasado";
+"REG_SE_state_efunServerCheckPayFail"="Verificación no válido del servidor de efun";
+
+"REG_SE_state_userCancel"="El usuario ha cancelado este pago";
+"REG_SE_state_inPaying"="Pagando";
+
+"REG_SE_post_log_fail"="¡Se ha mandado el registro de compra fracasadamente! Inténtalo de nuevo por favor.";
+"REG_SE_post_log_success"="¡Se ha mandado el registro de compra con éxito!";
+
+"REG_SE_is_posting"="Mandando...";
+"REG_SE_post_time_sign_text"="Abajo es la marca del tiempo cuando lo mandó. Por favor manda la captura de esta pantalla al nuestro personal de servicio: ";
+"REG_SE_post_current_too_mutch_text"="Solo se puede mandar el registro una vez cada hora. Tiempo para la próxima vez de mandar：\n";
+
+
+"textNoNet"                     = "¡La red es pobre!";
+"textServerReturnError"         = "¡El servidor ha devuelto un error, por favor inténtalo de nuevo!";
+"textServerReturnNull"          = "¡Los resultados devueltos por el servidor se encuentra vacío, por favor intente de nuevo!";
+"textParameterNull"             = "¡El parámetro proporcionado es nulo, no puede manejar, por favor intente de nuevo!";
+/*按钮文字*/
+"titleAlertSureBtnTitle"        = "Confirmar";
+
+
+//关于购买的提示
+"textIapParameterNil"       = "¡El parámetro de compars es vacía, no puede manejar, por favor intente de nuevo!";
+"textIapNoNet"              = "¡La red es pobre,por favor, compra en una buena red!";
+"textIapOneIsPaying"        = "Hay una transacción en curso.";
+"textIapNoMakePayments"     = "¡PaymentQueue no es compatible con la compra de pago!";
+"textIapServerInMaintain"   = "¡Mantenimiento de servidores！\nPor favor comprarlo más tarde，gracias。\nE_code：%@";
+"textIapNoThisItem"         = "¡Producto no existe!";
+"textIapPostCheckNoNet"     = "El número del pedido:%@ \nDado que la red es inestable, no pueden obtener la moneda del juego.Recomendaciones en un buen entorno de red, haga clic en \"Confirmar\"a recuperar la moneda del juego；O tratar de volver a iniciar sesión en el juego para ver.";
+"textIapBuyError"           = "El número del pedido：%@\nProbarerror！Por favor hacer la captura de pantalla y póngase en contacto con nuestro servise cliente.\n¡La pantalla será el único certificado para volver a emitir la moneda del juego!";
+"textIapAppStorePayFail"    = "pagar fallar por AppStore！\nE_code:%@";
+"textIapBuyFail"            = "Comprar fallar:\nEl número del pedido：%@\nPor favor hacer la captura de pantalla y póngase en contacto con nuestro servise cliente.\n¡La pantalla será el único certificado para volver a emitir la moneda del juego!";
+"textIapUserCancelToPay"    = "¡Ha cancelado la compra!";
+"textIapHaveSendGameStone"  = "El número del pedido：%@\n¡Los Productos se han enviado, compruebe，por favor!";
+"textIapBuySuccess"         = "Pagar con éxito，la moneda del juego ha sido enviado:\nEl número del pedido：%@\n¡Les deseo un juego agradable!";
+
+
+//关于facebook的提示
+/*facebook登录提示*/
+"textFbInviteGetFbIDFail"               = "¡No se pudo obtener información del usuario del Facebook!";
+"textLoginGetFBTokenFail"               = "¡No se pudo obtener el token del usuario del Facebook,inicio de sesión fallará!\n¡Por favor revise su red y tratar de iniciar sesión de nuevo!";
+"textLoginGetFBInfoFail"                = "¡No se pudo obtener información del usuario del Facebook,inicio de sesión fallará!\n¡Por favor revise su red y tratar de iniciar sesión de nuevo!";
+/*facebook邀请好友*/
+"textFbInviteActivityNotOpen"           = "¡Las actividades de invitar los Amigos del Facebook no se abren!";
+"textFbInviteGetPublicRightFial"        = "¡Dejar de Obtener los permisos de invitación!Por favor, inténtalo de nuevo.";
+"textFbInviteGetCanInvitedFriendsFail"  = "¡Obtener la información de los amigos que usted puede invitar a，fallar!";
+"textFbInviteUserCancelInvite"          = "¡Ha cancelado la invitación!";
+"textFbInviteUserCloseInvite"           = "¡Ha cancelado la invitación!";
+/*facebook分享*/
+"textFbShareGetPublicFail"              = "¡Proceso de compartir, no puedo obtener el derecho!";
+"textFbShareGetTokenFail"               = "¡Proceso de compartir, no puedo obtener el token!";
+"textFbShareFail"                       = "¡Compartir con fallar!";
+"textFbShareSuccess"                    = "¡Compartir con éxito!";
+
+//SEA
+"_STR_FANS_PAGE_TITLE_"                                              ="Fans Page";
+"_STR_LOGIN_WITH_FACEBOOK_"                                     ="Entrar con Facebook";
+"_STR_PLAY_NOW_"                                                ="Juega Ya";
+"_STR_REGISTER_TITLE_"                                          ="Regístrate";
+"_STR_LOGIN_TITLE_"                                             ="Iniciar Sesión";
+"_STR_RESET_PASSWORD_TITLE_"                                    ="Restablecer contraseña";
+"_STR_FORGET_PASSWORD_TITLE_"                                   ="Olvidar contraseña";
+"_STR_BIND_ACCOUNT_TITLE_"                                      ="Vincular Cuenta";
+"_STR_FOR_MORE_ACCOUNT_"                                        ="Otras Cuentas";
+"_STR_USER_ACCOUNT_"                                            ="Nombre de Usuario";
+"_STR_USER_REGISTER_ACCOUNT_"                                            ="iniciar sesión";
+"_STR_PASSWORD_"                                                ="contraseña";
+"_STR_REGISTER_"                                                ="Regístrate";
+"_STR_LOGIN_"                                                   ="Iniciar Sesión";
+"_STR_RESET_PASSWORD_"                                          ="Restablecer contraseña";
+"_STR_FORGET_PASSWORD_"                                         ="Olvidar contraseña";
+"_STR_CONFIRM_PASSWORD_"                                        ="Confirmar contraseña";
+"_STR_EMAIL_AT_TEXTFIELD_"                                      ="Dirección de correo electrónico";
+"_STR_NEW_PASSWORD_"                                            ="Contraseña  Nueva";
+"_STR_EMAIL_"                                                   ="Dirección de correo electrónico";
+"_STR_BIND_ACCOUNT_"                                            ="Vincular Cuenta";
+"_STR_FB_BIND_ACCOUNT_"                                         ="Vincular cuenta de Facebook";
+"_STR_BACK_"                                                    ="Regresar";
+"_STR_FIND_PASSWORD_"                                           ="Recuperar contraseña";
+"_STR_TAP_THE_SCREEN_TO_LOG_IN_"                                ="haga clic para entrar";
+"_STR_FB_INVITE_TOP_TITILE_"                                    ="Invitar amigos";
+"_STR_FB_INVITE_CHECK_REWARDS_TITLE_"                           ="Ver Regalo";
+"_STR_FB_INVITE_NUMBER_OF_INVITATIONS_TITLE_"                   ="El número de amigos invitados";
+"_STR_FB_INVITE_REWARDS_BTN_"                                   ="Ver Regalo";
+"_STR_FB_INVITE_SEND_INVITATION_BTN_"                           ="Enviar solicitud";
+"_STR_FB_INVITE_INFO_"                                          ="Haga clic en el botón de Facebook para entrar al foro oficial";
+"_STR_REGISTER_INFO_"                                           ="¿No tienes cuenta?";
+
+"EFUN_PAYING"                                                   ="Recargando";
+"EFUN_NoNet"                                                    ="Error de la Red";
+"EFUN_NoMakePayments"                                           ="Fracaso de realizar los pagos";
+"EFUN_OneIsBuying"                                              ="Está negociando";
+"EFUN_NoThisGood"                                               ="El producto no existe";
+"EFUN_UserCancelToBuy"                                          ="Has cancelando la compra";
+"EFUN_AppStorePayFail"                                          ="Fracaso de recargar";
+"EFUN_BuySuccess"                                               ="Has compradolo,%@ se ha enviado, \nEl número de perdido：%@\n El código de:%@\n Que disfrute";
+"EFUN_BuyFail"                                                  ="Fracaso de comprarlo:\nEl número de perdido：%@\n El número de:%@\n Código incorrecto:%@\n Contácte con nuestro equipo de servicio al cliente con una captura de pantalla";
+"EFUN_HaveSendGameGold"                                         ="El número de perdido：%@\n El código de:%@\n %@ se ha enviado";
+"EFUN_PostNoNet"                                                ="El número de perdido：%@\n El código de:%@\nFracso de enviar";
+"EFUN_BuyError"                                                 ="El número de perdido：%@\n El código de:%@\n Error de Identificación";
+"EFUN_BuyServerInMaintain"                                      ="El servidor está realizando un mantenimiento, cómpratelo después";
+"__UI_LOGINVIEW_ACCOUNT_TEXTFEILD__"                            ="Cuenta";
+"__UI_LOGINVIEW_PASSWORD_TEXTFEILD__"                           ="Contraseña";
+"__UI_LOGINVIEW_CHANGEPASSWORD_BUTTON__"                        ="Cambiar contraseña";
+"__UI_LOGINVIEW_MACBIND_BUTTON__"                               ="Vincular cuenta de Juega Ya";
+"__UI_LOGINVIEW_FORGOTPASSWORD_BUTTON__"                        ="Recuperar contraseña";
+"__UI_LOGINVIEW_LOGINWAYS_LABEL__"                              ="Otras Cuentas";
+"__UI_CHANGEPASSWORD_OLDPASSWORD_TEXTFEILD__"                   ="Contraseña original";
+"__UI_CHANGEPASSWORD_NEWPASSWORD_TEXTFIELD__"                   ="Contraseña Nueva";
+"__UI_CHANGEPASSWORD_NEWPASSWORD_CONFIRM_TEXTFIELD__"           ="Confirmar contraseña nueva";
+"__UI_FORGOTPASSWORD_EMAIL__"                                   ="Dirección de correo electrónico registrado";
+"__UI_ACCOUNTBIND_PASSWORD_CONFIRM__"                           ="Repetir contraseña";
+"__UI_ACCOUNTBIND_EMAIL__"                                      ="Dirección de correo electrónico(Para recuperar contraseña)";
+"__MESSAGE_ALERTVIEW_TITLE_ERROR__"                             ="Error";
+"__MESSAGE_ALERTVIEW_MESSAGE_PASSWORD_DIFFERENCE__"             ="Las contraseñas introducidas no coinciden";
+"__MESSAGE_WAITTING_LOGIN_STRING__"                             ="Cargando";
+"__MESSAGE_WAITTING_LOGIN_EVATAR_STRING__"                      ="El jugador excelente taiwanés está iniciando sesión";
+"__MESSAGE_WAITTING_ACCOUNTBIND_STRING__"                       ="Registrando";
+"__MESSAGE_WAITTING_FACEBOOKBIND_STRING__"                      ="Esperando";
+"__MESSAGE_WAITTING_CHANGEPASSWORD_STRING__"                    ="Esperando";
+"__MESSAGE_WAITTING_FORGOTPASSWORD_STRING__"                    ="Esperando";
+"__MESSAGE_WAITTING_BIND_STRING__"                              ="Esperando";
+"__MESSAGE_ERROR_MESSAGE_ACCOUNT_LENGTH_45__"                   ="Completa el campo con el máximo 45 caracteres";
+"__MESSAGE_ERROR_MESSAGE_ACCOUNT_NULL__"                        ="Por favor, completa el nombre de usuario";
+"__MESSAGE_ERROR_MESSAGE_ACCOUNT_SPACILECHAR__"                 ="No puede entrar caractes específicos(El nombre de usuario consiste en letras, números y líneas subrayadas)";
+"__MESSAGE_ERROR_MESSAGE_ACCOUNT_UTF8ERROR__"                   ="No puede entrar caracteres chinos(El nombre de usuario consiste en letras, números y líneas subrayadas)";
+"__MESSAGE_ERROR_MESSAGE_PASSWORD_NULL__"                       ="Por favor, completa la contraseña";
+"__MESSAGE_ERROR_MESSAGE_PASSWORD_LENGTH_45__"                  ="Completa el campo con el máximo 45 caracteres";
+"__MESSAGE_ERROR_MESSAGE_PASSWORD_SPACILECHAR__"                ="No puede entrar caractes específicos(La contraseña consiste en letras, números y líneas subrayadas)";
+"__MESSAGE_ERROR_MESSAGE_PASSWORD_UTF8ERROR__"                  ="No puede entrar caracteres chinos(La contraseña  consiste en letras, números y líneas subrayadas)";
+"__MESSAGE_ERROR_MESSAGE_EMAIL_NULL__"                          ="Por favor, complete la dirección de correo electrónico";
+"__MESSAGE_ERROR_MESSAGE_EMAIL_LENGTH_45__"                     ="Completa el campo con el máximo 45 caracteres";
+"__MESSAGE_ERROR_MESSAGE_EMAIL_FORMAT__"                        ="La dirección de correo electronico es inválida";
+"__MESSAGE_ERROR_MESSAGE_EMAIL_UTF8ERROR__"                     ="No puede entrar caracteres chinos";
+"__MESSAGE_TITLE_NETINTERFACE_LOGIN__"                          ="Iniciar Sesión";
+"__MESSAGE_TITLE_NETINTERFACE_REGISTER__"                       ="Regístrate";
+"__MESSAGE_TITLE_NETINTERFACE_RESETPASSWORD__"                  ="Cambiar contraseña";
+"__MESSAGE_TITLE_NETINTERFACE_FINDPASSWORD__"                   ="Recuperar contraseña";
+"__MESSAGE_TITLE_NETINTERFACE_FASTLOGIN__"                      ="Juega Ya";
+"__MESSAGE_TITLE_NETINTERFACE_FACEBOOKLOGIN__"                  ="Entrar con Facebook";
+"__MESSAGE_TITLE_NETINTERFACE_PHONEEVATAR__"                    ="Entrar con Evatar";
+"__MESSAGE_TITLE_NETINTERFACE_REGISTERBIND__"                   ="Vincular cuenta de Juega Ya";
+"__MESSAGE_TITLE_NETINTERFACE_OTHERCLIENTLOGINEVATAR__"         ="Entrar con Evatar";
+"__MESSAGE_ALERTVIEW_MESSAGE_BIND_INFO__"                       ="Querido Jugador, para la seguridad, por favor, vincula tu cuenta lo más rápido posible ";
+"__MESSAGE_ALERTVIEW_MESSAGE_BIND_LEFT_BTN_PLAYNOW__"           ="Entrar";
+"__MESSAGE_ALERTVIEW_MESSAGE_BIND_RIGHT_BTN_BINDACCOUNT__"      ="Vincular cuenta";
+"__MESSAGE_ALERTVIEW_MESSAGE_BINDEDACCOUNT__"                   ="Por favor, entre con la cuenta vinculada: %@ ";
+"__MESSAGE_TITLE_NETINTERFACE__"                                ="Mensajes";
+"__MESSAGE_NET_ERROR__"                                         ="Error de la Red";
+"__MESSAGE_TWITTER_SHARE_CONTENTDUPLICATE"                      ="Contenido redúplico";
+"__MESSAGE_TWITTER_PLEASEWAITING__"                             ="Esperando";
+"__UI_TWITTER_TITLE_TWITTERLOGIN__"                             ="Entrar con Twitter";
+"__UI_BTN_LABEL_CHECK_AWARDCONTENT__"                           ="Regalo";
+"__UI_BTN_LABEL_WEBVIEW_PREVIOUS__"                             ="atrás";
+"__UI_BTN_LABEL_WEBVIEW_NEXT__"                                 ="adelante";
+"__UI_BTN_LABEL_WEBVIEW_BACK__"                                 ="regresar";
+"__UI_BTN_LABEL_WEBVIEW_RELOAD__"                               ="actualizar";
+"__UI_INVITE_LABEL_AlreadyInviteNum__"                          ="el número de amigos invitados:";
+"__UI_BTN_INVITE__LABEL_SendInvite__"                           ="Enviar solicitud";
+"__EFUN_LOADING__"                                              ="Cargando";
+"__UI_INVITE_LABEL_MAX_INVITE_NUM__"                            ="Ha alcanzado el límite, puede invitar al máximo %ld amigos";
+"__UI_INVITE_LABEL_Reward__"                                    ="Regalo:%@";
+"__UI_INVITE_LABEL_PACKAGE_NAME__"                              ="Regalo %d";
+"__UI_RIGISTER_Alert_Account__"                                 ="Puede utilizar letras, numerous y subrayadas.Insensible a mayúsculas";
+"__UI_RIGISTER_Alert_Password__"                                ="Recomendamos  una combinación al mínimo de 6 caracteres. Insensible a mayúsculas";
+"__UI_RIGISTER_Alert_Email__"                                   ="Ofrécenos una dirección de correo electrónico para recuperar contraseña";
+"__UI_ACCOUNTBIND_FACEBOOK_INFO__"                              ="^Tu cuenta es %@, ¿Quieres vincularla?";
+"__UI_ACCOUNTBIND_FACEBOOK_COMFIRM__"                           ="Confirmar";
+"__UI_ACCOUNTBIND_FACEBOOK_CANCLE__"                            ="Otras Cuentas";
+"__UI_ACCOUNTBIND_FACEBOOK_INFO_LOGOUT__"                       ="Inicia sesión de Facebook";
+"__UI_INVITE_GET_GIFT_MESSAGE__"                                ="%@，Condiciones:%@，ha invitado %d";

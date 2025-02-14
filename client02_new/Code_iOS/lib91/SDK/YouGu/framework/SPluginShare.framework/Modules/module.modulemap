@@ -1,0 +1,6 @@
+framework module SPluginShare {
+  umbrella header "SPluginShare.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,161 @@
+/*
+ Localizable.strings
+ EfunPlatForm
+ 
+ Created by TangTieshan on 14-2-24.
+ Copyright (c) 2014年 TangTieshan. All rights reserved.
+ */
+"Home"="ホームページ";
+"Account Info"="アカウント情報";
+"CS Center"="お客様サービスセンター";
+"Info"="情報";
+"Game"="ゲーム";
+"Gift"="ギフト";
+"Recharge"="リチャージ";
+"News"="ニュース";
+"Guide"="攻略ガイド";
+"Role ID"="キャラクター名前";
+"Reply"="返事";
+"Free Gift"="無料ギフト";
+"Medal Gift"="パッジギフト";
+"My Gift"="マイギフト";
+"Your suggestion"="あなたのご意見";
+"Please input your suggestions for better services"="もっと良いサービスのためご意見を入力してください";
+"Your Email"="あなたのEメール";
+"Email"="Eメール";
+"①MSN/Email:\ncustomer_service@efun.com"="①MSN/メールアドレス:customer_service@efun.com";
+"Please input correct email"="正しいEメールを入力ください";
+"Please input your suggestions"="ご意見を入力ください";
+"Please input your Email"="Eメールを入力くだ";
+"OK"="完成";
+"Submit"="発表";
+"Timeout! Please check your network"="タイムアウト！ネットワークをチェックしてください";
+"Thanks for your suggestion!"="ご意見ありがとうございました";
+"submiting..."="発表中...";
+
+"internet error, please try again."="internet error, please try again.";
+"Logging in..."="Logging in...";
+
+"Member"="会員";
+"System Message"="システムメッセージ";
+"Login"="ログイン";
+"Account"="アカウント";
+"Password"="パスワード";
+"Facebook Login"="Facebookログイン";
+"Change password"="パスワードのリセット";
+"Forget password?"="パスワードを忘れた?";
+"No account?"="アカウントがありません?";
+"Register now"="新規アカウント作成";
+"Click here to find back"="クッリクしてパスワードを見つけます";
+"Third Party Account"="サードパーティのアカウント";
+"Old password"="元のパスワード";
+"New password"="ニューパスワード";
+"Confirm password"="パスワードをご確認ください";
+"Confirm"="修正の確認";
+"Change password successfully"="パスワードのリセット成功";
+"Please input new password"="ニューパスワードを入力ください";
+"Please input old password"="元のパスワードを入力ください";
+"Please confirm password"="パスワードをご確認ください";
+"Please input account first"="アカウントを入力してください";
+"The new passwords are inconsistent"="ニューパスワードが一致ではありません";
+"Please input your title"="タイトルを入力ください";
+"Title"="タイトル";
+"Please input password"="パスワードを入力ください";
+"Find back password"="パスワードを見つける";
+"Account Registration"="アカウントサインウップ";
+"Agree to Terms"="同意します";
+"《Terms of Service and Privacy policy》"="《利用規約とプライバシーボリツー》";
+"Please input password first"="パスワードを入力してください";
+"Passwords are inconsistent"="二回パスワードが一致ではありません";
+"You haven't read the related terms"="規定項目を見てください";
+
+"Please select your region"="地域を選んでください";
+"Thailand"="タイ";
+"Vietnam"="ベトナム";
+"Europe"="ヨーロッパ";
+"Japan"="日本";
+"Other regions of Southeast Asia"="東南アジア及び他の地域";
+"The region you choose:"="ご選択地域は:";
+"Cancel"="キャンセル";
+
+"Login error"="登録エラー";
+"Recharge error"="チャージエラー";
+"Abnormal account"="アカウント異常";
+"Error feedback"="フィードバック";
+"Guides"="攻略";
+"Suggestion"="アドバイス";
+"Violation complaints"="クレーム";
+"Other"="他の問題";
+
+"select game"="ゲーム";
+"Server"="サーバー";
+"Character"="キャラクター";
+"submit"="提出";
+
+
+"Register successfully"="登録成功";
+"Register"="新規登録";
+"No blank space for the first place of account"="アカウントの先頭で空欄ができません";
+"No “&！ for account"="アカウントは“&！を含めることができません";
+"No “&！ for password"="パスワードは“&！を含めることができません";
+"The new password has been sent to your mail. Please pay attention to check it"="ニューパスワードがあなたのメールに送付いたしました、ご査収ください！";
+"Failed to obtain the game list. Please try again later"="ゲームリストの獲得失敗、後で再度お試してください!";
+"Failed to obtain server info. Please try again later!"="サーバーの獲得失敗、後で再度お試してください!";
+"Failed to obtain character info. Please try again later!"="キャラクターの情報獲得失敗、後で再度お試してください!";
+
+
+"The title should be shorter than 32 characters."="タイトルは32文字以上にすることができません.";
+"The content should be shorter than 500 characters."="説明の内容は500文字以上にすることができません.";
+"The title can't be empty or containing only spaces."="タイトルはナルもしくは空欄にすることができません.";
+"The content can't be empty or containing only spaces."="説明の内容はナルもしくは空欄にすることができません.";
+"Obtaining..."="獲得中...";
+
+"Application Management"="アプリケーション";
+"Installed"="インストールした";
+"Downloading"="ダウンロード中";
+
+"Change"="改める";
+"Forget"="忘れた";
+"Are you sure to change account?"="アカウントの切り変えることをご确认ください?";
+"The first letter of account can't contain spaces."="アカウントの先头を空白にすることができません.";
+"Password："="パスワード：";
+
+"Wrong password"="暗号化キーが間違い";
+"Wrong parameter"="パラメーターが間違い";
+"Null exception"="ナルエラー";
+"This account has existed already"="アカウントが既に存在します";
+"System abnormal"="システムエラー";
+"This account does't exist"="このユーザーはいません";
+"Wrong original password"="元のパスワードが違います";
+"Wrong email input"="メールアドレスを正しく入力してください";
+"Please choose the type of game"="ゲームをお選びください";
+"Please choose the type of server"="サーバ－をお選びください";
+"Please choose the role"="キャラクターをお選びください";
+"It's now having system maintenance"="メンテナンス中";
+
+
+"Failed to login"="ログインに失敗しました";
+"Shared successfully"="シェアしました";
+"Shared failed"="シェアできません";
+
+"wrong password!"="パスワードの入力に誤りがあります!";
+"More"="More";
+
+"Event area"="イベント区域";
+"select game"="ゲーム選択";
+"server"="サーバー";
+"role name"="ロールネーム";
+"select event"="イベント選択";
+"shoot"="撮影";
+"album"="アルバム";
+
+"Please choose the event"="イベントを選んでください";
+"Your message has been successfully submitted"="提出成功";
+"Fail to send your message, please try later"="提出失敗、もう一度お試してください";
+"Please choose an image"="画像を選んでください";
+
+"Load failed, please check the network connection or contact customer service."="ロードに失敗しました、通信環境をもう一度チェックし、それとも、サービスセンターを連絡してください.";
+
+"Notice"="お知らせ";
+"Download"="ダウンロード";
+"Don't show today"="今日は表示しない";

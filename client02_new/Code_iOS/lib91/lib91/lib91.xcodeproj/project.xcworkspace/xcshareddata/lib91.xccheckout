@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>401FA360-1F59-4475-B38F-2D883E38B99A</string>
+	<key>IDESourceControlProjectName</key>
+	<string>lib91</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>694BEA1B-BBA3-4FF6-ACE5-EA0E04D03A60</key>
+		<string>https://10.0.4.200/svn/develop/Android_IOS_WP_SDK/IOS/Aggregation_SDK</string>
+		<key>ed08c6ee-8ad9-dd4a-94a1-7ac060b335e7++1864</key>
+		<string>https://10.0.4.200/svn/develop/Android_IOS_WP_SDK/IOS/Aggregation_SDK/Code_iOS</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>lib91/lib91/lib91.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>694BEA1B-BBA3-4FF6-ACE5-EA0E04D03A60</key>
+		<string>../../../../../Aggregation_SDK</string>
+		<key>ed08c6ee-8ad9-dd4a-94a1-7ac060b335e7++1864</key>
+		<string>../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectRepositoryRootDictionary</key>
+	<dict>
+		<key>694BEA1B-BBA3-4FF6-ACE5-EA0E04D03A60</key>
+		<string>https://10.0.4.200/svn/develop</string>
+		<key>ed08c6ee-8ad9-dd4a-94a1-7ac060b335e7++1864</key>
+		<string>https://10.0.4.200/svn/develop</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://10.0.4.200/svn/develop/Android_IOS_WP_SDK/IOS/Aggregation_SDK/Code_iOS/lib91/lib91/lib91.xcodeproj</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>ed08c6ee-8ad9-dd4a-94a1-7ac060b335e7++1864</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.subversion</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>694BEA1B-BBA3-4FF6-ACE5-EA0E04D03A60</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Aggregation_SDK</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.subversion</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>ed08c6ee-8ad9-dd4a-94a1-7ac060b335e7++1864</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Code_iOS</string>
+		</dict>
+	</array>
+</dict>
+</plist>

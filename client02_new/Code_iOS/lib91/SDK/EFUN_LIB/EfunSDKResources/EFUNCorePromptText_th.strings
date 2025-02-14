@@ -1,0 +1,245 @@
+/* 
+  EFUNCorePromptText_en.strings
+  EFUN_FUNCTION_PROJECT_AddUserInterface
+
+  Created by Mac mini on 14-9-24.
+  Copyright (c) 2014年 zhangguangyang. All rights reserved.
+*/
+
+//交易历史记录界面
+"REG_SE_alert_content"="ที่นี่จะแสดงถึงประวัติการสั่งซื้อ 20 ยอดล่าสุดของผู้เล่นที่เคยเล่นเกมในเครื่องนี้  การสั่งซื้อ20ยอดนี้จะไม่ใช่บันทึกประวัติสำหรับผู้เล่นที่เฉพาะ หากผู้เล่นที่แตกต่างกันได้เล่นเกมนี้ในครื่องนี้และมีการเติมเงินด้วย จากนั้นจะบันทึกประวัติการสั่งซื้อ 20 ยอดตามลำดับการสั่งซื้อของผู้เล่นที่แตกต่างกันไว้ หากเกมโดนลบไป ประวัติการสั่งซื้อจะหายไปด้วย หากผู้เล่นมีข้อสงสัยสำหรับการสั่งซื้อยอดใดยอดหนึ่ง สามารถกดปุ่ม“ฟีแบ็ค”และส่งข้อคิดเห็นให้กับefun แต่ละยอดสามารถส่งข้อความ ฟีแบ็คได้สองครั้งเท่านั้น";
+"REG_SE_alert_content01"="บันทึกนี้ส่งไปสองครั้งแล้ว ไม่ต้องส่งอีกครั้ง โปรดท่านติดต่อบริการลูกค้าของเรา";
+"REG_SE_alert_content02"="แต่ละข้อมูลการซื้อขาย สามารถแจ้งใด้สองครั้งเท่านั้น หลังแจ้งเสร็จเรียบร้อย ในเซิร์ฟเวอร์efunจะเก็บบันทึกนี้ไว้  ไม่ต้องแจ้งซ้ำท่านยืนยันจะแจ้งขอมูลนี้หรือไม่";
+"REG_SE_alert_content03"="ส่งบันทึกใหม่ล่าสุดให้กับเซิรฺฟเวอร์efun หลังส่งไปสำเร็จครั้งที่สองต้องการผ่านอีกหนึ่งชั่วโมงถึงจะส่งได้ เมื่อส่งสำเร็จแล้วจะมีคำเติอนจากประทับเวลาอย่าลืมคลิปรูปให้กับบริการลูกค้าของเรานะ  ยืนยันจะส่งหรือไม่";
+"REG_SE_alert_content04"="ในปัจจุบันนี้ยังไม่มีบันทึก!";
+"REG_SE_alert_sure_btn_title"="ยืนยัน";
+"REG_SE_alert_cancel_btn_title"="ยกเลิก";
+"REG_SE_closs_btn_title"="ปิด";
+"REG_SE_post_current_btn_title"="แจ้งบันทึกในปัจจุบันนี้";
+
+"REG_SE_date_title"="วันที่";
+"REG_SE_state_title"="สถานะ";
+"REG_SE_orderId_title"="หมายเลขการเติมเงิน";
+"REG_SE_role_title"="ตัวละคร";
+"REG_SE_feedback_btn_title"="แจ้ง";
+"REG_SE_post_times_title"="จำนวนแจ้งในปัจจุบันนี้";
+
+"REG_SE_state_finished"="เสร็จเรียบร้อย";
+"REG_SE_state_payFail"="ชําระเงินล้มเหลว";
+"REG_SE_state_efunServerCheckPayFail"="ตรวจสอบเซิร์ฟเวอร์efunล้มเหลว";
+"REG_SE_state_userCancel"="ผู้ใช้ยกเลิกการซื้อ";
+"REG_SE_state_inPaying"="กำลังดำเนินการ";
+
+"REG_SE_post_log_fail"="ส่งบันทึกการซื้อล้มเหลว!โปรดท่านลองอีกครั้ง.";
+"REG_SE_post_log_success"="ส่งบันทึกการซื้อได้สำเร็จ!";
+"REG_SE_is_posting"="กำลังดำเนินการ...";
+"REG_SE_post_time_sign_text"="นี่คือเวลาอัพโหลดโปรดท่านคลิปรูปให้กับบริการลูกค้าของเรา:";
+"REG_SE_post_current_too_mutch_text"="แต่ละชั่วโมง ส่งบันทึกได้ครั้งเดียว  ระยะเวลาการส่งครั้งต่อไปยังเหลือ:\n";
+
+"textNoNet"                     = "เน็ตไม่ดี!";
+"textServerReturnError"         = "ข้อความผิดพลาดกลับเซิร์ฟเวอร์ กรุณาลองอีกครั้ง!";
+"textServerReturnNull"          = "เซิร์ฟเวอร์ข้อความกลับนัล!กรุณาลองอีกครั้ง!";
+"textParameterNull"             = "ข้อความพารามิเตอร์ นัล,จัดการกับ.กรุณาลองอีกครั้ง!";
+/*ข้อความที่ปุ่ม*/
+"titleAlertSureBtnTitle"        = "ยืนยัน";
+
+
+//ทิปส์เกี่ยวกับการซื้อ
+"textIapParameterNil"       = "ซื้อพารามิเตอร์ผิดปกติ ,กรุณาลองอีกครั้ง!";
+"textIapNoNet"              = "เน็ตไม่ดี,   เวลาที่ซื้อกรุณาอยู่บริเวณที่เน็ตเครือข่ายสะดวก!";
+"textIapOneIsPaying"        = "มีธุรกรรมกำลังได้รับบน";
+"textIapNoMakePayments"     = "PaymentQueueไม่สามารถสนับสนุนการชำระการชื้อ!";
+"textIapServerInMaintain"   = "กำลังบำรุงรักษาเซิร์ฟเวอร์!\nกรุณาผ่านไปสักพักค่อยซื้ออีกที, ขอบคุณสนับสนุนค่ะ。\nE_code：%@";
+"textIapNoThisItem"         = "สินค้าไม่มี!";
+"textIapPostCheckNoNet"     = "หมายเลขการสั่งซื้อ:%@ \nเพราะเครือข่ายไม่ค่อยดี ,ยังไม่สามารถรับหินคาถาได้ในคณะนี้。อยู่บริเวณที่เน็ตเครือข่ายสะดวกขอให้คลิก“ยืนยัน”รับหินคาถาเริมต้อนใหม่。";
+"textIapBuyError"           = "หมายเลขการสั่งซื้อธุรกรรม：%@\nตรวจสอบerror!กรุณาครอฟรู้แล้วติดต่อติดต่อฝ่ายบริการลูกค้า。\nรูปที่ครอฟจะเป็นเพียงหลักฐานของหมายเหตุที่ชดเชย!";
+"textIapAppStorePayFail"    = "AppStoreจ่ายล้มเหลว!\nE_code:%@";
+"textIapBuyFail"            = "ซื้อล้มเหลว:\nหมายเลขการสั่งซื้อ：%@\nกรุณาครอฟรู้แล้วติดต่อติดต่อฝ่ายบริการลูกค้า。\nรูปที่ครอฟจะเป็นเพียงหลักฐานของหมายเหตุที่ชดเชย!";
+"textIapUserCancelToPay"    = "ท่านยกเลิกการซื้อแล้ว!";
+"textIapHaveSendGameStone"  = "หมายเลขการสั่งซื้อธุรกรรม：%@\nสินค้าได้ส่งให้แล้ว,กรุณาเช็คด้วย!";
+"textIapBuySuccess"         = "ซื้อได้สำเร็จ,สกุลเงินเกมส่งให้แล้ว:\nหมายเลขการสั่งซื้อธุรกรรม：%@\nขอให้ท่านเล่นเกมส์มีความสุข!";
+
+
+//ทิปส์เกี่ยวกับfacebook
+/*ล็อกอินทิปส์เกี่ยวกับfacebook*/
+"textFbInviteGetFbIDFail"               = "รับข้อมูลผู้ใช้ของfacebookล้มเหลว!";
+"textLoginGetFBTokenFail"               = "รับtokenของfacebookล้มเหลว,ล็อกอินล้มเหลว!\nกรุณาเช็คเน็ตของตัวเอง,ลองล็อกอินเริ่มต้นอีกครั้ง!";
+"textLoginGetFBInfoFail"                = "รับข้อมูลผู้ใช้ของfacebookล้มเหลว,ล็อกอินล้มเหลว!\nกรุณาเช็คเน็ตของตัวเอง,ลองล็อกอินเริ่มต้นอีกครั้ง!";
+/*facebookเชิญชวนเพื่อน*/
+"textFbInviteActivityNotOpen"           = "กิจกรรมเชิญชวนเพื่อนจากfacebookยังไม่ได้เริ่ม!";
+"textFbInviteGetPublicRightFial"        = "ส่งการเชิญชวนล้มเหลว!กรุณาลองเริ่มต้อง。";
+"textFbInviteGetCanInvitedFriendsFail"  = "รับข้อมูลของเพื่อนรับได้,ล้มเหลว!";
+"textFbInviteUserCancelInvite"          = "ท่านยกเลิกการเชิญชวนแล้ว!";
+"textFbInviteUserCloseInvite"           = "ท่านขัดจังหวะการเชิญชวนแล้ว!";
+/*facebookแซร์*/
+"textFbShareGetPublicFail"              = "ในช่วงแซร์,รับสิทธิล้มเหลว!";
+"textFbShareGetTokenFail"               = "ในช่วงแซร์,รับtokenล้มเหลว!";
+"textFbShareFail"                       = "ส่งแซร์ล้มเหลว!";
+"textFbShareSuccess"                    = "แซร์สำเร็จ!";
+
+//SEA
+"_STR_FANS_PAGE_TITLE_"                                              ="Fans Page";
+"_STR_LOGIN_WITH_FACEBOOK_"                                     ="ล็อกอินด้วยFacebook";
+"_STR_PLAY_NOW_"                                                ="เล่นขณะนี้";
+"_STR_REGISTER_TITLE_"                                          ="ลงทะเบียน";
+"_STR_LOGIN_TITLE_"                                             ="ล็อกอิน";
+"_STR_RESET_PASSWORD_TITLE_"                                    ="รีเซ็ตรหัสผ่าน";
+"_STR_FORGET_PASSWORD_TITLE_"                                   ="ลืมรหัสผ่าน";
+"_STR_BIND_ACCOUNT_TITLE_"                                      ="ผูกพันบัญชี";
+"_STR_FOR_MORE_ACCOUNT_"                                        ="วิธีล็อกอินเพิ่มเติม";
+"_STR_USER_ACCOUNT_"                                            ="ชื่อบัญชี";
+"_STR_USER_REGISTER_ACCOUNT_"                                            ="สร้างชื่อบัญชี";
+"_STR_PASSWORD_"                                                ="รหัสผ่าน";
+"_STR_REGISTER_"                                                ="ลงทะเบียน";
+"_STR_LOGIN_"                                                   ="ล็อกอิน";
+"_STR_RESET_PASSWORD_"                                          ="รีเซ็ตรหัสผ่าน";
+"_STR_FORGET_PASSWORD_"                                         ="ลืมรหัสผ่าน";
+"_STR_CONFIRM_PASSWORD_"                                        ="ยืนยันรหัสผ่าน";
+"_STR_EMAIL_AT_TEXTFIELD_"                                      ="อีเมล์(ค้นหารหัสผ่าน)";
+"_STR_NEW_PASSWORD_"                                            ="รหัสผ่านใหม่";
+"_STR_EMAIL_"                                                   ="อีเมล์";
+"_STR_BIND_ACCOUNT_"                                            ="ผูกพันบัญชี";
+"_STR_FB_BIND_ACCOUNT_"                                         ="Facebookผูกพันบัญชี";
+"_STR_BACK_"                                                    ="กลับ";
+"_STR_FIND_PASSWORD_"                                           ="ค้นหารหัสผ่าน";
+"_STR_TAP_THE_SCREEN_TO_LOG_IN_"                                ="คลิกหน้าจอเข้าไป";
+
+"_STR_FB_INVITE_TOP_TITILE_"                                    ="เชิญเพื่อนFacebook";
+"_STR_FB_INVITE_CHECK_REWARDS_TITLE_"                           ="เช็คกระเป๋ารางวัล";
+"_STR_FB_INVITE_NUMBER_OF_INVITATIONS_TITLE_"                   ="จำนวนครั้งการเชิญ";
+"_STR_FB_INVITE_REWARDS_BTN_"                                   ="รางวัล";
+"_STR_FB_INVITE_SEND_INVITATION_BTN_"                           ="ส่งคำเชิญ";
+"_STR_FB_INVITE_INFO_"                                          ="คลิกไอคอน Facebook และลิงค์เพื่อเข้าฟอรั่มทางการของเรา.";
+"_STR_REGISTER_INFO_"                                           ="ไม่มีบัญชี? ";
+
+"_STR_FB_INVITE_SHARE_MORE_BTN_"                                ="更多分享";
+"_STR_FB_INVITE_RANK_TITLE_"                                    ="好友排行榜";
+"_STR_FB_INVITE_RANK_PRESTIGE_"                                 ="威望";
+"_STR_FB_INVITE_RANK_GIVE_"                                     ="贈送";
+"_STR_FB_INVITE_RANK_COMMENT_"                                  ="說明";
+"_STR_FB_INVITE_RANK_CLAIM_"                                    ="索取";
+"_STR_FB_INVITE_LABEL_PACKAGE_NAME__"                            = "กระเป๋ารางวัล %d";
+"_STR_FB_INVITE_LABEL_Reward__"                                  = "รางวัล:%@";
+
+"EFUN_PAYING"                                                 ="ดำเนินการสั่งซื้ออยู่ กรุณารอสักครู่";
+"EFUN_NoNet"                                                  ="Networkผิดปกติ โปรดเช็คอินเทอร์เน็ตด้วย";
+"EFUN_NoMakePayments"                                         ="AppStoreไม่สามารถชำระเงิน!";
+"EFUN_OneIsBuying"                                            ="มีการสั่งซื้อ1ข้อกำลังดำเนินอยู่.";
+"EFUN_NoThisGood"                                             ="ไม่มีสินค้านี้!";
+"EFUN_UserCancelToBuy"                                        ="ยกเลิกการซื้อ!";
+"EFUN_AppStorePayFail"                                        ="การชำระเงินผ่าน AppStore ล้มเหลว!";
+"EFUN_BuySuccess"                                             ="การสั่งซื้อสำเร็จ %@ การส่งเรียบร้อยแล้ว,\n หมายเลขการสั่งซื้อ:%@\n Order Num:%@\n ขอสนุกกับเกมนะจ๊า!";
+"EFUN_BuyFail"                                                ="การสั่งซื้อล้มเหลว!\n หมายเลขการสั่งซื้อ:%@\n Order Num:%@\n ErroCode:%@\n กรุณาทำ Screenshot และติดต่อฝ่ายบริการลูกค้า.";
+"EFUN_HaveSendGameGold"                                       ="หมายเลขการสั่งซื้อ:%@\n Order Num:%@\n %@ ได้ส่งไปแล้ว โปรดเช็คอย่างรอบคอบ!";
+"EFUN_PostNoNet"                                              ="หมายเลขการสั่งซื้อ:%@\n Order Num:%@\n ส่งการตรวจสอบไปยังเซิร์ฟเวอร์ล้มเหลว.";
+"EFUN_BuyError"                                               ="หมายเลขการสั่งซื้อ:%@\n Order Num:%@\n การตรวจสอบผิดพลาด!";
+"EFUN_BuyServerInMaintain"                                    ="กำลังบำรุงรักษาเซิร์ฟเวอร์อยู่! โปรดรอสักครู่เพื่อการซื้อ";
+"__UI_LOGINVIEW_ACCOUNT_TEXTFEILD__"                          =" บัญชี";
+"__UI_LOGINVIEW_PASSWORD_TEXTFEILD__"                         =" รหัสผ่าน";
+"__UI_LOGINVIEW_CHANGEPASSWORD_BUTTON__"                      =" เปลี่ยนรหัสผ่าน";
+"__UI_LOGINVIEW_MACBIND_BUTTON__"                             =" ผูกพันลัญชีลงทะเบียนฟรี";
+"__UI_LOGINVIEW_FORGOTPASSWORD_BUTTON__"                      =" ลืมรหัสผ่าน";
+"__UI_LOGINVIEW_LOGINWAYS_LABEL__"                            =" ใช้บัญชีด้านล่างล็อกอิน";
+"__UI_CHANGEPASSWORD_OLDPASSWORD_TEXTFEILD__"                 =" รหัสผ่านเดิม";
+"__UI_CHANGEPASSWORD_NEWPASSWORD_TEXTFIELD__"                 =" รหัสผ่านใหม่";
+"__UI_CHANGEPASSWORD_NEWPASSWORD_CONFIRM_TEXTFIELD__"         =" ยืนยันรหัสผ่าน";
+"__UI_FORGOTPASSWORD_EMAIL__"                                 =" เมล์ลงทะเบียน";
+"__UI_ACCOUNTBIND_PASSWORD_CONFIRM__"                         =" ซ้ำรหัสผ่าน";
+"__UI_ACCOUNTBIND_EMAIL__"                                    =" อีเมล์(เพื่อค้นหารหัสผ่าน)";
+"__MESSAGE_ALERTVIEW_TITLE_ERROR__"                           ="ผิดพลาด";
+"__MESSAGE_ALERTVIEW_MESSAGE_PASSWORD_DIFFERENCE__"           ="รหัสผ่านที่ใส่สองครั้งไม่เหมือนกัน โปรดเขียนใหม่!";
+"__MESSAGE_WAITTING_LOGIN_STRING__"                           ="กำลังส่งผลประมวลผล...";
+"__MESSAGE_WAITTING_LOGIN_EVATAR_STRING__"                    ="Taiwan's big players to log in ...";
+"__MESSAGE_WAITTING_ACCOUNTBIND_STRING__"                     ="กำลังส่งผลประมวลผล...";
+"__MESSAGE_WAITTING_FACEBOOKBIND_STRING__"                    ="กำลังส่งผลประมวลผล...";
+"__MESSAGE_WAITTING_CHANGEPASSWORD_STRING__"                  ="กำลังส่งผลประมวลผล...";
+"__MESSAGE_WAITTING_FORGOTPASSWORD_STRING__"                  ="กำลังส่งผลประมวลผล...";
+"__MESSAGE_WAITTING_BIND_STRING__"                            ="กำลังส่งผลประมวลผล...";
+"__MESSAGE_ERROR_MESSAGE_ACCOUNT_LENGTH_45__"                 ="ชื่อผู้ใช้ที่ใส่ไม่สามารถเกิน 45 ตัวอักษร";
+"__MESSAGE_ERROR_MESSAGE_ACCOUNT_NULL__"                      ="บัญชีไม่สามารถว่างเปล่าไม่ได้!";
+"__MESSAGE_ERROR_MESSAGE_ACCOUNT_SPACILECHAR__"               ="บัญชีมีตัวอักษรพิเศษไม่ได้( บัญชีประกอบด้วยตัวอักษร ตัวเลขหรือขีด)";
+"__MESSAGE_ERROR_MESSAGE_ACCOUNT_UTF8ERROR__"                 ="บัญชีมีตัวอักษรจีนไม่ได้( บัญชีประกอบด้วยตัวอักษร ตัวเลขหร";
+"__MESSAGE_ERROR_MESSAGE_PASSWORD_NULL__"                     ="รหัสผ่านไม่สามารถว่างเปล่าไม่ได้!";
+"__MESSAGE_ERROR_MESSAGE_PASSWORD_LENGTH_45__"                ="รหัสผ่านไม่สามารถมีตัวอักษรมากกว่า 45 ตัวอักษร";
+"__MESSAGE_ERROR_MESSAGE_PASSWORD_SPACILECHAR__"              ="บัญชีมีตัวอักษรพิเศษไม่ได้( บัญชีประกอบด้วยตัวอักษร ตัวเลขหรือขีด)";
+"__MESSAGE_ERROR_MESSAGE_PASSWORD_UTF8ERROR__"                ="บัญชีมีตัวอักษรจีนไม่ได้( บัญชีประกอบด้วยตัวอักษร ตัวเลขหรือขีด)";
+"__MESSAGE_ERROR_MESSAGE_EMAIL_NULL__"                        ="อีเมล์ไม่สามารถว่างเปล่าได้!";
+"__MESSAGE_ERROR_MESSAGE_EMAIL_LENGTH_45__"                   ="อีเมล์ไม่สามารถมีตัวอักษรมากกว่า 45 ตัว!";
+"__MESSAGE_ERROR_MESSAGE_EMAIL_FORMAT__"                      ="รูปแบบเมล์ไม่ถูกต้อง";
+"__MESSAGE_ERROR_MESSAGE_EMAIL_UTF8ERROR__"                   ="อีเมล์มีตัวอักษรพิเศษไม่ได้";
+"__MESSAGE_TITLE_NETINTERFACE_LOGIN__"                        ="ล็อกอิน";
+"__MESSAGE_TITLE_NETINTERFACE_REGISTER__"                     ="ลงทะเบียน";
+"__MESSAGE_TITLE_NETINTERFACE_RESETPASSWORD__"                ="เปลี่ยนรหัสผ่าน";
+"__MESSAGE_TITLE_NETINTERFACE_FINDPASSWORD__"                 ="ลืมรหัสผ่าน";
+"__MESSAGE_TITLE_NETINTERFACE_FASTLOGIN__"                    ="ล๊อกอินโดยลงทะเบียนฟรี";
+"__MESSAGE_TITLE_NETINTERFACE_FACEBOOKLOGIN__"                ="เข้าสู่ระบบด้วย Facebook";
+"__MESSAGE_TITLE_NETINTERFACE_PHONEEVATAR__"                  ="Evatar Login";
+"__MESSAGE_TITLE_NETINTERFACE_REGISTERBIND__"                 ="ผูกพันบัญชีการลงทะเบียนฟรี";
+"__MESSAGE_TITLE_NETINTERFACE_OTHERCLIENTLOGINEVATAR__"       ="Evatar Login by Other Client ";
+"__MESSAGE_ALERTVIEW_MESSAGE_BIND_INFO__"                     ="เรียนผู้เล่นที่เคารพ เพื่อความปลอดภัยบัญชีของคุณ โปรดผูกพันบัญชีในเวลาเร็วที่สุด";
+"__MESSAGE_ALERTVIEW_MESSAGE_BIND_LEFT_BTN_PLAYNOW__"         ="เข้าสู่เกม";
+"__MESSAGE_ALERTVIEW_MESSAGE_BIND_RIGHT_BTN_BINDACCOUNT__"    ="ผูกพันบัญชี";
+"__MESSAGE_ALERTVIEW_MESSAGE_BINDEDACCOUNT__"                 ="เครื่องของคุณมีบัญชีที่ผูกพันอยู่แล้ว โปรดใชบัญชีที่ผูกพันเข้าสู่เกม %@";
+"__MESSAGE_TITLE_NETINTERFACE__"                              ="ทิปส์";
+"__MESSAGE_NET_ERROR__"                                       ="Networkไม่ได้เรี่องเลย";
+"__MESSAGE_TWITTER_SHARE_CONTENTDUPLICATE"                    ="เนื่อหาแชร์ซ้ำแล้ว โปรดลองวันใหม่หรือเปลี่ยนเนื้อหาแชร์";
+"__MESSAGE_TWITTER_PLEASEWAITING__"                           ="โปรดรอ...";
+"__UI_TWITTER_TITLE_TWITTERLOGIN__"                           ="เข้าสู่ระบบด้วย Twitter";
+"__UI_BTN_LABEL_CHECK_AWARDCONTENT__"                         ="รายละเอียดรางวัล";
+"__UI_BTN_LABEL_WEBVIEW_PREVIOUS__"                           ="Previous";
+"__UI_BTN_LABEL_WEBVIEW_NEXT__"                               ="Next";
+"__UI_BTN_LABEL_WEBVIEW_BACK__"                               ="Back";
+"__UI_BTN_LABEL_WEBVIEW_RELOAD__"                             ="Reload";
+"__UI_INVITE_LABEL_AlreadyInviteNum__"                        ="จำนวนคนที่เชิญ:";
+"__UI_BTN_INVITE__LABEL_SendInvite__"                         ="ส่งข้อความการชวนเชิญ";
+"__EFUN_LOADING__"                                            ="ดำเนินการอยู่...";
+"__UI_INVITE_LABEL_MAX_INVITE_NUM__"                          ="ถึงยอดจำนวนของการเชิญแล้ววันนี้ จำนวนสูงสุดคือ:%ld";
+"__UI_INVITE_LABEL_Reward__"                                  ="รางวัล:%@";
+"__UI_INVITE_LABEL_PACKAGE_NAME__"                            ="กระเป๋ารางวัล %d";
+"__UI_RIGISTER_Alert_Account__"                               ="You can use letters, numbers and underscore. Case insensitive.";
+"__UI_RIGISTER_Alert_Password__"                              ="We recommend combination of 6 characters or above. Case sensitive";
+"__UI_RIGISTER_Alert_Email__"                                 ="Please provide a valid email, which will be used to recover your password";
+"__UI_ACCOUNTBIND_FACEBOOK_INFO__"                            ="บัญชี Facebook ที่คุณกำลังใช้คือ:%@ จะผูกพันบัญชีนี้ไหม?";
+"__UI_ACCOUNTBIND_FACEBOOK_COMFIRM__"                         ="ใช้อันนี้";
+"__UI_ACCOUNTBIND_FACEBOOK_CANCLE__"                          ="ใช้บัญชีอื่น";
+"__UI_ACCOUNTBIND_FACEBOOK_INFO_LOGOUT__"                     ="โปรดเข้าบัญชีเฟสบุ๊คที่คุณอยากจะผูกพัน";
+"__UI_INVITE_GET_GIFT_MESSAGE__"                              ="%@,เงื่อนไข:%@,ท่านได้เชิญชวนเพื่อน %d คนแล้ว ";
+
+//陌陌
+"_ASIA_USER_ACCOUNT_"                                            ="บัญชี";
+"_ASIA_PASSWORD_"                                                ="รหัสผ่าน";
+"_ASIA_LOGIN_"                                                   ="ล็อกอิน";
+"_ASIA_REGISTER_RIGHTNOW_"                                       ="ลงทะเบียนในขณะนี้";
+"_ASIA_FORGET_PASSWORD_"                                         ="ขอคืนขณะนี้";
+"_ASIA_THIRD_LOGIN_"                                             =" บัญชีอื่นๆ";
+"_ASIA_PLAY_NOW_"                                                ="เล่นขณะนี้";
+"_ASIA_TWITTER_LOGIN"                                            ="Twitter";
+"_ASIA_BAHA_LOGIN_"                                              ="BaHa";
+
+"_ASIA_REGISTER_TITLE_"                                          ="ลงทะเบียนบัญชี";
+"_ASIA_REPEAT_PASSWORD_"                                         ="รหัสผ่านซ้ำ";
+"_ASIA_EMAIL_AT_TEXTFIELD_"                                      ="อีเมล์ (สามารถขอรหัสผ่านคืนได้)";
+"_ASIA_I_HAVE_READED"                                            ="ดิฉันได้อ่านและยินยอมในสัญญาและกฎระเบียบสมาชิก";
+"_ASIA_REGULATION_"                                              ="สัญญาและกฎระเบียบสมาชิก";
+"_ASIA_REGISTER_"                                                ="ลงทะเบียน";
+"_ASIA_READ_AND_AGREE"                                           ="กรุณาอ่านและยอมรับเงื่อนไขการให้บริการ";
+
+"_ASIA_FORGET_PASSWORD_TITLE_"                                   ="ลืมรหัสผ่าน";
+"_ASIA_FIND_PASSWORD_"                                           ="ขอคืนรหัสผ่าน";
+"_ASIA_EMAIL_"                                                   ="อีเมล์";
+
+"_ASIA_ACCOUNT_MANAGEMENT_TITLE_"                                ="การจัดการบัญชี";
+"_ASIA_RESET_PASSWORD_"                                          ="เปลี่ยนรหัสผ่าน";
+"_ASIA_BIND_ACCOUNT_"                                            ="ฟรีให้ลงทะเบียน";
+"_ASIA_FB_BIND_ACCOUNT_"                                         ="บัญชีfacebookที่ผูกพัน";
+
+"_ASIA_ORIGINAL_PASSWORD_"                                       ="รหัสเดิม";
+"_ASIA_NEW_PASSWORD_"                                            ="รหัสผ่านใหม่";
+"_ASIA_CONFIRM_PASSWORD_"                                        ="ยืนยันรหัสผ่านใหม่";
+"_ASIA_CONFIRM_RESET_"                                           ="ยืนยันจะเปลี่ยน";
+
+"_ASIA_BIND_ACCOUNT_TITLE_"                                      ="บัญชีที่ผูกพัน";
+
+"_ASIA_CANCEL_"                                                  ="ยกเลก";
+"_ASIA_CONFIRM_"                                                 ="ยืนยัน";
+"_ASIA_SYSTEM_NOTICE_"                                           ="ข้อมูลระบบ";

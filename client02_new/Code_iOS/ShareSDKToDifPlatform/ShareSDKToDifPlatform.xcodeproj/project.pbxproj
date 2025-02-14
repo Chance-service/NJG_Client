@@ -1,0 +1,1233 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		17C4A5061AFB0DAB00C761E3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2A4AF5A1AE50566001BF946 /* Foundation.framework */; };
+		17C4A5301AFB0E5500C761E3 /* YVToCom4lovesVoiceSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C4A50F1AFB0E5500C761E3 /* YVToCom4lovesVoiceSDK.m */; };
+		17C4A5311AFB0E5500C761E3 /* CADebugMacros.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 17C4A51E1AFB0E5500C761E3 /* CADebugMacros.cpp */; };
+		17C4A5321AFB0E5500C761E3 /* CAStreamBasicDescription.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 17C4A5211AFB0E5500C761E3 /* CAStreamBasicDescription.cpp */; };
+		17C4A5331AFB0E5500C761E3 /* CAXException.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 17C4A5231AFB0E5500C761E3 /* CAXException.cpp */; };
+		17C4A5341AFB0E5500C761E3 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C4A5271AFB0E5500C761E3 /* JSONKit.m */; };
+		17C4A5351AFB0E5500C761E3 /* TTTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C4A52A1AFB0E5500C761E3 /* TTTAttributedLabel.m */; };
+		17C4A5361AFB0E5500C761E3 /* libBDVoiceRecognitionClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 17C4A52D1AFB0E5500C761E3 /* libBDVoiceRecognitionClient.a */; };
+		17C4A5371AFB0E5500C761E3 /* libtroopsSdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 17C4A52E1AFB0E5500C761E3 /* libtroopsSdk.a */; };
+		17C4A5381AFB0E5500C761E3 /* libVoiceRecognitionWarpper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 17C4A52F1AFB0E5500C761E3 /* libVoiceRecognitionWarpper.a */; };
+		17C4A5391AFB0E8F00C761E3 /* YVToCom4lovesVoiceSDK.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 17C4A50E1AFB0E5500C761E3 /* YVToCom4lovesVoiceSDK.h */; };
+		17C4A53C1AFB0EBE00C761E3 /* CAXException.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 17C4A5231AFB0E5500C761E3 /* CAXException.cpp */; };
+		17C4A53D1AFB0EBE00C761E3 /* CADebugMacros.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 17C4A51E1AFB0E5500C761E3 /* CADebugMacros.cpp */; };
+		17C4A53E1AFB0EBE00C761E3 /* YVToCom4lovesVoiceSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C4A50F1AFB0E5500C761E3 /* YVToCom4lovesVoiceSDK.m */; };
+		17C4A53F1AFB0EBE00C761E3 /* CAStreamBasicDescription.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 17C4A5211AFB0E5500C761E3 /* CAStreamBasicDescription.cpp */; };
+		17C4A5411AFB0EBE00C761E3 /* TTTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C4A52A1AFB0E5500C761E3 /* TTTAttributedLabel.m */; };
+		17C4A5431AFB0EBE00C761E3 /* libtroopsSdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 17C4A52E1AFB0E5500C761E3 /* libtroopsSdk.a */; };
+		17C4A5441AFB0EBE00C761E3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2A4AF5A1AE50566001BF946 /* Foundation.framework */; };
+		17C4A5451AFB0EBE00C761E3 /* libVoiceRecognitionWarpper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 17C4A52F1AFB0E5500C761E3 /* libVoiceRecognitionWarpper.a */; };
+		17C4A5461AFB0EBE00C761E3 /* libBDVoiceRecognitionClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 17C4A52D1AFB0E5500C761E3 /* libBDVoiceRecognitionClient.a */; };
+		17C4A5481AFB0EBE00C761E3 /* YVToCom4lovesVoiceSDK.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 17C4A50E1AFB0E5500C761E3 /* YVToCom4lovesVoiceSDK.h */; };
+		17E1744F1AF9CD62001BDF24 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2A4AF5A1AE50566001BF946 /* Foundation.framework */; };
+		17E174571AF9CD9E001BDF24 /* GameCenterSDK.mm in Sources */ = {isa = PBXBuildFile; fileRef = 17E174351AF9CC85001BDF24 /* GameCenterSDK.mm */; };
+		17E174581AF9CDC4001BDF24 /* GameCenterSDK.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 17E174341AF9CC85001BDF24 /* GameCenterSDK.h */; };
+		76C0176D1CFD6F9500E667C1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2A4AF5A1AE50566001BF946 /* Foundation.framework */; };
+		76C0177A1CFD711100E667C1 /* FCUUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C017771CFD711100E667C1 /* FCUUID.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		76C0177B1CFD711100E667C1 /* UICKeyChainStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C017791CFD711100E667C1 /* UICKeyChainStore.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		76C0177C1CFD713400E667C1 /* FCUUID.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 76C017761CFD711100E667C1 /* FCUUID.h */; };
+		76C0177D1CFD713900E667C1 /* UICKeyChainStore.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 76C017781CFD711100E667C1 /* UICKeyChainStore.h */; };
+		B2A4AF5B1AE50566001BF946 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2A4AF5A1AE50566001BF946 /* Foundation.framework */; };
+		B2A4AF601AE50566001BF946 /* ShareSDKToDifPlatform.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B2A4AF5F1AE50566001BF946 /* ShareSDKToDifPlatform.h */; };
+		B2A4AF621AE50566001BF946 /* ShareSDKToDifPlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = B2A4AF611AE50566001BF946 /* ShareSDKToDifPlatform.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		B2A4AF691AE50566001BF946 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2A4AF681AE50566001BF946 /* XCTest.framework */; };
+		B2A4AF6A1AE50566001BF946 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2A4AF5A1AE50566001BF946 /* Foundation.framework */; };
+		B2A4AF6C1AE50566001BF946 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2A4AF6B1AE50566001BF946 /* UIKit.framework */; };
+		B2A4AF6F1AE50566001BF946 /* libShareSDKToDifPlatform.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2A4AF571AE50566001BF946 /* libShareSDKToDifPlatform.a */; };
+		B2A4AF751AE50566001BF946 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B2A4AF731AE50566001BF946 /* InfoPlist.strings */; };
+		B2A4AF771AE50566001BF946 /* ShareSDKToDifPlatformTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B2A4AF761AE50566001BF946 /* ShareSDKToDifPlatformTests.m */; };
+		BB1090D7221D0D8300347524 /* ADJDeviceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = BB109094221D0D8200347524 /* ADJDeviceInfo.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		BB1090D8221D0D8300347524 /* ADJTimerOnce.m in Sources */ = {isa = PBXBuildFile; fileRef = BB109095221D0D8200347524 /* ADJTimerOnce.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		BB1090D9221D0D8300347524 /* ADJAttributionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = BB109096221D0D8300347524 /* ADJAttributionHandler.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		BB1090DA221D0D8300347524 /* ADJRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = BB109099221D0D8300347524 /* ADJRequestHandler.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		BB1090DB221D0D8300347524 /* ADJKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = BB10909C221D0D8300347524 /* ADJKeychain.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		BB1090DC221D0D8300347524 /* ADJSdkClickHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = BB10909D221D0D8300347524 /* ADJSdkClickHandler.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		BB1090DD221D0D8300347524 /* ADJEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = BB10909F221D0D8300347524 /* ADJEvent.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		BB1090DE221D0D8300347524 /* ADJSessionSuccess.m in Sources */ = {isa = PBXBuildFile; fileRef = BB1090A3221D0D8300347524 /* ADJSessionSuccess.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		BB1090DF221D0D8300347524 /* ADJEventFailure.m in Sources */ = {isa = PBXBuildFile; fileRef = BB1090A4221D0D8300347524 /* ADJEventFailure.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		BB1090E0221D0D8300347524 /* ADJEventSuccess.m in Sources */ = {isa = PBXBuildFile; fileRef = BB1090A6221D0D8300347524 /* ADJEventSuccess.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		BB1090E1221D0D8300347524 /* ADJActivityState.m in Sources */ = {isa = PBXBuildFile; fileRef = BB1090A7221D0D8300347524 /* ADJActivityState.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		BB1090E2221D0D8300347524 /* ADJSessionFailure.m in Sources */ = {isa = PBXBuildFile; fileRef = BB1090A8221D0D8300347524 /* ADJSessionFailure.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		BB1090E3221D0D8300347524 /* ADJTimerCycle.m in Sources */ = {isa = PBXBuildFile; fileRef = BB1090AC221D0D8300347524 /* ADJTimerCycle.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		BB1090E4221D0D8300347524 /* ADJSessionParameters.m in Sources */ = {isa = PBXBuildFile; fileRef = BB1090AD221D0D8300347524 /* ADJSessionParameters.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		BB1090E5221D0D8300347524 /* ADJLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = BB1090AE221D0D8300347524 /* ADJLogger.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		BB1090E6221D0D8300347524 /* ADJBackoffStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = BB1090AF221D0D8300347524 /* ADJBackoffStrategy.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		BB1090E7221D0D8300347524 /* Adjust.m in Sources */ = {isa = PBXBuildFile; fileRef = BB1090B1221D0D8300347524 /* Adjust.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		BB1090E8221D0D8300347524 /* ADJConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = BB1090B5221D0D8300347524 /* ADJConfig.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		BB1090E9221D0D8300347524 /* ADJPackageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = BB1090B6221D0D8300347524 /* ADJPackageHandler.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		BB1090EA221D0D8300347524 /* ADJActivityKind.m in Sources */ = {isa = PBXBuildFile; fileRef = BB1090B9221D0D8300347524 /* ADJActivityKind.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		BB1090EB221D0D8300347524 /* NSString+ADJAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = BB1090BC221D0D8300347524 /* NSString+ADJAdditions.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		BB1090EC221D0D8300347524 /* NSData+ADJAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = BB1090BE221D0D8300347524 /* NSData+ADJAdditions.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		BB1090ED221D0D8300347524 /* UIDevice+ADJAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = BB1090C0221D0D8300347524 /* UIDevice+ADJAdditions.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		BB1090EE221D0D8300347524 /* ADJAttribution.m in Sources */ = {isa = PBXBuildFile; fileRef = BB1090C2221D0D8300347524 /* ADJAttribution.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		BB1090EF221D0D8300347524 /* ADJSystemProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = BB1090C3221D0D8300347524 /* ADJSystemProfile.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		BB1090F0221D0D8300347524 /* ADJActivityPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = BB1090C5221D0D8300347524 /* ADJActivityPackage.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		BB1090F1221D0D8300347524 /* ADJUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = BB1090C6221D0D8300347524 /* ADJUtil.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		BB1090F2221D0D8300347524 /* ADJAdjustFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = BB1090C9221D0D8300347524 /* ADJAdjustFactory.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		BB1090F3221D0D8300347524 /* ADJResponseData.m in Sources */ = {isa = PBXBuildFile; fileRef = BB1090CC221D0D8300347524 /* ADJResponseData.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		BB1090F4221D0D8300347524 /* ADJPackageBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = BB1090CE221D0D8300347524 /* ADJPackageBuilder.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		BB1090F5221D0D8300347524 /* ADJUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = BB1090CF221D0D8300347524 /* ADJUserDefaults.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		BB1090F6221D0D8300347524 /* ADJActivityHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = BB1090D5221D0D8300347524 /* ADJActivityHandler.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		BB1090F7221D0D8300347524 /* ADJReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = BB1090D6221D0D8300347524 /* ADJReachability.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B2A4AF6D1AE50566001BF946 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B2A4AF4F1AE50566001BF946 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B2A4AF561AE50566001BF946;
+			remoteInfo = ShareSDKToDifPlatform;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		17C4A5071AFB0DAB00C761E3 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				17C4A5391AFB0E8F00C761E3 /* YVToCom4lovesVoiceSDK.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		17C4A5471AFB0EBE00C761E3 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				17C4A5481AFB0EBE00C761E3 /* YVToCom4lovesVoiceSDK.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		17E174501AF9CD62001BDF24 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				17E174581AF9CDC4001BDF24 /* GameCenterSDK.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		76C0176E1CFD6F9500E667C1 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				76C0177D1CFD713900E667C1 /* UICKeyChainStore.h in CopyFiles */,
+				76C0177C1CFD713400E667C1 /* FCUUID.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B2A4AF551AE50566001BF946 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				B2A4AF601AE50566001BF946 /* ShareSDKToDifPlatform.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		17C4A50C1AFB0DAB00C761E3 /* libShareSDKToYvVoiceSDK.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libShareSDKToYvVoiceSDK.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		17C4A50E1AFB0E5500C761E3 /* YVToCom4lovesVoiceSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YVToCom4lovesVoiceSDK.h; sourceTree = "<group>"; };
+		17C4A50F1AFB0E5500C761E3 /* YVToCom4lovesVoiceSDK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YVToCom4lovesVoiceSDK.m; sourceTree = "<group>"; };
+		17C4A5131AFB0E5500C761E3 /* MicModeChangeNotify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MicModeChangeNotify.h; sourceTree = "<group>"; };
+		17C4A5141AFB0E5500C761E3 /* RichMessageNotify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RichMessageNotify.h; sourceTree = "<group>"; };
+		17C4A5151AFB0E5500C761E3 /* TextMessageNotify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextMessageNotify.h; sourceTree = "<group>"; };
+		17C4A5161AFB0E5500C761E3 /* UserStateNotify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserStateNotify.h; sourceTree = "<group>"; };
+		17C4A5171AFB0E5500C761E3 /* VoiceMessageNotify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoiceMessageNotify.h; sourceTree = "<group>"; };
+		17C4A5181AFB0E5500C761E3 /* YvAudioTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YvAudioTools.h; sourceTree = "<group>"; };
+		17C4A5191AFB0E5500C761E3 /* YvChatManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YvChatManage.h; sourceTree = "<group>"; };
+		17C4A51A1AFB0E5500C761E3 /* YvRecognizerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YvRecognizerProtocol.h; sourceTree = "<group>"; };
+		17C4A51E1AFB0E5500C761E3 /* CADebugMacros.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CADebugMacros.cpp; sourceTree = "<group>"; };
+		17C4A51F1AFB0E5500C761E3 /* CADebugMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CADebugMacros.h; sourceTree = "<group>"; };
+		17C4A5201AFB0E5500C761E3 /* CAMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAMath.h; sourceTree = "<group>"; };
+		17C4A5211AFB0E5500C761E3 /* CAStreamBasicDescription.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CAStreamBasicDescription.cpp; sourceTree = "<group>"; };
+		17C4A5221AFB0E5500C761E3 /* CAStreamBasicDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAStreamBasicDescription.h; sourceTree = "<group>"; };
+		17C4A5231AFB0E5500C761E3 /* CAXException.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CAXException.cpp; sourceTree = "<group>"; };
+		17C4A5241AFB0E5500C761E3 /* CAXException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAXException.h; sourceTree = "<group>"; };
+		17C4A5261AFB0E5500C761E3 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
+		17C4A5271AFB0E5500C761E3 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
+		17C4A5291AFB0E5500C761E3 /* TTTAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTAttributedLabel.h; sourceTree = "<group>"; };
+		17C4A52A1AFB0E5500C761E3 /* TTTAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTAttributedLabel.m; sourceTree = "<group>"; };
+		17C4A52B1AFB0E5500C761E3 /* YvRecognizeManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YvRecognizeManage.h; sourceTree = "<group>"; };
+		17C4A52C1AFB0E5500C761E3 /* YvVoicePcmDataRecognizerManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YvVoicePcmDataRecognizerManage.h; sourceTree = "<group>"; };
+		17C4A52D1AFB0E5500C761E3 /* libBDVoiceRecognitionClient.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBDVoiceRecognitionClient.a; sourceTree = "<group>"; };
+		17C4A52E1AFB0E5500C761E3 /* libtroopsSdk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libtroopsSdk.a; sourceTree = "<group>"; };
+		17C4A52F1AFB0E5500C761E3 /* libVoiceRecognitionWarpper.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libVoiceRecognitionWarpper.a; sourceTree = "<group>"; };
+		17C4A54C1AFB0EBE00C761E3 /* libShareSDKToYvVoiceSDKNoJson.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libShareSDKToYvVoiceSDKNoJson.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		17E174341AF9CC85001BDF24 /* GameCenterSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCenterSDK.h; sourceTree = "<group>"; };
+		17E174351AF9CC85001BDF24 /* GameCenterSDK.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GameCenterSDK.mm; sourceTree = "<group>"; };
+		17E174551AF9CD62001BDF24 /* libShareSDKToGameCenter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libShareSDKToGameCenter.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		76C017731CFD6F9500E667C1 /* libShareSDKToFCUUID.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libShareSDKToFCUUID.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		76C017761CFD711100E667C1 /* FCUUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCUUID.h; sourceTree = "<group>"; };
+		76C017771CFD711100E667C1 /* FCUUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCUUID.m; sourceTree = "<group>"; };
+		76C017781CFD711100E667C1 /* UICKeyChainStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICKeyChainStore.h; sourceTree = "<group>"; };
+		76C017791CFD711100E667C1 /* UICKeyChainStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICKeyChainStore.m; sourceTree = "<group>"; };
+		B24849E71AFC5889007DE6A1 /* readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
+		B2A4AF571AE50566001BF946 /* libShareSDKToDifPlatform.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libShareSDKToDifPlatform.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B2A4AF5A1AE50566001BF946 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		B2A4AF5E1AE50566001BF946 /* ShareSDKToDifPlatform-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ShareSDKToDifPlatform-Prefix.pch"; sourceTree = "<group>"; };
+		B2A4AF5F1AE50566001BF946 /* ShareSDKToDifPlatform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShareSDKToDifPlatform.h; sourceTree = "<group>"; };
+		B2A4AF611AE50566001BF946 /* ShareSDKToDifPlatform.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareSDKToDifPlatform.m; sourceTree = "<group>"; };
+		B2A4AF671AE50566001BF946 /* ShareSDKToDifPlatformTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShareSDKToDifPlatformTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B2A4AF681AE50566001BF946 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		B2A4AF6B1AE50566001BF946 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		B2A4AF721AE50566001BF946 /* ShareSDKToDifPlatformTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ShareSDKToDifPlatformTests-Info.plist"; sourceTree = "<group>"; };
+		B2A4AF741AE50566001BF946 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B2A4AF761AE50566001BF946 /* ShareSDKToDifPlatformTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareSDKToDifPlatformTests.m; sourceTree = "<group>"; };
+		BB109093221D0D8200347524 /* ADJConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADJConfig.h; sourceTree = "<group>"; };
+		BB109094221D0D8200347524 /* ADJDeviceInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADJDeviceInfo.m; sourceTree = "<group>"; };
+		BB109095221D0D8200347524 /* ADJTimerOnce.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADJTimerOnce.m; sourceTree = "<group>"; };
+		BB109096221D0D8300347524 /* ADJAttributionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADJAttributionHandler.m; sourceTree = "<group>"; };
+		BB109097221D0D8300347524 /* Adjust.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Adjust.h; sourceTree = "<group>"; };
+		BB109098221D0D8300347524 /* ADJActivityPackage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADJActivityPackage.h; sourceTree = "<group>"; };
+		BB109099221D0D8300347524 /* ADJRequestHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADJRequestHandler.m; sourceTree = "<group>"; };
+		BB10909A221D0D8300347524 /* ADJSystemProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADJSystemProfile.h; sourceTree = "<group>"; };
+		BB10909B221D0D8300347524 /* ADJAttribution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADJAttribution.h; sourceTree = "<group>"; };
+		BB10909C221D0D8300347524 /* ADJKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADJKeychain.m; sourceTree = "<group>"; };
+		BB10909D221D0D8300347524 /* ADJSdkClickHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADJSdkClickHandler.m; sourceTree = "<group>"; };
+		BB10909E221D0D8300347524 /* ADJActivityKind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADJActivityKind.h; sourceTree = "<group>"; };
+		BB10909F221D0D8300347524 /* ADJEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADJEvent.m; sourceTree = "<group>"; };
+		BB1090A0221D0D8300347524 /* ADJPackageHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADJPackageHandler.h; sourceTree = "<group>"; };
+		BB1090A1221D0D8300347524 /* ADJPackageBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADJPackageBuilder.h; sourceTree = "<group>"; };
+		BB1090A2221D0D8300347524 /* ADJResponseData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADJResponseData.h; sourceTree = "<group>"; };
+		BB1090A3221D0D8300347524 /* ADJSessionSuccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADJSessionSuccess.m; sourceTree = "<group>"; };
+		BB1090A4221D0D8300347524 /* ADJEventFailure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADJEventFailure.m; sourceTree = "<group>"; };
+		BB1090A5221D0D8300347524 /* ADJAdjustFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADJAdjustFactory.h; sourceTree = "<group>"; };
+		BB1090A6221D0D8300347524 /* ADJEventSuccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADJEventSuccess.m; sourceTree = "<group>"; };
+		BB1090A7221D0D8300347524 /* ADJActivityState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADJActivityState.m; sourceTree = "<group>"; };
+		BB1090A8221D0D8300347524 /* ADJSessionFailure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADJSessionFailure.m; sourceTree = "<group>"; };
+		BB1090A9221D0D8300347524 /* ADJUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADJUtil.h; sourceTree = "<group>"; };
+		BB1090AA221D0D8300347524 /* ADJReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADJReachability.h; sourceTree = "<group>"; };
+		BB1090AB221D0D8300347524 /* ADJActivityHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADJActivityHandler.h; sourceTree = "<group>"; };
+		BB1090AC221D0D8300347524 /* ADJTimerCycle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADJTimerCycle.m; sourceTree = "<group>"; };
+		BB1090AD221D0D8300347524 /* ADJSessionParameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADJSessionParameters.m; sourceTree = "<group>"; };
+		BB1090AE221D0D8300347524 /* ADJLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADJLogger.m; sourceTree = "<group>"; };
+		BB1090AF221D0D8300347524 /* ADJBackoffStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADJBackoffStrategy.m; sourceTree = "<group>"; };
+		BB1090B0221D0D8300347524 /* ADJUserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADJUserDefaults.h; sourceTree = "<group>"; };
+		BB1090B1221D0D8300347524 /* Adjust.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Adjust.m; sourceTree = "<group>"; };
+		BB1090B2221D0D8300347524 /* ADJAttributionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADJAttributionHandler.h; sourceTree = "<group>"; };
+		BB1090B3221D0D8300347524 /* ADJTimerOnce.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADJTimerOnce.h; sourceTree = "<group>"; };
+		BB1090B4221D0D8300347524 /* ADJDeviceInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADJDeviceInfo.h; sourceTree = "<group>"; };
+		BB1090B5221D0D8300347524 /* ADJConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADJConfig.m; sourceTree = "<group>"; };
+		BB1090B6221D0D8300347524 /* ADJPackageHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADJPackageHandler.m; sourceTree = "<group>"; };
+		BB1090B7221D0D8300347524 /* ADJEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADJEvent.h; sourceTree = "<group>"; };
+		BB1090B8221D0D8300347524 /* ADJSdkClickHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADJSdkClickHandler.h; sourceTree = "<group>"; };
+		BB1090B9221D0D8300347524 /* ADJActivityKind.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADJActivityKind.m; sourceTree = "<group>"; };
+		BB1090BA221D0D8300347524 /* ADJKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADJKeychain.h; sourceTree = "<group>"; };
+		BB1090BC221D0D8300347524 /* NSString+ADJAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ADJAdditions.m"; sourceTree = "<group>"; };
+		BB1090BD221D0D8300347524 /* UIDevice+ADJAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+ADJAdditions.h"; sourceTree = "<group>"; };
+		BB1090BE221D0D8300347524 /* NSData+ADJAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+ADJAdditions.m"; sourceTree = "<group>"; };
+		BB1090BF221D0D8300347524 /* NSData+ADJAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+ADJAdditions.h"; sourceTree = "<group>"; };
+		BB1090C0221D0D8300347524 /* UIDevice+ADJAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+ADJAdditions.m"; sourceTree = "<group>"; };
+		BB1090C1221D0D8300347524 /* NSString+ADJAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+ADJAdditions.h"; sourceTree = "<group>"; };
+		BB1090C2221D0D8300347524 /* ADJAttribution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADJAttribution.m; sourceTree = "<group>"; };
+		BB1090C3221D0D8300347524 /* ADJSystemProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADJSystemProfile.m; sourceTree = "<group>"; };
+		BB1090C4221D0D8300347524 /* ADJRequestHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADJRequestHandler.h; sourceTree = "<group>"; };
+		BB1090C5221D0D8300347524 /* ADJActivityPackage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADJActivityPackage.m; sourceTree = "<group>"; };
+		BB1090C6221D0D8300347524 /* ADJUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADJUtil.m; sourceTree = "<group>"; };
+		BB1090C7221D0D8300347524 /* ADJSessionFailure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADJSessionFailure.h; sourceTree = "<group>"; };
+		BB1090C8221D0D8300347524 /* ADJActivityState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADJActivityState.h; sourceTree = "<group>"; };
+		BB1090C9221D0D8300347524 /* ADJAdjustFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADJAdjustFactory.m; sourceTree = "<group>"; };
+		BB1090CA221D0D8300347524 /* ADJEventSuccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADJEventSuccess.h; sourceTree = "<group>"; };
+		BB1090CB221D0D8300347524 /* ADJEventFailure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADJEventFailure.h; sourceTree = "<group>"; };
+		BB1090CC221D0D8300347524 /* ADJResponseData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADJResponseData.m; sourceTree = "<group>"; };
+		BB1090CD221D0D8300347524 /* ADJSessionSuccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADJSessionSuccess.h; sourceTree = "<group>"; };
+		BB1090CE221D0D8300347524 /* ADJPackageBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADJPackageBuilder.m; sourceTree = "<group>"; };
+		BB1090CF221D0D8300347524 /* ADJUserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADJUserDefaults.m; sourceTree = "<group>"; };
+		BB1090D0221D0D8300347524 /* ADJBackoffStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADJBackoffStrategy.h; sourceTree = "<group>"; };
+		BB1090D1221D0D8300347524 /* ADJLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADJLogger.h; sourceTree = "<group>"; };
+		BB1090D2221D0D8300347524 /* ADJSessionParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADJSessionParameters.h; sourceTree = "<group>"; };
+		BB1090D3221D0D8300347524 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BB1090D4221D0D8300347524 /* ADJTimerCycle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADJTimerCycle.h; sourceTree = "<group>"; };
+		BB1090D5221D0D8300347524 /* ADJActivityHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADJActivityHandler.m; sourceTree = "<group>"; };
+		BB1090D6221D0D8300347524 /* ADJReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADJReachability.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		17C4A5051AFB0DAB00C761E3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				17C4A5371AFB0E5500C761E3 /* libtroopsSdk.a in Frameworks */,
+				17C4A5061AFB0DAB00C761E3 /* Foundation.framework in Frameworks */,
+				17C4A5381AFB0E5500C761E3 /* libVoiceRecognitionWarpper.a in Frameworks */,
+				17C4A5361AFB0E5500C761E3 /* libBDVoiceRecognitionClient.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		17C4A5421AFB0EBE00C761E3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				17C4A5431AFB0EBE00C761E3 /* libtroopsSdk.a in Frameworks */,
+				17C4A5441AFB0EBE00C761E3 /* Foundation.framework in Frameworks */,
+				17C4A5451AFB0EBE00C761E3 /* libVoiceRecognitionWarpper.a in Frameworks */,
+				17C4A5461AFB0EBE00C761E3 /* libBDVoiceRecognitionClient.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		17E1744E1AF9CD62001BDF24 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				17E1744F1AF9CD62001BDF24 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		76C0176C1CFD6F9500E667C1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				76C0176D1CFD6F9500E667C1 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B2A4AF541AE50566001BF946 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B2A4AF5B1AE50566001BF946 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B2A4AF641AE50566001BF946 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B2A4AF6F1AE50566001BF946 /* libShareSDKToDifPlatform.a in Frameworks */,
+				B2A4AF691AE50566001BF946 /* XCTest.framework in Frameworks */,
+				B2A4AF6C1AE50566001BF946 /* UIKit.framework in Frameworks */,
+				B2A4AF6A1AE50566001BF946 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		17C4A50D1AFB0E5500C761E3 /* YVToCom4lovesVoiceSDK */ = {
+			isa = PBXGroup;
+			children = (
+				17C4A50E1AFB0E5500C761E3 /* YVToCom4lovesVoiceSDK.h */,
+				17C4A50F1AFB0E5500C761E3 /* YVToCom4lovesVoiceSDK.m */,
+				17C4A5101AFB0E5500C761E3 /* YVVoiceSDK */,
+			);
+			path = YVToCom4lovesVoiceSDK;
+			sourceTree = "<group>";
+		};
+		17C4A5101AFB0E5500C761E3 /* YVVoiceSDK */ = {
+			isa = PBXGroup;
+			children = (
+				17C4A5111AFB0E5500C761E3 /* include */,
+				17C4A52D1AFB0E5500C761E3 /* libBDVoiceRecognitionClient.a */,
+				17C4A52E1AFB0E5500C761E3 /* libtroopsSdk.a */,
+				17C4A52F1AFB0E5500C761E3 /* libVoiceRecognitionWarpper.a */,
+			);
+			path = YVVoiceSDK;
+			sourceTree = "<group>";
+		};
+		17C4A5111AFB0E5500C761E3 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				17C4A5121AFB0E5500C761E3 /* VoiceMessage */,
+				17C4A51B1AFB0E5500C761E3 /* VoiceRecognition */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		17C4A5121AFB0E5500C761E3 /* VoiceMessage */ = {
+			isa = PBXGroup;
+			children = (
+				17C4A5131AFB0E5500C761E3 /* MicModeChangeNotify.h */,
+				17C4A5141AFB0E5500C761E3 /* RichMessageNotify.h */,
+				17C4A5151AFB0E5500C761E3 /* TextMessageNotify.h */,
+				17C4A5161AFB0E5500C761E3 /* UserStateNotify.h */,
+				17C4A5171AFB0E5500C761E3 /* VoiceMessageNotify.h */,
+				17C4A5181AFB0E5500C761E3 /* YvAudioTools.h */,
+				17C4A5191AFB0E5500C761E3 /* YvChatManage.h */,
+				17C4A51A1AFB0E5500C761E3 /* YvRecognizerProtocol.h */,
+			);
+			path = VoiceMessage;
+			sourceTree = "<group>";
+		};
+		17C4A51B1AFB0E5500C761E3 /* VoiceRecognition */ = {
+			isa = PBXGroup;
+			children = (
+				17C4A51C1AFB0E5500C761E3 /* Third-party */,
+				17C4A52B1AFB0E5500C761E3 /* YvRecognizeManage.h */,
+				17C4A52C1AFB0E5500C761E3 /* YvVoicePcmDataRecognizerManage.h */,
+			);
+			path = VoiceRecognition;
+			sourceTree = "<group>";
+		};
+		17C4A51C1AFB0E5500C761E3 /* Third-party */ = {
+			isa = PBXGroup;
+			children = (
+				17C4A51D1AFB0E5500C761E3 /* CoreAudioUtility */,
+				17C4A5251AFB0E5500C761E3 /* JSONKit-master */,
+				17C4A5281AFB0E5500C761E3 /* TTTAttributedLabel */,
+			);
+			path = "Third-party";
+			sourceTree = "<group>";
+		};
+		17C4A51D1AFB0E5500C761E3 /* CoreAudioUtility */ = {
+			isa = PBXGroup;
+			children = (
+				17C4A51E1AFB0E5500C761E3 /* CADebugMacros.cpp */,
+				17C4A51F1AFB0E5500C761E3 /* CADebugMacros.h */,
+				17C4A5201AFB0E5500C761E3 /* CAMath.h */,
+				17C4A5211AFB0E5500C761E3 /* CAStreamBasicDescription.cpp */,
+				17C4A5221AFB0E5500C761E3 /* CAStreamBasicDescription.h */,
+				17C4A5231AFB0E5500C761E3 /* CAXException.cpp */,
+				17C4A5241AFB0E5500C761E3 /* CAXException.h */,
+			);
+			path = CoreAudioUtility;
+			sourceTree = "<group>";
+		};
+		17C4A5251AFB0E5500C761E3 /* JSONKit-master */ = {
+			isa = PBXGroup;
+			children = (
+				17C4A5261AFB0E5500C761E3 /* JSONKit.h */,
+				17C4A5271AFB0E5500C761E3 /* JSONKit.m */,
+			);
+			path = "JSONKit-master";
+			sourceTree = "<group>";
+		};
+		17C4A5281AFB0E5500C761E3 /* TTTAttributedLabel */ = {
+			isa = PBXGroup;
+			children = (
+				17C4A5291AFB0E5500C761E3 /* TTTAttributedLabel.h */,
+				17C4A52A1AFB0E5500C761E3 /* TTTAttributedLabel.m */,
+			);
+			path = TTTAttributedLabel;
+			sourceTree = "<group>";
+		};
+		17E174331AF9CC85001BDF24 /* GameCenterSDK */ = {
+			isa = PBXGroup;
+			children = (
+				17E174341AF9CC85001BDF24 /* GameCenterSDK.h */,
+				17E174351AF9CC85001BDF24 /* GameCenterSDK.mm */,
+			);
+			path = GameCenterSDK;
+			sourceTree = "<group>";
+		};
+		76C017751CFD711100E667C1 /* FCUUID */ = {
+			isa = PBXGroup;
+			children = (
+				76C017761CFD711100E667C1 /* FCUUID.h */,
+				76C017771CFD711100E667C1 /* FCUUID.m */,
+				76C017781CFD711100E667C1 /* UICKeyChainStore.h */,
+				76C017791CFD711100E667C1 /* UICKeyChainStore.m */,
+			);
+			path = FCUUID;
+			sourceTree = "<group>";
+		};
+		B2A4AF4E1AE50566001BF946 = {
+			isa = PBXGroup;
+			children = (
+				76C017751CFD711100E667C1 /* FCUUID */,
+				B24849E71AFC5889007DE6A1 /* readme.txt */,
+				17C4A50D1AFB0E5500C761E3 /* YVToCom4lovesVoiceSDK */,
+				17E174331AF9CC85001BDF24 /* GameCenterSDK */,
+				B2A4AF5C1AE50566001BF946 /* ShareSDKToDifPlatform */,
+				B2A4AF701AE50566001BF946 /* ShareSDKToDifPlatformTests */,
+				B2A4AF591AE50566001BF946 /* Frameworks */,
+				B2A4AF581AE50566001BF946 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B2A4AF581AE50566001BF946 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B2A4AF571AE50566001BF946 /* libShareSDKToDifPlatform.a */,
+				B2A4AF671AE50566001BF946 /* ShareSDKToDifPlatformTests.xctest */,
+				17E174551AF9CD62001BDF24 /* libShareSDKToGameCenter.a */,
+				17C4A50C1AFB0DAB00C761E3 /* libShareSDKToYvVoiceSDK.a */,
+				17C4A54C1AFB0EBE00C761E3 /* libShareSDKToYvVoiceSDKNoJson.a */,
+				76C017731CFD6F9500E667C1 /* libShareSDKToFCUUID.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B2A4AF591AE50566001BF946 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B2A4AF5A1AE50566001BF946 /* Foundation.framework */,
+				B2A4AF681AE50566001BF946 /* XCTest.framework */,
+				B2A4AF6B1AE50566001BF946 /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B2A4AF5C1AE50566001BF946 /* ShareSDKToDifPlatform */ = {
+			isa = PBXGroup;
+			children = (
+				B2A4AF5F1AE50566001BF946 /* ShareSDKToDifPlatform.h */,
+				B2A4AF611AE50566001BF946 /* ShareSDKToDifPlatform.m */,
+				B2A4AF5D1AE50566001BF946 /* Supporting Files */,
+			);
+			path = ShareSDKToDifPlatform;
+			sourceTree = "<group>";
+		};
+		B2A4AF5D1AE50566001BF946 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B2A4AF5E1AE50566001BF946 /* ShareSDKToDifPlatform-Prefix.pch */,
+				BB109092221D0D8200347524 /* Adjust */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B2A4AF701AE50566001BF946 /* ShareSDKToDifPlatformTests */ = {
+			isa = PBXGroup;
+			children = (
+				B2A4AF761AE50566001BF946 /* ShareSDKToDifPlatformTests.m */,
+				B2A4AF711AE50566001BF946 /* Supporting Files */,
+			);
+			path = ShareSDKToDifPlatformTests;
+			sourceTree = "<group>";
+		};
+		B2A4AF711AE50566001BF946 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B2A4AF721AE50566001BF946 /* ShareSDKToDifPlatformTests-Info.plist */,
+				B2A4AF731AE50566001BF946 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BB109092221D0D8200347524 /* Adjust */ = {
+			isa = PBXGroup;
+			children = (
+				BB109093221D0D8200347524 /* ADJConfig.h */,
+				BB109094221D0D8200347524 /* ADJDeviceInfo.m */,
+				BB109095221D0D8200347524 /* ADJTimerOnce.m */,
+				BB109096221D0D8300347524 /* ADJAttributionHandler.m */,
+				BB109097221D0D8300347524 /* Adjust.h */,
+				BB109098221D0D8300347524 /* ADJActivityPackage.h */,
+				BB109099221D0D8300347524 /* ADJRequestHandler.m */,
+				BB10909A221D0D8300347524 /* ADJSystemProfile.h */,
+				BB10909B221D0D8300347524 /* ADJAttribution.h */,
+				BB10909C221D0D8300347524 /* ADJKeychain.m */,
+				BB10909D221D0D8300347524 /* ADJSdkClickHandler.m */,
+				BB10909E221D0D8300347524 /* ADJActivityKind.h */,
+				BB10909F221D0D8300347524 /* ADJEvent.m */,
+				BB1090A0221D0D8300347524 /* ADJPackageHandler.h */,
+				BB1090A1221D0D8300347524 /* ADJPackageBuilder.h */,
+				BB1090A2221D0D8300347524 /* ADJResponseData.h */,
+				BB1090A3221D0D8300347524 /* ADJSessionSuccess.m */,
+				BB1090A4221D0D8300347524 /* ADJEventFailure.m */,
+				BB1090A5221D0D8300347524 /* ADJAdjustFactory.h */,
+				BB1090A6221D0D8300347524 /* ADJEventSuccess.m */,
+				BB1090A7221D0D8300347524 /* ADJActivityState.m */,
+				BB1090A8221D0D8300347524 /* ADJSessionFailure.m */,
+				BB1090A9221D0D8300347524 /* ADJUtil.h */,
+				BB1090AA221D0D8300347524 /* ADJReachability.h */,
+				BB1090AB221D0D8300347524 /* ADJActivityHandler.h */,
+				BB1090AC221D0D8300347524 /* ADJTimerCycle.m */,
+				BB1090AD221D0D8300347524 /* ADJSessionParameters.m */,
+				BB1090AE221D0D8300347524 /* ADJLogger.m */,
+				BB1090AF221D0D8300347524 /* ADJBackoffStrategy.m */,
+				BB1090B0221D0D8300347524 /* ADJUserDefaults.h */,
+				BB1090B1221D0D8300347524 /* Adjust.m */,
+				BB1090B2221D0D8300347524 /* ADJAttributionHandler.h */,
+				BB1090B3221D0D8300347524 /* ADJTimerOnce.h */,
+				BB1090B4221D0D8300347524 /* ADJDeviceInfo.h */,
+				BB1090B5221D0D8300347524 /* ADJConfig.m */,
+				BB1090B6221D0D8300347524 /* ADJPackageHandler.m */,
+				BB1090B7221D0D8300347524 /* ADJEvent.h */,
+				BB1090B8221D0D8300347524 /* ADJSdkClickHandler.h */,
+				BB1090B9221D0D8300347524 /* ADJActivityKind.m */,
+				BB1090BA221D0D8300347524 /* ADJKeychain.h */,
+				BB1090BB221D0D8300347524 /* ADJAdditions */,
+				BB1090C2221D0D8300347524 /* ADJAttribution.m */,
+				BB1090C3221D0D8300347524 /* ADJSystemProfile.m */,
+				BB1090C4221D0D8300347524 /* ADJRequestHandler.h */,
+				BB1090C5221D0D8300347524 /* ADJActivityPackage.m */,
+				BB1090C6221D0D8300347524 /* ADJUtil.m */,
+				BB1090C7221D0D8300347524 /* ADJSessionFailure.h */,
+				BB1090C8221D0D8300347524 /* ADJActivityState.h */,
+				BB1090C9221D0D8300347524 /* ADJAdjustFactory.m */,
+				BB1090CA221D0D8300347524 /* ADJEventSuccess.h */,
+				BB1090CB221D0D8300347524 /* ADJEventFailure.h */,
+				BB1090CC221D0D8300347524 /* ADJResponseData.m */,
+				BB1090CD221D0D8300347524 /* ADJSessionSuccess.h */,
+				BB1090CE221D0D8300347524 /* ADJPackageBuilder.m */,
+				BB1090CF221D0D8300347524 /* ADJUserDefaults.m */,
+				BB1090D0221D0D8300347524 /* ADJBackoffStrategy.h */,
+				BB1090D1221D0D8300347524 /* ADJLogger.h */,
+				BB1090D2221D0D8300347524 /* ADJSessionParameters.h */,
+				BB1090D3221D0D8300347524 /* Info.plist */,
+				BB1090D4221D0D8300347524 /* ADJTimerCycle.h */,
+				BB1090D5221D0D8300347524 /* ADJActivityHandler.m */,
+				BB1090D6221D0D8300347524 /* ADJReachability.m */,
+			);
+			path = Adjust;
+			sourceTree = "<group>";
+		};
+		BB1090BB221D0D8300347524 /* ADJAdditions */ = {
+			isa = PBXGroup;
+			children = (
+				BB1090BC221D0D8300347524 /* NSString+ADJAdditions.m */,
+				BB1090BD221D0D8300347524 /* UIDevice+ADJAdditions.h */,
+				BB1090BE221D0D8300347524 /* NSData+ADJAdditions.m */,
+				BB1090BF221D0D8300347524 /* NSData+ADJAdditions.h */,
+				BB1090C0221D0D8300347524 /* UIDevice+ADJAdditions.m */,
+				BB1090C1221D0D8300347524 /* NSString+ADJAdditions.h */,
+			);
+			path = ADJAdditions;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		17C4A5021AFB0DAB00C761E3 /* ShareSDKToYvVoiceSDK */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 17C4A5091AFB0DAB00C761E3 /* Build configuration list for PBXNativeTarget "ShareSDKToYvVoiceSDK" */;
+			buildPhases = (
+				17C4A5031AFB0DAB00C761E3 /* Sources */,
+				17C4A5051AFB0DAB00C761E3 /* Frameworks */,
+				17C4A5071AFB0DAB00C761E3 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ShareSDKToYvVoiceSDK;
+			productName = ShareSDKToDifPlatform;
+			productReference = 17C4A50C1AFB0DAB00C761E3 /* libShareSDKToYvVoiceSDK.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		17C4A53A1AFB0EBE00C761E3 /* ShareSDKToYvVoiceSDKNoJson */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 17C4A5491AFB0EBE00C761E3 /* Build configuration list for PBXNativeTarget "ShareSDKToYvVoiceSDKNoJson" */;
+			buildPhases = (
+				17C4A53B1AFB0EBE00C761E3 /* Sources */,
+				17C4A5421AFB0EBE00C761E3 /* Frameworks */,
+				17C4A5471AFB0EBE00C761E3 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ShareSDKToYvVoiceSDKNoJson;
+			productName = ShareSDKToDifPlatform;
+			productReference = 17C4A54C1AFB0EBE00C761E3 /* libShareSDKToYvVoiceSDKNoJson.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		17E174371AF9CD62001BDF24 /* ShareSDKToGameCenter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 17E174521AF9CD62001BDF24 /* Build configuration list for PBXNativeTarget "ShareSDKToGameCenter" */;
+			buildPhases = (
+				17E174381AF9CD62001BDF24 /* Sources */,
+				17E1744E1AF9CD62001BDF24 /* Frameworks */,
+				17E174501AF9CD62001BDF24 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ShareSDKToGameCenter;
+			productName = ShareSDKToDifPlatform;
+			productReference = 17E174551AF9CD62001BDF24 /* libShareSDKToGameCenter.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		76C017691CFD6F9500E667C1 /* ShareSDKToFCUUID */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 76C017701CFD6F9500E667C1 /* Build configuration list for PBXNativeTarget "ShareSDKToFCUUID" */;
+			buildPhases = (
+				76C0176A1CFD6F9500E667C1 /* Sources */,
+				76C0176C1CFD6F9500E667C1 /* Frameworks */,
+				76C0176E1CFD6F9500E667C1 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ShareSDKToFCUUID;
+			productName = ShareSDKToDifPlatform;
+			productReference = 76C017731CFD6F9500E667C1 /* libShareSDKToFCUUID.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		B2A4AF561AE50566001BF946 /* ShareSDKToDifPlatform */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B2A4AF7A1AE50566001BF946 /* Build configuration list for PBXNativeTarget "ShareSDKToDifPlatform" */;
+			buildPhases = (
+				B2A4AF531AE50566001BF946 /* Sources */,
+				B2A4AF541AE50566001BF946 /* Frameworks */,
+				B2A4AF551AE50566001BF946 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ShareSDKToDifPlatform;
+			productName = ShareSDKToDifPlatform;
+			productReference = B2A4AF571AE50566001BF946 /* libShareSDKToDifPlatform.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		B2A4AF661AE50566001BF946 /* ShareSDKToDifPlatformTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B2A4AF7D1AE50566001BF946 /* Build configuration list for PBXNativeTarget "ShareSDKToDifPlatformTests" */;
+			buildPhases = (
+				B2A4AF631AE50566001BF946 /* Sources */,
+				B2A4AF641AE50566001BF946 /* Frameworks */,
+				B2A4AF651AE50566001BF946 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B2A4AF6E1AE50566001BF946 /* PBXTargetDependency */,
+			);
+			name = ShareSDKToDifPlatformTests;
+			productName = ShareSDKToDifPlatformTests;
+			productReference = B2A4AF671AE50566001BF946 /* ShareSDKToDifPlatformTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B2A4AF4F1AE50566001BF946 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = com4loves;
+			};
+			buildConfigurationList = B2A4AF521AE50566001BF946 /* Build configuration list for PBXProject "ShareSDKToDifPlatform" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = B2A4AF4E1AE50566001BF946;
+			productRefGroup = B2A4AF581AE50566001BF946 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B2A4AF561AE50566001BF946 /* ShareSDKToDifPlatform */,
+				B2A4AF661AE50566001BF946 /* ShareSDKToDifPlatformTests */,
+				17E174371AF9CD62001BDF24 /* ShareSDKToGameCenter */,
+				17C4A5021AFB0DAB00C761E3 /* ShareSDKToYvVoiceSDK */,
+				17C4A53A1AFB0EBE00C761E3 /* ShareSDKToYvVoiceSDKNoJson */,
+				76C017691CFD6F9500E667C1 /* ShareSDKToFCUUID */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B2A4AF651AE50566001BF946 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B2A4AF751AE50566001BF946 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		17C4A5031AFB0DAB00C761E3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				17C4A5331AFB0E5500C761E3 /* CAXException.cpp in Sources */,
+				17C4A5311AFB0E5500C761E3 /* CADebugMacros.cpp in Sources */,
+				17C4A5301AFB0E5500C761E3 /* YVToCom4lovesVoiceSDK.m in Sources */,
+				17C4A5321AFB0E5500C761E3 /* CAStreamBasicDescription.cpp in Sources */,
+				17C4A5341AFB0E5500C761E3 /* JSONKit.m in Sources */,
+				17C4A5351AFB0E5500C761E3 /* TTTAttributedLabel.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		17C4A53B1AFB0EBE00C761E3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				17C4A53C1AFB0EBE00C761E3 /* CAXException.cpp in Sources */,
+				17C4A53D1AFB0EBE00C761E3 /* CADebugMacros.cpp in Sources */,
+				17C4A53E1AFB0EBE00C761E3 /* YVToCom4lovesVoiceSDK.m in Sources */,
+				17C4A53F1AFB0EBE00C761E3 /* CAStreamBasicDescription.cpp in Sources */,
+				17C4A5411AFB0EBE00C761E3 /* TTTAttributedLabel.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		17E174381AF9CD62001BDF24 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				17E174571AF9CD9E001BDF24 /* GameCenterSDK.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		76C0176A1CFD6F9500E667C1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				76C0177A1CFD711100E667C1 /* FCUUID.m in Sources */,
+				76C0177B1CFD711100E667C1 /* UICKeyChainStore.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B2A4AF531AE50566001BF946 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BB1090D9221D0D8300347524 /* ADJAttributionHandler.m in Sources */,
+				BB1090E2221D0D8300347524 /* ADJSessionFailure.m in Sources */,
+				BB1090E6221D0D8300347524 /* ADJBackoffStrategy.m in Sources */,
+				B2A4AF621AE50566001BF946 /* ShareSDKToDifPlatform.m in Sources */,
+				BB1090F0221D0D8300347524 /* ADJActivityPackage.m in Sources */,
+				BB1090EA221D0D8300347524 /* ADJActivityKind.m in Sources */,
+				BB1090E0221D0D8300347524 /* ADJEventSuccess.m in Sources */,
+				BB1090DA221D0D8300347524 /* ADJRequestHandler.m in Sources */,
+				BB1090E5221D0D8300347524 /* ADJLogger.m in Sources */,
+				BB1090F1221D0D8300347524 /* ADJUtil.m in Sources */,
+				BB1090DC221D0D8300347524 /* ADJSdkClickHandler.m in Sources */,
+				BB1090ED221D0D8300347524 /* UIDevice+ADJAdditions.m in Sources */,
+				BB1090F6221D0D8300347524 /* ADJActivityHandler.m in Sources */,
+				BB1090E8221D0D8300347524 /* ADJConfig.m in Sources */,
+				BB1090F7221D0D8300347524 /* ADJReachability.m in Sources */,
+				BB1090DB221D0D8300347524 /* ADJKeychain.m in Sources */,
+				BB1090EB221D0D8300347524 /* NSString+ADJAdditions.m in Sources */,
+				BB1090F2221D0D8300347524 /* ADJAdjustFactory.m in Sources */,
+				BB1090F3221D0D8300347524 /* ADJResponseData.m in Sources */,
+				BB1090E1221D0D8300347524 /* ADJActivityState.m in Sources */,
+				BB1090F5221D0D8300347524 /* ADJUserDefaults.m in Sources */,
+				BB1090E9221D0D8300347524 /* ADJPackageHandler.m in Sources */,
+				BB1090DF221D0D8300347524 /* ADJEventFailure.m in Sources */,
+				BB1090EF221D0D8300347524 /* ADJSystemProfile.m in Sources */,
+				BB1090D8221D0D8300347524 /* ADJTimerOnce.m in Sources */,
+				BB1090E3221D0D8300347524 /* ADJTimerCycle.m in Sources */,
+				BB1090EE221D0D8300347524 /* ADJAttribution.m in Sources */,
+				BB1090E4221D0D8300347524 /* ADJSessionParameters.m in Sources */,
+				BB1090EC221D0D8300347524 /* NSData+ADJAdditions.m in Sources */,
+				BB1090DD221D0D8300347524 /* ADJEvent.m in Sources */,
+				BB1090F4221D0D8300347524 /* ADJPackageBuilder.m in Sources */,
+				BB1090D7221D0D8300347524 /* ADJDeviceInfo.m in Sources */,
+				BB1090E7221D0D8300347524 /* Adjust.m in Sources */,
+				BB1090DE221D0D8300347524 /* ADJSessionSuccess.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B2A4AF631AE50566001BF946 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B2A4AF771AE50566001BF946 /* ShareSDKToDifPlatformTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B2A4AF6E1AE50566001BF946 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B2A4AF561AE50566001BF946 /* ShareSDKToDifPlatform */;
+			targetProxy = B2A4AF6D1AE50566001BF946 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B2A4AF731AE50566001BF946 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B2A4AF741AE50566001BF946 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		17C4A50A1AFB0DAB00C761E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
+				DSTROOT = /tmp/ShareSDKToDifPlatform.dst;
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/YVToCom4lovesVoiceSDK/YVVoiceSDK\"";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ShareSDKToDifPlatform/ShareSDKToDifPlatform-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/YVToCom4lovesVoiceSDK/YVVoiceSDK/include\"",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(SRCROOT)/YVToCom4lovesVoiceSDK/YVVoiceSDK\"",
+					"$(PROJECT_DIR)/YVToCom4lovesVoiceSDK/YVVoiceSDK",
+				);
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = ShareSDKToYvVoiceSDK;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		17C4A50B1AFB0DAB00C761E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
+				DSTROOT = /tmp/ShareSDKToDifPlatform.dst;
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/YVToCom4lovesVoiceSDK/YVVoiceSDK\"";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ShareSDKToDifPlatform/ShareSDKToDifPlatform-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/YVToCom4lovesVoiceSDK/YVVoiceSDK/include\"",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(SRCROOT)/YVToCom4lovesVoiceSDK/YVVoiceSDK\"",
+					"$(PROJECT_DIR)/YVToCom4lovesVoiceSDK/YVVoiceSDK",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = ShareSDKToYvVoiceSDK;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		17C4A54A1AFB0EBE00C761E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
+				DSTROOT = /tmp/ShareSDKToDifPlatform.dst;
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/YVToCom4lovesVoiceSDK/YVVoiceSDK\"";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ShareSDKToDifPlatform/ShareSDKToDifPlatform-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/YVToCom4lovesVoiceSDK/YVVoiceSDK/include\"",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(SRCROOT)/YVToCom4lovesVoiceSDK/YVVoiceSDK\"",
+					"$(PROJECT_DIR)/YVToCom4lovesVoiceSDK/YVVoiceSDK",
+				);
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = ShareSDKToYvVoiceSDKNoJson;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		17C4A54B1AFB0EBE00C761E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
+				DSTROOT = /tmp/ShareSDKToDifPlatform.dst;
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/YVToCom4lovesVoiceSDK/YVVoiceSDK\"";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ShareSDKToDifPlatform/ShareSDKToDifPlatform-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/YVToCom4lovesVoiceSDK/YVVoiceSDK/include\"",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(SRCROOT)/YVToCom4lovesVoiceSDK/YVVoiceSDK\"",
+					"$(PROJECT_DIR)/YVToCom4lovesVoiceSDK/YVVoiceSDK",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = ShareSDKToYvVoiceSDKNoJson;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		17E174531AF9CD62001BDF24 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = NO;
+				DSTROOT = /tmp/ShareSDKToDifPlatform.dst;
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../comHuTuoSDK/comHuTuoSDK\"";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ShareSDKToDifPlatform/ShareSDKToDifPlatform-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../comHuTuoSDK/comHuTuoSDK\"",
+				);
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../comHuTuoSDK/comHuTuoSDK\"";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = ShareSDKToGameCenter;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		17E174541AF9CD62001BDF24 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = NO;
+				DSTROOT = /tmp/ShareSDKToDifPlatform.dst;
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../comHuTuoSDK/comHuTuoSDK\"";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ShareSDKToDifPlatform/ShareSDKToDifPlatform-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../comHuTuoSDK/comHuTuoSDK\"",
+				);
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../comHuTuoSDK/comHuTuoSDK\"";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = ShareSDKToGameCenter;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		76C017711CFD6F9500E667C1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
+				DSTROOT = /tmp/ShareSDKToDifPlatform.dst;
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ShareSDKToDifPlatform/ShareSDKToDifPlatform-Prefix.pch";
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = "";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VALID_ARCHS = "armv7 arm64 armv7s";
+			};
+			name = Debug;
+		};
+		76C017721CFD6F9500E667C1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
+				DSTROOT = /tmp/ShareSDKToDifPlatform.dst;
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ShareSDKToDifPlatform/ShareSDKToDifPlatform-Prefix.pch";
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VALID_ARCHS = "armv7 arm64 armv7s";
+			};
+			name = Release;
+		};
+		B2A4AF781AE50566001BF946 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "libstdc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_BITCODE = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		B2A4AF791AE50566001BF946 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "libstdc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_BITCODE = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B2A4AF7B1AE50566001BF946 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = NO;
+				DSTROOT = /tmp/ShareSDKToDifPlatform.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ShareSDKToDifPlatform/ShareSDKToDifPlatform-Prefix.pch";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		B2A4AF7C1AE50566001BF946 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = NO;
+				DSTROOT = /tmp/ShareSDKToDifPlatform.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ShareSDKToDifPlatform/ShareSDKToDifPlatform-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		B2A4AF7E1AE50566001BF946 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ShareSDKToDifPlatform/ShareSDKToDifPlatform-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "ShareSDKToDifPlatformTests/ShareSDKToDifPlatformTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		B2A4AF7F1AE50566001BF946 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ShareSDKToDifPlatform/ShareSDKToDifPlatform-Prefix.pch";
+				INFOPLIST_FILE = "ShareSDKToDifPlatformTests/ShareSDKToDifPlatformTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		17C4A5091AFB0DAB00C761E3 /* Build configuration list for PBXNativeTarget "ShareSDKToYvVoiceSDK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				17C4A50A1AFB0DAB00C761E3 /* Debug */,
+				17C4A50B1AFB0DAB00C761E3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		17C4A5491AFB0EBE00C761E3 /* Build configuration list for PBXNativeTarget "ShareSDKToYvVoiceSDKNoJson" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				17C4A54A1AFB0EBE00C761E3 /* Debug */,
+				17C4A54B1AFB0EBE00C761E3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		17E174521AF9CD62001BDF24 /* Build configuration list for PBXNativeTarget "ShareSDKToGameCenter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				17E174531AF9CD62001BDF24 /* Debug */,
+				17E174541AF9CD62001BDF24 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		76C017701CFD6F9500E667C1 /* Build configuration list for PBXNativeTarget "ShareSDKToFCUUID" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				76C017711CFD6F9500E667C1 /* Debug */,
+				76C017721CFD6F9500E667C1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B2A4AF521AE50566001BF946 /* Build configuration list for PBXProject "ShareSDKToDifPlatform" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B2A4AF781AE50566001BF946 /* Debug */,
+				B2A4AF791AE50566001BF946 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B2A4AF7A1AE50566001BF946 /* Build configuration list for PBXNativeTarget "ShareSDKToDifPlatform" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B2A4AF7B1AE50566001BF946 /* Debug */,
+				B2A4AF7C1AE50566001BF946 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B2A4AF7D1AE50566001BF946 /* Build configuration list for PBXNativeTarget "ShareSDKToDifPlatformTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B2A4AF7E1AE50566001BF946 /* Debug */,
+				B2A4AF7F1AE50566001BF946 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B2A4AF4F1AE50566001BF946 /* Project object */;
+}

@@ -1,0 +1,160 @@
+/*
+ Localizable.strings
+ EfunPlatForm
+ 
+ Created by TangTieshan on 14-2-24.
+ Copyright (c) 2014年 TangTieshan. All rights reserved.
+ */
+"Home"="Trang chủ";
+"Account Info"="Thông Tin Tài Khoản";
+"CS Center"="Chăm sóc khách hàng";
+"Info"="Thông Tin";
+"Game"="Trò Chơi";
+"Gift"="Gói Qùa";
+"Recharge"="Nạp Thẻ";
+"News"="Tin tức";
+"Guide"="Chiến lược";
+"Role ID"="Tên nhân vật";
+"Reply"="Trả lời";
+"Free Gift"="Miễn phí";
+"Medal Gift"="Huy chương";
+"My Gift"="Qùa của tôi";
+"Your suggestion"="Đề nghị của bạn";
+"Please input your suggestions for better services"="Hãy cho chúng tôi biết kiến nghị của bạn";
+"Your Email"="Email của bạn";
+"Email"="Email";
+"①MSN/Email:\ncustomer_service@efun.com"="①MSN/Email:\ncustomer_service@efun.com";
+"Please input correct email"="Hãy nhập chính xác địa chỉ Mail";
+"Please input your suggestions"="Đề nghị của bạn";
+"Please input your Email"="Hãy nhập địa chỉ email";
+"OK"="Hoàn thành";
+"Submit"="Đệ trình";
+"Timeout! Please check your network"="Qúa thời gian! Hãy kiểm tra kết nối";
+"Thanks for your suggestion!"="cảm ơn ý kiến đóng góp quý báu của bạn!";
+"submiting..."="Đang gửi đi...";
+
+"internet error, please try again."="internet error, please try again.";
+"Logging in..."="Logging in...";
+
+"Member"="Hội Viên";
+"System Message"="Tin nhắn hệ thống";
+"Login"="Đăng nhập";
+"Account"="Tài khoản";
+"Password"="Mật mã";
+"Facebook Login"="Đăng nhập bằng Facebook";
+"Change password"="Sửa mật mã";
+"Forget password?"="Quên mật mã?";
+"No account?"="Không có tài khoản?";
+"Register now"="Đăng kí nhanh";
+"Click here to find back"="Click để tìm lại";
+"Third Party Account"="Tài khoản bên thứ ba";
+"Old password"="Mật mã mới";
+"New password"="Mật mã cũ";
+"Confirm password"="Xác nhận mật mã cũ";
+"Confirm"="Xác nhận sửa";
+"Change password successfully"="Thay đổi mật mã thành công";
+"Please input new password"="Hãy nhập mật mã mới";
+"Please input old password"="Hãy nhập mật mã cũ";
+"Please confirm password"="Hãy xác nhận mật mã";
+"Please input account first"="Tài khoản không được để trống";
+"The new passwords are inconsistent"="Mật mã mới không giống nhau";
+"Please input your title"="Hãy điền tiêu đề";
+"Title"="Chiến lược";
+"Please input password"="Nhập mật mã";
+"Find back password"="Tìm lại mật mã";
+"Account Registration"="Đăng kí tài khoản";
+"Agree to Terms"="Đã đọc và chấp nhận";
+"《Terms of Service and Privacy policy》"="《Điều khoản phục vụ và điều khoản riêng tư》";
+"Please input password first"="Mật mã không được để trống";
+"Passwords are inconsistent"="Hai lần nhập mật mã không giống nhau";
+"You haven't read the related terms"="Hãy chọn đồng ý với các điều khoản";
+
+"Please select your region"="Hãy chọn vị trí của bạn";
+"Thailand"="Thái Lan";
+"Vietnam"="Việt Nam";
+"Europe"="Châu Âu";
+"Japan"="Nhật Bản";
+"Other regions of Southeast Asia"="Những nước khác trong khu vực Đông Nam Á";
+"The region you choose:"="Khu vực bạn chọn là:";
+"Cancel"="Hủy";
+
+"Login error"="Đăng nhập bất thường";
+"Recharge error"="Vấn đề về nạp thẻ";
+"Abnormal account"="Tài khoản bất thường";
+"Error feedback"="Phản hồi bất thường";
+"Guides"="Tư vấn chiến thuật";
+"Suggestion"="Ý kiến đóng góp";
+"Violation complaints"="Khiếu nại";
+"Other"="Ý kiến khác";
+
+"select game"="Trò chơi";
+"Server"="Máy chủ";
+"Character"="Tên nhân vật";
+"submit"="Gửi";
+
+"Register successfully"="Đăng kí thành công";
+"Register"="Đăng kí";
+"No blank space for the first place of account"="Chữ cái đầu tên tài khoản không được để trống";
+"No “&！ for account"="Tài khoản không bao gồm \"&!";
+"No “&！ for password"=" Mật mã không bao gồm \"&!";
+"The new password has been sent to your mail. Please pay attention to check it"="Mật mã mới của bạn đã được gửi đến email, hãy chú ý kiểm tra!";
+"Failed to obtain the game list. Please try again later"="Nhận danh sách trò chơi thất bại, hãy thử lại sau!";
+"Failed to obtain server info. Please try again later!"="Nhận danh sách máy chủ thất bại, hãy thử lại sau!";
+"Failed to obtain character info. Please try again later!"="Nhận thông tin nhân vật thất bại, hãy thử lại sau!";
+
+
+"The title should be shorter than 32 characters."="Tiêu đề không vượt quá 32 chữ.";
+"The content should be shorter than 500 characters."="Nội dung miêu tả không vượt quá 500 chữ.";
+"The title can't be empty or containing only spaces."="Tiêu đề không được để trống hoặc có dấu cách.";
+"The content can't be empty or containing only spaces."="Nội dung miêu tả không được để trống hoặc có dấu cách.";
+"Obtaining..."="Đang nhận...";
+
+
+"Application Management"="Quản lý ứng dụng";
+"Installed"="Đã cài đặt";
+"Downloading"="Đang tải";
+
+"Change"="Thay đổi";
+"Forget"="Quên";
+"Are you sure to change account?"="Bạn quyết định đổi Tài khoản?";
+"The first letter of account can't contain spaces."="Chữ đầu của Tài khoản không được dùng dấu cách.";
+"Password："="Mật mã：";
+
+"Wrong password"="Lỗi key";
+"Wrong parameter"="Tham số sai";
+"Null exception"="Null bất thường";
+"This account has existed already"="Tài khoản đã tồn tại";
+"System abnormal"="Hệ thống bất thường";
+"This account does't exist"="Không có người dùng này";
+"Wrong original password"="Mật mã ban đầu sai";
+"Wrong email input"="Email sai";
+"Please choose the type of game"="Hãy chọn trò chơi";
+"Please choose the type of server"="Hãy chọn máy chủ";
+"Please choose the role"="Hãy chọn Tên nhân vật";
+"It's now having system maintenance"="Hệ thống đang bảo trì";
+
+"Failed to login"="Đăng nhập thất bại";
+"Shared successfully"="Chia sẻ thành công";
+"Shared failed"="Chia sẻ thất bại";
+
+"wrong password!"="sai mật mã!";
+"More"="More";
+
+"Event area"="Event area";
+"select game"="select game";
+"server"="server";
+"role name"="role name";
+"select event"="select event";
+"shoot"="chụp ảnh";
+"album"="tập ảnh";
+
+"Please choose the event"="Xin chọn sự kiện";
+"Your message has been successfully submitted"="sự kiện đệ trình thành công";
+"Fail to send your message, please try later"="đệ trình thất bại ,xin thử lại sau";
+"Please choose an image"="Xin chọn ảnh";
+
+"Load failed, please check the network connection or contact customer service."="Tải thất bại, xin kiểm tra mạng hoặc liên lạc CSKH.";
+
+"Notice"="Thông cáo";
+"Download"="Tải";
+"Don't show today"="Không hiện thị trong hôm nay";

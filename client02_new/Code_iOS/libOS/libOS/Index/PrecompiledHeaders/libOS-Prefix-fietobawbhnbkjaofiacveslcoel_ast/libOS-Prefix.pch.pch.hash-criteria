@@ -1,0 +1,26 @@
+-x
+objective-c
+-arch
+armv7
+-fretain-comments-from-system-headers
+-std=gnu99
+-fpascal-strings
+-Os
+-DLIBOS
+-isysroot
+/Applications/Xcode 2.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.0.sdk
+-g
+-miphoneos-version-min=4.3
+-iquote
+-iquote
+-I/Users/guodong/jenkins/jobs/LZ1.3/workspace/Code_iOS/libOS/build/Release-iphoneos/include
+-I/Users/guodong/jenkins/jobs/LZ1.3/workspace/Code_iOS/libOS/libOS/../include
+-F/Users/guodong/jenkins/jobs/LZ1.3/workspace/Code_iOS/libOS/build/Release-iphoneos
+-ferror-limit=10
+-working-directory=/Users/guodong/jenkins/jobs/LZ1.3/workspace/Code_iOS/libOS/libOS
+-Xclang
+-detailed-preprocessing-record
+arm-apple-darwin13.3.0
+"4.2.1 Compatible Apple LLVM 6.0 (clang-600.0.51)"
+SDK_PRODUCT_BUILD_VERSION=12A365
+12A365
