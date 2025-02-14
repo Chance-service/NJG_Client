@@ -114,6 +114,8 @@ public:
     void playMovie(const char * fileName,bool need_skip = true);
     
     void stopMovie();
+    void pauseMovie();
+    void resumeMovie();
     
     void setShareWCCallBackEnabled() { mIsShareWC=true;};
     

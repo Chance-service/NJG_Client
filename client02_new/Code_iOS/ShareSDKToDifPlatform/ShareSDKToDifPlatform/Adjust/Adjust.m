@@ -155,11 +155,11 @@ static dispatch_once_t onceToken = 0;
 + (void)gdprForgetMe {
     [[Adjust getInstance] gdprForgetMe];
 }
-
+/*
 + (ADJAttribution *)attribution {
     return [[Adjust getInstance] attribution];
 }
-
+*/
 + (NSString *)adid {
     return [[Adjust getInstance] adid];
 }

@@ -147,6 +147,8 @@ public:
 
 	virtual const std::string& getToken() = 0;
 
+  virtual void showPlatformProfile() = 0;
+
 	virtual const std::string getClientChannel() = 0;
 
 	virtual const std::string getChannelID(){ return ""; }

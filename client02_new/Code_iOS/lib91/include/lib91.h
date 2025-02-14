@@ -53,12 +53,14 @@ public:
 	/** optional: call platform open game pause function.*/
 	virtual void gamePause();
 
-    virtual void setToolBarVisible(bool isShow);
+  virtual void setToolBarVisible(bool isShow);
 
 	/** IMPORTANT: get the only ID for game. MUST be unique! */
 	virtual const std::string& loginUin();
 
-    virtual const std::string& getToken();
+  virtual const std::string& getToken();
+
+  virtual void showPlatformProfile();
 
 	/** optional: get the session ID.*/
 	virtual const std::string& sessionID();

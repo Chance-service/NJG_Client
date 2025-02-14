@@ -56,6 +56,8 @@ public:
     virtual const std::string& loginUin();
     
     virtual const std::string& getToken();
+
+    virtual void showPlatformProfile();
     
     /** optional: get the session ID.*/
     virtual const std::string& sessionID();

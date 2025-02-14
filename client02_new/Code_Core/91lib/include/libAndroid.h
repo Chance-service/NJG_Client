@@ -52,6 +52,8 @@ public:
 
 	virtual const std::string& getToken();
 
+  virtual void showPlatformProfile();
+
 	/** optional: get the session ID.*/
 	virtual const std::string& sessionID();
 	/** optional: get the nick name. which is shown on the loading scene */
@@ -75,31 +77,31 @@ public:
 	virtual const Json::Value& sendMessageG2P(const std::string& tag, const Json::Value& msg);
 
 	/************************************************************/
-	/*º«¹úkakaoºÃÓÑ½Ó¿Ú*/
+	/*ï¿½ï¿½ï¿½ï¿½kakaoï¿½ï¿½ï¿½Ñ½Ó¿ï¿½*/
 
-	//»ñµÃÑûÇë´ÎÊý
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	virtual void OnKrGetInviteCount();
-	//ÑûÇëÁÐ±í
+	//ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
 	virtual void OnKrgetInviteLists();
-	//ºÃÓÑÁÐ±í
+	//ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
 	virtual void OnKrgetFriendLists();
-	//·¢ËÍÑûÇëÐÅÏ¢
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 	virtual void OnKrsendInvite(const std::string& strUserId, const std::string& strServerId);
-	//»ñÈ¡ÀñÎïÁÐ±í
+	//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
 	virtual void OnKrgetGiftLists();
-	//½ÓÊÜÀñÎï
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	virtual void OnKrReceiveGift(const std::string& strGiftId, const std::string& strServerId);
-	//µ±Ç°Ëù½ÓÊÜÀñÎïµÄ¸öÊý
+	//ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½ï¿½
 	virtual void OnKrGetGiftCount();
-	//ÔùËÍÀñÎï
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	virtual void OnKrSendGift(const std::string& strUserName, const std::string& strServerId);
-	//ÆÁ±ÎÀñÎï
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	virtual void OnKrGiftBlock(bool bVisible);
 	virtual void OnKrGetKakaoId();
 	virtual void OnKrLoginGames();
 	virtual void OnKrIsShowFucForIOS();
 	/***********************************************************/
-	//R2½Ó¿Ú
+	//R2ï¿½Ó¿ï¿½
 	virtual void  setLanguageName(const std::string& lang);
 
 	virtual void  setPlatformName(int platform);

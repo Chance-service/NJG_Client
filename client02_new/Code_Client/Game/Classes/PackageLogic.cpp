@@ -1,4 +1,4 @@
-﻿
+
 #include "stdafx.h"
 
 #include "PackageLogic.h"
@@ -19,7 +19,7 @@
 #include "SeverConsts.h"
 #include "GamePacketManager.h"
 #include "waitingManager.h"
-#include "comHuTuo.h"
+//#include "comHuTuo.h"
 #include <algorithm>    // std::sort
 #include "MessageHintPage.h"
 
@@ -468,9 +468,9 @@ DEFINE_CREATE_REGISTER_HANDLER(HPAssembleFinishHander,ASSEMBLE_FINISH_S)
 		if (VaribleManager::Get()->getSetting("PushSvrID") == "1")
 			putSvr = true;
 			// Trans serverId to java layout
-			comHuTuo::updateServerInfo(GamePrecedure::Get()->getServerID(),
-			rInfo.name(), pInfo.playerid(), rInfo.level(), 
-			pInfo.viplevel(), pInfo.coin(), pInfo.gold(), putSvr);
+			//comHuTuo::updateServerInfo(GamePrecedure::Get()->getServerID(),
+			//rInfo.name(), pInfo.playerid(), rInfo.level(),
+			//pInfo.viplevel(), pInfo.coin(), pInfo.gold(), putSvr);
 	}
 	//
 }
