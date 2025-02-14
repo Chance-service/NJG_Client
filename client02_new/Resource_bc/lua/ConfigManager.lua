@@ -1880,7 +1880,7 @@ function ConfigManager.getMailContentCfg()
         local userType = CCUserDefault:sharedUserDefault():getIntegerForKey("LanguageType");
 	    if userType == kLanguageChinese then
 	    	cfg = ConfigManager.loadCfg("MailIdConfig.txt", attrMap, 0, convertMap)
-	    elseif userType == kLabguageCH_TW then
+	    elseif userType == kLanguageCH_TW then
 	    	cfg = ConfigManager.loadCfg("MailIdConfigTW.txt", attrMap, 0, convertMap)
 	    else
 	    	cfg = ConfigManager.loadCfg("MailIdConfig.txt", attrMap, 0, convertMap)

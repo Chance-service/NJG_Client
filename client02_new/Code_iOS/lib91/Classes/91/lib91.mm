@@ -465,6 +465,12 @@ const std::string& lib91::getToken()
     return token;
 }
 
+void lib91::showPlatformProfile()
+{
+    [PlayCenter.shared profile];
+}
+
+
 bool lib91::getIsH365()
 {
     return false;

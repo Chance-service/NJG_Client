@@ -23,14 +23,14 @@ local function getRoleTable(_id)
 end
 
 
--- ªì©l¤Æ¦r¦ê
+-- ï¿½ï¿½lï¿½Æ¦rï¿½ï¿½
 function SecretMessageManager_initLanguage()
     if not SecretMessageManager.isLangInit then
         if CC_TARGET_PLATFORM_LUA ~= common.platform.CC_PLATFORM_WIN32 then
             local userType = CCUserDefault:sharedUserDefault():getIntegerForKey("LanguageType");
 	        if userType == kLanguageChinese then
 	        	Language:getInstance():addLanguageFile("Lang/Language_Secret.lang")
-	        elseif userType == kLabguageCH_TW then
+	        elseif userType == kLanguageCH_TW then
 	        	Language:getInstance():addLanguageFile("Lang/Language_SecretTW.lang")
 	        else
 	        	Language:getInstance():addLanguageFile("Lang/Language_Secret.lang")
@@ -39,7 +39,7 @@ function SecretMessageManager_initLanguage()
         SecretMessageManager.isLangInit = true
     end
 end
--- ¬ö¿ýserver¦^¶Ç¸ê®Æ
+-- ï¿½ï¿½ï¿½ï¿½serverï¿½^ï¿½Ç¸ï¿½ï¿½
 function SecretMessageManager_setServerData(msg)
     if msg.action==3 then
         SecretMessageData.power=msg.syncMsg.power
@@ -64,7 +64,7 @@ function SecretMessageManager_setServerData(msg)
 
         local roleTable = getRoleTable(itemId)
 
-        -- ªì©l¤Æ Unlock¡BFree¡BCost ª¬ºA
+        -- ï¿½ï¿½lï¿½ï¿½ Unlockï¿½BFreeï¿½BCost ï¿½ï¿½ï¿½A
         for i = 1, 7 do
             local heroData = SecretMessageData.allHeroData[itemId]
             heroData.Unlock[i] = false
@@ -72,7 +72,7 @@ function SecretMessageManager_setServerData(msg)
             heroData.Cost[i] = false
         end
         
-        -- ©w¸q¤@­Ó³q¥Î¨ç¼Æ¨Ó³Ð«Ø¬d§äªí
+        -- ï¿½wï¿½qï¿½@ï¿½Ó³qï¿½Î¨ï¿½Æ¨Ó³Ð«Ø¬dï¿½ï¿½ï¿½
         local function createLookupTable(idList)
             local lookupTable = {}
             for _, id in pairs(idList) do
@@ -83,12 +83,12 @@ function SecretMessageManager_setServerData(msg)
             return lookupTable
         end
         
-        -- ºc«Ø¬d§äªí
+        -- ï¿½cï¿½Ø¬dï¿½ï¿½ï¿½
         local unlockCfgLookup = createLookupTable(msg.heroInfo[i].unlockCfgId)
         local freeCfgLookup = createLookupTable(msg.heroInfo[i].freeCfgId)
         local costCfgLookup = createLookupTable(msg.heroInfo[i].costCfgId)
         
-        -- ´î¥h²Å¦X±ø¥óªº¤À¼Æ¨Ã§ó·sª¬ºA
+        -- ï¿½ï¿½hï¿½Å¦Xï¿½ï¿½ï¿½óªº¤ï¿½ï¿½Æ¨Ã§ï¿½sï¿½ï¿½ï¿½A
         for key, data in pairs(roleTable) do
             local heroData = SecretMessageData.allHeroData[itemId]
             if unlockCfgLookup[data.id] then
@@ -116,7 +116,7 @@ function SecretMessageManager_setServerData(msg)
                     SecretMessageData.allHeroData[itemId].history[idx].itemId = itemId
                     SecretMessageData.allHeroData[itemId].history[idx].questionStr = cfg.QuestionStr
                     SecretMessageData.allHeroData[itemId].history[idx].ansStr = (msg.heroInfo[i].history[idx].answer == 0) and
-                                                                                cfg.AnsStr1 or cfg.AnsStr2   -- server¨Ï¥Î0¸ò1
+                                                                                cfg.AnsStr1 or cfg.AnsStr2   -- serverï¿½Ï¥ï¿½0ï¿½ï¿½1
                     SecretMessageData.allHeroData[itemId].history[idx].endStr = (msg.heroInfo[i].history[idx].answer == 0) and
                                                                                 cfg.EndStr1 or cfg.EndStr2
                     SecretMessageData.allHeroData[itemId].history[idx].pic=msg.heroInfo[i].history[idx].pic or 0
@@ -200,11 +200,11 @@ function SecretMessageManager_LevelAchiveCount(_id)
     end
     return 0
 end
--- ¨ú±o©Ò¦³°T®§¦î¦C
+-- ï¿½ï¿½ï¿½oï¿½Ò¦ï¿½ï¿½Tï¿½ï¿½ï¿½ï¿½C
 function SecretMessageManager_getMessageQueue()
     return SecretMessageData.messageQueue
 end
--- ¨ú±o¥Ø¼Ð­^¶¯¦î¦C²Ä¤@µ§°T®§
+-- ï¿½ï¿½ï¿½oï¿½Ø¼Ð­^ï¿½ï¿½ï¿½ï¿½Cï¿½Ä¤@ï¿½ï¿½ï¿½Tï¿½ï¿½
 function SecretMessageManager_getFirstMessageByItemId(itemId)
     for i = 1, #SecretMessageData.messageQueue do
         if SecretMessageData.messageQueue[i].itemId == itemId then
@@ -213,14 +213,14 @@ function SecretMessageManager_getFirstMessageByItemId(itemId)
     end
     return nil
 end
--- ¨ú±o¥þ³¡­^¶¯¸ê®Æ
+-- ï¿½ï¿½ï¿½oï¿½ï¿½ï¿½ï¿½ï¿½^ï¿½ï¿½ï¿½ï¿½ï¿½
 function SecretMessageManager_getAllHeroData()
     return SecretMessageData.allHeroData
 end
 function SecretMessageManager_getPower()
     return SecretMessageData.power
 end
--- ¨ú±o¥Ø¼Ð­^¶¯¾ú¥v°T®§
+-- ï¿½ï¿½ï¿½oï¿½Ø¼Ð­^ï¿½ï¿½ï¿½ï¿½ï¿½vï¿½Tï¿½ï¿½
 function SecretMessageManager_getHistoryMessageByItemId(itemId)
     if SecretMessageData.allHeroData[itemId] then
         return SecretMessageData.allHeroData[itemId].history

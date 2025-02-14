@@ -1,4 +1,4 @@
-﻿#include "stdafx.h"
+#include "stdafx.h"
 
 #include "LoadingFrame.h"
 #include "AppDelegate.h"
@@ -1401,7 +1401,7 @@ void LoadingFrame::showSevers(bool _show)
 							case kLanguageChinese:
 								if (str)	str->setString(itOrdered->name.c_str());
 								break;
-							case kLabguageCH_TW:
+							case kLanguageCH_TW:
 								if (str)	str->setString(itOrdered->nameTW.c_str());
 								break;
 							default:
@@ -1566,7 +1566,7 @@ void LoadingFrame::updateSeverName()
 			case kLanguageChinese:
 				eb->setString(it->second->name.c_str());
 				break;
-			case kLabguageCH_TW:
+			case kLanguageCH_TW:
 				eb->setString(it->second->nameTW.c_str());
 				break;
 			default:
@@ -2214,7 +2214,7 @@ void LoadingFrame::getUpdateVersionTips()
 	case kLanguageChinese:
 		fileName = "UpdateVersionTips.cfg";
 		break;
-	case kLabguageCH_TW:
+	case kLanguageCH_TW:
 		fileName = "UpdateVersionTipsTW.cfg";
 		break;
 	default:
@@ -2392,7 +2392,7 @@ void LoadingFrame::resetVersion()
 	std::string versionPathTmp = writeRootPath + versionPath + "/" + versionManifestNameTmp;
 	std::string saveVersionPath = writeRootPath + versionPath + "/" + versionManifestName;
 	unsigned long filesize;
-	unsigned	char* pBuffer = CCFileUtils::sharedFileUtils()->getFileData(cocos2d::CCFileUtils::sharedFileUtils()->fullPathForFilename(versionManifestNameTmp).c_str(), "rt", &filesize, 0, false);
+	unsigned	char* pBuffer = CCFileUtils::sharedFileUtils()->getFileData(cocos2d::CCFileUtils::sharedFileUtils()->fullPathForFilename(versionManifestNameTmp).c_str(), "rt", &filesize, 0, nullptr);
 	saveFileInPath(saveVersionPath, "wb", pBuffer, filesize);
 
 	SeverConsts::Get()->setServerVersion(serverVersionData->versionResource);
@@ -3062,7 +3062,7 @@ void LoadingFrame::downloaded(const std::string &url, const std::string& filenam
 		if (versionStat  == CHECK_VERSION)
 		{
 			unsigned long filesize;
-			unsigned	char* pBuffer = CCFileUtils::sharedFileUtils()->getFileData(cocos2d::CCFileUtils::sharedFileUtils()->fullPathForFilename(filename.c_str()).c_str(), "rt", &filesize, 0, false);
+			unsigned	char* pBuffer = CCFileUtils::sharedFileUtils()->getFileData(cocos2d::CCFileUtils::sharedFileUtils()->fullPathForFilename(filename.c_str()).c_str(), "rt", &filesize, 0, nullptr);
 			getVersionData(serverVersionData, pBuffer);
 			cocos2d::CCLog("LoadingFrame::compareVersion");
 			compareVersion();
@@ -3324,7 +3324,7 @@ void LoadingFrame::compareProjectAsset()
 		std::string versionPathTmp = writeRootPath + versionPath + "/" + versionManifestNameTmp;
 		std::string saveVersionPath = writeRootPath + versionPath + "/" + versionManifestName;
 		unsigned long filesize;
-		unsigned	char* pBuffer = CCFileUtils::sharedFileUtils()->getFileData(cocos2d::CCFileUtils::sharedFileUtils()->fullPathForFilename(versionManifestNameTmp).c_str(), "rt", &filesize, 0, false);
+		unsigned	char* pBuffer = CCFileUtils::sharedFileUtils()->getFileData(cocos2d::CCFileUtils::sharedFileUtils()->fullPathForFilename(versionManifestNameTmp).c_str(), "rt", &filesize, 0, nullptr);
 
 		saveFileInPath(saveVersionPath, "wb", pBuffer, filesize);
 

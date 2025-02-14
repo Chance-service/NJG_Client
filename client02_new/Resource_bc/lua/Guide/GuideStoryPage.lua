@@ -46,7 +46,7 @@ function GuideStoryPage:onEnter(container)
     local preName = "phase"
     if langType == kLanguageChinese then
 		preName = preName
-	elseif langType == kLabguageCH_TW then
+	elseif langType == kLanguageCH_TW then
 		preName = preName .. "TW"
 	else
 		preName = preName
@@ -107,8 +107,8 @@ function GuideStoryPage:onClose(container)
         GameUtil:setPlayMovieVisible(true)
     end
 end
-------------------------------------- ¥\¯àªíEND
---°h¥X
+------------------------------------- ï¿½\ï¿½ï¿½ï¿½END
+--ï¿½hï¿½X
 function GuideStoryPage:onReturn(container)
     local title = common:getLanguageString("@SkipTitle")
     local msg = common:getLanguageString("@SkipStory")

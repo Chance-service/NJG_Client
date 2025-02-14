@@ -1,4 +1,4 @@
-﻿
+
 #include "stdafx.h"
 
 #include "UpdateVersion.h"
@@ -300,7 +300,7 @@ void UpdateVersion::getUpdateVersionTips()
 	case kLanguageChinese:
 		fileName = "UpdateVersionTips.cfg";
 		break;
-	case kLabguageCH_TW:
+	case kLanguageCH_TW:
 		fileName = "UpdateVersionTipsTW.cfg";
 		break;
 	default:

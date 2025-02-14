@@ -70,7 +70,7 @@ typedef enum LanguageType
     kLanguageHungarian,
     kLanguagePortuguese,
     kLanguageArabic,
-	kLabguageCH_TW,
+	kLanguageCH_TW,
 	kLanguageTurkish,
 	kLanguageThai
 } ccLanguageType;

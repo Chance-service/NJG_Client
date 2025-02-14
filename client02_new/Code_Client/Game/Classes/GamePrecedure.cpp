@@ -105,7 +105,7 @@ void GamePrecedure::init()
 	case kLanguageChinese:
 		Language::Get()->init("Lang/Language.lang");
 		break;
-	case kLabguageCH_TW:
+	case kLanguageCH_TW:
 		Language::Get()->init("Lang/LanguageTW.lang");
 		break;
 	default:
@@ -782,7 +782,7 @@ void GamePrecedure::loadPlsit()
 						frameCache->addSpriteFramesNameWithFile(filename.c_str());
 					}
 					break;
-				case kLabguageCH_TW:
+				case kLanguageCH_TW:
 					pos = filename.find("i18n_tw");
 					if (pos != std::string::npos){
 						frameCache->addSpriteFramesNameWithFile(filename.c_str());
@@ -812,7 +812,7 @@ void GamePrecedure::loadPlsit()
 	case kLanguageChinese:
 		Language::Get()->init("Lang/Language.lang");
 		break;
-	case kLabguageCH_TW:
+	case kLanguageCH_TW:
 		Language::Get()->init("Lang/LanguageTW.lang");
 		break;
 	default:
