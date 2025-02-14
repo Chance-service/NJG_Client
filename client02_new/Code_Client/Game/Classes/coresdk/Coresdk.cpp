@@ -1,7 +1,7 @@
 #include "Coresdk.h"
-#include "coresdk/util.h"
-#include "coresdk/webapi.h"
-#include "coresdk/DeepLink.h"
+#include "util.h"
+#include "webapi.h"
+#include "../coresdk/DeepLink.h"
 
 USING_NS_CC;
 namespace coresdk {

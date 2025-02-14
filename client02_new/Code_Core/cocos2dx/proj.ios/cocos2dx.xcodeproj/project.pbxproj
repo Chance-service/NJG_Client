@@ -290,6 +290,8 @@
 		46A393F616E5D01B00210B16 /* CCUserDefault.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46A393F216E5D01B00210B16 /* CCUserDefault.cpp */; };
 		46A393F716E5D01B00210B16 /* CCUserDefault.h in Headers */ = {isa = PBXBuildFile; fileRef = 46A393F316E5D01B00210B16 /* CCUserDefault.h */; };
 		46A393F816E5D01B00210B16 /* CCUserDefault.mm in Sources */ = {isa = PBXBuildFile; fileRef = 46A393F416E5D01B00210B16 /* CCUserDefault.mm */; };
+		4E7F50812D5FA09200DD4AA4 /* SkeletonBinary.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E7F507F2D5FA09200DD4AA4 /* SkeletonBinary.h */; };
+		4E7F50822D5FA09200DD4AA4 /* SkeletonBinary.c in Sources */ = {isa = PBXBuildFile; fileRef = 4E7F50802D5FA09200DD4AA4 /* SkeletonBinary.c */; };
 		4EF8999016E207E70040A527 /* CCParallaxNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4EF8998416E207E70040A527 /* CCParallaxNode.cpp */; };
 		4EF8999116E207E70040A527 /* CCParallaxNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 4EF8998516E207E70040A527 /* CCParallaxNode.h */; };
 		4EF8999216E207E70040A527 /* CCTileMapAtlas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4EF8998616E207E70040A527 /* CCTileMapAtlas.cpp */; };
@@ -1239,6 +1241,8 @@
 		46A393F316E5D01B00210B16 /* CCUserDefault.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCUserDefault.h; sourceTree = "<group>"; };
 		46A393F416E5D01B00210B16 /* CCUserDefault.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCUserDefault.mm; sourceTree = "<group>"; };
 		46A393F516E5D01B00210B16 /* CCUserDefaultAndroid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCUserDefaultAndroid.cpp; sourceTree = "<group>"; };
+		4E7F507F2D5FA09200DD4AA4 /* SkeletonBinary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SkeletonBinary.h; sourceTree = "<group>"; };
+		4E7F50802D5FA09200DD4AA4 /* SkeletonBinary.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = SkeletonBinary.c; sourceTree = "<group>"; };
 		4EF8998416E207E70040A527 /* CCParallaxNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCParallaxNode.cpp; sourceTree = "<group>"; };
 		4EF8998516E207E70040A527 /* CCParallaxNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCParallaxNode.h; sourceTree = "<group>"; };
 		4EF8998616E207E70040A527 /* CCTileMapAtlas.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCTileMapAtlas.cpp; sourceTree = "<group>"; };
@@ -2665,6 +2669,8 @@
 		AFC826E019443CE50038BB9D /* spine */ = {
 			isa = PBXGroup;
 			children = (
+				4E7F507F2D5FA09200DD4AA4 /* SkeletonBinary.h */,
+				4E7F50802D5FA09200DD4AA4 /* SkeletonBinary.c */,
 				97DFFD891E0BDF9700060A8B /* IkConstraint.c */,
 				97DFFD8A1E0BDF9700060A8B /* IkConstraint.h */,
 				97DFFD8B1E0BDF9700060A8B /* SkeletonDataCache.cpp */,
@@ -3227,6 +3233,7 @@
 				AF69158D197A464700F05459 /* pngrio.c in Headers */,
 				AF69158E197A464700F05459 /* pngrtran.c in Headers */,
 				AF69158F197A464700F05459 /* pngrutil.c in Headers */,
+				4E7F50812D5FA09200DD4AA4 /* SkeletonBinary.h in Headers */,
 				AF691590197A464700F05459 /* pngset.c in Headers */,
 				AF691591197A464700F05459 /* pngtest.c in Headers */,
 				AF691592197A464700F05459 /* pngtrans.c in Headers */,
@@ -3722,6 +3729,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 1551A334158F2AB200E66CFE;
@@ -3995,6 +4003,7 @@
 				AFC8273F19443CE50038BB9D /* extension.c in Sources */,
 				AFC8274119443CE50038BB9D /* Json.c in Sources */,
 				AFC8274319443CE50038BB9D /* MeshAttachment.c in Sources */,
+				4E7F50822D5FA09200DD4AA4 /* SkeletonBinary.c in Sources */,
 				AFC8274519443CE50038BB9D /* PolygonBatch.cpp in Sources */,
 				AFC8274719443CE50038BB9D /* RegionAttachment.c in Sources */,
 				AFC8274919443CE50038BB9D /* Skeleton.c in Sources */,

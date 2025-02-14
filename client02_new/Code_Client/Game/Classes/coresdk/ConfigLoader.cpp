@@ -1,10 +1,10 @@
-﻿#include "ConfigLoader.h"
+#include "ConfigLoader.h"
 USING_NS_CC;
 
-#include "rapidjson/rapidjson.h"
-#include "rapidjson/document.h"
+#include "../rapidjson/rapidjson.h"
+#include "../rapidjson/document.h"
 
-#include "coresdk/WebRequest.h"
+#include "WebRequest.h"
 
 namespace coresdk {
 	// 初始化靜態變數

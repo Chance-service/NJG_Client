@@ -850,6 +850,11 @@ void libOS::setCanPressBack(bool enable)
     
 }
 
+bool libOS::getIsDebug()
+{
+    return false;
+}
+
 const std::string libOS::getDeviceType()
 {
     struct utsname systemInfo;

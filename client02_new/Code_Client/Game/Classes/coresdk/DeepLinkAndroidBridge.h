@@ -1,8 +1,8 @@
-﻿#ifndef  _CORESDK_DEEPLINK_ANDROID_BRIDGE_H_
+#ifndef  _CORESDK_DEEPLINK_ANDROID_BRIDGE_H_
 #define  _CORESDK_DEEPLINK_ANDROID_BRIDGE_H_
 
 #include "cocos2d.h"
-#include "coresdk/DeepLink.h"
+#include "DeepLink.h"
 
 
 // 此代碼依賴於 coresdk-android-cc2dx-bridge

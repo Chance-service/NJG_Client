@@ -193,7 +193,6 @@
 		17A0DD921B0AE9BA00E372B4 /* UIHelperAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIHelperAlert.m; sourceTree = "<group>"; };
 		17C872B41A68AC6600B3F3FB /* libR2.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = libR2.mm; sourceTree = "<group>"; };
 		17C872B51A68AC6600B3F3FB /* libR2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libR2.h; sourceTree = "<group>"; };
-		17CC21F01A68C13400E9FF12 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		17DCB48B1A68B094002613E5 /* libR2Obj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libR2Obj.h; sourceTree = "<group>"; };
 		17DCB48C1A68B094002613E5 /* libR2Obj.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = libR2Obj.mm; sourceTree = "<group>"; };
 		223663EF1A51518C0076CE37 /* libEfun.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = libEfun.mm; path = ../Classes/Efun/libEfun.mm; sourceTree = "<group>"; };
@@ -256,7 +255,6 @@
 		D76DCE32212C1A6800678EF8 /* libYouGuObjYiJie.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = libYouGuObjYiJie.mm; sourceTree = "<group>"; };
 		D76DCE33212C1A6800678EF8 /* libYouGuYiJie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libYouGuYiJie.h; sourceTree = "<group>"; };
 		D76DCE34212C1A6800678EF8 /* libYouGuYiJie.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = libYouGuYiJie.mm; sourceTree = "<group>"; };
-		D76DCE37212C209100678EF8 /* libYiJieOnlineHelper.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libYiJieOnlineHelper.a; path = ../SDK/YouGuYiJie/libYiJieOnlineHelper.a; sourceTree = "<group>"; };
 		D76E252D20DB51B900FFC35E /* liblib91Demo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblib91Demo.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D76E252F20DB523A00FFC35E /* libDemo.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = libDemo.mm; sourceTree = "<group>"; };
 		D76E253020DB523A00FFC35E /* libDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libDemo.h; sourceTree = "<group>"; };
@@ -503,8 +501,6 @@
 			isa = PBXGroup;
 			children = (
 				4EDE3AC02D55ECE9000EC88C /* Combine.framework */,
-				D76DCE37212C209100678EF8 /* libYiJieOnlineHelper.a */,
-				17CC21F01A68C13400E9FF12 /* libstdc++.dylib */,
 				55DEFD0C16D7776F00E75F8C /* Foundation.framework */,
 			);
 			name = Frameworks;
