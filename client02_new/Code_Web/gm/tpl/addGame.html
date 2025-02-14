@@ -1,0 +1,205 @@
+<%include file="header.html"%>
+<%include file="top.html"%>
+<%include file="left.html"%>
+				<div class="main-content">
+					<div class="breadcrumbs" id="breadcrumbs">
+						<script type="text/javascript">
+							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+						</script>
+
+						<ul class="breadcrumb">
+							<li>
+								<i class="icon-home home-icon"></i>
+								<a href="javascript:void(0);">游戏管理</a>
+							</li>
+							<li class="active"><a href="javascript:void(0);">添加游戏</a></li>
+						</ul><!-- .breadcrumb -->
+					</div>
+
+					<div class="page-content">
+
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+								
+								<div class="row">
+									<div class="col-sm-12">
+										<div class="widget-box">
+											<div class="widget-header header-color-blue2">
+												<h4 class="lighter smaller"></h4>
+											</div>
+
+											<div class="widget-body">
+												<div class="widget-main ">
+
+													<form class="form-horizontal" role="form">
+														<br/>
+														<div class="form-group">
+															<label class="col-sm-5 control-label no-padding-right" for="form-field-5">游戏名称:</label>
+
+															<div class="col-sm-6">
+																<div class="clearfix">
+																	<input class="col-xs-3" type="text" id="game" placeholder="" />
+																</div>
+
+
+																<div class="help-block" id="inputGameName"></div>
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="col-sm-5 control-label no-padding-right" for="form-field-5">支持平台:</label>
+
+															<div class="col-sm-6">
+																<div class="clearfix">
+																	<input class="col-xs-6" type="text" id="platform" placeholder="" />
+																</div>
+
+
+																<div class="help-block" id="inputGamePlatform"></div>
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="col-sm-5 control-label no-padding-right" for="form-field-5">支持渠道:</label>
+
+															<div class="col-sm-6">
+																<div class="clearfix">
+																	<input class="col-xs-6" type="text" id="channel" placeholder="" />
+																</div>
+
+																<div class="help-block" id="inputGameChannel"></div>
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="col-sm-5 control-label no-padding-right" for="form-field-5">日志用户:</label>
+
+															<div class="col-sm-6">
+																<div class="clearfix">
+																	<input class="col-xs-3" type="text" id="logUserName" placeholder="" />
+																</div>
+
+
+																<div class="help-block" id="inputLogUserName"></div>
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="col-sm-5 control-label no-padding-right" for="form-field-5">日志密码:</label>
+
+															<div class="col-sm-6">
+																<div class="clearfix">
+																	<input class="col-xs-3" type="text" id="logUserPwd" placeholder="" />
+																</div>
+
+																<div class="help-block" id="inputLogUserPwd"></div>
+															</div>
+														</div>
+														
+														<div class="form-group">
+															<label class="col-sm-5 control-label no-padding-right" for="form-field-5">部署路径:</label>
+
+															<div class="col-sm-6">
+																<div class="clearfix">
+																	<input class="col-xs-3" type="text" id="logPath" placeholder="" />
+																</div>
+
+																<div class="help-block" id="inputLogPath"></div>
+															</div>
+														</div>
+														
+														<div class="form-group">
+															<label class="col-sm-5 control-label no-padding-right" for="form-field-5">脚本端口:</label>
+
+															<div class="col-sm-6">
+																<div class="clearfix">
+																	<input class="col-xs-3" type="text" id="sshPort" placeholder="" />
+																</div>
+
+
+																<div class="help-block" id="inputSshPort"></div>
+															</div>
+														</div>
+													</form>
+
+													<h3 class="header smaller lighter green"></h3>
+													<div class="clearfix">
+														<center>
+															<button type="button" onClick="formSubmit();" class="btn btn-info btn-success">
+																<!--<i class="icon-bolt"></i>-->
+																添加
+															</button>
+														</center>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+								<!-- PAGE CONTENT ENDS -->
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div><!-- /.page-content -->
+				</div><!-- /.main-content -->
+		<script type="text/javascript">
+
+			jQuery(function($) {
+	/*			inputSlider($('#inputGameName'), $('#game'));
+				inputSlider($('#inputGamePlatform'), $('#platform'));
+				inputSlider($('#inputGameChannel'), $('#channel'));
+				inputSlider($('#inputLogUserName'), $('#logUserName'));
+				inputSlider($('#inputLogUserPwd'), $('#logUserPwd'));
+				inputSlider($('#inputLogPath'), $('#logPath'));
+				inputSlider($('#inputSshPort'), $('#sshPort'));
+	*/	
+			});
+
+			function inputSlider(inputNode, sliderNode) {
+				inputNode.slider({
+					value:3,
+					range: "min",
+					min: 3,
+					max: 12,
+					step: 1,
+					slide: function( event, ui ) {
+						var val = parseInt(ui.value);
+						sliderNode.attr('class', 'col-xs-'+val);
+					}
+				});
+			}
+
+			function formSubmit() {
+				var param = {};
+				param['mod'] = 'Game';
+				param['do'] = 'addGame';
+				
+				param['game'] = $('#game').val();
+				param['platform'] = $('#platform').val();
+				param['channel'] = $('#channel').val();
+				param['logUserName'] = $('#logUserName').val();
+				param['logUserPwd'] = $('#logUserPwd').val();
+				param['logPath'] = $('#logPath').val();
+				param['sshPort'] = $('#sshPort').val();
+				
+				if (!param['game']) {
+					alert("请输入游戏名称");
+				} else {
+					$.ajax({
+						type:'POST',
+						url:'index.php',
+						data:param,
+						dataType:'html',
+						success:function(data) {
+							var dataObj = eval("(" + data + ")");//转换为json对象
+							if(dataObj.code == 0) {
+								alert(dataObj.msg);
+								window.location.href = "index.php?mod=Game&do=showGameList";
+							} else {
+								alert(dataObj.msg);
+							}
+						}
+					});
+				}
+			}
+			
+		</script>
+<%include file="footer.html"%>
+

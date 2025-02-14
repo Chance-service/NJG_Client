@@ -1,0 +1,111 @@
+<%include file="header.html"%>
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>highcharts</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<link rel="stylesheet" href="<%$staticUrl%>css/bootstrap.min.css" />
+		<link rel="stylesheet" href="<%$staticUrl%>css/font-awesome.min.css" />
+		<link rel="stylesheet" href="<%$staticUrl%>css/ace.min.css" />
+		<link rel="stylesheet" href="<%$staticUrl%>css/ace-rtl.min.css" />
+		<link rel="stylesheet" href="<%$staticUrl%>css/ace-skins.min.css" />
+		<link rel="stylesheet" href="<%$staticUrl%>/css/dropzone.css" />
+		<link rel="stylesheet" href="<%$staticUrl%>css/jquery-ui-1.10.3.custom.min.css" />
+<!--	 
+   <script type="text/javascript" src="http://cdn.hcharts.cn/jquery/jquery-1.8.3.min.js"></script>
+  <script type="text/javascript" src="http://cdn.hcharts.cn/highcharts/highcharts.js"></script>
+  <script type="text/javascript" src="http://cdn.hcharts.cn/highcharts/exporting.js"></script>
+
+  <script type="text/javascript" src="<%$staticUrl%>js/chart/highcharts.js"></script>
+  <script type="text/javascript" src="<%$staticUrl%>js/chart/modules/exporting.js"></script>
+ -->		
+		<style>
+		a:hover  {
+		    text-decoration: none;
+		}
+
+		select {
+		width:85px;
+		}
+
+		</style>
+	</head>
+ 
+  
+	<body class="login-layout">
+		<div class="main-container">
+			<div class="main-content">
+				<div class="row">
+					<div class="col-sm-10 col-sm-offset-1">
+						<div class="login-container">
+
+							<div class="center">
+								<h1>
+									<i class="icon-leaf green"></i>
+									<span class="red">highcharts</span>
+								</h1>
+							</div>
+
+							<div class="position-relative">
+										<div id="container" style="min-width:600px;height:400px"></div>
+							</div><!-- /position-relative -->
+						</div><!-- /login-container -->
+					</div><!-- /.col -->
+				</div><!-- /.row -->
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+	$(function () {
+	    $('#container').highcharts({
+	        chart: {
+	            plotBackgroundColor: null,
+	            plotBorderWidth: null,
+	            plotShadow: false
+	        },
+	        title: {
+	            text: 'Browser market shares at a specific website, 2010'
+	        },
+	        tooltip: {
+	    	    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+	        },
+	        plotOptions: {
+	            pie: {
+	                allowPointSelect: true,
+	                cursor: 'pointer',
+	                dataLabels: {
+	                    enabled: true,
+	                    color: '#000000',
+	                    connectorColor: '#000000',
+	                    format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+	                }
+	            }
+	        },
+	        series: [{
+	            type: 'pie',
+	            name: 'Browser share',
+	            data: [
+	                ['Firefox',   45.0],
+	                ['IE',       26.8],
+	   /*             {
+	                    name: 'Chrome',
+	                    y: 12.8,
+	                    sliced: true,
+	                    selected: true
+	                },
+	    */            
+	                ['Chrome',    12.8],
+	                ['Safari',    8.5],
+	                ['Opera',     6.2],
+	                ['Others',   0.7]
+	            ]
+	        }]
+	    });
+	});			
+	
+
+	</script>
+	 <script src="<%$staticUrl%>js/chart/themes/grid.js"></script>
+</html>

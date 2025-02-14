@@ -1,0 +1,12 @@
+<form method="post" action="http://localhost/echo.php" enctype="multipart/form-data">
+	<input type="button" onmousemove="move(event);" value="上传" size="30" />
+	<input type="file" id="f" onchange="this.form.submit()" name="f" style="position:absolute; filter:alpha(opacity=0); opacity:0; width:30px; " size="1" />
+</form>
+<script type="text/javascript">
+function move(event){
+	var event=event||window.event;
+	var a=document.getElementById('f');
+	    a.style.left=event.clientX-50+'px';
+	    a.style.top=event.clientY-10+'px';
+}
+</script>

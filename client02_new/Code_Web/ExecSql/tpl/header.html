@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>自动更新SQL系统</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="<%$staticUrl%>css/bootstrap.min.css" />
+		<link rel="stylesheet" href="<%$staticUrl%>css/font-awesome.min.css" />
+		<link rel="stylesheet" href="<%$staticUrl%>css/ace.min.css" />
+		<link rel="stylesheet" href="<%$staticUrl%>css/ace-rtl.min.css" />
+		<link rel="stylesheet" href="<%$staticUrl%>css/ace-skins.min.css" />
+		<link rel="stylesheet" href="<%$staticUrl%>/css/dropzone.css" />
+		<link rel="stylesheet" href="<%$staticUrl%>css/jquery-ui-1.10.3.custom.min.css" />
+		<script type="text/javascript" src="<%$staticUrl%>js/jquery-1.9.1.min.js"></script>
+	    <script type="text/javascript" src="<%$staticUrl%>js/jquery.cookie.js"></script>
+		<script type="text/javascript" src="<%$staticUrl%>js/jquery-ui-1.10.3.custom.min.js"></script>
+		<script src="<%$staticUrl%>/js/ace-extra.min.js"></script>
+
+		
+		<script type="text/javascript">
+			$(document).ready(function(){
+				<%if $openNode == 1 %>
+					$("#<%$parentNode%>").addClass("active");
+					$("#<%$parentNode%>").addClass("open");
+					$("#<%$childNode%>").addClass("active");
+				<%/if%>
+			});
+		</script>
+	</head>

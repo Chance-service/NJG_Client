@@ -1,0 +1,52 @@
+1.防火墙规则
+vim /etc/sysconfig/iptables
+-A INPUT -p all -s 23.91.96.225 -j ACCEPT
+-A INPUT -p tcp -m tcp -m multiport --dports 25524,25525,80,9000,15524,5132 -j ACCEPT
+
+2.升级jdk 1.7
+yum -y install java-1.7.0-openjdk-devel.x86_64
+
+3.启动服脚本
+>./console.log
+nohup java -jar -XX:PermSize=64m -XX:MaxPermSize=256m -XX:-OmitStackTraceInFastThrow -Xms2048m -Xmx4096m game.jar >>./console.log &
+tail -f console.log
+
+4.myslq启动 关闭
+/etc/init.d/mysqld restart | start | stop
+service mysqld restart | start | stop
+
+连接mysql 
+mysql -uroot -p'123456' -h localhost -P 3306
+
+mysql 运行连接设置
+grant all on game.* to 'root'@'10.0.1.251' identified by password '123456';
+grant all on game.* to 'root'@'%' identified by password '123456';
+grant all on *.* to 'root'@203.195.147.186 identified by 'password';
+flush privileges;
+
+5.推送sshKey
+cd ~/.ssh 
+ssh-keygen -t rsa
+ssh-copy-id '-p 22 publish@1.255.56.62'
+
+6.dump mysql结构 和 数据
+// dump结构
+mysqldump -u root -p'ur2MGUb4inMwzb' -h 10.8.14.235 -d --add-drop-table  game > game.sql
+// dump 全部
+mysqldump -u root -p'ur2MGUb4inMwzb' -h 10.8.14.235  game > game.sql
+// mysql修改用户名密码
+update user set password=PASSWORD("3itWKoaBxsSs9Eec") where user='root';
+flush privileges;
+
+// 修改日期加减日期
+update email set effectTime = date_add(effectTime,INTERVAL -8 day)  where  mailId = 7 and playerId = 44729 and id >= 5758370 and id <= 5905586;
+
+7.安装mysql
+安装mysql客户端：
+          yum install mysql
+安装mysql 服务器端：
+          yum install mysql-server
+          yum install mysql-devel
+启动 停止
+ /etc/init.d/mysqld restart 
+

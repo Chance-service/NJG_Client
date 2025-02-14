@@ -1,0 +1,11 @@
+
+2015-04-09 10:28:11--localhost--1服--查看变化 ======================== hwgj_test_game  ====================
+<br><br> exec sql :
+<br>ALTER TABLE `msg` ADD `jsonType` int(11) NOT NULL AFTER `content`
+
+	__-------------------------------------------------------------------------------------------__
+
+ALTER TABLE `status` ADD `newGuideState` int(11) NOT NULL DEFAULT '2' AFTER `starStoneTimes`, ADD `evaluateRewardsState` int(11) NOT NULL DEFAULT '0' AFTER `newGuideState`, ADD `newbieRewardMonthCard` int(11) NOT NULL DEFAULT '0' AFTER `evaluateRewardsState`
+
+	__-------------------------------------------------------------------------------------------__
+

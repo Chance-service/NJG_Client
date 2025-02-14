@@ -1,0 +1,21 @@
+
+如何新建服务器接入publish系统
+1.  创建 publish 账号（publish系统用这个账号远程登录该服务器）
+	adduser publish
+	passwd publish
+    赋予sudo权限
+		visudo
+		#  Defaults    requiretty
+		publish ALL=(ALL) NOPASSWD:ALL
+	vim /etc/ssh/sshd_config 
+		PasswordAuthentication yes
+	/etc/init.d/sshd restart
+2.从发布系统推送sshKey 到这台服务器实现不用输入密码登陆
+   添加防火墙   
+	ssh-copy-id '-p 22 publish@23.91.97.119'
+   yum install rsync
+3.在发布系统上添加服务器信息
+4. 修改publish.sh添加新目录，上传并重启（注意下publish.sh的权限） (startProcess.sh用来重启）
+5. publish_server下面新建新目录
+
+   

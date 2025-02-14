@@ -1,0 +1,296 @@
+<%include file="header.html"%>
+<%include file="top.html"%>
+<%include file="left.html"%>
+<link rel="stylesheet" href="<%$staticUrl%>css/css.css" />
+<script type="text/javascript" src="<%$staticUrl%>js/editor.js"></script> 
+
+		
+<div class="main-content">
+		<div class="breadcrumbs" id="breadcrumbs">
+			<script type="text/javascript">
+				try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+			</script>
+
+			<ul class="breadcrumb">
+			<li><i class="icon-home home-icon"></i> <a
+				href="index.php">首页</a></li>
+		     </ul>
+		</div>
+
+<div class="page-content">		
+
+	
+<div class="row">
+
+<label class="col-sm-4 control-label no-padding-right" for="form-field-5"></label>
+<div class="col-sm-4">
+   <div class="widget-box">
+		<div class="widget-header header-color-blue2">
+			<center>	<h4 class="lighter smaller">公告编辑器</h4>  </center>
+		</div>
+
+        <div class="widget-body">
+               <div style="height:900px;" class="widget-main padding-8">
+                    <form class="form-horizontal" role="form">
+                    	
+                    	<div class="form-group">
+								<div class="col-sm-4">
+								<div class="row">
+								<div class="col-sm-3"><select id="selectGame">
+									<option value="" >游戏</option>
+									<%if $selectGames%> <%foreach from = $selectGames key = key item = value%>
+									<%if $nowGame == $value %>
+									<option value="<%$value%>" selected><%$value%></option>
+									<%else%>
+									<option value="<%$value%>"><%$value%></option>
+									<%/if%> <%/foreach%> <%/if%>
+								</select>
+								</div>
+								</div>
+								</div>
+								
+								<div class="col-sm-4">
+									<div class="row">
+									<div class="col-sm-3">
+									<select id="selectArea">
+										<option value="" id="Area">地区</option>
+										<%if $areaInfoArr%> <%foreach from = $areaInfoArr key = key item = value%>
+										<%if $nowPlatform == $value %>
+										<option value="<%$value%>" selected><%$value%></option>
+										<%else%>
+										<option value="<%$value%>"><%$value%></option>
+										<%/if%> <%/foreach%> <%/if%>
+									</select>
+									</div>
+									</div>
+								</div>
+								
+								
+								<div id ="lang" class="col-sm-4" style="display:none">
+									<div class="row">
+									<div class="col-sm-3">
+								<select id="selectLang">
+								<option value="" id="selectLangs">语种</option>
+								<%if $channels%> <%foreach from = $channels key = key item = value%>
+								<%if $nowLang == $value %>
+								<option value="<%$value%>" selected><%$value%></option>
+								<%else%>
+								<option value="<%$value%>"><%$value%></option>
+								<%/if%> <%/foreach%> <%/if%>
+								</select>
+									</div>
+									</div>
+								</div>
+								
+						 </div>	
+                    		
+                    		
+                         <div class="form-group">
+										<label class="col-sm-4 control-label no-padding-right" for="form-field-5"></label>
+										<div class="col-sm-6" id="container" class="ebody">
+										 
+										</div>
+										
+										
+						 </div>
+							
+							   <div class="form-group">
+							<label class="col-sm-5 control-label no-padding-right" for="form-field-5"></label>
+								<button type="button" onclick = "save(<%$type%>);" class="btn btn-info btn-success">
+									保存
+								</button>
+							 </div>			
+						 
+                    </form>
+               </div>
+      </div>	
+   </div>
+</div>
+
+</div>
+</div>
+				
+				
+<script type="text/javascript">
+window.onload = function () {
+	<%if $content%>
+	$("#econtent").contents().find("body").html('<%$content%>');	
+	<%/if%>
+	
+	 <%if $viewLang && $viewLang == 1 %>
+	 $('#lang').css("display", "block");
+	 <%/if%>
+}
+
+	function save(type) {
+		var param = {};
+		param['mod'] = 'Announce';
+		param['do']  = 'save';
+		// 游戏  地区 语种
+		var game 	= $('#selectGame').val();
+		var area 	= $('#selectArea').val();
+		var lang 	= $('#selectLang').val();
+		if(type == 2) {
+			param['file'] 	= '<%$fileName%>';
+		}
+		param['game']  = game;
+		param['area']  = area;
+		param['lang']  = lang;
+		
+		var win = document.getElementById('econtent').contentWindow;
+		var content = win.document.body.innerHTML;
+		// 格式化
+		content = modifyText(content);
+	    param['content'] = content;
+	    
+	    if(!game || !area || !content) {
+	    	alert("请输入信息完整!");
+	    } else if(area == "r2" && !lang) {
+    		alert("请选择语种");
+    	} else {
+	    	$.ajax({
+				type:'POST',
+				url:'index.php',
+				data:param,
+				dataType:'html',
+				success:function(data) {
+					alert(data);
+				}
+			});
+	    }
+	}
+
+	// 格式化 
+	function modifyText (intxt){
+		text = intxt;
+		text = text.replace(/<div>/g,"<p>");
+		text = text.replace(/<\/div>/g,"<\/p>");
+		text = text.replace(/<br>/g,"<br\/>");
+		
+		//text = text.replace(/<font/g,"<font face=\"Helvetica20\"");
+		//text = text.replace(/<a href=\"http:\/\/([\w-]+\.)+[\w-]+(\/[\w- ./?%&=]*)?\">/g,"<button name = \"URL\" value=\"$1\">");
+		//text = text.replace(/<a href=\"([\w-]+\.+[\w-]+\/[\w- ./?%&=]*)?\">/g,"<button name = \"URL\" value=\"$1\">");
+		//text = text.replace(/<a href=\"(\w+)\">/g,"<button name = \"URL\" value=\"$1\">");
+		text = text.replace(/<a href=/g,"<button name = \"URL\" value=");
+		text = text.replace(/<a /g,"<button ");
+		text = text.replace(/<\/a>/g,"<\/button>");
+		text = text.replace(/class=\"[^\"]+\"/g,"");
+		text = text.replace(/&nbsp;/g,"");
+		text = text.replace(/<o:p><\/o:p>/g,"<br/>");
+		text = text.replace(/lang=\"[^\"]+\"/g,"");
+	
+		//现将font=的大小设定为像素
+		text = text.replace(/<font[^>]+size=\"([0-9])\"/g,function(s){
+			var size = s.substr(-2,1)*2+18;
+			if(size==24)size="";
+			return s.slice(0,-2)+size+"\"";
+		});
+		
+	
+		text = text.replace(/(<[^>]+)color:red/g,"$1color:#FF0000");
+		text = text.replace(/style=\"([^\"]*)color:#([A-Fa-f0-9]{6})/g,"color=\"#$2\" style=\"$1");
+		text = text.replace(/mso-bidi-font-size/g,"");
+		text = text.replace(/style=\"([^\"]*)font-size:([0-9]{2})/g,"size=\"$2\" style=\"$1");
+		//text = text.replace(/style=\"color:#([A-Fa-f0-9]{6})\"/g,"color=\"#$1\"");
+		//text = text.replace(/style=\"[^\"]+color:#([A-Fa-f0-9]{6})\"/g,"color=\"#$1\"");
+		//text = text.replace(/style=\"color:#([A-Fa-f0-9]{6})[^\"]+\"/g,"color=\"#$1\"");
+		//text = text.replace(/style=\"[^\"]+color:#([0-9a-fA-F]{6})[^\"]+\"/g,"color=\"#$1\"");
+		text = text.replace(/style=\"[^\"]+\"/g,"");
+		text = text.replace(/span/g,"font");
+	
+		text = text.replace(/(<font[^>]+)size=\"([0-9]{2})\"/g,"$1face=\"Helvetica$2\"");
+		text = text.replace(/(<font[^>]+)face=\"Helvetica24\"/g,"$1face=\"Helvetica\"");
+		
+	
+		text = text.replace(/<font><\/font>/g,"");
+		text = text.replace(/<font[ ]+color=\"#[A-Fa-f0-9]{6}\"><\/font>/g,"");
+		return text;
+	}
+	 
+	 var select = document.getElementById('selectGame');
+	 select.onchange = function(){
+	        // 更改值后执行的代码
+	       var gameName = jQuery("#selectGame  option:selected").text();
+	       $.ajax({
+	    	    type: "POST",
+				url: "index.php?mod=Game&do=getAreaByGame&game=" + gameName,
+				data: "",
+				dataType: 'html',
+				success: function(data) {
+					var dataObj = eval("(" + data + ")");//转换为json对象
+					if(dataObj == null) {
+						$("#selectArea").empty();
+						$("#selectArea").append('<option value="" id="selectPlatform">地区</option>');
+					}
+					
+					var platform = dataObj.platform;
+					
+					$("#selectArea").empty();
+					$("#selectArea").append('<option value="" id="selectArea">地区</option>');
+					for(var i=0;i<platform.length;i++){
+						$("#selectArea").append("<option value='"+platform[i]+"' >"+platform[i]+"</option>"+"<br/>");
+					}
+				}
+	       });
+	  }
+	 
+	 
+	 var selectArea = document.getElementById('selectArea');
+	 selectArea.onchange = function(){
+	        // 更改值后执行的代码
+	       var areaName = jQuery("#selectArea  option:selected").text();
+	       var game 	= $('#selectGame').val();
+	       
+	       // var lang = document.getElementById('selectArea');
+	    //   if (areaName == "r2") {
+	    //	   $('#lang').css("display", "block");
+	     //  }
+	        $.ajax({
+	    	    type: "POST",
+				url: "index.php?mod=Game&do=getLangByAreaGame&game="+game+"&areaName="+areaName,
+				data: "",
+				dataType: 'html',
+				success: function(data) {
+					
+					var dataObj = eval("(" + data + ")");//转换为json对象
+					if(dataObj == null) {
+						$("#selectLang").empty();
+						$("#selectLang").append('<option value="" id="selectPlatform">语种</option>');
+					}
+					
+					var platform = dataObj.platform;
+					
+					if(platform.length > 1) {
+						 $('#lang').css("display", "block");
+					} else {
+						 $('#lang').css("display", "none");
+					}
+					
+					$("#selectLang").empty();
+					$("#selectLang").append('<option value="" id="selectLang">语种</option>');
+					for(var i=0;i<platform.length;i++){
+						$("#selectLang").append("<option value='"+platform[i]+"' >"+platform[i]+"</option>"+"<br/>");
+					}
+				}
+	       });
+	   
+	  }
+	 
+	
+
+	var bardata = [
+		{'index': 2, 'title': '下划线', 'class': 'tag curr2', 'hover': 'curr2_hover', 'active': 'curr2_active', 'unselectable': 'on', 'command': 'underline' },
+		{'index': 3, 'title': 'Font-Size', 'class': 'tag curr3', 'hover': 'curr3_hover', 'active': 'curr3_active', 'unselectable': 'on', 'command': 'fontSize' },
+		{'index': 5, 'title': '文字颜色', 'class': 'tag curr5', 'hover': 'curr5_hover', 'active': 'curr5_active', 'unselectable': 'on', 'command': 'foreColor' },
+		{'index': 6, 'title': 'Insert-Link', 'class': 'tag curr6', 'hover': 'curr6_hover', 'active': 'curr6_active', 'unselectable': 'on', 'command': 'createLink'},
+		{'index': 7, 'title': '剪贴', 'class': 'tag curr7', 'hover': 'curr7_hover', 'active': 'curr7_active', 'unselectable': 'on', 'command': 'cut' },
+		{'index': 8, 'title': '复制', 'class': 'tag curr8', 'hover': 'curr8_hover', 'active': 'curr8_active', 'unselectable': 'on', 'command': 'copy'},
+
+	];
+	var e = new editor('container', bardata);
+	
+
+	
+</script>				
+<%include file="footer.html"%>
+

@@ -1,0 +1,125 @@
+<%include file="header.html"%>
+<%include file="top.html"%>
+<%include file="left.html"%>
+				<div class="main-content">
+					<div class="breadcrumbs" id="breadcrumbs">
+						<script type="text/javascript">
+							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+						</script>
+
+						<ul class="breadcrumb">
+							<li>
+								<i class="icon-home home-icon"></i>
+								<a href="#">权限管理</a>
+							</li>
+							<li class="active"><a href="javascript:void(0);">添加用户</a></li>
+						</ul><!-- .breadcrumb -->
+					</div>
+
+				<div class="page-content">
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+								
+								<div class="row">
+									<div class="col-sm-12">
+										<div class="widget-box">
+											<div class="widget-header header-color-blue2">
+												<h4 class="lighter smaller"></h4>
+											</div>
+
+											<div class="widget-body">
+												<div class="widget-main padding-8">
+												
+													<form class="form-horizontal" role="form">
+														<br/>
+											
+														<div class="form-group">
+															<label class="col-sm-4 control-label no-padding-right" for="form-field-5">用户名:</label>
+															 
+
+															<div class="col-sm-6">
+																<input type="text" id="form-field-1" class="col-xs-3 col-sm-5">
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="col-sm-4 control-label no-padding-right" for="form-field-5">密　码:</label>
+
+															<div class="col-sm-6">
+																<input type="text" id="form-field-2" class="col-xs-3 col-sm-5">
+															</div>
+														</div>
+														
+													 <div class="form-group">
+															<label class="col-sm-4 control-label no-padding-right" for="form-field-5">姓　名:</label>
+
+															<div class="col-sm-6">
+																<input type="text" id="form-field-3" class="col-xs-3 col-sm-5">
+															</div>
+														</div>
+														
+													
+													<div class="form-group">
+													<label class="col-sm-4 control-label no-padding-right" for="form-field-5">角　色:</label>	
+														
+														<div class="col-sm-6">
+														<select class="col-xs-10 col-sm-5" id="selectRole">
+																<option value="">选择角色</option>
+																<option value="0" >普通用户</option>
+																<option value="1" >管理员</option>
+															
+														</select>
+														</div>
+													</div>	
+																
+													<div class="form-group">
+															<label class="col-sm-4 control-label no-padding-right" for="form-field-5">游　戏:</label>
+															<div class="col-sm-6">
+					
+												<div class="form-group">
+													<%if $game%>
+													<%foreach from=$game key=k item = game%>
+													
+													<%if $k > 0 && $k%4 == 0%>
+													  <br/><br/>
+													 <%/if%>
+													&nbsp;
+													<input  name="checkboxs" type="checkbox" class="ace ace-checkbox-2" id="game_<%$game.game%>"   value = "<%$game.game%>" />
+													<label style="width:80px;" class="lbl" for="ace-settings-navbar">&nbsp;<%$game.game%></label>
+													&nbsp;
+													
+													<%/foreach%>
+													<%/if%>	
+						
+												</div>
+												
+													</div>				
+													</div>			
+												
+													</form>
+													
+													<h3 class="header smaller lighter green"></h3>
+													<div class="clearfix">
+														<label class="col-sm-5 control-label no-padding-right" for="form-field-5"></label>
+															<button type="button" onclick = "addUser();" class="btn btn-info btn-success">
+																<!--<i class="icon-bolt"></i>-->
+																添加
+															</button>
+													
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+								<!-- PAGE CONTENT ENDS -->
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div><!-- /.page-content -->
+				</div><!-- /.main-content -->
+				
+				
+				</div><!-- /.main-content -->
+<%include file="footer.html"%>
+

@@ -1,0 +1,213 @@
+<%include file="header.html"%> <%include file="top.html"%> <%include
+file="left.html"%>
+<div class="main-content">
+<div class="breadcrumbs" id="breadcrumbs"><script
+	type="text/javascript">
+	try {
+		ace.settings.check('breadcrumbs', 'fixed')
+	} catch (e) {
+	}
+</script>
+
+<ul class="breadcrumb">
+	<li><i class="icon-home home-icon"></i> <a
+		href="index.php">首页</a></li>
+</ul>
+<!-- .breadcrumb --></div>
+
+<div class="page-content">
+<div class="col-xs-12">
+<div class="alert alert-info">
+<form class="form-horizontal" role="form">
+<div class="row">
+
+<div class="col-sm-3">
+<div class="row">
+<label class="col-sm-3 control-label no-padding-right" for="form-field-5">游戏</label>
+<div class="col-sm-3"><select id="selectGame">
+	<option value="" >游戏</option>
+	<%if $selectGames%> <%foreach from = $selectGames key = key item = value%>
+	<%if $nowGame == $value %>
+	<option value="<%$value%>" selected><%$value%></option>
+	<%else%>
+	<option value="<%$value%>"><%$value%></option>
+	<%/if%> <%/foreach%> <%/if%>
+</select>
+</div>
+</div>
+</div>
+
+<div class="col-sm-3">
+<div class="row">
+<label class="col-sm-3 control-label no-padding-right" for="form-field-5">区服</label>
+<div class="col-sm-3">
+<select id="selectServer">
+	<option value="" id="server">区服</option>
+	
+	<%if $serverLists%> <%foreach from = $serverLists key = key item = serverList%>
+	<%if $nowServer == $serverList.server %>
+	<option value="<%$serverList.server%>" selected><%$serverList.server%></option>
+	<%else%>
+	<option value="<%$serverList.server%>"><%$serverList.server%></option>
+	<%/if%> <%/foreach%> <%/if%>
+	
+</select>
+</div>
+</div>
+</div>
+
+<div class="col-sm-3">
+	<label class="col-sm-3 control-label no-padding-right" for="form-field-5">日期</label>
+	<div class="input-group"><span class="input-group-addon"> <i
+	class="icon-calendar bigger-110"></i> </span> <input
+	class="date-picker col-xs-9 col-sm-9" id="startTime"
+	value="<%$selectDate%>" type="text" data-date-format="yyyy-mm-dd" /></div>
+</div>
+
+
+<div class="col-sm-2">
+<center>
+<button type="button" onClick="formSubmit();"
+	class="width-50 btn btn-sm btn-primary">查询</button>
+</center>
+</div>
+
+</div>
+</form>
+</div>
+</div>
+<div class="col-xs-12">
+<div class="table-header">
+留存信息
+</div>
+
+
+
+<div id="view"  class="table-responsive">
+<table id="sample-table-4"
+	class="table table-striped table-bordered table-hover">
+	<thead>
+	
+		<tr>
+			<th>状态</th>
+			<th>日期</th>
+			<th>在线人数</th>
+			
+			<th>总用户</th>
+			<th>总设备</th>
+			<th>总付费用户</th>
+			<th>总付费设备</th>
+			<th>总付费金额</th>
+			
+			<th>新增用户</th>
+			<th>新增设备</th>
+			
+			<th>DAU</th>
+			<th>用户留存</th>
+			<th>设备留存</th>
+			
+			<th>当日付费用户</th>
+			<th>当日付费设备</th>
+			<th>当日付费金额</th>
+
+		</tr>
+	<thead>
+	<thead>
+	<tbody>
+	<%if $status && $status == 1%>
+		<tr>
+			<td><%$status%></td>
+			<td><%$date%></td>
+			<td><%$online%></td>
+			
+			<td><%$totalUsers%></td>
+			<td><%$totalDevice%></td>
+			<td><%$totalPayUsers%></td>
+			<td><%$totalPayDevice%></td>
+			<td><%$totalPayMoney%></td>
+			
+			<td><%$newUsers%></td>
+			<td><%$newDevice%></td>
+			
+			<td><%$dailyActiveUsers%></td>
+			<td><%$userRetentionRate%></td>
+			<td><%$deviceRetentionRate%></td>
+			
+			<td><%$payUsers%></td>
+			<td><%$payDevice%></td>
+			<td><%$payMoney%></td>
+			
+		</tr>
+	<%/if%>	
+
+	</tbody>
+</table>
+</div>
+
+
+<!-- /.table-responsive --></div>
+</div>
+<!-- /.page-content --></div>
+<!-- /.main-content -->
+<script type="text/javascript">
+
+
+	jQuery(function($) {
+		$('.date-picker').datepicker({
+			autoclose : true
+		}).next().on(ace.click_event, function() {
+			$(this).prev().focus();
+		});
+
+		var oTable1 = $('#sample-table-2').dataTable({
+			"aoColumns" : [ {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}
+			]
+		});
+	});
+
+	function formSubmit() {
+		var game = $('#selectGame').val();
+		var date = $('#startTime').val();
+		var selectServer = $('#selectServer').val();
+		
+		if (!game || !date || !selectServer) {
+			alert("请将查询条件填写完整!");
+		} else {
+				url = "index.php?mod=Gm&do=synthesisinfo&action=1&game="
+					+ game
+					+ "&date="
+					+ date
+					+ "&selectServer="
+					+ selectServer;
+			window.location.href = url;
+		}
+	 }
+	
+	
+	window.onload = function(){
+	    var select = document.getElementById('selectGame');
+	    select.onchange = function(){
+	        // 更改值后执行的代码
+	       var gameName = jQuery("#selectGame  option:selected").text();
+	       var game = $('#selectGame').val();
+			url = "index.php?mod=Gm&do=synthesisinfo&action=1&game="+game;
+			window.location.href = url;  
+	    }
+	} 
+</script>
+<%include file="footer.html"%>
+

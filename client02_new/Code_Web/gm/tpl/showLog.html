@@ -1,0 +1,106 @@
+<%include file="header.html"%>
+<%include file="top.html"%>
+<%include file="left.html"%>
+				<div class="main-content">
+					<div class="breadcrumbs" id="breadcrumbs">
+						<script type="text/javascript">
+							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+						</script>
+
+						<ul class="breadcrumb">
+							<li>
+								<i class="icon-home home-icon"></i>
+								<a href="#">文件日志操作</a>
+							</li>
+							<li class="active"><a href="javascript:void(0);">查询日志</a></li>
+						</ul><!-- .breadcrumb -->
+					</div>
+
+							<div class="page-content">
+
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+								
+								<div class="row">
+								<div class="col-xs-12">
+							<div class="table-header"> 文件操作日志如下&nbsp;&nbsp;&nbsp;&nbsp; </div>
+							<div class="table-responsive">
+								<table id="sample-table-2" class="table table-striped table-bordered table-hover">
+									<thead>
+										<tr>
+											<th>bucket名称</th>
+											<th>文件</th>
+											<th>操作类型</th>
+											<th>操作时间</th>
+											<th>操作者</th>
+											<th>操作</th>
+										</tr>
+									</thead>
+
+									<tbody>
+										<%foreach from=$opLogs item=opLogs%>
+										<tr>
+											<td><%$opLogs.bucketName%></td>
+											<td><%$opLogs.path%></td>
+											<%if $opLogs.type == 1%>
+											<td>新增</td>
+											<%elseif $opLogs.type == 2 %>
+											<td>删除</td>
+											<%elseif $opLogs.type == 3 %>
+											<td>更新</td>
+											<%/if%>
+											
+											
+											<td><%$opLogs.time%></td>
+											<td><%$opLogs.userRealName%></td>
+											
+											<%if $opLogs.type == 3 %>
+											<td>
+											<%if $backFile && $backFile == 1%>
+											<a class="red" href="index.php?mod=Node&do=backFile&opLogId=<%$opLogs.opLogId%>&node_id=<%$opLogs.node_id%>&bucketId=<%$opLogs.bucket_id%>&parentNodeId=<%$opLogs.parentNodeId%>" >
+												<i class="icon-undo bigger-130"></i>&nbsp;回滚  <% $backFile %>
+											</a>
+											<%else%>
+											 <i class="icon-undo bigger-130"></i>&nbsp;无权限
+											<%/if%>	
+											</td>
+											<%else%>
+											<td>-</td>
+											<%/if%>
+											</tr>
+										<%/foreach%>
+									</tbody>
+								</table>
+							</div><!-- /.table-responsive -->
+						</div>
+								</div>
+								
+								<!-- PAGE CONTENT ENDS -->
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div><!-- /.page-content -->
+				</div><!-- /.main-content -->
+				
+				
+				</div><!-- /.main-content -->
+<script type="text/javascript">
+
+jQuery(function($) {
+	$('.date-picker').datepicker({autoclose:true}).next().on(ace.click_event, function(){
+		$(this).prev().focus();
+	});
+
+	var oTable1 = $('#sample-table-2').dataTable( {
+	"aoColumns": [
+      { "bSortable": false },
+      null, null,null, null, null,
+	  { "bSortable": false }
+	] } );
+
+});
+
+</script>				
+				
+<%include file="footer.html"%>
+

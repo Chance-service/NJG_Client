@@ -1,0 +1,30 @@
+announcement notices 公告管理系统
+http://54.173.233.19/announcement/www/index.php
+公告管理系统 管理员账号 admin admin@888
+
+downloadOrders   韩国订单下载系统
+http://125.209.196.154/downloadOrders/www/index.php 
+admin admin@888
+
+ExecSql  自动更新sql系统
+http://203.90.234.115/ExecSql/www/index.php
+
+publish 发布系统
+http://203.195.147.186/lol_publish_center/www/index.php
+
+selectDataR2 查全服数据
+
+
+韩国公会修改经验部署 配置读取api配置
+index.php
+require_once "/data/nginx/htdocs/config/serverConfig.php";
+guildChange
+http://125.209.197.65:8000/guildChange/www/
+
+gm  gm管理系统
+http://203.90.234.115/gm/www/index.php
+
+execShell linux自动执行shell脚本
+
+login
+http://203.90.234.115/login/

@@ -1,0 +1,1092 @@
+<%include file="header.html"%>
+<%include file="top.html"%>
+<%include file="left.html"%>
+
+<div class="main-content">
+	
+	<div class="breadcrumbs" id="breadcrumbs">
+						<script type="text/javascript">
+							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+						</script>
+						
+						<ul class="breadcrumb">
+	<li><i class="icon-home home-icon"></i> <a
+		href="index.php">首页</a></li>
+</ul>
+											
+		</div>
+	
+
+<div class="page-content">
+
+<div id="pcDevice" style="display:block" class="col-xs-12">
+<div class="alert alert-block alert-success">
+   
+								<button type="button" class="close" data-dismiss="alert">
+										<i class="icon-remove"></i>
+								</button>
+
+									<i class="icon-hand-right"></i>温馨提示
+									<strong class="green">
+										因数据量较大,实时数据查询耗时较长,每查询一天的数据大约需要8秒,请您耐心等...
+									<!--   	 <strong class="green" id="execIngLogTips">正在查询...</strong><strong class="red" id="execIngLogUsedTime"></strong>
+									-->
+									</strong>
+
+</div>
+
+<div class="alert alert-info">
+<form class="form-horizontal" role="form">
+<div class="row">
+
+<div class="col-sm-2">
+<div class="row">
+<label class="col-sm-2 control-label no-padding-right" for="form-field-5">游戏</label>
+<div class="col-sm-6"><select  id="selectGame">
+	<option value="" >游戏</option>
+	<%if $selectGames%> <%foreach from = $selectGames key = key item = value%>
+	<%if $nowGame == $value %>
+	<option value="<%$value%>" selected><%$value%></option>
+	<%else%>
+	<option value="<%$value%>"><%$value%></option>
+	<%/if%> <%/foreach%> <%/if%>
+</select>
+</div>
+</div>
+</div>
+
+<div class="col-sm-3">
+<div class="row">
+<label class="col-sm-2 control-label no-padding-right" for="form-field-5">平台</label>
+<div class="col-sm-3">
+<select id="platform">
+	<option value="" id="selectPlatform">平台</option>
+	<%if $platforms%> <%foreach from = $platforms key = key item = value%>
+	<%if $platform == $value %>
+	<option value="<%$value%>" selected><%$value%></option>
+	<%else%>
+	<option value="<%$value%>"><%$value%></option>
+	<%/if%> <%/foreach%> <%/if%>
+</select>
+</div>
+
+<label class="col-sm-3 control-label no-padding-right" for="form-field-5">渠道</label>
+<div class="col-sm-3">
+<select  id="channel">
+	<option value="" id="selectChannel">渠道</option>
+		<%if $channels%> <%foreach from = $channels key = key item = value%>
+	<%if $channel == $value %>
+	<option value="<%$value%>" selected><%$value%></option>
+	<%else%>
+	<option value="<%$value%>"><%$value%></option>
+	<%/if%> <%/foreach%> <%/if%>
+</select>
+</div>
+</div>
+</div>
+
+<div class="col-sm-2">
+<div class="row">
+<label class="col-sm-2 control-label no-padding-right" for="form-field-5">存储</label>
+<div class="col-sm-6">
+	<input style="margin-top:10px;" name="form-field-radio3" id ="backFile" type="radio" <%if $statistics && $statistics == 1 %>checked <%/if%> value = "1" class="ace"/>
+	<span class="lbl">yes</span>
+	<br/>
+	<input name="form-field-radio3" id ="backFile" type="radio"   value = "0" <%if $statistics == 0 %> checked <%/if%>  class="ace" />
+	<span class="lbl">no</span>
+</div>
+</div>
+</div>
+
+
+<div class="col-sm-2">
+<div class="row"><label
+	class="col-sm-2 control-label no-padding-right" for="form-field-5">开始</label>
+<div class="col-sm-8">
+<div class="input-group"><span class="input-group-addon"> <i
+	class="icon-calendar bigger-110"></i> </span> <input
+	class="date-picker col-xs-12 col-sm-12" id="startTime"
+	value="<%$startDate%>" type="text" data-date-format="yyyy-mm-dd" /></div>
+</div>
+</div>
+</div>
+
+<div class="col-sm-2">
+<div class="row"><label
+	class="col-sm-2 control-label no-padding-right" for="form-field-5">结束</label>
+<div class="col-sm-8">
+<div class="input-group"><span class="input-group-addon"> <i
+	class="icon-calendar bigger-110"></i> </span> <input
+	class="date-picker col-xs-12 col-sm-12" id="endTime"
+	value="<%$endDate%>" type="text" data-date-format="yyyy-mm-dd" /></div>
+</div>
+</div>
+</div>
+
+
+<div class="col-sm-1">
+<div class="col-sm-9">
+<center>
+<button type="button" onClick="formSubmit('pc');"
+	class="width-10 btn btn-sm btn-primary">查询</button>
+
+</center>
+</div>
+</div>
+</div>
+
+</div>
+</form>
+</div>
+
+
+<div id="moveDevice" style="display:none" class="col-xs-12">
+<div class="alert alert-block alert-success">
+   
+									<button type="button" class="close" data-dismiss="alert">
+										<i class="icon-remove"></i>
+								</button>
+
+									<i class="icon-hand-right"></i>温馨提示
+									<strong class="green">
+										因数据量较大,实时数据查询耗时较长,每查询一天的数据大约需要8秒,请您耐心等...
+									<!--   	 <strong class="green" id="execIngLogTips">正在查询...</strong><strong class="red" id="execIngLogUsedTime"></strong>
+									-->
+									</strong>
+
+</div>
+
+<div class="alert alert-info">
+<form class="form-horizontal" role="form">
+<div class="row">
+
+<div class="col-sm-12">
+<div class="row">
+<label class="col-sm-5 control-label no-padding-right" for="form-field-5">游戏</label>
+<div class="col-sm-6"><select  id="selectGame2">
+	<option value="" >游戏</option>
+	<%if $selectGames%> <%foreach from = $selectGames key = key item = value%>
+	<%if $nowGame == $value %>
+	<option value="<%$value%>" selected><%$value%></option>
+	<%else%>
+	<option value="<%$value%>"><%$value%></option>
+	<%/if%> <%/foreach%> <%/if%>
+</select>
+</div>
+</div>
+</div>
+
+
+
+<div class="col-sm-12">
+<div  class="row">
+<label class="col-sm-5 control-label no-padding-right" for="form-field-5"></label>
+</div>
+</div>
+
+<div class="col-sm-12">
+<div class="row">
+<label class="col-sm-5 control-label no-padding-right" for="form-field-5">平台</label>
+<div class="col-sm-3">
+<select id="platform2">
+	<option value="" id="selectPlatform2">平台</option>
+	<%if $platforms%> <%foreach from = $platforms key = key item = value%>
+	<%if $platform == $value %>
+	<option value="<%$value%>" selected><%$value%></option>
+	<%else%>
+	<option value="<%$value%>"><%$value%></option>
+	<%/if%> <%/foreach%> <%/if%>
+</select>
+</div>
+</div>
+</div>
+
+<div class="col-sm-12">
+<div  class="row">
+<label class="col-sm-5 control-label no-padding-right" for="form-field-5"></label>
+</div>
+</div>
+
+<div class="col-sm-12">
+<div class="row">
+<label class="col-sm-5 control-label no-padding-right" for="form-field-5">渠道</label>
+<div class="col-sm-5">
+<select  id="channel2">
+	<option value="" id="selectChannel2">渠道</option>
+		<%if $channels%> <%foreach from = $channels key = key item = value%>
+	<%if $channel == $value %>
+	<option value="<%$value%>" selected><%$value%></option>
+	<%else%>
+	<option value="<%$value%>"><%$value%></option>
+	<%/if%> <%/foreach%> <%/if%>
+</select>
+</div>
+</div>
+</div>
+
+
+<div class="col-sm-12">
+<div  class="row">
+<label class="col-sm-5 control-label no-padding-right" for="form-field-5"></label>
+</div>
+</div>
+
+<div class="col-sm-12">
+<div class="row">
+<label class="col-sm-5 control-label no-padding-right" for="form-field-5">存储</label>
+<div class="col-sm-6">
+	<input style="margin-top:10px;" name="form-field-radio32" id ="backFile" type="radio" <%if $statistics && $statistics == 1 %>checked <%/if%> value = "1" class="ace"/>
+	<span class="lbl">yes</span>
+	<br/>
+	<input name="form-field-radio32" id ="backFile" type="radio"   value = "0" <%if $statistics == 0 %> checked <%/if%>  class="ace" />
+	<span class="lbl">no</span>
+</div>
+</div>
+</div>
+
+<div class="col-sm-12">
+<div  class="row">
+<label class="col-sm-5 control-label no-padding-right" for="form-field-5"></label>
+</div>
+</div>
+
+<div class="col-sm-12">
+<div class="row"><label
+	class="col-sm-5 control-label no-padding-right" for="form-field-5">开始</label>
+<div class="col-sm-3">
+<div class="input-group"><span class="input-group-addon"> <i
+	class="icon-calendar bigger-110"></i> </span> <input
+	class="date-picker col-xs-12 col-sm-12" id="startTime2"
+	value="<%$startDate%>" type="text" data-date-format="yyyy-mm-dd" /></div>
+</div>
+</div>
+</div>
+
+<div class="col-sm-12">
+<div  class="row">
+<label class="col-sm-5 control-label no-padding-right" for="form-field-5"></label>
+</div>
+</div>
+
+
+<div class="col-sm-12">
+<div class="row"><label
+	class="col-sm-5 control-label no-padding-right" for="form-field-5">结束</label>
+<div class="col-sm-3">
+<div class="input-group"><span class="input-group-addon"> <i
+	class="icon-calendar bigger-110"></i> </span> <input
+	class="date-picker col-xs-12 col-sm-12" id="endTime2"
+	value="<%$endDate%>" type="text" data-date-format="yyyy-mm-dd" /></div>
+</div>
+</div>
+</div>
+
+<div class="col-sm-12">
+<div  class="row">
+<label class="col-sm-5 control-label no-padding-right" for="form-field-5"></label>
+</div>
+</div>
+
+<div class="col-sm-12">
+
+<label
+	class="col-sm-5 control-label no-padding-right" for="form-field-5"></label>
+<div class="col-sm-2">	
+<center>
+<button type="button" onClick="formSubmit('move');"
+	class="width-10 btn btn-sm btn-primary">查询</button>
+
+</center>
+</div>
+</div>
+</div>
+
+</div>
+</form>
+</div>
+
+
+
+
+<div class="col-xs-12">
+<div class="table-header">
+
+<button type="button" onClick="view1();"
+	class="width-10 btn btn-sm btn-primary">基础信息
+</button>
+
+<button type="button" onClick="view2();"
+	class="width-10 btn btn-sm btn-primary">付费数据
+</button>
+
+<button type="button" onClick="view3();"
+	class="width-10 btn btn-sm btn-primary">留存数据
+</button>
+
+<%if $viewAll && $viewAll == 1%>
+<button type="button" onClick="viewAll();"
+	class="width-10 btn btn-sm btn-primary">显示全部
+</button>
+<%/if%>
+
+</div>
+
+<div id="viewAll"  style="display:none" class="table-responsive">
+<table id="sample-table-1"
+	class="table table-striped table-bordered table-hover">
+	<thead>
+		<tr style="color:red">
+		<td colspan="16">基础属性</td>
+		<td colspan="4">ARP相关</td>
+		<td colspan="5">基础信息</td>
+		<td colspan="5">付费信息</td>
+		<td colspan="5">LTV信息</td>		
+		</tr>
+		
+		<tr>
+			<th>游戏</th>
+			<th>平台</th>
+			<th>渠道</th>
+			<th>日期</th>
+
+			<th>总用户</th>
+			<th>新增用户</th>
+			<th>总设备</th>
+			<th>新增设备</th>
+
+			<th>日活跃用户</th>
+			<th>日活跃设备</th>
+			
+			<th>总付费用户</th>
+			<th>当日付费用户 </th>
+			<th>总付费设备</th>
+			<th>当日付费设备</th>
+			<th>总付费金额</th>
+			<th>当日付费金额</th>
+
+			<th>ARPU</th>
+			<th>ARPD</th>
+			<th>ARPPU</th>
+			<th>付费率</th>
+
+
+			<th>次日</th>
+			<th>3日</th>
+			<th>7日</th>
+			<th>14日</th>
+			<th>30日</th>
+			
+			<th>次日</th>
+			<th>3日</th>
+			<th>7日</th>
+			<th>14日</th>
+			<th>30日</th>
+			
+			<th>次日</th>
+			<th>3日</th>
+			<th>7日</th>
+			<th>14日</th>
+			<th>30日</th>
+
+		</tr>
+	<thead>
+	<thead>
+	<tbody>
+		<%foreach from=$data item=data%>
+		<tr>
+			<td><%$data.game%></td>
+			<td><%$data.platform%></td>
+			<td><%$data.channel%></td>
+			<td><%$data.date%></td>
+
+			<td><%$data.totalUser%></td>
+			<td><%$data.newUser%></td>
+			<td><%$data.totalDevice%></td>
+			<td><%$data.newDevice%></td>
+
+			<td><%$data.userLogin%></td>
+			<td><%$data.deviceLogin%></td>
+		
+			<td><%$data.totalPayUser%></td>
+			<td><%$data.payUser%></td>
+			<td><%$data.totalPayDevice%></td>
+			<td><%$data.payDevice%></td>
+			<td><%$data.totalPayMoney%></td>
+			<td><%$data.payMoney%></td>
+
+			<td><%$data.ARPU%></td>
+			<td><%$data.ARPD%></td>
+			<td><%$data.ARPPU%></td>
+			<td><%$data.PayRate%></td>
+
+			<td><%$data.LTV2%></td>
+			<td><%$data.LTV3%></td>
+			<td><%$data.LTV7%></td>
+			<td><%$data.LTV14%></td>
+			<td><%$data.LTV30%></td>
+				
+			<td><%$data.userRetention2%></td>
+			<td><%$data.userRetention3%></td>
+			<td><%$data.userRetention7%></td>
+			<td><%$data.userRetention14%></td>
+			<td><%$data.userRetention30%></td>
+
+			<td><%$data.deviceRetention2%></td>
+			<td><%$data.deviceRetention3%></td>
+			<td><%$data.deviceRetention7%></td>
+			<td><%$data.deviceRetention14%></td>
+			<td><%$data.deviceRetention30%></td>
+		</tr>
+		<%/foreach%>
+
+	</tbody>
+</table>
+</div>
+
+<div id="view1" class="table-responsive">
+<table id="sample-table-2"
+	class="table table-striped table-bordered table-hover">
+	<thead>
+		<tr>
+			<th>游戏</th>
+			<th>平台</th>
+			<th>渠道</th>
+			<th>日期</th>
+			
+			<th>新增用户</th>
+			<th>新增设备</th>
+			<th>日活跃用户</th>
+			<th>日活跃设备</th>		
+			
+			<th>当日付费用户 </th>
+			<th>当日付费设备</th>
+			<th>当日付费金额</th>
+			
+			<th>总用户</th>
+			<th>总设备</th>
+			<th>总付费用户</th>
+			<th>总付费设备</th>
+			<th>总付费金额</th>
+			
+			<th>ARPU</th>
+			<th>ARPD</th>
+			<th>ARPPU</th>
+			<th>付费率</th>
+
+		</tr>
+	<thead>
+	<thead>
+	<tbody>
+		<%foreach from=$data2 item=data%>
+		<tr>
+	<td><%$data.game%></td>
+			<td><%$data.platform%></td>
+			<td><%$data.channel%></td>
+			<td><%$data.date%></td>
+			
+			<td><%$data.newUser%></td>
+			<td><%$data.newDevice%></td>
+			<td><%$data.userLogin%></td>
+			<td><%$data.deviceLogin%></td>
+			
+			<td><%$data.payUser%></td>
+			<td><%$data.payDevice%></td>
+			<td><%$data.payMoney%></td>
+			
+			<td><%$data.totalUser%></td>
+			<td><%$data.totalDevice%></td>
+			<td><%$data.totalPayUser%></td>
+			<td><%$data.totalPayDevice%></td>
+			<td><%$data.totalPayMoney%></td>
+			
+			<td><%$data.ARPU%></td>
+			<td><%$data.ARPD%></td>
+			<td><%$data.ARPPU%></td>
+			<td><%$data.PayRate%></td>
+		</tr>
+		<%/foreach%>
+
+	</tbody>
+</table>
+</div>
+
+<div id="view2" style="display:none" class="table-responsive">
+<table id="sample-table-3"
+	class="table table-striped table-bordered table-hover">
+	<thead>
+	
+
+	<tr style="color:red">
+		<center>
+			<th align=center  colspan="4" >查询条件</th>
+			<th align=center   colspan="6" >基础信息</th>
+			<th align=center   colspan="4" >付费信息</th>
+			<th align=center    colspan="5" >LTV信息</th>
+		</center>	
+		</tr>
+	
+		<tr>
+			<th>游戏</th>
+			<th>平台</th>
+			<th>渠道</th>
+			<th>日期</th>
+			
+			<th>当日付费用户 </th> 
+			<th>当日付费设备</th>
+			<th>当日付费金额</th>  
+			<th>总付费用户</th>   
+			<th>总付费设备</th>  
+			<th>总付费金额</th>   
+
+			<th>ARPU</th>
+			<th>ARPD</th>
+			<th>ARPPU</th>
+			<th>付费率</th>
+			
+			
+			<th>次日</th>
+			<th>3日</th>
+			<th>7日</th>
+			<th>14日</th>
+			<th>30日</th>
+
+		</tr>
+	<thead>
+	<thead>
+	<tbody>
+		<%foreach from=$data3 item=data%>
+		<tr>
+			<td><%$data.game%></td>
+			<td><%$data.platform%></td>
+			<td><%$data.channel%></td>
+			<td><%$data.date%></td>	
+
+			<td><%$data.payUser%></td>
+			<td><%$data.payDevice%></td>
+			<td><%$data.payMoney%></td>
+			<td><%$data.totalPayUser%></td>
+			<td><%$data.totalPayDevice%></td>
+			<td><%$data.totalPayMoney%></td>
+			
+
+			<td><%$data.ARPU%></td>
+			<td><%$data.ARPD%></td>
+			<td><%$data.ARPPU%></td>
+			<td><%$data.PayRate%></td>
+			
+			<td><%$data.LTV2%></td>
+			<td><%$data.LTV3%></td>
+			<td><%$data.LTV7%></td>
+			<td><%$data.LTV14%></td>
+			<td><%$data.LTV30%></td>
+		</tr>
+		<%/foreach%>
+
+	</tbody>
+</table>
+</div>
+
+
+<div id="view3" style="display:none" class="table-responsive">
+<table id="sample-table-4"
+	class="table table-striped table-bordered table-hover">
+	<thead>
+	
+
+		<tr style="color:red">
+			<th align=center  colspan="4" >查询条件</th>
+			<th align=center   colspan="6" >基础信息</th>
+			<th align=center   colspan="5" >用户留存</th>
+			<th align=center    colspan="5" >设备留存</th>
+		</tr>
+	
+		<tr>
+			<th>游戏</th>
+			<th>平台</th>
+			<th>渠道</th>
+			<th>日期</th>
+
+			<th>新增用户</th>  
+			<th>新增设备</th>
+			<th>日活跃用户</th>
+			<th>日活跃设备</th>
+			<th>总用户</th>
+			<th>总设备</th>	
+			
+			<th>次日</th>
+			<th>3日</th>
+			<th>7日</th>
+			<th>14日</th>
+			<th>30日</th>
+			
+			<th>次日</th>
+			<th>3日</th>
+			<th>7日</th>
+			<th>14日</th>
+			<th>30日</th>
+
+		</tr>
+	<thead>
+	<thead>
+	<tbody>
+		<%foreach from=$data4 item=data%>
+		<tr>
+			<td><%$data.game%></td>
+			<td><%$data.platform%></td>
+			<td><%$data.channel%></td>
+			<td><%$data.date%></td>	
+			
+			<td><%$data.newUser%></td>
+			<td><%$data.newDevice%></td>
+			<td><%$data.userLogin%></td>
+			<td><%$data.deviceLogin%></td>
+			<td><%$data.totalUser%></td>
+			<td><%$data.totalDevice%></td>
+				
+			<td><%$data.userRetention2%></td>
+			<td><%$data.userRetention3%></td>
+			<td><%$data.userRetention7%></td>
+			<td><%$data.userRetention14%></td>
+			<td><%$data.userRetention30%></td>
+
+			<td><%$data.deviceRetention2%></td>
+			<td><%$data.deviceRetention3%></td>
+			<td><%$data.deviceRetention7%></td>
+			<td><%$data.deviceRetention14%></td>
+			<td><%$data.deviceRetention30%></td>
+		</tr>
+		<%/foreach%>
+
+	</tbody>
+</table>
+</div>
+
+
+<!-- /.table-responsive --></div>
+</div>
+<!-- /.page-content -->
+</div>
+<!--  
+<script type="text/javascript">
+
+	function view1() {
+		$('#view1').css("display", "block");
+		$('#view2').css("display", "none");
+		$('#view3').css("display", "none");
+		$('#viewAll').css("display", "none");
+	}
+
+	function view2() {
+		$('#view1').css("display", "none");
+		$('#view2').css("display", "block");
+		$('#view3').css("display", "none");
+		$('#viewAll').css("display", "none");
+	}
+	
+	function view3() {
+		$('#view1').css("display", "none");
+		$('#view2').css("display", "none");
+		$('#view3').css("display", "block");
+		$('#viewAll').css("display", "none");
+	}
+	
+	function viewAll() {
+		$('#view1').css("display", "none");
+		$('#view2').css("display", "none");
+		$('#view3').css("display", "none");
+		$('#viewAll').css("display", "block");
+	}
+
+	jQuery(function($) {
+		$('.date-picker').datepicker({
+			autoclose : true
+		}).next().on(ace.click_event, function() {
+			$(this).prev().focus();
+		});
+
+		var oTable1 = $('#sample-table-1').dataTable({
+			"aoColumns" : [ {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, 
+			]
+		});
+		
+
+		var oTable1 = $('#sample-table-2').dataTable({
+			"aoColumns" : [ {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			},{
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			},{
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			},{
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			},{
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}
+			]
+		});
+		
+		var oTable1 = $('#sample-table-3').dataTable({
+			"aoColumns" : [ {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			},{
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			},  {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, 
+	
+			]
+		});
+		
+		var oTable1 = $('#sample-table-4').dataTable({
+			"aoColumns" : [ {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			},  {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			},	{
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			}, {
+				"bSortable" : false
+			},  {
+				"bSortable" : false
+			}, 
+	
+			]
+		});
+		
+		/* { "bSortable": false }
+		 */
+/*
+		$('[data-rel="tooltip"]').tooltip({
+			placement : tooltip_placement
+		});
+		function tooltip_placement(context, source) {
+			var $source = $(source);
+			var $parent = $source.closest('table')
+			var off1 = $parent.offset();
+			var w1 = $parent.width();
+
+			var off2 = $source.offset();
+			var w2 = $source.width();
+
+			if (parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2))
+				return 'right';
+			return 'left';
+		}
+*/		
+	});
+
+	function formSubmit(device) {
+		if(device =="pc") {
+			var game = $('#selectGame').val();
+			var platform = $('#platform').val();
+			var channel = $('#channel').val();
+			var statistics = $("input[name='form-field-radio3']:checked").val();		// 是否存储
+			var startTime = $('#startTime').val();
+			var endTime = $('#endTime').val();
+		} else if(device =="move") {
+			var game = $('#selectGame2').val();
+			var platform = $('#platform2').val();
+			var channel = $('#channel2').val();
+			var statistics = $("input[name='form-field-radio32']:checked").val();		// 是否存储
+			var startTime = $('#startTime2').val();
+			var endTime = $('#endTime2').val();
+		}
+		
+		if (!game || !startTime || !endTime) {
+			alert('请将信息填写完整！');
+		} else {
+			
+			if((channel && platform) || channel) {
+				url = "index.php?mod=Data&do=fetchOperation&game="
+					+ game
+					+ "&channel="
+					+ channel
+					+ "&statistics="
+					+ statistics
+					+ "&startTime="
+					+ startTime
+					+ "&endTime="
+					+ endTime;
+			} else if(platform) {
+				url = "index.php?mod=Data&do=fetchOperation&game="
+					+ game
+					+ "&platform="
+					+ platform
+					+ "&statistics="
+					+ statistics
+					+ "&startTime="
+					+ startTime
+					+ "&endTime="
+					+ endTime;
+				
+			} else {
+				url = "index.php?mod=Data&do=fetchOperation&game="
+					+ game	
+					+ "&statistics="
+					+ statistics
+					+ "&startTime="
+					+ startTime
+					+ "&endTime="
+					+ endTime;
+			}
+			window.location.href = url;
+		}
+	}
+	
+	
+	window.onload = function(){
+		
+		var width = document.documentElement.clientWidth;
+		if(width < 1700) {
+			$('#pcDevice').css("display", "none");
+			$('#moveDevice').css("display", "block");
+		} else if(width > 1700) {
+			$('#pcDevice').css("display", "block");
+			$('#moveDevice').css("display", "none");
+		}
+		
+	    var select = document.getElementById('selectGame');
+	    select.onchange = function(){
+	    	
+	        // 更改值后执行的代码
+	       var gameName = jQuery("#selectGame  option:selected").text();
+	       var _tagNum = 1;
+	       $.ajax({
+	    	    type: "POST",
+				url: "index.php?mod=Game&do=getPlatformByGame&game=" + gameName,
+				data: "",
+				dataType: 'html',
+				success: function(data) {					
+					var dataObj = eval("(" + data + ")");//转换为json对象
+					
+					if(dataObj == null) {
+						$("#platform").empty();
+						$("#platform").append('<option value="" id="selectPlatform">平台</option>');
+						$("#channel").empty();
+						$("#channel").append('<option value="" id="selectChannel">渠道</option>');
+					}
+					
+					var platform = dataObj.platform;
+					$("#platform").empty();
+					$("#platform").append('<option value="" id="selectPlatform">平台</option>');
+					for(var i=0;i<platform.length;i++){
+						$("#platform").append("<option value='"+platform[i]+"' >"+platform[i]+"</option>"+"<br/>");
+					}
+					
+					var channel = dataObj.channel;
+					$("#channel").empty();
+					$("#channel").append('<option value="" id="selectChannel">渠道</option>');
+					for(var i=0;i<channel.length;i++){
+						$("#channel").append("<option value='"+channel[i]+"' >"+channel[i]+"</option>"+"<br/>");
+					}
+				}
+	       });
+	    }
+	    
+	    // 移动设备
+	    var select2 = document.getElementById('selectGame2');
+	    select2.onchange = function(){
+	    	
+	        // 更改值后执行的代码
+	       var gameName = jQuery("#selectGame2  option:selected").text();
+	       var _tagNum = 1;
+	       $.ajax({
+	    	    type: "POST",
+				url: "index.php?mod=Game&do=getPlatformByGame&game=" + gameName,
+				data: "",
+				dataType: 'html',
+				success: function(data) {					
+					var dataObj = eval("(" + data + ")");//转换为json对象
+					
+					if(dataObj == null) {
+						$("#platform2").empty();
+						$("#platform2").append('<option value="" id="selectPlatform2">平台</option>');
+						$("#channel2").empty();
+						$("#channel2").append('<option value="" id="selectChannel2">渠道</option>');
+					}
+					
+					var platform = dataObj.platform;
+					$("#platform2").empty();
+					$("#platform2").append('<option value="" id="selectPlatform2">平台</option>');
+					for(var i=0;i<platform.length;i++){
+						$("#platform2").append("<option value='"+platform[i]+"' >"+platform[i]+"</option>"+"<br/>");
+					}
+					
+					var channel = dataObj.channel;
+					$("#channel2").empty();
+					$("#channel2").append('<option value="" id="selectChannel2">渠道</option>');
+					for(var i=0;i<channel.length;i++){
+						$("#channel2").append("<option value='"+channel[i]+"' >"+channel[i]+"</option>"+"<br/>");
+					}
+				}
+	       });
+	    }
+	    
+	} 
+</script>
+
+-->
+<%include file="footer.html"%>
+

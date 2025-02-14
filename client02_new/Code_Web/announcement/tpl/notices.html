@@ -1,0 +1,288 @@
+<%include file="header.html"%>
+<%include file="top.html"%>
+<%include file="left.html"%>
+
+<div class="main-content">
+	
+	<div class="breadcrumbs" id="breadcrumbs">
+						<script type="text/javascript">
+							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+						</script>
+
+						<ul class="breadcrumb">
+	<li><i class="icon-home home-icon"></i> <a
+		href="index.php">首页</a></li>
+</ul>
+	</div>
+	
+
+<div class="page-content">
+
+<div id="pcDevice" style="display:block" class="col-xs-12">
+
+<div class="alert alert-info">
+<form class="form-horizontal" role="form">
+<div class="row">
+
+		<label class="col-sm-1 control-label no-padding-right" for="form-field-5">游戏</label>	
+		<div class="col-sm-2">
+				<select id="selectGame">
+					<option value="" >游戏</option>
+					<%if $selectGames%> <%foreach from = $selectGames key = key item = value%>
+					<%if $nowGame == $value %>
+					<option value="<%$value%>" selected><%$value%></option>
+					<%else%>
+					<option value="<%$value%>"><%$value%></option>
+					<%/if%> <%/foreach%> <%/if%>
+				</select>
+		</div>
+
+		<label class="col-sm-1 control-label no-padding-right" for="form-field-5">地区</label>	
+		<div class="col-sm-2">
+				<select id="selectArea">
+										<option value="" id="Area">地区</option>
+										<%if $areaInfoArr%> <%foreach from = $areaInfoArr key = key item = value%>
+										<%if $selectArea == $value %>
+										<option value="<%$value%>" selected><%$value%></option>
+										<%else%>
+										<option value="<%$value%>"><%$value%></option>
+										<%/if%> <%/foreach%> <%/if%>
+				</select>
+		</div>
+		
+		<div id="lang" style="display:none">
+		<label  class="col-sm-1 control-label no-padding-right" for="form-field-5">语种</label>	
+		<div  class="col-sm-2">
+				<select id="selectLang">
+								<option value="" id="selectLangs">语种</option>
+								<%if $channels%> <%foreach from = $channels key = key item = value%>
+								<%if $nowLang == $value %>
+								<option value="<%$value%>" selected><%$value%></option>
+								<%else%>
+								<option value="<%$value%>"><%$value%></option>
+								<%/if%> <%/foreach%> <%/if%>
+				</select>
+		</div>
+		</div>
+		
+	
+		<div class="col-sm-2">	
+		<center>
+		<button type="button" onClick="formSubmit();"
+			class="width-10 btn btn-sm btn-primary">查询</button>
+		
+		</center>
+		</div>
+		
+</div>	
+		
+</form>						
+		
+</div>
+</div>
+
+
+<div class="col-xs-12">
+<div class="table-header">
+查找信息
+</div>
+
+<div id="viewAll"  class="table-responsive">
+<table id="sample-table-2"
+	class="table table-striped table-bordered table-hover">
+	<thead>
+		<tr>
+			<th>游戏</th>
+			<th>地区</th>
+			<th>语种</th>
+			<th>文件名</th>
+			<th>操作</th>
+		</tr>
+	</thead>
+	<tbody>
+		<%foreach from=$filList item=data%>
+		<tr>
+			<td><%$data.gameName%></td>
+			<td><%$data.selectArea%></td>
+			<td><%$data.selectLang%></td>
+			<td><%$data.fileName%></td>
+			<td style="width:300px">
+					<div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
+						<%if $data.isOnline == 1%>
+						<a class="green" href="javascript:if(confirm('确认生效吗?'))window.location='index.php?mod=Data&do=upToOnline&fileName=<%$data.fileName%>&game=<%$nowGame%>&selectArea=<%$selectArea%>&selectLang=<%$selectLang%>'" >
+							<i class=" icon-circle-arrow-up bigger-130"></i>&nbsp;已生效
+						</a>
+						<%else%>
+						<a class="green" href="javascript:if(confirm('确认生效吗?'))window.location='index.php?mod=Data&do=upToOnline&fileName=<%$data.fileName%>&game=<%$nowGame%>&selectArea=<%$selectArea%>&selectLang=<%$selectLang%>'" >
+							<i class=" icon-circle-arrow-up bigger-130"></i>&nbsp;生&nbsp;效
+						</a>
+						<%/if%>
+						&nbsp;
+						<a class="green" href="index.php?mod=Data&do=edit&fileName=<%$data.fileName%>&game=<%$nowGame%>&selectArea=<%$selectArea%>&selectLang=<%$selectLang%>" >
+							<i class="icon-pencil bigger-130"></i>&nbsp;编辑
+						</a>
+						&nbsp;
+						
+						<a class="red" href="javascript:if(confirm('确认删除吗?'))window.location='index.php?mod=Data&do=delete&fileName=<%$data.fileName%>&game=<%$nowGame%>&selectArea=<%$selectArea%>&selectLang=<%$selectLang%>'" >
+							<i class="icon-trash bigger-130"></i>&nbsp;删除
+						</a>
+					</div>
+					<div class="visible-xs visible-sm hidden-md hidden-lg">
+						<div class="inline position-relative">
+							<button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown">
+								<i class="icon-caret-down icon-only bigger-120"></i>
+							</button>
+
+							<ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
+								<li>
+									<a href="javascript:void(0);" class="tooltip-success" data-rel="tooltip" title="" data-original-title="Edit">
+										<span class="green">
+											<i class="icon-edit bigger-120"></i>
+										</span>
+									</a>
+								</li>
+
+								<li>
+									<a href="javascript:void(0);" class="tooltip-error" data-rel="tooltip" title="" data-original-title="Delete">
+										<span class="red">
+											<i class="icon-trash bigger-120"></i>
+										</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+		</td>
+		</tr>
+		<%/foreach%>
+	</tbody>
+</table>
+</div>
+</div>
+
+
+<!-- /.table-responsive --></div>
+</div>
+<!-- /.page-content -->
+</div>
+
+<script type="text/javascript">
+	
+	<%if $upToOnline && $upToOnline == 1%>
+		alert("生效成功");
+	<%/if%>
+	
+	jQuery(function($) {
+		$('.date-picker').datepicker({
+			autoclose : true
+		}).next().on(ace.click_event, function() {
+			$(this).prev().focus();
+		});
+
+		var oTable1 = $('#sample-table-1').dataTable({
+			"aoColumns" : [ {
+				"bSortable" : false
+			}
+			]
+		});
+		
+
+	});
+
+	function formSubmit() {
+		var selectGame = $('#selectGame').val();
+		var selectArea = $('#selectArea').val();
+		var selectLang = $('#selectLang').val();
+		
+		if (!selectGame || !selectArea) {
+			alert('请将信息填写完整！');
+		} else {
+			url = "index.php?mod=Data&do=selectNotices&game="
+				+ selectGame
+				+ "&selectArea="
+				+ selectArea
+				+ "&selectLang="
+				+ selectLang;
+			window.location.href = url;
+		}
+	}
+	
+
+	 var select = document.getElementById('selectGame');
+	 select.onchange = function(){
+	        // 更改值后执行的代码
+	       var gameName = jQuery("#selectGame  option:selected").text();
+	       $.ajax({
+	    	    type: "POST",
+				url: "index.php?mod=Game&do=getAreaByGame&game=" + gameName,
+				data: "",
+				dataType: 'html',
+				success: function(data) {
+					var dataObj = eval("(" + data + ")");//转换为json对象
+					if(dataObj == null) {
+						$("#selectArea").empty();
+						$("#selectArea").append('<option value="" id="selectPlatform">地区</option>');
+					}
+					
+					var platform = dataObj.platform;
+					
+					$("#selectArea").empty();
+					$("#selectArea").append('<option value="" id="selectArea">地区</option>');
+					for(var i=0;i<platform.length;i++){
+						$("#selectArea").append("<option value='"+platform[i]+"' >"+platform[i]+"</option>"+"<br/>");
+					}
+				}
+	       });
+	  }
+	 
+	 
+	 var selectArea = document.getElementById('selectArea');
+	 selectArea.onchange = function(){
+	        // 更改值后执行的代码
+	       var areaName = jQuery("#selectArea  option:selected").text();
+	       var game 	= $('#selectGame').val();
+	       
+	       // var lang = document.getElementById('selectArea');
+	    //   if (areaName == "r2") {
+	    //	   $('#lang').css("display", "block");
+	     //  }
+	        $.ajax({
+	    	    type: "POST",
+				url: "index.php?mod=Game&do=getLangByAreaGame&game="+game+"&areaName="+areaName,
+				data: "",
+				dataType: 'html',
+				success: function(data) {
+					
+					var dataObj = eval("(" + data + ")");//转换为json对象
+					if(dataObj == null) {
+						$("#selectLang").empty();
+						$("#selectLang").append('<option value="" id="selectPlatform">语种</option>');
+					}
+					
+					var platform = dataObj.platform;
+					
+					if(platform.length > 1) {
+						 $('#lang').css("display", "block");
+					} else {
+						 $('#lang').css("display", "none");
+					}
+					
+					$("#selectLang").empty();
+					$("#selectLang").append('<option value="" id="selectLang">语种</option>');
+					for(var i=0;i<platform.length;i++){
+						$("#selectLang").append("<option value='"+platform[i]+"' >"+platform[i]+"</option>"+"<br/>");
+					}
+				}
+	       });
+	        
+	  }
+	 window.onload =function() {
+		 <%if $viewLang && $viewLang == 1 %>
+		 $('#lang').css("display", "block");
+		 <%/if%>
+	 }
+		
+</script>
+
+<%include file="footer.html"%>
+

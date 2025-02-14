@@ -1,0 +1,1 @@
+<[2015-03-21 11:35:41]>			<[127.0.0.1]>			<[The config of main.fetch_general is undefine]>			<[From: index.php-L30 Control_Data->getPlatformData();; Data_getPlatformData.php-L13 MooConfig::get( main.fetch_general );; MooConfig.lib.php-L96 MooLog::error( The config of main.fetch_general is undefine );;]>

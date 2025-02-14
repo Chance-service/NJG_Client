@@ -1,0 +1,87 @@
+<%include file="header.html"%>
+<%include file="top.html"%>
+<%include file="left.html"%>
+				<div class="main-content">
+					<div class="breadcrumbs" id="breadcrumbs">
+						<script type="text/javascript">
+							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+						</script>
+
+						<ul class="breadcrumb">
+							<li>
+								<i class="icon-home home-icon"></i>
+								<a href="#">文件管理</a>
+							</li>
+							<li class="active"><a href="javascript:void(0);">创建文件夹</a></li>
+						</ul><!-- .breadcrumb -->
+					</div>
+
+							<div class="page-content">
+
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+								
+								<div class="row">
+									<div class="col-sm-12">
+										<div class="widget-box">
+											<div class="widget-header header-color-blue2">
+												<h4 class="lighter smaller"></h4>
+											</div>
+
+											<div class="widget-body">
+												<div class="widget-main padding-8">
+
+													<form class="form-horizontal" role="form">
+														<br/>
+												
+														<div class="form-group">
+															
+															<div class="col-sm-6">
+																<!--<select name="platformId" class="selectpicker form-control" multiple>
+																	<option>请选择</option>
+																	<option value="1">91</option>
+																	<option value="2">360</option>
+																</select>-->
+																<div class="col-xs-12 col-sm-5">
+																	<div class="control-group">
+
+																	</div>
+																</div>
+
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="col-sm-5 control-label no-padding-right" for="form-field-5">文件夹名称</label>
+
+															<div class="col-sm-6">
+																<input type="text" id="form-field-1" class="col-xs-3 col-sm-5">
+															</div>
+														</div>
+													</form>
+
+													<h3 class="header smaller lighter green"></h3>
+													<div class="clearfix">
+														<center>
+															<button type="button" onclick = "mkdir(<%$bucketId%>, <%$parentNodeId%>);" class="btn btn-info btn-success">
+																<!--<i class="icon-bolt"></i>-->
+																创建文件夹
+															</button>
+														</center>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+								<!-- PAGE CONTENT ENDS -->
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div><!-- /.page-content -->
+				</div><!-- /.main-content -->
+				
+				
+				</div><!-- /.main-content -->
+<%include file="footer.html"%>
+

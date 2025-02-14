@@ -1,0 +1,14 @@
+http://54.173.233.19/announcement/www/index.php
+
+公告管理系统 管理员账号 admin admin@888
+公告管理系统 普通用户账号 guest 123456
+r2Game 123456
+arabic    arabic
+R2 公告地址
+English   英语     http://54.173.233.19/notices/announce_all/hwgj_r2_English.txt
+French  法语       http://54.173.233.19/notices/announce_all/hwgj_r2_French.txt
+German  德语 	   http://54.173.233.19/notices/announce_all/hwgj_r2_German.txt 
+Spanish  西班牙语   http://54.173.233.19/notices/announce_all/hwgj_r2_Spanish.txt 
+Portu  葡萄牙语    http://54.173.233.19/notices/announce_all/hwgj_r2_Portu.txt 
+Turkish  土耳其语   http://54.173.233.19/notices/announce_all/hwgj_r2_Turkish.txt 
+Russian  俄语      http://54.173.233.19/notices/announce_all/hwgj_r2_Russian.txt

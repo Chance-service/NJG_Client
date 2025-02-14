@@ -1,0 +1,127 @@
+<%include file="header.html"%>
+
+	<body class="login-layout">
+		<div class="main-container">
+			<div class="main-content">
+				<div class="row">
+					<div class="col-sm-10 col-sm-offset-1">
+						<div class="login-container">
+
+							<div class="center">
+								<h1>
+									<i class="icon-leaf green"></i>
+									<span class="red">충전내보내기-韩国订单下载系统</span>
+								</h1>
+							</div>
+
+							<div class="space-6"></div>
+
+							<div class="position-relative">
+								<div id="login-box" class="login-box visible widget-box no-border">
+									<div class="widget-body">
+										<div class="widget-main">
+											<h4 class="header blue lighter bigger">
+												<i class="icon-coffee green"></i>
+												ID와 비밀번호를 입력하세요
+											</h4>
+
+											<div class="space-6"></div>
+
+											<form>
+												<fieldset>
+													<label class="block clearfix">
+														<span class="block input-icon input-icon-right">
+															<input type="text" class="form-control" placeholder="Username" id="username" />
+															<i class="icon-user"></i>
+														</span>
+													</label>
+
+													<label class="block clearfix">
+														<span class="block input-icon input-icon-right">
+															<input type="password" class="form-control" placeholder="Password" id="password" />
+															<i class="icon-lock"></i>
+														</span>
+													</label>
+
+													<div class="space"></div>
+
+													<div class="clearfix">
+														<label class="inline">
+															<input id="checkUsername" type="checkbox" class="ace" />
+															<span class="lbl"> remember me</span>
+														</label>
+
+														<button type="submit" onClick="formSubmit();" class="width-35 pull-right btn btn-sm btn-primary">
+															<i class="icon-key"></i>
+															Login
+														</button>
+													</div>
+
+													<div class="space-4"></div>
+												</fieldset>
+											</form>
+										</div><!-- /widget-main -->
+									</div><!-- /widget-body -->
+								</div><!-- /login-box -->
+							</div><!-- /position-relative -->
+						</div><!-- /login-container -->
+					</div><!-- /.col -->
+				</div><!-- /.row -->
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		jQuery(function() {
+			var username = jQuery.cookie('username');
+			if(username != "null") {
+				jQuery("#username").val(username);
+				jQuery('#checkUsername').attr('checked', true);
+			}
+		});
+
+		jQuery("#checkUsername").click(function(){
+			var checkedVal = jQuery('#checkUsername').attr('checked');
+			if (checkedVal == "checked") {
+				jQuery('#checkUsername').removeAttr('checked');
+			} else {
+				jQuery('#checkUsername').attr('checked', true);
+			}
+		});
+		
+		function formSubmit() {
+			var param = {};
+			param['mod'] = 'User';
+			param['do'] = 'login';
+			param['username'] = jQuery('#username').val();
+			param['password'] = jQuery('#password').val();
+					
+			if (!param['username'] || !param['password']) {
+				alert('ID와 비밀번호를 입력하세요-请输入用户名和密码！');
+			} else {
+
+				if(jQuery('#checkUsername').attr('checked')){
+					jQuery.cookie('username', param['username'], {expires:7});
+				}else{
+					jQuery.cookie('username', null);
+				}
+
+				$.ajax({
+					type:'POST',
+					url:'index.php',
+					data:param,
+					dataType:'html',
+					success:function(data) {
+						var dataObj = eval("(" + data + ")");//转换为json对象
+						if (dataObj.code != 1) {
+							alert(dataObj.msg);
+						} else {
+							// alert(dataObj.msg);
+							window.location.href = "index.php";
+						}
+				
+					}
+				});
+			}
+		}
+	</script>
+</html>

@@ -1,0 +1,27 @@
+韩国 日本结构差异
+
+change.2.7.0_FaceBook.sql
+change2.7.0_change_serverdata.sql
+
+efun 结构更新
+efun_up_2.7.sql
+dataChange.sql
+
+r2 结构更新
+r2_up_2.7.sql
+dataChange.sql
+
+目前trunk最新结构
+newSql_2.7.sql
+
+连接mysql (use dbName) 
+执行差异sql文件
+
+mysql -uroot -p'mysql@hwgj' -h 123.59.58.83 -P 3306
+show databases;
+use R2_test_all;
+
+source /home/r2_up_2.7.sql;
+source /home/dataChange.sql;
+
+

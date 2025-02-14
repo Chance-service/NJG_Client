@@ -1,0 +1,2 @@
+<[2015-03-18 11:20:01]>			<[127.0.0.1]>			<[The config of main.gameTag is undefine]>			<[From: index.php-L18 Control_ExecSql->showSql();; ExecSql_showSql.php-L14 MooConfig::get( main.gameTag );; MooConfig.lib.php-L96 MooLog::error( The config of main.gameTag is undefine );;]>
+<[2015-03-18 11:20:09]>			<[127.0.0.1]>			<[The config of main.gameTag is undefine]>			<[From: index.php-L18 Control_ExecSql->showSql();; ExecSql_showSql.php-L14 MooConfig::get( main.gameTag );; MooConfig.lib.php-L96 MooLog::error( The config of main.gameTag is undefine );;]>

@@ -1,0 +1,1 @@
+{"PHPSESSID":"kml10in5ac63rdn9kg0lbu2om6","mod":"Gm","do":"changePlayerInfo","action":"1","game":"wow","puid":"hawk","serverUrl":"test-1","type":"puid","key":"vip"}

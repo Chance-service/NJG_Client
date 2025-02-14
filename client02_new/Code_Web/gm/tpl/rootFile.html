@@ -1,0 +1,351 @@
+<%include file="header.html"%>
+<%include file="top.html"%>
+<%include file="left.html"%>
+
+<style>
+
+</style>
+
+				<div class="main-content">
+					<div class="breadcrumbs" id="breadcrumbs">
+						<script type="text/javascript">
+							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+						</script>
+
+						<ul class="breadcrumb">
+							<li>
+								<i class="icon-home home-icon"></i>
+								<a href="#">booket管理</a>
+							</li>
+							<li>
+								<a href="#">浏览文件</a>
+							</li>
+						</ul><!-- .breadcrumb -->
+					</div>
+
+						<div class="page-content">
+
+							<div class="row">
+								<div class="col-xs-12">
+									<!-- PAGE CONTENT BEGINS -->
+
+									<div class="alert alert-info">
+										<i class="icon-hand-right"></i>
+
+										<strong class="red">请注意：</strong><i class="icon-pencil bigger-120"></i> 为编辑，<i class="icon-trash bigger-120"></i> 为删除  
+										
+										<script type="text/javascript">
+												function move(event){
+												var event=event||window.event;
+												var a=document.getElementById('f');
+												    a.style.left=event.clientX-350+'px'; /* 220 100*/
+												    a.style.top=event.clientY-100+'px';
+												}
+										</script>
+									
+										<button class="close" data-dismiss="alert">
+											<i class="icon-remove"></i>
+										</button>
+
+									</div>
+						<!-- 		
+									<%if $parentNodeId > 0%>
+									<div class="alert alert-info">
+								 		<form action="index.php?mod=Bucket&do=uploadFile&bucketId=<%$bucketId%>&parentNodeId=<%$parentNodeId%>" method="post" enctype="multipart/form-data">
+											<input type="file" name="file" id="file" /> 
+											<input type="submit" name="submit" value="上传文件" />
+											<br/>
+											<p>
+											<%if $msg%>
+											<%$msg%>
+											<%/if%>
+											</p>
+											
+										</form>
+				
+										
+									</div>
+									<%/if%>
+							-->				
+									<div  class="table-header">
+									<table width="100%" style="cursor:pointer">
+									<tr> 
+									<td width="50%">
+									<table>
+									<tr>
+									<td>
+									<a style="display:none" id="back" href="index.php?mod=Bucket&do=backDir&bucketId=<%$bucketId%>&parentNodeId=<%$parentNodeId%>" >
+													<font class="white"><i class="icon-arrow-left"></i>&nbsp;返回上一层
+													 </font>
+									</a>
+									
+									<button class="btn btn-primary" onclick="document.getElementById('back').click();return false;">
+								<!--  	<a  href="index.php?mod=Bucket&do=backDir&bucketId=<%$bucketId%>&parentNodeId=<%$parentNodeId%>" > -->
+													<font class="white"><i class="icon-arrow-left"></i>&nbsp;返回上一层
+													 </font>
+								<!--	</a>  -->
+									</button>	
+									</td>
+
+									<%if ($parentNodeId == 0 && $manageBucket == 1) || $permitStatus == 1 %>
+									<td>
+								<a style="display:none" id="mkdir" href="index.php?mod=Bucket&do=makeDir&bucketId=<%$bucketId%>&parentNodeId=<%$parentNodeId%>"  class="pull-left"> -->
+													<font class="white"><i class="icon-folder-close"></i>&nbsp;创建文件夹  
+													 </font>
+								</a>
+									
+							  	<button class="btn btn-primary"  onclick="document.getElementById('mkdir').click();return false;" >
+							<!--  		<a  href="index.php?mod=Bucket&do=makeDir&bucketId=<%$bucketId%>&parentNodeId=<%$parentNodeId%>"  class="pull-left"> -->
+													<font class="white"><i class="icon-folder-close"></i>&nbsp;创建文件夹  
+													 </font>
+							<!--		</a> -->
+								</button>
+									</td>
+									<%/if%>
+									
+									<%if $parentNodeId > 0 && $permitStatus == 1 %>
+									<td style="cursor:pointer">
+									<form  style="cursor:pointer" id="formname"  method="post" action="index.php?mod=Bucket&do=uploadFile&bucketId=<%$bucketId%>&parentNodeId=<%$parentNodeId%>" enctype="multipart/form-data">
+										
+										<button class="btn btn-primary" onclick="document.getElementById('f').click();return false;"  style="color:white;cursor:pointer">
+										<a href="#"><font class="white"><i class="icon-cloud-upload"></i>&nbsp;上传文件</font> </a> 
+										</button>
+				
+										<input   type="file" id="f" name ="file" onchange="$('#formname').submit();" name="f" style="position:absolute; filter:alpha(opacity=0); opacity:0; font-size:1px;cursor:pointer;z-index:2" />
+									</form>
+										
+									</td>
+									<%/if%>
+									
+									</tr>
+									</table>
+									</td>
+									
+									<td >
+									<%if $nowPath%>
+									<strong class="pull-right"><i></i>当前路径:<%$nowPath%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									</strong>
+									<%/if%>	
+									</td>
+									</tr>
+									</table>
+									
+									</div>
+										
+									<div class="table-responsive">
+										<table id="sample-table-1" class="table table-striped table-bordered table-hover">
+											<thead>
+												<tr>
+													<th>文件名</th>
+													<th>文件类型</th>
+													<th>大小</th>
+													<th >md5</th>
+													<th >上次修改</th>
+													<th >修改者</th>
+													<th >创建时间</th>
+													<th >创建者</th>
+													<th>操作</th>
+												</tr>
+											</thead>
+
+											<tbody>
+											<%if $rootFile%>
+											<%foreach from = $rootFile key = fileId item = rootFile%>
+												<tr>
+													
+													<%if $rootFile.node_type == "文件夹"%>
+													<td>
+													<div  class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
+													<a  href="index.php?mod=Bucket&do=getFileList&bucket_id=<%$rootFile.bucket_id%>&parentNodeId=<%$rootFile.node_id%>" >
+														<i class="icon-folder-close bigger-130"></i> <%$rootFile.node_name%>
+													</a>
+													</div>
+													</td>
+													<td > <%$rootFile.node_type%></td>
+													<td >-</td>
+													<%else%>
+													<td>
+													<div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
+													 <i class="icon-file-alt bigger-130"></i> <%$rootFile.node_name%>
+													</div>
+													</td>
+													<td ><%$rootFile.node_type%></td>
+													<td ><%$rootFile.node_size%>&nbsp;</td>
+													<%/if%>
+													
+													<td><%$rootFile.node_md5%></td>
+													
+													<%if $rootFile.user_id > 0%>
+													<td ><%$rootFile.node_update_time%></td>
+													<td ><%$rootFile.node_update_user%></td> 
+													<%else%>
+													<td >-</td> 
+													<td >-</td> 
+													<%/if%>
+													<td ><%$rootFile.node_create_time%></td>
+													<td ><%$rootFile.node_create_user%></td> 
+													
+													<td>
+														<div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
+															
+															<%if $rootFile.node_type == "文件夹" && $rootFile.permit == 1 %>
+													<!--		
+															<a class="green" href="index.php?mod=Node&do=changeDirName&node_id=<%$rootFile.node_id%>&bucketId=<%$rootFile.bucket_id%>&parentNodeId=<%$rootFile.node_parent_node%>" >
+																<i class="icon-pencil bigger-130"></i>&nbsp;改名
+															</a> 
+													-->			
+															<a class="red" href="javascript:if(confirm('确认删除吗?'))window.location='index.php?mod=Node&do=delete&node_id=<%$rootFile.node_id%>&bucketId=<%$rootFile.bucket_id%>&parentNodeId=<%$rootFile.node_parent_node%>'" >
+																<i class="icon-trash bigger-130"></i>&nbsp;删除
+															</a>
+															
+															<%elseif $rootFile.node_type == "文件夹" && $rootFile.permit == 0 %>
+												<!--  				
+																<a class="green" href="index.php?mod=Node&do=changeDirName&node_id=<%$rootFile.node_id%>&bucketId=<%$rootFile.bucket_id%>&parentNodeId=<%$rootFile.node_parent_node%>" >
+																<i class="icon-pencil bigger-130"></i>&nbsp;-
+															</a> 
+															
+															<a class="red" href="index.php?mod=Node&do=delete&node_id=<%$rootFile.node_id%>&bucketId=<%$rootFile.bucket_id%>&parentNodeId=<%$rootFile.node_parent_node%>" >
+																<i class="icon-trash bigger-130"></i>&nbsp;-
+															</a>
+												-->				
+															<%elseif $rootFile.node_type == "文件" && $rootFile.permit == 1 %>
+															
+															<a class="green" href="index.php?mod=Node&do=editFile&node_id=<%$rootFile.node_id%>&bucketId=<%$rootFile.bucket_id%>&parentNodeId=<%$rootFile.node_parent_node%>" >
+																<i class="icon-pencil bigger-130"></i>&nbsp;编辑
+															</a>
+															
+														
+															<a class="red" href="javascript:if(confirm('确认删除吗?'))window.location='index.php?mod=Node&do=delete&node_id=<%$rootFile.node_id%>&bucketId=<%$rootFile.bucket_id%>&parentNodeId=<%$rootFile.node_parent_node%>'" >
+																<i class="icon-trash bigger-130"></i>&nbsp;删除
+															</a>
+															
+															<!--  
+															<a class="red" id='down' href="index.php?mod=Node&do=download&node_id=<%$rootFile.node_id%>&bucketId=<%$rootFile.bucket_id%>&parentNodeId=<%$rootFile.node_parent_node%>" >
+																<i class="icon-download bigger-130"></i>&nbsp;下载
+															</a>
+															-->
+															<a class="red" id='down' href="<%$rootFile.url%>" >
+																<i class="icon-download bigger-130"></i>&nbsp;下载
+															</a>
+															
+															
+<script type="text/javascript">
+$(function(){
+	init_<%$rootFile.node_id%>();
+});
+
+function init_<%$rootFile.node_id%>() {
+	var clip = new ZeroClipboard.Client(); // 新建一个对象
+	clip.setHandCursor( true );
+	clip.setText($('#cardid_<%$rootFile.node_id%>').val()); // 设置要复制的文本。
+	clip.addEventListener( "mouseUp", function(client) {
+		alert("下载地址已经复制到粘贴板！");
+	});
+	// 注册一个 button，参数为 id。点击这个 button 就会复制。
+	//这个 button 不一定要求是一个 input 按钮，也可以是其他 DOM 元素。
+	clip.glue("copycardid_<%$rootFile.node_id%>"); // 和上一句位置不可调换
+}
+</script>
+																<!--   
+																<input style="display:none" type="text" name="cardid_<%$rootFile.node_id%>" id="cardid_<%$rootFile.node_id%>" value="<%$urlHeader%>index.php?mod=Node&do=download&node_id=<%$rootFile.node_id%>&bucketId=<%$rootFile.bucket_id%>&parentNodeId=<%$rootFile.node_parent_node%>" readonly="readonly" />
+																<a class="red" href="#" id="copycardid_<%$rootFile.node_id%>"><i class="icon-copy"></i>&nbsp;复制</a>
+																--> 
+																
+																<input style="display:none" type="text" name="cardid_<%$rootFile.node_id%>" id="cardid_<%$rootFile.node_id%>" value="<%$rootFile.url%>" readonly="readonly" />
+																<a class="red" href="#" id="copycardid_<%$rootFile.node_id%>"><i class="icon-copy"></i>&nbsp;复制</a>
+																
+																														
+															<%elseif $rootFile.node_type == "文件" && $rootFile.permit == 0 %>
+															
+															<!--  
+															<a class="red"  href="index.php?mod=Node&do=download&node_id=<%$rootFile.node_id%>&bucketId=<%$rootFile.bucket_id%>&parentNodeId=<%$rootFile.node_parent_node%>" >
+																<i class="icon-download bigger-130"></i>&nbsp;下载
+															</a>
+															-->
+															<a class="red"  href="<%$rootFile.url%>" >
+																<i class="icon-download bigger-130"></i>&nbsp;下载
+															</a>
+															
+															
+<script type="text/javascript">
+$(function(){
+	init_<%$rootFile.node_id%>();
+});
+
+function init_<%$rootFile.node_id%>() {
+	var clip = new ZeroClipboard.Client(); // 新建一个对象
+	clip.setHandCursor( true );
+	clip.setText($('#cardid_<%$rootFile.node_id%>').val()); // 设置要复制的文本。
+	clip.addEventListener( "mouseUp", function(client) {
+		alert("下载地址已经复制到粘贴板！");
+	});
+	// 注册一个 button，参数为 id。点击这个 button 就会复制。
+	//这个 button 不一定要求是一个 input 按钮，也可以是其他 DOM 元素。
+	clip.glue("copycardid_<%$rootFile.node_id%>"); // 和上一句位置不可调换
+}
+</script>														<!--  
+																<input style="display:none" type="text" name="cardid_<%$rootFile.node_id%>" id="cardid_<%$rootFile.node_id%>" value="<%$urlHeader%>index.php?mod=Node&do=download&node_id=<%$rootFile.node_id%>&bucketId=<%$rootFile.bucket_id%>&parentNodeId=<%$rootFile.node_parent_node%>" readonly="readonly" />
+																<a class="red" href="#" id="copycardid_<%$rootFile.node_id%>"><i class="icon-copy"></i>&nbsp;复制</a>
+															    -->
+																<input style="display:none" type="text" name="cardid_<%$rootFile.node_id%>" id="cardid_<%$rootFile.node_id%>" value="<%$rootFile.url%>" readonly="readonly" />
+																<a class="red" href="#" id="copycardid_<%$rootFile.node_id%>"><i class="icon-copy"></i>&nbsp;复制</a>
+															  
+																
+																 
+															
+															<%/if%>
+															
+															&nbsp;&nbsp;
+																			
+															
+											
+														</div>
+														<div class="visible-xs visible-sm hidden-md hidden-lg">
+															<div class="inline position-relative">
+																<button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown">
+																	<i class="icon-caret-down icon-only bigger-120"></i>
+																</button>
+
+																<ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
+																	<li>
+																		<a href="javascript:void(0);" class="tooltip-success" data-rel="tooltip" title="" data-original-title="Edit">
+																			<span class="green">
+																				<i class="icon-edit bigger-120"></i>
+																			</span>
+																		</a>
+																	</li>
+
+																	<li>
+																		<a href="javascript:void(0);" class="tooltip-error" data-rel="tooltip" title="" data-original-title="Delete">
+																			<span class="red">
+																				<i class="icon-trash bigger-120"></i>
+																			</span>
+																		</a>
+																	</li>
+																</ul>
+															</div>
+														</div>
+													</td>
+												</tr>
+												
+												<%/foreach%>												
+												<%/if%>												
+											</tbody>
+										</table>
+										<%if $msg%>
+											<%$msg%>
+										<%/if%>
+									</div><!-- /.table-responsive -->
+								</div>
+							</div><!-- /.row -->
+					</div><!-- /.page-content -->
+				</div><!-- /.main-content -->
+
+<script type="text/javascript">
+
+</script> 
+		
+				
+			
+<%include file="footer.html"%>
+

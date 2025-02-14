@@ -1,0 +1,124 @@
+<%include file="header.html"%>
+<%include file="top.html"%>
+<%include file="left.html"%>
+				<div class="main-content">
+					<div class="breadcrumbs" id="breadcrumbs">
+						<script type="text/javascript">
+							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+						</script>
+
+						<ul class="breadcrumb">
+							<li>
+								<i class="icon-home home-icon"></i>
+								<a href="javascript:void(0);">游戏管理</a>
+							</li>
+							<li class="active"><a href="javascript:void(0);">管理游戏</a></li>
+						</ul><!-- .breadcrumb -->
+					</div>
+
+					<div class="page-content">
+
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="alert alert-info">
+									<i class="icon-hand-right"></i>
+
+									<strong class="red">请注意：</strong><i class="icon-ok bigger-120"></i> 为保存，<i class="icon-trash bigger-120"></i> 为删除
+									<button class="close" data-dismiss="alert">
+										<i class="icon-remove"></i>
+									</button>
+								</div>
+								<div class="table-header">
+											<a style="display:none" id="addGame" href="index.php?mod=Game&do=addGame"  class="pull-left"> -->
+													<font class="white"><i class="icon-user-md"></i>&nbsp;添加游戏 
+													 </font>
+								</a>
+									
+							  	<button class="btn btn-primary"  onclick="document.getElementById('addGame').click();return false;" >
+							<!--  		<a  href="index.php?mod=Bucket&do=makeDir&bucketId=<%$bucketId%>&parentNodeId=<%$parentNodeId%>"  class="pull-left"> -->
+													<font class="white"><i class="icon-user-md"></i>&nbsp;添加游戏    
+													 </font>
+							<!--		</a> -->
+								</button>
+								
+								
+								&nbsp;&nbsp;&nbsp;&nbsp;</div>
+
+								<div class="table-responsive">
+									<table id="sample-table-1" class="table table-striped table-bordered table-hover">
+										<thead>
+											<tr>
+												<th>游戏标识</th>
+												<th>游戏名称</th>
+												<th>所属分类</th>
+												<th>所属语种</th>
+												<th>操作</th>
+											</tr>
+										</thead>
+
+										<tbody>
+											<%foreach from=$gameList item=gameInfo%>
+											<tr>
+											   <td class="col-xs-1" ><input type="text" id="<%$gameInfo.game_id%>_tag" disabled='disabled' value="<%$gameInfo.game_tag%>" /></td>
+												<td class="col-xs-1"><input  style="width:100%;"   type="text" id="<%$gameInfo.game_id%>_name" value="<%$gameInfo.game_name%>" /></td>
+												<td class="col-xs-4" ><input type="text" id="<%$gameInfo.game_id%>_area" value="<%$gameInfo.game_area%>" class="col-xs-12" /></td>
+												<td class="col-xs-4"><input style="width:90%;" type="text" id="<%$gameInfo.game_id%>_lang" value="<%$gameInfo.game_lang%>" /></td>
+												<td class="col-xs-2>
+													<div style="width:100%;" class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
+														<a class="green" href="javascript:void(0);" onClick="formSubmit('save', '<%$gameInfo.game_id%>');" >
+															&nbsp;&nbsp;&nbsp;<i class="icon-ok bigger-120"></i>保存
+														</a>
+														<a class="green" href="javascript:void(0)" onClick="formSubmit('del', '<%$gameInfo.game_id%>');" >
+															&nbsp;&nbsp;&nbsp;<i class="icon-trash bigger-120"></i>删除
+														</a>
+														
+													</div>
+												</td>
+											</tr>
+											<%/foreach%>
+										</tbody>
+									</table>
+								</div><!-- /.table-responsive -->
+							</div><!-- /span -->
+						</div><!-- /row -->
+
+					</div><!-- /.page-content -->
+				</div><!-- /.main-content -->
+
+		<script type="text/javascript">
+			function formSubmit(type, gameId) {
+				var param = {};
+				if (type == 'save') {
+					param['mod'] = 'Game';
+					param['do'] = 'addGame';
+					param['game'] = gameId;
+					param['type'] = type;
+					param['gameName'] = $('#' + gameId + '_name').val();
+					param['gameTag'] = $('#' + gameId + '_tag').val();
+					param['gameArea'] = $('#' + gameId + '_area').val();
+					param['gameLang'] = $('#' + gameId + '_lang').val();
+					param['gameId'] = gameId;
+				} else if(type == 'del') {
+					param['mod'] = 'Game';
+					param['do'] = 'delGame';
+					param['gameId'] = gameId;
+					param['type'] = type;
+				}
+				$.ajax({
+					type:'POST',
+					url:'index.php',
+					data:param,
+					dataType:'html',
+					success:function(data) {
+						var dataObj = eval("(" + data + ")");//转换为json对象
+						if (dataObj.code != 1) {
+							alert(dataObj.msg);
+						} else {
+							alert(dataObj.msg);
+							window.location.href = "index.php?mod=Game&do=showGameList";
+						}
+					}
+				});
+			}
+		</script>
+<%include file="footer.html"%>
