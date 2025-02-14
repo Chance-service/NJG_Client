@@ -1,0 +1,21 @@
+$#include "FeedBackPage.h"
+
+class FeedBackPage : public Singleton<FeedBackPage>
+    ,public CustomPage
+    , public State<MainFrame>
+    , public CCBContainer::CCBContainerListener
+    , public libOSListener
+    , public platformListener
+{
+public:
+    virtual void Enter( MainFrame* );
+    virtual void Execute( MainFrame* );
+    virtual void Exit( MainFrame* );
+    virtual void onMenuItemAction( const std::string& itemName, cocos2d::CCObject* sender, int tag );
+    virtual void onMenuItemAction(const std::string& itemName, cocos2d::CCObject* sender);
+    void URLlabelCallback(cocos2d::extension::IRichNode* root, cocos2d::extension::IRichElement* ele, int _id);
+    void URLlabelForLuaCallback(std::string url);
+    virtual void load( void );
+	
+    static FeedBackPage* getInstance();
+};

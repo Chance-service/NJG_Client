@@ -1,0 +1,29 @@
+$#include "BlackBoard.h"
+
+class BlackBoard
+{
+
+	bool hasVarible(const std::string& key);
+
+	bool addVarible(const std::string& key, const std::string& value);
+	bool addVarible(const std::string& key, bool value);
+	bool addVarible(const std::string& key, unsigned int value);
+
+	void delVarible(const std::string& key);
+
+	bool setVarible(const std::string& key, const std::string& value);
+	bool setVarible(const std::string& key, bool value);
+	bool setVarible(const std::string& key, unsigned int value);
+
+	std::string getVarible(const std::string& key);
+	unsigned int getVaribleAsUint(const std::string& key);
+	bool getVaribleAsBool(const std::string& key);
+	
+	std::string fetchVarible(const std::string& key);
+	unsigned int fetchVaribleAsUint(const std::string& key);
+	bool fetchVaribleAsBool(const std::string& key);
+	unsigned int PLATFORM_TYPE_FOR_LUA;
+	void clearMap();
+	
+	static BlackBoard* getInstance();
+};

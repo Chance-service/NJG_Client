@@ -1,0 +1,21 @@
+$#include "CCBContainer.h"
+
+class CCBContainer : public cocos2d::CCNode
+    , public cocos2d::extension::CCBSelectorResolver
+    , public cocos2d::extension::CCBMemberVariableAssigner
+{
+public:
+    virtual void onAnimationDone(const std::string& animationName){};
+    virtual void onMenuItemAction(const std::string& itemName, cocos2d::CCObject* sender){};
+    virtual void unload();
+    virtual bool getLoaded();
+    virtual void loadCcbiFile(const std::string& filename, bool froceLoad = false);
+    CCNode* getCCNodeFromCCB(const std::string& variablename);
+    CCSprite* getCCSpriteFromCCB(const std::string& variablename);
+    CCLabelBMFont* getCCLabelBMFontFromCCB(const std::string& variablename);
+    CCLabelTTF* getCCLabelTTFFromCCB(const std::string& variablename);
+
+    CCMenuItemImage* getCCMenuItemImageFromCCB(const std::string& variablename);
+    CCScrollView* getCCScrollViewFromCCB(const std::string& variablename);
+    CCMenuItemCCBFile* getCCMenuItemCCBFileFromCCB(const std::string& variablename);
+};

@@ -1,0 +1,119 @@
+/* 
+  Localizable.strings
+
+  Created by hc on 13-12-12.
+  Copyright (c) 2013年 hutuo. All rights reserved.
+*/
+/* uialert 相关 */
+"notice" = "Notice Friendly";
+"cancel" = "Cancel";
+"ok" = "Confirm";
+"notice_changeuser"             = "Switch program within the user to restart the game!";
+"notice_restart"                = "Programs within the cancellation need to restart the game!";
+"notice_bindingok"              = "Account binding success!";
+"notice_modify_password_ok"     = "Password changed success!";
+"notice_init_failed"            = "initing Fially！";
+"notice_sign_error"             = "Signature error！";
+"notice_alipay_notinstall"      = "You haven't pay pay treasure to be installed quickly, please install.";
+"notice_username_toolong"       = "Username cannot be more than 12 characters!";
+"notice_username_tooshoot"      = "Username may not be less than 6 characters.";
+"notice_password_length"        = "Password must be 6 to 12 characters!";
+"notice_email_toolong"          = "Email is not greater than 64 characters!";
+"notice_username_ilegl"         = "Username contains illegal characters.";
+"notice_password_ilegl"         = "Password contains illegal characters!";
+"notice_email_ilegl"            = "E-Mail format illegal!";
+
+/*订单相关*/
+
+"order_faild"           = "Order payment failure";
+"order_success"         = "Purchase successed";
+"order_exception"       = "Purchase abnormal";
+"order_wait_result"     = "Waiting for the results to pay";
+"buy_faild"             = "Purchase failed";
+
+/***GameCenter 登陆所需***/
+"GCIDTip" = "You have logged into a new Game Center account. Would you like to create a new account and start from scratch?";
+"GCChangeUserTip" = "This Game Center ID is already linked to another account. Do you want to switch to that account?";
+"TipGameCenter" = "Login Checking, please make sure your GameCenter has logged in!";
+/**AlterView**/
+"Close" = "CLOSE";
+
+/**R2关于FB的弹出提示**/
+"R2FBTips" = "Essa conta do Facebook já está associada à outra conta de jogo.";
+"R2FBRelinkTip" = "Falha na conexão. Tente de novo.";
+"R2FBOK" = "OK";
+/**R2-GC 登陆**/
+"R2_GC_NoLinkedInfo" = "You have logged into a new Game Center account. Would you like to create a new account and start from scratch?";
+"R2_GC_LinkedInfo" = "This Game Center ID is already linked to another account. Do you want to switch to that account?";
+"R2_OK" = "OK";
+"R2_Cancel" = "Cancel";
+
+
+/*界面相关*/
+
+"account"       = "账号";
+"zuanshi"       = "钻石";
+"defualt"       = "默认";
+"welcome"       = "欢迎来到全民世界！";
+"register"      = "注册";
+"close"         = "Close";
+"binding"       = "绑定";
+"back"          = "返回";
+"finish"        = "完成";
+"register_bind" = "注册绑定";
+"email_optional"= "选填";
+"viewtitle"     = "小熊工作室";
+
+/*   selfpayview.xib */
+"payview_laybel1" = "充值金额：              元";
+"payview_laybel2" = "充值游戏：全民挂机";
+"payview_laybel3" = "选择充值方式";
+"payview_laybel4" = "网页支付";
+"payview_laybel5" = "快捷支付";
+"payview_laybel6" = "财付通";
+"payview_laybel7" = "充值卡";
+
+/*   loginview.xib  */
+
+"loginview_login"           = "登录";
+"loginview_account"         = "账号:";
+"loginview_password"        = "密码:";
+"loginview_register"        = "注册:";
+"loginview_forget_password" = "忘记密码?";
+"loginview_find_password"   = "点击这里找回";
+
+/*  webview.xib  */
+
+/*  registerview.xib  */
+
+"registerview_register"     = "注册";
+"registerview_account"      = "账号:";
+"registerview_password"     = "密码:";
+"registerview_email"        = "邮箱:";
+"registerview_email_cint"   = "选填";
+"registerview_notice"       = "你可以输入字母/数字作为通行证账号，长度不超过12个字符。";
+
+/* accountmanager.xib  */
+
+"account_title"         = "通行证管理";
+"account_logout"        = "注销";
+"account_center"        = "账户中心";
+"account_ourwebsite"    = "游戏官网";
+"account_switchuser"    = "切换用户";
+"account_feedback"      = "建议反馈";
+
+/*  accountcenter.xib  */
+"accountcenter_title"           = "账户中心";
+"accountcenter_account"         = "账号：";
+"accountcenter_change_password" = "修改密码";
+
+/*  changepassword.xib */
+"changepsd_title"   = "修改密码";
+"changepsd_oldpsd"  = "原密码：";
+"changepsd_newpsd"  = "新密码：";
+
+/*  userlistview.xib */
+
+"userlist_title"    = "已有账号登录";
+"userlist_cancle"   = "取消";
+

@@ -1,0 +1,119 @@
+/*
+ Localizable.strings
+ com4lovesSDK
+ 
+ Created by ljc on 13-12-12.
+ Copyright (c) 2013年 com4loves. All rights reserved.
+ */
+/* uialert 相关 */
+"notice" = "注意して";
+"cancel" = "キャンセル";
+"ok" = "確定";
+"notice_changeuser"             = "ユーザーの切り替えなければならない手続きに再開されなければならないゲーム!";
+"notice_restart"                = "手続きを再開しなければならないゲーム内ログオフ！";
+"notice_bindingok"              = "アカウント绑定成功!";
+"notice_modify_password_ok"     = "パスワードを修正するのに成功した";
+"notice_init_failed"            = "しょきか失败します!";
+"notice_sign_error"             = "签名誤った!";
+"notice_alipay_notinstall"      = "あなたはまだインストール支付宝ショートカット支給先に適用する。";
+"notice_username_toolong"       = "ユーザー名を超えてはならない12キャラクタ!";
+"notice_username_tooshoot"      = "ユーザー名より6キャラクタができない!";
+"notice_password_length"        = "暗証番号は6 ~ 12キャラクタ!";
+"notice_email_toolong"          = "メールより64キャラクタ!できない!";
+"notice_username_ilegl"         = "ユーザー名が含まれていた不法・キャラクタ!";
+"notice_password_ilegl"         = "暗証番号が含まれていた不法・キャラクタ!";
+"notice_email_ilegl"            = "郵便箱フォーマットの不法!";
+
+/*订单相关*/
+
+"order_faild"           = "受注支給失敗";
+"order_success"         = "支給するのに成功した";
+"order_exception"       = "支給異常";
+"order_wait_result"     = "支払いの結果を待って";
+"buy_faild"             = "失败を購入し";
+
+/***GameCenter 登陆所需***/
+"GCIDTip" = "GameCenter ID すでに別のアカウントのリンク。あなたはこの口座に切り替えるか？";
+"GCChangeUserTip" = "で、GameCenter持ってこそ、GameCenter ID 切り開いてくれるアナライズシステム哦!";
+"TipGameCenter" = "登録点検している、GameCenterアカウントの登録が必要!";
+/**AlterView**/
+"Close" = "CLOSE";
+
+/**R2关于FB的弹出提示**/
+"R2FBTips" = "これは绑定フェイスブック口座はもう一つのゲームだ。";
+"R2FBRelinkTip" = "ネットワークの中断や他のミスで、もう一度試みだ!";
+"R2FBOK" = "確定";
+/**R2-GC 登陆**/
+"R2_GC_NoLinkedInfo" = "You have logged into a new Game Center account. Would you like to create a new account and start from scratch?";
+"R2_GC_LinkedInfo" = "This Game Center ID is already linked to another account. Do you want to switch to that account?";
+"R2_OK" = "OK";
+"R2_Cancel" = "Cancel";
+
+/*界面相关*/
+
+"account"       = "账号";
+"zuanshi"       = "钻石";
+"defualt"       = "默认";
+"welcome"       = "欢迎来到全民世界！";
+"register"      = "注册";
+"close"         = "キャンセル";
+"binding"       = "绑定";
+"back"          = "返回";
+"finish"        = "完成";
+"register_bind" = "注册绑定";
+"email_optional"= "选填";
+"viewtitle"     = "小熊工作室";
+
+/*   selfpayview.xib */
+"payview_laybel1" = "充值金额：              元";
+"payview_laybel2" = "充值游戏：全民挂机";
+"payview_laybel3" = "选择充值方式";
+"payview_laybel4" = "网页支付";
+"payview_laybel5" = "快捷支付";
+"payview_laybel6" = "财付通";
+"payview_laybel7" = "充值卡";
+
+/*   loginview.xib  */
+
+"loginview_login"           = "登录";
+"loginview_account"         = "账号:";
+"loginview_password"        = "密码:";
+"loginview_register"        = "注册:";
+"loginview_forget_password" = "忘记密码?";
+"loginview_find_password"   = "点击这里找回";
+
+/*  webview.xib  */
+
+/*  registerview.xib  */
+
+"registerview_register"     = "フィードバックを提案した";
+"registerview_account"      = "账号:";
+"registerview_password"     = "密码:";
+"registerview_email"        = "邮箱:";
+"registerview_email_cint"   = "选填";
+"registerview_notice"       = "你可以输入字母/数字作为通行证账号，长度不超过12个字符。";
+
+/* accountmanager.xib  */
+
+"account_title"         = "通行証管理";
+"account_logout"        = "ログオフ";
+"account_center"        = "口座の中心";
+"account_ourwebsite"    = "ゲームのhp";
+"account_switchuser"    = "ユーザーの切り替え";
+"account_feedback"      = "フィードバックを提案した";
+
+/*  accountcenter.xib  */
+"accountcenter_title"           = "口座の中心";
+"accountcenter_account"         = "口座:";
+"accountcenter_change_password" = "改正暗証番号";
+
+/*  changepassword.xib */
+"changepsd_title"   = "改正暗証番号";
+"changepsd_oldpsd"  = "原暗証番号:";
+"changepsd_newpsd"  = "新パスワード:";
+
+/*  userlistview.xib */
+
+"userlist_title"    = "既存口座に登录されてい";
+"userlist_cancle"   = "キャンセル";
+

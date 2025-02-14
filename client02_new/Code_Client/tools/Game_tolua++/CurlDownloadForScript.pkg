@@ -1,0 +1,13 @@
+$#include "CurlDownloadForScript.h"
+$#include "CurlDownload.h"
+
+class CurlDownloadScriptListener : public CCObject,public CurlDownload::DownloadListener
+{
+public:
+	CurlDownloadScriptListener(LUA_TABLE nHandler);
+	virtual ~CurlDownloadScriptListener();
+
+	std::string getFileName(){ return mFileName; }
+	std::string getUrl(){ return mUrl; }
+	unsigned long getLoadSize(){ return mLoadSize; }
+};

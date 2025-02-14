@@ -1,0 +1,7 @@
+$#include "ScriptMathToLua.h"
+
+class ScriptMathToLua 
+{
+	static void showWXChat();
+	static void setSwallowsTouches(CCScrollView* _scroll);
+};

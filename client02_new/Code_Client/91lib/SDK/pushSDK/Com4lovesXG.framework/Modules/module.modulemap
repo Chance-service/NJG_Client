@@ -1,0 +1,6 @@
+framework module Com4lovesXG {
+  umbrella header "Com4lovesXG.h"
+
+  export *
+  module * { export * }
+}

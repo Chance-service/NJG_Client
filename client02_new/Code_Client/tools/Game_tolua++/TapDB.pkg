@@ -1,0 +1,12 @@
+$#include "TapDB.h"
+
+class TapDB
+{
+    static void setUser(const char *userId,int userType, int userSex,int userAge,const char *userName);
+    static void setLevel(int level);
+    static void setServer(const char *server);
+    static void onChargeRequest(const char *orderId,const char *product,long amount,const char *currencyType,long virtualCurrencyAmount,const char *payment);
+    static void onChargeSuccess(const char *orderId);
+    static void onChargeFail(const char *orderId,const char *reason);
+    static void onChargeOnlySuccess(const char *orderId,const char *product,long amount,const char *currencyType,long virtualCurrencyAmount,const char *payment);
+};

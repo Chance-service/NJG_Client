@@ -1,0 +1,749 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="win32">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="states">
+      <UniqueIdentifier>{e10714df-a6c9-461c-a3d5-315bf8b48bd5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ui">
+      <UniqueIdentifier>{06388e16-ebe3-4fab-bb65-aacdcc8b9a79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Protobuf">
+      <UniqueIdentifier>{667fd488-a379-46e9-905c-41b61c7becd5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="general">
+      <UniqueIdentifier>{7f6960a2-a137-46cf-a09e-49579fa4c5da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes">
+      <UniqueIdentifier>{07afe4be-9937-4d5c-a298-87627e819c23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes\Utility">
+      <UniqueIdentifier>{01e4ea41-afe9-4503-9772-a1f25e3f6384}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="luabind">
+      <UniqueIdentifier>{2aa70e86-a1b8-4846-9814-7077c3013cd7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes\SettingsPage">
+      <UniqueIdentifier>{a3b15815-c29a-4785-b882-d1f531883041}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="general\LightSweep">
+      <UniqueIdentifier>{863373cf-2bb0-459d-bb19-dd673d47769b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes\MainScene">
+      <UniqueIdentifier>{5b8c2fbe-c60b-4a11-944b-2f0bc10f05f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes\LoadingScene">
+      <UniqueIdentifier>{bd362d5a-232e-41bd-ad1a-f312a9d4330d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes\Recharge">
+      <UniqueIdentifier>{d180cdb2-c6d5-4442-b9a3-cf0e053cf4cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes\Base">
+      <UniqueIdentifier>{0cdbabde-37ed-4b1f-89e3-e4f377b2d78d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes\LogoFrame">
+      <UniqueIdentifier>{cd0062c4-1c53-4518-b0a2-268657096d58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes\DemoTest">
+      <UniqueIdentifier>{7746b6fd-cc7a-43cb-a5c6-f38a903306af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="richText">
+      <UniqueIdentifier>{9b8e4336-5091-4ec6-ac6a-59da6b25b6f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="luabind\Logical">
+      <UniqueIdentifier>{20120d7f-5df0-41db-b869-a5d692d778af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="android">
+      <UniqueIdentifier>{1d2430fb-1231-431f-a4b7-8357df9ca5f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="general\Classes">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Scenes\UpdateVersion">
+      <UniqueIdentifier>{3bacce62-95ba-4e19-8321-afd5a8d10d87}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Classes\AppDelegate.cpp">
+      <Filter>general\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamePrecedure.cpp">
+      <Filter>general\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameConsts.cpp">
+      <Filter>general\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\classes\AsyncSprite.cpp">
+      <Filter>general</Filter>
+    </ClCompile>
+    <ClCompile Include="..\classes\CCBContainer.cpp">
+      <Filter>general</Filter>
+    </ClCompile>
+    <ClCompile Include="..\classes\CCBManager.cpp">
+      <Filter>general</Filter>
+    </ClCompile>
+    <ClCompile Include="..\classes\CharacterConsts.cpp">
+      <Filter>general\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\classes\GamePackets.cpp">
+      <Filter>general\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\DataTableManager.cpp">
+      <Filter>general\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\ServerDateManager.cpp">
+      <Filter>general\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\PackageLogic.cpp">
+      <Filter>luabind\Logical</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\MessageBoxPage.cpp">
+      <Filter>Scenes\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\BlackBoard.cpp">
+      <Filter>general\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\AnnouncementPage.cpp">
+      <Filter>Scenes\SettingsPage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\LoginPacket.cpp">
+      <Filter>general\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Gamelua.cpp">
+      <Filter>luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\pb.cpp">
+      <Filter>luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="..\classes\GameMessages.cpp">
+      <Filter>general\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\classes\MessageManager.cpp">
+      <Filter>general</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\CCBScriptContainer.cpp">
+      <Filter>general</Filter>
+    </ClCompile>
+    <ClCompile Include="..\classes\RestrictedWord.cpp">
+      <Filter>general</Filter>
+    </ClCompile>
+    <ClCompile Include="..\classes\SpriteShader.cpp">
+      <Filter>general</Filter>
+    </ClCompile>
+    <ClCompile Include="..\classes\NumberChangeAction.cpp">
+      <Filter>general</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\CDKeyMsgPage.cpp">
+      <Filter>Scenes\SettingsPage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\ActiveCodePage.cpp">
+      <Filter>Scenes\SettingsPage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\ScriptContentBase.cpp">
+      <Filter>general</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\ResManager.cpp">
+      <Filter>general\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\classes\GameNotification.cpp">
+      <Filter>general</Filter>
+    </ClCompile>
+    <ClCompile Include="..\classes\SoundManager.cpp">
+      <Filter>general</Filter>
+    </ClCompile>
+    <ClCompile Include="..\classes\TimeCalculator.cpp">
+      <Filter>general</Filter>
+    </ClCompile>
+    <ClCompile Include="..\classes\waitingManager.cpp">
+      <Filter>general</Filter>
+    </ClCompile>
+    <ClCompile Include="..\classes\GamePacketManager.cpp">
+      <Filter>general\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\ConfirmPage.cpp">
+      <Filter>Scenes\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\NoticeBox.cpp">
+      <Filter>Scenes\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\StrokeSprite.cpp">
+      <Filter>general</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\StrokeSample.cpp">
+      <Filter>general</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\LightSweepSprite.cpp">
+      <Filter>general\LightSweep</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\CParticleFlow.cpp">
+      <Filter>general\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\AnimMgr.cpp">
+      <Filter>general\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GraySprite.cpp">
+      <Filter>general</Filter>
+    </ClCompile>
+    <ClCompile Include="..\classes\MainFrame.cpp">
+      <Filter>Scenes\MainScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\LoadingFrame.cpp">
+      <Filter>Scenes\LoadingScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Popup1stPayTipPage.cpp">
+      <Filter>Scenes\Recharge</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\ScriptMathToLua.cpp">
+      <Filter>Scenes\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\buyingCheck.cpp">
+      <Filter>Scenes\Recharge</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\AnnouncementNewPage.cpp">
+      <Filter>Scenes\SettingsPage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\CoverSprite.cpp">
+      <Filter>general</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\LoadingAniPage.cpp">
+      <Filter>Scenes\LoadingScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\BasePage.cpp">
+      <Filter>general</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\LogoFrame.cpp">
+      <Filter>Scenes\LogoFrame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\CShiftToAction.cpp">
+      <Filter>general</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\RadialBlurSprite.cpp">
+      <Filter>general</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\BlurSprite.cpp">
+      <Filter>general\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\CCBLuaContainer.cpp">
+      <Filter>general</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\DeviceCfgMgr.cpp">
+      <Filter>general\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamePlatformInfo.cpp">
+      <Filter>general</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\ArmatureContainer.cpp">
+      <Filter>general\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\CCRichLabelTTF.cpp">
+      <Filter>richText</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\CCTagedRichTTF.cpp">
+      <Filter>richText</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\TestHTMLPopup.cpp">
+      <Filter>Scenes\DemoTest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\AboutPage.cpp">
+      <Filter>general\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Protobuf\Attribute.pb.cc">
+      <Filter>Protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Protobuf\Const.pb.cc">
+      <Filter>Protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Protobuf\Consume.pb.cc">
+      <Filter>Protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Protobuf\Equip.pb.cc">
+      <Filter>Protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Protobuf\HP.pb.cc">
+      <Filter>Protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Protobuf\Item.pb.cc">
+      <Filter>Protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Protobuf\Login.pb.cc">
+      <Filter>Protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Protobuf\Player.pb.cc">
+      <Filter>Protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Protobuf\Reward.pb.cc">
+      <Filter>Protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Protobuf\Skill.pb.cc">
+      <Filter>Protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Protobuf\Status.pb.cc">
+      <Filter>Protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Protobuf\SysProtocol.pb.cc">
+      <Filter>Protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\BulletinManager.cpp">
+      <Filter>general\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\AnnouncePage.cpp">
+      <Filter>general\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SpineContainer.cpp">
+      <Filter>general</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\HttpImg.cpp">
+      <Filter>general\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\LibPlatformForScript.cpp">
+      <Filter>general\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\proj.android.fullbuild\jni\BulletinBoardPage.cpp">
+      <Filter>android</Filter>
+    </ClCompile>
+    <ClCompile Include="..\proj.android.fullbuild\jni\GameMain.cpp">
+      <Filter>android</Filter>
+    </ClCompile>
+    <ClCompile Include="..\proj.android.fullbuild\jni\ScreenShotJni.cpp">
+      <Filter>android</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Code_Core\cocos2dx\platform\android\jni\Java_org_cocos2dx_lib_Cocos2dxRenderer.cpp">
+      <Filter>android</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\fpconv.c">
+      <Filter>luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\lua_cjson.c">
+      <Filter>luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\strbuf.c">
+      <Filter>luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\FeedBackPage.cpp">
+      <Filter>general\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\MessageHintPage.cpp">
+      <Filter>general\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\CurlDownloadForScript.cpp">
+      <Filter>general\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\ChangeUserPage.cpp">
+      <Filter>general\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\UpateVersion.cpp">
+      <Filter>Scenes\UpdateVersion</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\LogReport.cpp">
+      <Filter>Scenes\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Code_Core\cocos2dx\platform\android\jni\TouchesJni.cpp">
+      <Filter>android</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\LoginUserPage.cpp">
+      <Filter>general\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\LoginBCPage.cpp">
+      <Filter>general\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Lua_HttpsBridge.cpp">
+      <Filter>general\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\coresdk\APIUtil.cpp">
+      <Filter>general\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\coresdk\ConfigLoader.cpp">
+      <Filter>general\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\coresdk\Coresdk.cpp">
+      <Filter>general\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\coresdk\DeepLink.cpp">
+      <Filter>general\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\coresdk\DeepLinkAndroidBridge.cpp">
+      <Filter>general\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\coresdk\DeepLinkWin32Bridge.cpp">
+      <Filter>general\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\coresdk\util.cpp">
+      <Filter>general\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\coresdk\webapi.cpp">
+      <Filter>general\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\coresdk\WebRequest.cpp">
+      <Filter>general\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\H365API.cpp">
+      <Filter>general\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Lua_EcchiGamerSDKBridge.cpp">
+      <Filter>general\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\TapDB.cpp">
+      <Filter>general\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\BCWebRequest.cpp">
+      <Filter>general\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\AdjustManager.cpp">
+      <Filter>general\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\LangSettingPage.cpp">
+      <Filter>general\Classes</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Classes\AppDelegate.h">
+      <Filter>general\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="main.h">
+      <Filter>win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamePrecedure.h">
+      <Filter>general\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameConsts.h">
+      <Filter>general\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\MessageManager.h">
+      <Filter>general</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\StateMachine.h">
+      <Filter>general</Filter>
+    </ClInclude>
+    <ClInclude Include="..\classes\AsyncSprite.h">
+      <Filter>general</Filter>
+    </ClInclude>
+    <ClInclude Include="..\classes\CCBContainer.h">
+      <Filter>general</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\BasePage.h">
+      <Filter>general</Filter>
+    </ClInclude>
+    <ClInclude Include="..\classes\CCBManager.h">
+      <Filter>general</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMessages.h">
+      <Filter>general\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\classes\GamePackets.h">
+      <Filter>general\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\classes\CharacterConsts.h">
+      <Filter>general\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\DataTableManager.h">
+      <Filter>general\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ServerDateManager.h">
+      <Filter>general\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\PackageLogic.h">
+      <Filter>luabind\Logical</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\BlackBoard.h">
+      <Filter>general\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\MessageBoxPage.h">
+      <Filter>Scenes\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\AnnouncementPage.h">
+      <Filter>Scenes\SettingsPage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\STLUtility.h">
+      <Filter>general</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\LoginPacket.h">
+      <Filter>general\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Gamelua.h">
+      <Filter>luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\classes\pb.h">
+      <Filter>luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\CCBScriptContainer.h">
+      <Filter>general</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\CDKeyMsgPage.h">
+      <Filter>Scenes\SettingsPage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\classes\RestrictedWord.h">
+      <Filter>general</Filter>
+    </ClInclude>
+    <ClInclude Include="..\classes\NumberChangeAction.h">
+      <Filter>general</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ActiveCodePage.h">
+      <Filter>Scenes\SettingsPage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ScriptContentBase.h">
+      <Filter>general</Filter>
+    </ClInclude>
+    <ClInclude Include="..\classes\GameNotification.h">
+      <Filter>general</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ResManager.h">
+      <Filter>general\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\classes\SoundManager.h">
+      <Filter>general</Filter>
+    </ClInclude>
+    <ClInclude Include="..\classes\TimeCalculator.h">
+      <Filter>general</Filter>
+    </ClInclude>
+    <ClInclude Include="..\classes\waitingManager.h">
+      <Filter>general</Filter>
+    </ClInclude>
+    <ClInclude Include="..\classes\GamePacketManager.h">
+      <Filter>general\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ConfirmPage.h">
+      <Filter>Scenes\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\NoticeBox.h">
+      <Filter>Scenes\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\StrokeSprite.h">
+      <Filter>general</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\StrokeSample.h">
+      <Filter>general</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\LightSweepSprite.h">
+      <Filter>general\LightSweep</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameTypedef.h">
+      <Filter>general\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\AnimMgr.h">
+      <Filter>general\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GraySprite.h">
+      <Filter>general</Filter>
+    </ClInclude>
+    <ClInclude Include="..\classes\MainFrame.h">
+      <Filter>Scenes\MainScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\LoadingFrame.h">
+      <Filter>Scenes\LoadingScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Popup1stPayTipPage.h">
+      <Filter>Scenes\Recharge</Filter>
+    </ClInclude>
+    <ClInclude Include="..\classes\CustomPage.h">
+      <Filter>Scenes\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ContentBase.h">
+      <Filter>Scenes\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ScriptMathToLua.h">
+      <Filter>Scenes\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\buyingCheck.h">
+      <Filter>Scenes\Recharge</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\AnnouncementNewPage.h">
+      <Filter>Scenes\SettingsPage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\CoverSprite.h">
+      <Filter>general</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\LoadingAniPage.h">
+      <Filter>Scenes\LoadingScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\LogoFrame.h">
+      <Filter>Scenes\LogoFrame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\CShiftToAction.h">
+      <Filter>general</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RadialBlurSprite.h">
+      <Filter>general</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\BlurSprite.h">
+      <Filter>general\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\CCBLuaContainer.h">
+      <Filter>general</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\DeviceCfgMgr.h">
+      <Filter>general\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamePlatformInfo.h">
+      <Filter>general</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\CParticleFlow.h">
+      <Filter>general</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ArmatureContainer.h">
+      <Filter>general\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\CCRichLabelTTF.h">
+      <Filter>richText</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\CCTagedRichTTF.h">
+      <Filter>richText</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\TestHTMLPopup.h">
+      <Filter>Scenes\DemoTest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\AboutPage.h">
+      <Filter>win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\classes\SpriteShader.h">
+      <Filter>win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Protobuf\Attribute.pb.h">
+      <Filter>Protobuf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Protobuf\Const.pb.h">
+      <Filter>Protobuf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Protobuf\Consume.pb.h">
+      <Filter>Protobuf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Protobuf\Equip.pb.h">
+      <Filter>Protobuf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Protobuf\HP.pb.h">
+      <Filter>Protobuf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Protobuf\Item.pb.h">
+      <Filter>Protobuf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Protobuf\Login.pb.h">
+      <Filter>Protobuf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Protobuf\Player.pb.h">
+      <Filter>Protobuf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Protobuf\Reward.pb.h">
+      <Filter>Protobuf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Protobuf\Skill.pb.h">
+      <Filter>Protobuf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Protobuf\Status.pb.h">
+      <Filter>Protobuf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Protobuf\SysProtocol.pb.h">
+      <Filter>Protobuf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\BulletinManager.h">
+      <Filter>general\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\AnnouncePage.h">
+      <Filter>general\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SpineContainer.h">
+      <Filter>general</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\HttpImg.h">
+      <Filter>general\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\LibPlatformForScript.h">
+      <Filter>general\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\fpconv.h">
+      <Filter>luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\lua_cjson.h">
+      <Filter>luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\strbuf.h">
+      <Filter>luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\FeedBackPage.h">
+      <Filter>general\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\MessageHintPage.h">
+      <Filter>general\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\CurlDownloadForScript.h">
+      <Filter>general\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ChangeUserPage.h">
+      <Filter>general\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\UpdateVersion.h">
+      <Filter>Scenes\UpdateVersion</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\LogReport.h">
+      <Filter>Scenes\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\LoginUserPage.h">
+      <Filter>general\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\LoginBCPage.h">
+      <Filter>general\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Lua_HttpsBridge.h">
+      <Filter>general\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\coresdk\APIUtil.h">
+      <Filter>win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\coresdk\Config.h">
+      <Filter>win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\coresdk\ConfigLoader.h">
+      <Filter>win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\coresdk\Coresdk.h">
+      <Filter>win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\coresdk\DeepLink.h">
+      <Filter>win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\coresdk\DeepLinkAndroidBridge.h">
+      <Filter>win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\coresdk\DeepLinkWin32Bridge.h">
+      <Filter>win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\coresdk\Result.h">
+      <Filter>win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\coresdk\util.h">
+      <Filter>win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\coresdk\webapi.h">
+      <Filter>win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\coresdk\WebRequest.h">
+      <Filter>win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\H365API.h">
+      <Filter>win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\TapDB.h">
+      <Filter>win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\BCWebRequest.h">
+      <Filter>general\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\AdjustManager.h">
+      <Filter>general\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\LangSettingPage.h">
+      <Filter>general\Classes</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Game.rc" />
+  </ItemGroup>
+</Project>

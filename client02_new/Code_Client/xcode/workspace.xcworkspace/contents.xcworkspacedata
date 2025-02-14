@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:../../Code_iOS/TalkingData/TalkingData/TalkingData.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:../../Code_iOS/libOS/libOS/libOS.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Game/Pods/Pods.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:../../Code_iOS/com4lovesSDK/com4lovesSDK.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:../../Code_iOS/ShareSDKToDifPlatform/ShareSDKToDifPlatform.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:../../Code_iOS/lib91/lib91/lib91.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:../../Code_Core/cocos2dx/proj.ios/cocos2dx.xcodeproj">
+   </FileRef>
+   <Group
+      location = "container:"
+      name = "core">
+      <FileRef
+         location = "group:../../Code_Core/core/proj.ios/core/core.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:../../Code_Core/protobuf-2.5.0rc1/proj.ios/protobuf/protobuf.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:../../Code_Core/jsoncpp-src-0.5.0/makefiles/iOS/JsonCpp/JsonCpp.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:../../Code_Core/cocos2dx/proj.ios/cocos2dx.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:../../Code_Core/scripting/lua/proj.ios/liblua/liblua.xcodeproj">
+      </FileRef>
+   </Group>
+   <FileRef
+      location = "container:Game/Game.xcodeproj">
+   </FileRef>
+</Workspace>

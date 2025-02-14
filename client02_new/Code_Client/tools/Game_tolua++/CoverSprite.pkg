@@ -1,0 +1,13 @@
+$#include "CoverSprite.h"
+
+
+class CoverSprite : public CCSprite
+{
+public:
+	CoverSprite();
+    ~CoverSprite();
+    bool initWithTexture(CCTexture2D* texture,CCTexture2D* targetTex, const CCRect& rect);
+    void draw();
+    void initProgram();    
+};
+

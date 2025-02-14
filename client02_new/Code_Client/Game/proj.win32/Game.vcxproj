@@ -1,0 +1,543 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="NsightTegraProject">
+    <NsightTegraProjectRevisionNumber>5</NsightTegraProjectRevisionNumber>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Tegra-Android">
+      <Configuration>Debug</Configuration>
+      <Platform>Tegra-Android</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Tegra-Android">
+      <Configuration>Release</Configuration>
+      <Platform>Tegra-Android</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{072C746E-FCD2-4F01-99DD-EDA88DFECC0E}</ProjectGuid>
+    <RootNamespace>Game</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectName>Game</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v100</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Tegra-Android'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <NdkToolchainVersion>gcc-4.8</NdkToolchainVersion>
+    <AndroidMinAPI>android-9</AndroidMinAPI>
+    <AndroidTargetAPI>android-17</AndroidTargetAPI>
+    <AndroidStripLibrary>false</AndroidStripLibrary>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Tegra-Android'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <AndroidTargetAPI>android-17</AndroidTargetAPI>
+    <AndroidMaxAPI />
+    <NdkToolchainVersion>gcc-4.8</NdkToolchainVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Tegra-Android'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Tegra-Android'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)build\$(Configuration).win32\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Tegra-Android'">$(SolutionDir)build\$(Configuration).android\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)build\$(Configuration).win32.intermediate\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Tegra-Android'">$(SolutionDir)build\$(Configuration).android.intermediate\$(ProjectName)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Tegra-Android'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)build\$(Configuration).win32\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Tegra-Android'">$(SolutionDir)build\$(Configuration).android\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)build\$(Configuration).win32.intermediate\$(ProjectName)</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Tegra-Android'">$(SolutionDir)build\$(Configuration).android.intermediate\$(ProjectName)</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Tegra-Android'">false</LinkIncremental>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|Tegra-Android'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|Tegra-Android'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|Tegra-Android'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|Tegra-Android'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Tegra-Android'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Tegra-Android'" />
+    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</EmbedManifest>
+    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Tegra-Android'">false</EmbedManifest>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Tegra-Android'">libGjwow</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Tegra-Android'">libGjwow</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ExecutablePath>C:\source\BC_Game\client02_new\Resource_bc;$(ExecutablePath)</ExecutablePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\extensions;$(SolutionDir)include\extensions;$(SolutionDir)include\CocosDenshion;$(SolutionDir)include\cocos2dx\kazmath\include;$(SolutionDir)include\protobuf;$(SolutionDir)include\lua\tolua;$(SolutionDir)..\Code_Core\external\openssl\win32\include;$(SolutionDir)include\jsoncpp;$(SolutionDir)include\lua\lua;$(SolutionDir)include\lua\cocos2dx_support;$(SolutionDir)include\core;$(SolutionDir)include\cocos2dx\platform\third_party\win32;$(SolutionDir)include\cocos2dx\platform;$(SolutionDir)include\cocos2dx\platform\third_party\win32\OGLES;$(SolutionDir)include\cocos2dx\platform\win32;$(SolutionDir)include\cocos2dx\include;$(SolutionDir)include\cocos2dx;$(SolutionDir)tinyxml;$(SolutionDir)extensions;$(SolutionDir)libOS\include;$(SolutionDir)91lib\include;$(SolutionDir)include\cocos2dx\support\zip_support;$(SolutionDir)com4lovesSDK\com4lovesSDK;..\Platform;..\Classes;..\Protobuf;$(SolutionDir)scripting\lua\cocos2dx_support;G:\Work_Project\Client\Code_Core\scripting\lua\luajit\include;$(SolutionDir)scripting\lua\tolua;$(SolutionDir)include\TalkingData\include;$(SolutionDir)..\Code_Core\extensions\cells;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;COCOS2D_DEBUG=1;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <DisableSpecificWarnings>4267;4251;4244;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <EnablePREfast>false</EnablePREfast>
+      <ForcedIncludeFiles>winsock2.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>Ws2_32.lib;libExtensions.lib;opengl32.lib;glew32.lib;libcocos2d.lib;json.lib;libCocosDenshion.lib;libprotobuf.lib;libcurl_imp.lib;ws2_32.lib;91lib.lib;com4loves.lib;libOS.lib;winmm.lib;libzlib.lib;core.lib;pthreadVCE2.lib;libfreetype2.lib;TalkingData.lib;liblua.lib;libcrypto.lib;libssl.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(ProjectName).exe</OutputFile>
+      <AdditionalLibraryDirectories>$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+      <Profile>true</Profile>
+      <ShowProgress>NotSet</ShowProgress>
+      <AdditionalOptions>/OPT:NOREF %(AdditionalOptions)</AdditionalOptions>
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy /Y /Q "$(OutDir)*.dll" "$(LocalDebuggerWorkingDirectory)"\*.dll
+xcopy /Y /Q "$(OutDir)*.exe" "$(LocalDebuggerWorkingDirectory)"\*.exe
+xcopy /Y /Q "$(OutDir)*.pdb" "$(LocalDebuggerWorkingDirectory)"\*.pdb</Command>
+    </PostBuildEvent>
+    <PreBuildEvent>
+      <Message>WinSize 512 768 360 640</Message>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Tegra-Android'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(SolutionDir)include\jsoncpp;$(SolutionDir)include\extensions;$(SolutionDir)include\CocosDenshion;$(SolutionDir)include\cocos2dx\kazmath\include;$(SolutionDir)include\protobuf;$(SolutionDir)include\lua\tolua;$(SolutionDir)include\lua\lua;$(SolutionDir)include\lua\cocos2dx_support;$(SolutionDir)include\core;$(SolutionDir)include\cocos2dx\platform\third_party\android\prebuilt\libcurl\include;$(SolutionDir)include\cocos2dx\platform;$(SolutionDir)include\cocos2dx\platform\android\jni;$(SolutionDir)include\cocos2dx\platform\android;$(SolutionDir)include\cocos2dx\include;$(SolutionDir)include\cocos2dx;$(SolutionDir)tinyxml;$(SolutionDir)extensions;$(SolutionDir)libOS\include;$(SolutionDir)91lib\include;$(SolutionDir)com4lovesSDK\com4lovesSDK;..\Platform;..\Classes;..\Protobuf;$(SolutionDir)scripting\lua\cocos2dx_support;$(SolutionDir)scripting\lua\lua;$(SolutionDir)scripting\lua\tolua;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>ANDROID;_DEBUG;COCOS2D_DEBUG=1;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <DisableSpecificWarnings>4267;4251;4244;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <EnablePREfast>false</EnablePREfast>
+      <ForcedIncludeFiles>winsock2.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
+      <GccExceptionHandling>true</GccExceptionHandling>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>liblua;libExtensions;libcocos2d;jsoncpp;libCocosDenshion;libprotobuf;91lib;com4loves;libOS;core;curl;freetype2;jpeg;png;tiff;webp;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalLibraryDirectories>$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <Profile>true</Profile>
+      <ShowProgress>NotSet</ShowProgress>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <AndroidSystemLibs>m;log;gcc;android;GLESv2;dl;z</AndroidSystemLibs>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <PreBuildEvent>
+      <Message>
+      </Message>
+    </PreBuildEvent>
+    <AntBuild>
+      <AntBuildPath>$(SolutionDir)..\Code_Android\workspace\GameAndroid</AntBuildPath>
+      <AndroidManifestLocation>$(SolutionDir)..\Code_Android\workspace\GameAndroid\AndroidManifest.xml</AndroidManifestLocation>
+      <JavaSourceDir>$(SolutionDir)..\Code_Android\workspace\GameAndroid\src</JavaSourceDir>
+      <JarDirectories>$(SolutionDir)..\Code_Android\workspace\GameAndroid\libs</JarDirectories>
+      <AssetsDirectories>$(SolutionDir)..\Code_Android\workspace\GameAndroid\assets</AssetsDirectories>
+      <PreBuildCommand>rm -f $(SolutionDir)../Code_Android/workspace/GameAndroid/libs/annotations.jar</PreBuildCommand>
+      <SkipAntStep>false</SkipAntStep>
+    </AntBuild>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>$(SolutionDir)include\extensions;$(SolutionDir)include\CocosDenshion;$(SolutionDir)include\cocos2dx\kazmath\include;$(SolutionDir)include\protobuf;$(SolutionDir)include\lua\tolua;$(SolutionDir)include\jsoncpp;$(SolutionDir)include\lua\lua;$(SolutionDir)include\lua\cocos2dx_support;$(SolutionDir)include\core;$(SolutionDir)include\cocos2dx\platform\third_party\win32;$(SolutionDir)include\cocos2dx\platform;$(SolutionDir)include\cocos2dx\platform\third_party\win32\OGLES;$(SolutionDir)include\cocos2dx\platform\win32;$(SolutionDir)include\cocos2dx\include;$(SolutionDir)include\cocos2dx;$(SolutionDir)tinyxml;$(SolutionDir)extensions;$(SolutionDir)libOS\include;$(SolutionDir)91lib\include;$(SolutionDir)com4lovesSDK\com4lovesSDK;..\Platform;..\Classes;..\Protobuf;$(SolutionDir)scripting\lua\cocos2dx_support;$(SolutionDir)scripting\lua\lua;$(SolutionDir)scripting\lua\tolua;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;_CLOSE_MUSIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4267;4251;4244;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <ForcedIncludeFiles>winsock2.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>libExtensions.lib;opengl32.lib;glew32.lib;libcocos2d.lib;json.lib;libCocosDenshion.lib;libprotobuf.lib;libcurl_imp.lib;ws2_32.lib;91lib.lib;com4loves.lib;libOS.lib;winmm.lib;liblua.lib;libzlib.lib;core.lib;pthreadVCE2.lib;libfreetype2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(ProjectName).exe</OutputFile>
+      <AdditionalLibraryDirectories>$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>
+      </OptimizeReferences>
+      <EnableCOMDATFolding>
+      </EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy /Y /Q "$(OutDir)*.dll" "$(LocalDebuggerWorkingDirectory)"\*.dll
+xcopy /Y /Q "$(OutDir)*.exe" "$(LocalDebuggerWorkingDirectory)"\*.exe
+xcopy /Y /Q "$(OutDir)*.pdb" "$(LocalDebuggerWorkingDirectory)"\*.pdb</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Tegra-Android'">
+    <ClCompile>
+      <Optimization>Full</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>$(SolutionDir)include\extensions;$(SolutionDir)include\CocosDenshion;$(SolutionDir)include\cocos2dx\kazmath\include;$(SolutionDir)include\protobuf;$(SolutionDir)include\lua\tolua;$(SolutionDir)include\jsoncpp;$(SolutionDir)include\lua\lua;$(SolutionDir)include\lua\cocos2dx_support;$(SolutionDir)include\core;$(SolutionDir)..\Code_Core\cocos2dx\platform\third_party\android\prebuilt\libcurl\include;$(SolutionDir)include\cocos2dx\platform;$(SolutionDir)..\Code_Core\cocos2dx\platform\android\jni;$(SolutionDir)..\Code_Core\cocos2dx\platform\android;$(SolutionDir)include\cocos2dx\include;$(SolutionDir)include\cocos2dx;$(SolutionDir)tinyxml;$(SolutionDir)extensions;$(SolutionDir)libOS\include;$(SolutionDir)91lib\include;$(SolutionDir)com4lovesSDK\com4lovesSDK;..\Platform;..\Classes;..\Protobuf;$(SolutionDir)scripting\lua\cocos2dx_support;$(SolutionDir)scripting\lua\lua;$(SolutionDir)scripting\lua\tolua;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>COCOS2D_DEBUG=1;ANDROID;NDEBUG;_CLOSE_MUSIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4267;4251;4244;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <ForcedIncludeFiles>winsock2.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <GccExceptionHandling>true</GccExceptionHandling>
+      <OptimizationLevel>O0</OptimizationLevel>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>liblua;libExtensions;libcocos2d;jsoncpp;libCocosDenshion;libprotobuf;91lib;com4loves;libOS;core;curl;freetype2;jpeg;png;tiff;webp;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalLibraryDirectories>$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <AndroidSystemLibs>m;log;gcc;android;GLESv2;dl;z</AndroidSystemLibs>
+      <SoName>gjabd.so</SoName>
+      <UseLinker>bfd</UseLinker>
+      <LinkGccLibThumb>true</LinkGccLibThumb>
+      <ReportUndefinedSymbols>true</ReportUndefinedSymbols>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <AntBuild>
+      <JavaSourceDir>$(SolutionDir)..\Code_Android\workspace\GameAndroid\src</JavaSourceDir>
+      <AssetsDirectories>$(SolutionDir)..\Code_Android\workspace\GameAndroid\assets</AssetsDirectories>
+      <JarDirectories>$(SolutionDir)..\Code_Android\workspace\GameAndroid\libs</JarDirectories>
+      <JarDependencies>
+      </JarDependencies>
+      <AndroidManifestLocation>$(SolutionDir)..\Code_Android\workspace\GameAndroid\AndroidManifest.xml</AndroidManifestLocation>
+      <AllowDebuggingInRelease>true</AllowDebuggingInRelease>
+      <AntBuildPath>$(SolutionDir)..\Code_Android\workspace\GameAndroid</AntBuildPath>
+      <SkipAntStep>false</SkipAntStep>
+      <AntBuildType>Release</AntBuildType>
+      <PreBuildCommand>rm -f $(SolutionDir)../Code_Android/workspace/GameAndroid/libs/annotations.jar</PreBuildCommand>
+    </AntBuild>
+    <ProjectReference>
+      <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\Code_Core\cocos2dx\platform\android\jni\Java_org_cocos2dx_lib_Cocos2dxRenderer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Code_Core\cocos2dx\platform\android\jni\TouchesJni.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\Classes\AboutPage.cpp" />
+    <ClCompile Include="..\Classes\ActiveCodePage.cpp" />
+    <ClCompile Include="..\Classes\AdjustManager.cpp" />
+    <ClCompile Include="..\Classes\AnimMgr.cpp" />
+    <ClCompile Include="..\Classes\AnnouncementNewPage.cpp" />
+    <ClCompile Include="..\Classes\AnnouncementPage.cpp" />
+    <ClCompile Include="..\Classes\AnnouncePage.cpp" />
+    <ClCompile Include="..\Classes\AppDelegate.cpp" />
+    <ClCompile Include="..\Classes\ArmatureContainer.cpp" />
+    <ClCompile Include="..\classes\AsyncSprite.cpp" />
+    <ClCompile Include="..\Classes\BasePage.cpp" />
+    <ClCompile Include="..\Classes\BlackBoard.cpp" />
+    <ClCompile Include="..\Classes\BlurSprite.cpp" />
+    <ClCompile Include="..\Classes\BulletinManager.cpp" />
+    <ClCompile Include="..\Classes\buyingCheck.cpp" />
+    <ClCompile Include="..\classes\CCBContainer.cpp" />
+    <ClCompile Include="..\Classes\CCBLuaContainer.cpp" />
+    <ClCompile Include="..\classes\CCBManager.cpp" />
+    <ClCompile Include="..\Classes\CCBScriptContainer.cpp" />
+    <ClCompile Include="..\Classes\CCRichLabelTTF.cpp" />
+    <ClCompile Include="..\Classes\CCTagedRichTTF.cpp" />
+    <ClCompile Include="..\Classes\CDKeyMsgPage.cpp" />
+    <ClCompile Include="..\Classes\ChangeUserPage.cpp" />
+    <ClCompile Include="..\classes\CharacterConsts.cpp" />
+    <ClCompile Include="..\Classes\ConfirmPage.cpp" />
+    <ClCompile Include="..\Classes\coresdk\APIUtil.cpp" />
+    <ClCompile Include="..\Classes\coresdk\ConfigLoader.cpp" />
+    <ClCompile Include="..\Classes\coresdk\Coresdk.cpp" />
+    <ClCompile Include="..\Classes\coresdk\DeepLink.cpp" />
+    <ClCompile Include="..\Classes\coresdk\DeepLinkAndroidBridge.cpp" />
+    <ClCompile Include="..\Classes\coresdk\DeepLinkWin32Bridge.cpp" />
+    <ClCompile Include="..\Classes\coresdk\util.cpp" />
+    <ClCompile Include="..\Classes\coresdk\webapi.cpp" />
+    <ClCompile Include="..\Classes\coresdk\WebRequest.cpp" />
+    <ClCompile Include="..\Classes\CoverSprite.cpp" />
+    <ClCompile Include="..\Classes\CParticleFlow.cpp" />
+    <ClCompile Include="..\Classes\CShiftToAction.cpp" />
+    <ClCompile Include="..\Classes\CurlDownloadForScript.cpp" />
+    <ClCompile Include="..\Classes\DataTableManager.cpp" />
+    <ClCompile Include="..\Classes\DeviceCfgMgr.cpp" />
+    <ClCompile Include="..\Classes\FeedBackPage.cpp" />
+    <ClCompile Include="..\Classes\fpconv.c" />
+    <ClCompile Include="..\Classes\GameConsts.cpp" />
+    <ClCompile Include="..\Classes\Gamelua.cpp" />
+    <ClCompile Include="..\classes\GameMessages.cpp" />
+    <ClCompile Include="..\classes\GameNotification.cpp" />
+    <ClCompile Include="..\classes\GamePacketManager.cpp" />
+    <ClCompile Include="..\classes\GamePackets.cpp" />
+    <ClCompile Include="..\Classes\GamePlatformInfo.cpp" />
+    <ClCompile Include="..\Classes\GamePrecedure.cpp" />
+    <ClCompile Include="..\Classes\GraySprite.cpp" />
+    <ClCompile Include="..\Classes\H365API.cpp" />
+    <ClCompile Include="..\Classes\HttpImg.cpp" />
+    <ClCompile Include="..\Classes\LangSettingPage.cpp" />
+    <ClCompile Include="..\Classes\LibPlatformForScript.cpp" />
+    <ClCompile Include="..\Classes\LightSweepSprite.cpp" />
+    <ClCompile Include="..\Classes\LoadingAniPage.cpp" />
+    <ClCompile Include="..\Classes\LoginBCPage.cpp" />
+    <ClCompile Include="..\Classes\LoginPacket.cpp" />
+    <ClCompile Include="..\Classes\LoginUserPage.cpp" />
+    <ClCompile Include="..\Classes\LogoFrame.cpp" />
+    <ClCompile Include="..\Classes\LogReport.cpp" />
+    <ClCompile Include="..\Classes\lua_cjson.c" />
+    <ClCompile Include="..\Classes\Lua_EcchiGamerSDKBridge.cpp" />
+    <ClCompile Include="..\Classes\MessageHintPage.cpp" />
+    <ClCompile Include="..\classes\MessageManager.cpp" />
+    <ClCompile Include="..\Classes\NoticeBox.cpp" />
+    <ClCompile Include="..\classes\NumberChangeAction.cpp" />
+    <ClCompile Include="..\Classes\pb.cpp" />
+    <ClCompile Include="..\Classes\Popup1stPayTipPage.cpp" />
+    <ClCompile Include="..\Classes\RadialBlurSprite.cpp" />
+    <ClCompile Include="..\Classes\ResManager.cpp" />
+    <ClCompile Include="..\classes\RestrictedWord.cpp" />
+    <ClCompile Include="..\Classes\ScriptContentBase.cpp" />
+    <ClCompile Include="..\classes\SoundManager.cpp" />
+    <ClCompile Include="..\Classes\Lua_HttpsBridge.cpp" />
+    <ClCompile Include="..\Classes\SpineContainer.cpp" />
+    <ClCompile Include="..\classes\SpriteShader.cpp" />
+    <ClCompile Include="..\Classes\strbuf.c" />
+    <ClCompile Include="..\Classes\StrokeSample.cpp" />
+    <ClCompile Include="..\Classes\StrokeSprite.cpp" />
+    <ClCompile Include="..\Classes\TapDB.cpp" />
+    <ClCompile Include="..\Classes\TestHTMLPopup.cpp" />
+    <ClCompile Include="..\classes\TimeCalculator.cpp" />
+    <ClCompile Include="..\Classes\ScriptMathToLua.cpp" />
+    <ClCompile Include="..\Classes\UpateVersion.cpp" />
+    <ClCompile Include="..\classes\waitingManager.cpp" />
+    <ClCompile Include="..\Classes\LoadingFrame.cpp" />
+    <ClCompile Include="..\classes\MainFrame.cpp" />
+    <ClCompile Include="..\Classes\MessageBoxPage.cpp" />
+    <ClCompile Include="..\Classes\PackageLogic.cpp" />
+    <ClCompile Include="..\Classes\ServerDateManager.cpp" />
+    <ClCompile Include="..\Classes\BCWebRequest.cpp" />
+    <ClCompile Include="..\proj.android.fullbuild\jni\BulletinBoardPage.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\proj.android.fullbuild\jni\GameMain.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\proj.android.fullbuild\jni\ScreenShotJni.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\Protobuf\Attribute.pb.cc" />
+    <ClCompile Include="..\Protobuf\Const.pb.cc" />
+    <ClCompile Include="..\Protobuf\Consume.pb.cc" />
+    <ClCompile Include="..\Protobuf\Equip.pb.cc" />
+    <ClCompile Include="..\Protobuf\HP.pb.cc" />
+    <ClCompile Include="..\Protobuf\Item.pb.cc" />
+    <ClCompile Include="..\Protobuf\Login.pb.cc" />
+    <ClCompile Include="..\Protobuf\Player.pb.cc" />
+    <ClCompile Include="..\Protobuf\Reward.pb.cc" />
+    <ClCompile Include="..\Protobuf\Skill.pb.cc" />
+    <ClCompile Include="..\Protobuf\Status.pb.cc" />
+    <ClCompile Include="..\Protobuf\SysProtocol.pb.cc" />
+    <ClCompile Include="main.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Tegra-Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Tegra-Android'">true</ExcludedFromBuild>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Classes\AboutPage.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Tegra-Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Tegra-Android'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ActiveCodePage.h" />
+    <ClInclude Include="..\Classes\AdjustManager.h" />
+    <ClInclude Include="..\Classes\AnimMgr.h" />
+    <ClInclude Include="..\Classes\AnnouncementNewPage.h" />
+    <ClInclude Include="..\Classes\AnnouncementPage.h" />
+    <ClInclude Include="..\Classes\AnnouncePage.h" />
+    <ClInclude Include="..\Classes\AppDelegate.h" />
+    <ClInclude Include="..\Classes\ArmatureContainer.h" />
+    <ClInclude Include="..\classes\AsyncSprite.h" />
+    <ClInclude Include="..\Classes\BasePage.h" />
+    <ClInclude Include="..\Classes\BCWebRequest.h" />
+    <ClInclude Include="..\Classes\BlackBoard.h" />
+    <ClInclude Include="..\Classes\BlurSprite.h" />
+    <ClInclude Include="..\Classes\BulletinManager.h" />
+    <ClInclude Include="..\Classes\buyingCheck.h" />
+    <ClInclude Include="..\classes\CCBContainer.h" />
+    <ClInclude Include="..\Classes\CCBLuaContainer.h" />
+    <ClInclude Include="..\classes\CCBManager.h" />
+    <ClInclude Include="..\Classes\CCBScriptContainer.h" />
+    <ClInclude Include="..\Classes\CCRichLabelTTF.h" />
+    <ClInclude Include="..\Classes\CCTagedRichTTF.h" />
+    <ClInclude Include="..\Classes\CDKeyMsgPage.h" />
+    <ClInclude Include="..\Classes\ChangeUserPage.h" />
+    <ClInclude Include="..\classes\CharacterConsts.h" />
+    <ClInclude Include="..\Classes\ConfirmPage.h" />
+    <ClInclude Include="..\Classes\ContentBase.h" />
+    <ClInclude Include="..\Classes\coresdk\APIUtil.h" />
+    <ClInclude Include="..\Classes\coresdk\Config.h" />
+    <ClInclude Include="..\Classes\coresdk\ConfigLoader.h" />
+    <ClInclude Include="..\Classes\coresdk\Coresdk.h" />
+    <ClInclude Include="..\Classes\coresdk\DeepLink.h" />
+    <ClInclude Include="..\Classes\coresdk\DeepLinkAndroidBridge.h" />
+    <ClInclude Include="..\Classes\coresdk\DeepLinkWin32Bridge.h" />
+    <ClInclude Include="..\Classes\coresdk\Result.h" />
+    <ClInclude Include="..\Classes\coresdk\util.h" />
+    <ClInclude Include="..\Classes\coresdk\webapi.h" />
+    <ClInclude Include="..\Classes\coresdk\WebRequest.h" />
+    <ClInclude Include="..\Classes\CoverSprite.h" />
+    <ClInclude Include="..\Classes\CParticleFlow.h" />
+    <ClInclude Include="..\Classes\CShiftToAction.h" />
+    <ClInclude Include="..\Classes\CurlDownloadForScript.h" />
+    <ClInclude Include="..\classes\CustomPage.h" />
+    <ClInclude Include="..\Classes\DataTableManager.h" />
+    <ClInclude Include="..\Classes\DeviceCfgMgr.h" />
+    <ClInclude Include="..\Classes\FeedBackPage.h" />
+    <ClInclude Include="..\Classes\fpconv.h" />
+    <ClInclude Include="..\Classes\GameConsts.h" />
+    <ClInclude Include="..\Classes\Gamelua.h" />
+    <ClInclude Include="..\classes\GameNotification.h" />
+    <ClInclude Include="..\classes\GamePacketManager.h" />
+    <ClInclude Include="..\classes\GamePackets.h" />
+    <ClInclude Include="..\Classes\GamePlatformInfo.h" />
+    <ClInclude Include="..\Classes\GamePrecedure.h" />
+    <ClInclude Include="..\Classes\GameTypedef.h" />
+    <ClInclude Include="..\Classes\GraySprite.h" />
+    <ClInclude Include="..\Classes\H365API.h" />
+    <ClInclude Include="..\Classes\HttpImg.h" />
+    <ClInclude Include="..\Classes\LangSettingPage.h" />
+    <ClInclude Include="..\Classes\LibPlatformForScript.h" />
+    <ClInclude Include="..\Classes\LightSweepSprite.h" />
+    <ClInclude Include="..\Classes\LoadingAniPage.h" />
+    <ClInclude Include="..\Classes\LoginBCPage.h" />
+    <ClInclude Include="..\Classes\LoginPacket.h" />
+    <ClInclude Include="..\Classes\LoginUserPage.h" />
+    <ClInclude Include="..\Classes\LogoFrame.h" />
+    <ClInclude Include="..\Classes\LogReport.h" />
+    <ClInclude Include="..\Classes\lua_cjson.h" />
+    <ClInclude Include="..\Classes\Lua_HttpsBridge.h" />
+    <ClInclude Include="..\Classes\MessageHintPage.h" />
+    <ClInclude Include="..\Classes\MessageManager.h" />
+    <ClInclude Include="..\Classes\NoticeBox.h" />
+    <ClInclude Include="..\classes\NumberChangeAction.h" />
+    <ClInclude Include="..\classes\pb.h" />
+    <ClInclude Include="..\Classes\Popup1stPayTipPage.h" />
+    <ClInclude Include="..\Classes\RadialBlurSprite.h" />
+    <ClInclude Include="..\Classes\ResManager.h" />
+    <ClInclude Include="..\classes\RestrictedWord.h" />
+    <ClInclude Include="..\Classes\ScriptContentBase.h" />
+    <ClInclude Include="..\classes\SoundManager.h" />
+    <ClInclude Include="..\Classes\SpineContainer.h" />
+    <ClInclude Include="..\classes\SpriteShader.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Tegra-Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Tegra-Android'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="..\Classes\StateMachine.h" />
+    <ClInclude Include="..\Classes\STLUtility.h" />
+    <ClInclude Include="..\Classes\strbuf.h" />
+    <ClInclude Include="..\Classes\StrokeSample.h" />
+    <ClInclude Include="..\Classes\StrokeSprite.h" />
+    <ClInclude Include="..\Classes\TapDB.h" />
+    <ClInclude Include="..\Classes\TestHTMLPopup.h" />
+    <ClInclude Include="..\classes\TimeCalculator.h" />
+    <ClInclude Include="..\Classes\ScriptMathToLua.h" />
+    <ClInclude Include="..\Classes\UpdateVersion.h" />
+    <ClInclude Include="..\classes\waitingManager.h" />
+    <ClInclude Include="..\Classes\LoadingFrame.h" />
+    <ClInclude Include="..\classes\MainFrame.h" />
+    <ClInclude Include="..\Classes\MessageBoxPage.h" />
+    <ClInclude Include="..\Classes\GameMessages.h" />
+    <ClInclude Include="..\Classes\PackageLogic.h" />
+    <ClInclude Include="..\Classes\ServerDateManager.h" />
+    <ClInclude Include="..\Protobuf\Attribute.pb.h" />
+    <ClInclude Include="..\Protobuf\Const.pb.h" />
+    <ClInclude Include="..\Protobuf\Consume.pb.h" />
+    <ClInclude Include="..\Protobuf\Equip.pb.h" />
+    <ClInclude Include="..\Protobuf\HP.pb.h" />
+    <ClInclude Include="..\Protobuf\Item.pb.h" />
+    <ClInclude Include="..\Protobuf\Login.pb.h" />
+    <ClInclude Include="..\Protobuf\Player.pb.h" />
+    <ClInclude Include="..\Protobuf\Reward.pb.h" />
+    <ClInclude Include="..\Protobuf\Skill.pb.h" />
+    <ClInclude Include="..\Protobuf\Status.pb.h" />
+    <ClInclude Include="..\Protobuf\SysProtocol.pb.h" />
+    <ClInclude Include="main.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Tegra-Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Tegra-Android'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Tegra-Android'">true</ExcludedFromBuild>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Game.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

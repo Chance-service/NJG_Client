@@ -1,0 +1,23 @@
+$#include "GameMaths.h"
+
+class GameMaths
+{
+	static void stringAutoReturn(const std::string& inString, std::string& outString, int width, int& lines);
+	static std::string stringAutoReturnForLua(const std::string& inString, int width, int& lines);
+	static int calculateStringCharacters(const std::string& str);
+	static std::string getStringSubCharacters(const std::string& str, int offset, int lenght);
+	static void replaceStringWithBlank(const std::string& inString, std::string& outString);
+	static void readStringToMap(const std::string& inString, std::map<int, std::string>& strMap);
+	static void replaceStringWithCharacter(const std::string& inString, char partten, char dest, std::string& outCharacter);
+	static std::string formatSecondsToTime(int seconds);
+	static std::string formatTimeToDate(int seconds);
+    static bool isStringHasUTF8mb4(const std::string& instring);
+    static bool hasSubString(const char* longString, const char* subString);
+	static int ReverseAuto( int value );
+	static std::string replaceStringOneForLua(const std::string& inString,const std::string& param);
+	static std::string replaceStringTwoForLua(const std::string& inString,const std::string& param1,const std::string& param2);	
+	static std::string replaceStringWithCharacterAll(std::string&  str,const std::string& old_value,const std::string& new_value);
+	static std::string stringCutWidthLen(const std::string& inString,int len);
+	static std::string getTimeByTimeZone(int seconds,int timeZon);
+	static bool isPassWordAllow(std::string pwd);
+};

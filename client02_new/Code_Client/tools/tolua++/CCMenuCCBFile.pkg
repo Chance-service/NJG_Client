@@ -1,0 +1,19 @@
+class CCMenuItemCCBFile : public ::cocos2d::CCMenuItem
+{
+	/** creates a menu item with a ccbfile*/
+	static CCMenuItemCCBFile* create();
+
+	void setCCBFile(CCBFileNew* ccbfile);
+	CCBFileNew * getCCBFile();
+	//@note: It's 'setIsEnable' in cocos2d-iphone. 
+	 void setEnabled(bool value);
+	/** Activate the item */
+	 void activate();
+	/** The item was selected (not activated), similar to "mouse-over" */
+	 void selected();
+	/** The item was unselected */
+	 void unselected();
+	 void unselected_cancel();
+
+	 void onAnimationDone(const std::string& animationName, CCBFileNew* ccbfile=0);
+};

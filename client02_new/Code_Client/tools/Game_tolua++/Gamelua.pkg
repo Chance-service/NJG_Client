@@ -1,0 +1,69 @@
+$#include "Gamelua.h"
+
+$pfile "CCBScriptContainer.pkg"
+
+$pfile "CCScrollView.pkg"
+$pfile "TableReader.pkg"
+$pfile "TapDB.pkg"
+$pfile "TimeCalculator.pkg"
+$pfile "AES.pkg"
+$pfile "GameMaths.pkg"
+$pfile "inifile.pkg"
+$pfile "ResManager.pkg"
+$pfile "MainFrame.pkg"
+
+$pfile "Language.pkg"
+
+$pfile "SoundManager.pkg"
+
+$pfile "BlackBoard.pkg"
+
+$pfile "MessageBoxPage.pkg"
+
+$pfile "ServerDateManager.pkg"
+$pfile "DataTableManager.pkg"
+
+$pfile "CCBManager.pkg"
+$pfile "ScriptContentBase.pkg"
+$pfile "CCReViScrollViewFacade.pkg"
+$pfile "StringConverter.pkg"
+$pfile "PacketManager.pkg"
+$pfile "ScriptMathToLua.pkg"
+$pfile "GameMessages.pkg"
+$pfile "MessageManager.pkg"
+$pfile "libOS.pkg"
+$pfile "libPlatform.pkg"
+$pfile "RestrictedWord.pkg"
+$pfile "GamePrecedure.pkg"
+$pfile "Global.pkg"
+$pfile "CShiftToAction.pkg"
+$pfile "AnimMgr.pkg"
+$pfile "CCBFileNew.pkg"
+$pfile "CoverSprite.pkg"
+
+$pfile "SpineContainer.pkg"
+
+$pfile "dfont_manager.pkg"
+
+$pfile "HttpImg.pkg"
+
+$pfile "LibPlatformForScript.pkg"
+
+$pfile "GameConsts.pkg"
+
+$pfile "MessageHintPage.pkg"
+
+$pfile "SeverConsts.pkg"
+
+$pfile "CCBContainer.pkg"
+$pfile "CCMenuItemCCBFile.pkg"
+
+$pfile "GamePlatform.pkg"
+$pfile "CurlDownload.pkg"
+
+$pfile "GraySprite.pkg"
+$pfile "CurlDownloadForScript.pkg"
+
+$pfile "FeedBackPage.pkg"
+
+$pfile "AdjustManager.pkg"

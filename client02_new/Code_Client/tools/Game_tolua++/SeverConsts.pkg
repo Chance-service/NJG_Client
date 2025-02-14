@@ -1,0 +1,9 @@
+$#include "SeverConsts.h"
+
+class SeverConsts
+{
+public:
+	static SeverConsts* getInstance(){return SeverConsts::Get();}
+	const std::string& getServerVersion(){return mSeverVerson;}
+};
+

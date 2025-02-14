@@ -1,0 +1,63 @@
+$#include "GamePrecedure.h"
+
+class GamePrecedure
+{
+public:
+	static GamePrecedure* getInstance(){return GamePrecedure::Get();}
+	
+	void init();
+	//--begin xinzheng 2013-6-3
+	void unInit();//clear memory
+	//--end
+
+	void enterLoading();
+	void reEnterLoading();
+	void preEnterMainMenu();
+	void readTables();
+	void reEnterMateLogout();
+	void enterMainMenu();
+	void enterGame();
+	void enterInstruction(int id = -1);//-1 means start from the first
+	void exitGame();
+	
+    bool isInLoadingSceneAndNeedExit();
+    bool isInLoadingScene(){return mInLoadingScene;}
+	float getFrameTime();
+	float getTotalTime();
+    
+	void setServerID(int serverID){mServerID = serverID;}
+	int getServerID(){return mServerID;}
+	std::string getLoginCode() { return mLoginCode; }
+	int getServerTime(){ return mServerTime;};
+	std::string getServerData(){return mServerData;}
+	void setServerTime(int serverTime){ mServerTime=serverTime;};
+	void setServerData(const std::string& data){mServerData = data;}
+	void setUin(const std::string& uin){mUin = uin;}
+	const std::string& getUin(){return mUin;}
+
+	bool hasAlertServerUpdating(){return mHasAlertServerUpdating;}
+	void setAlertServerUpdating(bool hasAlert){mHasAlertServerUpdating = hasAlert;}
+
+	//--begin xinzheng 2013-5-23
+	//引擎层给游戏截图，返回png文件存储绝对路径
+	const std::string gameSnapshot(const int &posX,const int &posY, const int &width,const int &height,bool fullScreen = false);
+	//--end
+	std::string getWin32ResourcePath();
+	void showBulletin();
+    void closeBulletin();
+    std::string getPlatformName();
+	//获取版本号
+    std::string getLocalVersionToLua();
+	//根据当前语言获取对应的资源路径——如果当前系统语言不存在对应路径，会返回默认语言路径，若依然没有会返回空字符
+	std::string getI18nSrcPath();
+	//用于玩家手动选择游戏语言
+	void setUserDefaultI18nSrcPath(int languageType);
+	std::string getServerNameById(int nServerId);
+	void playMovie(std::string fileName, int isLoop, int autoScale);
+	void closeMovie();
+	void pauseMovie();
+	void resumeMovie();
+	void sendhttpRequest(const std::string aurl);
+	bool CheckMailRule(const std::string&aStr);
+};
+

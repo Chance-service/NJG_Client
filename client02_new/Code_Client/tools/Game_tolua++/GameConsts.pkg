@@ -1,0 +1,14 @@
+$#include "GameConsts.h"
+
+class GameConst
+{
+	
+	CCRect boundingBox( CCNode* node ){ return node->boundingBox(); };
+
+	bool isContainsPoint( CCRect rect , CCPoint point ){ return rect.containsPoint(point); };
+
+	long getCurrTime();
+	
+	static GameConst* getInstance();
+
+}

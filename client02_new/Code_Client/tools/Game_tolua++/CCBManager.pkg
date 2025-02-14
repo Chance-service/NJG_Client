@@ -1,0 +1,28 @@
+$#include "CCBManager.h"
+
+
+class CCBManager
+{
+public:
+	/*
+	*/
+	bool registerPage(const std::string& name, BasePage* page);
+	/*
+	*/
+	void unRegisterPage(const std::string& name, BasePage* page);
+	/*
+	*/
+	BasePage* getPage(const std::string& name);
+
+	CCBContainer* createAndLoad(const std::string & ccbfile);
+	ScriptContentBase* createAndLoad2(const std::string & ccbfile);
+	//
+
+	static CCBFileNew* loadCCBFileNew( const std::string & ccbfile );
+	
+	void purgeCachedData(void);
+	
+	static CCBManager* getInstance();
+};
+
+void registerScriptPage(const std::string& ccbfile);

@@ -1,0 +1,64 @@
+$#include "ServerDateManager.h"
+
+
+class	LoginInfo{
+public:
+	//服务器ID
+	int m_iPlayerID;
+	//所选职业ID
+	int m_iRoleItemID;
+	//时间戳
+	int m_iTimeStamp;
+
+	LoginInfo(){
+		m_iPlayerID=0;
+		m_iRoleItemID =0;
+		m_iTimeStamp =0;
+	};
+};
+
+
+
+class GameCheckInfo
+{
+public:
+	unsigned int mCurrAdventureVersion;
+	unsigned int mHeartRecruitDiscipleVersion;
+	unsigned int mHeartAdventureVersion;
+	bool mNeedForceSyncAdventure;
+	bool isNeedSyncAdventureList(){return mNeedForceSyncAdventure || mHeartAdventureVersion>mCurrAdventureVersion;};
+	void setNeedForceSyncAdventure(bool need) { mNeedForceSyncAdventure = need; };
+	GameCheckInfo(){mCurrAdventureVersion = 0;};
+};
+
+class ServerDateManager : public Singleton<ServerDateManager>
+{
+public:
+	ServerDateManager();
+	static ServerDateManager* getInstance();
+	
+	std::string getUserBasicInfoForLua() {return mUserPlayerInfo.SerializeAsString();};
+	std::string getUserRoleInfoForLua() {return mUserRoleInfo.SerializeAsString();};
+	
+	int getRoleInfoTotalSize(){return mUserRoleInfoMap.size();};
+	std::string	getRoleInfoByIdForLua(int id);
+	std::string	getRoleInfoByIndexForLua(int index){return getRoleInfoByIndex(index).SerializeAsString();};
+	
+	int getEquipInfoTotalSize(){return mUserEquipInfoMap.size();};
+	std::string	getEquipInfoByIdForLua(int id);
+	std::string	getEquipInfoByIndexForLua(int index);
+	
+	int getItemInfoTotalSize(){return mUserItemInfoMap.size();};
+	std::string	getItemInfoByIdForLua(int id);
+	std::string	getItemInfoByIndexForLua(int index){return getItemInfoByIndex(index).SerializeAsString();};
+	
+	
+	int getSkillInfoTotalSize(){return mUserSkillInfoMap.size();};
+	std::string	getSkillInfoByIdForLua(int id);
+	std::string	getSkillInfoByIndexForLua(int index){return getSkillInfoByIndex(index).SerializeAsString();};
+	
+
+	std::string getPlayerStateForLua();
+	LoginInfo mLoginInfo;
+	
+};

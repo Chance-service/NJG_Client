@@ -1,0 +1,27 @@
+-x
+c
+-arch
+i386
+-fretain-comments-from-system-headers
+-fpascal-strings
+-Os
+-DENABLE_FEEDBACK
+-isysroot
+/Users/wanglei/Downloads/Xcode8.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.2.sdk
+-fasm-blocks
+-mios-simulator-version-min=5.1
+-g
+-iquote
+-iquote
+-I/Users/wanglei/Desktop/cocos/cocoJapan/cocoJapan/Code_Client/build/Release-iphonesimulator/include
+-I/Users/wanglei/Desktop/cocos/cocoJapan/cocoJapan/Code_iOS/com4lovesSDK/../libOS/include
+-I/Users/wanglei/Desktop/cocos/cocoJapan/cocoJapan/Code_iOS/com4lovesSDK/ios-openssl-master/include
+-F/Users/wanglei/Desktop/cocos/cocoJapan/cocoJapan/Code_Client/build/Release-iphonesimulator
+-ferror-limit=10
+-working-directory=/Users/wanglei/Desktop/cocos/cocoJapan/cocoJapan/Code_iOS/com4lovesSDK
+-Xclang
+-detailed-preprocessing-record
+i386-apple-darwin16.6.0
+"4.2.1 Compatible Apple LLVM 8.0.0 (clang-800.0.42.1)"
+SDK_PRODUCT_BUILD_VERSION=14C89
+14C89

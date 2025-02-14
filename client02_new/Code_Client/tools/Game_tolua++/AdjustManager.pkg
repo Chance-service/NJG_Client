@@ -1,0 +1,8 @@
+$#include "AdjustManager.h"
+
+class AdjustManager
+{
+    static void onTrackEvent(std::string eventName);
+
+    static void onTrackRevenueEvent(std::string eventName, int num);
+};

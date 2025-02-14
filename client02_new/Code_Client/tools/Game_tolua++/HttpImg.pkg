@@ -1,0 +1,13 @@
+$#include "HttpImg.h"
+
+
+class HttpImg 
+{
+	HttpImg();
+	~HttpImg();
+
+	void getHttpImg(const std::string& imgPath,const std::string& imgName);
+	void onHttpImgCompleted(CCHttpClient *sender, CCHttpResponse *response);
+
+	static HttpImg* getInstance() {return HttpImg::Get();}
+};

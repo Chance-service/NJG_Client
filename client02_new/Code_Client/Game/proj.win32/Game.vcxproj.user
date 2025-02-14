@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LocalDebuggerWorkingDirectory>..\..\..\Resource_bc</LocalDebuggerWorkingDirectory>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+    <ShowAllFiles>false</ShowAllFiles>
+    <LocalDebuggerCommandArguments>ShowFps WinSize 720 1280 Scale 0.6f</LocalDebuggerCommandArguments>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LocalDebuggerWorkingDirectory>$(SolutionDir)../Resource_Client</LocalDebuggerWorkingDirectory>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+    <ShowAllFiles>false</ShowAllFiles>
+    <LocalDebuggerCommandArguments>ShowFps</LocalDebuggerCommandArguments>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Tegra-Android'">
+    <SdkRootPath>D:\NVPACK\android-sdk-windows</SdkRootPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Tegra-Android'">
+    <AntRootPath>D:\NVPACK\apache-ant-1.8.2</AntRootPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Tegra-Android'">
+    <NdkRootPath>D:\NVPACK\android-ndk-r9b</NdkRootPath>
+    <JdkRootPath>D:\NVPACK\jdk1.6.0_45</JdkRootPath>
+    <JavaSourceDir>$(SolutionDir)..\Code_Android\workspace\src</JavaSourceDir>
+    <JavaClassesDir>$(SolutionDir)..\Code_Android\workspace\bin\classes</JavaClassesDir>
+    <DebuggerFlavor>AndroidDebugger</DebuggerFlavor>
+  </PropertyGroup>
+</Project>

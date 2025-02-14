@@ -1,0 +1,11 @@
+<font  color="#6D440B" face = "Helvetica24" size ="100"><p style="margin:10px" >不具合の報告などのお問い合わせは、</p></font><br/>
+<font  color="#6D440B" face = "Helvetica24" size ="100"><p style="margin:10px" >下記メールに必要事項をご記入の上、ご連絡いただきますようお願い致します。</p></font><br/>
+<font  color="#6D440B" face = "Helvetica24" size ="100"><p style="margin:10px" >【お問い合わせメールアドレス】</p></font><br/>
+<p><font color="#066fff"><button name = "URL" value="school-support@crossmagic.co.jp"><font color="#066fff">school-support@crossmagic.co.jp</font></button></font></p><br/>
+<font  color="#6D440B" face = "Helvetica24" size ="100"><p style="margin:10px" >■上記リンクから次の情報が書き込まれた状態でメーラーを起動します。</p></font><br/>
+<font  color="#6D440B" face = "Helvetica24" size ="100"><p style="margin:10px" >・サーバーID<br/></p></font>
+<font  color="#6D440B" face = "Helvetica24" size ="100"><p style="margin:10px" >・プレイヤーID<br/></p></font>
+<font  color="#6D440B" face = "Helvetica24" size ="100"><p style="margin:10px" >・最終ログイン時間<br/></p></font>
+<font  color="#6D440B" face = "Helvetica24" size ="100"><p style="margin:10px" >・バージョン<br/></p></font>
+<font  color="#6D440B" face = "Helvetica24" size ="100"><p style="margin:10px" >・ユーザーエージェント</p></font><br/>
+

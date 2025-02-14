@@ -1,0 +1,7 @@
+$#include "GamePlatform.h"
+
+void saveFileInPath(const std::string& fileInPath, const char* mode, const unsigned char* data, unsigned long size, bool encrypt = false);
+
+std::string getFileDataForLua(const char* pszFileName);
+
+void game_rmdir(const char* path);

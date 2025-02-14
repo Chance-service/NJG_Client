@@ -1,0 +1,35 @@
+
+	// get system font directory
+	extern const char* get_systemfont_path();
+
+	// get system default ppi
+	extern int get_system_default_ppi();
+
+	// get system default font size
+	extern int get_prefered_default_fontsize();
+
+	// get system_default font
+	extern const char* get_system_default_fontfile();
+
+	// get system helvetica font
+	extern const char* get_system_helvetica_fontfile();
+
+	//get system helvetica-bold font
+	extern const char* get_system_helveticabd_fontfile();
+
+	// get system default latin font
+	extern const char* get_system_default_hacklatin_fontfile();
+
+	// default initializer for dfont
+	extern void dfont_default_initialize();
+
+	// latin charactor set
+	extern std::set<unsigned long>* latin_charset();
+
+
+	class FontFactory
+	{
+	public:
+		static FontFactory* instance();
+		void  create_font_forLua(const char* alias, const char* font_name, unsigned int color, int size_pt);
+	};

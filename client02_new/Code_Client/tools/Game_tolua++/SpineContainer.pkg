@@ -1,0 +1,34 @@
+$#include "SpineContainer.h"
+
+class SpineContainer
+{
+	static SpineContainer* create(const char* path, const char* name, float scale = 1.0f);
+	void runAnimation(int trackIndex,const char* name, int loopTimes=1,float delay=0);
+	spTrackEntry* addAnimation(int trackIndex, const char* name, bool loop, float delay = 0);
+	void setSkin(const char* name);
+	void setListener(SpineEventListener* eventListener);
+	void stopAllAnimations();
+	void stopAnimationByIndex(int trackIndex);
+	void registerLuaListener(int listener);
+	void unregisterLuaListener();
+	bool isPlayingAnimation(const char* name, int trackIndex);
+	void setToSetupPose ();
+	spSlot* findSlot(const char* slotName);
+	spAttachment* getAttachment (const char* slotName, const char* attachmentName);
+	bool setAttachment (const char* slotName, const char* attachmentName);
+	void setAttachmentForLua(const char* slotName, const char* attachmentName);
+	void setSlotColorForLua(const char* slotName, float red, float green, float blue);
+	void setTimeScale(float scale);
+	void setMix (const char* fromAnimation, const char* toAnimation, float duration);
+	
+	void setEventListener(spTrackEntry* entry, EventListener listener);
+	spTrackEntry* getCurrent(int trackIndex);
+	
+	void registerFunctionHandler(char* func, LUA_FUNCTION nHandler);
+	void unregisterFunctionHandler(char* func);
+	
+	//Node綁定Slot功能
+	CCNodeRGBA* getNodeForSlot(const char* slotName);
+	//Node綁定Bone功能
+	CCNodeRGBA* getNodeForBone(const char* boneName);
+};

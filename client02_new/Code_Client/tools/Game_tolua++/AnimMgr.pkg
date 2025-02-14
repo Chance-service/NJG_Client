@@ -1,0 +1,8 @@
+$#include "AnimMgr.h"
+
+class AnimMgr
+{
+	void fadeInAndOut(CCNode* node,float time);
+	void scrollViewMoveIn(CCScrollView* scrollView);
+	static AnimMgr* getInstance();
+};

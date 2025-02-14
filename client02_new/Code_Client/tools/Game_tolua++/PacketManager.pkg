@@ -1,0 +1,34 @@
+$#include "PacketManager.h"
+
+class PacketHandler
+{
+
+};
+
+class PacketScriptHandler : public CCObject, public PacketHandler 
+{
+	PacketScriptHandler(int opcode, LUA_FUNCTION nHandler);
+	virtual ~PacketScriptHandler();;
+
+	//for lua
+	int getRecPacketBufferLength(){return mPktBuffer.length();}
+	std::string  getRecPacketBuffer(){return mPktBuffer;}
+	void registerFunctionHandler( LUA_FUNCTION nHandler);
+};
+
+class PacketManager
+{
+	static PacketManager* getInstance();
+
+	void disconnect();
+
+	bool registerPacketHandler(int opcode,PacketHandler*);
+	
+	int nameToOpcode(const std::string& name);
+	void removePacketHandler(int opcode, PacketHandler* packethandler);
+	void removePacketHandler(PacketHandler* packethandler);
+	
+	void sendPakcet(int opcode, char* buff, int length, bool needWaiting = true);
+};
+
+#endif//__PacketHandler_H_

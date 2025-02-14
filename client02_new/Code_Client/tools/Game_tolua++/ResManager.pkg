@@ -1,0 +1,85 @@
+$#include "ResManager.h"
+
+enum ResDataTypeEnum
+{
+	//取物品列别属性万位编号
+	//玩家属性 
+	USER_PROPERTY_TYPE = 1,
+	//玩家属性小编号
+	USER_PROPERTY_GOLD_COINS = 1001,
+	USER_PROPERTY_SILVER_COINS = 1002,
+	USER_PROPERTY_EXP = 1003,
+	USER_LEAGUE_CONTRIBUTION = 1004,
+	USER_LEVEL_PROPERTY = 12001,
+	USER_PROPERTY_LEVEL_SILVER_COINS = 2002,
+	//武将魂魄
+	DISCIPLE_BOOK=2,
+	//武将
+	DISCIPLE_TYPE=3,
+	A_DISCIPLE=31001,
+	B_DISCIPLE=31002,
+	C_DISCIPLE=31003,
+	D_DISCIPLE=31004,
+	S_DISCIPLE=31005,
+	//宝物
+	TREASURE_TYPE=4,
+	//装备
+	EQUIP_TYPE=5,
+	//装备碎片
+	EQUIP_BOOK_TYPE=8,
+	//宝物碎片
+	TREASURE_BOOK_TYPE=9,
+	//道具&礼物
+	TOOLS_TYPE=6,
+	DRAGONSOUL_TYPE=7,
+	USER_INTERFACE=71001,
+	COPPER_TREASURE=10006,//new pair tool by zhenhui 2014/2/18
+	SILVER_TREASURE=10008,
+	GOLD_TREASURE=10010,
+	COPPER_KEY=10007,
+	SILVER_KEY=10009,
+	GOLD_KEY=10011,
+	RECRUIT_PASS_ID = 10012, // add by zhenhui for the 招募令
+	PowerToolId=10004,
+	VitalityToolId=10005,
+	GIFTBOXPAGE=2,
+	YINBEI=1101002,
+	PUNCHHOLE=5002001,
+	REMOVESTONE=5002002,
+};
+struct ResInfo
+{
+	unsigned int id;
+	std::string name;
+	std::string describe;
+	unsigned int quality;
+	std::string icon;
+	unsigned int count;
+	unsigned int itemId;
+	unsigned int type;
+	std::string	typeName;
+};
+
+class ResManager
+{
+	static ResManager* getInstance();
+	ResInfo* getResInfoByTypeAndId(unsigned int type,unsigned int Id,unsigned int count);
+	void setResInfo(ResInfo* info);
+	
+	//method for lua iterator
+	int getResInfoListByResBagStrCount(const std::string& ResBagStr);
+	ResInfo  getResInfoListByResBagStrByIndex(const std::string& ResBagStr,int index);
+
+	const unsigned int getTreasurePairType(unsigned int treasureId);
+	const unsigned int getResMainType(unsigned int resId);
+	//根据外frame的边框的缩放scale和要显示的纹理大小，动态设置里面ICON的纹理图片和缩放
+	bool setDynamicIconTex(CCBContainer* containner, std::string frameName ,std::string iconName , std::string iconStr);
+	//设置边框的颜色，根据品质
+	void setFrameColorByQuality(CCBContainer* containner, std::string frameName ,int quality);
+	//设置页面tab一致性的适配，动态设置非选中tab的显示状态。add by xinghui
+	void setTabLabelAdapte(CCMenuItemImage* menuItemImage1, CCMenuItemImage* menuItemImage2, CCMenuItemImage* menuItemImage3, CCMenuItemImage* menuItemImage4, CCMenuItemImage* menuItemImage5, int index);
+	//从Code_core中抽出与逻辑相关的代码by zhenhui 2014/7/21
+	static std::string attrToString(unsigned int type,unsigned int val);
+	static std::string attrToString(unsigned int type);
+	static std::string attrValToString(unsigned type, unsigned int val);
+};

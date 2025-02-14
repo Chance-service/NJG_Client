@@ -1,0 +1,26 @@
+$#include "MainFrame.h"
+class MainFrame
+{
+	static MainFrame* getInstance();
+	void showPage(const std::string& name);
+	void pushPage(const std::string& name);
+	void popPage(const std::string& name);
+	void popAllPage();
+	void showFightPage();
+	bool isPageInList(const std::string& name);
+	void showNoTouch();
+	void hideNoTouch();
+	std::string getCurShowPageName();
+	CCNode * getMsgNodeForLua(){return mNodeMsgForLua;};
+	void setChildVisible(const char* childName, bool visible);
+	void setExpBar(float percent);
+	CCScene* getRootSceneNode();
+	virtual void onMenuItemAction(const std::string& itemName, cocos2d::CCObject* sender);
+
+	void resetAllMenuCCBI();
+	bool popCurrentPage();
+	void setBackgroundColor(float r, float g, float b, float a);
+	
+	int getPageNum();
+};
+

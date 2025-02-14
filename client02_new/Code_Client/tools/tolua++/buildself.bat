@@ -1,0 +1,1 @@
+tolua++ -L basic.lua -o "../../../Code_Client/Game/Classes/Gamelua.cpp" CCBLuaContainer.pkg

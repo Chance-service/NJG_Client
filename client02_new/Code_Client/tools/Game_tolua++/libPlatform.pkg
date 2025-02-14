@@ -1,0 +1,77 @@
+$#include "libPlatform.h"
+
+struct BUYINFO
+{
+	unsigned int productType;
+	std::string name;
+	std::string cooOrderSerial;
+	std::string productId;
+	std::string productName;//display on dev.91.com
+	float productPrice;
+	float productOrignalPrice;
+	unsigned int productCount;
+	std::string description;
+	unsigned int serverTime;
+	std::string extras;
+	BUYINFO()
+		:productType(1),name(""),cooOrderSerial(""),productId(""),productName("")
+		,productPrice(1),productOrignalPrice(1),productCount(1),description(""),serverTime(0),extras(""){}
+};
+
+
+class libPlatform
+{
+	void openBBS();
+
+	void userFeedBack();
+	
+	void gamePause();
+
+	bool getLogined() = 0;
+
+	const std::string& loginUin() = 0;
+	
+	const std::string& sessionID();
+	
+	const std::string& nickName();
+    
+	const std::string getPlatformInfo();
+
+	const std::string getClientChannel();
+	
+	virtual void buyGoods(BUYINFO&);
+	virtual std::string sendMessageG2P(const std::string& tag, const std::string& msg){return "";}
+	virtual void switchUsers();
+	virtual void OnKrGetInviteCount();
+	virtual void OnKrgetInviteLists();
+	virtual void OnKrgetFriendLists();
+	virtual void OnKrsendInvite(const std::string& strUserId, const std::string& strServerId);
+	virtual void OnKrgetGiftLists();
+	virtual void OnKrReceiveGift(const std::string& strGiftId, const std::string& strServerId);
+	virtual void OnKrGetGiftCount();
+	virtual void OnKrSendGift(const std::string& strUserName, const std::string& strServerId);
+	virtual void OnKrGiftBlock(bool bVisible);
+	virtual void OnKrGetKakaoId();
+	virtual void OnKrLoginGames();
+	virtual void OnKrIsShowFucForIOS();
+	
+	virtual void setIsGuest(const int guest);
+	virtual int getIsGuest();
+
+	virtual void  setHoneyP(int aMoney);
+	virtual int getHoneyP();
+	virtual bool getIsH365();
+	virtual void  setPayH365(const std::string& url);
+	virtual void showPlatformProfile();
+};
+
+
+class libPlatformManager
+{
+	void setPlatform(std::string name);
+	static libPlatform* getPlatform();
+	static libPlatformManager* getInstance();
+
+};
+
+#endif

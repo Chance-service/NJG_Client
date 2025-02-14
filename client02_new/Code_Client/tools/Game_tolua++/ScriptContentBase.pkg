@@ -1,0 +1,38 @@
+$#include "ScriptContentBase.h"
+
+class ScriptContentBase : public CCNode, public CCReViSvItemNodeFacade
+{
+	//for lua
+	static ScriptContentBase* create(const std::string& fileName, int tag = 0);
+
+	CCNode* getVarNode(char* name);
+	CCSprite* getVarSprite(char* name);
+	CCLabelBMFont* getVarLabelBMFont(char* name);
+	CCLabelTTF* getVarLabelTTF(char* name);
+	CCMenu* getVarMenu(char* name);
+	CCMenuItem* getVarMenuItem(char* name);
+	CCMenuItemSprite* getVarMenuItemSprite(char* name);
+	CCMenuItemImage* getVarMenuItemImage(char* name);
+	CCScrollView* getVarScrollView(char* name);
+	CCScale9Sprite* getVarScale9Sprite(char* name);
+	CCParticleSystem* getParticleSystem(char* name);
+	CCMenuItemCCBFile* getVarMenuItemCCB(char* name);
+	
+	void registerFunctionHandler(LUA_FUNCTION nHandler);
+	void unregisterFunctionHandler();
+	
+	CCReViSvItemData* getItemDate();
+	
+	void runAnimation(const std::string& actionname);
+	
+	void setDynamicIconTex(std::string frameName ,std::string iconName , std::string iconStr);
+
+	void setFrameColorByQuality(std::string frameName ,int quality);
+	
+	void setLabelColorByQuality(std::string labelName ,int quality);
+	
+	virtual std::string dumpInfo();
+	void addToHttpImgListener(const std::string& imgName);
+	std::string getHttpImgName();
+	std::string getCurAnimationDoneName();
+};

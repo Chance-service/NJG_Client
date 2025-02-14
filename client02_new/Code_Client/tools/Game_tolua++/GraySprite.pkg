@@ -1,0 +1,16 @@
+$#include "GraySprite.h"
+
+
+class GraySprite : public CCSprite
+{
+public:
+	GraySprite();
+	~GraySprite();
+	bool initWithTexture(CCTexture2D* texture, const CCRect& rect);
+    void draw();
+    void initProgram();    
+	static void AddColorGray(CCSprite * spr);
+	static void RemoveColorGray(CCSprite * spr);
+	static void AddColorGrayToNode(CCNode * node);
+	static void RemoveColorGrayToNode(CCNode * node);
+};

@@ -1,0 +1,20 @@
+$#include "SoundManager.h"
+
+class SoundManager
+{
+	void setMusicOn(bool);
+	void setEffectOn(bool);
+
+	void playLoadingMusic();
+	void playGeneralMusic();
+	void playFightMusic(std::string music);
+	void stopMusic();
+	void playMusic(std::string music, bool isLoop = true);
+	void stopOtherMusic();
+	void playOtherMusic(std::string music);
+	int playEffectByName(std::string effect, bool isLoop = false);
+	int playEffect(std::string effect);
+	void stopAllEffect();
+	static SoundManager* getInstance();
+};
+

@@ -1,0 +1,19 @@
+$#include "LibPlatformForScript.h"
+$#include "libOS.h"
+
+class LibPlatformScriptListener : public CCObject,public platformListener
+{
+public:
+	LibPlatformScriptListener(LUA_TABLE nHandler);
+	virtual ~LibPlatformScriptListener();
+
+	libPlatform* getLibPlatform(){return mLibPlatform;}
+	bool getState(){return mState;}
+	std::string getLog(){return mLog;}
+	bool getResult(){return mResult;}
+	BUYINFO getBuyInfo(){return mBuyInfo;}
+	
+
+	std::string getResultStr(){return mResultStr;}
+	std::string onReceiveCommonMessage(const std::string& tag, const std::string& msg){ return ""; };
+};

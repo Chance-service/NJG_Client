@@ -1,0 +1,333 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+		<meta name="viewport" content="width=device-width; initial-scale=1.0; minimum-scale=1.0; maximum-scale=2.0;user-scalable=no;"/>
+		<meta name="MobileOptimized" content="320" />
+		<meta name="robots" content="noindex,nofollow" />
+		<meta http-equiv="Cache-Control" content="no-cache" />
+		<meta name="HandheldFriendly" content="true" />
+		<meta content="telephone=yes" name="format-detection" />
+		<title>游戏充值中心</title>
+		<link href="css/style.css" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="js/zepto.js"></script>
+        <script type="text/javascript" src="js/pay.min.js"></script>
+
+		<script type="text/javascript">
+            //定义his,用于后退,关闭。
+			var his  = [closeWin];
+			var host = 'http://www.44755.com';
+			var tel  = '';
+
+			var formData = {};
+            var wayData = {
+	               'SZX':'移动充值卡', 'TELECOM':'电信充值卡', 'UNICOM':'联通充值卡', 'SNDACARD':'盛大点卡', 'ZHENGTU':'征途点卡', 
+	               'NETEASE':'网易点卡', 'JUNNET':'骏网点卡', 'JIUYOU':'九游点卡', 'ALIPAY':'支付宝', 'TENPAY':'财付通', 'QQCARD':'Q币卡',
+	               'TIANXIA':'天下通点卡', 'ZONGYOU':'纵游点卡', 'WANMEI':'完美点卡', 'BANK':'网银', 'HUIKUAN':'汇款'
+            };
+
+            function InitCallback(payHost, telephone, qq)
+            {
+            	host = payHost;
+            	$('span[name=tel]').html(telephone);
+            	$('span[name=qq]').html(qq);
+
+            	tel  = telephone.replace('-', '');
+            }
+            //改变标题
+            function changeTextView(wayName, step) {
+                //改变展示(title,小标题)
+            }
+            
+            function gameInfoOk()
+            {
+                if ( $('input[name=game_id]').val() > 0 && $('input[name=server_id]').val() > 0 )
+                {
+                    return "ok";
+                }
+                else
+                {
+                    return "false";
+                }
+            }
+
+        </script>
+	</head>
+    
+	<body style="overflow:hidden">
+       
+		<form id="orderForm" onsubmit="return false;">
+			<input name="way" type="hidden" />
+			<div class="page" id="way" style="display:block;">
+				<div class="page_top">
+					<div class="page_nr">
+                        <span style="color: red;">支持用电脑访问www.44755.com官网充值.</span>
+						<div class="page_nr_text"><input name="to_username" id="to_username" type="text" onFocus="this.className='clff660f';if (document.getElementById('to_username').value=='充值账号：') {document.getElementById('to_username').value=''}" onBlur="this.className='clbfbfbf';if (document.getElementById('to_username').value!='充值账号：' && document.getElementById('to_username').value.length>3) { checkUser(); }" value="充值账号："></div>
+						<div class="page_nr_text"><input name="phone" id="phone" type="text" onFocus="this.className='clff660f';if (document.getElementById('phone').value=='手机号码：') {document.getElementById('phone').value=''}" onBlur="this.className='clbfbfbf';" value="手机号码："></div>
+
+                        <input name="game_id" value="0" type="hidden" />
+                        <select id="s_game" onChange="cGame(this);">
+                            <option value="">请选择游戏</option>
+                        </select>
+                        <br>
+
+                        <input type="hidden" value="" id="s_server_id"/>
+                        <input name="server_id" type="hidden" value="0" />
+                        <select id="s_server" onChange="cServer(this);">
+                            <option value="">请选择区服</option>
+                        </select>
+						
+					</div>
+					<div class="line_s"></div>
+					<div class="zf_bt clear">选择支付方式：</div>
+					<table style="width:100%;margin:0px auto;clear:both;" border="0" cellspacing="0" cellpadding="0" id="payTable">
+						<tr>
+							<td onmouseover="mouseOver(this)" onmouseout="mouseOut(this)" width="33%" ><a href="#" onClick="setWay('ALIPAY')"><img style="height:35pt;width:auto;" class="way_img" src="images/c4.png" /></a></td>
+							<td onmouseover="mouseOver(this)" onmouseout="mouseOut(this)" width="33%" ><a href="#" onClick="setWay('BANK')"><img style="height:35pt;width:auto;" class="way_img" src="images/c2.png" /></a></td>
+                            <td onmouseover="mouseOver(this)" onmouseout="mouseOut(this)" width="33%" ><a href="#" onClick="setWay('QQCARD')"><img style="height:35pt;width:auto;" class="way_img" src="images/c32.png" /></a></td>
+						</tr>
+						<tr>
+							<td onmouseover="mouseOver(this)" onmouseout="mouseOut(this)" width="33%" ><a href="#" onClick="setWay('SZX')"><img style="height:35pt;width:auto;" class="way_img" src="images/c8.png" /></a></td>
+                            <td onmouseover="mouseOver(this)" onmouseout="mouseOut(this)" width="33%" ><a href="#" onClick="setWay('TELECOM')"><img style="height:35pt;width:auto;" class="way_img" src="images/c12.png" /></a></td>
+                            <td onmouseover="mouseOver(this)" onmouseout="mouseOut(this)" width="33%" ><a href="#" onClick="setWay('UNICOM')"><img style="height:35pt;width:auto;" class="way_img" src="images/c10.png" /></a></td>
+						</tr>
+						<tr>
+							<td onmouseover="mouseOver(this)" onmouseout="mouseOut(this)" width="33%" ><a href="#" onClick="setWay('SNDACARD')"><img style="height:35pt;width:auto;" class="way_img" src="images/c14.png" /></a></td>
+                            <td onmouseover="mouseOver(this)" onmouseout="mouseOut(this)" width="33%" ><a href="#" onClick="setWay('WANMEI')"><img style="height:35pt;width:auto;" class="way_img" src="images/c16.png" /></a></td>
+                            <td onmouseover="mouseOver(this)" onmouseout="mouseOut(this)" width="33%" ><a href="#" onClick="setWay('JUNNET')"><img style="height:35pt;width:auto;" class="way_img" src="images/c18.png" /></a></td>
+						</tr>
+						<tr>
+							<td onmouseover="mouseOver(this)" onmouseout="mouseOut(this)" width="33%" ><a href="#" onClick="setWay('NETEASE')"><img style="height:35pt;width:auto;" class="way_img" src="images/c20.png" /></a></td>
+                            <td onmouseover="mouseOver(this)" onmouseout="mouseOut(this)" width="33%" ><a href="#" onClick="setWay('ZHENGTU')"><img style="height:35pt;width:auto;" class="way_img" src="images/c22.png" /></a></td>
+                            <td onmouseover="mouseOver(this)" onmouseout="mouseOut(this)" width="33%" ><a href="#" onClick="setWay('JIUYOU')"><img style="height:35pt;width:auto;" class="way_img" src="images/c24.png" /></a></td>
+						</tr>
+						<tr>
+                            <td onmouseover="mouseOver(this)" onmouseout="mouseOut(this)" width="33%" ><a href="#" onClick="setWay('ZONGYOU')"><img style="height:35pt;width:auto;" class="way_img" src="images/c26.png" /></a></td>
+							<td onmouseover="mouseOver(this)" onmouseout="mouseOut(this)" width="33%" ><a href="#" onClick="setWay('TIANXIA')"><img style="height:35pt;width:auto;" class="way_img" src="images/c28.png" /></a></td>
+							<td onmouseover="mouseOver(this)" onmouseout="mouseOut(this)" width="33%" ><a href="#" onClick="setWay('HUIKUAN')"><img style="height:35pt;width:auto;" class="way_img" src="images/c30.png" /></a></td>
+						</tr>
+					</table>
+
+					<div style="clear:both"></div>
+					<div class="page_nr" style="margin-top:10px">
+						客服电话：<font class="clf35d00"><span name='tel'>010-52464025</span><span id='shit'></span></font>, 客服QQ:<font class="clf35d00"><span name='qq'>2338716905</span></font>
+					</div>
+				</div>
+				<div style="clear:both"></div>
+
+			</div>
+
+            <div class="page" id="huikuan" style="display:none">
+                <style> #huikuanTable td { text-align:left; border: 1px solid
+                    #E3EDF5; border-collapse: collapse;padding:4px }  </style>
+                <div class="page_top">
+                    <div class="page_nr hk" style="margin-top:10px; text-align:left;">
+                        <table cellspacing="0" cellpadding="0" id="huikuanTable">
+                            <tbody>
+                                <tr>
+                                    <td
+                                        style="text-align:left;border:0;overflow:auto">
+                                        <strong> 目前支持的银行为: </strong> <br>
+                                        <table  align="left" cellspacing="0"
+                                            border="1" style="border: 1px solid
+                                            #E3EDF5; border-collapse: collapse;
+                                            empty-cells: show;text-align:left ">
+                                            <tbody>
+                                                <tr>
+                                                    <td> 农行账号： 622848 0018038774370 </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>户&nbsp; &nbsp; 名： 周彤 </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>开 户 行： <strong>中国农业银行股份有限公司北京劲松支行 </strong> </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>工行账号： 622208 0200010994450 </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>户&nbsp; &nbsp; 名： 周彤 </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>开 户 行： <strong>中国工商银行股份有限公司北京广渠路支行 </strong> </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>建行账号： 6217 000010004092303 </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>户&nbsp; &nbsp; 名： 周彤 </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>开 户 行： <strong>中国建设银行股份有限公司北京东三环百环支行 </strong> </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>邮政账号： 621098 1000014082491 </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>户&nbsp; &nbsp; 名： 周彤 </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>开 户 行： <strong>中国邮政储蓄银行北京朝阳区双井支行 </strong> </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <br>
+                                        <strong>汇款流程： </strong><br>
+                                        1. 到就近的银行汇款并保留汇款底单。 <br>
+                                        2. 汇款后联系客服提供信息，例如： <br>
+                                        <strong>游戏帐号 </strong>：abcd <br>
+                                        <strong>游戏名称 </strong>：武美人 <br>
+                                        <strong>游戏区服 </strong>：1区 <br>
+                                        <strong>游戏角色 </strong>：abcd <br>
+                                        <strong>充值银行 </strong>：工商银行 <br>
+                                        <strong>充值金额 </strong>（元 人民币）：100.01 <br>
+                                        <strong>联系方式 </strong>：13536275126 <br>
+                                        <br>
+                                        3. 汇款后请耐心等待客服处理。
+                                        <br> <br>
+                                        <strong>客服热线： </strong> <br>
+                                        <strong>QQ: 2338716905 </strong> <br>
+                                        <strong>电话：010-52464025 <br> 温馨提示： </strong> <br>
+                                        1、汇款和网银有相同充值比例 <br>
+                                        2、跨行时间3&mdash;5个工作日； <br>
+                                        3、充值成功后不提供修正服务 <br>
+                                        4、急需游戏币建议选择其他方式 <br>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+					<div class="dk_but"><a href="#" onclick="showWay()"><img src="images/btn3.png" /></a></div>
+                </div>
+            </div>
+			
+			<div class="page" id="body" style="display:none">
+				<div class="page_top">
+					<div class="dk_nr">
+						<div class="dkmar"><span>账号：</span><label name="to_username"></label></div>
+						<div class="dkmar"><span>游戏：</span><label name="game_name"></label></div>
+						<div class="dkmar"><span>区服：</span><label name="server_name"></label></div>
+					</div>
+					<div class="line_s"></div>
+					<div class="page_nr" style="margin-top:16px;">
+                        <input name="cash" type="hidden" value="100" />
+                        <div class="dkmar">
+                            <span>选择金额：</span>
+                            <select id="s_cash" onChange="cCash(this);">
+                                <option value="10">10</option>
+                                <option value="30">30</option>
+                                <option value="50">50</option>
+                                <option value="100" selected="selected">100</option>
+                                <option value="200">200</option>
+                                <option value="300">300</option>
+                                <option value="400">400</option>
+                                <option value="500">500</option>
+                                <option value="600">600</option>
+                                <option value="700">700</option>
+                                <option value="800">800</option>
+                                <option value="900">900</option>
+                                <option value="1000">1000</option>
+                                <option value="1500">1500</option>
+                                <option value="2000">2000</option>
+                                <option value="3000">3000</option>
+                                <option value="4000">4000</option>
+                                <option value="5000">5000</option>
+                                <option value="6000">6000</option>
+                                <option value="7000">7000</option>
+                                <option value="8000">8000</option>
+                                <option value="9000">9000</option>
+                                <option value="10000">10000</option>
+                            </select>
+                        </div>
+						<div class="clear"></div>
+					</div>
+					<div class="dk_tishi" style="display:none" id="amount">充值成功可获得<label name="amount"></label>奖励</div>
+					<div class="line_s"></div>
+
+
+					<div id="cardBody" style="display:none">
+						<div class="page_nr" style=" margin-top:16px;">
+							<div class="page_nr_text"><input name="sn" type="text" onFocus="this.className='clff660f';if(this.value=='请输入序列号：') {this.value=''}" onBlur="this.className='clbfbfbf';if (this.value==''){this.value='请输入序列号：'}" value="请输入序列号：" onKeyDown="movePoint()"></div>
+							<div class="page_nr_text"><input name="pass" type="text" onFocus="this.className='clff660f';if(this.value=='请输入密码：'){this.value=''}" onBlur="this.className='clbfbfbf';if(this.value==''){this.value='请输入密码：'}" value="请输入密码：" onKeyDown="movePoint()"></div>
+						</div>
+						<div class="dk_mima"> 请确定面值与充值金额一致，否则会导致失败 </div>
+					</div>
+
+					<div id="bankBody" style="display:none" class="page_nr hk" style="margin-top:10px; text-align:left;">
+						支持支付宝账号，信用卡，银行卡支付。
+						<br/> 客服电话：<nobr><span name='tel'>010-52464025</span> <nobr>
+						<br />客服QQ：<nobr><a class="cle87300"><span name='qq'>2338716905</span></a></nobr>
+					</div>
+					<div id="tenpayBody" style="display:none" class="page_nr hk" style="margin-top:10px; text-align:left;">
+						如果你还没有下载财付通支付工具，需要您下载后，才能完成本次操作 － 财付通支付.
+						<br />客服电话：<nobr><span name='tel'>010-52464025</span> </nobr>
+						<br />客服QQ：<a class="cle87300"><span name='qq'>2338716905</span></a><br />
+					</div>
+					<div id="alipayBody" style="display:none" class="page_nr hk" style="margin-top:10px; text-align:left;">
+						支持支付宝银行卡支付。
+						<br/> 客服电话：<nobr><span name='tel'>010-52464025</span> </nobr>
+						<br />客服QQ：<nobr><a class="cle87300"><span name='qq'>2338716905</span></a></nobr>
+					</div>
+					<div id="huikuanBody" style="display:none" class="page_nr hk" style="margin-top:10px; text-align:left;">
+						<div>
+							<font><a class="cle87300">汇款</a>成功后，请联系客服，进行充值。</font>
+							<br />1.客服会告诉你汇款指定的银行账号
+							<br />2.您需要将您充值的游戏账号，游戏服务器，告诉客服<br />
+							汇款客服QQ：<nobr><a class="cl7fb2d8"><span name='qq'>2338716905</span></a></nobr>
+							<br /> 客服电话：<nobr><span name='tel'>010-52464025</span></nobr>
+						</div>
+					</div>
+
+					<div class="line_s"></div>
+					<div class="dk_but"><a href="#" onclick="showOrder()"><img src="images/btn1.png" /></a><a href="#" onclick="showWay()"><img src="images/btn3.png" /></a></div>
+				</div>
+			</div>
+
+			<div class="rech_box" id="status" style="display:none">
+				<div class="page_top">
+					<div class="dk_nr" style="margin:10px 0;">
+						<div class="rech_nr">
+							<div class="rech_nr_zt cz_false"><img src="images/rech_z.gif" />正在充值......</div>
+							<div class="rech_nr_sm">正在为<label name="game_name"></label><font> (<label name="server_name"></label>)</font> 充值, 如果2分钟后充值未到账，请拨打客服电话：<span> <nobr><span name='tel'>010-52464025</span> </nobr></span></div>
+						</div>
+					</div>
+					<div class="line_s"></div>
+				</div>
+				<div class="dk_but"></div>
+			</div>
+
+			<div class="rech_box" id="resultBody" style="display:none">
+				<div class="page_top">
+					<div class="dk_nr" style="margin:10px 0;">
+						<div class="rech_nr" id="success" style="display:none">
+							<div class="rech_nr_zt"><img src="images/su.png" />充值成功</div>
+							<div class="rech_nr_sm">您已为 
+                                <font>
+                                    <label name="game_name"></label>
+                                    (<label name="server_name"></label>)
+                                </font> 充值成功，获得 
+                                <label name="amount"></label>
+                                <label name='currency'></label>
+                                .</div>
+						</div>
+						
+						<div class="rech_nr" id="failed" style="display:none">
+							<div class="rech_nr_zt cz_false"><img src="images/fouse.png" />充值失败</div>
+							<div class="rech_nr_sm" style="padding-left:15px;">
+								<label id="failedMsg"></label><br/>
+								<br/>请再试一次，或联系客服。 
+								<br/>客服电话：<font class="clf35d00"><span name='tel'>010-52464025</span></font>
+								<br/>客服QQ:<font class="clf35d00"><span name='qq'>2338716905</span></font>
+							</div>
+						</div>
+					</div>
+					<div class="line_s"></div>
+				</div>
+
+				<div class="dk_but"><a href="#" onclick="showWay();return false;"><img src="images/bye.png" style='width:81pt;' /></a></div>
+			</div>
+
+		</form>
+
+	</body>
+</html>

@@ -1,0 +1,2869 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		221492BC183A43A10023D1E7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55DEFD0C16D7776F00E75F8C /* Foundation.framework */; };
+		22214FC317ACFEB400B09A47 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55DEFD0C16D7776F00E75F8C /* Foundation.framework */; };
+		22214FCF17ACFEFD00B09A47 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55DEFD0C16D7776F00E75F8C /* Foundation.framework */; };
+		22214FDB17ACFF1800B09A47 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55DEFD0C16D7776F00E75F8C /* Foundation.framework */; };
+		224A1BD3183E103D00B0C24B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55DEFD0C16D7776F00E75F8C /* Foundation.framework */; };
+		22B41D81183321A8008F7A3D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55DEFD0C16D7776F00E75F8C /* Foundation.framework */; };
+		22FD725D181B652C002A7022 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55DEFD0C16D7776F00E75F8C /* Foundation.framework */; };
+		22FD72A5181BA59B002A7022 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55DEFD0C16D7776F00E75F8C /* Foundation.framework */; };
+		46074213197919C200A08487 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55DEFD0C16D7776F00E75F8C /* Foundation.framework */; };
+		4607421F19791A1200A08487 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55DEFD0C16D7776F00E75F8C /* Foundation.framework */; };
+		4636525F19912D7F00214C25 /* Custom37SDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 463651F219912D7300214C25 /* Custom37SDK.m */; };
+		4636526019912D7F00214C25 /* CustomSDKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 463651F419912D7300214C25 /* CustomSDKViewController.m */; };
+		4636526119912D7F00214C25 /* lib37wanwan.mm in Sources */ = {isa = PBXBuildFile; fileRef = 463651F519912D7300214C25 /* lib37wanwan.mm */; };
+		4636526219912D7F00214C25 /* lib37wanwanObj.mm in Sources */ = {isa = PBXBuildFile; fileRef = 463651F719912D7300214C25 /* lib37wanwanObj.mm */; };
+		4636526319912D8800214C25 /* Custom49SDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 463651FA19912D7300214C25 /* Custom49SDK.m */; };
+		4636526419912D8800214C25 /* Custom49SDKPayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 463651FC19912D7300214C25 /* Custom49SDKPayViewController.m */; };
+		4636526519912D8800214C25 /* Custom49SDKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 463651FE19912D7300214C25 /* Custom49SDKViewController.m */; };
+		4636526619912D8800214C25 /* lib49app.mm in Sources */ = {isa = PBXBuildFile; fileRef = 463651FF19912D7300214C25 /* lib49app.mm */; };
+		4636526719912D8800214C25 /* lib49appObj.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4636520119912D7300214C25 /* lib49appObj.mm */; };
+		4636526819912D9100214C25 /* lib91.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4636520319912D7300214C25 /* lib91.mm */; };
+		4636526919912D9100214C25 /* lib91Obj.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4636520519912D7300214C25 /* lib91Obj.mm */; };
+		4636526A19912D9700214C25 /* lib91Debug.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4636520719912D7300214C25 /* lib91Debug.mm */; };
+		4636526B19912D9700214C25 /* lib91DebugObj.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4636520919912D7300214C25 /* lib91DebugObj.mm */; };
+		4636526C19912D9D00214C25 /* lib91Quasi.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4636520B19912D7300214C25 /* lib91Quasi.mm */; };
+		4636526D19912D9D00214C25 /* lib91QuasiObj.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4636520D19912D7300214C25 /* lib91QuasiObj.mm */; };
+		4636526E19912DA300214C25 /* lib44755.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4636520F19912D7300214C25 /* lib44755.mm */; };
+		4636526F19912DA300214C25 /* lib44755Obj.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4636521119912D7300214C25 /* lib44755Obj.mm */; };
+		4636527019912E0C00214C25 /* libAG.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4636521319912D7300214C25 /* libAG.mm */; };
+		4636527119912E0C00214C25 /* libAGObj.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4636521519912D7300214C25 /* libAGObj.mm */; };
+		4636527219912E1400214C25 /* libAppStore.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4636521719912D7300214C25 /* libAppStore.mm */; };
+		4636527319912E1400214C25 /* libAppStoreObj.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4636521919912D7300214C25 /* libAppStoreObj.mm */; };
+		4636527419912E1900214C25 /* libAs.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4636521B19912D7300214C25 /* libAs.mm */; };
+		4636527519912E1900214C25 /* libAsObj.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4636521D19912D7300214C25 /* libAsObj.mm */; };
+		4636527619912E1F00214C25 /* libCmge.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4636521F19912D7300214C25 /* libCmge.mm */; };
+		4636527719912E1F00214C25 /* libCmgeObj.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4636522119912D7300214C25 /* libCmgeObj.mm */; };
+		4636527819912E2500214C25 /* libDownJoy.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4636522319912D7300214C25 /* libDownJoy.mm */; };
+		4636527919912E2500214C25 /* libDownJoyObj.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4636522519912D7300214C25 /* libDownJoyObj.mm */; };
+		4636528119912E4900214C25 /* libPP.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4636524C19912D7300214C25 /* libPP.mm */; };
+		4636528219912E4900214C25 /* libPPObj.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4636524E19912D7300214C25 /* libPPObj.mm */; };
+		4636528319912E4F00214C25 /* libPPZB.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4636525019912D7300214C25 /* libPPZB.mm */; };
+		4636528419912E4F00214C25 /* libPPZBObj.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4636525219912D7300214C25 /* libPPZBObj.mm */; };
+		4636528519912E5400214C25 /* libTB.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4636525419912D7300214C25 /* libTB.mm */; };
+		4636528619912E5400214C25 /* libTBObj.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4636525619912D7300214C25 /* libTBObj.mm */; };
+		4636528719912E5A00214C25 /* libUC.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4636525819912D7300214C25 /* libUC.mm */; };
+		4636528819912E5A00214C25 /* libUCObj.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4636525A19912D7300214C25 /* libUCObj.mm */; };
+		4636528919912E6000214C25 /* libYouai.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4636525C19912D7300214C25 /* libYouai.mm */; };
+		4636528A19912E6000214C25 /* libYouaiObj.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4636525E19912D7300214C25 /* libYouaiObj.mm */; };
+		4636528D19912EAD00214C25 /* libPlatform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4636528B19912EAD00214C25 /* libPlatform.cpp */; };
+		4636528E19912EAD00214C25 /* libPlatform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4636528B19912EAD00214C25 /* libPlatform.cpp */; };
+		4636528F19912EAD00214C25 /* libPlatform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4636528B19912EAD00214C25 /* libPlatform.cpp */; };
+		4636529019912EAD00214C25 /* libPlatform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4636528B19912EAD00214C25 /* libPlatform.cpp */; };
+		4636529119912EAD00214C25 /* libPlatform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4636528B19912EAD00214C25 /* libPlatform.cpp */; };
+		4636529219912EAD00214C25 /* libPlatform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4636528B19912EAD00214C25 /* libPlatform.cpp */; };
+		4636529319912EAD00214C25 /* libPlatform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4636528B19912EAD00214C25 /* libPlatform.cpp */; };
+		4636529419912EAD00214C25 /* libPlatform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4636528B19912EAD00214C25 /* libPlatform.cpp */; };
+		4636529519912EAD00214C25 /* libPlatform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4636528B19912EAD00214C25 /* libPlatform.cpp */; };
+		4636529619912EAD00214C25 /* libPlatform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4636528B19912EAD00214C25 /* libPlatform.cpp */; };
+		4636529719912EAD00214C25 /* libPlatform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4636528B19912EAD00214C25 /* libPlatform.cpp */; };
+		4636529819912EAD00214C25 /* libPlatform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4636528B19912EAD00214C25 /* libPlatform.cpp */; };
+		4636529919912EAD00214C25 /* libPlatform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4636528B19912EAD00214C25 /* libPlatform.cpp */; };
+		4636529A19912EAD00214C25 /* libPlatform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4636528B19912EAD00214C25 /* libPlatform.cpp */; };
+		4636529B19912EAD00214C25 /* libPlatform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4636528B19912EAD00214C25 /* libPlatform.cpp */; };
+		4636529C19912EAD00214C25 /* libPlatform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4636528B19912EAD00214C25 /* libPlatform.cpp */; };
+		4636529D19912EAD00214C25 /* libPlatform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4636528B19912EAD00214C25 /* libPlatform.cpp */; };
+		4636529E19912EAD00214C25 /* libPlatform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4636528B19912EAD00214C25 /* libPlatform.cpp */; };
+		4636529F19912EAD00214C25 /* libPlatform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4636528B19912EAD00214C25 /* libPlatform.cpp */; };
+		463652A019912EAD00214C25 /* libPlatform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4636528B19912EAD00214C25 /* libPlatform.cpp */; };
+		46D4E318197CE9A6002BE130 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55DEFD0C16D7776F00E75F8C /* Foundation.framework */; };
+		55DEFD0D16D7776F00E75F8C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55DEFD0C16D7776F00E75F8C /* Foundation.framework */; };
+		AF08DF4A188E2719006BE0FA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55DEFD0C16D7776F00E75F8C /* Foundation.framework */; };
+		AF0CBA1F18053BD80009402E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55DEFD0C16D7776F00E75F8C /* Foundation.framework */; };
+		AF5B97ED17E41A3D00B2480E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55DEFD0C16D7776F00E75F8C /* Foundation.framework */; };
+		AF5B980317E41B4800B2480E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55DEFD0C16D7776F00E75F8C /* Foundation.framework */; };
+		AF6065BF183B0E9E005761AC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55DEFD0C16D7776F00E75F8C /* Foundation.framework */; };
+		AF7B9D6A185896AD0029CAC8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55DEFD0C16D7776F00E75F8C /* Foundation.framework */; };
+		B5311E3A19A7A04F00CBE153 /* libITools.mm in Sources */ = {isa = PBXBuildFile; fileRef = B5311E3719A7A04F00CBE153 /* libITools.mm */; };
+		B5311E3B19A7A04F00CBE153 /* libIToolsObj.mm in Sources */ = {isa = PBXBuildFile; fileRef = B5311E3919A7A04F00CBE153 /* libIToolsObj.mm */; };
+		B595878E19A4AC8A00EA00F2 /* libKY.mm in Sources */ = {isa = PBXBuildFile; fileRef = B595878B19A4AC8A00EA00F2 /* libKY.mm */; };
+		B595878F19A4AC8A00EA00F2 /* libKYObj.mm in Sources */ = {isa = PBXBuildFile; fileRef = B595878D19A4AC8A00EA00F2 /* libKYObj.mm */; };
+		B5BF543619A7755700C994DE /* libUHaima.mm in Sources */ = {isa = PBXBuildFile; fileRef = B5BF543319A7755700C994DE /* libUHaima.mm */; };
+		B5BF543719A7755700C994DE /* libUHaimaObj.mm in Sources */ = {isa = PBXBuildFile; fileRef = B5BF543519A7755700C994DE /* libUHaimaObj.mm */; };
+		B5BF545A19A78AB300C994DE /* libPlatform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4636528B19912EAD00214C25 /* libPlatform.cpp */; };
+		B5BF545D19A78AB300C994DE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55DEFD0C16D7776F00E75F8C /* Foundation.framework */; };
+		B5BF546719A78AE900C994DE /* libXY.mm in Sources */ = {isa = PBXBuildFile; fileRef = B5BF546419A78AE900C994DE /* libXY.mm */; };
+		B5BF546819A78AE900C994DE /* libXYObj.mm in Sources */ = {isa = PBXBuildFile; fileRef = B5BF546619A78AE900C994DE /* libXYObj.mm */; };
+		CF97251417C1B87C000DBA89 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55DEFD0C16D7776F00E75F8C /* Foundation.framework */; };
+		F7B62F48184D819300434B0E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55DEFD0C16D7776F00E75F8C /* Foundation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		221492BD183A43A10023D1E7 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/${PRODUCT_NAME}";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		22214FC417ACFEB400B09A47 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/${PRODUCT_NAME}";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		22214FD017ACFEFD00B09A47 /* Copy Files */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/${PRODUCT_NAME}";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			name = "Copy Files";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		22214FDC17ACFF1800B09A47 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/${PRODUCT_NAME}";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		224A1BD4183E103D00B0C24B /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/${PRODUCT_NAME}";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		22B41D82183321A8008F7A3D /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/${PRODUCT_NAME}";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		22FD725E181B652C002A7022 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/${PRODUCT_NAME}";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		22FD72A6181BA59B002A7022 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/${PRODUCT_NAME}";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		46074214197919C200A08487 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/${PRODUCT_NAME}";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4607422019791A1200A08487 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/${PRODUCT_NAME}";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		46D4E319197CE9A6002BE130 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/${PRODUCT_NAME}";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		55DEFD0716D7776F00E75F8C /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/${PRODUCT_NAME}";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF08DF4B188E2719006BE0FA /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/${PRODUCT_NAME}";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF0CBA2018053BD80009402E /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/${PRODUCT_NAME}";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF5B97EE17E41A3D00B2480E /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/${PRODUCT_NAME}";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF5B980417E41B4800B2480E /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/${PRODUCT_NAME}";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF6065C0183B0E9E005761AC /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/${PRODUCT_NAME}";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF7B9D6B185896AD0029CAC8 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/${PRODUCT_NAME}";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5BF545E19A78AB300C994DE /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/${PRODUCT_NAME}";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CF97251517C1B87C000DBA89 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/${PRODUCT_NAME}";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F7B62F49184D819300434B0E /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/${PRODUCT_NAME}";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		221492C1183A43A10023D1E7 /* liblibuc.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblibuc.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		22214FC817ACFEB400B09A47 /* liblibpp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblibpp.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		22214FD417ACFEFD00B09A47 /* liblibag.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblibag.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		22214FE017ACFF1800B09A47 /* liblibtb.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblibtb.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		224A1BD8183E103D00B0C24B /* liblib49app.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblib49app.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		22B41D86183321A8008F7A3D /* liblib37wanwan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblib37wanwan.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		22FD7262181B652C002A7022 /* liblibYouai.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblibYouai.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		22FD72AA181BA59B002A7022 /* liblibKY.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblibKY.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		46074218197919C200A08487 /* liblib44755.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblib44755.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		4607422419791A1200A08487 /* liblibAs.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblibAs.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		463651F119912D7300214C25 /* Custom37SDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Custom37SDK.h; sourceTree = "<group>"; };
+		463651F219912D7300214C25 /* Custom37SDK.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Custom37SDK.m; sourceTree = "<group>"; };
+		463651F319912D7300214C25 /* CustomSDKViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomSDKViewController.h; sourceTree = "<group>"; };
+		463651F419912D7300214C25 /* CustomSDKViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomSDKViewController.m; sourceTree = "<group>"; };
+		463651F519912D7300214C25 /* lib37wanwan.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = lib37wanwan.mm; sourceTree = "<group>"; };
+		463651F619912D7300214C25 /* lib37wanwanObj.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib37wanwanObj.h; sourceTree = "<group>"; };
+		463651F719912D7300214C25 /* lib37wanwanObj.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = lib37wanwanObj.mm; sourceTree = "<group>"; };
+		463651F919912D7300214C25 /* Custom49SDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Custom49SDK.h; sourceTree = "<group>"; };
+		463651FA19912D7300214C25 /* Custom49SDK.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Custom49SDK.m; sourceTree = "<group>"; };
+		463651FB19912D7300214C25 /* Custom49SDKPayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Custom49SDKPayViewController.h; sourceTree = "<group>"; };
+		463651FC19912D7300214C25 /* Custom49SDKPayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Custom49SDKPayViewController.m; sourceTree = "<group>"; };
+		463651FD19912D7300214C25 /* Custom49SDKViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Custom49SDKViewController.h; sourceTree = "<group>"; };
+		463651FE19912D7300214C25 /* Custom49SDKViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Custom49SDKViewController.m; sourceTree = "<group>"; };
+		463651FF19912D7300214C25 /* lib49app.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = lib49app.mm; sourceTree = "<group>"; };
+		4636520019912D7300214C25 /* lib49appObj.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib49appObj.h; sourceTree = "<group>"; };
+		4636520119912D7300214C25 /* lib49appObj.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = lib49appObj.mm; sourceTree = "<group>"; };
+		4636520319912D7300214C25 /* lib91.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = lib91.mm; sourceTree = "<group>"; };
+		4636520419912D7300214C25 /* lib91Obj.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib91Obj.h; sourceTree = "<group>"; };
+		4636520519912D7300214C25 /* lib91Obj.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = lib91Obj.mm; sourceTree = "<group>"; };
+		4636520719912D7300214C25 /* lib91Debug.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = lib91Debug.mm; sourceTree = "<group>"; };
+		4636520819912D7300214C25 /* lib91DebugObj.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib91DebugObj.h; sourceTree = "<group>"; };
+		4636520919912D7300214C25 /* lib91DebugObj.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = lib91DebugObj.mm; sourceTree = "<group>"; };
+		4636520B19912D7300214C25 /* lib91Quasi.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = lib91Quasi.mm; sourceTree = "<group>"; };
+		4636520C19912D7300214C25 /* lib91QuasiObj.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib91QuasiObj.h; sourceTree = "<group>"; };
+		4636520D19912D7300214C25 /* lib91QuasiObj.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = lib91QuasiObj.mm; sourceTree = "<group>"; };
+		4636520F19912D7300214C25 /* lib44755.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = lib44755.mm; sourceTree = "<group>"; };
+		4636521019912D7300214C25 /* lib44755Obj.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib44755Obj.h; sourceTree = "<group>"; };
+		4636521119912D7300214C25 /* lib44755Obj.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = lib44755Obj.mm; sourceTree = "<group>"; };
+		4636521319912D7300214C25 /* libAG.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = libAG.mm; sourceTree = "<group>"; };
+		4636521419912D7300214C25 /* libAGObj.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = libAGObj.h; sourceTree = "<group>"; };
+		4636521519912D7300214C25 /* libAGObj.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = libAGObj.mm; sourceTree = "<group>"; };
+		4636521719912D7300214C25 /* libAppStore.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = libAppStore.mm; sourceTree = "<group>"; };
+		4636521819912D7300214C25 /* libAppStoreObj.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = libAppStoreObj.h; sourceTree = "<group>"; };
+		4636521919912D7300214C25 /* libAppStoreObj.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = libAppStoreObj.mm; sourceTree = "<group>"; };
+		4636521B19912D7300214C25 /* libAs.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = libAs.mm; sourceTree = "<group>"; };
+		4636521C19912D7300214C25 /* libAsObj.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = libAsObj.h; sourceTree = "<group>"; };
+		4636521D19912D7300214C25 /* libAsObj.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = libAsObj.mm; sourceTree = "<group>"; };
+		4636521F19912D7300214C25 /* libCmge.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = libCmge.mm; sourceTree = "<group>"; };
+		4636522019912D7300214C25 /* libCmgeObj.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = libCmgeObj.h; sourceTree = "<group>"; };
+		4636522119912D7300214C25 /* libCmgeObj.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = libCmgeObj.mm; sourceTree = "<group>"; };
+		4636522319912D7300214C25 /* libDownJoy.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = libDownJoy.mm; sourceTree = "<group>"; };
+		4636522419912D7300214C25 /* libDownJoyObj.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = libDownJoyObj.h; sourceTree = "<group>"; };
+		4636522519912D7300214C25 /* libDownJoyObj.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = libDownJoyObj.mm; sourceTree = "<group>"; };
+		4636524C19912D7300214C25 /* libPP.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = libPP.mm; sourceTree = "<group>"; };
+		4636524D19912D7300214C25 /* libPPObj.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = libPPObj.h; sourceTree = "<group>"; };
+		4636524E19912D7300214C25 /* libPPObj.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = libPPObj.mm; sourceTree = "<group>"; };
+		4636525019912D7300214C25 /* libPPZB.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = libPPZB.mm; sourceTree = "<group>"; };
+		4636525119912D7300214C25 /* libPPZBObj.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = libPPZBObj.h; sourceTree = "<group>"; };
+		4636525219912D7300214C25 /* libPPZBObj.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = libPPZBObj.mm; sourceTree = "<group>"; };
+		4636525419912D7300214C25 /* libTB.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = libTB.mm; sourceTree = "<group>"; };
+		4636525519912D7300214C25 /* libTBObj.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = libTBObj.h; sourceTree = "<group>"; };
+		4636525619912D7300214C25 /* libTBObj.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = libTBObj.mm; sourceTree = "<group>"; };
+		4636525819912D7300214C25 /* libUC.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = libUC.mm; sourceTree = "<group>"; };
+		4636525919912D7300214C25 /* libUCObj.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = libUCObj.h; sourceTree = "<group>"; };
+		4636525A19912D7300214C25 /* libUCObj.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = libUCObj.mm; sourceTree = "<group>"; };
+		4636525C19912D7300214C25 /* libYouai.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = libYouai.mm; sourceTree = "<group>"; };
+		4636525D19912D7300214C25 /* libYouaiObj.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = libYouaiObj.h; sourceTree = "<group>"; };
+		4636525E19912D7300214C25 /* libYouaiObj.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = libYouaiObj.mm; sourceTree = "<group>"; };
+		4636528B19912EAD00214C25 /* libPlatform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = libPlatform.cpp; path = ../include/libPlatform.cpp; sourceTree = "<group>"; };
+		4636528C19912EAD00214C25 /* libPlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = libPlatform.h; path = ../include/libPlatform.h; sourceTree = "<group>"; };
+		463652A119912ED700214C25 /* lib37wanwan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lib37wanwan.h; path = ../../include/lib37wanwan.h; sourceTree = "<group>"; };
+		463652A219912EE600214C25 /* lib49app.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lib49app.h; path = ../../include/lib49app.h; sourceTree = "<group>"; };
+		463652A319912EFA00214C25 /* lib91.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lib91.h; path = ../../include/lib91.h; sourceTree = "<group>"; };
+		463652A419912F0900214C25 /* lib91Debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lib91Debug.h; path = ../../include/lib91Debug.h; sourceTree = "<group>"; };
+		463652A519912F1D00214C25 /* lib91Quasi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lib91Quasi.h; path = ../../include/lib91Quasi.h; sourceTree = "<group>"; };
+		463652A619912F2B00214C25 /* lib44755.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lib44755.h; path = ../../include/lib44755.h; sourceTree = "<group>"; };
+		463652A719912F3E00214C25 /* libAG.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = libAG.h; path = ../../include/libAG.h; sourceTree = "<group>"; };
+		463652A819912F4B00214C25 /* libAppStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = libAppStore.h; path = ../../include/libAppStore.h; sourceTree = "<group>"; };
+		463652A919912F5D00214C25 /* libAs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = libAs.h; path = ../../include/libAs.h; sourceTree = "<group>"; };
+		463652AA19912F6C00214C25 /* libCmge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = libCmge.h; path = ../../include/libCmge.h; sourceTree = "<group>"; };
+		463652AB19912F7D00214C25 /* libDownJoy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = libDownJoy.h; path = ../../include/libDownJoy.h; sourceTree = "<group>"; };
+		463652AF19912FC600214C25 /* libPP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = libPP.h; path = ../../include/libPP.h; sourceTree = "<group>"; };
+		463652B019912FD900214C25 /* libPPZB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = libPPZB.h; path = ../../include/libPPZB.h; sourceTree = "<group>"; };
+		463652B119912FE800214C25 /* libTB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = libTB.h; path = ../../include/libTB.h; sourceTree = "<group>"; };
+		463652B219912FF700214C25 /* libUC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = libUC.h; path = ../../include/libUC.h; sourceTree = "<group>"; };
+		463652CB1991336200214C25 /* libYouai.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = libYouai.h; path = ../../include/libYouai.h; sourceTree = "<group>"; };
+		46D4E31D197CE9A6002BE130 /* liblibUHaima.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblibUHaima.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		55DEFD0916D7776F00E75F8C /* liblib91.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblib91.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		55DEFD0C16D7776F00E75F8C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		AF08DF4F188E2719006BE0FA /* liblibppzb.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblibppzb.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF0CBA2418053BD80009402E /* liblibCmge.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblibCmge.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF5B97F217E41A3D00B2480E /* liblibItools.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblibItools.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF5B980817E41B4800B2480E /* liblib91Debug.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblib91Debug.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF6065C4183B0E9E005761AC /* liblibDownJoy.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblibDownJoy.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF7B9D6F185896AD0029CAC8 /* liblibAppstoreTW.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblibAppstoreTW.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5311E3619A7A04100CBE153 /* libITools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = libITools.h; path = ../../include/libITools.h; sourceTree = "<group>"; };
+		B5311E3719A7A04F00CBE153 /* libITools.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = libITools.mm; sourceTree = "<group>"; };
+		B5311E3819A7A04F00CBE153 /* libIToolsObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libIToolsObj.h; sourceTree = "<group>"; };
+		B5311E3919A7A04F00CBE153 /* libIToolsObj.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = libIToolsObj.mm; sourceTree = "<group>"; };
+		B595878B19A4AC8A00EA00F2 /* libKY.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = libKY.mm; sourceTree = "<group>"; };
+		B595878C19A4AC8A00EA00F2 /* libKYObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libKYObj.h; sourceTree = "<group>"; };
+		B595878D19A4AC8A00EA00F2 /* libKYObj.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = libKYObj.mm; sourceTree = "<group>"; };
+		B595879019A4ACB600EA00F2 /* libKY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = libKY.h; path = ../../include/libKY.h; sourceTree = "<group>"; };
+		B5BF543219A7754A00C994DE /* libUHaima.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = libUHaima.h; path = ../include/libUHaima.h; sourceTree = "<group>"; };
+		B5BF543319A7755700C994DE /* libUHaima.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = libUHaima.mm; path = ../files/UHaima/libUHaima.mm; sourceTree = "<group>"; };
+		B5BF543419A7755700C994DE /* libUHaimaObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = libUHaimaObj.h; path = ../files/UHaima/libUHaimaObj.h; sourceTree = "<group>"; };
+		B5BF543519A7755700C994DE /* libUHaimaObj.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = libUHaimaObj.mm; path = ../files/UHaima/libUHaimaObj.mm; sourceTree = "<group>"; };
+		B5BF546219A78AB300C994DE /* liblibXY.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblibXY.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5BF546319A78ADE00C994DE /* libXY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = libXY.h; path = ../include/libXY.h; sourceTree = "<group>"; };
+		B5BF546419A78AE900C994DE /* libXY.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = libXY.mm; path = ../files/XY/libXY.mm; sourceTree = "<group>"; };
+		B5BF546519A78AE900C994DE /* libXYObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = libXYObj.h; path = ../files/XY/libXYObj.h; sourceTree = "<group>"; };
+		B5BF546619A78AE900C994DE /* libXYObj.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = libXYObj.mm; path = ../files/XY/libXYObj.mm; sourceTree = "<group>"; };
+		CF97251917C1B87C000DBA89 /* liblibAppStore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblibAppStore.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F7B62F4D184D819300434B0E /* liblib91Quasi.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblib91Quasi.a; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		221492BB183A43A10023D1E7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				221492BC183A43A10023D1E7 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		22214FC217ACFEB400B09A47 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22214FC317ACFEB400B09A47 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		22214FCE17ACFEFD00B09A47 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22214FCF17ACFEFD00B09A47 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		22214FDA17ACFF1800B09A47 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22214FDB17ACFF1800B09A47 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		224A1BD2183E103D00B0C24B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				224A1BD3183E103D00B0C24B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		22B41D80183321A8008F7A3D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22B41D81183321A8008F7A3D /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		22FD725C181B652C002A7022 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22FD725D181B652C002A7022 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		22FD72A4181BA59B002A7022 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22FD72A5181BA59B002A7022 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		46074212197919C200A08487 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				46074213197919C200A08487 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4607421E19791A1200A08487 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4607421F19791A1200A08487 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		46D4E317197CE9A6002BE130 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				46D4E318197CE9A6002BE130 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		55DEFD0616D7776F00E75F8C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				55DEFD0D16D7776F00E75F8C /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF08DF49188E2719006BE0FA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AF08DF4A188E2719006BE0FA /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF0CBA1E18053BD80009402E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AF0CBA1F18053BD80009402E /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF5B97EC17E41A3D00B2480E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AF5B97ED17E41A3D00B2480E /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF5B980217E41B4800B2480E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AF5B980317E41B4800B2480E /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF6065BE183B0E9E005761AC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AF6065BF183B0E9E005761AC /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF7B9D69185896AD0029CAC8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AF7B9D6A185896AD0029CAC8 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5BF545C19A78AB300C994DE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5BF545D19A78AB300C994DE /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CF97251317C1B87C000DBA89 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF97251417C1B87C000DBA89 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F7B62F47184D819300434B0E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F7B62F48184D819300434B0E /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		463044BF199284C400E2A9B6 /* ITools */ = {
+			isa = PBXGroup;
+			children = (
+				B5311E3619A7A04100CBE153 /* libITools.h */,
+				B5311E3719A7A04F00CBE153 /* libITools.mm */,
+				B5311E3819A7A04F00CBE153 /* libIToolsObj.h */,
+				B5311E3919A7A04F00CBE153 /* libIToolsObj.mm */,
+			);
+			name = ITools;
+			path = ../files/ITools;
+			sourceTree = "<group>";
+		};
+		463651EC19912D1200214C25 /* lib91 */ = {
+			isa = PBXGroup;
+			children = (
+				B5BF545619A78AA100C994DE /* XY */,
+				B5BF535F19A7728D00C994DE /* UHaima */,
+				463044BF199284C400E2A9B6 /* ITools */,
+				4636528B19912EAD00214C25 /* libPlatform.cpp */,
+				4636528C19912EAD00214C25 /* libPlatform.h */,
+				463651F019912D7300214C25 /* 37wanwan */,
+				463651F819912D7300214C25 /* 49app */,
+				4636520219912D7300214C25 /* 91 */,
+				4636520619912D7300214C25 /* 91Debug */,
+				4636520A19912D7300214C25 /* 91Quasi */,
+				4636520E19912D7300214C25 /* 44755 */,
+				4636521219912D7300214C25 /* AppleGarden */,
+				4636521619912D7300214C25 /* AppStore */,
+				4636521A19912D7300214C25 /* As */,
+				4636521E19912D7300214C25 /* Cmge */,
+				4636522219912D7300214C25 /* DownJoy */,
+				4636524519912D7300214C25 /* KY */,
+				4636524B19912D7300214C25 /* PP */,
+				4636524F19912D7300214C25 /* ppzb */,
+				4636525319912D7300214C25 /* TB */,
+				4636525719912D7300214C25 /* UC */,
+				4636525B19912D7300214C25 /* Youai */,
+			);
+			name = lib91;
+			sourceTree = "<group>";
+		};
+		463651F019912D7300214C25 /* 37wanwan */ = {
+			isa = PBXGroup;
+			children = (
+				463652A119912ED700214C25 /* lib37wanwan.h */,
+				463651F119912D7300214C25 /* Custom37SDK.h */,
+				463651F219912D7300214C25 /* Custom37SDK.m */,
+				463651F319912D7300214C25 /* CustomSDKViewController.h */,
+				463651F419912D7300214C25 /* CustomSDKViewController.m */,
+				463651F519912D7300214C25 /* lib37wanwan.mm */,
+				463651F619912D7300214C25 /* lib37wanwanObj.h */,
+				463651F719912D7300214C25 /* lib37wanwanObj.mm */,
+			);
+			name = 37wanwan;
+			path = ../files/37wanwan;
+			sourceTree = "<group>";
+		};
+		463651F819912D7300214C25 /* 49app */ = {
+			isa = PBXGroup;
+			children = (
+				463652A219912EE600214C25 /* lib49app.h */,
+				463651F919912D7300214C25 /* Custom49SDK.h */,
+				463651FA19912D7300214C25 /* Custom49SDK.m */,
+				463651FB19912D7300214C25 /* Custom49SDKPayViewController.h */,
+				463651FC19912D7300214C25 /* Custom49SDKPayViewController.m */,
+				463651FD19912D7300214C25 /* Custom49SDKViewController.h */,
+				463651FE19912D7300214C25 /* Custom49SDKViewController.m */,
+				463651FF19912D7300214C25 /* lib49app.mm */,
+				4636520019912D7300214C25 /* lib49appObj.h */,
+				4636520119912D7300214C25 /* lib49appObj.mm */,
+			);
+			name = 49app;
+			path = ../files/49app;
+			sourceTree = "<group>";
+		};
+		4636520219912D7300214C25 /* 91 */ = {
+			isa = PBXGroup;
+			children = (
+				463652A319912EFA00214C25 /* lib91.h */,
+				4636520319912D7300214C25 /* lib91.mm */,
+				4636520419912D7300214C25 /* lib91Obj.h */,
+				4636520519912D7300214C25 /* lib91Obj.mm */,
+			);
+			name = 91;
+			path = ../files/91;
+			sourceTree = "<group>";
+		};
+		4636520619912D7300214C25 /* 91Debug */ = {
+			isa = PBXGroup;
+			children = (
+				463652A419912F0900214C25 /* lib91Debug.h */,
+				4636520719912D7300214C25 /* lib91Debug.mm */,
+				4636520819912D7300214C25 /* lib91DebugObj.h */,
+				4636520919912D7300214C25 /* lib91DebugObj.mm */,
+			);
+			name = 91Debug;
+			path = ../files/91Debug;
+			sourceTree = "<group>";
+		};
+		4636520A19912D7300214C25 /* 91Quasi */ = {
+			isa = PBXGroup;
+			children = (
+				463652A519912F1D00214C25 /* lib91Quasi.h */,
+				4636520B19912D7300214C25 /* lib91Quasi.mm */,
+				4636520C19912D7300214C25 /* lib91QuasiObj.h */,
+				4636520D19912D7300214C25 /* lib91QuasiObj.mm */,
+			);
+			name = 91Quasi;
+			path = ../files/91Quasi;
+			sourceTree = "<group>";
+		};
+		4636520E19912D7300214C25 /* 44755 */ = {
+			isa = PBXGroup;
+			children = (
+				463652A619912F2B00214C25 /* lib44755.h */,
+				4636520F19912D7300214C25 /* lib44755.mm */,
+				4636521019912D7300214C25 /* lib44755Obj.h */,
+				4636521119912D7300214C25 /* lib44755Obj.mm */,
+			);
+			name = 44755;
+			path = ../files/44755;
+			sourceTree = "<group>";
+		};
+		4636521219912D7300214C25 /* AppleGarden */ = {
+			isa = PBXGroup;
+			children = (
+				463652A719912F3E00214C25 /* libAG.h */,
+				4636521319912D7300214C25 /* libAG.mm */,
+				4636521419912D7300214C25 /* libAGObj.h */,
+				4636521519912D7300214C25 /* libAGObj.mm */,
+			);
+			name = AppleGarden;
+			path = ../files/AppleGarden;
+			sourceTree = "<group>";
+		};
+		4636521619912D7300214C25 /* AppStore */ = {
+			isa = PBXGroup;
+			children = (
+				463652A819912F4B00214C25 /* libAppStore.h */,
+				4636521719912D7300214C25 /* libAppStore.mm */,
+				4636521819912D7300214C25 /* libAppStoreObj.h */,
+				4636521919912D7300214C25 /* libAppStoreObj.mm */,
+			);
+			name = AppStore;
+			path = ../files/AppStore;
+			sourceTree = "<group>";
+		};
+		4636521A19912D7300214C25 /* As */ = {
+			isa = PBXGroup;
+			children = (
+				463652A919912F5D00214C25 /* libAs.h */,
+				4636521B19912D7300214C25 /* libAs.mm */,
+				4636521C19912D7300214C25 /* libAsObj.h */,
+				4636521D19912D7300214C25 /* libAsObj.mm */,
+			);
+			name = As;
+			path = ../files/As;
+			sourceTree = "<group>";
+		};
+		4636521E19912D7300214C25 /* Cmge */ = {
+			isa = PBXGroup;
+			children = (
+				463652AA19912F6C00214C25 /* libCmge.h */,
+				4636521F19912D7300214C25 /* libCmge.mm */,
+				4636522019912D7300214C25 /* libCmgeObj.h */,
+				4636522119912D7300214C25 /* libCmgeObj.mm */,
+			);
+			name = Cmge;
+			path = ../files/Cmge;
+			sourceTree = "<group>";
+		};
+		4636522219912D7300214C25 /* DownJoy */ = {
+			isa = PBXGroup;
+			children = (
+				463652AB19912F7D00214C25 /* libDownJoy.h */,
+				4636522319912D7300214C25 /* libDownJoy.mm */,
+				4636522419912D7300214C25 /* libDownJoyObj.h */,
+				4636522519912D7300214C25 /* libDownJoyObj.mm */,
+			);
+			name = DownJoy;
+			path = ../files/DownJoy;
+			sourceTree = "<group>";
+		};
+		4636524519912D7300214C25 /* KY */ = {
+			isa = PBXGroup;
+			children = (
+				B595879019A4ACB600EA00F2 /* libKY.h */,
+				B595878B19A4AC8A00EA00F2 /* libKY.mm */,
+				B595878C19A4AC8A00EA00F2 /* libKYObj.h */,
+				B595878D19A4AC8A00EA00F2 /* libKYObj.mm */,
+			);
+			name = KY;
+			path = ../files/KY;
+			sourceTree = "<group>";
+		};
+		4636524B19912D7300214C25 /* PP */ = {
+			isa = PBXGroup;
+			children = (
+				463652AF19912FC600214C25 /* libPP.h */,
+				4636524C19912D7300214C25 /* libPP.mm */,
+				4636524D19912D7300214C25 /* libPPObj.h */,
+				4636524E19912D7300214C25 /* libPPObj.mm */,
+			);
+			name = PP;
+			path = ../files/PP;
+			sourceTree = "<group>";
+		};
+		4636524F19912D7300214C25 /* ppzb */ = {
+			isa = PBXGroup;
+			children = (
+				463652B019912FD900214C25 /* libPPZB.h */,
+				4636525019912D7300214C25 /* libPPZB.mm */,
+				4636525119912D7300214C25 /* libPPZBObj.h */,
+				4636525219912D7300214C25 /* libPPZBObj.mm */,
+			);
+			name = ppzb;
+			path = ../files/ppzb;
+			sourceTree = "<group>";
+		};
+		4636525319912D7300214C25 /* TB */ = {
+			isa = PBXGroup;
+			children = (
+				463652B119912FE800214C25 /* libTB.h */,
+				4636525419912D7300214C25 /* libTB.mm */,
+				4636525519912D7300214C25 /* libTBObj.h */,
+				4636525619912D7300214C25 /* libTBObj.mm */,
+			);
+			name = TB;
+			path = ../files/TB;
+			sourceTree = "<group>";
+		};
+		4636525719912D7300214C25 /* UC */ = {
+			isa = PBXGroup;
+			children = (
+				463652B219912FF700214C25 /* libUC.h */,
+				4636525819912D7300214C25 /* libUC.mm */,
+				4636525919912D7300214C25 /* libUCObj.h */,
+				4636525A19912D7300214C25 /* libUCObj.mm */,
+			);
+			name = UC;
+			path = ../files/UC;
+			sourceTree = "<group>";
+		};
+		4636525B19912D7300214C25 /* Youai */ = {
+			isa = PBXGroup;
+			children = (
+				463652CB1991336200214C25 /* libYouai.h */,
+				4636525C19912D7300214C25 /* libYouai.mm */,
+				4636525D19912D7300214C25 /* libYouaiObj.h */,
+				4636525E19912D7300214C25 /* libYouaiObj.mm */,
+			);
+			name = Youai;
+			path = ../files/Youai;
+			sourceTree = "<group>";
+		};
+		55DEFCFE16D7776F00E75F8C = {
+			isa = PBXGroup;
+			children = (
+				463651EC19912D1200214C25 /* lib91 */,
+				55DEFD0B16D7776F00E75F8C /* Frameworks */,
+				55DEFD0A16D7776F00E75F8C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		55DEFD0A16D7776F00E75F8C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				55DEFD0916D7776F00E75F8C /* liblib91.a */,
+				22214FC817ACFEB400B09A47 /* liblibpp.a */,
+				22214FD417ACFEFD00B09A47 /* liblibag.a */,
+				22214FE017ACFF1800B09A47 /* liblibtb.a */,
+				CF97251917C1B87C000DBA89 /* liblibAppStore.a */,
+				AF5B97F217E41A3D00B2480E /* liblibItools.a */,
+				AF5B980817E41B4800B2480E /* liblib91Debug.a */,
+				AF0CBA2418053BD80009402E /* liblibCmge.a */,
+				22FD7262181B652C002A7022 /* liblibYouai.a */,
+				22FD72AA181BA59B002A7022 /* liblibKY.a */,
+				22B41D86183321A8008F7A3D /* liblib37wanwan.a */,
+				221492C1183A43A10023D1E7 /* liblibuc.a */,
+				AF6065C4183B0E9E005761AC /* liblibDownJoy.a */,
+				F7B62F4D184D819300434B0E /* liblib91Quasi.a */,
+				224A1BD8183E103D00B0C24B /* liblib49app.a */,
+				AF7B9D6F185896AD0029CAC8 /* liblibAppstoreTW.a */,
+				AF08DF4F188E2719006BE0FA /* liblibppzb.a */,
+				46074218197919C200A08487 /* liblib44755.a */,
+				4607422419791A1200A08487 /* liblibAs.a */,
+				46D4E31D197CE9A6002BE130 /* liblibUHaima.a */,
+				B5BF546219A78AB300C994DE /* liblibXY.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		55DEFD0B16D7776F00E75F8C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				55DEFD0C16D7776F00E75F8C /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B5BF535F19A7728D00C994DE /* UHaima */ = {
+			isa = PBXGroup;
+			children = (
+				B5BF543219A7754A00C994DE /* libUHaima.h */,
+				B5BF543319A7755700C994DE /* libUHaima.mm */,
+				B5BF543419A7755700C994DE /* libUHaimaObj.h */,
+				B5BF543519A7755700C994DE /* libUHaimaObj.mm */,
+			);
+			name = UHaima;
+			sourceTree = "<group>";
+		};
+		B5BF545619A78AA100C994DE /* XY */ = {
+			isa = PBXGroup;
+			children = (
+				B5BF546319A78ADE00C994DE /* libXY.h */,
+				B5BF546419A78AE900C994DE /* libXY.mm */,
+				B5BF546519A78AE900C994DE /* libXYObj.h */,
+				B5BF546619A78AE900C994DE /* libXYObj.mm */,
+			);
+			name = XY;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		221492B6183A43A10023D1E7 /* libuc */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 221492BE183A43A10023D1E7 /* Build configuration list for PBXNativeTarget "libuc" */;
+			buildPhases = (
+				221492B7183A43A10023D1E7 /* Sources */,
+				221492BB183A43A10023D1E7 /* Frameworks */,
+				221492BD183A43A10023D1E7 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = libuc;
+			productName = lib91;
+			productReference = 221492C1183A43A10023D1E7 /* liblibuc.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		22214FBD17ACFEB400B09A47 /* libpp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 22214FC517ACFEB400B09A47 /* Build configuration list for PBXNativeTarget "libpp" */;
+			buildPhases = (
+				22214FBE17ACFEB400B09A47 /* Sources */,
+				22214FC217ACFEB400B09A47 /* Frameworks */,
+				22214FC417ACFEB400B09A47 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = libpp;
+			productName = lib91;
+			productReference = 22214FC817ACFEB400B09A47 /* liblibpp.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		22214FC917ACFEFD00B09A47 /* libag */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 22214FD117ACFEFD00B09A47 /* Build configuration list for PBXNativeTarget "libag" */;
+			buildPhases = (
+				22214FCA17ACFEFD00B09A47 /* Sources */,
+				22214FCE17ACFEFD00B09A47 /* Frameworks */,
+				22214FD017ACFEFD00B09A47 /* Copy Files */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = libag;
+			productName = lib91;
+			productReference = 22214FD417ACFEFD00B09A47 /* liblibag.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		22214FD517ACFF1800B09A47 /* libtb */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 22214FDD17ACFF1800B09A47 /* Build configuration list for PBXNativeTarget "libtb" */;
+			buildPhases = (
+				22214FD617ACFF1800B09A47 /* Sources */,
+				22214FDA17ACFF1800B09A47 /* Frameworks */,
+				22214FDC17ACFF1800B09A47 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = libtb;
+			productName = lib91;
+			productReference = 22214FE017ACFF1800B09A47 /* liblibtb.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		224A1BCB183E103D00B0C24B /* lib49app */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 224A1BD5183E103D00B0C24B /* Build configuration list for PBXNativeTarget "lib49app" */;
+			buildPhases = (
+				224A1BCC183E103D00B0C24B /* Sources */,
+				224A1BD2183E103D00B0C24B /* Frameworks */,
+				224A1BD4183E103D00B0C24B /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = lib49app;
+			productName = lib91;
+			productReference = 224A1BD8183E103D00B0C24B /* liblib49app.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		22B41D7B183321A8008F7A3D /* lib37wanwan */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 22B41D83183321A8008F7A3D /* Build configuration list for PBXNativeTarget "lib37wanwan" */;
+			buildPhases = (
+				22B41D7C183321A8008F7A3D /* Sources */,
+				22B41D80183321A8008F7A3D /* Frameworks */,
+				22B41D82183321A8008F7A3D /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = lib37wanwan;
+			productName = lib91;
+			productReference = 22B41D86183321A8008F7A3D /* liblib37wanwan.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		22FD7257181B652C002A7022 /* libYouai */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 22FD725F181B652C002A7022 /* Build configuration list for PBXNativeTarget "libYouai" */;
+			buildPhases = (
+				22FD7258181B652C002A7022 /* Sources */,
+				22FD725C181B652C002A7022 /* Frameworks */,
+				22FD725E181B652C002A7022 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = libYouai;
+			productName = lib91;
+			productReference = 22FD7262181B652C002A7022 /* liblibYouai.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		22FD729F181BA59B002A7022 /* libKY */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 22FD72A7181BA59B002A7022 /* Build configuration list for PBXNativeTarget "libKY" */;
+			buildPhases = (
+				22FD72A0181BA59B002A7022 /* Sources */,
+				22FD72A4181BA59B002A7022 /* Frameworks */,
+				22FD72A6181BA59B002A7022 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = libKY;
+			productName = lib91;
+			productReference = 22FD72AA181BA59B002A7022 /* liblibKY.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		4607420D197919C200A08487 /* lib44755 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 46074215197919C200A08487 /* Build configuration list for PBXNativeTarget "lib44755" */;
+			buildPhases = (
+				4607420E197919C200A08487 /* Sources */,
+				46074212197919C200A08487 /* Frameworks */,
+				46074214197919C200A08487 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = lib44755;
+			productName = lib91;
+			productReference = 46074218197919C200A08487 /* liblib44755.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		4607421919791A1200A08487 /* libAs */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4607422119791A1200A08487 /* Build configuration list for PBXNativeTarget "libAs" */;
+			buildPhases = (
+				4607421A19791A1200A08487 /* Sources */,
+				4607421E19791A1200A08487 /* Frameworks */,
+				4607422019791A1200A08487 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = libAs;
+			productName = lib91;
+			productReference = 4607422419791A1200A08487 /* liblibAs.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		46D4E312197CE9A6002BE130 /* libUHaima */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 46D4E31A197CE9A6002BE130 /* Build configuration list for PBXNativeTarget "libUHaima" */;
+			buildPhases = (
+				46D4E313197CE9A6002BE130 /* Sources */,
+				46D4E317197CE9A6002BE130 /* Frameworks */,
+				46D4E319197CE9A6002BE130 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = libUHaima;
+			productName = lib91;
+			productReference = 46D4E31D197CE9A6002BE130 /* liblibUHaima.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		55DEFD0816D7776F00E75F8C /* lib91 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 55DEFD2E16D7776F00E75F8C /* Build configuration list for PBXNativeTarget "lib91" */;
+			buildPhases = (
+				55DEFD0516D7776F00E75F8C /* Sources */,
+				55DEFD0616D7776F00E75F8C /* Frameworks */,
+				55DEFD0716D7776F00E75F8C /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = lib91;
+			productName = lib91;
+			productReference = 55DEFD0916D7776F00E75F8C /* liblib91.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		AF08DF44188E2719006BE0FA /* libppzb */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AF08DF4C188E2719006BE0FA /* Build configuration list for PBXNativeTarget "libppzb" */;
+			buildPhases = (
+				AF08DF45188E2719006BE0FA /* Sources */,
+				AF08DF49188E2719006BE0FA /* Frameworks */,
+				AF08DF4B188E2719006BE0FA /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = libppzb;
+			productName = lib91;
+			productReference = AF08DF4F188E2719006BE0FA /* liblibppzb.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		AF0CBA1918053BD80009402E /* libCmge */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AF0CBA2118053BD80009402E /* Build configuration list for PBXNativeTarget "libCmge" */;
+			buildPhases = (
+				AF0CBA1A18053BD80009402E /* Sources */,
+				AF0CBA1E18053BD80009402E /* Frameworks */,
+				AF0CBA2018053BD80009402E /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = libCmge;
+			productName = lib91;
+			productReference = AF0CBA2418053BD80009402E /* liblibCmge.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		AF5B97E717E41A3D00B2480E /* libItools */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AF5B97EF17E41A3D00B2480E /* Build configuration list for PBXNativeTarget "libItools" */;
+			buildPhases = (
+				AF5B97E817E41A3D00B2480E /* Sources */,
+				AF5B97EC17E41A3D00B2480E /* Frameworks */,
+				AF5B97EE17E41A3D00B2480E /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = libItools;
+			productName = lib91;
+			productReference = AF5B97F217E41A3D00B2480E /* liblibItools.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		AF5B97FD17E41B4800B2480E /* lib91Debug */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AF5B980517E41B4800B2480E /* Build configuration list for PBXNativeTarget "lib91Debug" */;
+			buildPhases = (
+				AF5B97FE17E41B4800B2480E /* Sources */,
+				AF5B980217E41B4800B2480E /* Frameworks */,
+				AF5B980417E41B4800B2480E /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = lib91Debug;
+			productName = lib91;
+			productReference = AF5B980817E41B4800B2480E /* liblib91Debug.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		AF6065B9183B0E9E005761AC /* libDownJoy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AF6065C1183B0E9E005761AC /* Build configuration list for PBXNativeTarget "libDownJoy" */;
+			buildPhases = (
+				AF6065BA183B0E9E005761AC /* Sources */,
+				AF6065BE183B0E9E005761AC /* Frameworks */,
+				AF6065C0183B0E9E005761AC /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = libDownJoy;
+			productName = lib91;
+			productReference = AF6065C4183B0E9E005761AC /* liblibDownJoy.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		AF7B9D64185896AD0029CAC8 /* libAppstoreTW */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AF7B9D6C185896AD0029CAC8 /* Build configuration list for PBXNativeTarget "libAppstoreTW" */;
+			buildPhases = (
+				AF7B9D65185896AD0029CAC8 /* Sources */,
+				AF7B9D69185896AD0029CAC8 /* Frameworks */,
+				AF7B9D6B185896AD0029CAC8 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = libAppstoreTW;
+			productName = lib91;
+			productReference = AF7B9D6F185896AD0029CAC8 /* liblibAppstoreTW.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		B5BF545719A78AB300C994DE /* libXY */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B5BF545F19A78AB300C994DE /* Build configuration list for PBXNativeTarget "libXY" */;
+			buildPhases = (
+				B5BF545819A78AB300C994DE /* Sources */,
+				B5BF545C19A78AB300C994DE /* Frameworks */,
+				B5BF545E19A78AB300C994DE /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = libXY;
+			productName = lib91;
+			productReference = B5BF546219A78AB300C994DE /* liblibXY.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		CF97250E17C1B87C000DBA89 /* libAppstore */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CF97251617C1B87C000DBA89 /* Build configuration list for PBXNativeTarget "libAppstore" */;
+			buildPhases = (
+				CF97250F17C1B87C000DBA89 /* Sources */,
+				CF97251317C1B87C000DBA89 /* Frameworks */,
+				CF97251517C1B87C000DBA89 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = libAppstore;
+			productName = lib91;
+			productReference = CF97251917C1B87C000DBA89 /* liblibAppStore.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		F7B62F42184D819300434B0E /* lib91Quasi */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F7B62F4A184D819300434B0E /* Build configuration list for PBXNativeTarget "lib91Quasi" */;
+			buildPhases = (
+				F7B62F43184D819300434B0E /* Sources */,
+				F7B62F47184D819300434B0E /* Frameworks */,
+				F7B62F49184D819300434B0E /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = lib91Quasi;
+			productName = lib91;
+			productReference = F7B62F4D184D819300434B0E /* liblib91Quasi.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		55DEFD0016D7776F00E75F8C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = youai;
+			};
+			buildConfigurationList = 55DEFD0316D7776F00E75F8C /* Build configuration list for PBXProject "lib91" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 55DEFCFE16D7776F00E75F8C;
+			productRefGroup = 55DEFD0A16D7776F00E75F8C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				55DEFD0816D7776F00E75F8C /* lib91 */,
+				22214FBD17ACFEB400B09A47 /* libpp */,
+				22214FC917ACFEFD00B09A47 /* libag */,
+				22214FD517ACFF1800B09A47 /* libtb */,
+				CF97250E17C1B87C000DBA89 /* libAppstore */,
+				AF5B97E717E41A3D00B2480E /* libItools */,
+				AF5B97FD17E41B4800B2480E /* lib91Debug */,
+				AF0CBA1918053BD80009402E /* libCmge */,
+				22FD7257181B652C002A7022 /* libYouai */,
+				22FD729F181BA59B002A7022 /* libKY */,
+				22B41D7B183321A8008F7A3D /* lib37wanwan */,
+				221492B6183A43A10023D1E7 /* libuc */,
+				AF6065B9183B0E9E005761AC /* libDownJoy */,
+				F7B62F42184D819300434B0E /* lib91Quasi */,
+				224A1BCB183E103D00B0C24B /* lib49app */,
+				AF7B9D64185896AD0029CAC8 /* libAppstoreTW */,
+				AF08DF44188E2719006BE0FA /* libppzb */,
+				4607420D197919C200A08487 /* lib44755 */,
+				4607421919791A1200A08487 /* libAs */,
+				46D4E312197CE9A6002BE130 /* libUHaima */,
+				B5BF545719A78AB300C994DE /* libXY */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		221492B7183A43A10023D1E7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4636528719912E5A00214C25 /* libUC.mm in Sources */,
+				4636529819912EAD00214C25 /* libPlatform.cpp in Sources */,
+				4636528819912E5A00214C25 /* libUCObj.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		22214FBE17ACFEB400B09A47 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4636528119912E4900214C25 /* libPP.mm in Sources */,
+				4636528E19912EAD00214C25 /* libPlatform.cpp in Sources */,
+				4636528219912E4900214C25 /* libPPObj.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		22214FCA17ACFEFD00B09A47 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4636527019912E0C00214C25 /* libAG.mm in Sources */,
+				4636528F19912EAD00214C25 /* libPlatform.cpp in Sources */,
+				4636527119912E0C00214C25 /* libAGObj.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		22214FD617ACFF1800B09A47 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4636528519912E5400214C25 /* libTB.mm in Sources */,
+				4636529019912EAD00214C25 /* libPlatform.cpp in Sources */,
+				4636528619912E5400214C25 /* libTBObj.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		224A1BCC183E103D00B0C24B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4636526619912D8800214C25 /* lib49app.mm in Sources */,
+				4636526419912D8800214C25 /* Custom49SDKPayViewController.m in Sources */,
+				4636526719912D8800214C25 /* lib49appObj.mm in Sources */,
+				4636526319912D8800214C25 /* Custom49SDK.m in Sources */,
+				4636529B19912EAD00214C25 /* libPlatform.cpp in Sources */,
+				4636526519912D8800214C25 /* Custom49SDKViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		22B41D7C183321A8008F7A3D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4636529719912EAD00214C25 /* libPlatform.cpp in Sources */,
+				4636526119912D7F00214C25 /* lib37wanwan.mm in Sources */,
+				4636526219912D7F00214C25 /* lib37wanwanObj.mm in Sources */,
+				4636526019912D7F00214C25 /* CustomSDKViewController.m in Sources */,
+				4636525F19912D7F00214C25 /* Custom37SDK.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		22FD7258181B652C002A7022 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4636528919912E6000214C25 /* libYouai.mm in Sources */,
+				4636529519912EAD00214C25 /* libPlatform.cpp in Sources */,
+				4636528A19912E6000214C25 /* libYouaiObj.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		22FD72A0181BA59B002A7022 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B595878F19A4AC8A00EA00F2 /* libKYObj.mm in Sources */,
+				4636529619912EAD00214C25 /* libPlatform.cpp in Sources */,
+				B595878E19A4AC8A00EA00F2 /* libKY.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4607420E197919C200A08487 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4636526E19912DA300214C25 /* lib44755.mm in Sources */,
+				4636529E19912EAD00214C25 /* libPlatform.cpp in Sources */,
+				4636526F19912DA300214C25 /* lib44755Obj.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4607421A19791A1200A08487 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4636527419912E1900214C25 /* libAs.mm in Sources */,
+				4636529F19912EAD00214C25 /* libPlatform.cpp in Sources */,
+				4636527519912E1900214C25 /* libAsObj.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		46D4E313197CE9A6002BE130 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5BF543619A7755700C994DE /* libUHaima.mm in Sources */,
+				463652A019912EAD00214C25 /* libPlatform.cpp in Sources */,
+				B5BF543719A7755700C994DE /* libUHaimaObj.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		55DEFD0516D7776F00E75F8C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4636526819912D9100214C25 /* lib91.mm in Sources */,
+				4636528D19912EAD00214C25 /* libPlatform.cpp in Sources */,
+				4636526919912D9100214C25 /* lib91Obj.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF08DF45188E2719006BE0FA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4636528319912E4F00214C25 /* libPPZB.mm in Sources */,
+				4636529D19912EAD00214C25 /* libPlatform.cpp in Sources */,
+				4636528419912E4F00214C25 /* libPPZBObj.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF0CBA1A18053BD80009402E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4636527619912E1F00214C25 /* libCmge.mm in Sources */,
+				4636529419912EAD00214C25 /* libPlatform.cpp in Sources */,
+				4636527719912E1F00214C25 /* libCmgeObj.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF5B97E817E41A3D00B2480E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4636529219912EAD00214C25 /* libPlatform.cpp in Sources */,
+				B5311E3B19A7A04F00CBE153 /* libIToolsObj.mm in Sources */,
+				B5311E3A19A7A04F00CBE153 /* libITools.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF5B97FE17E41B4800B2480E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4636526A19912D9700214C25 /* lib91Debug.mm in Sources */,
+				4636529319912EAD00214C25 /* libPlatform.cpp in Sources */,
+				4636526B19912D9700214C25 /* lib91DebugObj.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF6065BA183B0E9E005761AC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4636527919912E2500214C25 /* libDownJoyObj.mm in Sources */,
+				4636529919912EAD00214C25 /* libPlatform.cpp in Sources */,
+				4636527819912E2500214C25 /* libDownJoy.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF7B9D65185896AD0029CAC8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4636529C19912EAD00214C25 /* libPlatform.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5BF545819A78AB300C994DE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5BF546719A78AE900C994DE /* libXY.mm in Sources */,
+				B5BF545A19A78AB300C994DE /* libPlatform.cpp in Sources */,
+				B5BF546819A78AE900C994DE /* libXYObj.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CF97250F17C1B87C000DBA89 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4636527219912E1400214C25 /* libAppStore.mm in Sources */,
+				4636529119912EAD00214C25 /* libPlatform.cpp in Sources */,
+				4636527319912E1400214C25 /* libAppStoreObj.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F7B62F43184D819300434B0E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4636526C19912D9D00214C25 /* lib91Quasi.mm in Sources */,
+				4636529A19912EAD00214C25 /* libPlatform.cpp in Sources */,
+				4636526D19912D9D00214C25 /* lib91QuasiObj.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		221492BF183A43A10023D1E7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_ENABLE_OBJC_ARC = NO;
+				DSTROOT = /tmp/lib91.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../SDK/UCSDK\"",
+				);
+				GCC_CHAR_IS_UNSIGNED_CHAR = NO;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "lib91/lib91-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../../libOS/include\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/JSON1\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/com4lovesSDK\"",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = libuc;
+				SKIP_INSTALL = YES;
+				VALID_ARCHS = "armv7 armv7s";
+			};
+			name = Debug;
+		};
+		221492C0183A43A10023D1E7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_ENABLE_OBJC_ARC = NO;
+				DSTROOT = /tmp/lib91.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../SDK/UCSDK\"",
+				);
+				GCC_CHAR_IS_UNSIGNED_CHAR = NO;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "lib91/lib91-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../../libOS/include\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/JSON1\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/com4lovesSDK\"",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = libuc;
+				SKIP_INSTALL = YES;
+				VALID_ARCHS = "armv7 armv7s";
+			};
+			name = Release;
+		};
+		22214FC617ACFEB400B09A47 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_ENABLE_OBJC_ARC = NO;
+				DSTROOT = /tmp/lib91.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../SDK/PPSDK\"",
+				);
+				GCC_CHAR_IS_UNSIGNED_CHAR = NO;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "lib91/lib91-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+					CC_TARGET_OS_IPHONE,
+				);
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../../../include/core\"",
+					"\"$(SRCROOT)/../../libOS/include\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/JSON1\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/com4lovesSDK\"",
+				);
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../SDK/PPSDK/include\"";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = libpp;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "armv7 armv7s";
+			};
+			name = Debug;
+		};
+		22214FC717ACFEB400B09A47 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_ENABLE_OBJC_ARC = NO;
+				DSTROOT = /tmp/lib91.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../SDK/PPSDK\"",
+				);
+				GCC_CHAR_IS_UNSIGNED_CHAR = NO;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "lib91/lib91-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = CC_TARGET_OS_IPHONE;
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../../../include/core\"",
+					"\"$(SRCROOT)/../../libOS/include\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/JSON1\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/com4lovesSDK\"",
+				);
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../SDK/PPSDK/include\"";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = libpp;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "armv7 armv7s";
+			};
+			name = Release;
+		};
+		22214FD217ACFEFD00B09A47 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				DSTROOT = /tmp/lib91.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../SDK/PPSDK\"",
+				);
+				GCC_CHAR_IS_UNSIGNED_CHAR = NO;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "lib91/lib91-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../../include/core\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/com4lovesSDK\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/JSON1\"",
+					"\"$(SRCROOT)/../../libOS/include\"",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = libag;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		22214FD317ACFEFD00B09A47 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				DSTROOT = /tmp/lib91.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../SDK/PPSDK\"",
+				);
+				GCC_CHAR_IS_UNSIGNED_CHAR = NO;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "lib91/lib91-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../../include/core\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/com4lovesSDK\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/JSON1\"",
+					"\"$(SRCROOT)/../../libOS/include\"",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = libag;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		22214FDE17ACFF1800B09A47 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				DSTROOT = /tmp/lib91.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../SDK/TBSDK\"",
+				);
+				GCC_CHAR_IS_UNSIGNED_CHAR = NO;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "lib91/lib91-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../../libOS/include\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/com4lovesSDK\"",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = libtb;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		22214FDF17ACFF1800B09A47 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				DSTROOT = /tmp/lib91.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../SDK/TBSDK\"",
+				);
+				GCC_CHAR_IS_UNSIGNED_CHAR = NO;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "lib91/lib91-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../../libOS/include\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/com4lovesSDK\"",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = libtb;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		224A1BD6183E103D00B0C24B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_ENABLE_OBJC_ARC = NO;
+				DSTROOT = /tmp/lib91.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../SDK/49appSDK\"",
+				);
+				GCC_CHAR_IS_UNSIGNED_CHAR = NO;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "lib91/lib91-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../../libOS/include\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/JSON1\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/com4lovesSDK\"",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = lib49app;
+				SKIP_INSTALL = YES;
+				VALID_ARCHS = "armv7 armv7s";
+			};
+			name = Debug;
+		};
+		224A1BD7183E103D00B0C24B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_ENABLE_OBJC_ARC = NO;
+				DSTROOT = /tmp/lib91.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../SDK/49appSDK\"",
+				);
+				GCC_CHAR_IS_UNSIGNED_CHAR = NO;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "lib91/lib91-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../../libOS/include\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/JSON1\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/com4lovesSDK\"",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = lib49app;
+				SKIP_INSTALL = YES;
+				VALID_ARCHS = "armv7 armv7s";
+			};
+			name = Release;
+		};
+		22B41D84183321A8008F7A3D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_ENABLE_OBJC_ARC = NO;
+				DSTROOT = /tmp/lib91.dst;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_CHAR_IS_UNSIGNED_CHAR = NO;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "lib91/lib91-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../../com4lovesSDK/JSON1\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/com4lovesSDK\"",
+					"\"$(SRCROOT)/../../libOS/include\"",
+					"\"$(SRCROOT)/../SDK/37wanwanSDK\"",
+				);
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = lib37wanwan;
+				SKIP_INSTALL = YES;
+				VALID_ARCHS = "armv7 armv7s";
+			};
+			name = Debug;
+		};
+		22B41D85183321A8008F7A3D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_ENABLE_OBJC_ARC = NO;
+				DSTROOT = /tmp/lib91.dst;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_CHAR_IS_UNSIGNED_CHAR = NO;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "lib91/lib91-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../../com4lovesSDK/JSON1\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/com4lovesSDK\"",
+					"\"$(SRCROOT)/../../libOS/include\"",
+					"\"$(SRCROOT)/../SDK/37wanwanSDK\"",
+				);
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = lib37wanwan;
+				SKIP_INSTALL = YES;
+				VALID_ARCHS = "armv7 armv7s";
+			};
+			name = Release;
+		};
+		22FD7260181B652C002A7022 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				DSTROOT = /tmp/lib91.dst;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_CHAR_IS_UNSIGNED_CHAR = NO;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "lib91/lib91-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../../libOS/include\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/com4lovesSDK\"",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = libYouai;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		22FD7261181B652C002A7022 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				DSTROOT = /tmp/lib91.dst;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_CHAR_IS_UNSIGNED_CHAR = NO;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "lib91/lib91-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../../libOS/include\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/com4lovesSDK\"",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = libYouai;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		22FD72A8181BA59B002A7022 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_ENABLE_OBJC_ARC = NO;
+				DSTROOT = /tmp/lib91.dst;
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../iOS/KYSDK\"";
+				GCC_CHAR_IS_UNSIGNED_CHAR = NO;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "lib91/lib91-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../../com4lovesSDK/com4lovesSDK\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/JSON1\"",
+					"\"$(SRCROOT)/../../libOS/include\"",
+					"\"$(SRCROOT)/../include\"",
+					"\"$(SRCROOT)/../SDK/KYSDK\"",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = libKY;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		22FD72A9181BA59B002A7022 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_ENABLE_OBJC_ARC = NO;
+				DSTROOT = /tmp/lib91.dst;
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../iOS/KYSDK\"";
+				GCC_CHAR_IS_UNSIGNED_CHAR = NO;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "lib91/lib91-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = "";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../../com4lovesSDK/com4lovesSDK\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/JSON1\"",
+					"\"$(SRCROOT)/../../libOS/include\"",
+					"\"$(SRCROOT)/../include\"",
+					"\"$(SRCROOT)/../SDK/KYSDK\"",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = libKY;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		46074216197919C200A08487 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				DSTROOT = /tmp/lib91.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../SDK/44755SDK\"",
+				);
+				GCC_CHAR_IS_UNSIGNED_CHAR = NO;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "lib91/lib91-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../../libOS/include\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/com4lovesSDK\"",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = lib44755;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		46074217197919C200A08487 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				DSTROOT = /tmp/lib91.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../SDK/44755SDK\"",
+				);
+				GCC_CHAR_IS_UNSIGNED_CHAR = NO;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "lib91/lib91-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../../libOS/include\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/com4lovesSDK\"",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = lib44755;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		4607422219791A1200A08487 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				DSTROOT = /tmp/lib91.dst;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_CHAR_IS_UNSIGNED_CHAR = NO;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "lib91/lib91-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../../libOS/include\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/com4lovesSDK\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/JSON1\"",
+					"\"$(SRCROOT)/../SDK/AsSDK\"",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = libAs;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		4607422319791A1200A08487 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				DSTROOT = /tmp/lib91.dst;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_CHAR_IS_UNSIGNED_CHAR = NO;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "lib91/lib91-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../../libOS/include\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/com4lovesSDK\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/JSON1\"",
+					"\"$(SRCROOT)/../SDK/AsSDK\"",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = libAs;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		46D4E31B197CE9A6002BE130 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				DSTROOT = /tmp/lib91.dst;
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../SDK/HaimaSDK/iAppPaySDKDependency/haima\"";
+				GCC_CHAR_IS_UNSIGNED_CHAR = NO;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "lib91/lib91-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../../libOS/include\"",
+					"\"$(SRCROOT)/../../include/com4lovesSDK\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/com4lovesSDK\"",
+					"\"$(SRCROOT)/../SDK/HaimaSDK\"",
+					"\"$(SRCROOT)/../SDK/HaimaSDK/iAppPaySDK\"",
+					"\"$(SRCROOT)/../SDK/HaimaSDK/iAppPaySDKDependency/alipay/include\"",
+					"\"$(SRCROOT)/../SDK/HaimaSDK/iAppPaySDKDependency/alipay/Utilities\"",
+					"\"$(SRCROOT)/../SDK/HaimaSDK/iAppPaySDKDependency/upmp_ios\"",
+				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = libUHaima;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		46D4E31C197CE9A6002BE130 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				DSTROOT = /tmp/lib91.dst;
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../SDK/HaimaSDK/iAppPaySDKDependency/haima\"";
+				GCC_CHAR_IS_UNSIGNED_CHAR = NO;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "lib91/lib91-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../../libOS/include\"",
+					"\"$(SRCROOT)/../../include/com4lovesSDK\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/com4lovesSDK\"",
+					"\"$(SRCROOT)/../SDK/HaimaSDK\"",
+					"\"$(SRCROOT)/../SDK/HaimaSDK/iAppPaySDK\"",
+					"\"$(SRCROOT)/../SDK/HaimaSDK/iAppPaySDKDependency/alipay/include\"",
+					"\"$(SRCROOT)/../SDK/HaimaSDK/iAppPaySDKDependency/alipay/Utilities\"",
+					"\"$(SRCROOT)/../SDK/HaimaSDK/iAppPaySDKDependency/upmp_ios\"",
+				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = libUHaima;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		55DEFD2C16D7776F00E75F8C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/../../../com4lovesSDK/com4lovesSDK",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		55DEFD2D16D7776F00E75F8C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/../../../com4lovesSDK/com4lovesSDK",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		55DEFD2F16D7776F00E75F8C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				DSTROOT = /tmp/lib91.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../SDK/91SDK/framework5\"",
+					"\"$(SRCROOT)/../SDK/91SDK/framework5/framework\"",
+				);
+				GCC_CHAR_IS_UNSIGNED_CHAR = NO;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "lib91/lib91-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../../libOS/include\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/com4lovesSDK/classes\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/com4lovesSDK\"",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		55DEFD3016D7776F00E75F8C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				DSTROOT = /tmp/lib91.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../SDK/91SDK/framework5\"",
+					"\"$(SRCROOT)/../SDK/91SDK/framework5/framework\"",
+				);
+				GCC_CHAR_IS_UNSIGNED_CHAR = NO;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "lib91/lib91-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../../libOS/include\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/com4lovesSDK/classes\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/com4lovesSDK\"",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		AF08DF4D188E2719006BE0FA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_ENABLE_OBJC_ARC = NO;
+				DSTROOT = /tmp/lib91.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../SDK/PPSDK\"",
+				);
+				GCC_CHAR_IS_UNSIGNED_CHAR = NO;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "lib91/lib91-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+					CC_TARGET_OS_IPHONE,
+				);
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../../libOS/include\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/com4lovesSDK\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/JSON1\"",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = libppzb;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "armv7 armv7s";
+			};
+			name = Debug;
+		};
+		AF08DF4E188E2719006BE0FA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_ENABLE_OBJC_ARC = NO;
+				DSTROOT = /tmp/lib91.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../SDK/PPSDK\"",
+				);
+				GCC_CHAR_IS_UNSIGNED_CHAR = NO;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "lib91/lib91-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = CC_TARGET_OS_IPHONE;
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../../libOS/include\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/com4lovesSDK\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/JSON1\"",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = libppzb;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "armv7 armv7s";
+			};
+			name = Release;
+		};
+		AF0CBA2218053BD80009402E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_ENABLE_OBJC_ARC = NO;
+				DSTROOT = /tmp/lib91.dst;
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../SDK/CmgeSDK\"";
+				GCC_CHAR_IS_UNSIGNED_CHAR = NO;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "lib91/lib91-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../../libOS/include\"",
+					"$(SRCROOT)/../../com4lovesSDK/com4lovesSDK",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = libCmge;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		AF0CBA2318053BD80009402E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_ENABLE_OBJC_ARC = NO;
+				DSTROOT = /tmp/lib91.dst;
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../SDK/CmgeSDK\"";
+				GCC_CHAR_IS_UNSIGNED_CHAR = NO;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "lib91/lib91-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../../libOS/include\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/com4lovesSDK\"",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = libCmge;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		AF5B97F017E41A3D00B2480E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				DSTROOT = /tmp/lib91.dst;
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../SDK/iToolsSDK\"";
+				GCC_CHAR_IS_UNSIGNED_CHAR = NO;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "lib91/lib91-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../libOS/include\"",
+					"\"$(SRCROOT)/../SDK/iToolsSDK\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/com4lovesSDK\"",
+				);
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../SDK/iToolsSDK\"";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = libItools;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		AF5B97F117E41A3D00B2480E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				DSTROOT = /tmp/lib91.dst;
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../SDK/iToolsSDK\"";
+				GCC_CHAR_IS_UNSIGNED_CHAR = NO;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "lib91/lib91-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../libOS/include\"",
+					"\"$(SRCROOT)/../SDK/iToolsSDK\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/com4lovesSDK\"",
+				);
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../SDK/iToolsSDK\"";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = libItools;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		AF5B980617E41B4800B2480E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				DSTROOT = /tmp/lib91.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../SDK/91SDK/framework5\"",
+					"\"$(SRCROOT)/../SDK/91SDK/framework5/framework\"",
+				);
+				GCC_CHAR_IS_UNSIGNED_CHAR = NO;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "lib91/lib91-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../../libOS/include\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/com4lovesSDK\"",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = lib91Debug;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		AF5B980717E41B4800B2480E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				DSTROOT = /tmp/lib91.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../SDK/91SDK/framework5\"",
+					"\"$(SRCROOT)/../SDK/91SDK/framework5/framework\"",
+				);
+				GCC_CHAR_IS_UNSIGNED_CHAR = NO;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "lib91/lib91-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../../libOS/include\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/com4lovesSDK\"",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = lib91Debug;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		AF6065C2183B0E9E005761AC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_ENABLE_OBJC_ARC = NO;
+				DSTROOT = /tmp/lib91.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../SDK/DownJoySDK\"",
+				);
+				GCC_CHAR_IS_UNSIGNED_CHAR = NO;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "lib91/lib91-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../../libOS/include\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/com4lovesSDK\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/JSON1\"",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = libDownJoy;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		AF6065C3183B0E9E005761AC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_ENABLE_OBJC_ARC = NO;
+				DSTROOT = /tmp/lib91.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../SDK/DownJoySDK\"",
+				);
+				GCC_CHAR_IS_UNSIGNED_CHAR = NO;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "lib91/lib91-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../../libOS/include\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/com4lovesSDK\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/JSON1\"",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = libDownJoy;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		AF7B9D6D185896AD0029CAC8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				DSTROOT = /tmp/lib91.dst;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_CHAR_IS_UNSIGNED_CHAR = NO;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "lib91/lib91-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+					LibAppStoreTW,
+				);
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../../libOS/include\"",
+					"\"$(SRCROOT)/../../include/core\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/com4lovesSDK\"",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = libAppstoreTW;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		AF7B9D6E185896AD0029CAC8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				DSTROOT = /tmp/lib91.dst;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_CHAR_IS_UNSIGNED_CHAR = NO;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "lib91/lib91-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = LibAppStoreTW;
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../../libOS/include\"",
+					"\"$(SRCROOT)/../../include/core\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/com4lovesSDK\"",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = libAppstoreTW;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		B5BF546019A78AB300C994DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				DSTROOT = /tmp/lib91.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../SDK/XYSDK\"",
+				);
+				GCC_CHAR_IS_UNSIGNED_CHAR = NO;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "lib91/lib91-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../../libOS/include\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/com4lovesSDK/classes\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/com4lovesSDK\"",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = libXY;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		B5BF546119A78AB300C994DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				DSTROOT = /tmp/lib91.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../SDK/XYSDK\"",
+				);
+				GCC_CHAR_IS_UNSIGNED_CHAR = NO;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "lib91/lib91-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../../libOS/include\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/com4lovesSDK/classes\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/com4lovesSDK\"",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = libXY;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		CF97251717C1B87C000DBA89 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				DSTROOT = /tmp/lib91.dst;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_CHAR_IS_UNSIGNED_CHAR = NO;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "lib91/lib91-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../../libOS/include\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/com4lovesSDK\"",
+					"\"$(SRCROOT)/../SDK/domob_sdk\"",
+				);
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../SDK/domob_sdk\"";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = libAppStore;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		CF97251817C1B87C000DBA89 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				DSTROOT = /tmp/lib91.dst;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_CHAR_IS_UNSIGNED_CHAR = NO;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "lib91/lib91-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../../libOS/include\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/com4lovesSDK\"",
+					"\"$(SRCROOT)/../SDK/domob_sdk\"",
+				);
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../SDK/domob_sdk\"";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = libAppStore;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		F7B62F4B184D819300434B0E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				DSTROOT = /tmp/lib91.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../SDK/91SDK/framework5\"",
+					"\"$(SRCROOT)/../SDK/91SDK/framework5/framework\"",
+				);
+				GCC_CHAR_IS_UNSIGNED_CHAR = NO;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "lib91/lib91-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../../libOS/include\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/com4lovesSDK\"",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = lib91Quasi;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		F7B62F4C184D819300434B0E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				DSTROOT = /tmp/lib91.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../SDK/91SDK/framework5\"",
+					"\"$(SRCROOT)/../SDK/91SDK/framework5/framework\"",
+				);
+				GCC_CHAR_IS_UNSIGNED_CHAR = NO;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "lib91/lib91-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../../libOS/include\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/com4lovesSDK\"",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = lib91Quasi;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		221492BE183A43A10023D1E7 /* Build configuration list for PBXNativeTarget "libuc" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				221492BF183A43A10023D1E7 /* Debug */,
+				221492C0183A43A10023D1E7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		22214FC517ACFEB400B09A47 /* Build configuration list for PBXNativeTarget "libpp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				22214FC617ACFEB400B09A47 /* Debug */,
+				22214FC717ACFEB400B09A47 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		22214FD117ACFEFD00B09A47 /* Build configuration list for PBXNativeTarget "libag" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				22214FD217ACFEFD00B09A47 /* Debug */,
+				22214FD317ACFEFD00B09A47 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		22214FDD17ACFF1800B09A47 /* Build configuration list for PBXNativeTarget "libtb" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				22214FDE17ACFF1800B09A47 /* Debug */,
+				22214FDF17ACFF1800B09A47 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		224A1BD5183E103D00B0C24B /* Build configuration list for PBXNativeTarget "lib49app" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				224A1BD6183E103D00B0C24B /* Debug */,
+				224A1BD7183E103D00B0C24B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		22B41D83183321A8008F7A3D /* Build configuration list for PBXNativeTarget "lib37wanwan" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				22B41D84183321A8008F7A3D /* Debug */,
+				22B41D85183321A8008F7A3D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		22FD725F181B652C002A7022 /* Build configuration list for PBXNativeTarget "libYouai" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				22FD7260181B652C002A7022 /* Debug */,
+				22FD7261181B652C002A7022 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		22FD72A7181BA59B002A7022 /* Build configuration list for PBXNativeTarget "libKY" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				22FD72A8181BA59B002A7022 /* Debug */,
+				22FD72A9181BA59B002A7022 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		46074215197919C200A08487 /* Build configuration list for PBXNativeTarget "lib44755" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				46074216197919C200A08487 /* Debug */,
+				46074217197919C200A08487 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4607422119791A1200A08487 /* Build configuration list for PBXNativeTarget "libAs" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4607422219791A1200A08487 /* Debug */,
+				4607422319791A1200A08487 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		46D4E31A197CE9A6002BE130 /* Build configuration list for PBXNativeTarget "libUHaima" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				46D4E31B197CE9A6002BE130 /* Debug */,
+				46D4E31C197CE9A6002BE130 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		55DEFD0316D7776F00E75F8C /* Build configuration list for PBXProject "lib91" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				55DEFD2C16D7776F00E75F8C /* Debug */,
+				55DEFD2D16D7776F00E75F8C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		55DEFD2E16D7776F00E75F8C /* Build configuration list for PBXNativeTarget "lib91" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				55DEFD2F16D7776F00E75F8C /* Debug */,
+				55DEFD3016D7776F00E75F8C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AF08DF4C188E2719006BE0FA /* Build configuration list for PBXNativeTarget "libppzb" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AF08DF4D188E2719006BE0FA /* Debug */,
+				AF08DF4E188E2719006BE0FA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AF0CBA2118053BD80009402E /* Build configuration list for PBXNativeTarget "libCmge" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AF0CBA2218053BD80009402E /* Debug */,
+				AF0CBA2318053BD80009402E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AF5B97EF17E41A3D00B2480E /* Build configuration list for PBXNativeTarget "libItools" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AF5B97F017E41A3D00B2480E /* Debug */,
+				AF5B97F117E41A3D00B2480E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AF5B980517E41B4800B2480E /* Build configuration list for PBXNativeTarget "lib91Debug" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AF5B980617E41B4800B2480E /* Debug */,
+				AF5B980717E41B4800B2480E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AF6065C1183B0E9E005761AC /* Build configuration list for PBXNativeTarget "libDownJoy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AF6065C2183B0E9E005761AC /* Debug */,
+				AF6065C3183B0E9E005761AC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AF7B9D6C185896AD0029CAC8 /* Build configuration list for PBXNativeTarget "libAppstoreTW" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AF7B9D6D185896AD0029CAC8 /* Debug */,
+				AF7B9D6E185896AD0029CAC8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B5BF545F19A78AB300C994DE /* Build configuration list for PBXNativeTarget "libXY" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B5BF546019A78AB300C994DE /* Debug */,
+				B5BF546119A78AB300C994DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CF97251617C1B87C000DBA89 /* Build configuration list for PBXNativeTarget "libAppstore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF97251717C1B87C000DBA89 /* Debug */,
+				CF97251817C1B87C000DBA89 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F7B62F4A184D819300434B0E /* Build configuration list for PBXNativeTarget "lib91Quasi" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F7B62F4B184D819300434B0E /* Debug */,
+				F7B62F4C184D819300434B0E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 55DEFD0016D7776F00E75F8C /* Project object */;
+}

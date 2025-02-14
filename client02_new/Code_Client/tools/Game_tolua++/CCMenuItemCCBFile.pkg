@@ -1,0 +1,15 @@
+$#include "GUI/CCMenuCCBFile.h"
+
+class CCMenuItemCCBFile : public cocos2d::CCMenuItem 
+{
+public:
+	bool changeState(const char* state);
+    void setCCBFile(CCBFileNew* ccbfile);
+    CCBFileNew * getCCBFile();
+    virtual void setEnabled(bool value);
+    virtual void activate();
+    virtual void selected();
+    virtual void unselected();
+    virtual void unselected_cancel();
+    void runExtraAnimation(char* name);
+};

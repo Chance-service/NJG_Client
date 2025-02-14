@@ -1,0 +1,1 @@
+link ../../../GoogleAnalytics/Headers/Public/GAIEcommercePromotion.h

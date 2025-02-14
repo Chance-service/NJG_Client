@@ -1,0 +1,69 @@
+$#include "CCBScriptContainer.h"
+
+class CCBScriptContainer : public CCNode
+{
+	static CCBScriptContainer* create(const std::string& ccbfile, int tag = 0);
+	static void purgeCachedData(void);
+	
+	void sendPakcet(int opcode, char* buff, int length, bool needWaiting = true);
+	void registerMessage(int msgID);
+	void registerPacket(int opcode);
+	void removeMessage(int msgID);
+	void removePacket(int opcode);
+	
+	void registerLibOS();
+	void removeLibOS();
+	const char* getInputboxContent();
+	int getKeyboardHight();
+	int getMessageboxTag();
+	
+	virtual void loadCcbiFile(const std::string& filename, bool froceLoad = false);
+	void runAnimation(const std::string& actionname);
+	void load();
+	CCNode* getVarNode(char* name);
+	CCSprite* getVarSprite(char* name);
+	CCLabelBMFont* getVarLabelBMFont(char* name);
+	CCLabelTTF* getVarLabelTTF(char* name);
+	CCMenu* getVarMenu(char* name);
+	CCMenuItem* getVarMenuItem(char* name);
+	CCMenuItemSprite* getVarMenuItemSprite(char* name);
+	CCMenuItemImage* getVarMenuItemImage(char* name);
+	CCScrollView* getVarScrollView(char* name);
+	CCScale9Sprite* getVarScale9Sprite(char* name);
+	CCParticleSystem* getParticleSystem(char* name);
+	CCMenuItemCCBFile* getVarMenuItemCCB(char* name);
+	CCLayer* getVarLayer(char* name);
+	
+	GameMessage* getMessage();
+	
+	int getSendPacketOpcode();
+	int getRecPacketOpcode();
+	int getRecPacketBufferLength();
+	std::string getRecPacketBuffer();
+	
+	void setTag(int tag);
+	int getTag();
+	//search for the first child element with tag
+	CCBScriptContainer* searchChildByTag(int tag);
+	//search for the first parent element with tag
+	CCBScriptContainer* searchParentByTag(int tag);
+
+	void registerFunctionHandler(LUA_FUNCTION nHandler);
+	void unregisterFunctionHandler();
+	
+	//根据外frame的边框的缩放scale和要显示的纹理大小，动态设置里面ICON的纹理图片和缩放
+	void setDynamicIconTex(std::string frameName ,std::string iconName , std::string iconStr);
+
+	void setFrameColorByQuality(std::string frameName ,int quality);
+
+	void setLabelColorByQuality(std::string labelName ,int quality);
+
+	virtual std::string dumpInfo();
+	
+	 void autoAdjustResizeScrollview(CCScrollView *pView);
+	 void autoAdjustResizeScale9Sprite(CCScale9Sprite * pscale9Sprite);
+	 std::string getCurAnimationDoneName();
+	 void unload(void);
+	 bool getFBShareBackState(){return mFbshareState;}
+};
+

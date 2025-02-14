@@ -1,0 +1,12 @@
+$#include "CurlDownload.h"
+
+class CurlDownload
+{
+public:
+	static CurlDownload* getInstance(){return CurlDownload::Get();}
+	void downloadFile(const std::string & url, const std::string& filename);
+	void downloadFile(const std::string & url, const std::string& filename,unsigned short crcCheck);
+
+	int getDownloadQueueSize();
+	void update(float dt);
+};

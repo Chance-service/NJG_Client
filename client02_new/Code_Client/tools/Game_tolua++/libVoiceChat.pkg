@@ -1,0 +1,177 @@
+$#include "libVoiceChat.h"
+
+//登陆返回
+struct VoiceChatLoginResultInfo
+{
+	VoiceChatLoginResultInfo()
+		:isLoginResult(false)
+	{
+
+	}
+	bool isLoginResult;
+
+	int result;
+	std::string msg;
+	long yunvaId;
+};
+
+//注销返回
+struct VoiceChatLogoutResultInfo
+{
+	VoiceChatLogoutResultInfo()
+		:isLogoutResult(false)
+	{
+
+	}
+
+	bool isLogoutResult;
+
+	int result;
+	std::string msg;
+};
+
+//语音消息通知
+struct VoiceChatVoiceMsgInfo
+{
+	VoiceChatVoiceMsgInfo()
+		:isVoiceMsg(false)
+	{
+
+	}
+
+	bool isVoiceMsg;
+
+	std::string troopsId;
+	std::string voicePath;
+	long voiceTime;
+	std::string text;
+	std::string voiceInfo;
+};
+
+//上传语音
+struct VoiceChatUploadVoiceMessage
+{
+	VoiceChatUploadVoiceMessage()
+		:isUploadVoice(false)
+	{
+
+	}
+	bool isUploadVoice;
+
+	int result;
+	std::string voiceUrl;
+	long voiceTime;
+	std::string voiceInfo;
+};
+
+//文字聊天消息接口
+struct VoiceChatSendTextMessage
+{
+	VoiceChatSendTextMessage()
+		:isSendTextMessage(false)
+	{
+
+	}
+	bool isSendTextMessage;
+
+	int result;
+	std::string msg;
+};
+
+
+//接受文字消息接口
+struct VoiceChatReceiveTextMessage
+{
+	VoiceChatReceiveTextMessage()
+		:isReceive(false)
+	{
+
+	}
+
+	bool isReceive;
+
+	std::string troopsId;
+	std::string text;
+	std::string expand;
+
+};
+
+//语音识别返回语音与文字
+struct VoiceChatVoiceAndTextInfo
+{
+	VoiceChatVoiceAndTextInfo()
+		:isNotify(false)
+	{
+
+	}
+	bool isNotify;
+
+	int result;
+	std::string msg;
+	std::string voiceUrl;
+	int voiceDuration;
+	std::string filePath;
+	std::string expand;
+	std::string text;
+
+};
+
+//语音识别单独返回文字
+struct VoiceChatBdMineTxtMsg
+{
+	VoiceChatBdMineTxtMsg()
+		:isNotify(false)
+	{
+
+	}
+	bool isNotify;
+	std::string txtMsg;
+};
+
+class libVoiceChat
+{
+public:
+	static libVoiceChat* getInstance();
+	
+	void login(char* seq);
+
+	//注销
+	void logout(char* seq);
+	
+	//播放&停止播放 java处理
+	void playAudio(char* filePath);
+	
+	//停止播放
+	void stopAudio();
+
+	//判断是否播放
+	bool isPlayingAudio();
+	
+	//开始语音识别
+	void startVoiceRecognition(char* expand);
+
+	//同时发送语音识别文字与语音开关
+	void setSupportVoiceAndTxt(bool isSupport);
+
+	//上传语音
+	void uploadVoiceMessage(char* filePath ,  long voiceDuration , char* expand);
+
+	//发送文字
+	void sendTextMessage( char* text , char* expand);
+
+	//语音识别讲话结束
+	void speakFinish();
+
+	//取消语音识别
+	void stopVoiceRecognition();
+	
+	VoiceChatLoginResultInfo getVoiceChatLoginResultInfo(){ return voiceChatLoginResultInfo; };
+	VoiceChatLogoutResultInfo getVoiceChatLogoutResultInfo(){ return voiceChatLogoutResultInfo; };
+	VoiceChatVoiceMsgInfo getVoiceChatVoiceMsgInfo(){ return voiceChatVoiceMsgInfo; };
+
+	VoiceChatUploadVoiceMessage getVoiceChatUploadVoiceMessage(){ return voiceChatUploadVoiceMessage; };
+	VoiceChatSendTextMessage getVoiceChatSendTextMessage(){ return voiceChatSendTextMessage; };
+	VoiceChatReceiveTextMessage getVoiceChatReceiveTextMessage(){ return voiceChatReceiveTextMessage; };
+	VoiceChatVoiceAndTextInfo getVoiceChatVoiceAndTextInfo(){ return voiceChatVoiceAndTextInfo; }
+	VoiceChatBdMineTxtMsg getVoiceChatBdMineTxtMsg(){ return voiceChatBdMineTxtMsg; }
+}

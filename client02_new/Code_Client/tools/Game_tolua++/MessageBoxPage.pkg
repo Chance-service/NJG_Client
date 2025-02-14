@@ -1,0 +1,8 @@
+$#include "MessageBoxPage.h"
+
+class MessageBoxPage 
+{
+	static void Msg_Box(std::string msgString);
+	static void Msg_Box_Lan(std::string msgString);
+	static void Msg_Box_Html(std::string msgString);
+};

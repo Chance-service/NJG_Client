@@ -1,0 +1,21 @@
+
+class CCClippingNode : public CCNode{
+	
+ public:
+    static CCClippingNode* create();
+    static CCClippingNode* create(CCNode *pStencil);
+    virtual ~CCClippingNode();
+    virtual bool init();
+    virtual bool init(CCNode *pStencil);
+    virtual void onEnter();
+    virtual void onEnterTransitionDidFinish();
+    virtual void onExitTransitionDidStart();
+    virtual void onExit();
+    virtual void visit();
+    CCNode* getStencil() const;
+    void setStencil(CCNode *pStencil);
+    GLfloat getAlphaThreshold() const;
+    void setAlphaThreshold(GLfloat fAlphaThreshold);
+    bool isInverted() const;
+    void setInverted(bool bInverted);   
+};

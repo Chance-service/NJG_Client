@@ -1,0 +1,6 @@
+$#include "MessageHintPage.h"
+
+class MessageHintPage 
+{
+	static void Msg_Hint(const std::string& msgString,int tag);
+};

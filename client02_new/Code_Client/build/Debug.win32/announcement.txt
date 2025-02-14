@@ -1,0 +1,61 @@
+<p>
+  <font color="#9e5d09">===== 版本更新活动 =====</font><br />
+  <br />  
+  <font color="#E74C3C">新生招募：</font><br />
+  <font color="#241d1d">2/16版本更新后~3/16版版本更新前，</font>
+  <font color="#f21237">UR拉斐尔</font>
+  <font color="#241d1d">角色招募池概率提升！ </font><br />
+  <br />
+  <font color="#E74C3C">修学旅行：</font><br />
+  <font color="#241d1d">活动副本更换为</font>
+  <font color="#9B59B6">"诡谲矿坑"</font>
+  <font color="#241d1d">，副本内掉落物全面更换，开放时间至</font>
+  <font color="#f21237">4/13</font>
+  <font color="#241d1d">，寻找隐藏在矿坑内的神秘能量！ </font><br />
+  <br />
+  <font color="#E74C3C">复刻装备：</font><br />
+  <font color="#241d1d">复刻一件大师系列套装</font>
+  <font color="#9B59B6">「裁决罪恶之镰」</font>
+  <font color="#241d1d">，此系列套装仅能透过修学旅行获得。升级时须消耗装备碎片及能源结晶体。 </font><br />
+  <br />
+  <font color="#E74C3C">活动特典：</font><br />
+  <font color="#241d1d">在</font>
+  <font color="#9B59B6">「福袋卖场」</font>
+  <font color="#241d1d">中期间限定开放</font>
+  <font color="#ff82a2">《洞窟遗留物》、《矿场支援包》</font>
+  <font color="#241d1d">，两款不同的修学支援礼包，一起在矿坑中寻找宝藏！ </font><br />
+  <br />
+  <font color="#E74C3C">新生手册：</font><br />
+  <font color="#241d1d">期间内持有活动角色</font>
+  <font color="#f21237">UR拉斐尔</font>
+  <font color="#241d1d">，将可获得多项属性加成！ </font><br />
+  <br />
+  <font color="#5397fe">===== 版本持续活动 =====</font><br />
+  <br />
+  <font color="#E74C3C">天使的注射：</font><br />
+  <font color="#241d1d">在</font>
+  <font color="#9B59B6">「特典」</font>
+  <font color="#241d1d">中可购买</font>
+  <font color="#ff82a2">《萌娘保健》</font>
+  <font color="#f21237">UR素萌香</font>
+  <font color="#241d1d">，赶紧把握和护士小姐姐共度的春宵时光！ </font><br />
+  <br />
+  <font color="#27AE60">===== 定期通行券 =====</font><br />
+  <br />
+  <font color="#057730">短期研修</font><br />
+  <font color="#241d1d">购买后连续</font>
+  <font color="#E74C3C">7天</font>
+  <font color="#241d1d">，每日可领取</font>
+  <font color="#3598DB">钻石</font>
+  <font color="#241d1d">，</font>
+  <font color="#9B59B6">EXP加成BUFF</font>
+  <font color="#241d1d">及丰富道具。 </font><br />
+  <br />
+  <font color="#057730">长期研修</font><br />
+  <font color="#241d1d">购买后连续</font>
+  <font color="#E74C3C">30天</font>
+  <font color="#241d1d">，每日可领取</font>
+  <font color="#3598DB">钻石</font>
+  <font color="#241d1d">及豪华道具。 </font><br />
+  <br />
+ </p>

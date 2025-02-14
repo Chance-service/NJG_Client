@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment version="1536" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController">
+            <connections>
+                <outlet property="BtnGuestLogin" destination="V9V-Kx-Emm" id="i7u-T0-7JP"/>
+                <outlet property="bgImageView" destination="G2o-1c-eO5" id="JKT-gJ-FG5"/>
+                <outlet property="btnAjust" destination="qXe-Qo-MDL" id="suT-ez-gd1"/>
+                <outlet property="btnCheck" destination="6o2-e7-4Sh" id="Qci-Gn-nOV"/>
+                <outlet property="btnLogin" destination="XAr-zs-DaW" id="Sew-4X-Ig9"/>
+                <outlet property="view" destination="iN0-l3-epB" id="oyO-8z-uMN"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="center" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_login_kakaotalk.png" highlightedImage="logo_login_kakaotalk.png" translatesAutoresizingMaskIntoConstraints="NO" id="G2o-1c-eO5">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                </imageView>
+                <button contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XAr-zs-DaW" userLabel="loginBtn">
+                    <rect key="frame" x="21" y="391" width="279" height="53"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="279" id="MNT-Q9-hzi"/>
+                        <constraint firstAttribute="height" constant="53" id="Yw7-KW-UvK"/>
+                    </constraints>
+                    <state key="normal" image="kakaologin_normal.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="invokeLoginWithTarget:" destination="-1" eventType="touchUpInside" id="v9s-1k-29i"/>
+                    </connections>
+                </button>
+                <button contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V9V-Kx-Emm" userLabel="Guest">
+                    <rect key="frame" x="134" y="454" width="53" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="53" id="MAP-5N-uTg"/>
+                        <constraint firstAttribute="height" constant="22" id="dkm-iA-5gI"/>
+                    </constraints>
+                    <state key="normal" image="kakao_Guest.png">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="invikeGuestWithTarget:" destination="-1" eventType="touchUpInside" id="phh-I9-1e3"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vEP-VJ-gSs" userLabel="MidControllView">
+                    <rect key="frame" x="52" y="339" width="216" height="44"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qXe-Qo-MDL" userLabel="게임 이용약관에 동의 합니다.">
+                            <rect key="frame" x="33" y="13" width="177" height="24"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="qXe-Qo-MDL" secondAttribute="height" multiplier="59:8" id="H3c-t7-v1i"/>
+                                <constraint firstAttribute="width" constant="177" id="lyp-gT-92A"/>
+                                <constraint firstAttribute="height" constant="24" id="tXp-rJ-b9j"/>
+                            </constraints>
+                            <state key="normal" image="kakao_showLegal.png">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="invokeAgreement:" destination="-1" eventType="touchUpInside" id="4XF-zj-FUM"/>
+                            </connections>
+                        </button>
+                        <button contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6o2-e7-4Sh" userLabel="checkBtn">
+                            <rect key="frame" x="8" y="14" width="24" height="24"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="24" id="BtP-V9-bhl"/>
+                                <constraint firstAttribute="height" constant="24" id="GPi-pJ-Slu"/>
+                                <constraint firstAttribute="width" secondItem="6o2-e7-4Sh" secondAttribute="height" multiplier="1:1" id="KmG-fw-QFc"/>
+                            </constraints>
+                            <state key="normal" image="bt_checkbox.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="invokeCheckWithTarget:" destination="-1" eventType="touchUpInside" id="70M-Hy-EYW"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="qXe-Qo-MDL" secondAttribute="trailing" constant="6" id="61J-Fq-h8B"/>
+                        <constraint firstAttribute="height" constant="44" id="KC7-MW-aS0"/>
+                        <constraint firstItem="6o2-e7-4Sh" firstAttribute="top" secondItem="vEP-VJ-gSs" secondAttribute="top" constant="14" id="YlO-nj-IKB"/>
+                        <constraint firstAttribute="width" secondItem="vEP-VJ-gSs" secondAttribute="height" multiplier="54:11" id="biP-tz-z9g"/>
+                        <constraint firstAttribute="width" constant="216" id="cl0-s7-gR1"/>
+                        <constraint firstItem="qXe-Qo-MDL" firstAttribute="top" secondItem="vEP-VJ-gSs" secondAttribute="top" constant="13" id="pVc-ng-2MC"/>
+                        <constraint firstItem="qXe-Qo-MDL" firstAttribute="leading" secondItem="6o2-e7-4Sh" secondAttribute="trailing" constant="1" id="yG3-U8-HUi"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.23921570181846619" green="0.15686275064945221" blue="0.18823531270027161" alpha="0.0" colorSpace="deviceRGB"/>
+            <accessibility key="accessibilityConfiguration">
+                <accessibilityTraits key="traits" none="YES" button="YES"/>
+                <bool key="isElement" value="YES"/>
+            </accessibility>
+            <constraints>
+                <constraint firstItem="G2o-1c-eO5" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="EvG-Gd-bHx"/>
+                <constraint firstAttribute="bottom" secondItem="V9V-Kx-Emm" secondAttribute="bottom" constant="92" id="KJj-gr-xwW"/>
+                <constraint firstAttribute="centerX" secondItem="XAr-zs-DaW" secondAttribute="centerX" id="R8S-kK-Coe"/>
+                <constraint firstAttribute="bottom" secondItem="G2o-1c-eO5" secondAttribute="bottom" id="T4z-sb-Qe8"/>
+                <constraint firstAttribute="trailing" secondItem="G2o-1c-eO5" secondAttribute="trailing" id="hao-Gr-7mW"/>
+                <constraint firstAttribute="bottom" secondItem="vEP-VJ-gSs" secondAttribute="bottom" constant="185" id="lh5-Cy-MVu"/>
+                <constraint firstAttribute="centerX" secondItem="V9V-Kx-Emm" secondAttribute="centerX" id="mpP-UA-zdK"/>
+                <constraint firstAttribute="bottom" secondItem="XAr-zs-DaW" secondAttribute="bottom" constant="124" id="nKq-0m-apF"/>
+                <constraint firstItem="G2o-1c-eO5" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="uVh-GM-6Rw"/>
+                <constraint firstAttribute="centerX" secondItem="vEP-VJ-gSs" secondAttribute="centerX" id="yJn-Cm-JlL"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="538" y="389"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="bt_checkbox.png" width="44" height="46"/>
+        <image name="kakao_Guest.png" width="74" height="31"/>
+        <image name="kakao_showLegal.png" width="248" height="29"/>
+        <image name="kakaologin_normal.png" width="586" height="96"/>
+        <image name="logo_login_kakaotalk.png" width="768" height="1136"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

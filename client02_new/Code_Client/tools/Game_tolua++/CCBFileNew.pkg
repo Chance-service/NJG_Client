@@ -1,0 +1,66 @@
+$#include "CCBReader/CCBFileNew.h"
+class CCBFileListener
+{
+public:
+	virtual void onMenuItemAction(const std::string& itemName, CCObject* sender, int tag){};
+	virtual void onContolAction(const std::string& itemName, cocos2d::CCObject* sender, std::string tag){};
+	virtual void onAnimationDone(const std::string& animationName, CCBFileNew* ccbfile=0){};
+};
+class CCBFileNew : public CCNode
+	, public CCBSelectorResolver
+	, public CCBMemberVariableAssigner
+{
+public: 
+
+	static CCBFileNew* create();
+	static CCBFileNew* CreateInPool(const std::string& ccbfile);
+	static void purgeCachedData(void);
+	 bool init();
+
+	void setCCBFileName(const std::string& filename);
+	const std::string& getCCBFileName();
+	 void load(bool froceLoad = false);
+	 void unload();
+	 bool getLoaded();
+
+	void setParentCCBFileNode(CCBFileNew* parent);
+	CCBFileNew* getParentCCBFileNode();
+	void setListener(CCBFileListener* listener, int tag = 0);
+	CCBFileListener* getListener(){return mCCBFileListener;};
+
+	void runAnimation(const std::string& actionname,bool hasEffect=false);
+	bool hasAnimation(const std::string& animation);
+	float getAnimationLength(const std::string& animation);
+	std::string getCompletedAnimationName();
+
+	CCObject* getVariable(const std::string& variablename);
+	CCNode* getVarNode(char* name);
+	CCSprite* getVarSprite(char* name);
+	CCLabelBMFont* getVarLabelBMFont(char* name);
+	CCLabelTTF* getVarLabelTTF(char* name);
+	CCMenu* getVarMenu(char* name);
+	CCMenuItem* getVarMenuItem(char* name);
+	CCMenuItemSprite* getVarMenuItemSprite(char* name);
+	CCMenuItemImage* getVarMenuItemImage(char* name);
+	CCScrollView* getVarScrollView(char* name);
+	CCScale9Sprite* getVarScale9Sprite(char* name);
+	CCParticleSystem* getParticleSystem(char* name);
+	CCMenuItemCCBFile* getVarMenuItemCCB(char* name);
+	CCLayer* getVarLayer(char* name);
+	
+	CCNode* getCCBFileNode();
+	void playAutoPlaySequence();
+
+	void registerFunctionHandler(LUA_TABLE nHandler);
+	void unregisterFunctionHandler();
+
+	//void setCCScrollViewChild(CCScrollView* parent);
+
+	std::string dumpInfo();
+
+	void cleanup(void);
+	
+	void setCCBTag(int tag){mCCBTag = tag;}
+	int getCCBTag(){return mCCBTag;}
+};
+

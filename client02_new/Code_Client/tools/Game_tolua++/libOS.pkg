@@ -1,0 +1,54 @@
+$#include "libOS.h"
+
+class libOS
+{
+	static libOS* getInstance();
+	
+	long avalibleMemory();
+	void rmdir(const char* path);
+
+	const std::string& generateSerial();
+
+	void showInputbox(bool multiline ,std::string content);
+	void showInputbox(bool multiline ,int InputMode,std::string content);
+	void showInputbox(bool multiline ,int InputMode,int nMaxLength,std::string content);
+	void showMessagebox(const std::string& msg, int tag = 0);
+
+	void openURL(const std::string& url);
+	void emailTo(const std::string& mailto, const std::string & cc , const std::string& title, const std::string & body);
+	
+	void requestRestart();
+	
+	void setWaiting(bool);
+
+	long long getFreeSpace();
+
+	NetworkStatus getNetWork();
+	
+	void clearNotification();
+    void addNotification(const std::string& msg, int secondsdelay,bool daily = false);
+	
+	const std::string getDeviceID();
+	const std::string getPlatformInfo();
+	bool getIsDebug();
+	void analyticsLogEvent(const std::string& event);
+	void analyticsLogEvent(const std::string& event, const std::map<std::string, std::string>& dictionary, bool timed = false);
+	void analyticsLogEndTimeEvent(const std::string& event);
+
+	void platformSharePerson(const std::string& shareContent, const std::string& shareImgPath, int platFormCfg = 0);
+	void facebookShare(std::string& link,std::string& picture,std::string& name,std::string& caption,std::string& description);
+	void openURLHttps(const std::string& url);
+
+	void OnLuaExitGame();
+	void OnEntermateHomepage();
+	void OnEntermateEvent();
+	void OnUnregister();
+	void OnUserInfoChange(std::string& playerid,std::string& name,std::string& serverId,std::string& level,std::string& exp,std::string& vip,std::string& gold);
+	void OnEntermateCoupons(std::string& strCoupons);
+	void setClipboardText(std::string& text);
+	std::string getClipboardText();
+	void setEditBoxText(std::string& text);
+	
+	std::string getPackageNameToLua();
+	std::string getGameVersion();
+}

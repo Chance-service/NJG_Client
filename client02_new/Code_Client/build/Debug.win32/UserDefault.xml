@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<userDefaultRoot>
+    <packageUrl>http://10.0.1.147:8787/Version_CN</packageUrl>
+    <remoteProjectManifestUrl>http://10.0.1.147:8787/Version_CN</remoteProjectManifestUrl>
+    <versionResource>1.16.1</versionResource>
+    <remoteVersionUrl>http://10.0.1.147:8787/Version_CN</remoteVersionUrl>
+    <versionApp>1.39.1</versionApp>
+    <isNeedGoAppStore>1</isNeedGoAppStore>
+    <announcement>http://10.0.1.147:8787/Version_CN/announcement.txt</announcement>
+    <announcementDownloadTime>0</announcementDownloadTime>
+    <LastLoginPUID>811194</LastLoginPUID>
+    <PassKey>888888</PassKey>
+    <DefaultSeverID>6</DefaultSeverID>
+    <JapanLastLoginTime>2022-02-21 12:20:45</JapanLastLoginTime>
+    <JapanServrId>BC測試服</JapanServrId>
+    <JapanPlayerId>3</JapanPlayerId>
+    <JapanPuid>811194</JapanPuid>
+    <OpenPopBanner609>1594110685</OpenPopBanner609>
+    <Open30DayPage609>1594110685</Open30DayPage609>
+    <FirstOpen30DayPage6609>1</FirstOpen30DayPage6609>
+    <OpenPopBanner783>1597293453</OpenPopBanner783>
+    <Open30DayPage783>1597293453</Open30DayPage783>
+    <FirstOpen30DayPage6783>1</FirstOpen30DayPage6783>
+    <LastClickTime_783>1594569600</LastClickTime_783>
+    <MainRoleSpineID6783>6</MainRoleSpineID6783>
+    <LastClickMonthCardTime_6>1597766400</LastClickMonthCardTime_6>
+    <OpenPopBanner586>1613636001</OpenPopBanner586>
+    <Open30DayPage586>1613636001</Open30DayPage586>
+    <FirstOpen30DayPage6586>1</FirstOpen30DayPage6586>
+    <Nuded_6_586>false</Nuded_6_586>
+    <MainRoleSpineID6586>6</MainRoleSpineID6586>
+    <ClickChangeBoss6586>1</ClickChangeBoss6586>
+    <GuildPage586>1</GuildPage586>
+    <ecchigamer_domain_v1.txt>{"config":["https://ocf.condowlogp.com/conf/config","https://ocf.loapconf.asia/conf/config","https://ocf.zhejinsh.com/conf/config","https://ocf.apfiledo.guru/conf/config","https://ocf.dowlofi.pro/conf/config"],"login":["https://liap.condowlogp.com","https://liap.loapconf.asia","https://liap.zhejinsh.com","https://liap.apfiledo.guru","https://liap.dowlofi.pro"],"payment":"https://por.turnpast.com"}</ecchigamer_domain_v1.txt>
+    <OpenPopBanner1298>1617172946</OpenPopBanner1298>
+    <Open30DayPage1298>1617172946</Open30DayPage1298>
+    <FirstOpen30DayPage61298>1</FirstOpen30DayPage61298>
+    <MainRoleSpineID61298>6</MainRoleSpineID61298>
+    <Nuded_6_1298>true</Nuded_6_1298>
+    <OpenPopBanner1306>1644551353</OpenPopBanner1306>
+    <Open30DayPage1306>1644552157</Open30DayPage1306>
+    <FirstOpen30DayPage61306>1</FirstOpen30DayPage61306>
+    <EroLoginType>Normal</EroLoginType>
+    <suitPackagePageFlag>true</suitPackagePageFlag>
+    <MainRoleSpineID61306>6</MainRoleSpineID61306>
+    <OpenPopBanner3>1645412754</OpenPopBanner3>
+    <Open30DayPage3>1645412754</Open30DayPage3>
+    <FirstOpen30DayPage63>1</FirstOpen30DayPage63>
+    <newbieGuide_FirstCanRebirthBattle_6_3>true</newbieGuide_FirstCanRebirthBattle_6_3>
+</userDefaultRoot>
