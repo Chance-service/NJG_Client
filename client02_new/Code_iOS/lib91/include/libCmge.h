@@ -13,6 +13,7 @@ public:
 	NOTICE: Platform should call _boardcastInitDone to notify client logic WHEN initialization is done.
 	*/
 	virtual void initWithConfigure(const SDK_CONFIG_STU& configure);
+  virtual void setupSDK(int platformId);
     
     /** check whether is logined */
 	virtual bool getLogined();

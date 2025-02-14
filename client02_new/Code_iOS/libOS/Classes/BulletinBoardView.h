@@ -1,13 +1,13 @@
 
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#import <WebKit/WebKit.h>
 #import "C4L_MBProgressHUD.h"
 
 class BulletinBoardPageListener;
 
-@interface BulletinBoardView : UIView <UIWebViewDelegate,MBProgressHUDDelegate>
+@interface BulletinBoardView : WKWebView <WKNavigationDelegate,MBProgressHUDDelegate>
 {
-    UIWebView* _webView;
+    WKWebView* _webView;
     BOOL _shouldLoadRequest;
     BOOL _isClose;
     NSTimer* _timer;
@@ -15,7 +15,7 @@ class BulletinBoardPageListener;
     C4L_MBProgressHUD* _HUD;
     BulletinBoardPageListener *_webKitDelegate;
 }
-@property(nonatomic, retain) UIWebView* webView;
+@property(nonatomic, retain) WKWebView* webView;
 @property(nonatomic, retain) C4L_MBProgressHUD* HUD;
 @property(nonatomic, retain) NSTimer* timer;
 @property(nonatomic, assign) BOOL shouldLoadRequest;
@@ -27,7 +27,6 @@ class BulletinBoardPageListener;
 
 - (id)initWithFrame:(CGRect)frame isNavBarHiden:(BOOL)isNavBarHiden;
 - (void)webViewOpenURL:(NSString *)URL;
-//- (void)webViewEvaluatingJavaScriptFromString:(NSString *)jsString;
 - (void)closeTimer;
 //由libOS接口调用 以后会用到
 + (void)bulletinOpenURL:(NSString *)URL;

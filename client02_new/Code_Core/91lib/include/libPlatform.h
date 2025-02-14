@@ -125,6 +125,7 @@ public:
 	NOTICE: Platform should call _boardcastInitDone to notify client logic WHEN initialization is done.
 	*/
 	virtual void initWithConfigure(const SDK_CONFIG_STU& configure) = 0;
+  virtual void setupSDK(int platformId) = 0;
 
 	/**
 	MUST call this function AFTER updating is done(after call back function).

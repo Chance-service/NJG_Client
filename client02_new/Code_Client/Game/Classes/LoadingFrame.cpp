@@ -134,6 +134,11 @@ void LoadingFrame::Enter( GamePrecedure* )
 	else if(SeverConsts::Get()->IsEroR18()) {
 		Lua_EcchiGamerSDKBridge::callinitbyC();
 	}
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    if (SeverConsts::Get()->IsKUSO())
+    {
+        libPlatformManager::getPlatform()->login();
+    }
 #endif
 
 	float reqServerTime = StringConverter::parseLong(VaribleManager::Get()->getSetting("ReqServerListOffest", "", "10"), true);

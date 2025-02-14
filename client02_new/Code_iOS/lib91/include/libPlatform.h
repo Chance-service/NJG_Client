@@ -2,6 +2,7 @@
 #include <set>
 #include <string>
 #include <map>
+
 #ifndef __LIBPLATFORM_H__
 #define __LIBPLATFORM_H__
 
@@ -111,6 +112,7 @@ public:
      NOTICE: Platform should call _boardcastInitDone to notify client logic WHEN initialization is done.
      */
 	virtual void initWithConfigure(const SDK_CONFIG_STU& configure) = 0;
+    virtual void setupSDK(int platformId) = 0;
 
 	/**
 	MUST call this function AFTER updating is done(after call back function).
@@ -137,6 +139,7 @@ public:
     virtual const std::string getChannelID(){return "";}
 
 	virtual std::string getPlatformMoneyName() = 0;
+    virtual const unsigned int getPlatformId() = 0;
 
     virtual void updateApp(std::string &storeUrl);
 

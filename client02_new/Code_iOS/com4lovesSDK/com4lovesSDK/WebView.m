@@ -17,14 +17,10 @@
     
     UIWindow* window = [UIApplication sharedApplication].keyWindow;
     [window addSubview:self.view];
-    [self.view setFrame:[[UIScreen mainScreen] applicationFrame]];
+    CGRect frame = [UIScreen mainScreen].bounds;
+    [self.view setFrame:frame];
     
 #ifdef WEB_R2
-    
-//    NSLog(@"--%s--show webView to r2-----",__FUNCTION__);
-//反转视图
-//    self.view.transform = CGAffineTransformMakeRotation(M_PI * 1.5);
-//    self.mWebView.scalesPageToFit = YES;
     [self.btnClose setTitle:@"Close" forState:UIControlStateNormal];
     [self.btnClose setTitle:@"Close" forState:UIControlStateSelected];
     [self.btnClose setTitle:@"Close" forState:UIControlStateHighlighted];
@@ -37,7 +33,7 @@
     NSURLRequest *reqObject =  [NSURLRequest requestWithURL:nsurl];
     [self.mWebView setUserInteractionEnabled: YES ]; //是否支持交互
     [self.mWebView loadRequest:reqObject];
-    [self.mWebView setDelegate:self];
+    [self.mWebView setNavigationDelegate:self];
  
 }
 
@@ -52,42 +48,40 @@
     [self hideWeb];
 }
 
-- (void)webViewDidStartLoad:(UIWebView *)webView
+// Equivalent to webViewDidStartLoad
+- (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation
 {
     [[SDKUtility sharedInstance] setWaiting:YES];
 }
-- (void)webViewDidFinishLoad:(UIWebView *)webView
-{
-        [[SDKUtility sharedInstance] setWaiting:NO];
-    
-//    if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {
-//        SEL selector = NSSelectorFromString(@"setOrientation:");
-//        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[UIDevice instanceMethodSignatureForSelector:selector]];
-//        [invocation setSelector:selector];
-//        [invocation setTarget:[UIDevice currentDevice]];
-//        int val = UIInterfaceOrientationLandscapeLeft;
-//        [invocation setArgument:&val atIndex:2];
-//        [invocation invoke];
-//    }
 
+// Equivalent to webViewDidFinishLoad
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation
+{
+    [[SDKUtility sharedInstance] setWaiting:NO];
 }
 
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+// Equivalent to shouldStartLoadWithRequest
+- (void)webView:(WKWebView *)webView
+    decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction
+    decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
 {
-    //;
-    YALog(@"%@",request);
-    NSString* rurl=[[request URL] absoluteString];
-    if ([rurl hasPrefix:@"objc://cmd/close"]) {
+    if ([navigationAction.request.URL.absoluteString hasPrefix:@"objc://cmd/close"])
+    {
         [self hideWeb];
     }
-    return true;
+    decisionHandler(WKNavigationActionPolicyAllow);
 }
-- (void)dealloc {
+
+- (void)dealloc
+{
     [_btnClose release];
     [super dealloc];
 }
-- (void)viewDidUnload {
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
     [self setBtnClose:nil];
-    [super viewDidUnload];
 }
+
 @end

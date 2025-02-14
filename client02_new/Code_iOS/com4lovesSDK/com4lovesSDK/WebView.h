@@ -6,9 +6,9 @@
 //  Copyright (c) 2013年 com4loves. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <WebKit/WebKit.h>
 
-@interface WebView : UIViewController<UIWebViewDelegate>
+@interface WebView : UIViewController<WKNavigationDelegate>
 {
     UIViewController * mOriRootViewController;
 }
@@ -20,5 +20,5 @@
 - (IBAction)onEnd:(id)sender;
 
 
-@property(nonatomic, retain) IBOutlet UIWebView * mWebView;
+@property(nonatomic, retain) IBOutlet WKWebView * mWebView;
 @end

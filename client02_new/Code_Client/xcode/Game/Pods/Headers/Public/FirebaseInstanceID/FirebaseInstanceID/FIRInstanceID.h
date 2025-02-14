@@ -1,1 +1,0 @@
-link ../../../../FirebaseInstanceID/Frameworks/FirebaseInstanceID.framework/Headers/FIRInstanceID.h
