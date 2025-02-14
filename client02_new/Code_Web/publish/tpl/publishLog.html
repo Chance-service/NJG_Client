@@ -1,0 +1,60 @@
+<%include file="header.html"%>
+<%include file="top.html"%>
+<%include file="left.html"%>
+				<div class="main-content">
+					<div class="breadcrumbs" id="breadcrumbs">
+						<script type="text/javascript">
+							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+						</script>
+
+						<ul class="breadcrumb">
+							<li>
+								<i class="icon-home home-icon"></i>
+								<a href="javascript:void(0);">发布日志</a>
+							</li>
+							<li class="active"><a href="javascript:void(0);">查看日志</a></li>
+						</ul><!-- .breadcrumb -->
+					</div>
+
+					<div class="page-content">
+
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="table-header">&nbsp;&nbsp;&nbsp;&nbsp;</div>
+
+								<div class="table-responsive">
+									<table id="sample-table-1" class="table table-striped table-bordered table-hover">
+										<thead>
+											<tr>
+												<th>发布时间</th>
+												<th>发布次数</th>
+												<th>所属游戏</th>
+												<th>发布的平台</th>
+												<th>发布的服</th>
+												<th>发布的版本</th>
+												<th>发布人</th>
+											</tr>
+										</thead>
+
+										<tbody>
+											<%foreach from=$logList item=logInfo%>
+											<tr>
+												<td><%$logInfo.dateTime%></td>
+												<td><%$logInfo.number%></td>
+												<td><%$logInfo.gameName%></td>
+												<td><%$logInfo.platformsName%></td>
+												<td><%$logInfo.serverName%></td>
+												<td><%$logInfo.version%></td>
+												<td><%$logInfo.publishUser%></td>
+											</tr>
+											<%/foreach%>
+										</tbody>
+									</table>
+								</div><!-- /.table-responsive -->
+							</div><!-- /span -->
+						</div><!-- /row -->
+
+					</div><!-- /.page-content -->
+				</div><!-- /.main-content -->
+<%include file="footer.html"%>
+

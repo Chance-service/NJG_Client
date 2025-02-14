@@ -1,0 +1,76 @@
+
+2014-12-05 10:16:44--neiwang_Test_208--1服--查看变化 ======================== lz_game  ====================
+<br><br> exec sql :
+<br>ALTER TABLE `pet` CHANGE `skill` `skill` varchar(100) NOT NULL COMMENT '技能(格子序号,开锁状态,技能ID,等级,阶级,锁技能状态)'
+
+	__-------------------------------------------------------------------------------------------__
+
+
+2014-12-05 10:17:53--localhost_33--1服--查看变化 ======================== lz_game  ====================
+<br><br> exec sql :
+<br>CREATE TABLE IF NOT EXISTS `crowd_funding` (
+  `playerId` int(11) NOT NULL COMMENT '用户id ',
+  `support_times` int(11) NOT NULL DEFAULT '0' COMMENT '今日支持次数',
+  `support_free_times` int(11) NOT NULL DEFAULT '0' COMMENT '已经支持免费次数',
+  `support_date` varchar(48) NOT NULL COMMENT '最后一次支持日期',
+  PRIMARY KEY (`playerId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='布玛众筹系统';
+
+	__-------------------------------------------------------------------------------------------__
+
+
+2014-12-05 10:17:59--neiwang_Test_208--1服--查看变化 ======================== lz_game  ====================
+<br><br> exec sql :
+<br>ALTER TABLE `pet` CHANGE `skill` `skill` varchar(100) NOT NULL COMMENT '技能(格子序号,开锁状态,技能ID,等级,阶级,锁技能状态)'
+
+	__-------------------------------------------------------------------------------------------__
+
+
+2014-12-05 10:18:12--neiwang_Test_208--1服--查看变化 ======================== lz_game  ====================
+<br><br> exec sql :
+<br>ALTER TABLE `pet` CHANGE `skill` `skill` varchar(100) NOT NULL COMMENT '技能(格子序号,开锁状态,技能ID,等级,阶级,锁技能状态)'
+
+	__-------------------------------------------------------------------------------------------__
+
+
+2014-12-05 10:18:30--neiwang_Test_208--1服--执行sql ======================== lz_game  ====================
+<br><br> exec sql :
+<br>ALTER TABLE `pet` CHANGE `skill` `skill` varchar(100) NOT NULL COMMENT '技能(格子序号,开锁状态,技能ID,等级,阶级,锁技能状态)'
+
+	__-------------------------------------------------------------------------------------------__
+
+
+2014-12-05 10:18:32--neiwang_Test_208--1服--查看变化 ======================== lz_game  ====================
+<br><br> 当前sql已是最新无需更新!
+
+2014-12-05 10:18:35--localhost_33--1服--查看变化 ======================== lz_game  ====================
+<br><br> exec sql :
+<br>CREATE TABLE IF NOT EXISTS `crowd_funding` (
+  `playerId` int(11) NOT NULL COMMENT '用户id ',
+  `support_times` int(11) NOT NULL DEFAULT '0' COMMENT '今日支持次数',
+  `support_free_times` int(11) NOT NULL DEFAULT '0' COMMENT '已经支持免费次数',
+  `support_date` varchar(48) NOT NULL COMMENT '最后一次支持日期',
+  PRIMARY KEY (`playerId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='布玛众筹系统';
+
+	__-------------------------------------------------------------------------------------------__
+
+
+2014-12-05 10:18:36--localhost_33--1服--执行sql ======================== lz_game  ====================
+<br><br> exec sql :
+<br>CREATE TABLE IF NOT EXISTS `crowd_funding` (
+  `playerId` int(11) NOT NULL COMMENT '用户id ',
+  `support_times` int(11) NOT NULL DEFAULT '0' COMMENT '今日支持次数',
+  `support_free_times` int(11) NOT NULL DEFAULT '0' COMMENT '已经支持免费次数',
+  `support_date` varchar(48) NOT NULL COMMENT '最后一次支持日期',
+  PRIMARY KEY (`playerId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='布玛众筹系统';
+
+	__-------------------------------------------------------------------------------------------__
+
+
+2014-12-05 10:18:39--localhost_33--1服--查看变化 ======================== lz_game  ====================
+<br><br> 当前sql已是最新无需更新!
+
+2014-12-05 13:02:00--localhost_33--1服--查看变化 ======================== lz_game  ====================
+<br><br> 当前sql已是最新无需更新!

@@ -1,0 +1,164 @@
+<%include file="header.html"%>
+<%include file="top.html"%>
+<%include file="left.html"%>
+				<div class="main-content">
+					<div class="breadcrumbs" id="breadcrumbs">
+						<script type="text/javascript">
+							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+						</script>
+
+						<ul class="breadcrumb">
+							<li>
+								<i class="icon-home home-icon"></i>
+								<%if $gameName%>
+									<%if $type == 'on'%>
+										<a href="javascript:void(0);">开服</a>
+									<%elseif $type == 'off'%>
+										<a href="javascript:void(0);">停服</a>
+									<%else%>
+										<a href="javascript:void(0);">无缝重启服</a>
+									<%/if%>
+								<%else%>
+									<a href="javascript:void(0);">开停服日志</a>
+								<%/if%>
+							</li>
+							<%if $gameName%>
+							<li class="active"><a href="javascript:void(0);"><%$gameName%></a></li>
+								<%if $type == 'on'%>
+									<li class="active"><a href="javascript:void(0);">开服过程</a></li>
+								<%elseif $type == 'off'%>
+									<li class="active"><a href="javascript:void(0);">停服过程</a></li>
+								<%else%>
+									<li class="active"><a href="javascript:void(0);">无缝重启服过程</a></li>
+								<%/if%>
+							<%else%>
+							<li class="active"><a href="javascript:void(0);">查看上次开停服日志</a></li>
+							<%/if%>
+						</ul><!-- .breadcrumb -->
+					</div>
+
+					<div class="page-content">
+
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+								<div class="alert alert-block alert-success">
+									<button type="button" class="close" data-dismiss="alert">
+										<i class="icon-remove"></i>
+									</button>
+
+									<i class="icon-exclamation-sign red"></i>
+
+									<%if $pubLog.isPublishIng%>
+										<strong class="green" id="execIngLogTips">正在进行中...</strong><strong class="red" id="execIngLogUsedTime"></strong>
+									<%else%>
+										<strong class="green">上次开停服日志</strong>
+									<%/if%>
+
+								</div>
+								<div class="hr hr32 hr-dotted"></div>
+								
+								<div class="row">
+									<div class="col-sm-12">
+										<div class="widget-box">
+											<div class="widget-header header-color-blue2">
+												<h4 class="lighter smaller">开停服日志</h4>
+											</div>
+
+											<div class="widget-body">
+												<div class="widget-main padding-8">
+													<div style="height:500px;overflow-y:auto;border:1px solid #ddd;">
+														<div id="publishExecIngLog"><%$pubLog.log%></div>
+														<div id="publishExecIngLogEnd" style="height:0px; overflow:hidden"></div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+								<!-- PAGE CONTENT ENDS -->
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div><!-- /.page-content -->
+				</div><!-- /.main-content -->
+		<script language="javascript">
+
+			// 如果为正在发布过程，每1s ajax请求一次发布进度
+		<%if $pubLog.isPublishIng%>
+		
+			var allRunTime = 0;
+			function getExecIngLog() {
+				// ajax 请求最新发布log
+				$.ajax({
+					type: "POST",
+					url: "index.php?mod=ServerOnOff&do=getIngExecLog",
+					data: "",
+					dataType: 'json',
+					success: function(data){
+						
+						if(!data) {
+							var tips = '已经完成了';
+							$("#execIngLogTips").html('&nbsp;' + tips);
+							top.document.title = tips;
+							$("#execIngLogUsedTime").html(allRunTime + ' second');
+						} else {
+							if(allRunTime < 30 || data.isPublishIng) {
+								// 没有完成
+								// 1s 后再次请求 execIngLog
+								setTimeout(getExecIngLog, 1000);
+
+								// js的误差计时
+								allRunTime ++;
+								$("#execIngLogUsedTime").html(allRunTime + ' second');
+
+								top.document.title = '耗时：' + allRunTime + ' second';
+								// 追加execIngLog
+								$("#publishExecIngLog").html(data.log);
+							} else {
+								// 已经完成
+								var tips = '完成';
+								$("#execIngLogTips").html('&nbsp;' + tips);
+								top.document.title = tips;
+								$("#execIngLogUsedTime").html(allRunTime + ' second');
+
+								var tmpLog = $("#publishExecIngLog").html();
+								if (tmpLog == '开服 ing ...') {
+									$("#publishExecIngLog").html('开服完成，请速度检查！');
+								}
+								if (tmpLog == '停服 ing ...') {
+									$("#publishExecIngLog").html('停服完成，请速度检查！');
+								}
+								if (tmpLog == '无缝重启服 ing ...') {
+									$("#publishExecIngLog").html('无缝重启服完成，请速度检查！');
+								}
+							}
+
+							// 定位到信息最后
+							publishExecIngLogEnd.scrollIntoView();
+						}
+						
+					},
+					error:function(errorMsg) {
+						var tips = '已经完成了';
+						$("#execIngLogTips").html('&nbsp;' + tips);
+						top.document.title = tips;
+						$("#execIngLogUsedTime").html(allRunTime + ' second');
+					}
+				});
+				
+			}
+
+			getExecIngLog();
+			
+		<%else%>
+			// 定位到信息最后
+			<%if $gameName%>
+			publishExecIngLogEnd.scrollIntoView();
+			<%/if%>
+
+		<%/if%>
+
+		</script>
+<%include file="footer.html"%>
+

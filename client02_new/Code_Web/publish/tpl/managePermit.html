@@ -1,0 +1,94 @@
+<%include file="header.html"%>
+<%include file="top.html"%>
+<%include file="left.html"%>
+				<div class="main-content">
+					<div class="breadcrumbs" id="breadcrumbs">
+						<script type="text/javascript">
+							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+						</script>
+
+						<ul class="breadcrumb">
+							<li>
+								<i class="icon-home home-icon"></i>
+								<a href="#">权限管理></a><a href="#">管理权限组</a>
+							</li>
+						</ul><!-- .breadcrumb -->
+					</div>
+
+				<div class="page-content">
+
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+
+								<div class="alert alert-info">
+									<i class="icon-hand-right"></i>
+
+									<strong class="red">请注意：</strong><i class="icon-trash bigger-120"></i> 为删除
+									<button class="close" data-dismiss="alert">
+										<i class="icon-remove"></i>
+									</button>
+								</div>
+								<div class="table-header">&nbsp;&nbsp;&nbsp;&nbsp;</div>
+
+								<div class="table-responsive">
+									<table id="sample-table-1" class="table table-striped table-bordered table-hover">
+										<thead>
+											<tr>
+												<th>权限组id</th>
+												<th>权限组名</th>
+												<th>备注</th>
+												<th>操作</th>
+											</tr>
+										</thead>
+
+										<tbody>
+										<%if $permit%>
+											<%foreach from = $permit key = k item = group%>
+											<tr>
+												<td id ="user_id"><%$group.group_id%></td>	
+												<td><%$group.group_name%></td>
+												<td><%$group.group_dec%></td>
+												<td>
+													<div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
+													
+														<a class="green" href="javascript:void(0);" onClick="formSubmit(<%$group.group_id%>);" >
+															<i class="icon-pencil bigger-130"></i>
+														</a>
+													
+														<a style="padding-right:1px;" class="red" href="index.php?mod=User_Group&do=delete&group_id=<%$group.group_id%>" >
+															<i class="icon-trash bigger-130"></i>
+														</a>
+													</div>
+
+												</td>
+											</tr>
+											<%/foreach%>
+										<%/if%>
+										<%if $msg%>
+											<tr>
+												<td><%$msg%></td>
+											</tr>
+										<%/if%>
+										</tbody>
+									</table>
+								</div><!-- /.table-responsive -->
+							</div>
+						</div><!-- /.row -->
+					</div><!-- /.page-content -->
+				</div><!-- /.main-content -->
+				
+				
+		<script type="text/javascript">
+
+		function formSubmit(groupId) {
+				window.location.href = "index.php?mod=User&do=editPermit&groupId=" + groupId;
+			}
+</script>				
+				
+<%include file="footer.html"%>
+
+
+
+
+

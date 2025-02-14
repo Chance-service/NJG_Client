@@ -1,0 +1,183 @@
+
+2015-01-28 09:50:48--IOS_27--1服--查看变化 ======================== lz_game  ====================
+<br><br> 当前sql已是最新无需更新!
+
+2015-01-28 09:51:14--IOS_27--2服--查看变化 ======================== lz_game  ====================
+<br><br> 当前sql已是最新无需更新!
+
+2015-01-28 10:00:53--IOS_27--1服--查看变化 ======================== lz_game  ====================
+<br><br> exec sql :
+<br>ALTER TABLE `battle` ADD `capsule` int(11) NOT NULL DEFAULT '0' AFTER `mountitem`, ADD `capsuleitem` int(11) NOT NULL DEFAULT '0' AFTER `capsule`
+
+	__-------------------------------------------------------------------------------------------__
+
+CREATE TABLE IF NOT EXISTS `crowd_funding` (
+  `playerId` int(11) NOT NULL COMMENT '用户id ',
+  `support_times` int(11) NOT NULL DEFAULT '0' COMMENT '今日支持次数',
+  `support_free_times` int(11) NOT NULL DEFAULT '0' COMMENT '已经支持免费次数',
+  `support_date` varchar(48) NOT NULL COMMENT '最后一次支持日期',
+  PRIMARY KEY (`playerId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='布玛众筹系统';
+
+	__-------------------------------------------------------------------------------------------__
+
+CREATE TABLE IF NOT EXISTS `eggrewardsinfo` (
+  `playerId` int(11) NOT NULL COMMENT '玩家id',
+  `giftId` varchar(30) NOT NULL COMMENT '领取礼包列表',
+  `diamondCount` int(11) NOT NULL COMMENT '活动期间累计获得钻石',
+  `rewardsInfo` varchar(255) NOT NULL COMMENT '玩家在彩蛋页面的奖品列表)(格式：1001,1002,0,0,0,0,0,0 第一位奖品  保存所有彩蛋，默认0,0,0,0,0,0,0,0,0',
+  `currentPoint` int(11) NOT NULL COMMENT '当前剩余积分',
+  `refreshdiamond` int(11) NOT NULL COMMENT '刷新次数',
+  `lastrefreshtime` int(11) NOT NULL COMMENT '上次刷新时间',
+  `rewardStats` varchar(64) NOT NULL COMMENT '领奖励状态',
+  `itemId` int(11) NOT NULL COMMENT '活动期号',
+  PRIMARY KEY (`playerId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+	__-------------------------------------------------------------------------------------------__
+
+ALTER TABLE `new_server_activity` CHANGE `lastAllianceBattleAuctionTime` `lastAllianceBattleAuctionTime` timestamp NOT NULL DEFAULT '2014-11-12 04:00:00'
+
+	__-------------------------------------------------------------------------------------------__
+
+CREATE TABLE IF NOT EXISTS `pet` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `playerId` int(11) NOT NULL COMMENT '玩家ID',
+  `itemId` int(11) NOT NULL COMMENT '宠物配置ID',
+  `exp` int(11) DEFAULT '0' COMMENT '宠物经验',
+  `level` int(11) NOT NULL COMMENT '宠物等级',
+  `feedStuts` int(11) DEFAULT '0' COMMENT '喂养状态',
+  `fightStuts` int(11) DEFAULT '0' COMMENT '出战状态',
+  `points` int(11) DEFAULT '0' COMMENT '技能点',
+  `skill` varchar(100) NOT NULL COMMENT '技能(格子序号,开锁状态,技能ID,等级,阶级,锁技能状态)',
+  `lastTime` int(11) NOT NULL COMMENT '上一次涨经验时间',
+  `specialSkillLastTime` char(200) NOT NULL COMMENT '特殊技能上次奖励领取时间',
+  `failPoints` int(11) NOT NULL DEFAULT '0' COMMENT '领悟失败技能点数',
+  `stage` int(11) NOT NULL DEFAULT '0' COMMENT '宠物等阶',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='宠物表';
+
+	__-------------------------------------------------------------------------------------------__
+
+CREATE TABLE IF NOT EXISTS `pet_bag` (
+  `playerid` int(11) NOT NULL COMMENT '玩家id',
+  `develop_count` int(11) NOT NULL COMMENT '开启的培养格数',
+  PRIMARY KEY (`playerid`),
+  KEY `playerid` (`playerid`),
+  KEY `playerid_2` (`playerid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='宠物格子数';
+
+	__-------------------------------------------------------------------------------------------__
+
+CREATE TABLE IF NOT EXISTS `pet_fragment` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增id',
+  `playerid` int(11) NOT NULL COMMENT '玩家id',
+  `itemid` int(11) NOT NULL COMMENT '配置id',
+  `count` int(11) NOT NULL COMMENT '数量',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='宠物碎片';
+
+	__-------------------------------------------------------------------------------------------__
+
+ALTER TABLE `planet` ADD `lastPlunderTime` int(10) unsigned NOT NULL COMMENT '上次掠夺时间' AFTER `occupationPeriod`
+
+	__-------------------------------------------------------------------------------------------__
+
+ALTER TABLE `player` ADD `extCapsuleBagTimes` int(11) DEFAULT '0' AFTER `extEquipBookBagTimes`, ADD `extCapsuleBookBagTimes` int(11) DEFAULT '0' AFTER `extCapsuleBagTimes`, ADD `extPetBagTimes` int(11) DEFAULT '0' COMMENT '宠物背包扩充次数' AFTER `extDiscipleBagTimes`
+
+	__-------------------------------------------------------------------------------------------__
+
+ALTER TABLE `player_distrial` ADD `sweepTime` int(11) NOT NULL DEFAULT '0' COMMENT '自动爬塔时间' AFTER `resetPoint`, ADD `sweepStatus` tinyint(2) NOT NULL DEFAULT '0' COMMENT '扫荡爬塔状态' AFTER `sweepTime`, ADD `sweepStartFloor` int(11) NOT NULL DEFAULT '0' COMMENT '开始爬塔层数' AFTER `sweepStatus`, ADD `sweepEndFloor` int(11) NOT NULL DEFAULT '0' COMMENT '扫荡目标层数' AFTER `sweepStartFloor`, ADD `sweepNpcIds` text COMMENT '扫荡时随机出的npcIds' AFTER `sweepEndFloor`, ADD `sweepAttrSteps` text COMMENT '扫荡属性加层层数' AFTER `sweepNpcIds`, ADD `sweepAttrStepsNums` tinyint(2) NOT NULL COMMENT '属性加层层数数量' AFTER `sweepAttrSteps`, ADD `sweepAttrStatus` tinyint(2) NOT NULL DEFAULT '0' COMMENT '判断是爬塔还是正常属性加成' AFTER `sweepAttrStepsNums`
+
+	__-------------------------------------------------------------------------------------------__
+
+
+2015-01-28 10:03:16--IOS_27--1服--执行sql ======================== lz_game  ====================
+<br><br> exec sql :
+<br>ALTER TABLE `battle` ADD `capsule` int(11) NOT NULL DEFAULT '0' AFTER `mountitem`, ADD `capsuleitem` int(11) NOT NULL DEFAULT '0' AFTER `capsule`
+
+	__-------------------------------------------------------------------------------------------__
+
+CREATE TABLE IF NOT EXISTS `crowd_funding` (
+  `playerId` int(11) NOT NULL COMMENT '用户id ',
+  `support_times` int(11) NOT NULL DEFAULT '0' COMMENT '今日支持次数',
+  `support_free_times` int(11) NOT NULL DEFAULT '0' COMMENT '已经支持免费次数',
+  `support_date` varchar(48) NOT NULL COMMENT '最后一次支持日期',
+  PRIMARY KEY (`playerId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='布玛众筹系统';
+
+	__-------------------------------------------------------------------------------------------__
+
+CREATE TABLE IF NOT EXISTS `eggrewardsinfo` (
+  `playerId` int(11) NOT NULL COMMENT '玩家id',
+  `giftId` varchar(30) NOT NULL COMMENT '领取礼包列表',
+  `diamondCount` int(11) NOT NULL COMMENT '活动期间累计获得钻石',
+  `rewardsInfo` varchar(255) NOT NULL COMMENT '玩家在彩蛋页面的奖品列表)(格式：1001,1002,0,0,0,0,0,0 第一位奖品  保存所有彩蛋，默认0,0,0,0,0,0,0,0,0',
+  `currentPoint` int(11) NOT NULL COMMENT '当前剩余积分',
+  `refreshdiamond` int(11) NOT NULL COMMENT '刷新次数',
+  `lastrefreshtime` int(11) NOT NULL COMMENT '上次刷新时间',
+  `rewardStats` varchar(64) NOT NULL COMMENT '领奖励状态',
+  `itemId` int(11) NOT NULL COMMENT '活动期号',
+  PRIMARY KEY (`playerId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+	__-------------------------------------------------------------------------------------------__
+
+ALTER TABLE `new_server_activity` CHANGE `lastAllianceBattleAuctionTime` `lastAllianceBattleAuctionTime` timestamp NOT NULL DEFAULT '2014-11-12 04:00:00'
+
+	__-------------------------------------------------------------------------------------------__
+
+CREATE TABLE IF NOT EXISTS `pet` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `playerId` int(11) NOT NULL COMMENT '玩家ID',
+  `itemId` int(11) NOT NULL COMMENT '宠物配置ID',
+  `exp` int(11) DEFAULT '0' COMMENT '宠物经验',
+  `level` int(11) NOT NULL COMMENT '宠物等级',
+  `feedStuts` int(11) DEFAULT '0' COMMENT '喂养状态',
+  `fightStuts` int(11) DEFAULT '0' COMMENT '出战状态',
+  `points` int(11) DEFAULT '0' COMMENT '技能点',
+  `skill` varchar(100) NOT NULL COMMENT '技能(格子序号,开锁状态,技能ID,等级,阶级,锁技能状态)',
+  `lastTime` int(11) NOT NULL COMMENT '上一次涨经验时间',
+  `specialSkillLastTime` char(200) NOT NULL COMMENT '特殊技能上次奖励领取时间',
+  `failPoints` int(11) NOT NULL DEFAULT '0' COMMENT '领悟失败技能点数',
+  `stage` int(11) NOT NULL DEFAULT '0' COMMENT '宠物等阶',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='宠物表';
+
+	__-------------------------------------------------------------------------------------------__
+
+CREATE TABLE IF NOT EXISTS `pet_bag` (
+  `playerid` int(11) NOT NULL COMMENT '玩家id',
+  `develop_count` int(11) NOT NULL COMMENT '开启的培养格数',
+  PRIMARY KEY (`playerid`),
+  KEY `playerid` (`playerid`),
+  KEY `playerid_2` (`playerid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='宠物格子数';
+
+	__-------------------------------------------------------------------------------------------__
+
+CREATE TABLE IF NOT EXISTS `pet_fragment` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增id',
+  `playerid` int(11) NOT NULL COMMENT '玩家id',
+  `itemid` int(11) NOT NULL COMMENT '配置id',
+  `count` int(11) NOT NULL COMMENT '数量',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='宠物碎片';
+
+	__-------------------------------------------------------------------------------------------__
+
+ALTER TABLE `planet` ADD `lastPlunderTime` int(10) unsigned NOT NULL COMMENT '上次掠夺时间' AFTER `occupationPeriod`
+
+	__-------------------------------------------------------------------------------------------__
+
+ALTER TABLE `player` ADD `extCapsuleBagTimes` int(11) DEFAULT '0' AFTER `extEquipBookBagTimes`, ADD `extCapsuleBookBagTimes` int(11) DEFAULT '0' AFTER `extCapsuleBagTimes`, ADD `extPetBagTimes` int(11) DEFAULT '0' COMMENT '宠物背包扩充次数' AFTER `extDiscipleBagTimes`
+
+	__-------------------------------------------------------------------------------------------__
+
+ALTER TABLE `player_distrial` ADD `sweepTime` int(11) NOT NULL DEFAULT '0' COMMENT '自动爬塔时间' AFTER `resetPoint`, ADD `sweepStatus` tinyint(2) NOT NULL DEFAULT '0' COMMENT '扫荡爬塔状态' AFTER `sweepTime`, ADD `sweepStartFloor` int(11) NOT NULL DEFAULT '0' COMMENT '开始爬塔层数' AFTER `sweepStatus`, ADD `sweepEndFloor` int(11) NOT NULL DEFAULT '0' COMMENT '扫荡目标层数' AFTER `sweepStartFloor`, ADD `sweepNpcIds` text COMMENT '扫荡时随机出的npcIds' AFTER `sweepEndFloor`, ADD `sweepAttrSteps` text COMMENT '扫荡属性加层层数' AFTER `sweepNpcIds`, ADD `sweepAttrStepsNums` tinyint(2) NOT NULL COMMENT '属性加层层数数量' AFTER `sweepAttrSteps`, ADD `sweepAttrStatus` tinyint(2) NOT NULL DEFAULT '0' COMMENT '判断是爬塔还是正常属性加成' AFTER `sweepAttrStepsNums`
+
+	__-------------------------------------------------------------------------------------------__
+
+
+2015-01-28 10:04:17--IOS_27--1服--查看变化 ======================== lz_game  ====================
+<br><br> 当前sql已是最新无需更新!

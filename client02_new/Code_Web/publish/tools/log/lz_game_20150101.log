@@ -1,0 +1,105 @@
+
+2015-01-01 13:32:38--neiwang_Test_208--1服--查看变化 ======================== lz_game  ====================
+<br><br> 当前sql已是最新无需更新!
+
+2015-01-01 13:36:26--neiwang_Test_208--1服--查看变化 ======================== lz_game  ====================
+<br><br> 当前sql已是最新无需更新!
+
+2015-01-01 13:41:26--neiwang_Test_208--1服--查看变化 ======================== lz_game  ====================
+<br><br> exec sql :
+<br>ALTER TABLE `player` ADD `extCapsuleBagTimes` int(11) DEFAULT '0' AFTER `extEquipBookBagTimes`, ADD `extCapsuleBookBagTimes` int(11) DEFAULT '0' AFTER `extCapsuleBagTimes`, ADD `extPetBagTimes` int(11) DEFAULT '0' COMMENT '宠物背包扩充次数' AFTER `extDiscipleBagTimes`
+
+	__-------------------------------------------------------------------------------------------__
+
+ALTER TABLE `player_distrial` ADD `sweepTime` int(11) NOT NULL DEFAULT '0' COMMENT '自动爬塔时间' AFTER `resetPoint`, ADD `sweepStatus` tinyint(2) NOT NULL DEFAULT '0' COMMENT '扫荡爬塔状态' AFTER `sweepTime`, ADD `sweepStartFloor` int(11) NOT NULL DEFAULT '0' COMMENT '开始爬塔层数' AFTER `sweepStatus`, ADD `sweepEndFloor` int(11) NOT NULL DEFAULT '0' COMMENT '扫荡目标层数' AFTER `sweepStartFloor`, ADD `sweepNpcIds` text COMMENT '扫荡时随机出的npcIds' AFTER `sweepEndFloor`, ADD `sweepAttrSteps` text COMMENT '扫荡属性加层层数' AFTER `sweepNpcIds`, ADD `sweepAttrStepsNums` tinyint(2) NOT NULL COMMENT '属性加层层数数量' AFTER `sweepAttrSteps`, ADD `sweepAttrStatus` tinyint(2) NOT NULL DEFAULT '0' COMMENT '判断是爬塔还是正常属性加成' AFTER `sweepAttrStepsNums`
+
+	__-------------------------------------------------------------------------------------------__
+
+CREATE TABLE IF NOT EXISTS `pet_bag` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增id',
+  `playerid` int(11) NOT NULL COMMENT '玩家id',
+  `develop_count` int(11) NOT NULL COMMENT '开启的培养格数',
+  `bag_count` int(11) NOT NULL COMMENT '购买的宠物背包格数',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='宠物格子数';
+
+	__-------------------------------------------------------------------------------------------__
+
+CREATE TABLE IF NOT EXISTS `pet_fragment` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增id',
+  `playerid` int(11) NOT NULL COMMENT '玩家id',
+  `itemid` int(11) NOT NULL COMMENT '配置id',
+  `count` int(11) NOT NULL COMMENT '数量',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='宠物碎片';
+
+	__-------------------------------------------------------------------------------------------__
+
+CREATE TABLE IF NOT EXISTS `pet` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `playerId` int(11) NOT NULL COMMENT '玩家ID',
+  `itemId` int(11) NOT NULL COMMENT '宠物配置ID',
+  `exp` int(11) DEFAULT '0' COMMENT '宠物经验',
+  `level` int(11) NOT NULL COMMENT '宠物等级',
+  `feedStuts` int(11) DEFAULT '0' COMMENT '喂养状态',
+  `fightStuts` int(11) DEFAULT '0' COMMENT '出战状态',
+  `points` int(11) DEFAULT '0' COMMENT '技能点',
+  `skill` varchar(100) NOT NULL COMMENT '技能(格子序号,开锁状态,技能ID,等级,阶级)',
+  `startTime` int(11) NOT NULL COMMENT '开始培养时间',
+  `lastTime` int(11) NOT NULL COMMENT '上一次涨经验时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='宠物表';
+
+	__-------------------------------------------------------------------------------------------__
+
+
+2015-01-01 13:41:53--neiwang_Test_208--1服--执行sql ======================== lz_game  ====================
+<br><br> exec sql :
+<br>ALTER TABLE `player` ADD `extCapsuleBagTimes` int(11) DEFAULT '0' AFTER `extEquipBookBagTimes`, ADD `extCapsuleBookBagTimes` int(11) DEFAULT '0' AFTER `extCapsuleBagTimes`, ADD `extPetBagTimes` int(11) DEFAULT '0' COMMENT '宠物背包扩充次数' AFTER `extDiscipleBagTimes`
+
+	__-------------------------------------------------------------------------------------------__
+
+ALTER TABLE `player_distrial` ADD `sweepTime` int(11) NOT NULL DEFAULT '0' COMMENT '自动爬塔时间' AFTER `resetPoint`, ADD `sweepStatus` tinyint(2) NOT NULL DEFAULT '0' COMMENT '扫荡爬塔状态' AFTER `sweepTime`, ADD `sweepStartFloor` int(11) NOT NULL DEFAULT '0' COMMENT '开始爬塔层数' AFTER `sweepStatus`, ADD `sweepEndFloor` int(11) NOT NULL DEFAULT '0' COMMENT '扫荡目标层数' AFTER `sweepStartFloor`, ADD `sweepNpcIds` text COMMENT '扫荡时随机出的npcIds' AFTER `sweepEndFloor`, ADD `sweepAttrSteps` text COMMENT '扫荡属性加层层数' AFTER `sweepNpcIds`, ADD `sweepAttrStepsNums` tinyint(2) NOT NULL COMMENT '属性加层层数数量' AFTER `sweepAttrSteps`, ADD `sweepAttrStatus` tinyint(2) NOT NULL DEFAULT '0' COMMENT '判断是爬塔还是正常属性加成' AFTER `sweepAttrStepsNums`
+
+	__-------------------------------------------------------------------------------------------__
+
+CREATE TABLE IF NOT EXISTS `pet_bag` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增id',
+  `playerid` int(11) NOT NULL COMMENT '玩家id',
+  `develop_count` int(11) NOT NULL COMMENT '开启的培养格数',
+  `bag_count` int(11) NOT NULL COMMENT '购买的宠物背包格数',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='宠物格子数';
+
+	__-------------------------------------------------------------------------------------------__
+
+CREATE TABLE IF NOT EXISTS `pet_fragment` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增id',
+  `playerid` int(11) NOT NULL COMMENT '玩家id',
+  `itemid` int(11) NOT NULL COMMENT '配置id',
+  `count` int(11) NOT NULL COMMENT '数量',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='宠物碎片';
+
+	__-------------------------------------------------------------------------------------------__
+
+CREATE TABLE IF NOT EXISTS `pet` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `playerId` int(11) NOT NULL COMMENT '玩家ID',
+  `itemId` int(11) NOT NULL COMMENT '宠物配置ID',
+  `exp` int(11) DEFAULT '0' COMMENT '宠物经验',
+  `level` int(11) NOT NULL COMMENT '宠物等级',
+  `feedStuts` int(11) DEFAULT '0' COMMENT '喂养状态',
+  `fightStuts` int(11) DEFAULT '0' COMMENT '出战状态',
+  `points` int(11) DEFAULT '0' COMMENT '技能点',
+  `skill` varchar(100) NOT NULL COMMENT '技能(格子序号,开锁状态,技能ID,等级,阶级)',
+  `startTime` int(11) NOT NULL COMMENT '开始培养时间',
+  `lastTime` int(11) NOT NULL COMMENT '上一次涨经验时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='宠物表';
+
+	__-------------------------------------------------------------------------------------------__
+
+
+2015-01-01 13:41:59--neiwang_Test_208--1服--查看变化 ======================== lz_game  ====================
+<br><br> 当前sql已是最新无需更新!

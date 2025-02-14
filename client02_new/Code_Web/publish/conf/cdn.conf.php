@@ -1,0 +1,77 @@
+<?php
+$CONF = array();
+
+$CONF['cdn'] = array(
+		'android_Entermate' => array(
+			'name' => 'android_Entermate',
+			'url' => '127.0.0.1:5134',
+			'type' => 'ftp',
+			'shell'=> 'sh /data/wwwroot/publish/cdnPub/entermate_cdn.sh android_Entermate',
+			'shell_test'=> 'sh /data/wwwroot/publish/cdnPub/cdn_test_all.sh android_Entermate',
+			'desc' => 'android_Entermate',
+		),
+		'android_R2Game_en' => array(
+			'name' => 'android_R2Game_en',
+			'url' => '127.0.0.1:5134',
+			'type' => 'ssh',
+			//'shell'=> 'sh /data/wwwroot/publish/cdnPub/r2_cdn.sh',
+			'shell_test'=> 'sh /data/wwwroot/publish/cdnPub/cdn_test_all.sh  android_R2Game_en',
+			'desc' => 'android_R2Game_en',
+		),
+		'android_Efun_en' => array(
+			'name' => 'android_Efun_en',
+			'url' => '127.0.0.1:5134',
+			'type' => 'svn',
+			'shell'=> 'sh /data/wwwroot/publish/cdnPub/efun_cdn.sh android_Efun_en',
+			'shell_test'=> 'sh /data/wwwroot/publish/cdnPub/cdn_test_all.sh  android_Efun_en',
+			'desc' => 'android_Efun_en',
+		),
+		'android_gNetop' => array(
+			'name' => 'android_gNetop',
+			'url' => '127.0.0.1:5134',
+			'type' => 'svn',
+			'shell'=> 'sh /data/wwwroot/publish/cdnPub/gNetop_cdn.sh android_gNetop',
+			'shell_test'=> 'sh /data/wwwroot/publish/cdnPub/cdn_test_all.sh  android_gNetop',
+			'desc' => 'android_gNetop',
+		),
+		'ios_GameEfun' => array(
+			'name' => 'ios_GameEfun',
+			'url' => '127.0.0.1:5134',
+			'type' => 'svn',
+			'shell'=> 'sh /data/wwwroot/publish/cdnPub/efun_cdn.sh ios_GameEfun',
+			'shell_test'=> 'sh /data/wwwroot/publish/cdnPub/cdn_test_all.sh  ios_GameEfun',
+			'desc' => 'ios_GameEfun',
+		),
+		'ios_GameEntermate' => array(
+			'name' => 'ios_GameEntermate',
+			'url' => '127.0.0.1:5134',
+			'type' => 'svn',
+			'shell'=> 'sh /data/wwwroot/publish/cdnPub/entermate_cdn.sh ios_GameEntermate',
+			'shell_test'=> 'sh /data/wwwroot/publish/cdnPub/cdn_test_all.sh  ios_GameEntermate',
+			'desc' => 'ios_GameEntermate',
+		),
+		'ios_GameGNetop' => array(
+			'name' => 'ios_GameGNetop',
+			'url' => '127.0.0.1:5134',
+			'type' => 'svn',
+			'shell'=> 'sh /data/wwwroot/publish/cdnPub/gNetop_cdn.sh ios_GameGNetop',
+			'shell_test'=> 'sh /data/wwwroot/publish/cdnPub/cdn_test_all.sh  ios_GameGNetop',
+			'desc' => 'ios_GameGNetop',
+		),
+		'ios_GameR2' => array(
+			'name' => 'ios_GameR2',
+			'url' => '127.0.0.1:5134',
+			'type' => 'ssh',
+			//'shell'=> 'sh /data/wwwroot/publish/cdnPub/r2_cdn.sh',
+			'shell_test'=> 'sh /data/wwwroot/publish/cdnPub/cdn_test_all.sh  ios_GameR2',
+			'desc' => 'ios_GameR2',
+		),
+		'svn_test' => array(
+			'name' => 'svn_test',
+			'url' => '127.0.0.1:5134',
+			'type' => 'svn',
+			'shell'=> 'sh /data/wwwroot/publish/cdnPub/entermate_cdn.sh test',
+			'shell_test'=> 'sh /data/wwwroot/publish/cdnPub/cdn_test_all.sh  test',
+			'desc' => 'svn_test',
+		),
+);

@@ -1,0 +1,242 @@
+
+2014-08-21 16:54:17--local_Test--1服--查看变化 ========================================= lol_game  =========================================
+<br><br> error message:
+ 字段顺序不正确: 第2个字段 sql中字段为 collect_content 数据库中字段为 player_puid
+
+	*******************************************************
+
+字段顺序不正确: 第3个字段 sql中字段为 collect_status 数据库中字段为 collect_content
+
+	*******************************************************
+
+字段顺序不正确: 第4个字段 sql中字段为 collect_time 数据库中字段为 collect_status
+
+	*******************************************************
+
+字段顺序不正确: 第5个字段 sql中字段为 player_puid 数据库中字段为 collect_time
+
+	*******************************************************
+
+exec sql :
+<br>CREATE TABLE IF NOT EXISTS `cdkey` (
+  `cd_key` varchar(64) COLLATE utf8_bin NOT NULL,
+  `create_time` int(11) NOT NULL,
+  `used_time` int(11) NOT NULL DEFAULT '0',
+  `playerid` int(11) NOT NULL DEFAULT '0',
+  `status` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`cd_key`),
+  KEY `playerid_index` (`playerid`) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+	////////////////////////////////////////////////////////
+
+ALTER TABLE `player_distrial` CHANGE `buyLightSoulCount` `buyLightSoulCount` int(11) DEFAULT '0' COMMENT '购买魂灯次数', CHANGE `isAddAtrr` `isAddAtrr` int(11) NOT NULL DEFAULT '0' COMMENT '是否已经加属性'
+
+	////////////////////////////////////////////////////////
+
+
+2014-08-21 16:56:00--local_Test--1服--查看变化 ========================================= lol_game  =========================================
+<br><br> exec sql :
+<br>CREATE TABLE IF NOT EXISTS `cdkey` (
+  `cd_key` varchar(64) COLLATE utf8_bin NOT NULL,
+  `create_time` int(11) NOT NULL,
+  `used_time` int(11) NOT NULL DEFAULT '0',
+  `playerid` int(11) NOT NULL DEFAULT '0',
+  `status` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`cd_key`),
+  KEY `playerid_index` (`playerid`) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+	////////////////////////////////////////////////////////
+
+ALTER TABLE `player_distrial` CHANGE `buyLightSoulCount` `buyLightSoulCount` int(11) DEFAULT '0' COMMENT '购买魂灯次数', CHANGE `isAddAtrr` `isAddAtrr` int(11) NOT NULL DEFAULT '0' COMMENT '是否已经加属性'
+
+	////////////////////////////////////////////////////////
+
+
+2014-08-21 16:59:15--local_Test--1服--查看变化 ========================================= lol_game  =========================================
+<br><br> exec sql :
+<br>CREATE TABLE IF NOT EXISTS `cdkey` (
+  `cd_key` varchar(64) COLLATE utf8_bin NOT NULL,
+  `create_time` int(11) NOT NULL,
+  `used_time` int(11) NOT NULL DEFAULT '0',
+  `playerid` int(11) NOT NULL DEFAULT '0',
+  `status` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`cd_key`),
+  KEY `playerid_index` (`playerid`) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+	////////////////////////////////////////////////////////
+
+ALTER TABLE `player_distrial` CHANGE `buyLightSoulCount` `buyLightSoulCount` int(11) DEFAULT '0' COMMENT '购买魂灯次数', CHANGE `isAddAtrr` `isAddAtrr` int(11) NOT NULL DEFAULT '0' COMMENT '是否已经加属性'
+
+	////////////////////////////////////////////////////////
+
+
+2014-08-21 17:00:02--local_Test--1服--查看变化 ========================================= lol_game  =========================================
+<br><br> exec sql :
+<br>CREATE TABLE IF NOT EXISTS `cdkey` (
+  `cd_key` varchar(64) COLLATE utf8_bin NOT NULL,
+  `create_time` int(11) NOT NULL,
+  `used_time` int(11) NOT NULL DEFAULT '0',
+  `playerid` int(11) NOT NULL DEFAULT '0',
+  `status` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`cd_key`),
+  KEY `playerid_index` (`playerid`) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+	////////////////////////////////////////////////////////
+
+ALTER TABLE `player_distrial` CHANGE `buyLightSoulCount` `buyLightSoulCount` int(11) DEFAULT '0' COMMENT '购买魂灯次数', CHANGE `isAddAtrr` `isAddAtrr` int(11) NOT NULL DEFAULT '0' COMMENT '是否已经加属性'
+
+	////////////////////////////////////////////////////////
+
+
+2014-08-21 17:01:42--local_Test--1服--查看变化 ========================================= lol_game  =========================================
+<br><br> exec sql :
+<br>CREATE TABLE IF NOT EXISTS `cdkey` (
+  `cd_key` varchar(64) COLLATE utf8_bin NOT NULL,
+  `create_time` int(11) NOT NULL,
+  `used_time` int(11) NOT NULL DEFAULT '0',
+  `playerid` int(11) NOT NULL DEFAULT '0',
+  `status` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`cd_key`),
+  KEY `playerid_index` (`playerid`) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+	////////////////////////////////////////////////////////
+
+ALTER TABLE `player_distrial` CHANGE `buyLightSoulCount` `buyLightSoulCount` int(11) DEFAULT '0' COMMENT '购买魂灯次数', CHANGE `isAddAtrr` `isAddAtrr` int(11) NOT NULL DEFAULT '0' COMMENT '是否已经加属性'
+
+	////////////////////////////////////////////////////////
+
+
+2014-08-21 17:01:53--local_Test--1服--执行sql ========================================= lol_game  =========================================
+<br><br> exec sql :
+<br>CREATE TABLE IF NOT EXISTS `cdkey` (
+  `cd_key` varchar(64) COLLATE utf8_bin NOT NULL,
+  `create_time` int(11) NOT NULL,
+  `used_time` int(11) NOT NULL DEFAULT '0',
+  `playerid` int(11) NOT NULL DEFAULT '0',
+  `status` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`cd_key`),
+  KEY `playerid_index` (`playerid`) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+	////////////////////////////////////////////////////////
+
+ALTER TABLE `player_distrial` CHANGE `buyLightSoulCount` `buyLightSoulCount` int(11) DEFAULT '0' COMMENT '购买魂灯次数', CHANGE `isAddAtrr` `isAddAtrr` int(11) NOT NULL DEFAULT '0' COMMENT '是否已经加属性'
+
+	////////////////////////////////////////////////////////
+
+
+2014-08-21 17:01:57--local_Test--1服--查看变化 ========================================= lol_game  =========================================
+<br><br> 当前sql已是最新,无需更新!
+
+2014-08-21 17:02:48--local_Test--1服--查看变化 ========================================= lol_game  =========================================
+<br><br> error message:
+ 字段顺序不正确: 第2个字段 sql中字段为 collect_content 数据库中字段为 player_puid
+
+	*******************************************************
+
+字段顺序不正确: 第3个字段 sql中字段为 collect_status 数据库中字段为 collect_content
+
+	*******************************************************
+
+字段顺序不正确: 第4个字段 sql中字段为 collect_time 数据库中字段为 collect_status
+
+	*******************************************************
+
+字段顺序不正确: 第5个字段 sql中字段为 player_puid 数据库中字段为 collect_time
+
+	*******************************************************
+
+exec sql :
+<br>CREATE TABLE IF NOT EXISTS `cdkey` (
+  `cd_key` varchar(64) COLLATE utf8_bin NOT NULL,
+  `create_time` int(11) NOT NULL,
+  `used_time` int(11) NOT NULL DEFAULT '0',
+  `playerid` int(11) NOT NULL DEFAULT '0',
+  `status` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`cd_key`),
+  KEY `playerid_index` (`playerid`) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+	////////////////////////////////////////////////////////
+
+ALTER TABLE `player_distrial` CHANGE `buyLightSoulCount` `buyLightSoulCount` int(11) DEFAULT '0' COMMENT '购买魂灯次数', CHANGE `isAddAtrr` `isAddAtrr` int(11) NOT NULL DEFAULT '0' COMMENT '是否已经加属性'
+
+	////////////////////////////////////////////////////////
+
+
+2014-08-21 17:05:03--local_Test--1服--查看变化 ========================================= lol_game  =========================================
+<br><br> exec sql :
+<br>CREATE TABLE IF NOT EXISTS `cdkey` (
+  `cd_key` varchar(64) COLLATE utf8_bin NOT NULL,
+  `create_time` int(11) NOT NULL,
+  `used_time` int(11) NOT NULL DEFAULT '0',
+  `playerid` int(11) NOT NULL DEFAULT '0',
+  `status` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`cd_key`),
+  KEY `playerid_index` (`playerid`) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+	////////////////////////////////////////////////////////
+
+ALTER TABLE `collect_card` ADD `collect_opentime` int(11) NOT NULL COMMENT '活动开启时间' AFTER `player_puid`
+
+	////////////////////////////////////////////////////////
+
+ALTER TABLE `player_distrial` CHANGE `buyLightSoulCount` `buyLightSoulCount` int(11) DEFAULT '0' COMMENT '购买魂灯次数', CHANGE `isAddAtrr` `isAddAtrr` int(11) NOT NULL DEFAULT '0' COMMENT '是否已经加属性'
+
+	////////////////////////////////////////////////////////
+
+
+2014-08-21 17:06:27--local_Test--1服--查看变化 ========================================= lol_game  =========================================
+<br><br> exec sql :
+<br>CREATE TABLE IF NOT EXISTS `cdkey` (
+  `cd_key` varchar(64) COLLATE utf8_bin NOT NULL,
+  `create_time` int(11) NOT NULL,
+  `used_time` int(11) NOT NULL DEFAULT '0',
+  `playerid` int(11) NOT NULL DEFAULT '0',
+  `status` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`cd_key`),
+  KEY `playerid_index` (`playerid`) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+	////////////////////////////////////////////////////////
+
+ALTER TABLE `collect_card` ADD `collect_opentime` int(11) NOT NULL COMMENT '活动开启时间' AFTER `player_puid`
+
+	////////////////////////////////////////////////////////
+
+ALTER TABLE `player_distrial` CHANGE `buyLightSoulCount` `buyLightSoulCount` int(11) DEFAULT '0' COMMENT '购买魂灯次数', CHANGE `isAddAtrr` `isAddAtrr` int(11) NOT NULL DEFAULT '0' COMMENT '是否已经加属性'
+
+	////////////////////////////////////////////////////////
+
+
+2014-08-21 17:07:03--local_Test--1服--执行sql ========================================= lol_game  =========================================
+<br><br> exec sql :
+<br>CREATE TABLE IF NOT EXISTS `cdkey` (
+  `cd_key` varchar(64) COLLATE utf8_bin NOT NULL,
+  `create_time` int(11) NOT NULL,
+  `used_time` int(11) NOT NULL DEFAULT '0',
+  `playerid` int(11) NOT NULL DEFAULT '0',
+  `status` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`cd_key`),
+  KEY `playerid_index` (`playerid`) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+	////////////////////////////////////////////////////////
+
+ALTER TABLE `collect_card` ADD `collect_opentime` int(11) NOT NULL COMMENT '活动开启时间' AFTER `player_puid`
+
+	////////////////////////////////////////////////////////
+
+ALTER TABLE `player_distrial` CHANGE `buyLightSoulCount` `buyLightSoulCount` int(11) DEFAULT '0' COMMENT '购买魂灯次数', CHANGE `isAddAtrr` `isAddAtrr` int(11) NOT NULL DEFAULT '0' COMMENT '是否已经加属性'
+
+	////////////////////////////////////////////////////////
+
+
+2014-08-21 17:07:05--local_Test--1服--查看变化 ========================================= lol_game  =========================================
+<br><br> 当前sql已是最新,无需更新!

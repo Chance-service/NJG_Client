@@ -1,0 +1,256 @@
+<%include file="header.html"%>
+<%include file="top.html"%>
+<%include file="left.html"%>
+				<style>
+input[type=checkbox].ace, input[type=radio].ace {
+opacity: 0;
+position: absolute;
+z-index: 12;
+width: 18px;
+height: 38px;
+cursor: pointer;
+}
+
+.table-header {
+background-color: #307ecc;
+color: #FFF;
+font-size: 14px;
+line-height: 35px;
+padding-left: 12px;
+margin-bottom: 1px;
+padding-bottom:2px;
+}
+
+.comments {  
+ width:100%;/*自动适应父布局宽度*/  
+ overflow:auto;  
+ word-break:break-all; 
+ border-color:#307ecc;
+ float:left;
+ }
+</style>
+<div class="main-content">
+<div class="breadcrumbs" id="breadcrumbs"><script
+	type="text/javascript">
+	try {
+		ace.settings.check('breadcrumbs', 'fixed')
+	} catch (e) {
+	}
+</script>
+
+<ul class="breadcrumb">
+	<li><i class="icon-home home-icon"></i> <a
+		href="index.php">首页</a></li>
+</ul>
+<!-- .breadcrumb --></div>
+
+<div class="page-content">
+<div class="col-xs-12">
+<div class="alert alert-info">
+<form class="form-horizontal" role="form">
+<div class="row">
+<!--  
+<div class="col-sm-1">
+<div class="row">
+<label class="col-sm-6 control-label no-padding-right" for="form-field-5">游戏</label>
+<div class="col-sm-3"><select id="selectGame">
+	<option value="" >游戏</option>
+	<%if $selectGames%> <%foreach from = $selectGames key = key item = value%>
+	<%if $nowGame == $value %>
+	<option value="<%$value%>" selected><%$value%></option>
+	<%else%>
+	<option value="<%$value%>"><%$value%></option>
+	<%/if%> <%/foreach%> <%/if%>
+</select>
+</div>
+</div>
+</div>
+
+
+
+<div class="col-sm-2">
+<div class="row">
+<label class="col-sm-3 control-label no-padding-right" for="form-field-5">平台</label>
+<div class="col-sm-3">
+<select id="platform">
+	<option value="" id="selectPlatform">平台</option>
+	
+	<%if $platforms%> <%foreach from = $platforms key = key item = value%>
+	<%if $platform == $value %>
+	<option value="<%$value%>" selected><%$value%></option>
+	<%else%>
+	<option value="<%$value%>"><%$value%></option>
+	<%/if%> <%/foreach%> <%/if%>
+	
+</select>
+</div>
+</div>
+</div>
+-->
+
+
+<div class="col-sm-3">
+<div class="row">
+<label class="col-sm-2 control-label no-padding-right" for="form-field-5">超时(ms)</label>
+<div class="col-sm-9">
+<input type="text" id="timeout" class="col-xs-6 col-sm-5" value ="<%$timeout%>">
+</div>
+</div>
+</div>
+
+
+
+<div class="col-sm-2">
+<div class="row"><label
+	class="col-sm-3 control-label no-padding-right" for="form-field-5">&nbsp;&nbsp;&nbsp;&nbsp;</label>
+<div class="col-sm-9">
+</div>
+</div>
+</div>
+
+</div>
+</form>
+</div>
+</div>
+
+<div class="col-xs-12">
+<div class="table-header">
+Shell命令     &nbsp;<button class="btn btn-primary" type="button" onClick="formSubmit();">执行Shell</button>  查看时间 date | 修改日期 date -s "<%$nowTime%>" |  修改时间 date -s "<%$Time%>"  
+</div>
+</div>
+
+<form class="form-horizontal" role="form">
+<label class="col-sm-3 control-label no-padding-right" for="form-field-5"></label>
+<div class="col-sm-12">
+<input style="border-color:#307ecc;" id="command" type="text" id="timeout" class="col-xs-12 col-sm-12" value ="<%$command%>">
+</div>
+
+<label class="col-sm-3 control-label no-padding-right" for="form-field-5">
+
+</label>
+
+<label class="col-sm-3 control-label no-padding-right" for="form-field-5"></label>
+
+</form>
+
+
+<div class="col-xs-12">
+<div  id ="servers2" class="table-header">
+服务器列表
+
+			<input style="padding-botton:10px;;"   name="checkbox3" type="checkbox" class="ace ace-checkbox-2" id="selectAll"   value="selectAll" /> 
+			<label style="width:80px;" class="lbl" for="ace-settings-navbar">&nbsp;全选</label>
+
+			<input  name="checkboxs2" type="checkbox" class="ace ace-checkbox-2" id="unSelect"   value="unSelect" />
+			<label style="width:80px;" class="lbl" for="ace-settings-navbar">&nbsp;全不选</label>
+
+</div>
+
+<!-- 
+overflow-x:auto;overflow-y:auto;
+ -->
+<div style="width:100%;height:620px;" id="servers"  class="table-responsive">
+<table id="sample-table-1"
+	class="table table-striped table-bordered table-hover">
+	<thead>
+		<tr>
+			<th>
+				服务器
+			</th>
+			<th>主机地址</th>
+			<th>所在服</th>
+			<th>执行结果</th>
+			<th>状态</th>
+		</tr>
+	</thead>
+	<tbody>
+	
+		
+		<%foreach from=$servers item=servers%>
+		<tr>
+			<td   style="width:8%;padding-top:20px;"><input  name="checkboxs" type="checkbox" class="ace ace-checkbox-2" id="<%$servers.game%>" <%if $servers.checked == 1%> checked<%/if%> value = "<%$servers.game%>_<%$servers.platform%>_<%$servers.serverId%>" />
+				<label style="width:200px;" class="lbl" for="ace-settings-navbar">&nbsp;<%$servers.game%>_<%$servers.platform%>_<%$servers.serverId%></label>
+			</td>
+			<td  style="padding-top:20px;"><%$servers.url%></td>
+			<td  style="padding-top:20px;"><%$servers.desc%></td>
+			
+			<td style="width:70%;"> <textarea  class="comments" rows=1   name=s1   cols=50   onpropertychange= "this.style.posHeight=this.scrollHeight" ><%$servers.res%>
+		</textarea>
+			</td>
+			<td align="center"  style="width:5%;padding-top:20px;"><%$servers.status%></td>
+		</tr>
+		<%/foreach%>
+
+
+	</tbody>
+</table>
+</div>
+
+<!-- /.table-responsive --></div>
+
+
+</div>
+<!-- /.page-content --></div>
+<!-- /.main-content -->
+<script type="text/javascript">
+	
+//全选
+$("#selectAll").click(function(){
+	 $("#servers :checkbox").prop("checked", true); 
+}); 
+// 反选
+$("#unSelect").click(function () {//全不选  
+     $("#servers :checkbox").prop("checked", false); 
+});  	
+	
+
+	function formSubmit() {
+		var game = $('#selectGame').val();
+		var platform = $('#platform').val();
+		var timeout = $('#timeout').val();
+		var command = $('#command').val();
+		
+		var servers=''; 
+		$("input[name='checkboxs']:checked").each(function(){ 
+			servers += $(this).val()+','; 
+		});
+		
+		if  (!timeout || !command || !servers) {
+			alert('请将信息填写完整！');
+		} else {
+			url = "index.php?mod=Shell&do=showServerList&game="+game+"&platform="+platform+"&servers="+servers+"&command="+command+"&timeout="+timeout;
+			window.location.href = url;
+		}
+
+	}
+
+/*	
+	window.onload = function(){
+	    var select = document.getElementById('selectGame');
+	    select.onchange = function(){
+	    	
+	        // 更改值后执行的代码
+	       var gameName = jQuery("#selectGame  option:selected").text();
+	       var game = $('#selectGame').val();
+			url = "index.php?mod=Shell&do=showServerList&game="+game;
+			window.location.href = url;  
+
+	    }
+	    // 选择平台
+	    var selectPlatform = document.getElementById('platform');
+	    selectPlatform.onchange = function(){
+	    	
+	        // 更改值后执行的代码
+	        var platformName = jQuery("#platform  option:selected").text();
+	        var game = $('#selectGame').val();
+	        var platform = $('#platform').val();
+			url = "index.php?mod=Shell&do=showServerList&game="+game+"&platform="+platform;
+			window.location.href = url;  
+	    }
+	    
+	} 
+*/	
+	
+</script>
+<%include file="footer.html"%>
+

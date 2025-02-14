@@ -1,0 +1,135 @@
+<%include file="header.html"%>
+<%include file="top.html"%>
+<%include file="left.html"%>
+				<style>
+input[type=checkbox].ace, input[type=radio].ace {
+opacity: 0;
+position: absolute;
+z-index: 12;
+width: 18px;
+height: 38px;
+cursor: pointer;
+}
+
+.table-header {
+background-color: #307ecc;
+color: #FFF;
+font-size: 14px;
+line-height: 35px;
+padding-left: 12px;
+margin-bottom: 1px;
+padding-bottom:2px;
+}
+
+.comments {  
+ width:100%;/*自动适应父布局宽度*/  
+ overflow:auto;  
+ word-break:break-all; 
+ border-color:#307ecc;
+ float:left;
+ }
+</style>
+<div class="main-content">
+<div class="breadcrumbs" id="breadcrumbs"><script
+	type="text/javascript">
+	try {
+		ace.settings.check('breadcrumbs', 'fixed')
+	} catch (e) {
+	}
+</script>
+
+<ul class="breadcrumb">
+	<li><i class="icon-home home-icon"></i> <a
+		href="index.php">首页</a></li>
+</ul>
+<!-- .breadcrumb --></div>
+
+<form class="form-horizontal" role="form">
+<label class="col-sm-3 control-label no-padding-right" for="form-field-5"></label>
+</form>
+
+
+<div class="col-xs-12">
+<div  id ="servers2" class="table-header">
+服务器列表
+
+			<input style="padding-botton:10px;;"   name="checkbox3" type="checkbox" class="ace ace-checkbox-2" id="selectAll"   value="selectAll" /> 
+			<label style="width:80px;" class="lbl" for="ace-settings-navbar">&nbsp;全选</label>
+
+			<input  name="checkboxs2" type="checkbox" class="ace ace-checkbox-2" id="unSelect"   value="unSelect" />
+			<label style="width:80px;" class="lbl" for="ace-settings-navbar">&nbsp;全不选</label>
+
+<button class="btn btn-primary" type="button" onClick="formSubmit();">刷新</button>			
+
+</div>
+<!-- 
+style="width:100%;height:620px;overflow-x:auto;overflow-y:auto;" id="servers"
+ -->
+
+<div  id="servers"  class="table-responsive">
+<table id="sample-table-1"
+	class="table table-striped table-bordered table-hover">
+	<thead>
+		<tr>
+			<th>
+				服务器
+			</th>
+			<th>主机地址</th>
+			<th>路径</th>
+			<th>jar</th>
+			<th>游戏端口</th>
+			<th>gm端口</th>
+			<th>服务器状态</th>
+		</tr>
+	</thead> 
+	<tbody >
+
+		<%foreach from=$servers item=servers%>
+		<tr>
+			<td   style="width:8%;"><input  name="checkboxs" type="checkbox" class="ace ace-checkbox-2" id="<%$servers.game%>" <%if $servers.checked == 1%> checked<%/if%> value = "<%$servers.game%>_<%$servers.platform%>_<%$servers.serverId%>" />
+				<label style="width:200px;" class="lbl" for="ace-settings-navbar">&nbsp;<%$servers.desc%></label>
+			</td>
+			<td ><%$servers.url%></td>
+			<td  ><%$servers.path%></td>
+			<td ><%$servers.grep%></td>
+			<td ><%$servers.gamePort%></td>
+			<td  ><%$servers.scriptPort%></td>			
+			<td align="center" ><%if $servers.stat == 1%>
+				运行中...
+			<%else%>
+				<span class="red">服务器挂了...</span>
+			<%/if%>
+			</td>
+		</tr>
+		<%/foreach%>
+	</tbody>
+</table>
+</div>
+
+<!-- /.table-responsive --></div>
+
+
+</div>
+<!-- /.page-content --></div>
+<!-- /.main-content -->
+<script type="text/javascript">
+	
+//全选
+$("#selectAll").click(function(){
+	 $("#servers :checkbox").prop("checked", true); 
+}); 
+// 反选
+$("#unSelect").click(function () {//全不选  
+     $("#servers :checkbox").prop("checked", false); 
+});  	
+	
+function formSubmit() {
+		url = "index.php?mod=Shell&do=getServersStat";
+		window.location.href = url;
+}
+
+setTimeout("location.href='index.php?mod=Shell&do=getServersStat'",30000)
+	
+</script>
+<%include file="footer.html"%>
+

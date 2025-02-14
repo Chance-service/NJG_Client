@@ -1,0 +1,475 @@
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<div class="main-container-inner">
+				<a class="menu-toggler" id="menu-toggler" href="javascript:void(0);">
+					<span class="menu-text"></span>
+				</a>
+
+				<div class="sidebar" id="sidebar">
+					<script type="text/javascript">
+						try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
+					</script>
+
+					<div class="sidebar-shortcuts" id="sidebar-shortcuts">
+						<div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
+							<button class="btn btn-success">
+								<i class="icon-signal"></i>
+							</button>
+
+							<button class="btn btn-info">
+								<i class="icon-pencil"></i>
+							</button>
+
+							<button class="btn btn-warning">
+								<i class="icon-group"></i>
+							</button>
+
+							<button class="btn btn-danger">
+								<i class="icon-cogs"></i>
+							</button>
+						</div>
+
+						<div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+							<span class="btn btn-success"></span>
+
+							<span class="btn btn-info"></span>
+
+							<span class="btn btn-warning"></span>
+
+							<span class="btn btn-danger"></span>
+						</div>
+					</div><!-- #sidebar-shortcuts -->
+
+					<ul class="nav nav-list">
+						<li class="active">
+							<a href="index.php">
+								<i class="icon-dashboard"></i>
+								<span class="menu-text"> 首页 </span>
+							</a>
+						</li>
+						<%if $publish %>
+						<li id="publish">
+							<a href="javascript:void(0);" class="dropdown-toggle">
+								<i class="icon-cloud-upload"></i>
+								<span class="menu-text"> 发布 </span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<%if $game%>
+								<%foreach from = $game key = k item = games%>
+								 <%if $publish[$k]%>
+								<li id="publish_<%$games.id%>">
+									<a href="index.php?mod=Publish&do=showIndex&gameId=<%$games.id%>">
+										<i class="icon-double-angle-right"></i>
+										<%$games.name%>
+									</a>
+								</li>
+								<%/if%>
+								<%/foreach%>
+								<%/if%> 
+							</ul>
+						</li>
+						<%/if%>
+						<li id="publishLog">
+							<a href="javascript:void(0);" class="dropdown-toggle">
+								<i class="icon-book"></i>
+								<span class="menu-text"> 发布日志 </span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<li id="publishLog_last">
+									<a href="index.php?mod=Publish&do=showLastPublishLog">
+										<i class="icon-double-angle-right"></i>
+										查看上次发布日志
+									</a>
+								</li>
+								<li id="publishLog_view">
+									<a href="index.php?mod=Publish&do=showPublishLog">
+										<i class="icon-double-angle-right"></i>
+										查看历史日志
+									</a>
+								</li>
+							</ul>
+						</li>
+						<%if $openServer%>
+						<li id="serverOn">
+							<a href="javascript:void(0);" class="dropdown-toggle">
+								<i class="icon-resize-full"></i>
+								<span class="menu-text"> 开服 </span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<%if $game%>
+								<%foreach from = $game key = k item = games%>
+								<%if $publish[$k]%>
+								<li id="serverOn_<%$games.id%>">
+									<a href="index.php?mod=ServerOnOff&do=showOnIndex&gameId=<%$games.id%>">
+										<i class="icon-double-angle-right"></i>
+										<%$games.name%>
+									</a>
+								</li>
+								<%/if%>
+								<%/foreach%>
+								<%/if%> 
+							</ul>
+						</li>
+						<li id="serverOff">
+							<a href="javascript:void(0);" class="dropdown-toggle">
+								<i class="icon-resize-small"></i>
+								<span class="menu-text"> 停服 </span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<%if $game%>
+								<%foreach from = $game key = k item = games%>
+								<%if $publish[$k]%>
+								<li id="serverOff_<%$games.id%>">
+									<a href="index.php?mod=ServerOnOff&do=showOffIndex&gameId=<%$games.id%>">
+										<i class="icon-double-angle-right"></i>
+										<%$games.name%>
+									</a>
+								</li>
+								<%/if%>
+								<%/foreach%>
+								<%/if%> 
+							</ul>
+						</li>
+						<li id="serverRestart">
+							<a href="javascript:void(0);" class="dropdown-toggle">
+								<i class="icon-refresh"></i>
+								<span class="menu-text"> 无缝重启服 </span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<%if $game%>
+								<%foreach from = $game key = k item = games%>
+								<%if $publish[$k]%>
+								<li id="serverRestart_<%$games.id%>">
+									<a href="index.php?mod=ServerOnOff&do=showRestartIndex&gameId=<%$games.id%>">
+										<i class="icon-double-angle-right"></i>
+										<%$games.name%>
+									</a>
+								</li>
+								<%/if%>
+								<%/foreach%>
+								<%/if%> 
+							</ul>
+						</li>
+						<%/if%>
+						
+						<li id="serverOnOffLog">
+							<a href="javascript:void(0);" class="dropdown-toggle">
+								<i class="icon-list-alt"></i>
+								<span class="menu-text"> 开停服日志 </span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<li id="serverOnOffLog_last">
+									<a href="index.php?mod=ServerOnOff&do=showLastLog">
+										<i class="icon-double-angle-right"></i>
+										查看上次开停服日志
+									</a>
+								</li>
+								<li id="serverOnOffLog_view">
+									<a href="index.php?mod=ServerOnOff&do=showLog">
+										<i class="icon-double-angle-right"></i>
+										查看历史日志
+									</a>
+								</li>
+							</ul>
+						</li>
+					<%if $onlineCrontal%>	
+						<li id="serverControl">
+							<a href="javascript:void(0);" class="dropdown-toggle">
+								<i class="  icon-cogs"></i>
+								<span class="menu-text"> 线上控制 </span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+						
+							<ul class="submenu">
+								<li id="serverControl_shell">
+									<a href="index.php?mod=Shell&do=showServerList">
+										<i class="icon-double-angle-right"></i>
+										Shell命令
+									</a>
+								</li>
+								<li id="serverControl_getServersStat">
+									<a href="index.php?mod=Shell&do=getServersStat">
+										<i class="icon-double-angle-right"></i>
+										服务器状态
+									</a>
+								</li>
+							</ul>
+						</li>		
+						<%/if%>
+						<%if $mangerUser && $mangerUser == 1%>
+						<li id="power">
+							<a href="javascript:void(0);" class="dropdown-toggle">
+								<i class="icon-user"></i>
+								<span class="menu-text"> 权限管理 </span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<li id="power_addUser">
+									<a href="index.php?mod=User&do=add">
+										<i class="icon-double-angle-right"></i>
+										添加用户
+									</a>
+								</li>
+								<li id="power_manageUser">
+									<a href="index.php?mod=User&do=manage">
+										<i class="icon-double-angle-right"></i>
+										管理用户
+									</a>
+								</li>
+								<li id="power_addPower">
+									<a href="index.php?mod=User&do=permit">
+										<i class="icon-double-angle-right"></i>
+										添加权限组
+									</a>
+								</li>
+								<li id="power_managePower">
+									<a href="index.php?mod=User&do=mangePermit">
+										<i class="icon-double-angle-right"></i>
+										管理权限组
+									</a>
+								</li>
+							</ul>
+						</li>
+						<%/if%>
+						
+						<%if $manageGame && $manageGame == 1%>
+						<li id="game">
+							<a href="javascript:void(0);" class="dropdown-toggle">
+								<i class="icon-fighter-jet"></i>
+								<span class="menu-text"> 游戏管理 </span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<li id="game_add">
+									<a href="index.php?mod=Publish&do=showAddGame">
+										<i class="icon-double-angle-right"></i>
+										添加游戏
+									</a>
+								</li>
+								<li id="game_manage">
+									<a href="index.php?mod=Publish&do=showGameList">
+										<i class="icon-double-angle-right"></i>
+										管理游戏
+									</a>
+								</li>
+							</ul>
+						</li>
+						<%/if%>
+						<%if $managePlatform && $managePlatform == 1 %>	
+						<li id="platform">
+							<a href="javascript:void(0);" class="dropdown-toggle">
+								<i class="icon-desktop"></i>
+								<span class="menu-text"> 平台管理 </span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<li id="platform_add">
+									<a href="index.php?mod=Publish&do=showAddPlatform">
+										<i class="icon-double-angle-right"></i>
+										添加平台
+									</a>
+								</li>
+								<li id="platform_manage">
+									<a href="index.php?mod=Publish&do=showPlatformList">
+										<i class="icon-double-angle-right"></i>
+										管理平台
+									</a>
+								</li>
+							</ul>
+						</li>
+						<%/if%>
+						<%if $manageServer && $manageServer == 1 %>	
+						<li id="server">
+							<a href="javascript:void(0);" class="dropdown-toggle">
+								<i class="icon-cogs"></i>
+								<span class="menu-text"> 服务器管理 </span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<li id="server_add">
+									<a href="index.php?mod=Publish&do=showAddServer">
+										<i class="icon-double-angle-right"></i>
+										添加服务器
+									</a>
+								</li>
+								<li id="server_manage">
+									<a href="index.php?mod=Publish&do=showServerList">
+										<i class="icon-double-angle-right"></i>
+										管理服务器
+									</a>
+								</li>
+							</ul>
+						</li>
+
+						<li id="updateSql">
+							<a href="javascript:void(0);" class="dropdown-toggle">
+								<i class="icon-align-justify"></i>
+								<span class="menu-text"> 更新SQL </span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+							
+							<ul class="submenu"  >
+								<%if $game%>
+								<%foreach from = $game key = k item = games%>
+								 <%if $publish[$k]%>
+								<li id="updateSql_<%$games.id%>">							
+									<a href="#" class="dropdown-toggle">
+										<i class="icon-double-angle-right"></i>
+										<%$games.name%>
+										<b class="arrow icon-angle-down"></b>
+									</a>
+										
+									
+									<ul class="submenu">
+										<li id="upSqlExcel_<%$games.id%>">
+										<a  href="index.php?mod=ExecSql&do=uploadSqlExcel&gameId=<%$games.id%>">
+											<i class="icon-double-angle-right"></i>
+											上传SQL_EXCEL表
+										</a>
+										</li>
+										
+										<li id="upSqlConf_<%$games.id%>">
+										<a  href="index.php?mod=ExecSql&do=uploadSqlConf&gameId=<%$games.id%>">
+											<i class="icon-double-angle-right"></i>
+											上传SQL_CONF配置
+										</a>
+										</li>
+
+										<li id="upSql_<%$games.id%>">
+										<a href="index.php?mod=ExecSql&do=uploadSql&gameId=<%$games.id%>">
+										<i class="icon-double-angle-right"></i>
+											上传SQL
+										</a>
+										
+										</li >
+										<li id="ExecSql_<%$games.id%>">
+										<a href="index.php?mod=ExecSql&do=showSql&gameId=<%$games.id%>">
+										<i class="icon-double-angle-right"></i>
+											更新SQL
+										</a>
+										</li>
+										
+									</ul>
+										
+								</li>
+								
+								
+								
+								
+								<%/if%>
+								<%/foreach%>
+								<%/if%> 
+									
+								
+							</ul>
+							
+						</li>
+						<li id="initServer">
+							<a href="javascript:void(0);" class="dropdown-toggle">
+								<i class="icon-hdd"></i>
+								<span class="menu-text"> 服务器部署 </span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<%if $game%>
+								<%foreach from = $game key = k item = games%>
+								 <%if $publish[$k]%>
+								<li id="initServer_<%$games.id%>">
+									<a href="index.php?mod=InitServer&do=showIndex&gameId=<%$games.id%>">
+										<i class="icon-double-angle-right"></i>
+										<%$games.name%>
+									</a>
+								</li>
+								<%/if%>
+								<%/foreach%>
+								<%/if%> 
+							</ul>
+						</li>
+						<li id="initServerLog">
+							<a href="javascript:void(0);" class="dropdown-toggle">
+								<i class="icon-list-alt"></i>
+								<span class="menu-text"> 服务器部署日志 </span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<li id="initServerLog_last">
+									<a href="index.php?mod=InitServer&do=showLastLog">
+										<i class="icon-double-angle-right"></i>
+										查看上次服务器部署日志
+									</a>
+								</li>
+								<li id="initServerLog_view">
+									<a href="index.php?mod=InitServer&do=showLog">
+										<i class="icon-double-angle-right"></i>
+										查看历史日志
+									</a>
+								</li>
+							</ul>
+						</li>
+						<%/if%>
+				<!--  		
+						<li id="uploadExcels">
+							<a href="javascript:void(0);" class="dropdown-toggle">
+								<i class="icon-hdd"></i>
+								<span class="menu-text"> 上传excel表 </span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+							
+								<li id="uploadExcel">
+									<a  href="index.php?mod=ExecSql&do=uploadDataExcel&show=view">
+											<i class="icon-double-angle-right"></i>
+											上传EXCEL表
+									</a>
+								</li>
+							
+							</ul>
+						</li>
+				-->		
+					</ul><!-- /.nav-list -->
+
+					<div class="sidebar-collapse" id="sidebar-collapse">
+						<i class="icon-double-angle-left" data-icon1="icon-double-angle-left" data-icon2="icon-double-angle-right"></i>
+					</div>
+
+					<script type="text/javascript">
+						try{ace.settings.check('sidebar' , 'collapsed')}catch(e){}
+					</script>
+				</div>

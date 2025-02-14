@@ -1,0 +1,24 @@
+2014-11-01 10:13:16--APP-store--1服--查看变化 ========================================= lz_game  =========================================
+<br><br> exec sql :
+<br>CREATE TABLE IF NOT EXISTS `activecode` (
+  `active_code` varchar(64) COLLATE utf8_bin NOT NULL,
+  `create_time` int(11) NOT NULL,
+  `used_time` int(11) NOT NULL DEFAULT '0',
+  `playerid` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `status` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`active_code`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+	////////////////////////////////////////////////////////
+
+CREATE TABLE IF NOT EXISTS `activitydeitycardrank` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `playerId` int(11) NOT NULL DEFAULT '0',
+  `playerName` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `termId` int(11) NOT NULL DEFAULT '0',
+  `activityScore` int(11) NOT NULL DEFAULT '0',
+  `lastDrawTime` int(11) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+	////////////////////////////////////////////////////////

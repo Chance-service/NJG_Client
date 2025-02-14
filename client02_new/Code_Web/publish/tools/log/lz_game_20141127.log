@@ -1,0 +1,91 @@
+
+2014-11-27 11:06:11--Android_Ios_Test--1服--查看变化 ======================== lz_game  ====================
+<br><br> exec sql :
+<br>ALTER TABLE `formation` CHANGE `position` `position` varchar(511) DEFAULT NULL
+
+	__-------------------------------------------------------------------------------------------__
+
+CREATE TABLE IF NOT EXISTS `pet_bag` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增id',
+  `playerid` int(11) NOT NULL COMMENT '玩家id',
+  `develop_count` int(11) NOT NULL COMMENT '开启的培养格数',
+  `bag_count` int(11) NOT NULL COMMENT '购买的宠物背包格数',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='宠物格子数';
+
+	__-------------------------------------------------------------------------------------------__
+
+CREATE TABLE IF NOT EXISTS `pet_fragment` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增id',
+  `playerid` int(11) NOT NULL COMMENT '玩家id',
+  `itemid` int(11) NOT NULL COMMENT '配置id',
+  `count` int(11) NOT NULL COMMENT '数量',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='宠物碎片';
+
+	__-------------------------------------------------------------------------------------------__
+
+CREATE TABLE IF NOT EXISTS `pet` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `playerId` int(11) NOT NULL COMMENT '玩家ID',
+  `itemId` int(11) NOT NULL COMMENT '宠物配置ID',
+  `exp` int(11) DEFAULT '0' COMMENT '宠物经验',
+  `level` int(11) NOT NULL COMMENT '宠物等级',
+  `feedStuts` int(11) DEFAULT '0' COMMENT '喂养状态',
+  `fightStuts` int(11) DEFAULT '0' COMMENT '出战状态',
+  `points` int(11) DEFAULT '0' COMMENT '技能点',
+  `skill` varchar(100) NOT NULL COMMENT '技能(格子序号,开锁状态,技能ID,等级,阶级)',
+  `startTime` int(11) NOT NULL COMMENT '开始培养时间',
+  `lastTime` int(11) NOT NULL COMMENT '上一次涨经验时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='宠物表';
+
+	__-------------------------------------------------------------------------------------------__
+
+
+2014-11-27 11:06:41--Android_Ios_Test--1服--执行sql ======================== lz_game  ====================
+<br><br> exec sql :
+<br>ALTER TABLE `formation` CHANGE `position` `position` varchar(511) DEFAULT NULL
+
+	__-------------------------------------------------------------------------------------------__
+
+CREATE TABLE IF NOT EXISTS `pet_bag` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增id',
+  `playerid` int(11) NOT NULL COMMENT '玩家id',
+  `develop_count` int(11) NOT NULL COMMENT '开启的培养格数',
+  `bag_count` int(11) NOT NULL COMMENT '购买的宠物背包格数',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='宠物格子数';
+
+	__-------------------------------------------------------------------------------------------__
+
+CREATE TABLE IF NOT EXISTS `pet_fragment` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增id',
+  `playerid` int(11) NOT NULL COMMENT '玩家id',
+  `itemid` int(11) NOT NULL COMMENT '配置id',
+  `count` int(11) NOT NULL COMMENT '数量',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='宠物碎片';
+
+	__-------------------------------------------------------------------------------------------__
+
+CREATE TABLE IF NOT EXISTS `pet` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `playerId` int(11) NOT NULL COMMENT '玩家ID',
+  `itemId` int(11) NOT NULL COMMENT '宠物配置ID',
+  `exp` int(11) DEFAULT '0' COMMENT '宠物经验',
+  `level` int(11) NOT NULL COMMENT '宠物等级',
+  `feedStuts` int(11) DEFAULT '0' COMMENT '喂养状态',
+  `fightStuts` int(11) DEFAULT '0' COMMENT '出战状态',
+  `points` int(11) DEFAULT '0' COMMENT '技能点',
+  `skill` varchar(100) NOT NULL COMMENT '技能(格子序号,开锁状态,技能ID,等级,阶级)',
+  `startTime` int(11) NOT NULL COMMENT '开始培养时间',
+  `lastTime` int(11) NOT NULL COMMENT '上一次涨经验时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='宠物表';
+
+	__-------------------------------------------------------------------------------------------__
+
+
+2014-11-27 11:06:44--Android_Ios_Test--1服--查看变化 ======================== lz_game  ====================
+<br><br> 当前sql已是最新无需更新!

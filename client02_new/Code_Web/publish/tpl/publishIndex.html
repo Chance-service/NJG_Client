@@ -1,0 +1,148 @@
+<%include file="header.html"%>
+<%include file="top.html"%>
+<%include file="left.html"%>
+				<div class="main-content">
+					<div class="breadcrumbs" id="breadcrumbs">
+						<script type="text/javascript">
+							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+						</script>
+
+						<ul class="breadcrumb">
+							<li>
+								<i class="icon-home home-icon"></i>
+								<a href="javascript:void(0);">发布</a>
+							</li>
+							<li class="active"><a href="javascript:void(0);"><%$gameName%></a></li>
+						</ul><!-- .breadcrumb -->
+					</div>
+
+					<div class="page-content">
+
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+								
+								<div class="row">
+									<div class="col-sm-12">
+										<div class="widget-box">
+											<div class="widget-header header-color-blue2">
+												<h4 class="lighter smaller">选择发布的版本和相关服务器</h4>
+											</div>
+
+											<div class="widget-body">
+												<div class="widget-main padding-8">
+													<div id="chooseTree" class="tree"></div>
+													<h3 class="header smaller lighter green"></h3>
+													<div class="clearfix">
+														<center>
+															<button type="button" onClick="formSubmit();" class="btn btn-sm btn-success">
+																<i class="icon-bolt"></i>
+																发布
+															</button>
+														</center>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+								<!-- PAGE CONTENT ENDS -->
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div><!-- /.page-content -->
+				</div><!-- /.main-content -->
+		<script type="text/javascript">
+
+			var selectTreeData = {};
+
+			var DataSourceTree = function(options) {
+				this._data = options.data;
+				this._delay = options.delay;
+			}
+
+			DataSourceTree.prototype.data = function(options, callback) {
+				var self = this;
+				var $data = null;
+
+				if(!("name" in options) && !("type" in options)){
+					$data = this._data;//the root tree
+					callback({ data: $data });
+					return;
+				} else if("type" in options && options.type == "folder") {
+					if("additionalParameters" in options && "children" in options.additionalParameters) {
+						$data = options.additionalParameters.children;
+					} else {
+						$data = {}//no data
+					}
+				}
+				
+				if($data != null) {
+					setTimeout(function(){callback({ data: $data });} , parseInt(Math.random() * 500) + 200);
+				}
+			};
+			var treeData = <%$treeData%>;
+			var treeDataSource = new DataSourceTree({data: treeData});
+
+			jQuery(function($) {
+			
+				$('#chooseTree').ace_tree({
+					dataSource: treeDataSource ,
+					multiSelect:true,
+					loadingHTML:'<div class="tree-loading"><i class="icon-refresh icon-spin blue"></i></div>',
+					'open-icon' : 'icon-minus',
+					'close-icon' : 'icon-plus',
+					'selectable' : true,
+					'selected-icon' : 'icon-ok',
+					'unselected-icon' : 'icon-remove'
+				});
+
+				$('#chooseTree').on('selected', function (evt, data) {
+					selectTreeData = data;
+				});
+			});
+
+			function formSubmit() {
+				var info = selectTreeData.info;
+				var reposeData = [];
+				if(info) {
+					for(var i = 0; i < info.length; i++) {
+						if(info[i]['tag'] != 'all' && info[i]['value']) {
+							reposeData.push(info[i]['value']);
+						}
+					}
+
+					if (reposeData.length == 0) {
+						alert('请选择需要发布的服！');
+					} else {
+						var serverList = '';
+						for(var i = 0; i < reposeData.length; i++) {
+							if (serverList) {
+								serverList += ',' + reposeData[i];
+							} else {
+								serverList = reposeData[i];
+							}
+						}
+						
+						var param = {};
+						param['mod'] = 'Publish';
+						param['do'] = 'postData';
+						param['gameId'] = <%$gameId%>;
+						param['serverList'] = serverList;
+
+						$.ajax({
+							type:'POST',
+							url:'index.php',
+							data:param,
+							dataType:'html',
+							success:function(data) {
+								window.location.href = "index.php?mod=Publish&do=postData&gameId=<%$gameId%>";
+							}
+						});
+					}
+				}
+				
+			}
+		</script>
+<%include file="footer.html"%>
+

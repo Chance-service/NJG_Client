@@ -1,0 +1,23 @@
+<?php
+class Publish_Log_getIngExecLog {
+
+	function getIngExecLog() {
+
+		$logData = array();
+		$logData['isPublishIng'] = 0;
+
+		$logPath = WEB_DIR . "/publishLog/publish.log";
+		
+		$isExists = MooFile::isExists($logPath);
+		if ($isExists) {
+			$logData['isPublishIng'] = 1;
+			$log = MooFile::readAll($logPath);
+			$log = htmlspecialchars($log);
+			$log = str_replace("/s    ", "/s<br/>", $log);
+			$log = str_replace("\n", "<br/>", $log);
+			$logData['log'] = $log;
+		}
+
+		return $logData;
+	}
+}

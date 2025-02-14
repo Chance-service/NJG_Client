@@ -1,0 +1,414 @@
+<%include file="header.html"%>
+<%include file="top.html"%>
+<%include file="left.html"%>
+				<div class="main-content">
+					<div class="breadcrumbs" id="breadcrumbs">
+						<script type="text/javascript">
+							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+						</script>
+
+						<ul class="breadcrumb">
+							<li>
+								<i class="icon-home home-icon"></i>
+								<a href="#">权限管理></a><a href="#">添加权限组</a>
+							</li>
+						</ul><!-- .breadcrumb -->
+					</div>
+
+					<div class="page-content">
+
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+								
+								<div class="row">
+									<div class="col-sm-12">
+										<div class="widget-box">
+											<div class="widget-header header-color-blue2">
+												<h4 class="lighter smaller"></h4>
+											</div>
+
+											<div class="widget-body">
+												<div class="widget-main padding-8">
+						<form class="form-horizontal" role="form">
+							
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1">权限组名 </label>
+
+										<div class="col-sm-9">
+											<input type="text" id="permitName" placeholder="" style="width:400px;"  class="col-xs-10 col-sm-5"  value='<%$groupName%>'/>
+											<span class="help-inline col-xs-12 col-sm-7">
+												<span class="middle">权限组名称</span>
+											</span>
+										</div>
+									</div>
+									
+									<div class="space-4"></div>
+									<div class="form-group">
+											<label class="col-sm-3 control-label no-padding-right" for="form-field-1">用户管理 </label>
+											<span>  &nbsp;</span>
+											<label>
+												<input name="form-field-radio1" id ="manageUser1" type="radio" value = "1"  class="ace" <%if $manageUser && $manageUser == 1 %>checked<%/if%> />
+												<span class="lbl">yes</span>
+											</label>
+											<label>
+												<input name="form-field-radio1" id ="manageUser2"  type="radio" value = "0"  class="ace" <%if $manageUser == 0 %>checked<%/if%> />
+												<span class="lbl">no</span>
+											</label>
+									</div>
+									<div class="space-4"></div>
+									<div class="form-group">
+											<label class="col-sm-3 control-label no-padding-right" for="form-field-1">游戏管理 </label>
+											<span>  &nbsp;</span>
+											<label>
+												<input name="form-field-radio2" id ="manageGame"  type="radio" value = "1" class="ace" <%if $manageGame && $manageGame == 1 %>checked<%/if%> />
+												<span class="lbl">yes</span>
+											</label>
+											<label>
+												<input name="form-field-radio2" id ="manageGame" type="radio" value = "0"  class="ace" <%if $manageGame == 0 %>checked<%/if%> />
+												<span class="lbl">no</span>
+											</label>
+									</div>
+									<div class="space-4"></div>
+									<div class="form-group">
+											<label class="col-sm-3 control-label no-padding-right" for="form-field-1">平台管理 </label>
+											<span>  &nbsp;</span>
+											<label>
+												<input name="form-field-radio4" id ="managePlatform" type="radio" value = "1" class="ace" <%if $managePlatform && $managePlatform == 1 %>checked<%/if%> />
+												<span class="lbl">yes</span>
+											</label>
+											<label>
+												<input name="form-field-radio4" id ="managePlatform" type="radio"  value = "0"  class="ace" <%if $managePlatform == 0 %>checked<%/if%> />
+												<span class="lbl">no</span>
+											</label>
+									</div>
+									<div class="space-4"></div>
+									<div class="form-group">
+											<label class="col-sm-3 control-label no-padding-right" for="form-field-1">服务器、更新SQL 部署服务器</label>
+											<span>  &nbsp;</span>
+											<label>
+												<input name="form-field-radio3" id ="manageServer" type="radio" value = "1" class="ace"  <%if $manageServer && $manageServer == 1 %>checked<%/if%> />
+												<span class="lbl">yes</span>
+											</label>
+											<label>
+												<input name="form-field-radio3" id ="manageServer" type="radio"  value = "0"  class="ace"  <%if $manageServer == 0 %>checked<%/if%> />
+												<span class="lbl">no</span>
+											</label>
+									</div>
+									
+										<div class="form-group">
+											<label class="col-sm-3 control-label no-padding-right" for="form-field-1">开服停服 </label>
+											<span>  &nbsp;</span>
+											<label>
+												<input name="form-field-radio5" id ="openServer" type="radio" value = "1" class="ace"  <%if $openServer && $openServer == 1 %>checked<%/if%>/>
+												<span class="lbl">yes</span>
+											</label>
+											<label>
+												<input name="form-field-radio5" id ="openServer" type="radio"  value = "0"  class="ace" <%if $openServer == 0 %>checked<%/if%> />
+												<span class="lbl">no</span>
+											</label>
+										</div>
+										
+											<div class="form-group">
+											<label class="col-sm-3 control-label no-padding-right" for="form-field-1">线上控制 </label>
+											<span>  &nbsp;</span>
+											<label>
+												<input name="form-field-radio6" id ="onlineCrontal" type="radio" value = "1" class="ace"  <%if $onlineCrontal && $onlineCrontal == 1 %>checked<%/if%>/>
+												<span class="lbl">yes</span>
+											</label>
+											<label>
+												<input name="form-field-radio6" id ="onlineCrontal" type="radio"  value = "0"  class="ace" <%if $onlineCrontal == 0 %>checked<%/if%> />
+												<span class="lbl">no</span>
+											</label>
+										</div>
+										
+										<div class="form-group">
+											<label class="col-sm-3 control-label no-padding-right" for="form-field-1">发布权限： <%if $serverIdsIsAll && $serverIdsIsAll == "all" %><strong class="green">当前为全局权限</strong>
+											
+											<%else%>
+											<strong class="green">
+											当前为非全局权限
+											</strong>
+											<%/if%></label>
+											<span>  &nbsp;</span>
+											<label>
+											</label>
+											<label>
+											</label>
+										</div>
+													
+									<div  style="display:none" id='notice'  class = "form-group">
+									<label class="col-sm-4 control-label no-padding-right" for="form-field-4">	<strong class="green">请注意：不选下面的树菜单为全局权限</strong>
+									   </label>
+									</div>
+									
+									<%if $game%>
+										<%foreach from=$game key=k item = game%>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1">游戏名称:<%$game.name%></label>
+										<span>  &nbsp;</span>
+										
+										<%if $publish[$game.id].beta == 1 %>
+										<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-navbar2_beta_<%$game.id%>"   value = "<%$game.id%>_beta" checked />
+										<%else%>
+										<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-navbar2_beta_<%$game.id%>"   value = "<%$game.id%>_beta"  />
+										<%/if%> 			
+										<label class="lbl" for="ace-settings-navbar"> beta</label>
+																		
+										<%if $publish[$game.id].release == 1 %>
+										<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-navbar2_release_<%$game.id%>"   value = "<%$game.id%>_release" checked />
+										<%else%>
+										<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-navbar2_release_<%$game.id%>"   value = "<%$game.id%>_release" />
+										<%/if%> 
+										<label class="lbl" for="ace-settings-navbar">release</label>
+
+										<div id ="trees"  class="widget-main padding-4">							
+											<div style="display:none" id="chooseTree_<%$game.id%>" class="tree"></div>
+										</div>
+
+									</div>
+									<%/foreach%>
+									<%/if%>
+									
+				
+								<div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right" for="form-field-1">备注 </label>
+
+									<div class="col-sm-8">
+										<input type="text" id="permitDec" placeholder="" style = "width:400px;" class="col-xs-10 col-sm-5" value='<%$groupDesc%>' />
+										<span class="help-inline col-xs-12 col-sm-7">
+											<span class="middle">请输入权限备注</span>
+										</span>
+									</div>
+								</div>
+	
+								
+									<h3 class="header smaller lighter green"></h3>
+													<div class="clearfix">
+														<center>
+														
+															<button type="button" onclick = "back();" class="btn btn-info btn-success">
+																返回
+															</button>
+														
+															<button type="button" onclick = "addPermit2();" class="btn btn-info btn-success">
+																<!--<i class="icon-bolt"></i>-->
+																修改权限组
+															</button>
+														</center>
+													</div>
+									
+									
+							</form>
+							</div>
+						</div><!-- /.row -->
+					</div><!-- /.page-content -->
+				</div><!-- /.main-content -->
+				</div>
+				</div>
+				</div>
+				</div>
+				</div>				
+<%include file="footer.html"%>
+
+
+<script type="text/javascript">
+			
+			<%if $treeDatas%>
+			<%foreach from=$treeDatas key=gameIds item = treeData%>
+			var selectTreeData_<%$gameIds%> = {};	
+			<%/foreach%>
+			<%/if%>
+			
+
+			var DataSourceTree = function(options) {
+				this._data = options.data;
+				this._delay = options.delay;
+			}
+
+			DataSourceTree.prototype.data = function(options, callback) {
+				var self = this;
+				var $data = null;
+
+				if(!("name" in options) && !("type" in options)){
+					$data = this._data;//the root tree
+					callback({ data: $data });
+					return;
+				} else if("type" in options && options.type == "folder") {
+					if("additionalParameters" in options && "children" in options.additionalParameters) {
+						$data = options.additionalParameters.children;
+					} else {
+						$data = {}//no data
+					}
+				}
+				
+				if($data != null) {
+					setTimeout(function(){callback({ data: $data });} , parseInt(Math.random() * 500) + 200);
+				}
+			};
+				
+			var genTree = function(treeDataSource, id) {
+				$('#chooseTree_' + id).ace_tree({
+					dataSource: treeDataSource ,
+					multiSelect:true,
+					loadingHTML:'<div class="tree-loading"><i class="icon-refresh icon-spin blue"></i></div>',
+					'open-icon' : 'icon-minus',
+					'close-icon' : 'icon-plus',
+					'selectable' : true,
+					'selected-icon' : 'icon-ok',
+					'unselected-icon' : 'icon-remove'
+				});
+			};
+			
+			jQuery(function($) {				
+				var treeDataSource = '';
+				<%if $treeDatas%>
+				<%foreach from=$treeDatas key=gameIds item = treeData%>
+				treeDataSource = new DataSourceTree({data: <%$treeData%>});
+				genTree(treeDataSource, <%$gameIds%>);
+				
+				$('#chooseTree_<%$gameIds%>').on('selected', function (evt, data) {
+					selectTreeData_<%$gameIds%> = data;
+				});
+				
+				$('#ace-settings-navbar2_release_<%$gameIds%>').click(function() {					
+					if($('#ace-settings-navbar2_release_<%$gameIds%>').is(':checked') || $('#ace-settings-navbar2_beta_<%$gameIds%>').is(':checked')){
+						$("#chooseTree_<%$gameIds%>").css("display","block");
+						$("#notice").css("display","block");
+					} else {
+						$("#chooseTree_<%$gameIds%>").css("display","none");
+						$("#notice").css("display","none");
+					}												
+				});
+				
+				
+				$('#ace-settings-navbar2_beta_<%$gameIds%>').click(function() {					
+					if($('#ace-settings-navbar2_beta_<%$gameIds%>').is(':checked') || $('#ace-settings-navbar2_release_<%$gameIds%>').is(':checked')){
+						$("#chooseTree_<%$gameIds%>").css("display","block");
+						$("#notice").css("display","block");
+					} else {
+						$("#chooseTree_<%$gameIds%>").css("display","none");
+						$("#notice").css("display","none");
+					}												
+				});
+
+				<%/foreach%>
+				<%/if%>
+				
+				<%if $manageUser && $manageUser == 1%>
+					$("#manageUser1").attr("selected", true);
+				<%/if%>
+				
+				
+			});
+				
+			
+			function choosePermit() {	
+				
+				var reposeData = [];
+				<%if $treeDatas%>
+				<%foreach from=$treeDatas key=gameId item = treeData%>
+				
+				var reposeData_<%$gameId%> = [];
+				var info_<%$gameId%> = selectTreeData_<%$gameId%>.info;	
+				var info = info_<%$gameId%>;
+				
+				if(info) {
+					for(var i = 0; i < info.length; i++) {
+						if(info[i]['tag'] != 'all' && info[i]['value']) {
+							reposeData_<%$gameId%>.push(info[i]['value']);
+						}
+					}
+				}				
+				reposeData = reposeData + reposeData_<%$gameId%>  + ",";				
+				<%/foreach%>
+				<%/if%>
+	
+			}
+			
+			
+			
+			function back() {
+				window.location.href = "index.php?mod=User&do=mangePermit";
+			}
+			
+			function addPermit2() {			
+				var param = {};
+				// 跳转到 php
+				param['mod'] = 'User';
+				param['do'] = 'permit';
+				param['permitName'] = jQuery('#permitName').val();	
+				
+				// 获取用户管理 游戏管理 服务器管理权限的值  平台管理
+				param['manageUser'] = $("input[name='form-field-radio1']:checked").val();
+				param['manageGame'] = $("input[name='form-field-radio2']:checked").val();
+				param['manageServer'] = $("input[name='form-field-radio3']:checked").val();
+				param["managePlatform"] = $("input[name='form-field-radio4']:checked").val();
+				param["openServer"] 	= $("input[name='form-field-radio5']:checked").val();		// 开服停服
+				param["online"] 	= $("input[name='form-field-radio6']:checked").val();		// 开服停服
+				
+				// 备注
+				param['permitDec'] = jQuery('#permitDec').val();	
+				
+				var permit=''; 
+				$("input[type='checkbox']:checked").each(function(){ 
+					permit += $(this).val()+','; 
+				});
+				
+				var reposeData = [];
+				<%if $treeDatas%>
+				<%foreach from=$treeDatas key=gameId item = treeData%>
+				
+				var reposeData_<%$gameId%> = [];
+				var info_<%$gameId%> = selectTreeData_<%$gameId%>.info;	
+				var info = info_<%$gameId%>;
+				
+				if(info) {
+					for(var i = 0; i < info.length; i++) {
+						if(info[i]['tag'] != 'all' && info[i]['value']) {
+							reposeData_<%$gameId%>.push(info[i]['value']);
+						}
+					}
+				}				
+				reposeData = reposeData + reposeData_<%$gameId%>  + ",";				
+				<%/foreach%>
+				<%/if%>
+				
+				<%if $editPermit && $editPermit == 1%>
+				param['editPermit'] = <%$editPermit%>;
+				param['groupId'] = <%$groupId%>;
+				<%/if%>
+				
+				param['permit'] = permit;							// 游戏权限
+				param['serverList'] = reposeData;					// 发布服 权限			
+				
+				if (!param['permitName'] || !param['permit']) {
+					alert('请输入权限组名或权限！');
+				} else {
+					$.ajax({
+						type:'POST',
+						url:'index.php',
+						data:param,
+						dataType:'html',
+						success:function(data) {
+							var dataObj = eval("(" + data + ")");//转换为json对象
+
+							if (dataObj.code != 1) {
+								alert(dataObj.msg);
+							} else {
+								alert(dataObj.msg);
+								window.location.href = "index.php?mod=User&do=mangePermit";
+							}
+						}
+					});
+				}
+			
+			}	
+			
+</script>
+
+
+
+
+
+

@@ -1,0 +1,222 @@
+<%include file="header.html"%>
+<%include file="top.html"%>
+<%include file="left.html"%>
+<style>
+
+input[type=checkbox].test{
+width: 16px;
+height: 16px;
+margin: 0;
+cursor: pointer;
+vertical-align: bottom;
+background: #FFFFFF;
+border: 1px solid #FFFFFF;
+-webkit-border-radius: 1px;
+-moz-border-radius: 1px;
+border-radius: 1px;
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+box-sizing: border-box;
+position: relative;
+
+}
+</style>
+
+				<div class="main-content">
+					<div class="breadcrumbs" id="breadcrumbs">
+						<script type="text/javascript">
+							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+						</script>
+
+						<ul class="breadcrumb">
+							<li>
+								<i class="icon-home home-icon"></i>
+								<a href="#">权限管理></a><a href="#">添加权限组</a>
+							</li>
+						</ul><!-- .breadcrumb -->
+					</div>
+
+					<div class="page-content">
+
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+								
+								<div class="row">
+									<div class="col-sm-12">
+										<div class="widget-box">
+											<div class="widget-header header-color-blue2">
+												<h4 class="lighter smaller"></h4>
+											</div>
+
+											<div class="widget-body">
+												<div class="widget-main padding-8">
+								<form class="form-horizontal" role="form">
+							
+										<div class="form-group">
+											<label class="col-sm-3 control-label no-padding-right" for="form-field-5"><%$gameName%>选择渠道</label>
+													<div class="col-sm-6">
+													<select class="col-xs-10 col-sm-5" id="channel">
+															<option value="">选择渠道</option>
+														<%if $channel%>
+																<%foreach from = $channel key = key item = channelName%>
+																<option value="<%$channelName%>" ><%$channelName%></option>
+																<%/foreach%>
+														<%/if%>			
+												   </select>
+										</div>
+										</div>	
+	
+									<div class="space-4" id = "checkbox"></div>
+									<div class = "form-group">
+									<label class="col-sm-3 control-label no-padding-right" for="form-field-1" >选择服&nbsp; </label>
+									
+									
+									<span id="selectAllOrNot" style="display:none;margin-left:400px;">	<input type='checkbox' class='test' name = 'checkbox' id='selectAll' value = '' />全选	 <input type='checkbox' class='test' name = 'checkbox' id='unSelect' value = '' />全不选	
+									</span>
+									</div>		  						
+									<div   class="form-group" style="margin-left:400px;" id ="servers">	
+										
+									</div>
+				
+									<div class="space-4"> 								
+									</div>
+									
+									<div class="form-group">
+											<label class="col-sm-3 control-label no-padding-right" for="form-field-1">操作行为 </label>
+											<span>  &nbsp;</span>
+											<label>
+												<input name="action" id ="action1" type="radio" value = "ok" class="ace" />
+												<span class="lbl">执行sql</span>
+											</label>
+											<label>
+												<input name="action" id ="action2"  type="radio" value = "no"  checked class="ace" />
+												<span class="lbl">查看变化</span>
+											</label>
+									</div>
+					
+									<h3 class="header smaller lighter green"></h3>
+									<div class="clearfix">
+														<center>
+															<button type="button"  class="btn btn-info btn-success">
+																执行sqls
+															</button>
+														</center>
+						
+									</div>
+									
+									<h3 class="header smaller lighter green">执行结果</h3>
+									<div class="content" id="content">
+													
+								    </div>
+									
+									
+							</form>
+							
+							
+							
+							</div>
+						</div><!-- /.row -->
+					</div><!-- /.page-content -->
+				</div><!-- /.main-content -->
+				</div>
+				</div>
+				</div>
+				</div>
+				</div>				
+<%include file="footer.html"%>
+<script language="javascript">
+
+// 全选
+$("#selectAll").click(function(){
+	 $("#servers :checkbox").prop("checked", true); 
+}); 
+// 反选
+$("#unSelect").click(function () {//全不选  
+     $("#servers :checkbox").prop("checked", false);  
+});  
+
+
+// 点击查看变化 与 执行sql切换时候 清空下面内容
+$("#action1").click(function () {
+	$("#content").html("当前选中执行SQL,请慎重操作!");
+});  
+
+$("#action2").click(function () {
+	$("#content").html("当前选中查看SQL变化,操作后注意查看是否有异常!");
+});  
+
+
+$("button").click(function(){
+	
+	// 所选渠道 android ios 等 	
+	var channelName = jQuery("#channel  option:selected").text();
+	var serverIds=''; 
+	$("input[name='checkboxs']:checked").each(function(){ 
+		serverIds += $(this).val()+','; 
+	});
+
+
+	var param = {};
+	param['channelName'] = channelName;
+	param['serverIds'] 	= serverIds;
+	param['action'] = $("input[name='action']:checked").val();
+
+	if (!channelName || !serverIds) {
+		alert("请选择要执行的服");
+	} else {
+		$.ajax({
+			type: "POST",
+			url: "index.php?mod=ExecSql&do=doGoRunSql&gameId="+<%$gameId%>,
+			data: param,
+			dataType: 'html',
+			success: function(data) {			
+				var dataObj = eval("(" + data + ")");//转换为json对象
+				$("#content").html(dataObj.msg);
+			}
+		});	
+	}
+	
+});
+
+
+window.onload = function(){
+    var select = document.getElementById('channel');
+    select.onchange = function(){
+        // 更改值后执行的代码
+       var channelName = jQuery("#channel  option:selected").text();
+       var _tagNum = 1;
+       $.ajax({
+    	    type: "POST",
+			url: "index.php?mod=ExecSql&do=getServers&appLabel=" + channelName+"&gameId="+<%$gameId%>,
+			data: "",
+			dataType: 'html',
+			success: function(data) {
+				$("#selectAllOrNot").css("display","block");			
+				$("#servers").empty();
+//				$("#servers").append("<input type='checkbox' name = 'checkboxs' id='selectAll' value = '' />" + "全选/取消	");  class="ace ace-checkbox-2"  value = "' + i +'" />' + i + "服" + _tag
+				for (var i=1;i<= data;i++) {
+					_tag = '&nbsp;';
+					if (_tagNum%10 == 0) _tag = '<br>';				
+					if (i < 10) {
+						j = '&nbsp;' + i;
+					} else {
+						j = i;
+					}					
+					// 尚未 移除 旧的 复选框
+					$("#servers").append('&nbsp;<input type="checkbox" class="test"  name = "checkboxs" value = "' + i +'" />' + j + "服" + _tag);									
+					_tagNum ++;		
+				}	
+	
+				if($('#action2').is(':checked')) {
+					$("#content").html("当前选中查看SQL变化,操作后注意查看是否有异常!");
+				}
+				
+			}
+       });
+    }
+} 
+</script>
+
+
+

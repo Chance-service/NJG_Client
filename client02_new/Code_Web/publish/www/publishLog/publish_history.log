@@ -1,0 +1,179 @@
+下载各个软件(软件均存放在/usr/local路径下)
+Ruby：
+http://cache.ruby-lang.org/pub/ruby/2.0/
+RubyGems：
+http://rubygems.org/pages/download 
+Redmine：
+http://www.redmine.org/projects/redmine/wiki/Download
+
+安装Ruby  
+[root@chances-126 ~]# cd  /usr/local   
+[root@chances-126 local]#tar -xzvf ruby-2.0.0-p451.tar.gz 
+[root@chances-126 local]#cd  ruby-2.0.0-p451 
+[root@chances-126 ruby-2.0.0-p451]#./configure --prefix=/usr/local/ruby
+[root@chances-126 ruby-2.0.0-p451]#make  
+[root@chances-126 ruby-2.0.0-p451]#make install  
+通过以上步骤就已经安装好了ruby，下边验证ruby安装成功
+#ruby –v
+
+设置环境变量     
+
+#vi /etc/profileexport PATH=/usr/local/ruby/bin:$PATH
+
+安装RubyGems  
+[root@chances-126 ~]#cd  /usr/local  
+[root@chances-126 local]#tar -zxvf rubygems-2.1.11.tgz 
+[root@chances-126 local]#cd  rubygems-2.1.11  
+[root@chances-126 rubygems-2.1.11]#ruby  setup.rb  
+通过以上步骤就已经安装好了RubyGems，下边验证RubyGems安装成功 
+#gem –v
+
+将gem的源更换为淘宝网:  
+[root@chances-126 ~]# gem sources --remove https://rubygems.org/ 
+[root@chances-126 ~]# gem sources -a http://ruby.taobao.org/ 
+[root@chances-126 ~]# gem sources -l
+
+安装Rails  
+[root@chances-126 ~]#gem install rails -V
+此安装过程会花一定的时间，请耐心等待。按照以上步骤安装后检查安装： 
+[root@chances-126 ~]#rails   -v  
+Rails 4.0.3 
+
+//检查更新  
+[root@chances-126 ~]#gem update  
+[root@chances-126 ~]#gem update --system  
+[root@chances-126 ~]#gem install rails -V      //-V可以显示出进度
+
+安装Redmine
+http://www.redmine.org/projects/redmine/wiki/RedmineInstall
+进入redmine目录
+[root@localhost redmine]#cp config/database.yml.example config/database.yml
+[root@localhost redmine]#vim config/database.yml
+修改mysql账号和密码
+production:
+  adapter: mysql
+  database: redmine
+  host: localhost
+  username: redmine
+  password: my_password
+
+[root@localhost redmine]#gem install bundler
+[root@localhost redmine]#bundle install --without development test rmagick
+这步提示 gem 安装缺少的插件安装就可以了
+[root@localhost redmine]#rake generate_secret_token
+如果出现 Gem::LoadError: You have already activated rake 10.3.2, but your Gemfile requires rake 10.1.1.
+[root@localhost redmine]#gem list rake
+[root@localhost redmine]#gem uninstall rake
+Select gem to uninstall:
+ 1. rake-10.1.1
+ 2. rake-10.3.2
+ 3. All versions
+> 2
+重新执行
+[root@localhost redmine]#rake generate_secret_token
+如果报错，在redmine目录下创建文件Gemfile.local
+[root@localhost redmine]#vim Gemfile.local 
+文件内容如下
+# Gemfile.local
+gem "psych"
+
+再运行
+[root@localhost redmine]#rake generate_secret_token
+[root@localhost redmine]#RAILS_ENV=production rake db:migrate
+[root@localhost redmine]#RAILS_ENV=production rake redmine:load_default_data
+
+[root@localhost redmine]#groupadd redmine
+[root@localhost redmine]#useradd -g redmine redmine
+[root@localhost redmine]# mkdir -p tmp tmp/pdf public/plugin_assets
+[root@localhost redmine]# chown -R redmine:redmine files log tmp public/plugin_assets
+[root@localhost redmine]# chmod -R 755 files log tmp public/plugin_assets
+
+ruby script/rails server webrick -e production -d
+
+浏览器访问 http://127.0.0.1:3000/
+login: admin
+password: admin
+
+停止方法：（ps命令查出此进程的pid号，再杀掉）
+ps aux | grep 3000
+kill -9 [PID]
+
+解决Redmine局域网访问缓慢问题
+
+是由于Redmine自带的WebrickWeb发布的问题，需要使用Mongrel组件来替换Webrick。
+究其原因是Remine的默认服务器webrick需要解析目标地址的主机名。
+
+1. 替换其自带的服务器webrick 为mongrel，方法：
+
+gem install mongrel
+
+rails 3.1以上执行
+
+sudo gem install mongrel --pre
+
+2. 修改redmine下gemfile
+
+在gemfile中加入 
+
+gem "mongrel"
+
+如果安装的mongrel pre，则gemfile当中加入
+
+gem "mongrel","~> 1.2.0.pre2"
+
+4. 执行
+
+sudo ruby script/rails server mongrel -e production -p 3000 -d
+
+添加开机启动项
+vim /etc/rc.local
+添加下面这行
+/usr/local/ruby/bin/ruby /www/wwwroot/redmine/script/rails server mongrel -e production -p 3000 -d
+
+配置nginx
+[root@localhost redmine]#cd /usr/local/nginx/conf/vhost
+[root@localhost vhost]#vim redmine.conf
+server {
+        listen 80;
+        server_name redmine.demacia.com; 
+
+        root  /www/wwwroot/redmine/public;
+
+        location / {
+        proxy_pass http://192.168.1.208:3000;
+                proxy_redirect off;
+                proxy_set_header Host $host;  #注：这个不传进去，会暴露端口号，且会影响速度
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        }
+}
+重启nginx
+[root@localhost vhost]#nginx -s reload
+				
+gitlab中文版下载地址 http://git.oschina.net/linxuix/Git-Lab-Zh
+安装过程查看 http://www.open-open.com/lib/view/open1399684894447.html 或 https://github.com/lubia/gitlab-recipes/tree/master/install/centos
+
+安装过程出现错误解决方法
+[git@Git gitlab]$ bundle install --deployment --without development test postgres puma aws
+#出现错误：Could not find modernizr-2.6.2 in any of the sources
+#解决办法：
+[git@Git gitlab]$ vi Gemfile
+第114行   gem "modernizr",        "2.6.2"
+更改改为：
+第114行   gem "modernizr-rails",  "2.7.1"
+[git@Git gitlab]$ vi Gemfile.lock
+第252行     modernizr (2.6.2)
+更改改为：
+第252行     modernizr-rails (2.7.1)
+第523行   modernizr (= 2.6.2)
+更改改为：
+第523行   modernizr-rails (= 2.7.1)
+#重新执行:
+[git@Git gitlab]$ bundle install --deployment --without development test postgres puma aws
+其他错误根据提示进行修改就行
+
+如果发现git更新出现 error:RPC failed;result=18,HTTP code=200 去查看gitlab目录下的log文件夹里面的unicorn.stderr.log文件，发现有timeout的修改gitlab/config里面的unicorn.rb，找到timeout 30 改为 timeout 360
+
+重启nginx和gitlab
+/etc/init.d/nginx restart
+/etc/init.d/gitlab restart

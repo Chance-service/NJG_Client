@@ -1,0 +1,128 @@
+<%include file="header.html"%>
+<%include file="top.html"%>
+<%include file="left.html"%>
+				<div class="main-content">
+					<div class="breadcrumbs" id="breadcrumbs">
+						<script type="text/javascript">
+							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+						</script>
+
+						<ul class="breadcrumb">
+							<li>
+								<i class="icon-home home-icon"></i>
+								<a href="javascript:void(0);">平台管理</a>
+							</li>
+							<li class="active"><a href="javascript:void(0);">添加平台</a></li>
+						</ul><!-- .breadcrumb -->
+					</div>
+
+					<div class="page-content">
+
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+								
+								<div class="row">
+									<div class="col-sm-12">
+										<div class="widget-box">
+											<div class="widget-header header-color-blue2">
+												<h4 class="lighter smaller"></h4>
+											</div>
+
+											<div class="widget-body">
+												<div class="widget-main padding-8">
+
+													<form class="form-horizontal" role="form">
+														<br/><br/><br/>
+														<div class="form-group">
+															<label class="col-sm-3 control-label no-padding-right" for="form-field-5">平台标签</label>
+
+															<div class="col-sm-6">
+																<div class="clearfix">
+																	<input class="col-xs-3" type="text" id="platformTag" placeholder="" />
+																</div>
+
+																<div class="space-2"></div>
+
+																<div class="help-block" id="inputPlatformTag"></div>
+															</div>
+														</div>
+														<br/><br/>
+														<div class="form-group">
+															<label class="col-sm-3 control-label no-padding-right" for="form-field-5">平台名称</label>
+
+															<div class="col-sm-6">
+																<div class="clearfix">
+																	<input class="col-xs-3" type="text" id="platformName" placeholder="" />
+																</div>
+
+																<div class="space-2"></div>
+
+																<div class="help-block" id="inputPlatformName"></div>
+															</div>
+														</div>
+													</form>
+
+													<h3 class="header smaller lighter green"></h3>
+													<div class="clearfix">
+														<center>
+															<button type="button" onClick="formSubmit();" class="btn btn-info btn-success">
+																<!--<i class="icon-bolt"></i>-->
+																添加
+															</button>
+														</center>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+								<!-- PAGE CONTENT ENDS -->
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div><!-- /.page-content -->
+				</div><!-- /.main-content -->
+		<script type="text/javascript">
+
+			jQuery(function($) {
+				inputSlider($('#inputPlatformTag'), $('#platformTag'));
+				inputSlider($('#inputPlatformName'), $('#platformName'));
+			});
+
+			function inputSlider(inputNode, sliderNode) {
+				inputNode.slider({
+					value:3,
+					range: "min",
+					min: 3,
+					max: 12,
+					step: 1,
+					slide: function( event, ui ) {
+						var val = parseInt(ui.value);
+						sliderNode.attr('class', 'col-xs-'+val);
+					}
+				});
+			}
+
+			function formSubmit() {
+				var param = {};
+				param['mod'] = 'Publish';
+				param['do'] = 'addPlatform';
+				param['platformTag'] = $('#platformTag').val();
+				param['platformName'] = $('#platformName').val();
+
+				$.ajax({
+					type:'POST',
+					url:'index.php',
+					data:param,
+					dataType:'html',
+					success:function(data) {
+						var dataObj = eval("(" + data + ")");//转换为json对象
+						alert(dataObj.msg);
+						window.location.href = "index.php?mod=Publish&do=showPlatformList";
+					}
+				});
+			}
+		</script>
+<%include file="footer.html"%>
+
