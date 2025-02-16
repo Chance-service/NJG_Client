@@ -13,7 +13,7 @@ public:
 	*/
 	virtual void initWithConfigure(const SDK_CONFIG_STU& configure);
     
-    /** check whether is logined */
+  /** check whether is logined */
 	virtual bool getLogined();
 
 	virtual bool getIsH365();
@@ -84,31 +84,31 @@ public:
 	virtual std::string sendMessageG2P(const std::string& tag, const std::string& msg);
 
 	/************************************************************/
-	/*º«¹úkakaoºÃÓÑ½Ó¿Ú*/
+	/*ï¿½ï¿½ï¿½ï¿½kakaoï¿½ï¿½ï¿½Ñ½Ó¿ï¿½*/
 
-	//»ñµÃÑûÇë´ÎÊý
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	virtual void OnKrGetInviteCount();
-	//ÑûÇëÁÐ±í
+	//ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
 	virtual void OnKrgetInviteLists();
-	//ºÃÓÑÁÐ±í
+	//ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
 	virtual void OnKrgetFriendLists();
-	//·¢ËÍÑûÇëÐÅÏ¢
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 	virtual void OnKrsendInvite(const std::string& strUserId, const std::string& strServerId);
-	//»ñÈ¡ÀñÎïÁÐ±í
+	//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
 	virtual void OnKrgetGiftLists();
-	//½ÓÊÜÀñÎï
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	virtual void OnKrReceiveGift(const std::string& strGiftId, const std::string& strServerId);
-	//µ±Ç°Ëù½ÓÊÜÀñÎïµÄ¸öÊý
+	//ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½ï¿½
 	virtual void OnKrGetGiftCount();
-	//ÔùËÍÀñÎï
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	virtual void OnKrSendGift(const std::string& strUserName, const std::string& strServerId);
-	//ÆÁ±ÎÀñÎï
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	virtual void OnKrGiftBlock(bool bVisible);
 	virtual void OnKrGetKakaoId();
 	virtual void OnKrLoginGames();
 	virtual void OnKrIsShowFucForIOS();
 	/***********************************************************/
-	//R2½Ó¿Ú
+	//R2ï¿½Ó¿ï¿½
 	virtual void  setLanguageName(const std::string& lang);
 	virtual void  setPlatformName(int platform);
 	virtual void  setPayH365(const std::string& url){};

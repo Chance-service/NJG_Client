@@ -131,37 +131,14 @@ void SeverConsts::CheckPlatform()
 {
 	std::string PlatformCfgPath = cocos2d::CCFileUtils::sharedFileUtils()->fullPathForFilename(PlatformCheckCfg);
 	_parsePlatformFile(PlatformCfgPath);
-	_parsePlatformId(libPlatformManager::getPlatform()->getPlatformId());
-	libPlatformManager::getPlatform()->setPlatformName(libPlatformManager::getPlatform()->getPlatformId());
+    libPlatform* platform = libPlatformManager::getPlatform();
+	_parsePlatformId(platform->getPlatformId());
+    platform->setPlatformName(platform->getPlatformId());
 	CCLog("------------CheckPlatform : %d--------------", ePlatform);
 	CCLog("------------CheckDebug : %s--------------", IsDebug() ? "true" : "false");
+    
+    platform->setupSDK(ePlatform);
 }
-
-/*bool SeverConsts::IsH365()
-{ 
-	return (ePlatform == SeverConsts::EP_H365);
-}
-
-bool SeverConsts::IsEroR18() 
-{ 
-	return (ePlatform == SeverConsts::EP_EROR18);
-}
-bool SeverConsts::IsJSG() 
-{ 
-	return (ePlatform == SeverConsts::EP_JSG);
-}
-bool SeverConsts::IsLSJ() 
-{
-	return (ePlatform == SeverConsts::EP_LSJ);
-}
-bool SeverConsts::IsMURA() 
-{
-	return (ePlatform == SeverConsts::EP_MURA);
-}
-bool SeverConsts::IsKUSO() 
-{ 
-	return (ePlatform == SeverConsts::EP_KUSO);
-}*/
 
 void SeverConsts::update( float dt )
 {

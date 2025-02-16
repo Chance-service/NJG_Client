@@ -203,6 +203,7 @@
 		4E59C3712D603608006518A5 /* libpthread.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7F507D2D5F9F1900DD4AA4 /* libpthread.tbd */; };
 		4E59C3722D603615006518A5 /* libpthread.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7F507D2D5F9F1900DD4AA4 /* libpthread.tbd */; };
 		4E59C3732D603620006518A5 /* libpthread.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7F507D2D5F9F1900DD4AA4 /* libpthread.tbd */; };
+		4E59C3762D620816006518A5 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E59C3752D620816006518A5 /* AVKit.framework */; };
 		4E7F0A532D5FABCD00DD4AA4 /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C1E005829C2B22F002E789C /* libfreetype.a */; };
 		4E7F32952D5FAE8400DD4AA4 /* Announce.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F2FFC2D5FAE8200DD4AA4 /* Announce.txt */; };
 		4E7F34942D5FAE8400DD4AA4 /* version.manifest in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F303B2D5FAE8200DD4AA4 /* version.manifest */; };
@@ -1027,6 +1028,7 @@
 		4E59C3592D602EC5006518A5 /* Lang */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Lang; sourceTree = "<group>"; };
 		4E59C35A2D602EC9006518A5 /* shader */ = {isa = PBXFileReference; lastKnownFileType = folder; path = shader; sourceTree = "<group>"; };
 		4E59C35B2D602ECA006518A5 /* version */ = {isa = PBXFileReference; lastKnownFileType = folder; path = version; sourceTree = "<group>"; };
+		4E59C3752D620816006518A5 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
 		4E7F2FFB2D5FAE8200DD4AA4 /* A_platformd_YouGu.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = A_platformd_YouGu.txt; sourceTree = "<group>"; };
 		4E7F2FFC2D5FAE8200DD4AA4 /* Announce.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Announce.txt; sourceTree = "<group>"; };
 		4E7F2FFD2D5FAE8200DD4AA4 /* announcement.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = announcement.txt; sourceTree = "<group>"; };
@@ -1534,6 +1536,7 @@
 			files = (
 				4E7F507E2D5F9F2700DD4AA4 /* libpthread.tbd in Frameworks */,
 				4E4520ED2D5F191600F26188 /* libc++.tbd in Frameworks */,
+				4E59C3762D620816006518A5 /* AVKit.framework in Frameworks */,
 				4E4520F02D5F191600F26188 /* SystemConfiguration.framework in Frameworks */,
 				4E4520F12D5F191600F26188 /* Security.framework in Frameworks */,
 				4E4520F22D5F191600F26188 /* CoreTelephony.framework in Frameworks */,
@@ -2373,6 +2376,7 @@
 		CFFC4BC616D230D3001F65C9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4E59C3752D620816006518A5 /* AVKit.framework */,
 				4E7F507D2D5F9F1900DD4AA4 /* libpthread.tbd */,
 				4E7F507A2D5F9D3C00DD4AA4 /* libShareSDKToFCUUID.a */,
 				4E7F507B2D5F9DFD00DD4AA4 /* libShareSDKToFCUUID.a */,

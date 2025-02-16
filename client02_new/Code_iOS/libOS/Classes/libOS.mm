@@ -796,13 +796,13 @@ void libOS::platformSharePerson(const std::string& shareContent, const std::stri
     
     [s_libOSOjb onPresent:nsShareContent shareImgPath:imagePath platFormCfg:platFormCfg];
 }
-void libOS::playMovie(const char * fileName, int need_skip)
+void libOS::playMovie(const char * fileName, int loop)
 {
     //setShareWCCallBackEnabled();
     //MovieMgr::instance()->playMovie(fileName,need_skip);
     AppController* app = [(AppController*)[UIApplication sharedApplication] delegate];
     NSString *name = [NSString stringWithUTF8String:fileName];
-    [app playVideo:need_skip fullScreen:1 file:name fileExtension:@"mp4"];
+    [app playVideo:loop fullScreen:0 file:name fileExtension:@"mp4"];
 }
 
 void libOS::playMovie(const char * fileName, bool loop)

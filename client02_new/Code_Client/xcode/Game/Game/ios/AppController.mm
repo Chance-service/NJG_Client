@@ -1,10 +1,3 @@
-//
-//  GameAppController.mm
-//  Game
-//
-//  Created by fish on 13-2-18.
-//  Copyright __MyCompanyName__ 2013年. All rights reserved.
-//
 #import <UIKit/UIKit.h>
 #import "AppController.h"
 #import "cocos2d.h"
@@ -13,6 +6,9 @@
 #import "libOS.h"
 #import "libPlatform.h"
 #import "RootViewController.h"
+
+// Suppress the gl warning
+#define GLES_SILENCE_DEPRECATION
 
 #ifdef PROJECT_GUAJI_LONGXIAO
 #import <UnKnownGame/UnKnownGame.h>
@@ -38,11 +34,18 @@
 #import <OnlineAHelper/YiJieOnlineHelper.h>
 #endif
 
-#import <MediaPlayer/MPMoviePlayerViewController.h>
-#import <MediaPlayer/MPMoviePlayerController.h>
+//#import <MediaPlayer/MPMoviePlayerViewController.h>
+//#import <MediaPlayer/MPMoviePlayerController.h>
 
-MPMoviePlayerViewController *playerViewController = NULL;
-MPMoviePlayerController *player = NULL;
+#import <AVKit/AVKit.h>
+#import <AVFoundation/AVFoundation.h>
+
+
+AVPlayer *player = NULL;
+AVPlayerViewController *playerViewController = NULL;
+
+//MPMoviePlayerViewController *playerViewController = NULL;
+//MPMoviePlayerController *player = NULL;
 int g_iPlayVideoState = 0;
 
 @implementation AppController
@@ -99,9 +102,14 @@ static AppDelegate s_sharedApplication;
                                    multiSampling: NO
                                  numberOfSamples:0 ];
     
+    // Set main game view to have transparent background
+    // so we can play movie behind
+    __glView.backgroundColor = [UIColor clearColor];
     // Use RootViewController manage EAGLView
     viewController = [[RootViewController alloc] initWithNibName:nil bundle:nil];
-    viewController.wantsFullScreenLayout = YES;
+    //viewController.wantsFullScreenLayout = YES;
+    viewController.edgesForExtendedLayout = UIRectEdgeNone; // Prevents extending under the navigation bar
+    viewController.extendedLayoutIncludesOpaqueBars = NO;
     viewController.view = __glView;
     
     [window setRootViewController:viewController];
@@ -315,8 +323,11 @@ static AppDelegate s_sharedApplication;
 #pragma mark -
     [window makeKeyAndVisible];
     
+
+    [[UIApplication sharedApplication]
+     setStatusBarHidden:YES
+     withAnimation:UIStatusBarAnimationSlide];
     
-    [[UIApplication sharedApplication] setStatusBarHidden: YES];
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];    //防止进入屏保状态
     
     // initialized sdk
@@ -535,12 +546,11 @@ static AppDelegate s_sharedApplication;
 
 -(void)playVideo:(int)iStateAfterPlay fullScreen:(int)iFullScreen file:(NSString*)strFilenameNoExtension fileExtension:(NSString*)strExtension
 {
-    NSLog(@"Play Video Start");
-    
-    g_iPlayVideoState = 2;
+    // 1 = loop, 0 = no loop
+    g_iPlayVideoState = iStateAfterPlay;
     
     NSString* url = [[NSBundle mainBundle] pathForResource:strFilenameNoExtension ofType:strExtension];
-    
+    NSLog(@"Play Video Start: %@ ext: %@ url: %@ fullscreen: %d", strFilenameNoExtension, strExtension, url, iFullScreen);
     CGRect rect = [[UIScreen mainScreen]bounds];
     CGSize size = rect.size;
     
@@ -549,82 +559,90 @@ static AppDelegate s_sharedApplication;
     rScreen.origin.y = 0;
     rScreen.size.width = size.width;
     rScreen.size.height = size.height;
-    //rScreen = CGRect::CGRectMake;
+    
+    player = [AVPlayer playerWithURL:[NSURL fileURLWithPath:url]];
+    playerViewController = [[AVPlayerViewController alloc] init];
+    
+    playerViewController.player = player;
+    playerViewController.view.frame = rScreen;
+    playerViewController.showsPlaybackControls = FALSE; // Hide controls if not needed
+    
+    [viewController.view.superview addSubview:playerViewController.view];
+    // If not fullscreen, we send the view to back so ui can still show
     if(iFullScreen == 0)
     {
-        MPMoviePlayerController *player2 = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL fileURLWithPath:url]];
-        [[NSNotificationCenter defaultCenter]
-         addObserver:self
-         selector:@selector(movieFinishedCallback:)
-         name:MPMoviePlayerPlaybackDidFinishNotification
-         object:player2];
-        
-        //---play partial screen---
-        player2.view.frame = rScreen;
-        [self addSubview:player2.view];
-        player2.shouldAutoplay=TRUE;
-        //---play movie---
-        [player2 play];
+        [viewController.view.superview sendSubviewToBack:playerViewController.view];
     }
-    else
+    
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(movieFinishedCallback:)
+     name:AVPlayerItemDidPlayToEndTimeNotification
+     object:nil];
+    
+    [player play];
+    
+}
+
+-(void)pauseVideo
+{
+    if (player == nil)
+        return;
+    [player pause];
+}
+
+-(void)resumeVideo
+{
+    if (player == nil)
+        return;
+    if (player.currentItem.status == AVPlayerItemStatusReadyToPlay)
     {
-        playerViewController = [[MPMoviePlayerViewController alloc]
-                                initWithContentURL:[NSURL fileURLWithPath:url]];
-        
-        [[NSNotificationCenter defaultCenter]
-         addObserver:self
-         selector:@selector(movieFinishedCallback:)
-         name:MPMoviePlayerPlaybackDidFinishNotification
-         object:[playerViewController moviePlayer]];
-        
-        playerViewController.view.frame = rScreen;
-        
-        cocos2d::CCDirector::sharedDirector()->purgeCachedData();
-        
-        // Add the view
-        //EAGLView *view = [EAGLView sharedEGLView];
-        //[view addSubview:playerViewController.view];
-        //
-        //[view sendSubviewToBack:view];
-        
-        NSLog(@"pView inserted");
-        // Add the view - Use these three lines for Cocos 2D X
-        //window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
-        //[window setRootViewController:viewController];
-        [window addSubview: playerViewController.view];
-        [window makeKeyAndVisible];
-        
-        //—--play movie—--
-        player = [playerViewController moviePlayer];
-        player.scalingMode = MPMovieScalingModeFill;
-        player.shouldAutoplay = TRUE;
-        player.controlStyle = MPMovieControlStyleNone;
-        [player play];
+        if (player.timeControlStatus == AVPlayerTimeControlStatusPaused)
+        {
+            [player play];
+        } else if (CMTimeCompare(player.currentTime,player.currentItem.duration) == 0)
+        {
+            [player seekToTime:kCMTimeZero completionHandler:^(BOOL finished)
+             {
+                [player play];
+            }];
+        }
     }
+}
+
+-(void)stopVideo
+{
+    if (player == nil)
+        return;
+    [[NSNotificationCenter defaultCenter]
+     removeObserver:self
+     name:AVPlayerItemDidPlayToEndTimeNotification
+     object:nil];
     
-    g_iPlayVideoState = 1;
-    
-    NSLog(@"PlayVideo done");
+    [player pause];
+    [player replaceCurrentItemWithPlayerItem:nil];
+    [playerViewController.view removeFromSuperview];
+    playerViewController = nil;
+    player = nil;
 }
 
 -(void)movieFinishedCallback:(NSNotification*) aNotification
 {
     NSLog(@"movieFinishCallback");
-    MPMoviePlayerController *player = [aNotification object];
-    [[NSNotificationCenter defaultCenter]
-     removeObserver:self
-     name:MPMoviePlayerPlaybackDidFinishNotification
-     object:player];
-    
-    [player pause];
-    [player stop];
-    [player.view removeFromSuperview];
-    //[player release];
-    g_iPlayVideoState = 0;
+    // Looping?
+    if (g_iPlayVideoState == 1)
+    {
+        // Seek to the beginning
+        [player seekToTime:kCMTimeZero];
+        [player play];
+    }
+    else
+    {
+        [self stopVideo];
+    }
     
     cocos2d::CCApplication::sharedApplication();
     libPlatformManager::getPlatform()->sendMessageP2G("onPlayMovieEnd", "");
-    NSLog(@"movieFinishedCallback done");
 }
 
 @end
@@ -659,5 +677,6 @@ static AppDelegate s_sharedApplication;
 }
 
 @end
+
 
 

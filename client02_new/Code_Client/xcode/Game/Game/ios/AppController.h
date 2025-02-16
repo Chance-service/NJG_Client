@@ -1,13 +1,3 @@
-//
-//  GameAppController.h
-//  Game
-//
-//  Created by fish on 13-2-18.
-//  Copyright __MyCompanyName__ 2013年. All rights reserved.
-//
-
-
-
 @class RootViewController;
 
 @interface AppController : NSObject <UIAccelerometerDelegate, UIAlertViewDelegate,
@@ -30,9 +20,10 @@
 
 - (void)setDeviceToken:(NSString *)aToken;
 - (BOOL)setTags:(NSArray *)aTag error:(NSError **)error;
-//-end
 
 - (void)playVideo:(int)iStateAfterPlay fullScreen:(int)iFullScreen file:(NSString*)strFilenameNoExtension fileExtension:(NSString*)strExtension;
+- (void)stopVideo;
+- (void)pauseVideo;
+- (void)resumeVideo;
 - (void)movieFinishedCallback:(NSNotification*) aNotification;
 @end
-
