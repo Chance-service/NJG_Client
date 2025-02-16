@@ -67,6 +67,8 @@
 	</dict>
 	<key>NSHumanReadableCopyright</key>
 	<string></string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>To save passcode photo</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>FOT-Skip Std D.ttf</string>
