@@ -2,7 +2,7 @@
 #define  _CORESDK_CONFIG_LOADER_H_
 
 #include "cocos2d.h"
-#include "coresdk/Config.h"
+#include "Config.h"
 
 namespace coresdk {
 	class ConfigLoader : public cocos2d::CCObject

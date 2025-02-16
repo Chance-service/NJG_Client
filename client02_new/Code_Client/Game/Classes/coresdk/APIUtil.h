@@ -2,7 +2,7 @@
 #define  _CORESDK_API_UTIL_H_
 
 #include "cocos2d.h"
-#include "coresdk/Result.h"
+#include "Result.h"
 
 namespace coresdk {
 	class APIUtil : public cocos2d::CCObject

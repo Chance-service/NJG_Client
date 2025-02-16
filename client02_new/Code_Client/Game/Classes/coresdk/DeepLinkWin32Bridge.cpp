@@ -1,10 +1,10 @@
-﻿#include "DeepLinkWin32Bridge.h"
+#include "DeepLinkWin32Bridge.h"
 #include "Coresdk.h"
 #include "webapi.h"
 #include "util.h"
 
-#include "rapidjson/rapidjson.h"
-#include "rapidjson/document.h"
+#include "../rapidjson/rapidjson.h"
+#include "../rapidjson/document.h"
 
 USING_NS_CC;
 using namespace coresdk::DeepLink;

@@ -160,7 +160,7 @@ ccLanguageType CCApplication::getCurrentLanguage()
             ret = kLanguageArabic;
 			break;
 		case LANG_CHINESE_TRADITIONAL:
-			ret = kLabguageCH_TW;
+			ret = kLanguageCH_TW;
             break;
 		case LANG_TURKISH:
 			ret = kLanguageTurkish;

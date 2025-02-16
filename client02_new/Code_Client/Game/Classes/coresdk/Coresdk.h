@@ -2,12 +2,12 @@
 #define  _CORESDK_H_
 
 #include "cocos2d.h"
-#include "coresdk/Config.h"
-#include "coresdk/ConfigLoader.h"
-#include "coresdk/WebRequest.h"
-#include "coresdk/Result.h"
-#include "coresdk/APIUtil.h"
-#include "coresdk/Enum.h"
+#include "Config.h"
+#include "ConfigLoader.h"
+#include "WebRequest.h"
+#include "Result.h"
+#include "APIUtil.h"
+#include "Enum.h"
 
 namespace coresdk {
 	class Coresdk : public cocos2d::CCObject

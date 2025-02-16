@@ -69221,7 +69221,7 @@ TOLUA_API int tolua_Cocos2d_open (lua_State* tolua_S)
   tolua_constant(tolua_S,"kLanguageHungarian",kLanguageHungarian);
   tolua_constant(tolua_S,"kLanguagePortuguese",kLanguagePortuguese);
   tolua_constant(tolua_S,"kLanguageArabic",kLanguageArabic);
-  tolua_constant(tolua_S,"kLabguageCH_TW",kLabguageCH_TW);
+  tolua_constant(tolua_S,"kLanguageCH_TW",kLanguageCH_TW);
   tolua_constant(tolua_S,"kLanguageTurkish",kLanguageTurkish);
   tolua_constant(tolua_S,"kTargetWindows",kTargetWindows);
   tolua_constant(tolua_S,"kTargetLinux",kTargetLinux);

@@ -1,7 +1,8 @@
 #ifndef  _CORESDK_WEB_API_H_
 #define  _CORESDK_WEB_API_H_
 
-#include "coresdk/Result.h"
+//#include "coresdk/Result.h"
+#include "Result.h"
 
 namespace coresdk {
 	namespace webapi {

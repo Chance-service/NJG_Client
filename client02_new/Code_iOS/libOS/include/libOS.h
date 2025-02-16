@@ -114,6 +114,8 @@ public:
     void playMovie(const char * fileName,bool need_skip = true);
     
     void stopMovie();
+    void pauseMovie();
+    void resumeMovie();
     
     void setShareWCCallBackEnabled() { mIsShareWC=true;};
     
@@ -142,6 +144,7 @@ public:
     bool openRecorder(const std::string& fileName,unsigned int rType, unsigned int rTag);
     bool closeRecorder(unsigned int rTag);
     bool destoryRecorder(unsigned int rTag);
+    bool getIsDebug();
     /////////////////////////////////////////////////////////////////
 
 	std::string getCurrentCountry();

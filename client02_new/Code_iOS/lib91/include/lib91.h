@@ -13,6 +13,7 @@ public:
 	NOTICE: Platform should call _boardcastInitDone to notify client logic WHEN initialization is done.
 	*/
 	virtual void initWithConfigure(const SDK_CONFIG_STU& configure);
+    virtual void setupSDK(int platformId);
     
     /** check whether is logined */
 	virtual bool getLogined();
@@ -29,8 +30,10 @@ public:
 	*/
     
 	virtual void login();
+    
+    virtual void doKUSOLogin();
 
-	virtual void updateApp(std::string& storeUrl);
+    virtual void updateApp(std::string& storeUrl);
     
 	/** logout platform*/
 	virtual void logout();
@@ -57,6 +60,8 @@ public:
 
     virtual const std::string& getToken();
 
+    virtual void showPlatformProfile();
+
 	/** optional: get the session ID.*/
 	virtual const std::string& sessionID();
 	/** optional: get the nick name. which is shown on the loading scene */
@@ -79,6 +84,7 @@ public:
     virtual void callPlatformBindUser();
     
     virtual void notifyGameSvrBindTryUserToOkUserResult(int result);
+    virtual std::string sendMessageG2P(const std::string& tag, const std::string& msg);
 };
 
 

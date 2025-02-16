@@ -2,7 +2,7 @@
 #define  _CORESDK_DEEPLINK_IOS_BRIDGE_H_
 
 #include "cocos2d.h"
-#include "coresdk/DeepLink.h"
+#include "DeepLink.h"
 
 namespace coresdk {
 	class DeepLinkIosBridge

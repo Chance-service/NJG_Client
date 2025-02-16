@@ -1,0 +1,8 @@
+framework module KUSOPlaySDK {
+    umbrella header "KUSOPlaySDK.h"
+
+    export *
+    module * { export * }
+
+    use Foundation
+}

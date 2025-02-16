@@ -12,6 +12,7 @@ public:
 	NOTICE: Platform should call _boardcastInitDone to notify client logic WHEN initialization is done.
 	*/
 	virtual void initWithConfigure(const SDK_CONFIG_STU& configure);
+  virtual void setupSDK(int platformId);
     
     /** check whether is logined */
 	virtual bool getLogined();
@@ -57,7 +58,7 @@ public:
     virtual std::string getPlatformMoneyName();
 
 #ifdef WIN32
-	//·½±ãwin32ÏÂµ÷ÊÔ£¬¼ÇÂ¼ÏÂÉÏ´ÎµÇÂ¼³É¹¦µÄpuid£¬ÏÂ´Î½øÓÎÏ·Ä¬ÈÏÎªÉÏ´ÎµÇÂ¼µÄpuid, by zhenhui 2014/5/20
+	//ï¿½ï¿½ï¿½ï¿½win32ï¿½Âµï¿½ï¿½Ô£ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½Ï´Îµï¿½Â¼ï¿½É¹ï¿½ï¿½ï¿½puidï¿½ï¿½ï¿½Â´Î½ï¿½ï¿½ï¿½Ï·Ä¬ï¿½ï¿½Îªï¿½Ï´Îµï¿½Â¼ï¿½ï¿½puid, by zhenhui 2014/5/20
 	static void libEfun::setLoginName(const std::string content);
 #endif
     virtual void notifyEnterGame();

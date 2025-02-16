@@ -1,4 +1,4 @@
-﻿#include "APIUtil.h"
+#include "APIUtil.h"
 USING_NS_CC;
 
 #include "cocos-ext.h"
@@ -6,8 +6,8 @@ USING_NS_CC;
 #include "../extensions/network/HttpRequest.h"
 USING_NS_CC_EXT;
 
-#include "rapidjson/rapidjson.h"
-#include "rapidjson/document.h"
+#include "../rapidjson/rapidjson.h"
+#include "../rapidjson/document.h"
 
 namespace coresdk {
 	// 定義函式指標

@@ -383,7 +383,6 @@ typedef enum {
  *  @see #logError:message:exception: for details on capturing exceptions.
  *
  *  @code
- *  - (void) webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error 
  {
  [Flurry logError:@"WebView No Load" message:[error localizedDescription] error:error];
  }

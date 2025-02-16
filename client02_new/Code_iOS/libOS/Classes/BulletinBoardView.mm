@@ -79,15 +79,18 @@ static BulletinBoardView *sigBullentionBoardView = nil;
     [self addSubview:imageView];
     [imageView release];
     
+    WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
+    config.allowsInlineMediaPlayback = YES;
+
+    
     CGRect webviewFrame = CGRectMake(0, 0, 500, 450);
-    UIWebView *webView = [[UIWebView alloc] initWithFrame:webviewFrame];
+    WKWebView *webView = [[WKWebView alloc] initWithFrame:webviewFrame configuration:config];
     webView.center = CGPointMake(320,410);
     webView.opaque = YES;
     webView.backgroundColor = [UIColor whiteColor];
-    webView.delegate = self;
-    webView.scalesPageToFit = YES;
+    webView.navigationDelegate = self;
+    //webView.scalesPageToFit = YES;
     [webView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
-    [webView setAllowsInlineMediaPlayback:YES];
     [self addSubview:webView];
     [webView release];
     self.webView = webView;
@@ -125,15 +128,16 @@ static BulletinBoardView *sigBullentionBoardView = nil;
     }
     imageView.center = CGPointMake(screen.size.width/2,screen.size.height/2);
     [self addSubview:imageView];
-    UIWebView *m_webView = [[UIWebView alloc] initWithFrame:webviewFrame];
-    m_webView.delegate = self;
-    m_webView.scalesPageToFit = YES;
+    WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
+    config.allowsInlineMediaPlayback = YES;
+    
+    WKWebView *m_webView = [[WKWebView alloc] initWithFrame:webviewFrame configuration:config];
+    m_webView.navigationDelegate = self;
+    //m_webView.scalesPageToFit = YES;
     [m_webView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
     //[m_webView setAutoresizingMask:UIViewAutoresizingFlexibleHeight];
-    [m_webView setAllowsInlineMediaPlayback:YES];
     [imageView addSubview:m_webView];
     [imageView setUserInteractionEnabled:YES];
-    [m_webView setAllowsInlineMediaPlayback:YES];
     self.webView = m_webView;
     [m_webView release];
     UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -203,7 +207,7 @@ static BulletinBoardView *sigBullentionBoardView = nil;
     [HUD release];
 }
 
-- (void) canselBtnAction:(id)sender
+- (void)canselBtnAction:(id)sender
 {
     [self closeTimer];
     [self.HUD hide:NO];
@@ -211,9 +215,6 @@ static BulletinBoardView *sigBullentionBoardView = nil;
     self.isClose = TRUE;
     [self removeFromSuperview];
     sigBullentionBoardView = nil;
-//    if (self.webKitDelegate != NULL) {
-//        self.webKitDelegate->onBtnAction();
-//    }
 }
 
 - (void)timeOut
@@ -222,42 +223,49 @@ static BulletinBoardView *sigBullentionBoardView = nil;
     [self canselBtnAction:nil];
     const std::string stdErrorStr("WebKit loading time out!");
     NSLog(@"WebKit loading time out! %ld seconds", (long)self.loadingTimeOut);
-//    if (self.webKitDelegate != NULL) {
-//        self.webKitDelegate->onLoadingTimeOut();
-//    }
     [self canselBtnAction:nil];
 }
 
 #pragma mark
-#pragma mark ------------------------ UIWebViewDelegate -------------------------------
+#pragma mark ------------------------ WKNavigationDelegate -------------------------------
 
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+// Equivalent to shouldStartLoadWithRequest
+- (void)webView:(WKWebView *)webView
+    decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction
+    decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
 {
-    NSLog(@"WebKit will open URL: %@",[[request URL] absoluteString]);
-    return self.shouldLoadRequest;
+    NSLog(@"Should start loading: %@", navigationAction.request.URL.absoluteString);
+    //decisionHandler(WKNavigationActionPolicyAllow); // Allow navigation
+    decisionHandler(self.shouldLoadRequest); // Allow navigation
 }
 
-- (void)webViewDidStartLoad:(UIWebView *)webView
+// Equivalent to webViewDidStartLoad
+- (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation
 {
     [self.HUD show:YES];
     [self closeTimer];
     self.timer = [NSTimer scheduledTimerWithTimeInterval:(NSTimeInterval)self.loadingTimeOut target:self selector:@selector(timeOut) userInfo:nil repeats:NO];
-//    if (self.webKitDelegate != NULL) {
-//        self.webKitDelegate->onStartLoad();
-//    }
 }
 
-- (void)webViewDidFinishLoad:(UIWebView *)webView
+// Equivalent to webViewDidFinishLoad
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation
 {
     [self.HUD hide:NO];
     [self closeTimer];
-//    if (self.webKitDelegate != NULL) {
-//        self.webKitDelegate->onFinishLoad();
-//    }
+    
+    // Auto scale
+    NSString *js =
+        @"var meta = document.createElement('meta');"
+        "meta.name = 'viewport';"
+        "meta.content = 'width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes';"
+        "document.getElementsByTagName('head')[0].appendChild(meta);";
+        
+    [webView evaluateJavaScript:js completionHandler:nil];
 }
 
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
-{
+
+// Equivalent to didFailLoadWithError
+- (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error {
     [self.HUD hide:NO];
     [self closeTimer];
     if (self.webKitDelegate != NULL) {
@@ -270,17 +278,17 @@ static BulletinBoardView *sigBullentionBoardView = nil;
 #pragma mark
 #pragma mark ------------------------------ Touch -------------------------------------
 
--(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-	UITouch* touch = [touches anyObject];
-	if([touch tapCount]>0)
-	{
-	}
+	//UITouch* touch = [touches anyObject];
+	//if([touch tapCount]>0)
+	//{
+	//}
 }
--(void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-	UITouch* touch = [touches anyObject];
-	CGPoint  lastpoint = [touch locationInView:self];
+	//UITouch* touch = [touches anyObject];
+	//CGPoint  lastpoint = [touch locationInView:self];
 }
 
 #pragma mark
@@ -288,8 +296,19 @@ static BulletinBoardView *sigBullentionBoardView = nil;
 
 - (void)webViewEvaluatingJavaScriptFromString:(NSString *)jsString
 {
-    if (self.webView != NULL) {
-        [self.webView stringByEvaluatingJavaScriptFromString:jsString];
+    if (self.webView != NULL)
+    {
+        [self.webView evaluateJavaScript:jsString completionHandler:^(id result, NSError *error)
+         {
+            if (!error)
+            {
+                NSLog(@"evaluateJavaScript: %@", result);
+            } else
+            {
+                NSLog(@"JavaScript execution error: %@", error.localizedDescription);
+            }
+        }];
+        
     }
 }
 
@@ -300,25 +319,13 @@ static BulletinBoardView *sigBullentionBoardView = nil;
     {
         [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:URL]]];
     }
-    //#ifdef PROJECTITools
-    //    [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(delayShow) userInfo:nil repeats:NO];
-    //#endif
+
 }
 
 - (void)webViewShowContent:(NSString *)content
 {
     [self.webView loadHTMLString:content baseURL:nil];
 }
-
-//-(void)delayShow
-//{
-//    if (self.isClose) {
-//        return;
-//    }
-//    [[UIApplication sharedApplication].keyWindow.rootViewController.view addSubview:self];
-//    [[UIApplication sharedApplication].keyWindow.rootViewController.view bringSubviewToFront:self];
-//    [self setHidden:NO];
-//}
 
 - (void)closeTimer
 {

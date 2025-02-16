@@ -1,4 +1,4 @@
-﻿
+
 #include "stdafx.h"
 
 #include "GamePrecedure.h"
@@ -105,7 +105,7 @@ void GamePrecedure::init()
 	case kLanguageChinese:
 		Language::Get()->init("Lang/Language.lang");
 		break;
-	case kLabguageCH_TW:
+	case kLanguageCH_TW:
 		Language::Get()->init("Lang/LanguageTW.lang");
 		break;
 	default:
@@ -782,7 +782,7 @@ void GamePrecedure::loadPlsit()
 						frameCache->addSpriteFramesNameWithFile(filename.c_str());
 					}
 					break;
-				case kLabguageCH_TW:
+				case kLanguageCH_TW:
 					pos = filename.find("i18n_tw");
 					if (pos != std::string::npos){
 						frameCache->addSpriteFramesNameWithFile(filename.c_str());
@@ -812,7 +812,7 @@ void GamePrecedure::loadPlsit()
 	case kLanguageChinese:
 		Language::Get()->init("Lang/Language.lang");
 		break;
-	case kLabguageCH_TW:
+	case kLanguageCH_TW:
 		Language::Get()->init("Lang/LanguageTW.lang");
 		break;
 	default:
@@ -1821,11 +1821,13 @@ extern "C"
 
 void GamePrecedure::playMovie(std::string fileName, int isLoop, int autoScale)
 {
+    // FixMe: For testing purpose, use an existing movie file 
+    fileName = "Video/AVG_V_C00101";
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 	callPlatformPlayMovieJNI(fileName.c_str(), isLoop, autoScale);
 #endif
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-	libOS::getInstance()->playMovie(fileName);
+	libOS::getInstance()->playMovie(fileName.c_str(), isLoop);
 #endif
 }
 

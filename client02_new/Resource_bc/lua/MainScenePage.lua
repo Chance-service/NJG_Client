@@ -778,7 +778,7 @@ function MainScenePageInfo.onInit(container)
         local userType = CCUserDefault:sharedUserDefault():getIntegerForKey("LanguageType")
 	    if userType == kLanguageChinese then
 	    	tabel = TableReaderManager:getInstance():getTableReader("FreeTypeFont.txt")
-	    elseif userType == kLabguageCH_TW then
+	    elseif userType == kLanguageCH_TW then
 	    	tabel = TableReaderManager:getInstance():getTableReader("FreeTypeFontTW.txt")
 	    else
 	    	tabel = TableReaderManager:getInstance():getTableReader("FreeTypeFont.txt")

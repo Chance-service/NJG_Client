@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E59C3702D6033AC006518A5 /* libpthread.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E59C36F2D6033A2006518A5 /* libpthread.tbd */; };
 		CF6BD51D16D2139400023018 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF6BD51C16D2139400023018 /* Foundation.framework */; };
 		CF6BD53916D2148000023018 /* atomicops_internals_x86_msvc.cc in Sources */ = {isa = PBXBuildFile; fileRef = CF6BD53016D2148000023018 /* atomicops_internals_x86_msvc.cc */; };
 		CF6BD53A16D2148000023018 /* common.cc in Sources */ = {isa = PBXBuildFile; fileRef = CF6BD53216D2148000023018 /* common.cc */; };
@@ -58,6 +59,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4E59C36F2D6033A2006518A5 /* libpthread.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libpthread.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/usr/lib/libpthread.tbd; sourceTree = DEVELOPER_DIR; };
 		CF6BD51916D2139400023018 /* libprotobuf.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libprotobuf.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF6BD51C16D2139400023018 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CF6BD52016D2139400023018 /* protobuf-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "protobuf-Prefix.pch"; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF6BD51D16D2139400023018 /* Foundation.framework in Frameworks */,
+				4E59C3702D6033AC006518A5 /* libpthread.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,6 +171,7 @@
 		CF6BD51B16D2139400023018 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4E59C36F2D6033A2006518A5 /* libpthread.tbd */,
 				CF6BD51C16D2139400023018 /* Foundation.framework */,
 			);
 			name = Frameworks;
@@ -320,6 +324,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = CF6BD50E16D2139400023018;

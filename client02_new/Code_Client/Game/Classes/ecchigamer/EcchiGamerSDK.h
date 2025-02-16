@@ -1,11 +1,11 @@
 #ifndef  _ECCHI_GAMER_SDK_H_
 #define  _ECCHI_GAMER_SDK_H_
 
-#include "ecchigamer/Config.h"
+#include "Config.h"
 #include "cocos2d.h"
-#include "coresdk/Coresdk.h"
-#include "coresdk/util.h"
-#include "coresdk/Enum.h"
+#include "Coresdk.h"
+#include "util.h"
+#include "Enum.h"
 
 namespace ecchigamer {
 	namespace EcchiGamerSDK {

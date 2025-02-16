@@ -1,11 +1,17 @@
-#include "coresdk/webapi.h"
+//#include "../coresdk/webapi.h"
+#include "webapi.h"
 
 #include "cocos2d.h"
-#include "coresdk/APIUtil.h"
-#include "coresdk/Coresdk.h"
+//#include "../coresdk/APIUtil.h"
+#include "APIUtil.h"
+//#include "../coresdk/Coresdk.h"
+#include "Coresdk.h"
 
-#include "rapidjson/rapidjson.h"
-#include "rapidjson/document.h"
+
+//#include "../rapidjson/rapidjson.h"
+#include "rapidjson.h"
+#include "document.h"
+//#include "../rapidjson/document.h"
 
 USING_NS_CC;
 

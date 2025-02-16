@@ -1,4 +1,4 @@
-#include "coresdk/DeepLink.h"
+#include "DeepLink.h"
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 #include "coresdk/DeepLinkAndroidBridge.h"
@@ -9,7 +9,7 @@
 #endif
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-#include "coresdk/DeepLinkIosBridge.h"
+#include "DeepLinkIosBridge.h"
 #endif
 
 void coresdk::DeepLink::openURL(std::string url, coresdk::DeepLink::OnDeepLinkCallback callback) {

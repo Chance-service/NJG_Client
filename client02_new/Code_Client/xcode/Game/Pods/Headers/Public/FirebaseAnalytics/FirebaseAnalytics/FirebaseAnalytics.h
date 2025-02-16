@@ -1,1 +1,0 @@
-link ../../../../FirebaseAnalytics/Frameworks/FirebaseAnalytics.framework/Headers/FirebaseAnalytics.h

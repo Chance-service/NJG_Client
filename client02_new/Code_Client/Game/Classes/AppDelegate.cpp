@@ -57,7 +57,7 @@ static float s_recycle_frequence = 5.f;
 // 可選語系設定
 std::map<int, bool> canSelectLang = {
 	{ kLanguageChinese, true },
-	{ kLabguageCH_TW, true },
+	{ kLanguageCH_TW, true },
 };
 
 #ifdef WIN32
@@ -256,7 +256,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 		}
 		else if (currentCountry == "tw")
 		{
-			currentLanguageType = kLabguageCH_TW;
+			currentLanguageType = kLanguageCH_TW;
 		}
 	}
 

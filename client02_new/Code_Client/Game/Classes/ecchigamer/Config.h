@@ -1,9 +1,11 @@
 #ifndef  _ECCHIGAMER_CONFIG_H_
 #define  _ECCHIGAMER_CONFIG_H_
 
-namespace ecchigamer {
-	namespace Config {
-		const char* GAME_ID = "128";
+namespace ecchigamer
+{
+	namespace Config
+    {
+        static inline const char* GAME_ID = "128";
 	}
 };
 
