@@ -1821,8 +1821,6 @@ extern "C"
 
 void GamePrecedure::playMovie(std::string fileName, int isLoop, int autoScale)
 {
-    // FixMe: For testing purpose, use an existing movie file 
-    fileName = "Video/AVG_V_C00101";
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 	callPlatformPlayMovieJNI(fileName.c_str(), isLoop, autoScale);
 #endif

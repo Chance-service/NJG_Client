@@ -802,14 +802,14 @@ void libOS::playMovie(const char * fileName, int loop)
     //MovieMgr::instance()->playMovie(fileName,need_skip);
     AppController* app = [(AppController*)[UIApplication sharedApplication] delegate];
     NSString *name = [NSString stringWithUTF8String:fileName];
-    [app playVideo:loop fullScreen:0 file:name fileExtension:@"mp4"];
+    [app playVideo:loop fullScreen:1 file:name fileExtension:@"mp4"];
 }
 
 void libOS::playMovie(const char * fileName, bool loop)
 {
     AppController* app = [(AppController*)[UIApplication sharedApplication] delegate];
     NSString *name = [NSString stringWithUTF8String:fileName];
-    [app playVideo:loop fullScreen:0 file:name fileExtension:@"mp4"];
+    [app playVideo:loop fullScreen:1 file:name fileExtension:@"mp4"];
 }
 
 void libOS::stopMovie()

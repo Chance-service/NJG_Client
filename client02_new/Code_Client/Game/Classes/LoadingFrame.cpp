@@ -994,7 +994,7 @@ void LoadingFrame::load( void )
 void LoadingFrame::showSpine()
 {
 	glClearColor(0, 0, 0, 0);
-	GamePrecedure::Get()->playMovie("op", 1, 1);
+	GamePrecedure::Get()->playMovie("Video/op", 1, 1);
 }
 
 void LoadingFrame::showDaterTransFerBtn(bool isVisible)

@@ -551,28 +551,28 @@ static AppDelegate s_sharedApplication;
     
     NSString* url = [[NSBundle mainBundle] pathForResource:strFilenameNoExtension ofType:strExtension];
     NSLog(@"Play Video Start: %@ ext: %@ url: %@ fullscreen: %d", strFilenameNoExtension, strExtension, url, iFullScreen);
-    CGRect rect = [[UIScreen mainScreen]bounds];
-    CGSize size = rect.size;
-    
-    CGRect rScreen;
-    rScreen.origin.x = 0;
-    rScreen.origin.y = 0;
-    rScreen.size.width = size.width;
-    rScreen.size.height = size.height;
     
     player = [AVPlayer playerWithURL:[NSURL fileURLWithPath:url]];
     playerViewController = [[AVPlayerViewController alloc] init];
     
     playerViewController.player = player;
-    playerViewController.view.frame = rScreen;
+    
+    
     playerViewController.showsPlaybackControls = FALSE; // Hide controls if not needed
     
-    [viewController.view.superview addSubview:playerViewController.view];
-    // If not fullscreen, we send the view to back so ui can still show
-    if(iFullScreen == 0)
+    if (iFullScreen)
     {
-        [viewController.view.superview sendSubviewToBack:playerViewController.view];
+        playerViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        //playerViewController.view.frame = rScreen;
+        playerViewController.view.frame = viewController.view.superview.bounds;
+        playerViewController.videoGravity = AVLayerVideoGravityResizeAspectFill;
+        //playerViewController.view.frame = [[UIScreen mainScreen] bounds];
+        //playerViewController.modalPresentationStyle = UIModalPresentationFullScreen;
     }
+    
+    [viewController.view.superview addSubview:playerViewController.view];
+    // Send the view to back so ui can still show
+    [viewController.view.superview sendSubviewToBack:playerViewController.view];
     
     [[NSNotificationCenter defaultCenter]
      addObserver:self

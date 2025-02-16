@@ -924,7 +924,7 @@ void UpdateVersion::downloaded(const std::string &url, const std::string& filena
 
 void UpdateVersion::downloadFailed(const std::string& url, const std::string &filename)
 {
-	CCLOG("hotUpdate downloadFailed  url: %s    : filename : %s ", url.c_str(), filename.c_str());
+	CCLOG("hotUpdate downloadFailed  url: %s : filename : %s ", url.c_str(), filename.c_str());
 	for (auto it = needUpdateAsset.begin(); it != needUpdateAsset.end(); ++it) {
 		if (url.compare((*it)->url) == 0)
 		{
