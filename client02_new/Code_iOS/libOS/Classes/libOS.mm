@@ -798,8 +798,6 @@ void libOS::platformSharePerson(const std::string& shareContent, const std::stri
 }
 void libOS::playMovie(const char * fileName, int loop)
 {
-    //setShareWCCallBackEnabled();
-    //MovieMgr::instance()->playMovie(fileName,need_skip);
     AppController* app = [(AppController*)[UIApplication sharedApplication] delegate];
     NSString *name = [NSString stringWithUTF8String:fileName];
     [app playVideo:loop fullScreen:1 file:name fileExtension:@"mp4"];

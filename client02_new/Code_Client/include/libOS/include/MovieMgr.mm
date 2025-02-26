@@ -30,13 +30,6 @@ MovieMgr* MovieMgr::instance()
     return s_instance;
 }
 
-//void MovieMgr::playMovie(const char* movie, int need_skip)
-//{
-//    AppController* app = [[UIApplication sharedApplication] delegate];
-//    NSString* str = [NSString stringWithUTF8String:movie];
-//    [app playMovie:str needSkip:need_skip];
-//}
-
 void MovieMgr::playMovie(const char* movie, bool need_skip)
 {
     AppController* app = [[UIApplication sharedApplication] delegate];
@@ -44,23 +37,25 @@ void MovieMgr::playMovie(const char* movie, bool need_skip)
     [app playMovie:str needSkip:need_skip];
 }
 
-void MovieMgr::pauseMovie()
-{
-    AppController* app = [[UIApplication sharedApplication] delegate];
-    
-  //  [app playMovie:str];
-}
-
-void MovieMgr::replayMovie()
-{
-    
-}
-
 void MovieMgr::stopMovie()
 {
     AppController* app = [[UIApplication sharedApplication] delegate];
     
     [app stopMovie];
+}
+
+void MovieMgr::pauseMovie()
+{
+    AppController* app = [[UIApplication sharedApplication] delegate];
+    
+    [app pauseMovie];
+}
+
+void MovieMgr::resumeMovie()
+{
+    AppController* app = [[UIApplication sharedApplication] delegate];
+    
+    [app resumeMovie];
 }
 
 

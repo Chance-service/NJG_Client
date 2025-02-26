@@ -41,18 +41,18 @@ void libOS::TheEditTextCloseKeyboardCallback(void* ctx)
 {
 	libOS* pLib = (libOS*)ctx;
 	pLib->_boardcastCloseKeyboard();
-	//pTextÒÑ¾­ÊÇutf8µÄ
+	//pTextï¿½Ñ¾ï¿½ï¿½ï¿½utf8ï¿½ï¿½
 }
 void libOS::TheEditTextOpenKeyboardCallback(void* ctx)
 {
 	libOS* pLib = (libOS*)ctx;
 	pLib->_boardcastOpenKeyboard();
-	//pTextÒÑ¾­ÊÇutf8µÄ
+	//pTextï¿½Ñ¾ï¿½ï¿½ï¿½utf8ï¿½ï¿½
 }
 void TheEditTextCallback(const char* pText, void* ctx, bool cancelPress)
 {
 	libOS* pLib = (libOS*)ctx;
-	//pTextÒÑ¾­ÊÇutf8µÄ
+	//pTextï¿½Ñ¾ï¿½ï¿½ï¿½utf8ï¿½ï¿½
 	std::string content(pText);
 	if (!cancelPress)
 	{
@@ -124,7 +124,7 @@ void libOS::showMessagebox( const std::string& msg, int tag /*= 0*/ )
 // 	long freeram = avalibleMemory();
 // 	char szTemp[32] = {0};
 // 	sprintf(szTemp, "%d", freeram);
-// 	std::string temp = msg + "\nmagicnum: ";//freeram//Ã»ÏÔÊ¾ÁË
+// 	std::string temp = msg + "\nmagicnum: ";//freeram//Ã»ï¿½ï¿½Ê¾ï¿½ï¿½
 // 	temp.append(szTemp);
 // 	showDialogJNI(msg.c_str(), "", TheDialogOkCallback, this, tag);
 // 	return;
@@ -244,13 +244,21 @@ void libOS::platformSharePerson(const std::string& shareContent, const std::stri
 
 void libOS::playMovie(const char * fileName, bool needSkip /*= true*/)
 {		
-		const std::string file = fileName;
-		playMovieJni(file, needSkip);
+    const std::string file = fileName;
+    playMovieJni(file, needSkip);
 }
 
 void libOS::stopMovie()
 {		
 	stopMovieJni();
+}
+
+void libOS::pauseMovie()
+{		
+}
+
+void libOS::resumeMovie()
+{		
 }
 
 
@@ -297,7 +305,7 @@ void libOS::OnEntermateCoupons(std::string& strCoupons)
 {
 	OnEntermateCouponsJNI(strCoupons);
 }
-//ÉèÖÃ¼ôÇÐ°åÄÚÈÝ
+//ï¿½ï¿½ï¿½Ã¼ï¿½ï¿½Ð°ï¿½ï¿½ï¿½ï¿½ï¿½
 void libOS::setClipboardText(std::string& text)
 {
 	setClipboardTextJNI(text.c_str());
@@ -305,12 +313,12 @@ void libOS::setClipboardText(std::string& text)
 std::string libOS::getGameVersion(){
 	return "";
 }
-//ÉèÖÃ¼ôÇÐ°åÄÚÈÝ
+//ï¿½ï¿½ï¿½Ã¼ï¿½ï¿½Ð°ï¿½ï¿½ï¿½ï¿½ï¿½
 void libOS::setEditBoxText(std::string& text)
 {
 	setEditBoxTextJNI(text.c_str());
 }
-//»ñµÃ¼ôÇÐ°åÄÚÈÝ
+//ï¿½ï¿½Ã¼ï¿½ï¿½Ð°ï¿½ï¿½ï¿½ï¿½ï¿½
 std::string libOS::getClipboardText()
 {
 	return getClipboardTextJNI();

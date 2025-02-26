@@ -87,7 +87,7 @@ void libOS::showInputbox(bool mulitline, std::string content/* = L""*/,bool chat
 {
 	wchar_t* wcontent = UTF8_to_UNICODE(content.c_str(), content.size());
 
-	wchar_t* ret = _InputBox(L"input", L"1¡è3¨¬", wcontent);
+	wchar_t* ret = _InputBox(L"input", L"1ï¿½ï¿½3ï¿½ï¿½", wcontent);
 	int length = lstrlen(ret);
 	std::string outStr("");
 	for(int i=0;i<length;++i)
@@ -107,7 +107,7 @@ void libOS::showInputbox(bool mulitline, std::string content/* = L""*/,bool chat
 }
 void libOS::TheEditTextCloseKeyboardCallback(void* ctx)
 {
-	//pTextÒÑ¾­ÊÇutf8µÄ
+	//pTextï¿½Ñ¾ï¿½ï¿½ï¿½utf8ï¿½ï¿½
 }
 void libOS::TheEditTextOpenKeyboardCallback(void* ctx)
 {
@@ -243,9 +243,18 @@ void libOS::requestRestart()
 {
 	::exit(0);
 }
+
 void libOS::playMovie(const char * fileName, bool needSkip /*= true*/)
 {
     
+}
+
+void libOS::pauseMovie()
+{
+}
+
+void libOS::resumeMovie()
+{
 }
 
 
@@ -295,7 +304,7 @@ void libOS::OnEntermateCoupons(std::string& strCoupons)
 {
 	
 }
-//ÉèÖÃ¼ôÇÐ°åÄÚÈÝ
+//ï¿½ï¿½ï¿½Ã¼ï¿½ï¿½Ð°ï¿½ï¿½ï¿½ï¿½ï¿½
 void libOS::setClipboardText(std::string& text)
 {
 	
@@ -308,7 +317,7 @@ void libOS::setEditBoxText(std::string& text)
 
 }
 
-//»ñµÃ¼ôÇÐ°åÄÚÈÝ
+//ï¿½ï¿½Ã¼ï¿½ï¿½Ð°ï¿½ï¿½ï¿½ï¿½ï¿½
 std::string libOS::getClipboardText()
 {
 	return "";

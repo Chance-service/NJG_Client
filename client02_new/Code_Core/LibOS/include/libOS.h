@@ -14,7 +14,7 @@ typedef enum {
 struct GAME_CONFIG_STU
 {
     std::string gameid;      //项目ID
-    std::string channel;     //渠道�?
+    std::string channel;     //渠道�?
     std::string mta_key;     //MTA统计参数
     bool        mtaEnable;   //是否启用MTA统计
     bool        flurryEnable;//是否启用Flurry统计
@@ -74,7 +74,7 @@ public:
     //    void showBulletinBoard(const std::string& url);
     
     void openURL(const std::string& url);
-    void openURLHttps(const std::string& url);//appstore 大版�?lvpeizong
+    void openURLHttps(const std::string& url);//appstore 大版�?lvpeizong
 	void checkIosSDKVersion(const std::string& version, GetStringCallback p_callback);
     void emailTo(const std::string& mailto, const std::string & cc , const std::string& title, const std::string & body);
     
@@ -114,6 +114,8 @@ public:
     void playMovie(const char * fileName,bool need_skip = true);
     
     void stopMovie();
+    void pauseMovie();
+    void resumeMovie();
     
     void setShareWCCallBackEnabled() { mIsShareWC=true;};
     
@@ -150,17 +152,17 @@ public:
 	@link link地址
 	@picture 图片地址
 	@name 标题
-	@caption 副标�?
+	@caption 副标�?
 	@description 描述 
 	*/
 	void facebookShare(std::string& link,std::string& picture,std::string& name,std::string& caption,std::string& description);
     //韩国kakao 处理游戏内登出时 serverlist
     void reEnterGameGetServerlistForKakao();
-	//重登�?
+	//重登�?
 	void reEnterLoading();
 	//------------------------
 	//韩国Entermate Android
-	//退出游�?
+	//退出游�?
 	void OnLuaExitGame();
 	//官方网站
 	void OnEntermateHomepage();
@@ -168,13 +170,13 @@ public:
 	void OnEntermateEvent();
 	//移除注册
 	void OnUnregister();
-	//发送玩家信息变�?
+	//发送玩家信息变�?
 	void OnUserInfoChange(std::string& playerid,std::string& name,std::string& serverId,std::string& level,std::string& exp,std::string& vip,std::string& gold);
 	//cdkeys
 	void OnEntermateCoupons(std::string& strCoupons);
-	//设置剪切板内�?
+	//设置剪切板内�?
 	void setClipboardText(std::string& text);
-	//获得剪切板内�?
+	//获得剪切板内�?
 	std::string getClipboardText();
 	void setEditBoxText(std::string& text);
 	std::string getGameVersion();
@@ -191,7 +193,7 @@ private:
     std::set<libOSListener*> mListeners;
     static libOS *m_sInstance;
     bool m_chatState;
-    std::string m_connector;//连接�?
+    std::string m_connector;//连接�?
     GAME_CONFIG_STU m_gameconfig;//iOS初始化结构体
 public:
     static libOS* getInstance()

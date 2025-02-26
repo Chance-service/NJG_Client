@@ -14,10 +14,10 @@ typedef enum {
 struct GAME_CONFIG_STU
 {
     std::string gameid;      //é¡¹ç›®ID
-    std::string channel;     //æ¸ é???
-    std::string mta_key;     //MTAç»Ÿè®¡?‚æ•°
-    bool        mtaEnable;   //?¯å¦?¯ç”¨MTAç»Ÿè®¡
-    bool        flurryEnable;//?¯å¦?¯ç”¨Flurryç»Ÿè®¡
+    std::string channel;     //æ¸ ï¿½???
+    std::string mta_key;     //MTAç»Ÿè®¡?ï¿½æ•°
+    bool        mtaEnable;   //?ï¿½å¦?ï¿½ç”¨MTAç»Ÿè®¡
+    bool        flurryEnable;//?ï¿½å¦?ï¿½ç”¨Flurryç»Ÿè®¡
     //   std::string dataeye_appid;
     //   bool        dataeyeEnable;
 };
@@ -66,7 +66,7 @@ public:
 	void TheEditTextOpenKeyboardCallback(void* ctx);
 	void UpdateKeyboardHight(void* ctx, int nHight);
     void showInputbox(bool multiline, std::string content = "", bool chatState = false);
-	void showInputbox(bool multiline,int InputMode, std::string content = "", bool chatState = false);//?°å??®ç?fhr
+	void showInputbox(bool multiline,int InputMode, std::string content = "", bool chatState = false);//?ï¿½ï¿½??ï¿½ï¿½?fhr
 	void showInputbox(bool multiline, int InputMode,int nMaxLength, std::string content = "", bool chatState = false);
     
 //    void showInputbox(bool multiline, std::string content = "");
@@ -74,7 +74,7 @@ public:
     //    void showBulletinBoard(const std::string& url);
     
     void openURL(const std::string& url);
-    void openURLHttps(const std::string& url);//appstore å¤§ç???lvpeizong
+    void openURLHttps(const std::string& url);//appstore å¤§ï¿½???lvpeizong
 	void checkIosSDKVersion(const std::string& version, GetStringCallback p_callback);
     void emailTo(const std::string& mailto, const std::string & cc , const std::string& title, const std::string & body);
     
@@ -114,6 +114,8 @@ public:
     void playMovie(const char * fileName,bool need_skip = true);
     
     void stopMovie();
+    void pauseMovie();
+    void resumeMovie();
     
     void setShareWCCallBackEnabled() { mIsShareWC=true;};
     
@@ -146,35 +148,35 @@ public:
 
 	std::string getCurrentCountry();
 	/*
-	facebook ?†äº« 
-	@link link?°å?
-	@picture ?¾ç??°å?
-	@name ?‡é?
-	@caption ?¯æ?é¢?
-	@description ?è¿° 
+	facebook ?ï¿½äº« 
+	@link link?ï¿½ï¿½?
+	@picture ?ï¿½ï¿½??ï¿½ï¿½?
+	@name ?ï¿½ï¿½?
+	@caption ?ï¿½ï¿½?ï¿½?
+	@description ?ï¿½è¿° 
 	*/
 	void facebookShare(std::string& link,std::string& picture,std::string& name,std::string& caption,std::string& description);
-    //?©å›½kakao å¤„ç?æ¸¸æ??…ç™»?ºæ—¶ serverlist
+    //?ï¿½å›½kakao å¤„ï¿½?æ¸¸ï¿½??ï¿½ç™»?ï¿½æ—¶ serverlist
     void reEnterGameGetServerlistForKakao();
-	//?ç™»??
+	//?ï¿½ç™»??
 	void reEnterLoading();
 	//------------------------
-	//?©å›½Entermate Android
-	//?€?ºæ¸¸??
+	//?ï¿½å›½Entermate Android
+	//?ï¿½?ï¿½æ¸¸??
 	void OnLuaExitGame();
-	//å®˜æ–¹ç½‘ç?
+	//å®˜æ–¹ç½‘ï¿½?
 	void OnEntermateHomepage();
 	//æ´»åŠ¨
 	void OnEntermateEvent();
-	//ç§»é™¤æ³¨å?
+	//ç§»é™¤æ³¨ï¿½?
 	void OnUnregister();
-	//?‘é€ç©å®¶ä¿¡?¯å???
+	//?ï¿½é€ç©å®¶ä¿¡?ï¿½ï¿½???
 	void OnUserInfoChange(std::string& playerid,std::string& name,std::string& serverId,std::string& level,std::string& exp,std::string& vip,std::string& gold);
 	//cdkeys
 	void OnEntermateCoupons(std::string& strCoupons);
-	//è®¾ç½®?ªå??¿å?å®?
+	//è®¾ç½®?ï¿½ï¿½??ï¿½ï¿½?ï¿½?
 	void setClipboardText(std::string& text);
-	//?·å??ªå??¿å?å®?
+	//?ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½?ï¿½?
 	std::string getClipboardText();
 	void setEditBoxText(std::string& text);
 	std::string getGameVersion();
@@ -191,8 +193,8 @@ private:
     std::set<libOSListener*> mListeners;
     static libOS *m_sInstance;
     bool m_chatState;
-    std::string m_connector;//è¿æ¥ç¬?
-    GAME_CONFIG_STU m_gameconfig;//iOS?å??–ç??„ä?
+    std::string m_connector;//è¿æ¥ï¿½?
+    GAME_CONFIG_STU m_gameconfig;//iOS?ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½?
 public:
     static libOS* getInstance()
     {

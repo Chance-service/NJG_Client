@@ -17,6 +17,9 @@
 		4499CFB22244EA5000B9175C /* Bugly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4499CF912244EA5000B9175C /* Bugly.framework */; };
 		4499CFB32244EA5000B9175C /* libBuglyAgent.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4499CF952244EA5000B9175C /* libBuglyAgent.a */; };
 		4499CFB52244EBF300B9175C /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4499CFB42244EBF300B9175C /* libc++.tbd */; };
+		4E341A452D6EF65C002FE81D /* liblibOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7F50702D5F9B2100DD4AA4 /* liblibOS.a */; };
+		4E341A462D6EF66B002FE81D /* liblibOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7F50702D5F9B2100DD4AA4 /* liblibOS.a */; };
+		4E341A472D6EF679002FE81D /* liblibOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7F50702D5F9B2100DD4AA4 /* liblibOS.a */; };
 		4E4520682D5F191600F26188 /* AppController.mm in Sources */ = {isa = PBXBuildFile; fileRef = CFFC4BF216D230D3001F65C9 /* AppController.mm */; };
 		4E4520692D5F191600F26188 /* RootViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = CFFC4BF516D230D3001F65C9 /* RootViewController.mm */; };
 		4E45206A2D5F191600F26188 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFC4BF716D230D3001F65C9 /* main.m */; };
@@ -1591,6 +1594,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E341A472D6EF679002FE81D /* liblibOS.a in Frameworks */,
 				0C1E008529C2EE12002E789C /* libfreetype.a in Frameworks */,
 				4499CFB52244EBF300B9175C /* libc++.tbd in Frameworks */,
 				979ED7AC1DF123BA003CCCC8 /* SystemConfiguration.framework in Frameworks */,
@@ -1634,6 +1638,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E341A462D6EF66B002FE81D /* liblibOS.a in Frameworks */,
 				D7A907B420C7C5350031E72A /* SCorePluginPlatform.framework in Frameworks */,
 				D7A907B520C7C5350031E72A /* SCorePluginShare.framework in Frameworks */,
 				D7A907B620C7C5350031E72A /* SPluginPlatform.framework in Frameworks */,
@@ -1676,6 +1681,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E341A452D6EF65C002FE81D /* liblibOS.a in Frameworks */,
 				D76DCE3A212C323900678EF8 /* OnlineAHelper.framework in Frameworks */,
 				D76DCDA7212C171A00678EF8 /* SystemConfiguration.framework in Frameworks */,
 				D76DCDA8212C171A00678EF8 /* Security.framework in Frameworks */,
@@ -3613,7 +3619,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMPRESS_PNG_FILES = NO;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 12;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 7HTW8682XX;
 				ENABLE_BITCODE = NO;
@@ -3724,7 +3730,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMPRESS_PNG_FILES = NO;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 12;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 7HTW8682XX;
 				ENABLE_BITCODE = NO;
