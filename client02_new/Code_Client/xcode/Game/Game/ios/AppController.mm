@@ -550,7 +550,7 @@ static AppDelegate s_sharedApplication;
     g_iPlayVideoState = iStateAfterPlay;
     
     NSString* url = [[NSBundle mainBundle] pathForResource:strFilenameNoExtension ofType:strExtension];
-    NSLog(@"Play Video Start: %@ ext: %@ url: %@ fullscreen: %d", strFilenameNoExtension, strExtension, url, iFullScreen);
+    NSLog(@"Play Video: url: %@ fullscreen: %d", url, iFullScreen);
     
     player = [AVPlayer playerWithURL:[NSURL fileURLWithPath:url]];
     playerViewController = [[AVPlayerViewController alloc] init];
@@ -563,11 +563,10 @@ static AppDelegate s_sharedApplication;
     if (iFullScreen)
     {
         playerViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        //playerViewController.view.frame = rScreen;
         playerViewController.view.frame = viewController.view.superview.bounds;
-        playerViewController.videoGravity = AVLayerVideoGravityResizeAspectFill;
-        //playerViewController.view.frame = [[UIScreen mainScreen] bounds];
-        //playerViewController.modalPresentationStyle = UIModalPresentationFullScreen;
+        playerViewController.videoGravity = AVLayerVideoGravityResize;
+        playerViewController.modalPresentationStyle = UIModalPresentationFullScreen;
+        CGRect cr = playerViewController.view.frame;
     }
     
     [viewController.view.superview addSubview:playerViewController.view];
@@ -624,11 +623,14 @@ static AppDelegate s_sharedApplication;
     [playerViewController.view removeFromSuperview];
     playerViewController = nil;
     player = nil;
+    
+    cocos2d::CCApplication::sharedApplication();
+    libPlatformManager::getPlatform()->sendMessageP2G("onPlayMovieEnd", "");
 }
 
 -(void)movieFinishedCallback:(NSNotification*) aNotification
 {
-    NSLog(@"movieFinishCallback");
+    NSLog(@"movieFinishCallback with looping? %d", g_iPlayVideoState);
     // Looping?
     if (g_iPlayVideoState == 1)
     {
