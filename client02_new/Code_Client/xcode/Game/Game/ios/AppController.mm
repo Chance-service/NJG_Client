@@ -574,11 +574,10 @@ static AppDelegate s_sharedApplication;
     
     if (iFullScreen)
     {
-        playerViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        playerViewController.view.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
         playerViewController.view.frame = viewController.view.superview.bounds;
-        playerViewController.videoGravity = AVLayerVideoGravityResize;
+        playerViewController.videoGravity = AVLayerVideoGravityResizeAspect;
         playerViewController.modalPresentationStyle = UIModalPresentationFullScreen;
-        CGRect cr = playerViewController.view.frame;
     }
     
     [viewController.view.superview addSubview:playerViewController.view];
