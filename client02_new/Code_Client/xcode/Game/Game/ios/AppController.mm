@@ -106,7 +106,7 @@ static AppDelegate s_sharedApplication;
     // so we can play movie behind
     __glView.backgroundColor = [UIColor clearColor];
     // Use RootViewController manage EAGLView
-    viewController = [[RootViewController alloc] initWithNibName:nil bundle:nil];
+    viewController = [[RootViewController alloc] init];
     //viewController.wantsFullScreenLayout = YES;
     viewController.edgesForExtendedLayout = UIRectEdgeNone; // Prevents extending under the navigation bar
     viewController.extendedLayoutIncludesOpaqueBars = NO;
@@ -321,9 +321,9 @@ static AppDelegate s_sharedApplication;
     }
 #endif
 #pragma mark -
+    
     [window makeKeyAndVisible];
     
-
     [[UIApplication sharedApplication]
      setStatusBarHidden:YES
      withAnimation:UIStatusBarAnimationSlide];
@@ -333,12 +333,23 @@ static AppDelegate s_sharedApplication;
     // initialized sdk
     [self registerRemoteNotification];
     
-    cocos2d::CCApplication::sharedApplication()->run();
+    // Add a custom slpash view before calling cocos2d game
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:viewController.view.bounds];
+    imageView.image = [UIImage imageNamed:@"SecondLaunchImage"]; // Ensure this image is in Assets.xcassets
+    imageView.contentMode = UIViewContentModeCenter;
+    [viewController.view addSubview:imageView];
+
+    // Delay then switch cocos2d
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(),
+    ^{
+        cocos2d::CCApplication::sharedApplication()->run();
+        [imageView removeFromSuperview];
+    });
     
 #ifdef PROJECT_GUAJI_YOUGU_YIJIE
     return [[YJAppDelegae Instance] application:application didFinishLaunchingWithOptions:launchOptions];
 #endif
-    [NSThread sleepForTimeInterval:2];
+    //[NSThread sleepForTimeInterval:2];
     return YES;
 }
 
