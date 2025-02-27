@@ -333,6 +333,11 @@ static AppDelegate s_sharedApplication;
     // initialized sdk
     [self registerRemoteNotification];
     
+#ifdef PROJECT_GUAJI_YOUGU_YIJIE
+    return [[YJAppDelegae Instance] application:application didFinishLaunchingWithOptions:launchOptions];
+#endif
+    [NSThread sleepForTimeInterval:1];
+    
     // Add a custom slpash view before calling cocos2d game
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:viewController.view.bounds];
     imageView.image = [UIImage imageNamed:@"SecondLaunchImage"]; // Ensure this image is in Assets.xcassets
@@ -346,10 +351,6 @@ static AppDelegate s_sharedApplication;
         [imageView removeFromSuperview];
     });
     
-#ifdef PROJECT_GUAJI_YOUGU_YIJIE
-    return [[YJAppDelegae Instance] application:application didFinishLaunchingWithOptions:launchOptions];
-#endif
-    //[NSThread sleepForTimeInterval:2];
     return YES;
 }
 
