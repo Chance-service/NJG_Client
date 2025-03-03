@@ -292,7 +292,7 @@ void lib91::buyGoods(BUYINFO& info)
                              [orderId stringByReplacingOccurrencesOfString:@"\"" withString:@""],
                              [NSString stringWithUTF8String:token.c_str()],
                              orderSerial,
-                             [NSString stringWithUTF8String:info.name.c_str()]];
+                             [NSString stringWithUTF8String:info.productId.c_str()]];
             libPlatform* lp =libPlatformManager::getPlatform();
             lp->sendMessageP2G("onKusoPay", [msg UTF8String]);
         }
