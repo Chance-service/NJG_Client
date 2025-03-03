@@ -585,8 +585,11 @@ CCSpriteFrame* CCSpriteFrameCache::spriteFrameByName(const char *pszName)
 		else if (SeverConsts::Get()->IsKUSO()) {
 			pszName = "Icon_Hcoin_kuso.png";
 		}
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+        pszName = "Icon_Hcoin_kuso.png";
 #endif
-	}	
+        
+	}
     CCSpriteFrame* frame = (CCSpriteFrame*)m_pSpriteFrames->objectForKey(pszName);
 	
 #ifdef TEXTURE_CHECKING

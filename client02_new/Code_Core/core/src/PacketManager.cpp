@@ -430,7 +430,7 @@ PacketBase* PacketManager::createPacket( int opcode )
 	PACKET_FACTORY_MAP::iterator it = mFactories.find(opcode);
 	if(it==mFactories.end())
 	{
-		CCLOG("Can't find Packet Factory Name !");
+		CCLOG("Can't find Packet Factory Name! opcode: %d", opcode);
 		return 0;
 	}
 	return it->second->createPacket();

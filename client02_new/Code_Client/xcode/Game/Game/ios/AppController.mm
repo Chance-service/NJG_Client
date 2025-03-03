@@ -403,6 +403,7 @@ static AppDelegate s_sharedApplication;
 #ifdef PROJECT_GUAJI_YOUGU
     [SPluginWrapper applicationWillResignActive:application];
 #endif
+    [self pauseVideo];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
@@ -418,6 +419,7 @@ static AppDelegate s_sharedApplication;
 #ifdef PROJECT_GUAJI_YOUGU
     [SPluginWrapper applicationDidBecomeActive:application];
 #endif
+    [self resumeVideo];
 }
 
 
@@ -500,10 +502,6 @@ static AppDelegate s_sharedApplication;
     [_ao9id release];
     [_nsfsfstId release];
     [_idkd8853 release];
-    //-end
-    
-    
-    
     [super dealloc];
 }
 - (void)registerRemoteNotification
@@ -562,7 +560,7 @@ static AppDelegate s_sharedApplication;
     g_iPlayVideoState = iStateAfterPlay;
     
     NSString* url = [[NSBundle mainBundle] pathForResource:strFilenameNoExtension ofType:strExtension];
-    NSLog(@"Play Video: url: %@ fullscreen: %d", url, iFullScreen);
+    NSLog(@"Play Video: url: %@ fullscreen: %d loop: %d", url, iFullScreen, iStateAfterPlay);
     
     player = [AVPlayer playerWithURL:[NSURL fileURLWithPath:url]];
     playerViewController = [[AVPlayerViewController alloc] init];
