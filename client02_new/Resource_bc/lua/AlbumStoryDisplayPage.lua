@@ -533,7 +533,7 @@ function AlbumStoryDisplayBase:update(dt, container)
         if labelTimer >= labelSpeed then
             NeedTimes = SpineData[GameIndex].TypeTimes*6
             NodeHelper:setNodesVisible(container,{mHit=true})
-            nowTime = nowTime - 0.03
+            nowTime = nowTime - dt * 60 * 0.03 -- 以fps60校正時間 原0.03數字原因不明
             if TapTimes > 0 then
                 TapTimes = TapTimes - 0.3
             else
