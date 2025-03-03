@@ -107,9 +107,9 @@ static AppDelegate s_sharedApplication;
     __glView.backgroundColor = [UIColor clearColor];
     // Use RootViewController manage EAGLView
     viewController = [[RootViewController alloc] init];
-    //viewController.wantsFullScreenLayout = YES;
     viewController.edgesForExtendedLayout = UIRectEdgeNone; // Prevents extending under the navigation bar
     viewController.extendedLayoutIncludesOpaqueBars = NO;
+    __glView.userInteractionEnabled = false;
     viewController.view = __glView;
     
     [window setRootViewController:viewController];
@@ -332,7 +332,6 @@ static AppDelegate s_sharedApplication;
     
     // initialized sdk
     [self registerRemoteNotification];
-    
 #ifdef PROJECT_GUAJI_YOUGU_YIJIE
     return [[YJAppDelegae Instance] application:application didFinishLaunchingWithOptions:launchOptions];
 #endif
@@ -346,9 +345,14 @@ static AppDelegate s_sharedApplication;
 
     // Delay then switch cocos2d
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(),
-    ^{
+   ^{
         cocos2d::CCApplication::sharedApplication()->run();
         [imageView removeFromSuperview];
+        // Delay a bit to prevent crash by early touch, because we run cocos2d late
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(),
+        ^{
+            __glView.userInteractionEnabled = true;
+        });
     });
     
     return YES;
@@ -633,7 +637,6 @@ static AppDelegate s_sharedApplication;
     playerViewController = nil;
     player = nil;
     
-    cocos2d::CCApplication::sharedApplication();
     libPlatformManager::getPlatform()->sendMessageP2G("onPlayMovieEnd", "");
 }
 
@@ -652,7 +655,6 @@ static AppDelegate s_sharedApplication;
         [self stopVideo];
     }
     
-    cocos2d::CCApplication::sharedApplication();
     libPlatformManager::getPlatform()->sendMessageP2G("onPlayMovieEnd", "");
 }
 
