@@ -79,9 +79,9 @@ bool changeViewFrame = false;
         CGFloat height = size.height;
         CGFloat scale_screen = [UIScreen mainScreen].scale;
         //通过分辨率判断是否是iPhoneX手机
-        if ((width*scale_screen ==1125 and height*scale_screen ==2436)||
-            (width*scale_screen ==1242 and height*scale_screen ==2688)||
-            (width*scale_screen ==828 and height*scale_screen ==1792))
+        if ((width*scale_screen == 1125 and height*scale_screen == 2436)||
+            (width*scale_screen == 1242 and height*scale_screen == 2688)||
+            (width*scale_screen == 828 and height*scale_screen == 1792))
         {
             
             CGFloat leftX = 0;
@@ -89,19 +89,21 @@ bool changeViewFrame = false;
             CGFloat leftW = 500;
             CGFloat leftH = 200;
         
-            if (width*scale_screen ==1125 and height*scale_screen ==2436) {
+            if (width*scale_screen == 1125 and height*scale_screen == 2436) {
                 leftX = 0;
                 leftY = 30;
                 leftW = 375;
                 leftH = 760;
                 
-            }else if (width*scale_screen ==1242 and height*scale_screen ==2688)
+            }
+            else if (width*scale_screen == 1242 and height*scale_screen == 2688)
             {
                 leftX = 0;
                 leftY = 30;
                 leftW = 414;
                 leftH = 840;
-            }else if (width*scale_screen ==828 and height*scale_screen ==1792)
+            }
+            else if (width*scale_screen == 828 and height*scale_screen == 1792)
             {
                 leftX = 0;
                 leftY = 30;
@@ -116,6 +118,7 @@ bool changeViewFrame = false;
                 self.view.frame = s;
                 // 只需要记录一次，因为每次change view frame 都会改变一次这个
                 changeViewFrame = true;
+
             }
         }
     }

@@ -181,6 +181,7 @@ void lib91::setupSDK(int platformId)
     // Setup kuso sdk
     if ((SeverConsts::E_PLATFORM)platformId == SeverConsts::EP_KUSO)
     {
+        UIViewController* controller = [UIApplication sharedApplication].keyWindow.rootViewController;
         NSLog(@"KUSO: Setup");
         PlayCenterConfig *config = [[[PlayCenterConfig alloc]
                                      initWithAppId:@"APPncbR1hdPgUIjSKt"
@@ -189,9 +190,8 @@ void lib91::setupSDK(int platformId)
                                      subId:@"NG24"
                                     ] autorelease];
         [PlayCenter.shared
-         setupViewController:[UIApplication sharedApplication].keyWindow.rootViewController
+         setupViewController:controller
          config:config];
-        
     }
     // Init tapDB
     NSLog(@"TapDB: Setup");
@@ -234,6 +234,13 @@ void lib91::logout()
 void lib91::doKUSOLogin()
 {
     NSLog(@"KUSO: Try Login");
+    UIViewController* controller = [UIApplication sharedApplication].keyWindow.rootViewController;
+    CGRect frame = controller.view.frame;
+    //float oldY = frame.origin.y;
+    //NSLog(@"KUSO: Adjust view y: %f", oldY);
+    frame.origin.y = -10;
+    controller.view.frame = frame;
+    //NSLog(@"KUSO: Adjust view y: %f", oldY);
     KUSOLoginListener *listener = [[KUSOLoginListener alloc] init];
     listener.onLoginSuccessBlock = ^(BOOL success, NSString * _Nullable userId, NSString * _Nullable t, PlayCenterError * _Nullable error)
     {
@@ -248,6 +255,10 @@ void lib91::doKUSOLogin()
             NSLog(@"KUSO: Login Failed: %@", error.message);
             _boardcastLoginResult(false, "Login Failed!");
         }
+        CGRect f = controller.view.frame;
+        f.origin.y = 30;
+        //NSLog(@"KUSO: reset view y: %f", oldY);
+        controller.view.frame = f;
     };
     
     [PlayCenter.shared loginListener:listener];
