@@ -27,7 +27,7 @@ local RoleName=nil;
 local IconIdx=1
 
 function AlbumDisplayBase:onEnter(container)
-    NodeHelper:setSpriteImage(container,{mPhoto="UI/Common/Album/FullSprite/"..RoleName..".jpg"})
+    NodeHelper:setSpriteImage(container,{mPhoto="UI/Common/Album/FullSprite/Full_"..RoleName..".jpg"})
     local title=common:getLanguageString("@"..RoleName.."_title")
     local content=common:getLanguageString("@"..RoleName)
     if  IconIdx==4 then

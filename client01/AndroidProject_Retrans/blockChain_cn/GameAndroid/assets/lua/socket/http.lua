@@ -7,10 +7,10 @@
 -----------------------------------------------------------------------------
 -- Declare module and import dependencies
 -------------------------------------------------------------------------------
-local socket = require("socket.socket")
+local socket = require("socket.socket2")
 local url = require("socket.url")
-local ltn12 = require("socket.ltn12")
-local mime = require("socket.mime")
+local ltn12 = require("socket.ltn122")
+local mime = require("socket.mime2")
 local string = require("string")
 local headers = require("socket.headers")
 local base = _G

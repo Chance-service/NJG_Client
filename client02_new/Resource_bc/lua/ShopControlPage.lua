@@ -1,5 +1,5 @@
 -- 轉接
-return require("Shop.ShopControlPage")
+return require("Shop.ShopControlPageNew")
 
 
 

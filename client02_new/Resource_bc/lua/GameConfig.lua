@@ -1379,48 +1379,48 @@ GameConfig = {
         [21] = "UI/Animation/Expression/Expression_21.png",-- 抓狂
     },
     ChatBigFace = {
-        [1] = "UI/Animation/ExpressionBig/Expression_01.png",
+        [1] = "UI/Animation/ExpressionBig/ExpressionBig_01.png",
         -- 敲
-        [2] = "UI/Animation/ExpressionBig/Expression_02.png",
+        [2] = "UI/Animation/ExpressionBig/ExpressionBig_02.png",
         -- 疑问
-        [3] = "UI/Animation/ExpressionBig/Expression_03.png",
+        [3] = "UI/Animation/ExpressionBig/ExpressionBig_03.png",
         -- 流汗
-        [4] = "UI/Animation/ExpressionBig/Expression_04.png",
+        [4] = "UI/Animation/ExpressionBig/ExpressionBig_04.png",
         -- 阴险
-        [5] = "UI/Animation/ExpressionBig/Expression_05.png",
+        [5] = "UI/Animation/ExpressionBig/ExpressionBig_05.png",
         -- 再见
-        [6] = "UI/Animation/ExpressionBig/Expression_06.png",
+        [6] = "UI/Animation/ExpressionBig/ExpressionBig_06.png",
         -- 晕
-        [7] = "UI/Animation/ExpressionBig/Expression_07.png",
+        [7] = "UI/Animation/ExpressionBig/ExpressionBig_07.png",
         -- 白眼
-        [8] = "UI/Animation/ExpressionBig/Expression_08.png",
+        [8] = "UI/Animation/ExpressionBig/ExpressionBig_08.png",
         -- 抠鼻
-        [9] = "UI/Animation/ExpressionBig/Expression_09.png",
+        [9] = "UI/Animation/ExpressionBig/ExpressionBig_09.png",
         -- 衰
-        [10] = "UI/Animation/ExpressionBig/Expression_10.png",
+        [10] = "UI/Animation/ExpressionBig/ExpressionBig_10.png",
         -- 憨笑
-        [11] = "UI/Animation/ExpressionBig/Expression_11.png",
+        [11] = "UI/Animation/ExpressionBig/ExpressionBig_11.png",
         -- 困
-        [12] = "UI/Animation/ExpressionBig/Expression_12.png",
+        [12] = "UI/Animation/ExpressionBig/ExpressionBig_12.png",
         -- 擦汗
-        [13] = "UI/Animation/ExpressionBig/Expression_13.png",
+        [13] = "UI/Animation/ExpressionBig/ExpressionBig_13.png",
         -- 流泪
-        [14] = "UI/Animation/ExpressionBig/Expression_14.png",
+        [14] = "UI/Animation/ExpressionBig/ExpressionBig_14.png",
         -- 偷笑
-        [15] = "UI/Animation/ExpressionBig/Expression_15.png",
+        [15] = "UI/Animation/ExpressionBig/ExpressionBig_15.png",
         -- 吐
-        [16] = "UI/Animation/ExpressionBig/Expression_16.png",
+        [16] = "UI/Animation/ExpressionBig/ExpressionBig_16.png",
         -- 傲慢
-        [17] = "UI/Animation/ExpressionBig/Expression_17.png",
+        [17] = "UI/Animation/ExpressionBig/ExpressionBig_17.png",
         -- 酷
-        [18] = "UI/Animation/ExpressionBig/Expression_18.png",
+        [18] = "UI/Animation/ExpressionBig/ExpressionBig_18.png",
         -- 难过
-        [19] = "UI/Animation/ExpressionBig/Expression_19.png",
+        [19] = "UI/Animation/ExpressionBig/ExpressionBig_19.png",
         -- 惊讶
-        [20] = "UI/Animation/ExpressionBig/Expression_20.png",
+        [20] = "UI/Animation/ExpressionBig/ExpressionBig_20.png",
         -- 抓狂
 
-        [21] = "UI/Animation/ExpressionBig/Expression_21.png",-- 抓狂
+        [21] = "UI/Animation/ExpressionBig/ExpressionBig_21.png",-- 抓狂
     },
     titleColor = {
         -- 公会聊天称号颜色

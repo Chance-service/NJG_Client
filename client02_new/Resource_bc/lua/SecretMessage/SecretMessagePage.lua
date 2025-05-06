@@ -182,7 +182,7 @@ function ChatMessageItem:refresh()
         FileName = ChatMessageItem:getFileName(msg)
         NodeHelper:setNodesVisible(self.container, {mTexNode = false, mPhoto = true})
         NodeHelper:setSpriteImage(self.container, {mPhotoImg = "UI/Common/Album/" .. FileName .. ".jpg"})
-        self.FileName = "UI/Common/Album/FullSprite/" .. FileName .. ".jpg"
+        self.FileName = "UI/Common/Album/FullSprite/Full_" .. FileName .. ".jpg"
     else
         NodeHelper:setNodesVisible(self.container, {mTexNode = true, mPhoto = false})
         --local lastContainer = ChatItems[#ChatItems].node:getCCBFileNode()
