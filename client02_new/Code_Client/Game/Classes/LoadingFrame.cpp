@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 
 #include "LoadingFrame.h"
 #include "AppDelegate.h"
@@ -16,8 +16,6 @@
 //#include "DataTableManager.h"
 #include <list>
 #include <vector>
-//#include "comHuTuo.h"
-//#include "Base64.h"
 #include "md5.h"
 #include "LoginPacket.h"
 #include "waitingManager.h"
@@ -41,7 +39,6 @@
 #include "LoginUserPage.h"
 #include "Lua_EcchiGamerSDKBridge.h"
 #include "LoginBCPage.h"
-#include "LangSettingPage.h"
 #include "ConfirmPage.h"
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) 
 #include "jni/Java_org_cocos2dx_lib_Cocos2dxHelper.h"
@@ -51,13 +48,11 @@ USING_NS_CC_EXT;
 
 
 #define downLoadSavePath         "hotUpdate"
-#define downLoadUpdateFileName   "hotUpdate.zip"
 #define downLoadUpdateDir        "update"
 #define versionPath              "version"
-#define versionManifestName      "version.manifest"
 #define versionAppManifestName	 "versionApp.manifest"
+#define versionManifestName      "version.manifest"
 #define versionManifestNameTmp   "versionTmp.manifest"
-#define SPINE_CFG_TXT            "txt/LoadingSpineCfg.txt"
 #define projectManifestName      "project.manifest"
 #define projectManifestLocalName "projectLocal.manifest"
 #define updateVersionTipsName    "UpdateVersionTips.cfg"
@@ -78,7 +73,7 @@ REGISTER_PAGE("LoadingFrame",LoadingFrame);
 #define CONNECT_DIRECT_ENABLE 0
 #define CONNECT_DIRECT_ADDRESS "127.0.0.1"
 #define CONNECT_DIRECT_PORT 25524
-#define MaxResumeTime 5
+#define MaxResumeTime 50
 int g_iSelectedSeverIDCopy;
 
 LoadingFrame::LoadingFrame(void)
@@ -93,7 +88,6 @@ LoadingFrame::LoadingFrame(void)
 	, currentFileLoadSize(0)
 	, versionStat(NONE)
 	, versionAppCompareStat(EQUAL)
-	, versionCodeStat(EQUAL)
 	, versionResourceStat(EQUAL)
 	, connectCount(0)
 	, _ProgressTimerNode(NULL)
@@ -127,7 +121,7 @@ void LoadingFrame::Enter( GamePrecedure* )
 	libPlatformManager::getPlatform()->registerListener(this);
 	
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) 
-	if (SeverConsts::Get()->IsH365()/* || SeverConsts::Get()->IsKUSO()*/) // H365
+	if (SeverConsts::Get()->IsH365()) // H365
 	{
 		libPlatformManager::getPlatform()->login();
 	}
@@ -146,18 +140,13 @@ void LoadingFrame::Enter( GamePrecedure* )
 
 	mSpineData = new SpineData();
 
-	this->getLocalSpineDataCfg();
-
-    CCLOG("init severConst...");
+    CCLog("init severConst...");
     SeverConsts::Get()->init(GamePlatformInfo::getInstance()->getPlatVersionName());
 	mScene = CCScene::create();
 	mScene->retain();
 	mScene->addChild(this);
 	
 	load();
-    
-	//CCTextureCache::sharedTextureCache()->dumpCachedTextureInfo();
-
 
 	setWaitGameNodeVisible(false);
     setLoginGameNodeVisible(false);
@@ -172,15 +161,9 @@ void LoadingFrame::Enter( GamePrecedure* )
 
 	CCLabelTTF* eb = dynamic_cast<CCLabelTTF*>(getVariable("mSeverName1"));
     if(eb)eb->setString("");
-	//CCLabelTTF* versionLabel = dynamic_cast<CCLabelTTF*>(getVariable("mVer"));//mLoading1
-	//if(versionLabel)
-	//{
-	//	std::string ver = "Ver" + SeverConsts::Get()->getVersion();
-	//	versionLabel->setString(ver.c_str());
-	//}
     
 	CCB_FUNC(this, "mLoading1", cocos2d::CCLabelBMFont, setString(""));
-    CCLOG("************start running LoadingFrame scene**************");
+    CCLog("************start running LoadingFrame scene**************");
 	
 	CCDirector::sharedDirector()->setDepthTest(true);
 	// run
@@ -188,14 +171,7 @@ void LoadingFrame::Enter( GamePrecedure* )
 		cocos2d::CCDirector::sharedDirector()->replaceScene(mScene);
 	else
 		cocos2d::CCDirector::sharedDirector()->runWithScene(mScene);
-    
-	/*std::string loadingSceneMsg=Language::Get()->getString("@loading2");
-	const PlatformRoleItem* item=PlatformRoleTableManager::Get()->getPlatformRoleByName(libPlatformManager::getPlatform()->getClientChannel());
-	if(item)
-	{
-		loadingSceneMsg=item->loadinScenceMsg;
-	}
-	CCB_FUNC(this,"mLoadingScenceMsg",CCLabelBMFont,setString(loadingSceneMsg.c_str()));*/
+
 	if (GamePrecedure::Get()->isReEnterLoadingFrame())
 	{
 		//onUpdate(NULL, true, "");//重进这种情况，刷新一下
@@ -233,13 +209,10 @@ void LoadingFrame::Exit( GamePrecedure* )
 	PacketManager::Get()->removePacketHandler(this);
 	MessageManager::Get()->removeMessageHandler(this);
 
-	//CCNode* aniNode = dynamic_cast<CCNode*>(getVariable("mLogoAni"));
-	//aniNode:removeAllChildrenWithCleanup(true);
-    
 	unload();
 	mScene->removeAllChildrenWithCleanup(true);
 	mScene->release();
-	CCLOG("loading frame mScene retainCount:%d",mScene->retainCount());
+	CCLog("loading frame mScene retainCount:%d",mScene->retainCount());
 	mScene = NULL;
 	mThread.shutdown();
 }
@@ -272,9 +245,6 @@ void LoadingFrame::Execute( GamePrecedure* gp)
 	if (SeverConsts::Get()->mCheckState == SeverConsts::CS_OK && (!m_haveLoadAnnounce))
 	{
 		m_haveLoadAnnounce = true;
-		//ontestLogin();
-		//showAnnounce();
-		//updateSeverName();
 	}
 
 	LoginBCPage *mLoginBCPage = dynamic_cast<LoginBCPage*>(CCBManager::Get()->getPage("LoginBCPage"));
@@ -341,10 +311,9 @@ void LoadingFrame::onLogin(libPlatform* lib, bool success, const std::string& lo
 	cocos2d::CCLog("LoadingFrame::onLogin");
     if(success)
     {
-		//bool haveDefaultLoing = false;
 		std::string uin = "";
 		std::string pass = "";
-		if (SeverConsts::Get()->IsH365() || SeverConsts::Get()->IsJSG() || SeverConsts::Get()->IsLSJ() /*|| SeverConsts::Get()->IsKUSO()*/) // H365,JSG,LSJ
+		if (SeverConsts::Get()->IsH365() || SeverConsts::Get()->IsJSG() || SeverConsts::Get()->IsLSJ()) // H365/JSG/LSJ
 		{
 			#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 				std::string uinkey = "LastLoginPUID";
@@ -356,20 +325,24 @@ void LoadingFrame::onLogin(libPlatform* lib, bool success, const std::string& lo
 				if ((uin != "") && (pass != ""))
 				{
 					libPlatformManager::getPlatform()->setLoginName(uin);
-					//libOS::getInstance()->initUserID(uin);
 					GamePrecedure::getInstance()->setDefaultPwd(pass);
-					//haveDefaultLoing = true;
 				}
-
 			#endif
 		}
 		else if(SeverConsts::Get()->IsEroR18()) //工口
 		{
 			Lua_EcchiGamerSDKBridge::callLoginbyC(); // c++ sdk to call java
 		}
-		else if (SeverConsts::Get()->IsKUSO()) //Kuso
+		else if (SeverConsts::Get()->IsKUSO()) //69
 		{
 			cocos2d::CCLog("LoadingFrame::onLogin IsKUSO");
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) 
+			callPlatformLoginJNI();
+#endif
+		}
+		else if (SeverConsts::Get()->IsAPLUS()) //aplus
+		{
+			cocos2d::CCLog("LoadingFrame::onLogin IsAPLUS");
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) 
 			callPlatformLoginJNI();
 #endif
@@ -385,17 +358,9 @@ void LoadingFrame::onLogin(libPlatform* lib, bool success, const std::string& lo
 			if ((uin != "") && (pass != ""))
 			{
 				libPlatformManager::getPlatform()->setLoginName(uin);
-				//libOS::getInstance()->initUserID(uin);
 				GamePrecedure::getInstance()->setDefaultPwd(pass);
-				//haveDefaultLoing = true;
 			}
 		}
-
-		//取得登入帳號類型
-		//std::string loginType = CCUserDefault::sharedUserDefault()->getStringForKey("EroLoginType", "");
-		//if (loginType != "") {	//有紀錄
-			//defultType = loginType == "Normal" ? ERO_LOGINTYPE::LOGINTYPE_NORMAL_ACCOUNT : loginType == "EroGuest" ? ERO_LOGINTYPE::LOGINTYPE_ERO_GUEST : ERO_LOGINTYPE::LOGINTYPE_ERO_ACCOUNT;
-		//}
 
 		GamePrecedure::Get()->setLoginCode(log);
         mLogined = true;
@@ -413,9 +378,7 @@ void LoadingFrame::onLogin(libPlatform* lib, bool success, const std::string& lo
 		if (newServerId != mSelectedSeverID)
 		{
 			mSelectedSeverID = newServerId;
-			//t
 			m_bUpdateServerName = true;
-			// updateSeverName();
 		}
 		if (getVariable("mSeverNode"))
 		{
@@ -426,7 +389,7 @@ void LoadingFrame::onLogin(libPlatform* lib, bool success, const std::string& lo
 			}
 		}
 		
-		if (SeverConsts::Get()->IsH365() || SeverConsts::Get()->IsJSG() || SeverConsts::Get()->IsLSJ() || SeverConsts::Get()->IsKUSO()) // H365,JSG,LSJ
+		if (SeverConsts::Get()->IsH365() || SeverConsts::Get()->IsJSG() || SeverConsts::Get()->IsLSJ() || SeverConsts::Get()->IsKUSO() || SeverConsts::Get()->IsAPLUS()) // H365/JSG/LSJ/69/a+
 		{
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 			showSevers(true);
@@ -456,45 +419,24 @@ void LoadingFrame::onPlatformLogout(libPlatform*)
 	if (SeverConsts::Get()->IsEroR18()){
 		Lua_EcchiGamerSDKBridge::callLogoutbyC();
 	}
-  //  if(!libPlatformManager::getPlatform()->getLogined())
-  //  {
-  //      CCLabelTTF* eb = dynamic_cast<CCLabelTTF*>(getVariable("mLoginName"));
-		//if(eb)
-		//	eb->setString("Login");
-		//else
-		//{
-		//	CCLabelBMFont* eb2 = dynamic_cast<CCLabelBMFont*>(getVariable("mLoginName"));
-		//	if(eb2)eb2->setString("Login");
-		//}
-  //      CCMessageBox(Language::Get()->getString("@LOADINGFRAME_HAVENOT_LOGIN").c_str(),"");
-  //  }
 };
 
-void LoadingFrame::onUpdate(libPlatform*,bool ok, std::string msg)
+void LoadingFrame::onUpdate(libPlatform*, bool ok, std::string msg)
 {
     if(!ok)
     {
-		CCLOG("LoadingFrame::onUpdate failed");
+		cocos2d::CCLog("LoadingFrame::onUpdate failed");
         libOS::getInstance()->showMessagebox(msg);
     }
     else
     {
 		cocos2d::CCLog("LoadingFrame::onUpdate success");
-		CCLOG("LoadingFrame::onUpdate success");
         SeverConsts::Get()->start();
-		////弹出公告板
-		//showAnnounce();
-		////加载资源
-
-
     }
 }
 
 void LoadingFrame::LoginSuccess()
 {
-
-	//SeverConsts::Get()->mCheckState = SeverConsts::CS_OK;
-
 	if (GamePrecedure::Get()->isReEnterLoadingFrame())
 	{
 		libPlatformManager::getPlatform()->logout();
@@ -503,25 +445,18 @@ void LoadingFrame::LoginSuccess()
 	cocos2d::CCLog("LoadingFrame::LoginSuccess");
 	libPlatformManager::getPlatform()->initWithConfigure(GamePlatformInfo::getInstance()->getPlatFromconfig());
 	loginReport(REPORT_STEP::REPORT_STEP_END_DOWNLOAD_PATCH);
-//#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-//	if (!GamePrecedure::Get()->isReEnterLoadingFrame())
-//		libPlatformManager::getPlatform()->initWithConfigure(GamePlatformInfo::getInstance()->getPlatFromconfig());
-//#else
-//	libPlatformManager::getPlatform()->initWithConfigure(GamePlatformInfo::getInstance()->getPlatFromconfig());
-//#endif
 }
 void LoadingFrame::onMessageboxEnter(int tag)
 {
     if(tag == 100)
     {
-		CCLOG("onMessageBoxEnter tag 100  versionStat is %d---", versionStat);
+		CCLog("onMessageBoxEnter tag 100  versionStat is %d---", versionStat);
 		if (versionStat == UPDATE_APP_STORE)
 		{
 			appStoreUpdate();
 		}
 		else if (versionStat == CHECK_PROJECT_ASSETS_DONE)
 		{
-		    //hidLoadingAniPage();
 			setOpcaityLoadingAniPage(0);
 			UpdateAssetFromServer();
 		}
@@ -571,48 +506,7 @@ void LoadingFrame::onMessageboxEnter(int tag)
 		mNetWorkNotWorkMsgShown = false;
 	}
 }
-/**
-param1 txt_files_path  是一个具体的txt文件 里面存放的是要解析的所有文件的名字  "E:\\txt\\txt\\txt.txt"
-param2 src_path  是要解析的文件的文件夹路径    "E:\\Assets\\txt\\"
-param  des_path  是要存放的文件夹路径    "E:\\girl\\txt\\"
-*/
-void LoadingFrame::Encrypt_GirlFile(std::string txt_files_path, std::string src_path, std::string des_path)
-{
-	//解析资源的时候 要先设置对应的加密密码  GameEncryptKey.h 设置
-	//读取txt文件
-	ConfigFile cfg;
-	ConfigFile* st_pImgsetCfg = NULL;
 
-	if (st_pImgsetCfg == NULL)
-	{
-		cfg.load(txt_files_path);
-		st_pImgsetCfg = &cfg;
-
-	}
-	ConfigFile::SettingsMapIterator itr = cfg.getSettingsMapIterator();
-	while (itr.hasMoreElements())
-	{
-		std::string fileTmp = src_path;
-		std::string filenameTmp = itr.getNext();
-		std::string filename = fileTmp + filenameTmp;
-
-		static int ic = 0;
-		CCLOG("Imageset%d:%s", ++ic, filename.c_str());
-		if (!filename.empty())
-		{
-			unsigned long codeBufferSize = 0;
-			unsigned char* codeBuffer = CCFileUtils::sharedFileUtils()->getFileData(cocos2d::CCFileUtils::sharedFileUtils()->fullPathForFilename(filename.c_str()).c_str(),
-				"rb", &codeBufferSize, false);
-			if (codeBuffer)
-			{
-				std::string path = des_path + filenameTmp;
-				FILE * out = fopen(path.c_str(), "wb");
-				fwrite(codeBuffer, codeBufferSize, 1, out);
-				fclose(out);
-			}
-		}
-	}
-}
 void LoadingFrame::onMenuItemAction( const std::string& itemName ,cocos2d::CCObject* sender)
 {
     if(itemName == "onSever")
@@ -639,14 +533,6 @@ void LoadingFrame::onMenuItemAction( const std::string& itemName ,cocos2d::CCObj
 #endif
 		}
 	}
-	else if (itemName == "onServiceSupport")
-	{
-		showFeedBack();
-	}
-	else if (itemName == "onDataTransfer")
-	{
-		showChangeUser();
-	}
 	else if(itemName == "onClose")
 	{
 		showSevers(false);
@@ -666,7 +552,7 @@ void LoadingFrame::onMenuItemAction( const std::string& itemName ,cocos2d::CCObj
 		if (m_IsCheckLogout)
 		{
 			CCLog("onConfirmLogout2");
-			if (SeverConsts::Get()->IsH365() || SeverConsts::Get()->IsJSG() || SeverConsts::Get()->IsLSJ() || SeverConsts::Get()->IsKUSO())
+			if (SeverConsts::Get()->IsH365() || SeverConsts::Get()->IsJSG() || SeverConsts::Get()->IsLSJ() || SeverConsts::Get()->IsKUSO() || SeverConsts::Get()->IsAPLUS())
 			{
 				CCLog("onConfirmLogout3");
 				libPlatformManager::getPlatform()->logout();
@@ -678,28 +564,20 @@ void LoadingFrame::onMenuItemAction( const std::string& itemName ,cocos2d::CCObj
 			else
 			{
 				CCLog("onConfirmLogout4");
-				//std::string loginType = CCUserDefault::sharedUserDefault()->getStringForKey("EroLoginType", "");
-				//if (loginType == "EroGuest" || loginType == "EroAccount") {
 				libPlatformManager::getPlatform()->logout();
-				//}
 				setLogoutNodeVisible(false);
 				setLogoutBtnVisible(false);
 				setEnterGameNodeVisible(false);
-				//defultType = ERO_LOGINTYPE::LOGINTYPE_NONE;
-//#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 				CCUserDefault::sharedUserDefault()->setStringForKey("LastLoginPUID", "");
 				CCUserDefault::sharedUserDefault()->setStringForKey("PassKey", "");
 				CCUserDefault::sharedUserDefault()->setStringForKey("ecchigamer.token", "");
-				//CCUserDefault::sharedUserDefault()->setStringForKey("EroLoginType", "");
-				//showLoginUser();
-//#endif	
 			}
 		}
 
 	}
 	else if (itemName == "onOpenLogoutNode")
 	{
-		if (SeverConsts::Get()->IsH365() || SeverConsts::Get()->IsJSG() || SeverConsts::Get()->IsLSJ() || SeverConsts::Get()->IsKUSO())
+		if (SeverConsts::Get()->IsH365() || SeverConsts::Get()->IsJSG() || SeverConsts::Get()->IsLSJ() || SeverConsts::Get()->IsKUSO() || SeverConsts::Get()->IsAPLUS())
 		{
 			libPlatformManager::getPlatform()->logout();
 		}
@@ -719,10 +597,6 @@ void LoadingFrame::onMenuItemAction( const std::string& itemName ,cocos2d::CCObj
 		m_IsCheckLogout = !m_IsCheckLogout;
 		setLogoutCheck(m_IsCheckLogout);
 	}
-	else if (itemName == "onBCLogin")
-	{
-		showBCLogin();
-	}
 	else if (itemName == "onBCGuest")
 	{
 		sendGuestLogin();
@@ -733,11 +607,6 @@ void LoadingFrame::onMenuItemAction( const std::string& itemName ,cocos2d::CCObj
 		{
 			ontestLogin();
 		}
-		//showAnnounce();
-	}
-	else if (itemName == "onLangBtn")
-	{
-		showLangSetting();
 	}
 }
 
@@ -747,8 +616,6 @@ void LoadingFrame::onAnimationDone(const std::string& animationName){
 		showLoadingAniPage();
 		setPosLoadingAniPage();
 		checkVersion();
-		//SeverConsts::Get()->mCheckState = SeverConsts::CS_OK;
-		//showAnnounce();
 	}
 }
 
@@ -776,30 +643,10 @@ void LoadingFrame::loginReport(int step)
 		data["properties"] = property.toStyledString();
 		
 		libPlatformManager::getPlatform()->sendMessageG2P("G2P_TAPDB_HANDLER", data.toStyledString());
-
-		//std::string url = VaribleManager::Get()->getSetting("DatareportUrl", "", "");
-		//if (url == "") {
-		//	return;
-		//}
-		//url.append("/recordStep?");
-		////版本
-		////url.append("&gameVersion=" + localVersionData->versionResource);
-		//
-		////数据只管发不做返回处理
-		//std::string data = CCString::createWithFormat("device=%s&platform=%s&step=%d", deviceid.c_str(), platform.c_str(), step)->m_sString;
-		//auto request = new CCHttpRequest();
-		//request->setUrl(url.c_str());
-		//request->setRequestType(CCHttpRequest::HttpRequestType::kHttpPost);
-		//request->setRequestData(data.c_str(), data.size());
-		//CCHttpClient::getInstance()->send(request);
-
-		//CCUserDefault::sharedUserDefault()->setIntegerForKey(stepKey.c_str(), step);
-
-		//request->release();
 	}
 	catch (...)
 	{
-		CCLOG("URL REQUEST IS NOT  REACH");
+		CCLog("URL REQUEST IS NOT  REACH");
 	}
 
 }
@@ -813,24 +660,16 @@ void LoadingFrame::loginGame(std::string& address, int port, bool isRegister)
 #endif
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) && defined(Macro_AndroidTestJiHuoMa)
-	PacketManager::Get()->registerPacketHandler(OPCODE_ACTIVE_CODERET_S,this);
+	PacketManager::Get()->registerPacketHandler(OPCODE_ACTIVE_CODERET_S, this);
 #endif
-	//ServerDateManager::Get()->setSeverID(mSelectedSeverID);
-	PacketManager::Get()->registerPacketHandler(LOGIN_S,this);
-	PacketManager::Get()->registerPacketHandler(ERROR_CODE,this);
+	PacketManager::Get()->registerPacketHandler(LOGIN_S, this);
+	PacketManager::Get()->registerPacketHandler(ERROR_CODE, this);
 
 	HPLogin loginPack;
 	GamePrecedure::Get()->setServerID(mSelectedSeverID);
 	GamePrecedure::Get()->setAlertServerUpdating(false);
 	std::string uin = libPlatformManager::getPlatform()->loginUin();
 
-#ifdef PROJECT91Quasi
-	if(gPuid != "")
-	{
-		uin = gPuid;
-		GamePrecedure::Get()->setLoginUin(uin);
-	}
-#endif
 	std::string platformInfo = libPlatformManager::getPlatform()->getPlatformInfo();
 	std::string deviceID = libOS::getInstance()->getDeviceID();
 
@@ -849,83 +688,52 @@ void LoadingFrame::loginGame(std::string& address, int port, bool isRegister)
 		deviceID="device id is empty";
 	if(!platformInfo.empty())
 		loginPack.set_platform(platformInfo);
-#ifdef PROJECT91Quasi
-	if (uin.empty())
+
+	loginPack.set_puid(uin);
+	loginPack.set_isrelogin(false);
+	std::string aPwd = GamePrecedure::getInstance()->getDefaultPwd();
+	if (SeverConsts::Get()->IsEroR18())
 	{
-		libOS::getInstance()->showInputbox(true);
+		loginPack.set_passwd(aPwd);
 	}
 	else
 	{
-#endif
-		loginPack.set_puid(uin);
-		loginPack.set_isrelogin(false);
-		std::string aPwd = GamePrecedure::getInstance()->getDefaultPwd();
-		if (SeverConsts::Get()->IsEroR18())
-		{
-			//loginPack.set_registed(isRegister);
+		if (aPwd != "")
 			loginPack.set_passwd(aPwd);
-		}
-		else
-		{
-			if (aPwd != "")
-				loginPack.set_passwd(aPwd);
-		}
-		int isGuest = libPlatformManager::getPlatform()->getIsGuest();
-		//if (isGuest == 0 && SeverConsts::Get()->IsEroR18()){
-		//	std::string loginType = CCUserDefault::sharedUserDefault()->getStringForKey("EroLoginType", "");
-		//	isGuest = loginType == "EroGuest" ? ERO_LOGINTYPE::LOGINTYPE_ERO_GUEST : loginType == "EroAccount" ? ERO_LOGINTYPE::LOGINTYPE_ERO_ACCOUNT : ERO_LOGINTYPE::LOGINTYPE_NORMAL_ACCOUNT;
-		//}
-		loginPack.set_isguest(isGuest);
-		loginPack.set_deviceid(deviceID);
-        std::string token = libPlatformManager::getPlatform()->getToken();
-        loginPack.set_token(token);
-        
-		std::string langArea = GamePrecedure::getInstance()->getI18nSrcPath();
-		if (langArea == "")
-		{
-			langArea = "none";
-		}
-		loginPack.set_langarea(langArea);
-        g_iSelectedSeverIDCopy = mSelectedSeverID;
-		loginPack.set_serverid(mSelectedSeverID);
-		loginPack.set_version(SeverConsts::Get()->getServerVersion());
-
-		mSendLogin=true;
-		LoginPacket::Get()->setEnabled(false);
-		PacketManager::Get()->sendPakcet(LOGIN_C,&loginPack);
-		//caculate the time to kill game when player enter background
-		if(VaribleManager::Get()->getSetting("ExitGameTime")!="")
-		{
-			TimeCalculator::getInstance()->createTimeCalcultor("ExitGameTime",StringConverter::parseInt(VaribleManager::Get()->getSetting("ExitGameTime")));
-		}
-		//登录信息上报
-		//loginReport();
-#ifdef PROJECT91Quasi
 	}
-#endif
+	int isGuest = libPlatformManager::getPlatform()->getIsGuest();
+	loginPack.set_isguest(isGuest);
+	loginPack.set_deviceid(deviceID);
+    std::string token = libPlatformManager::getPlatform()->getToken();
+    loginPack.set_token(token);
+    
+	std::string langArea = GamePrecedure::getInstance()->getI18nSrcPath();
+	if (langArea == "")
+	{
+		langArea = "none";
+	}
+	loginPack.set_langarea(langArea);
+    g_iSelectedSeverIDCopy = mSelectedSeverID;
+	loginPack.set_serverid(mSelectedSeverID);
+	loginPack.set_version(SeverConsts::Get()->getServerVersion());
+
+	mSendLogin=true;
+	LoginPacket::Get()->setEnabled(false);
+	PacketManager::Get()->sendPakcet(LOGIN_C,&loginPack);
+	//caculate the time to kill game when player enter background
+	if(VaribleManager::Get()->getSetting("ExitGameTime")!="")
+	{
+		TimeCalculator::getInstance()->createTimeCalcultor("ExitGameTime",StringConverter::parseInt(VaribleManager::Get()->getSetting("ExitGameTime")));
+	}
 }
 void LoadingFrame::onInputboxEnter(const std::string& content)
 {
     gPuid = content;
-#ifdef PROJECT91Quasi
-    //add by xinghui
-    CCLabelTTF* eb1 = dynamic_cast<CCLabelTTF*>(getVariable("mLoginName"));
-    if (eb1) {
-        eb1->setString(gPuid.c_str());
-    }else
-    {
-        CCLabelBMFont* eb2 = dynamic_cast<CCLabelBMFont*>(getVariable("mLoginName"));
-        if (eb2) {
-            eb2->setString(gPuid.c_str());
-        }
-    }
-#endif
 }
 
 void LoadingFrame::onMenuItemAction( const std::string& itemName, cocos2d::CCObject* sender, int tag )
 {
 	mSelectedSeverID = tag;
-	//updateLocalSeverId();
 	updateSeverName();
 	showSevers(false);
 	if (!SeverConsts::Get()->IsEroR18()) //H365
@@ -933,22 +741,6 @@ void LoadingFrame::onMenuItemAction( const std::string& itemName, cocos2d::CCObj
 		#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 			showLoginUser();
 		#endif
-	}
-	else
-	{
-		//std::string uin = "";
-		//std::string pass = "";
-		//std::string uinkey = "LastLoginPUID";
-		//uin = CCUserDefault::sharedUserDefault()->getStringForKey(uinkey.c_str(), "");
-		//std::string passkey = "PassKey";
-		//pass = CCUserDefault::sharedUserDefault()->getStringForKey(passkey.c_str(), "");
-		//std::string token = CCUserDefault::sharedUserDefault()->getStringForKey("ecchigamer.token", "");
-		//if (uin.length() > 35 && uin.find("-") != uin.npos && token != "") {	//有工口帳號紀錄
-		//	setEnterGameNodeVisible(true);
-		//}
-		//else {
-		//	showLoginUser(uin, pass, defultType);
-		//}
 	}
 }
 
@@ -967,6 +759,23 @@ void LoadingFrame::load( void )
 	rootNode->setContentSize(CCSize(720.0f, rootNode->getContentSize().height));
 	//unsigned long filesize;
 	//char* pBuffer = (char*)cocos2d::CCFileUtils::sharedFileUtils()->getFileData((std::string("hotUpdate.zip")).c_str(), "rt", &filesize);
+	//根據平台切換Logo
+	CCSprite* logo = dynamic_cast<CCSprite*>(getVariable("mLoadingFrameBG"));
+	int langType = cocos2d::CCUserDefault::sharedUserDefault()->getIntegerForKey("LanguageType");
+	if (SeverConsts::Get()->IsEroR18()) {	//工口R18
+		logo->setTexture("LoadingUI_JP/loadingUI_logo_EROR18.png");
+	}
+	//else if (SeverConsts::Get()->IsEroLAB()) {	//EroLAB
+	//	if (langType == kLanguageCH_TW) {
+	//		logo->setTexture("LoadingUI_JP/loadingUI_logo_EROLABS_TC.png");
+	//	}
+	//	else {
+	//		logo->setTexture("LoadingUI_JP/loadingUI_logo_EROLABS_SC.png");
+	//	}
+	//}
+	else {
+		logo->setTexture("LoadingUI_JP/loadingUI_logo.png");
+	}
 	TipsManager::TipsItemListIterator itr = TipsManager::Get()->getTipsIterator();
 	while(itr.hasMoreElements())
 	{
@@ -974,27 +783,12 @@ void LoadingFrame::load( void )
 		mTipVec.push_back(tip);
 	}
 	setTips("loading......");
-	bool m_IsShowSpine = StringConverter::parseBool(VaribleManager::Get()->getSetting("IsShowSpineWithLogin"), false);
-	if (m_IsShowSpine)
-	{
-		showSpine();
-		//this->runAnimation("Default Timeline");
-		this->runAnimation("LogoAni");
-	}
-	else
-	{
-		CCSprite *  mSprite = CCSprite::create("LoadingUI_JP/loadingUI_Bg.png");
-		CCNode* mSpine = dynamic_cast<CCNode*>(getVariable("mSpine"));
-		mSpine->addChild(mSprite);
-		showLoadingAniPage();
-		setPosLoadingAniPage();
-		checkVersion();
-	}
+	showSpine();
+	this->runAnimation("LogoAni");
 }
 void LoadingFrame::showSpine()
 {
-	glClearColor(0, 0, 0, 0);
-	GamePrecedure::Get()->playMovie("op", 1, 1);
+	GamePrecedure::Get()->playMovie("LoadingFrame", "op", 1, 1);
 }
 
 void LoadingFrame::showDaterTransFerBtn(bool isVisible)
@@ -1020,76 +814,6 @@ void LoadingFrame::showLoginingInPercent(int pct)
 			strpct.append(sztmp);
 			sever->setString(strpct.c_str(), true);
 		}
-	}
-}
-/*
-显示公告
-*/
-void LoadingFrame::showAnnounce()
-{
-	static bool allShow = StringConverter::parseBool(VaribleManager::Get()->getSetting("ShowAnnounceSmallExit"), true);
-	if (!allShow)
-	{
-		static unsigned int showCount = 0;
-		if (showCount > 0)
-		{
-			CCLOG("dont show announcePage");
-			return;
-		}
-		++showCount;
-	}
-
-	BasePage* page = CCBManager::Get()->getPage("AnnouncePage");
-	if (page && !page->getParent())
-	{
-		page->load();
-		State<MainFrame>* sta = dynamic_cast<State<MainFrame>* >(page);
-		if (sta)
-		{
-			CCLOG("show announcePage enter");
-			sta->Enter(NULL);
-		}
-		//屏蔽下层触摸
-		cocos2d::CCLayer* layer = CCLayer::create();
-		layer->setContentSize(CCDirector::sharedDirector()->getOpenGLView()->getVisibleSize());
-		layer->setPosition(0, 0);
-		layer->setAnchorPoint(ccp(0, 0));
-		layer->setTouchEnabled(true);
-		layer->setTouchMode(cocos2d::kCCTouchesOneByOne);
-		page->addChild(layer, -1);
-
-		CCNode* uiNode = dynamic_cast<CCNode*>(getVariable("mUINode"));
-		uiNode->addChild(page);
-		CCLOG("show announcePage");
-		page->setPosition(ccp(0, 0));
-	}
-}
-/*
-数据移行
-*/
-void LoadingFrame::showChangeUser()
-{
-	BasePage* page = CCBManager::Get()->getPage("ChangeUserPage");
-	if (page && !page->getParent())
-	{
-		page->load();
-		State<MainFrame>* sta = dynamic_cast<State<MainFrame>*>(page);
-		if (sta)
-		{
-			sta->Enter(NULL);
-		}
-		//屏蔽下层触摸
-		cocos2d::CCLayer* layer = CCLayer::create();
-		layer->setContentSize(CCDirector::sharedDirector()->getOpenGLView()->getVisibleSize());
-		layer->setPosition(0, 0);
-		layer->setAnchorPoint(ccp(0, 0));
-		layer->setTouchEnabled(true);
-		layer->setTouchMode(cocos2d::kCCTouchesOneByOne);
-		page->addChild(layer, -1);
-
-
-		addChild(page);
-		page->setPosition(ccp(0, 0));
 	}
 }
 /*
@@ -1127,71 +851,6 @@ void LoadingFrame::showLoginUser(const std::string& UserID, const std::string& a
 	}
 }
 
-/*
-BC登入介面
-*/
-void LoadingFrame::showBCLogin()
-{
-	BasePage* page = CCBManager::Get()->getPage("LoginBCPage");
-	if (page && !page->getParent())
-	{
-		page->load();
-		State<MainFrame>* sta = dynamic_cast<State<MainFrame>*>(page);
-		if (sta)
-		{
-			sta->Enter(NULL);
-		}
-		//屏蔽下层触摸
-		cocos2d::CCLayer* layer = CCLayer::create();
-		layer->setContentSize(CCDirector::sharedDirector()->getOpenGLView()->getVisibleSize());
-		layer->setPosition(0, 0);
-		layer->setAnchorPoint(ccp(0, 0));
-		layer->setTouchEnabled(true);
-		layer->setTouchMode(cocos2d::kCCTouchesOneByOne);
-		page->addChild(layer, -1);
-
-
-		CCNode* uiNode = dynamic_cast<CCNode*>(getVariable("mUINode"));
-		uiNode->addChild(page);
-		page->setPosition(ccp(0, 0));
-
-		LoginBCPage* mLoginBCPage = dynamic_cast<LoginBCPage*>(CCBManager::Get()->getPage("LoginBCPage"));
-		if (mLoginBCPage)
-		{
-			mLoginBCPage->DefaultEmail();
-		}
-	}
-}
-
-/*
-語系選擇介面
-*/
-void LoadingFrame::showLangSetting()
-{
-	BasePage* page = CCBManager::Get()->getPage("LangSettingPage");
-	if (page && !page->getParent())
-	{
-		page->load();
-		State<MainFrame>* sta = dynamic_cast<State<MainFrame>*>(page);
-		if (sta)
-		{
-			sta->Enter(NULL);
-		}
-		//屏蔽下层触摸
-		cocos2d::CCLayer* layer = CCLayer::create();
-		layer->setContentSize(CCDirector::sharedDirector()->getOpenGLView()->getVisibleSize());
-		layer->setPosition(0, 0);
-		layer->setAnchorPoint(ccp(0, 0));
-		layer->setTouchEnabled(true);
-		layer->setTouchMode(cocos2d::kCCTouchesOneByOne);
-		page->addChild(layer, -1);
-
-
-		CCNode* uiNode = dynamic_cast<CCNode*>(getVariable("mUINode"));
-		uiNode->addChild(page);
-		page->setPosition(ccp(0, 0));
-	}
-}
 
 void  LoadingFrame::hideLoginUser()
 {
@@ -1201,43 +860,6 @@ void  LoadingFrame::hideLoginUser()
 		return;
 	}
 	page->closePage();
-}
-/*
-客服反馈
-*/
-void LoadingFrame::showFeedBack()
-{
-
-	CCMenuItemImage* pMenuFeedBackBtn = dynamic_cast<CCMenuItemImage*>(getVariable("mServiceSupport"));
-	if (pMenuFeedBackBtn)
-	{
-		pMenuFeedBackBtn->stopAllActions();
-		pMenuFeedBackBtn->setScale(1.0f);
-	}
-
-	BasePage* page = CCBManager::Get()->getPage("FeedBackPage");
-	if (page && !page->getParent())
-	{
-		page->load();
-		State<MainFrame>* sta = dynamic_cast<State<MainFrame>*>(page);
-		if (sta)
-		{
-			sta->Enter(NULL);
-		}
-		//屏蔽下层触摸
-		cocos2d::CCLayer* layer = CCLayer::create();
-		layer->setContentSize(CCDirector::sharedDirector()->getOpenGLView()->getVisibleSize());
-		layer->setPosition(0, 0);
-		layer->setAnchorPoint(ccp(0, 0));
-		layer->setTouchEnabled(true);
-		layer->setTouchMode(cocos2d::kCCTouchesOneByOne);
-		page->addChild(layer, -1);
-
-		//page->addChild(layer);
-		addChild(page);
-		page->setPosition(ccp(0, 0));
-	}
-
 }
 void LoadingFrame::showSevers(bool _show)
 {
@@ -1261,7 +883,6 @@ void LoadingFrame::showSevers(bool _show)
 
 				if(node->getVariable("mRecent"))
 				{
-					//count = comHuTuo::getServerInfoCount();
 					int trueCount = count;
                     
                     std::vector<int> *servers = new std::vector<int>();
@@ -1269,7 +890,7 @@ void LoadingFrame::showSevers(bool _show)
                     if(count == 0)
                         count = 1;
                     
-					std::string uinkey = "DefaultSeverID";// + libPlatformManager::getPlatform()->loginUin();
+					std::string uinkey = "DefaultSeverID";
 					int defid = cocos2d::CCUserDefault::sharedUserDefault()->getIntegerForKey(uinkey.c_str(),SeverConsts::Get()->getSeverDefaultID());
                     
                     for(int i=0; i<count;++i)
@@ -1278,7 +899,7 @@ void LoadingFrame::showSevers(bool _show)
                         int serverIDtoforRecent = defid;
                         if(trueCount>0)
 						{
-							int numToFind = 1;// comHuTuo::getServerUserByIndex(i);
+							int numToFind = 1;
 							std::vector<int>::iterator iter = std::find(servers->begin(),servers->end(),numToFind);
 							if (iter==servers->end())
 							{
@@ -1345,9 +966,7 @@ void LoadingFrame::showSevers(bool _show)
 
 				CCSize size;				
 				size.width  = node->getContentSize().width;
-                size.height = (noteCount+noteCount%2)*0.5f*singleButtonHeight;//count
-				//size.height = singleButtonHeight * ((count+1)/2);
-				//float offpos = severlist->getContentSize().height-size.height;
+                size.height = (noteCount+noteCount%2) * 0.5f * singleButtonHeight;//count
                 if(severlist->getContentSize().height>size.height)
                     size.height = severlist->getContentSize().height;
 				
@@ -1458,19 +1077,12 @@ void LoadingFrame::showSevers(bool _show)
 	}
 }
 
-void LoadingFrame::showLogin()
-{
-	//	setEnterGameNodeVisible(false);
-	//	setEnterServerListVisible(false);
-	//  setLoginGameNodeVisible(true);
-}
-
 void LoadingFrame::showEnter()
 {
 
 	hidLoadingAniPage();
 	CCLog("LoadingFrame::showEnter");
-	if (SeverConsts::Get()->IsH365() || SeverConsts::Get()->IsEroR18() || SeverConsts::Get()->IsKUSO()) {
+	if (SeverConsts::Get()->IsH365() || SeverConsts::Get()->IsEroR18() || SeverConsts::Get()->IsKUSO() || SeverConsts::Get()->IsAPLUS()) {
 		setEnterGameNodeVisible(true);
 	}
 	else {
@@ -1478,21 +1090,11 @@ void LoadingFrame::showEnter()
 	}
     
 	setEnterServerListVisible(true);
-	if (SeverConsts::Get()->IsH365() || SeverConsts::Get()->IsEroR18() || SeverConsts::Get()->IsKUSO())
+	if (SeverConsts::Get()->IsH365() || SeverConsts::Get()->IsEroR18() || SeverConsts::Get()->IsKUSO() || SeverConsts::Get()->IsAPLUS())
 	{
 		setLogoutBtnVisible(true);
 	}
-	//else if (SeverConsts::Get()->IsEroR18()) //R18
-	//{
-	//	//std::string loginType = CCUserDefault::sharedUserDefault()->getStringForKey("EroLoginType", "");
-	//	std::string uin = "";
-	//	std::string uinkey = "LastLoginPUID";
-	//	uin = CCUserDefault::sharedUserDefault()->getStringForKey(uinkey.c_str(), "");
-	//	if ((uin != ""))
-	//	{
-	//		setLogoutBtnVisible(true);
-	//	}
-	//}
+
 	setLogoutNodeVisible(false);
 	CCLabelTTF* tipsLabel = dynamic_cast<CCLabelTTF*>(getVariable("mTips"));//mLoading1
 	if (tipsLabel)
@@ -1500,36 +1102,11 @@ void LoadingFrame::showEnter()
 		tipsLabel->setVisible(false);
 	}
 
-	/*CCMenuItemImage* mDataTransferBtn = dynamic_cast<CCMenuItemImage*>(getVariable("mDataTransfer"));
-	if (mDataTransferBtn)
-	{
-		mDataTransferBtn->setVisible(true);
-	}*/
-	//showDaterTransFerBtn(mIsCanShowDataTransfer);
     setLoginGameNodeVisible(false);
 }
 
 int LoadingFrame::getDefaultSeverID()
 {
-//	std::string projectNameKey="gjwow";
-//#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) 
-//	projectNameKey="gjwow_android";
-//#else
-//	projectNameKey="gjwow_ios";
-//#endif
-//	const std::string projectName=VaribleManager::Get()->getSetting(projectNameKey,"","gjwow");
-//    const std::string uin = libPlatformManager::getPlatform()->loginUin();
-//	std::map<std::string,std::string> strMap;
-//	strMap.insert(std::pair<std::string,std::string>("gameid",projectName.c_str()));
-//	strMap.insert(std::pair<std::string,std::string>("puid", uin));
-//	libOS::getInstance()->analyticsLogEvent("getDefaultSeverID-refreshServerInfo", strMap ,true);
-//    bool getSvr = false;
-//	if (!VaribleManager::Get()->getSetting("OpenAnalytics").empty())
-//		getSvr = true;
-	//comHuTuo::refreshServerInfo(projectName.c_str(),uin, getSvr);
-    //libOS::getInstance()->analyticsLogEndTimeEvent("getDefaultSeverID-refreshServerInfo");
-	//int id = comHuTuo::getServerInfoCount()>0?comHuTuo::getServerUserByIndex(0):-1;
-
 	std::string uinkey = "DefaultSeverID";// + uin;
 	int itmp = cocos2d::CCUserDefault::sharedUserDefault()->getIntegerForKey(uinkey.c_str(), -1);
 	if (itmp == -1)
@@ -1543,24 +1120,16 @@ int LoadingFrame::getDefaultSeverID()
 	{
 		return itmp;
 	}
-
-
 }
 
 void LoadingFrame::updateSeverName()
 {
-	if(getVariable("mSeverName1") && mSelectedSeverID!=-1)
+	if(getVariable("mSeverName1") && mSelectedSeverID != -1)
 	{
 		CCLabelTTF* eb = dynamic_cast<CCLabelTTF*>(getVariable("mSeverName1"));
-		//*CCLabelTTF *label1 = CCLabelTTF::create("alignment left", "A Damn Mess", fontSize, blockSize,
-		//	*kCCTextAlignmentLeft, kCCVerticalTextAlignmentCenter);
-		//*CCLabelTTF *label2 = CCLabelTTF::create("alignment right", "/mnt/sdcard/Scissor Cuts.ttf", fontSize, blockSize,
-		//	*kCCTextAlignmentLeft, kCCVerticalTextAlignmentCenter);
-
-		//CCLabelBMFont* eb = dynamic_cast<CCLabelBMFont*>(getVariable("mSeverName1"));
 		SeverConsts::SEVERLIST::const_iterator it = SeverConsts::Get()->getSeverList().find(mSelectedSeverID);
 		if (eb && it != SeverConsts::Get()->getSeverList().end()) {
-			CCLOG("servername %s", it->second->name.c_str());
+			CCLog("servername %s", it->second->name.c_str());
 			int userType = cocos2d::CCUserDefault::sharedUserDefault()->getIntegerForKey("LanguageType");
 			switch (userType) {
 			case kLanguageChinese:
@@ -1618,12 +1187,7 @@ void LoadingFrame::onReceivePacket( const int opcode, const ::google::protobuf::
 
 					if (SeverConsts::Get()->IsEroR18())
 					{
-						//std::string aUrl = SeverConsts::Get()->getR18PayUrl();
-						//libPlatformManager::getPlatform()->setPayR18(logret->playerid(), mSelectedSeverID, aUrl);
 						libPlatformManager::getPlatform()->setIsGuest(logret->isguest());
-						//成功登入 紀錄帳號類型
-						//std::string loginType = logret->isguest() == 0 ? "Normal" : logret->isguest() == 1 ? "EroGuest" : "EroAccount";
-						//CCUserDefault::sharedUserDefault()->setStringForKey("EroLoginType", loginType);
 					}
 				}
 				else
@@ -1659,7 +1223,6 @@ void LoadingFrame::onReceivePacket( const int opcode, const ::google::protobuf::
 			}
 
 			GamePrecedure::Get()->preEnterMainMenu();
-			//updateLocalSeverId();
 			MsgLoadingFrameEnterGame enterGameMsg;
 			MessageManager::Get()->sendMessage(&enterGameMsg);
 			PacketManager::Get()->removePacketHandler(this);
@@ -1671,10 +1234,10 @@ void LoadingFrame::onReceivePacket( const int opcode, const ::google::protobuf::
 			showEnter();
 		}
 	}
-	else if(opcode==ERROR_CODE)
+	else if(opcode == ERROR_CODE)
 	{
 		const HPErrorCode * errMsgRet = dynamic_cast<const HPErrorCode*>(packet);
-		if(errMsgRet->hpcode()==LOGIN_S&&mSendLogin)
+		if(errMsgRet->hpcode() == LOGIN_S&&mSendLogin)
 		{
 			PacketManager::Get()->removePacketHandler(this);
 			std::string _errMsgLang="";
@@ -1695,7 +1258,7 @@ void LoadingFrame::onReceivePacket( const int opcode, const ::google::protobuf::
 	else if(opcode == OPCODE_ACTIVE_CODERET_S)
 	{
 		const OPActiveCodeRet * ret = dynamic_cast<const OPActiveCodeRet*>(packet);
-		CCLOG("ret->status()%d",ret->status());
+		CCLog("ret->status()%d", ret->status());
 		if(ret->status()==1)
 		{
 			mScene->removeChildByTag(999,true);
@@ -1757,7 +1320,6 @@ void LoadingFrame::onConnectFailed( std::string ip, int port )
 			showSevers(true);
 			return;
 		}
-		//CCLog("*********************setInLoadingScene 1157");
 		GamePrecedure::Get()->setInLoadingScene();
 		if (it != SeverConsts::Get()->getSeverList().end())
 		{
@@ -1875,7 +1437,7 @@ void LoadingFrame::setPosLoadingAniPage()
 
 std::string LoadingFrame::onReceiveCommonMessage( const std::string& tag, const std::string& msg )
 {
-	if(tag=="SERVERLIST")
+	if(tag == "SERVERLIST")
 	{
 		std::string ret = SeverConsts::Get()->onReceiveCommonMessage(tag,msg);
 
@@ -1887,7 +1449,7 @@ std::string LoadingFrame::onReceiveCommonMessage( const std::string& tag, const 
 		}
 
 
-		if(newServerId!=mSelectedSeverID)
+		if(newServerId != mSelectedSeverID)
 		{
 			mSelectedSeverID = newServerId;
 		}
@@ -1902,11 +1464,11 @@ std::string LoadingFrame::onReceiveCommonMessage( const std::string& tag, const 
 		}
 		return ret;
 	}
-	else if (tag=="P2G_KR_CHECKSERVER_BACK")
+	else if (tag == "P2G_KR_CHECKSERVER_BACK")
 	{
 		Json::Reader jreader;
 		Json::Value jvalue;
-		jreader.parse(msg,jvalue,false);
+		jreader.parse(msg, jvalue, false);
 
 		Json::Value jroot = jvalue;
 		if (!jroot.empty() && !jroot["State"].empty())
@@ -1940,13 +1502,10 @@ std::string LoadingFrame::onReceiveCommonMessage( const std::string& tag, const 
 	}
 	else if (tag == "P2G_PLATFORM_LOGOUT")
 	{
-		if (SeverConsts::Get()->IsKUSO()){
+		if (SeverConsts::Get()->IsKUSO() || SeverConsts::Get()->IsAPLUS()){
 			if (msg == "1")
 			{
 				libPlatformManager::getPlatform()->login();
-			}
-			else
-			{
 			}
 		}
 	}
@@ -1955,26 +1514,30 @@ std::string LoadingFrame::onReceiveCommonMessage( const std::string& tag, const 
 
 void LoadingFrame::setEnterGameNodeVisible( bool visible )
 {
-	//if (!libPlatformManager::getPlatform()->getIsH365()) // not H365 is false
-	//{
-	//	CCB_FUNC(this, "mLoginNode2", CCNode, setVisible(false));
-	//	return;
-	//}
+	if (visible == true) {
+		CCNode* mLoading = dynamic_cast<CCNode*>(getVariable("mWaitingNode"));
+		if (mLoading && mLoading->isVisible()){
+			CCB_FUNC(this, "mLoginNode2", CCNode, setVisible(false));
+			return;
+		}
+	}
 	CCB_FUNC(this, "mLoginNode2", CCNode, setVisible(visible));
 }
 
 void LoadingFrame::setEnterBCNodeVisible(bool visible)
 {
-	//if (!libPlatformManager::getPlatform()->getIsH365()) // not H365 is false
-	//{
-	//	CCB_FUNC(this, "mLoginNode2", CCNode, setVisible(false));
-	//	return;
-	//}
 	CCB_FUNC(this, "mBCLoginNode", CCNode, setVisible(visible));
 }
 
 void LoadingFrame::setEnterServerListVisible(bool visible)
 {
+	if (visible == true) {
+		CCNode* mLoading = dynamic_cast<CCNode*>(getVariable("mWaitingNode"));
+		if (mLoading && mLoading->isVisible()){
+			CCB_FUNC(this, "mLoginNode1", CCNode, setVisible(false));
+			return;
+		}
+	}
 	CCB_FUNC(this, "mLoginNode1", CCNode, setVisible(visible));
 }
 
@@ -2040,7 +1603,6 @@ void LoadingFrame::onEnterGame(bool isRegister)
 
 	if (it->second->state == SeverConsts::SS_MAINTAIN)
 	{
-		//SeverConsts::Get()->start();
 		SeverConsts::Get()->setIsRedownLoadServer(true);//第一次点击的时候是维护状态
 		if (SeverConsts::Get()->getMaintenanceTip() == "")
 		{
@@ -2076,7 +1638,6 @@ void LoadingFrame::onEnterGame(bool isRegister)
 		showSevers(true);
 		return;
 	}
-	//CCLog("*********************setInLoadingScene 394");
 	GamePrecedure::Get()->setInLoadingScene();
 
 	if (it != SeverConsts::Get()->getSeverList().end())
@@ -2092,26 +1653,10 @@ void LoadingFrame::onEnterGame(bool isRegister)
 		}
 		else
 		{
-			/*Json::Value data;
-			data["token"] = "";
-			#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-			{
-			data["token"] = "irk89a";
-			libPlatformManager::getPlatform()->sendMessageG2P("G2P_RECORDING_ADJUST_EVENT", data.toStyledString());
-			}
-			#elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-			{
-			data["token"] = "n70ast";
-			libPlatformManager::getPlatform()->sendMessageG2P("G2P_RECORDING_ADJUST_EVENT", data.toStyledString());
-			}
-			#endif
-			*/
-
 			loginGame(it->second->address, it->second->port, isRegister);
 
 			setPosLoadingAniPage();
 			setOpcaityLoadingAniPage(150);
-			//hideLoginUser();
 			loginReport(REPORT_STEP::REPORT_STEP_ENTER_MAIN_GAME);
 		}
 	}
@@ -2161,7 +1706,6 @@ void LoadingFrame::checkVersion()
 		remove(versionTmpPath.c_str());
 	}
 
-
 	time_t t;
 	time(&t);
 
@@ -2169,10 +1713,6 @@ void LoadingFrame::checkVersion()
 	std::string saveVersionPath = writeRootPath + versionPath + "/" + versionManifestNameTmp;
 	std::string downloadVerUrl = localVersionData->remoteVersionUrl + "/" + versionManifestName + "?" + "time=" + _time->m_sString;
 	CurlDownload::Get()->downloadFile(downloadVerUrl, saveVersionPath);
-
-
-	//getServerVersionCfg();
-
 }
 
 void LoadingFrame::getServerVersionCfg()
@@ -2180,12 +1720,9 @@ void LoadingFrame::getServerVersionCfg()
 
 	std::string _retTimestamp = "";
 	time_t t = time(0);
-	//_retTimestamp = "?time=" + StringConverter::toString(t);
 	//64bit 不识别 
 	_retTimestamp = "?time=" + CCString::createWithFormat("%d", t)->m_sString;
-	//std::string url = localVersionData->remoteVersionUrl + _retTimestamp;
 	std::string url = localVersionData->remoteVersionUrl + "/" + versionManifestName + _retTimestamp;
-	//std::string url = "";
 
 	auto request = new CCHttpRequest();
 	request->setUrl(url.c_str());
@@ -2196,8 +1733,8 @@ void LoadingFrame::getServerVersionCfg()
 
 	CCHttpClient::getInstance()->send(request);
 
-	CCLOG("hotUpdate : url %s", url.c_str());
-	CCLOG("hotUpdate : getServerVersionCfg 2");
+	CCLog("hotUpdate : url %s", url.c_str());
+	CCLog("hotUpdate : getServerVersionCfg 2");
 
 	request->release();
 }
@@ -2265,8 +1802,8 @@ void LoadingFrame::setTips(std::string msg)
 	CCLabelTTF* tipsLabel = dynamic_cast<CCLabelTTF*>(getVariable("mTips"));//mLoading1
 	if (tipsLabel)
 	{
+		tipsLabel->setVisible(true);
 		tipsLabel->setString(msg.c_str());
-		//tipsLabel->setDimensions(CCSize(10, 200));
 	}
 }
 void LoadingFrame::loadingAsset()
@@ -2297,31 +1834,22 @@ void LoadingFrame::loadingAsset()
 		showPersent(1, m_updateVersionTips->uncompressTxT/*std::string("")*/);
 		//进度条
 		setWaitGameNodeVisible(false);
-		//for (auto it = needUpdateAsset.begin(); it != needUpdateAsset.end(); ++it) {
-		//	bool value = AssetsManagerEx::getInstance()->uncompress((*it)->savePath, (*it)->stroge);
-		//	CCLog("hotUpdate uncompress: %s", ((*it)->name).c_str());
-		//	// delete file
-		//	remove((*it)->savePath.c_str());
-		//}
 
 		if (m_updateVersionTips)
 		{
 			setTips(m_updateVersionTips->uncompressCompleteTxT);
 		}
 
-		if (serverVersionData)
+		if (localVersionData)
 		{
-			std::string ver = "Ver" + serverVersionData->versionResource;
+			std::string ver = "Ver" + localVersionData->versionApp;
 			setVersion(ver);
 		}
 		
-
 		CCLog("hotUpdate uncompress complete");
 		resetVersion();
 		GamePrecedure::Get()->enterLoading();
 
-		//GamePrecedure::getInstance()->loadPlsit();
-		//SeverConsts::Get()->start();
 		if (SeverConsts::Get()->getIsRedownLoadServer())
 		{
 			SeverConsts::Get()->setIsRedownLoadServer(false);
@@ -2334,10 +1862,6 @@ void LoadingFrame::loadingAsset()
 			LoginSuccess();
 		}
 		
-		//showLogin();
-		//libPlatformManager::getPlatform()->login();
-		//updateSeverName();
-
 		return;
 	}
 
@@ -2353,10 +1877,9 @@ void LoadingFrame::loadingAsset()
 			CCB_FUNC(this, "mUpdateBtnNode", cocos2d::CCNode, setVisible(true));
 			if (m_updateVersionTips)
 			{
-				CCLOG("hotUpdate : Updatefailed ----step1");
+				CCLog("hotUpdate : Updatefailed ----step1");
 				setTips(m_updateVersionTips->updateFailTxT);
 				showFailedMessage(m_updateVersionTips->updateFailTxT, 100);
-				//setActionBtnTxt(m_updateVersionTips->confirmBtnTxT);
 			}
 		}
 		return;
@@ -2375,17 +1898,20 @@ void LoadingFrame::loadingAsset()
 	}
 	float persentage = alreadyLoadSize / downTotalSize;
 	char perTxt[64];
-	sprintf(perTxt, "(%dMB / %dMB)", (int)alreadyLoadSize, (int)downTotalSize);
-	//showPersent(persentage, std::string(""));
+	sprintf(perTxt, "(%dKB / %dKB)", (int)alreadyLoadSize, (int)downTotalSize);
 	showPersent(persentage, perTxt);
 }
 void LoadingFrame::resetVersion()
 {
+	time_t t;
+	time(&t);
+
+	CCString* _time = CCString::createWithFormat("%d", t);
 	std::string writeRootPath = cocos2d::CCFileUtils::sharedFileUtils()->getWritablePath();
 
 	//下载最新的 peojectManifest 文件
     std::string saveProjrctPath = writeRootPath + versionPath + "/" + projectManifestName;
-	std::string downloadProjectUrl = localVersionData->packageUrl + "/"  + projectManifestName + "?version=" + serverVersionData->versionResource;
+	std::string downloadProjectUrl = serverVersionData->packageUrl + "/" + projectManifestName + "?" + "time=" + _time->m_sString;
 	CurlDownload::Get()->downloadFile(downloadProjectUrl, saveProjrctPath);
 
 	//更新version文件操作 把之前的下载versionTmp.mainfest文件存到version.manifest文件里面 下次读取使用
@@ -2399,79 +1925,33 @@ void LoadingFrame::resetVersion()
 
 	remove(versionPathTmp.c_str());
 
-	//下载最新的 versionMainfest 文件
-	/*std::string saveVersionPath = writeRootPath + versionPath + "/" + versionManifestName;
-	std::string downloadVerUrl = localVersionData->remoteVersionUrl + "/" + versionManifestName + "?" + "time=" + _time->m_sString;
-	CurlDownload::Get()->downloadFile(downloadVerUrl, saveVersionPath);*/
-
-}
-void LoadingFrame::setActionBtnTxt(std::string meg)
-{
-	CCLabelTTF* mbtnLabel = dynamic_cast<CCLabelTTF*>(getVariable("mbtn"));
-	if (mbtnLabel)
-	{
-		mbtnLabel->setString(meg.c_str());
-	}
 }
 
-void  LoadingFrame::getLocalSpineDataCfg()
-{
-	unsigned char* content = readLocal(std::string(SPINE_CFG_TXT));
-
-	if (!content)
-	{
-		return;
-	}
-
-	Json::Reader reader;
-	Json::Value value;
-
-	CCLOG("getLocalSpineDataCfg: %s", content);
-
-	const char* constContent = (const char*)(char*)content;
-
-	bool ret = reader.parse(constContent, value);
-
-	if (!ret)
-	{
-		return;
-	}
-
-	mSpineData->spinePath = value["spinePath"].asString();
-	mSpineData->spineName = value["spineName"].asString();
-	mSpineData->scaleX = value["scaleX"].asDouble();
-	mSpineData->scaleY = value["scaleY"].asDouble();
-	mSpineData->offsetX = value["offsetX"].asDouble();
-	mSpineData->offsetY = value["offsetY"].asDouble();
-	mSpineData->actionName = value["actionName"].asString();
-	mSpineData->isLoadSuccess = true;
-
-	
-}
 void LoadingFrame::getLocalVersionCfg()
 {
 	unsigned char* content = readLocal(std::string(versionManifestName));
 	unsigned char* contentApp = readLocal(std::string(versionAppManifestName));
 	
-	if (!content || !contentApp)
+	if (!content)
 	{
 		//本地读取出现错误 从UseDefault中取
 		localVersionData->packageUrl = CCUserDefault::sharedUserDefault()->getStringForKey("packageUrl");
-		localVersionData->remoteProjectManifestUrl = CCUserDefault::sharedUserDefault()->getStringForKey("remoteProjectManifestUrl");
-		localVersionData->versionResource = CCUserDefault::sharedUserDefault()->getStringForKey("versionResource");
 		localVersionData->remoteVersionUrl = CCUserDefault::sharedUserDefault()->getStringForKey("remoteVersionUrl");
 		localVersionData->versionApp = CCUserDefault::sharedUserDefault()->getStringForKey("versionApp");
+		localVersionData->AndroidStoreURL = CCUserDefault::sharedUserDefault()->getStringForKey("AndroidStoreURL");
+		localVersionData->AppUpdateUrlH365 = CCUserDefault::sharedUserDefault()->getStringForKey("AppUpdateUrlH365");
+		localVersionData->AppUpdateUrlKUSO = CCUserDefault::sharedUserDefault()->getStringForKey("AppUpdateUrlKUSO");
+		localVersionData->AppUpdateUrlAPLUS_CPS1 = CCUserDefault::sharedUserDefault()->getStringForKey("AppUpdateUrlAPLUS_CPS1");
 		localVersionData->isLoadSuccess = true;
-		localVersionData->isNeedGoAppStore = CCUserDefault::sharedUserDefault()->getIntegerForKey("isNeedGoAppStore");
 
 		CLogReport::Get()->webReportLog(CLogReport::Get()->getReportType(EnumReportType::CHKVERSION),libOS::getInstance()->getDeviceInfo(), libOS::getInstance()->getDeviceID(), localVersionData->versionResource, "get local version from userdefault");
-		return;
+		//return;
 	}
-	getVersionData(localVersionData, content,true);
+	getVersionData(localVersionData, content, true);
 	getVersionAppData(localVersionData, contentApp, true);
 	if (localVersionData && localVersionData->isLoadSuccess)
 	{
-		std::string ver = "Ver" + localVersionData->versionResource;
+		std::string ver = "Ver" + localVersionData->versionApp;
 		setVersion(ver);
 		SeverConsts::getInstance()->setVersion(localVersionData->versionApp);
 		CLogReport::Get()->webReportLog(CLogReport::Get()->getReportType(EnumReportType::CHKVERSION), libOS::getInstance()->getDeviceInfo(), libOS::getInstance()->getDeviceID(), localVersionData->versionResource, "get local version cfg");
@@ -2490,7 +1970,6 @@ void LoadingFrame::sendGetServerCfg()
 	auto request = new CCHttpRequest();
 	request->setUrl(url.c_str());
 	request->setRequestType(CCHttpRequest::HttpRequestType::kHttpGet);
-	//request->setResponseCallback(this, httpresponse_selector(UpdateVersion::onHttpRequestCompleted));
 	request->setResponseCallback(this, callfuncND_selector(LoadingFrame::onHttpRequestCompleted));
 
 	request->setTag("sendGetServerCfg");
@@ -2558,24 +2037,11 @@ void LoadingFrame::getServerCfg(unsigned char* content, bool isLocal)
 			if (serverNameMap.find(severAtt->id) != serverNameMap.end())
 			{
 				Json::Value serverNameItem = serverNameMap[severAtt->id];
-				//severAtt->name = tempServerName.c_str();
 			}
-			//mSeverList.insert(std::make_pair(severAtt->id, severAtt));
 		}
 	}
-
-	/*SeverConsts::SEVERLIST::const_reverse_iterator it = mSeverList.rbegin();
-	std::list<SeverConsts::SEVER_ATTRIBUTE> orderlist;
-
-	for (; it != mSeverList.rend(); ++it)
-	{
-		orderlist.push_back(*it->second);
-	}
-	orderlist.sort();
-	std::list<SeverConsts::SEVER_ATTRIBUTE>::iterator itOrdered = orderlist.begin();*/
-
 }
-void LoadingFrame::getVersionData(VersionData* versionData, unsigned char* content,bool isLocal)
+void LoadingFrame::getVersionData(VersionData* versionData, unsigned char* content, bool isLocal)
 {
 	if (!content)
 	{
@@ -2585,7 +2051,7 @@ void LoadingFrame::getVersionData(VersionData* versionData, unsigned char* conte
 	Json::Reader reader;
 	Json::Value value;
 
-	CCLOG("hotUpdate getVersionData: %s", content);
+	CCLog("getVersionData: %s", content);
 
 	const char* constContent = (const char*)(char*)content;
 
@@ -2593,17 +2059,18 @@ void LoadingFrame::getVersionData(VersionData* versionData, unsigned char* conte
 
 	if (!ret)
 	{
-		CCLOG("hotUpdate getVersionData: fail");
+		CCLog("getVersionData: fail");
 
 		if (isLocal)
 		{
 			//本地读取出现错误 从UseDefault中取
 			versionData->packageUrl = CCUserDefault::sharedUserDefault()->getStringForKey("packageUrl");
-			versionData->remoteProjectManifestUrl = CCUserDefault::sharedUserDefault()->getStringForKey("remoteProjectManifestUrl");
-			versionData->versionResource = CCUserDefault::sharedUserDefault()->getStringForKey("versionResource");
 			versionData->remoteVersionUrl = CCUserDefault::sharedUserDefault()->getStringForKey("remoteVersionUrl");
 			versionData->versionApp = CCUserDefault::sharedUserDefault()->getStringForKey("versionApp");
-			versionData->isNeedGoAppStore = CCUserDefault::sharedUserDefault()->getIntegerForKey("isNeedGoAppStore");
+			versionData->AndroidStoreURL = CCUserDefault::sharedUserDefault()->getStringForKey("AndroidStoreURL");
+			versionData->AppUpdateUrlH365 = CCUserDefault::sharedUserDefault()->getStringForKey("AppUpdateUrlH365");
+			versionData->AppUpdateUrlKUSO = CCUserDefault::sharedUserDefault()->getStringForKey("AppUpdateUrlKUSO");
+			versionData->AppUpdateUrlAPLUS_CPS1 = CCUserDefault::sharedUserDefault()->getStringForKey("AppUpdateUrlAPLUS_CPS1");
 			versionData->isLoadSuccess = true;
 		}
 		return;
@@ -2611,7 +2078,6 @@ void LoadingFrame::getVersionData(VersionData* versionData, unsigned char* conte
 
 	versionData->packageUrl = value["packageUrl"].asString();
 	versionData->versionApp = value["versionApp"].asString();
-	versionData->remoteProjectManifestUrl = value["remoteProjectManifestUrl"].asString();
 	versionData->remoteVersionUrl = value["remoteVersionUrl"].asString();
 	versionData->IOSAppStoreURL = value["IOSAppStoreURL"].asString();
 	versionData->AndroidStoreURL = value["AndroidStoreURL"].asString();
@@ -2619,8 +2085,8 @@ void LoadingFrame::getVersionData(VersionData* versionData, unsigned char* conte
 	versionData->AppUpdateUrlR18 = value["AppUpdateUrlR18"].asString();
 	versionData->AppUpdateUrlKUSO = value["AppUpdateUrlKUSO"].asString();
 	versionData->AppUpdateUrlJSG = value["AppUpdateUrlJSG"].asString();
+	versionData->AppUpdateUrlAPLUS_CPS1 = value["AppUpdateUrlAPLUS_CPS1"].asString();
 	versionData->versionResource = value["versionResource"].asString();
-	versionData->versionCode = value["versionCode"].asInt();
 	versionData->isNeedGoAppStore = value["isNeedGoAppStore"].asInt();
 	versionData->isLoadSuccess = true;
 
@@ -2628,11 +2094,12 @@ void LoadingFrame::getVersionData(VersionData* versionData, unsigned char* conte
 	{
 		//是读取的本地 存储上一次的version配置文件
 		CCUserDefault::sharedUserDefault()->setStringForKey("packageUrl", versionData->packageUrl);
-		CCUserDefault::sharedUserDefault()->setStringForKey("remoteProjectManifestUrl", versionData->remoteProjectManifestUrl);
-		CCUserDefault::sharedUserDefault()->setStringForKey("versionResource", versionData->versionResource);
 		CCUserDefault::sharedUserDefault()->setStringForKey("remoteVersionUrl", versionData->remoteVersionUrl);
 		CCUserDefault::sharedUserDefault()->setStringForKey("versionApp", versionData->versionApp);
-		CCUserDefault::sharedUserDefault()->setIntegerForKey("isNeedGoAppStore", versionData->isNeedGoAppStore);
+		CCUserDefault::sharedUserDefault()->setStringForKey("AndroidStoreURL", versionData->AndroidStoreURL);
+		CCUserDefault::sharedUserDefault()->setStringForKey("AppUpdateUrlH365", versionData->AppUpdateUrlH365);
+		CCUserDefault::sharedUserDefault()->setStringForKey("AppUpdateUrlKUSO", versionData->AppUpdateUrlKUSO);
+		CCUserDefault::sharedUserDefault()->setStringForKey("AppUpdateUrlAPLUS_CPS1", versionData->AppUpdateUrlAPLUS_CPS1);
 	}
 }
 
@@ -2646,7 +2113,7 @@ void LoadingFrame::getVersionAppData(VersionData* versionData, unsigned char* co
 	Json::Reader reader;
 	Json::Value value;
 
-	CCLOG("hotUpdate getVersionData: %s", content);
+	CCLog("hotUpdate getVersionData: %s", content);
 
 	const char* constContent = (const char*)(char*)content;
 
@@ -2654,7 +2121,7 @@ void LoadingFrame::getVersionAppData(VersionData* versionData, unsigned char* co
 
 	if (!ret)
 	{
-		CCLOG("hotUpdate getVersionData: fail");
+		CCLog("hotUpdate getVersionData: fail");
 
 		if (isLocal)
 		{
@@ -2679,7 +2146,7 @@ unsigned char* LoadingFrame::readLocal(std::string fileName)
 {
 	unsigned long filesize;
 	unsigned char* content = CCFileUtils::sharedFileUtils()->getFileData(fileName.c_str(), "r", &filesize);
-	CCLOG("hotUpdate : readLocal content:%s , fileName is %s", content, fileName.c_str());
+	CCLog("hotUpdate : readLocal content:%s , fileName is %s", content, fileName.c_str());
 	return content;
 }
 void LoadingFrame::setVersion(std::string meg)
@@ -2695,12 +2162,12 @@ void LoadingFrame::showFailedMessage(std::string msg , int tag )
 {
 	if (libOS::getInstance()->getNetWork() == NotReachable)
 	{
-		CCLOG("hotUpdate : showFailedMessage ----step1,tag is %d---",tag);
+		CCLog("hotUpdate : showFailedMessage ----step1,tag is %d---",tag);
 		libOS::getInstance()->showMessagebox(m_updateVersionTips->notNetworkTxT,tag);
 	}
 	else
 	{
-		CCLOG("hotUpdate : showFailedMessage ----step2,tag is %d---", tag);
+		CCLog("hotUpdate : showFailedMessage ----step2,tag is %d---", tag);
 		libOS::getInstance()->showMessagebox(msg,tag);
 	}
 }
@@ -2735,10 +2202,10 @@ CompareStat LoadingFrame::compareVersion(std::string localVersion, std::string s
 	CCLog("localVersion : %s", localVersion.c_str());
 	std::vector<std::string> serverVector = splitVersion(serverVersion, ".");
 	CCLog("serverVersion : %s", serverVersion.c_str());
-	for (size_t i = 0; i < serverVector.size(); ++i) {
+	for (size_t i = 0; i < 3; ++i) {	// 只檢查前3碼
 		std::string serverValue = serverVector[i];
 		CCLog("serverValue%d : %s", i, serverValue.c_str());
-		if (i >= localVector.size())
+		if (i >= localVector.size())	// 本地版本號不到3碼
 		{
 			stat = LESS;
 			break;
@@ -2765,11 +2232,6 @@ CompareStat LoadingFrame::compareVersion(std::string localVersion, std::string s
 void LoadingFrame::compareVersion()
 {
 	cocos2d::CCLog("compareVersion()");
-	if (serverVersionData && serverVersionData->isLoadSuccess)
-	{
-		//SeverConsts::Get()->setVersion(serverVersionData->versionApp);
-	}
-
 	if (m_updateVersionTips)
 	{
 		setTips(m_updateVersionTips->checkVersionTxT);
@@ -2778,7 +2240,7 @@ void LoadingFrame::compareVersion()
 	if (!serverVersionData || !serverVersionData->isLoadSuccess)
 	{ 
 		hidLoadingAniPage();
-		showFailedMessage(m_updateVersionTips->checkFailTxT,100);
+		showFailedMessage(m_updateVersionTips->checkFailTxT, 100);
 		setTips(m_updateVersionTips->checkFailTxT);
 		return;
 	}
@@ -2790,122 +2252,45 @@ void LoadingFrame::compareVersion()
 	}
 
 	versionAppCompareStat = compareVersion(localVersionData->versionApp, serverVersionData->versionApp);
-	versionResourceStat = LESS;//compareVersion(localVersionData->versionResource, serverVersionData->versionResource); always check Resource
-	versionCodeStat = (localVersionData->versionCode < serverVersionData->versionCode) ? LESS : EQUAL;
 
-
-	CompareStat localAppCompareVerAppStat = compareVersion(localVersionData->versionApp, serverVersionData->versionApp);
-
-	CompareStat userAppCompareVerAppStat = compareVersion(CCUserDefault::sharedUserDefault()->getStringForKey("UserDefaultAppVer", "1.0.0"), serverVersionData->versionApp);
 	/*
 	local compare server
 
-	versionApp      versionCode      versionResource      resourceUpdate      AppStore update
-	EQUAL            EQUAL              EQUAL                NO                   NO
-
-	EQUAL            EQUAL              LESS                YES                   NO
-
-	EQUAL            LESS             not care               NO                  YES
-
-	LESS             EQUAL            not care              YES                   NO
-
-	LESS             LESS             not care               NO                  YES
+	versionApp  |    resourceUpdate      AppStore update
+	HIGH        |       NO                   NO
+	            |
+	EQUAL       |      YES                   NO
+	            |
+	LESS        |       NO                  YES
 	*/
 
 	int result = 0; // result = 0  not update, result = 1 resourse update, result = 2 appStore update 
 	
-	//服务器APP版本低于之前存储的版本,用存储的APP版本号请求Server.cfg
 	#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
-		//WINDOWS不檢查APP跟資源版本
-		versionAppCompareStat = EQUAL;
-		versionResourceStat = EQUAL;
-		//localAppCompareVerAppStat = EQUAL;
-		//std::string configfile = GamePlatformInfo::getInstance()->getPlatVersionName();
-		//std::string versionCfgPath = cocos2d::CCFileUtils::sharedFileUtils()->fullPathForFilename(configfile.c_str());
-		//SeverConsts::getInstance()->_parseConfigFile(versionCfgPath);
-	#endif
-	
-
-    #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-		if (userAppCompareVerAppStat == LESS && CCUserDefault::sharedUserDefault()->getBoolForKey("IsUseUserDefaultAppVer", false))
-		{
-			CCUserDefault::sharedUserDefault()->setBoolForKey("IsUseUserDefaultAppVer", true);
-			SeverConsts::getInstance()->setVersion(CCUserDefault::sharedUserDefault()->getStringForKey("UserDefaultAppVer", "1.0.0"));
-			std::string configfile = GamePlatformInfo::getInstance()->getPlatVersionName();
-			std::string versionCfgPath = cocos2d::CCFileUtils::sharedFileUtils()->fullPathForFilename(configfile.c_str());
-			SeverConsts::getInstance()->_parseConfigFile(versionCfgPath);
-
-		}else
-		{
-			CCUserDefault::sharedUserDefault()->setBoolForKey("IsUseUserDefaultAppVer", false);
-		}
+		//WINDOWS不檢查APP版本
+		versionAppCompareStat = HIGH;
 	#endif
 
-	if (localAppCompareVerAppStat == HIGH)//本地App版本号  高于服务器版本号 不更新 只有审核的包才会出现这种情况
-	{
-		#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-		//Android审核服 true走正常的审核逻辑   false下载资源
-		//bool mIsNormalLogin = StringConverter::parseBool(VaribleManager::Get()->getSetting("IsNeedDownResForAndroid", "", "false"), true);
-		int isCloseUpdate = StringConverter::parseInt(VaribleManager::Get()->getSetting("IsCloseR18"), 0);
-		if (isCloseUpdate == 1)
-		{
-			result = 0;
-		}
-		else if (versionResourceStat == LESS)
-		{
-			CCUserDefault::sharedUserDefault()->setStringForKey("UserDefaultAppVer", localVersionData->versionApp);//当前APP版本大于服务器版本号时存储到本地
-			CCUserDefault::sharedUserDefault()->setBoolForKey("IsUseUserDefaultAppVer", true);//用本地大版本号请求服务器列表
-			SeverConsts::getInstance()->setVersion(localVersionData->versionApp);
-			std::string configfile = GamePlatformInfo::getInstance()->getPlatVersionName();
-			std::string versionCfgPath = cocos2d::CCFileUtils::sharedFileUtils()->fullPathForFilename(configfile.c_str());
-			SeverConsts::getInstance()->_parseConfigFile(versionCfgPath);
-			result = 1;
-		}
-		else if (versionResourceStat == EQUAL)
-		{
-			result = 0;
-		}
-
-		#elif(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-		     result = 0;
-		#endif
+	if (versionAppCompareStat == LESS) {
+		result = 2;
 	}
-	else if (versionCodeStat == EQUAL && versionAppCompareStat == EQUAL && versionResourceStat == EQUAL)
-	{
+	else if (versionAppCompareStat == HIGH) {
 		result = 0;
 	}
-	else if (versionCodeStat == EQUAL && versionAppCompareStat == EQUAL && versionResourceStat == LESS)//APP版本一致，资源版本低 更新资源
-	{
+	else {
 		result = 1;
 	}
-	else if (versionCodeStat == EQUAL && versionAppCompareStat == LESS)//APP版本不一致
-	{
-		result = 2;
-	}
-	else if (versionCodeStat == LESS && versionAppCompareStat == EQUAL) //versionCode 暂时不用
-	{
-		result = 0;
-	}
-	else if (versionCodeStat == LESS && versionAppCompareStat == LESS)
-	{
-		result = 2;
-	}
-	//result = 2;
-	CCLOG("compareVersion result is %d", result);
+	//result = 1;
 	cocos2d::CCLog("compareVersion result is %d", result);
 	ostringstream   ostr;
 	ostr << "result is : " << result;
 	string strLog = ostr.str();
 
-	CLogReport::Get()->webReportLog(CLogReport::Get()->getReportType(EnumReportType::CHKVERSION), libOS::getInstance()->getDeviceInfo(),libOS::getInstance()->getDeviceID(), localVersionData->versionResource, strLog);
+	CLogReport::Get()->webReportLog(CLogReport::Get()->getReportType(EnumReportType::CHKVERSION), libOS::getInstance()->getDeviceInfo(), libOS::getInstance()->getDeviceID(), localVersionData->versionResource, strLog);
 
 	if (result == 0)
 	{
-		//GamePrecedure::Get()->enterLoading();
-		//加载plist
-		//GamePrecedure::getInstance()->loadPlsit();
-		//SeverConsts::Get()->start();
-		//showAnnounce();
+		resetVersion();
 		if (SeverConsts::Get()->getIsRedownLoadServer())
 		{
 			SeverConsts::Get()->setIsRedownLoadServer(false);
@@ -2917,20 +2302,16 @@ void LoadingFrame::compareVersion()
 			LoginSuccess();
 		}
 		
-		//showLogin();
-		//libPlatformManager::getPlatform()->login();
-		//updateSeverName();
 		return;
 	}
 
 	if (result == 1)
 	{
 	    checkNewAssets();
-		//compareProjectAsset();
 		return;
 	}
 	//本地App版本低
-	if (result == 2)//跳转商店开关是开着的 弹提示跳转商店
+	if (result == 2) //跳转商店开关是开着的 弹提示跳转商店
 	{
 		if (serverVersionData->isNeedGoAppStore == 1)
 		{
@@ -2942,25 +2323,9 @@ void LoadingFrame::compareVersion()
 			libOS::getInstance()->showMessagebox(m_updateVersionTips->appStoreUpdateTxT, 100);
 			loginReport(REPORT_STEP::REPORT_STEP_START_DOWNLOAD_APK);
 		}
-		else//跳转商店开关是关着的
+		else //跳转商店开关是关着的
 		{
-			if (versionResourceStat == LESS)//资源版本不一致 更新资源
-			{
-				checkNewAssets();
-			}
-			else  //资源版本一致不更新
-			{
-				if (SeverConsts::Get()->getIsRedownLoadServer())
-				{
-					SeverConsts::Get()->setIsRedownLoadServer(false);
-					onMenuItemAction("onEnter", NULL);
-				}
-				else
-				{
-					GamePrecedure::Get()->loadPlsit();
-					LoginSuccess();
-				}
-			}
+			checkNewAssets();
 		}
 	}
 }
@@ -2984,6 +2349,15 @@ void LoadingFrame::appStoreUpdate()
 	else if (SeverConsts::Get()->IsJSG()) {
 		libOS::getInstance()->openURL(serverVersionData->AppUpdateUrlJSG);
 	}
+	else if (SeverConsts::Get()->IsAPLUS()) {
+		std::string cps = libPlatformManager::getPlatform()->getClientCps();
+		if (cps == "#1") {
+			libOS::getInstance()->openURL(serverVersionData->AppUpdateUrlAPLUS_CPS1);
+		}
+		else {
+			libOS::getInstance()->openURL(serverVersionData->AppUpdateUrlAPLUS_CPS1);
+		}
+	}
 	else {
 		libOS::getInstance()->openURL(serverVersionData->AndroidStoreURL);
 	}
@@ -3006,6 +2380,7 @@ void LoadingFrame::getLocalProjectAssets()
 		data->size = 38348;
 		data->time = 0.0f;
 		localProjectAssetData->isLoadSuccess = true;
+		localProjectAssetData->time = 0.0f;
 		localProjectAssetData->addAssetData(data);
 		return;
 	}
@@ -3022,36 +2397,29 @@ void LoadingFrame::getLocalProjectAssets()
 
 void LoadingFrame::downloaded(const std::string &url, const std::string& filename)
 {
-	CCLog("hotUpdate download  url: %s    : filename : %s ", url.c_str(), filename.c_str());
 	for (auto it = needUpdateAsset.begin(); it != needUpdateAsset.end(); ++it) {
 		if (url.compare((*it)->url) == 0)
 		{
-			CCLog("hotUpdate download  url pushBack to alreadyDownloadData: %s    : filename : %s ", url.c_str(), filename.c_str());
 			alreadyDownloadData.push_back(url);
-			// TODO 下載完先解壓縮
+			// 下載完先解壓縮
 			bool value = AssetsManagerEx::getInstance()->uncompress((*it)->savePath, (*it)->stroge);
 			CCLog("downloaded uncompress: %s", ((*it)->name).c_str());
 			// delete file
 			remove((*it)->savePath.c_str());
-			// TODO 解壓縮後更新projectManifest 避免重新下載
-			//assetData* data = new assetData();
-			//data->name = (*it)->name;
-			//data->md5 = (*it)->md5;
-			//data->crc = (*it)->crc.c_str();
-			//data->size = (*it)->size;
-			//localProjectAssetData->assetDataMap.insert(std::make_pair((*it)->name, data));
-			//auto localIt = localProjectAssetData->assetDataMap.find((*it)->name);
-			//CCLog("downloaded size1 %d", (*it)->size * 1000);
-			//CCLog("downloaded size2 %d", localIt->second->size * 1000);
-			//localIt->second->size = (*it)->size;
-			//CCLog("downloaded crc1 %s", (*it)->crc.c_str());
-			//CCLog("downloaded crc2 %s", localIt->second->crc.c_str());
-			//localIt->second->crc = (*it)->crc;
-			//CCLog("downloaded md51 %s", (*it)->md5.c_str());
-			//CCLog("downloaded md52 %s", localIt->second->md5.c_str());
-			//localIt->second->md5 = (*it)->md5;
-			//CCLog("downloaded 5");
-			//writeProjectManifest();
+			// 解壓縮後更新projectManifest 避免重新下載
+			assetData* data = new assetData();
+			data->name = (*it)->name;
+			data->md5 = (*it)->md5;
+			data->crc = (*it)->crc.c_str();
+			data->size = (*it)->size;
+			data->time = (*it)->time;
+			localProjectAssetData->assetDataMap.insert(std::make_pair((*it)->name, data));
+			auto localIt = localProjectAssetData->assetDataMap.find((*it)->name);
+			localIt->second->size = (*it)->size;
+			localIt->second->crc = (*it)->crc;
+			localIt->second->md5 = (*it)->md5;
+			localIt->second->time = (*it)->time;
+			writeProjectManifest();
 		}
 	}
 
@@ -3062,7 +2430,7 @@ void LoadingFrame::downloaded(const std::string &url, const std::string& filenam
 		if (versionStat  == CHECK_VERSION)
 		{
 			unsigned long filesize;
-			unsigned	char* pBuffer = CCFileUtils::sharedFileUtils()->getFileData(cocos2d::CCFileUtils::sharedFileUtils()->fullPathForFilename(filename.c_str()).c_str(), "rt", &filesize, 0, nullptr);
+			unsigned	char* pBuffer = CCFileUtils::sharedFileUtils()->getFileData(cocos2d::CCFileUtils::sharedFileUtils()->fullPathForFilename(filename.c_str()).c_str(), "rt", &filesize, 0, false);
 			getVersionData(serverVersionData, pBuffer);
 			cocos2d::CCLog("LoadingFrame::compareVersion");
 			compareVersion();
@@ -3075,11 +2443,11 @@ void LoadingFrame::downloaded(const std::string &url, const std::string& filenam
 }
 void LoadingFrame::downloadFailed(const std::string& url, const std::string &filename)
 {
-	CCLOG("hotUpdate downloadFailed  url: %s    : filename : %s ", url.c_str(), filename.c_str());
+	CCLog("hotUpdate downloadFailed  url: %s    : filename : %s ", url.c_str(), filename.c_str());
 	for (auto it = needUpdateAsset.begin(); it != needUpdateAsset.end(); ++it) {
 		if (url.compare((*it)->url) == 0)
 		{
-			CCLOG("hotUpdate downloadFailed  url push_back to loadFailData: %s    : filename : %s ", url.c_str(), filename.c_str());
+			CCLog("hotUpdate downloadFailed  url push_back to loadFailData: %s    : filename : %s ", url.c_str(), filename.c_str());
 			loadFailData.insert(url);
 		}
 	}
@@ -3111,12 +2479,16 @@ void LoadingFrame::downloadFailed(const std::string& url, const std::string &fil
 	{
 		if (downProjectTimes < 10)//下载失败之后 允许再尝试10次
 		{
+			time_t t;
+			time(&t);
+			CCString* _time = CCString::createWithFormat("%d", t);
+
 			downProjectTimes++;
 
 			std::string writeRootPath = cocos2d::CCFileUtils::sharedFileUtils()->getWritablePath();
 			//下载最新的 peojectManifest 文件
 			std::string saveProjrctPath = writeRootPath + versionPath + "/" + projectManifestName;
-			std::string downloadProjectUrl = localVersionData->packageUrl + "/" + localVersionData->versionResource + "/" + projectManifestName + "?version=" + serverVersionData->versionResource;
+			std::string downloadProjectUrl = serverVersionData->packageUrl + "/" + projectManifestName + "?" + "time=" + _time->m_sString;
 			CurlDownload::Get()->downloadFile(downloadProjectUrl, saveProjrctPath);
 		}
 		else
@@ -3131,7 +2503,6 @@ void LoadingFrame::downloadFailed(const std::string& url, const std::string &fil
 
 void LoadingFrame::onAlreadyDownSize(unsigned long size)
 {
-	//CCLOG("hotUpdate onAlreadyDownSize  size: %d", (int)size);
 	currentFileLoadSize = float(size);
 }
 void LoadingFrame::showPersent(float persentage, std::string sizeTip)
@@ -3151,7 +2522,6 @@ void LoadingFrame::showPersent(float persentage, std::string sizeTip)
 	}
 	if (_spriteBg->getChildByTag(1001) && getVariable("mPersentageTxt"))
 	{
-		//CCNode* sever = dynamic_cast<CCNode*>(getVariable("mPersentage"));
 		if (persentage > 1.0f)
 			persentage = 1.0f;
 		if (persentage <= 0.00f)
@@ -3159,7 +2529,6 @@ void LoadingFrame::showPersent(float persentage, std::string sizeTip)
 		if (persentage > lastPercent)
 		{
 			_ProgressTimerNode->setPercentage(persentage * 100);
-			//_ProgressTimerNode->runAction(CCProgressFromTo::create(0.2f, lastPercent*100, persentage*100));
 			CCLabelTTF* sever = dynamic_cast<CCLabelTTF*>(getVariable("mPersentageTxt"));
 			char perTxt[64];
 			if (persentage >= 1.0f) {
@@ -3168,7 +2537,6 @@ void LoadingFrame::showPersent(float persentage, std::string sizeTip)
 			}
 			else {
 				sprintf(perTxt, "%d%%   %s", (int)(persentage * 100), sizeTip.c_str());
-				//CCLog("showPersent : %s", sizeTip.c_str());
 				if (sever)
 					sever->setString(perTxt);
 			}
@@ -3199,7 +2567,6 @@ void LoadingFrame::onHttpRequestCompleted(cocos2d::CCNode *sender, void*data)
 		else if (strcmp(response->getHttpRequest()->getTag(), "serverProjectAsset") == 0 && downVersionTimes < 10)
 		{
 			getServerProjectAssets();
-
 			CLogReport::Get()->webReportLog(CLogReport::Get()->getReportType(EnumReportType::CHKVERSION), libOS::getInstance()->getDeviceInfo(), libOS::getInstance()->getDeviceID(), localVersionData->versionResource, "get ServerProject fail");
 		}
 		cocos2d::CCLog("hotUpdate: onHttpRequestCompleted fail : %s", response->getHttpRequest()->getTag());
@@ -3243,27 +2610,22 @@ void LoadingFrame::onHttpRequestCompleted(cocos2d::CCNode *sender, void*data)
 		getProjectAssetData(serverProjectAssetData, unsignedContent);
 		compareProjectAsset();
 	}
-	/*else if (strcmp(tag, serverCfgTag) == 0)
-	{
-		getServerCfg(unsignedContent);
-		compareProjectAsset();
-	}*/
 
 }
 void LoadingFrame::getServerProjectAssets()
 {
-	if (!localVersionData)
+	if (!serverVersionData)
 	{
-
 		return;
 	}
+	time_t t;
+	time(&t);
 
-	//std::string url = localVersionData->packageUrl + "/" + localVersionData->versionResource + "/" + projectManifestName + "?" + "version=" + serverVersionData->versionResource;
-	std::string url = localVersionData->packageUrl + "/" + projectManifestName + "?" + "version=" + serverVersionData->versionResource;
+	CCString* _time = CCString::createWithFormat("%d", t);
+	std::string url = serverVersionData->packageUrl + "/" + projectManifestName + "?" + "time=" + _time->m_sString;
 	auto request = new CCHttpRequest();
 	request->setUrl(url.c_str());
 	request->setRequestType(CCHttpRequest::HttpRequestType::kHttpGet);
-	//request->setResponseCallback(this, httpresponse_selector(UpdateVersion::onHttpRequestCompleted));
 	request->setResponseCallback(this, callfuncND_selector(LoadingFrame::onHttpRequestCompleted));
 
 	request->setTag("serverProjectAsset");
@@ -3328,13 +2690,13 @@ void LoadingFrame::compareProjectAsset()
 
 		saveFileInPath(saveVersionPath, "wb", pBuffer, filesize);
 
-		if (serverVersionData)
+		if (localVersionData)
 		{
-			std::string ver = "Ver" + serverVersionData->versionResource;
+			std::string ver = "Ver" + localVersionData->versionApp;
 			setVersion(ver);
 		}
-
-		remove(versionPathTmp.c_str());
+		resetVersion();
+		//remove(versionPathTmp.c_str());
 
 		if (SeverConsts::Get()->getIsRedownLoadServer())
 		{
@@ -3344,17 +2706,12 @@ void LoadingFrame::compareProjectAsset()
 		else
 		{
 			GamePrecedure::Get()->loadPlsit();
+			CCLog("compareProjectAsset LoginSuccess");
 			LoginSuccess();
 		}
-		//showLogin();
-		//libPlatformManager::getPlatform()->login();
-		//updateSeverName();
-
-		//GamePrecedure::Get()->enterLoading();
 		return;
 	}
 
-	//CCB_FUNC(this, "mUpdateBtnNode", cocos2d::CCNode, setVisible(true));
 	cocos2d::CCLog("compareProjectAsset 3");
 	ostringstream   ostr;
 	ostr << "compareProjectAsset need update fileSzie: " << needUpdateAsset.size();
@@ -3363,7 +2720,6 @@ void LoadingFrame::compareProjectAsset()
 
 	if (m_updateVersionTips)
 	{
-		//setActionBtnTxt(m_updateVersionTips->updateBtnTxT);
 		cocos2d::CCLog("compareProjectAsset 4");
 		downSize /= 1024;
 		downSize = (downSize > 1) ? downSize : 1;
@@ -3382,7 +2738,7 @@ void LoadingFrame::getProjectAssetData(ProjectAssetData* projectAssetData, unsig
 	Json::Reader readerLocal;
 	Json::Value valueLocal;
 
-	CCLOG("hotUpdate getProjectAssetData: %s", content);
+	CCLog("hotUpdate getProjectAssetData: %s", content);
 
 	const char* constContent = (const char*)(char*)content;
 
@@ -3399,13 +2755,14 @@ void LoadingFrame::getProjectAssetData(ProjectAssetData* projectAssetData, unsig
 			data->size = 38348;
 			projectAssetData->isLoadSuccess = true;
 			projectAssetData->addAssetData(data);
+			projectAssetData->time = 0.0f;
 		
 		}
-		CCLOG("hotUpdate getProjectAssetData: fail");
+		CCLog("hotUpdate getProjectAssetData: fail");
 		return;
 	}
 	if (contentLocal){
-		CCLOG("hotUpdate getProjectAssetDataLocal: %s", contentLocal);
+		CCLog("hotUpdate getProjectAssetDataLocal: %s", contentLocal);
 
 		const char* constContentLocal = (const char*)(char*)contentLocal;
 
@@ -3413,7 +2770,7 @@ void LoadingFrame::getProjectAssetData(ProjectAssetData* projectAssetData, unsig
 
 		if (!retLocal)
 		{
-			CCLOG("hotUpdate getProjectAssetDataLocal: fail");
+			CCLog("hotUpdate getProjectAssetDataLocal: fail");
 			return;
 		}
 	}
@@ -3423,15 +2780,16 @@ void LoadingFrame::getProjectAssetData(ProjectAssetData* projectAssetData, unsig
 	if (contentLocal){
 		Json::Value timeJson = value["time"];
 		Json::Value timeJsonLocal = valueLocal["time"];
-		double time = timeJson.asDouble();
-		double timeLocal = timeJsonLocal.asDouble();
+		int time = (int)timeJson.asDouble();
+		int timeLocal = (int)timeJsonLocal.asDouble();
+		// 只比到整數避免誤差
 		if (time >= timeLocal){
 			valueTrue = value;
 		}
 		else{
 			valueTrue = valueLocal;
-			std::string hotUpdatePath = cocos2d::CCFileUtils::sharedFileUtils()->getWritablePath() + downLoadSavePath + "/";
-			cocos2d::CCFileUtils::sharedFileUtils()->removeDirectory(hotUpdatePath);
+			//std::string hotUpdatePath = cocos2d::CCFileUtils::sharedFileUtils()->getWritablePath() + downLoadSavePath + "/";
+			//cocos2d::CCFileUtils::sharedFileUtils()->removeDirectory(hotUpdatePath);
 		}
 	}
 	else{
@@ -3453,12 +2811,12 @@ void LoadingFrame::getProjectAssetData(ProjectAssetData* projectAssetData, unsig
 			data->name = unit["name"].asString();
 			data->md5 = unit["md5"].asString();
 			data->crc = unit["crc"].asString();
-			data->size = unit["size"].asInt();
-			data->time = valueTrue["time"].asInt();
-			//data->size = 40.44;
+			data->size = unit["size"].asDouble();
+			data->time = unit["time"].asDouble();
 			projectAssetData->addAssetData(data);
 		}
 	}
+	projectAssetData->time = valueTrue["time"].asDouble();
 }
 void LoadingFrame::checkNewAssets()
 {
@@ -3471,7 +2829,7 @@ void LoadingFrame::checkNewAssets()
 }
 void LoadingFrame::UpdateAssetFromServer()
 {
-	CCLOG("hotUpdate : UpdateAssetFromServer");
+	CCLog("hotUpdate : UpdateAssetFromServer");
 
 	ostringstream   ostr;
 	ostr << "UpdateAssetFromServer : " << needUpdateAsset.size();
@@ -3506,42 +2864,50 @@ void LoadingFrame::UpdateAssetFromServer()
 	showPersent(0, std::string(""));
 	CCB_FUNC(this, "mPersentageNode", cocos2d::CCNode, setVisible(true));
 
+	time_t t;
+	time(&t);
+	CCString* _time = CCString::createWithFormat("%d", t);
+
 	std::string packageUrl = serverVersionData->packageUrl;
 	std::string writeablePath = CCFileUtils::sharedFileUtils()->getWritablePath();
 	for (auto it = needUpdateAsset.begin(); it != needUpdateAsset.end(); ++it) {
-		std::string assetUrl = packageUrl + "/" + (*it)->name + "?" + "version=" + serverVersionData->versionResource;
-		std::string writePath = writeablePath + "/" + downLoadSavePath + "/" + (*it)->name;
+		std::string assetUrl = packageUrl + "/" + (*it)->name + "?" + "time=" + _time->m_sString;
+		CCLog("UpdateAssetFromServer url : %s", assetUrl.c_str());
+		std::string writePath = writeablePath + downLoadSavePath + "/" + (*it)->name;
 
 		(*it)->url = assetUrl;
 		(*it)->savePath = writePath;
-		(*it)->stroge = writeablePath + "/" +  downLoadSavePath + "/";
+		(*it)->stroge = writeablePath + downLoadSavePath + "/";
 		downTotalSize += (*it)->size;
 		std::string crc = (*it)->crc;
 		std::string md5 = (*it)->md5;
 		unsigned short crcCmp = atoi((char*)crc.c_str());
-		//CurlDownload::Get()->downloadFile(assetUrl, writePath, crcCmp);
 		CurlDownload::Get()->downloadFile(assetUrl, writePath, md5);
-		//CurlDownload::Get()->downloadFile(assetUrl, writePath);
 	}
 }
 
 void LoadingFrame::ResumeUpdateAsset()
 {
-	CCLOG("hotUpdate : ResumeUpdateAsset");
+	CCLog("hotUpdate : ResumeUpdateAsset");
 
 	versionStat = LOADING_ASSETS;
 
 	std::string packageUrl = serverVersionData->packageUrl;
 	std::string writeablePath = CCFileUtils::sharedFileUtils()->getWritablePath();
+
+	time_t t;
+	time(&t);
+	CCString* _time = CCString::createWithFormat("%d", t);
 	for (auto it = needUpdateAsset.begin(); it != needUpdateAsset.end(); ++it) {
-		std::string assetUrl = packageUrl + "/" + (*it)->name + "?" + "version=" + serverVersionData->versionResource;
+		std::string assetUrl = packageUrl + "/" + (*it)->name + "?" + "time=" + _time->m_sString;
 		if (loadFailData.find(assetUrl) != loadFailData.end())
 		{
-			std::string writePath = writeablePath + "/" + downLoadSavePath + "/" + (*it)->name;
+			CCLog("ResumeUpdateAsset loadFailData : %s", assetUrl.c_str());
+			std::string writePath = writeablePath + downLoadSavePath + "/" + (*it)->name;
 
 			(*it)->url = assetUrl;
 			(*it)->savePath = writePath;
-			(*it)->stroge = writeablePath + "/" + downLoadSavePath + "/";
+			(*it)->stroge = writeablePath + downLoadSavePath + "/";
 			downTotalSize += (*it)->size;
 			std::string crc = (*it)->crc;
 			unsigned short crcCmp = atoi((char*)crc.c_str());
@@ -3565,16 +2931,9 @@ void LoadingFrame::ontestLogin()
 	std::string passkey = "PassKey";
 	pass = CCUserDefault::sharedUserDefault()->getStringForKey(passkey.c_str(), "");
 
-	//if ((uin != "") && (pass != ""))
-	//{
-		libPlatformManager::getPlatform()->setLoginName(uin);
-		GamePrecedure::getInstance()->setDefaultPwd(pass);
-		showLoginUser(uin, pass);
-	//}
-	//else
-	//{
-	//	showSevers(true);
-	//}
+	libPlatformManager::getPlatform()->setLoginName(uin);
+	GamePrecedure::getInstance()->setDefaultPwd(pass);
+	showLoginUser(uin, pass);
 }
 
 void LoadingFrame::sendGuestLogin()
@@ -3635,7 +2994,6 @@ void LoadingFrame::showLogoutConfirm() {
 			std::string title = Language::Get()->getString("@SDK7");
 			std::string message = Language::Get()->getString("@SDK8");
 			mConfirmPage->showPage(message, title, logoutAccount);
-			//mConfirmPage->refresh();
 		}
 		State<MainFrame>* sta = dynamic_cast<State<MainFrame>*>(page);
 		if (sta)
@@ -3654,7 +3012,6 @@ void logoutAccount(bool boo)
 
 void LoadingFrame::writeProjectManifest()
 {
-	CCLog("writeProjectManifest");
 	std::string writeRootPath = cocos2d::CCFileUtils::sharedFileUtils()->getWritablePath();
 	std::string path = writeRootPath + versionPath + "/" + projectManifestName;
 	std::ofstream fout;
@@ -3669,13 +3026,14 @@ void LoadingFrame::writeProjectManifest()
 		data["md5"] = it->second->md5;
 		data["name"] = it->second->name;
 		data["size"] = it->second->size;
+		data["time"] = it->second->time;
 		assets.append(data);
-		root["time"] = it->second->time;
 	}
 	root["assets"] = assets;
-	CCLog("writeProjectManifest : %s", root.asString().c_str());
+	root["time"] = serverProjectAssetData->time;
 	//
 	std::string out = root.toStyledString();
 	std::cout << out << std::endl;
 	fout << out << std::endl;
+	fout.close();
 }

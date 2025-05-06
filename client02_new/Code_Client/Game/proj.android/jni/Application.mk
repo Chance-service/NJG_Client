@@ -5,7 +5,6 @@ APP_STL := gnustl_static
 #build发行版时考虑apk包含这3个ABI的binary，因为有些android设备用的intel atom芯片，另外早期arm芯片不支持v7a
 #APP_ABI := armeabi arm64-v8a armeabi-v7a
 APP_ABI := arm64-v8a
-#APP_ABI := armeabi-v7a
 APP_PLATFORM := android-9
 APP_CPPFLAGS += -Wno-error=format-security
 #APP_OPTIM := release

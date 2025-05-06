@@ -16,6 +16,7 @@ local ConfigManager = require("ConfigManager")
 local UserItemManager = require("Item.UserItemManager")
 local UserInfo = require("PlayerInfo.UserInfo")
 local InfoAccesser = require("Util.InfoAccesser")
+local EventDataMgr = require("Event001DataMgr")
 
 --[[ 本體 ]]
 local Inst = {}
@@ -31,7 +32,9 @@ local Inst = {}
 --[[ 定義 商店類型 ]]
 local shopTypeList = {
     {"NONE", 0},
+    {"SKIN", 16},
     {"GODSEA", 15},
+    {"GODSEA2", 17},
     {"DAILY", 10},
     {"MYSTERY", 11},
     {"RACE", 14},
@@ -91,6 +94,27 @@ end
 
 --[[ 各 商店子頁面 資訊 ]]
 Inst.Type2SubPageInfo = {
+    -- 皮膚
+    [Inst.ShopType.SKIN] = {
+        -- 腳本檔名
+        _scriptName = "Shop.ShopSubPage_Skin",
+        -- 標題
+        _title = "@SkinShop_Title",
+        -- 圖標
+        _iconImg_normal = "SubBtn_Skinshop.png",
+        _iconImg_selected = "SubBtn_Skinshop_On.png",
+        -- 圖標名稱
+        _iconName = "@Goods",
+        -- 貨幣資訊 
+        _currencyInfos = {
+            { priceStr = "30000_6002_0" },
+        },
+        _avaliableConditions = {
+        },
+        itemCount_perLine = 3,
+        -- 關閉道具+號按鈕
+       _closePlusBtn = true,
+    },
     -- 神海
    [Inst.ShopType.GODSEA] = {
        -- 腳本檔名
@@ -104,11 +128,34 @@ Inst.Type2SubPageInfo = {
        _iconName = "@Goods",
        -- 貨幣資訊 
        _currencyInfos = {
-           { priceStr = "30000_7002_0" },
+           { priceStr = "30000_" .. EventDataMgr[Const_pb.ACTIVITY191_CycleStage].TOKEN_ID .. "_0" },
        },
        _avaliableConditions = {
-           deactive = false,
+           deactive = not ActivityInfo:getActivityIsOpenById(Const_pb.ACTIVITY191_CycleStage),
        },
+       -- 關閉道具+號按鈕
+       _closePlusBtn = true,
+   },
+   -- 神海2
+   [Inst.ShopType.GODSEA2] = {
+       -- 腳本檔名
+       _scriptName = "Shop.ShopSubPage_Weekly",
+       -- 標題
+       _title = "@GodSeaShopTitle",
+       -- 圖標
+       _iconImg_normal = "SubBtn_GodseaShop.png",
+       _iconImg_selected = "SubBtn_GodseaShop_On.png",
+       -- 圖標名稱
+       _iconName = "@Goods",
+       -- 貨幣資訊 
+       _currencyInfos = {
+           { priceStr = "30000_" .. EventDataMgr[Const_pb.ACTIVITY196_CycleStage_Part2].TOKEN_ID .. "_0" },
+       },
+       _avaliableConditions = {
+           deactive = not ActivityInfo:getActivityIsOpenById(Const_pb.ACTIVITY196_CycleStage_Part2),
+       },
+       -- 關閉道具+號按鈕
+       _closePlusBtn = true,
    },
     -- 每日
     [Inst.ShopType.DAILY] = {
@@ -300,6 +347,8 @@ end
 
 -- 當前商店類型 預設
 Inst.currentShopType = -1
+-- 外部設定 開啟商店類型
+Inst.settingShopType = -1
 
 -- ########  ##     ## ########  ##       ####  ######  
 -- ##     ## ##     ## ##     ## ##        ##  ##    ## 
@@ -505,7 +554,7 @@ function Inst:isEnoughToPrice(priceInfo_or_str)
     if type(priceInfo_or_str) ~= "table" then
         priceInfo = InfoAccesser:getItemInfoByStr(priceInfo_or_str)
     end
-    return InfoAccesser:getUserItemCount(priceInfo.type, priceInfo.itemId) > priceInfo.count
+    return InfoAccesser:getUserItemCount(priceInfo.type, priceInfo.itemId) >= priceInfo.count
 end
 
 

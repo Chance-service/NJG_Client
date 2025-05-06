@@ -128,6 +128,10 @@ NewBattleConst.SKILL_TYPE = {
 NewBattleConst.SKILL1_TRIGGER_TYPE = {
     NORMAL = 0, DODGE = 1, STEALTH_CLEAR = 2
 }
+--靈氣被動技能作用範圍(PASSIVE_TRIGGER_TYPE百位數數值)
+NewBattleConst.AURA_TRIGGER_TYPE = {
+    ALL = 1, ENEMY = 2, FRIEND = 3
+}
 --被動技能觸發類型
 NewBattleConst.PASSIVE_TRIGGER_TYPE = {
     START_BATTLE = 0, HP = 1, MP = 2, CD = 3, 
@@ -138,21 +142,31 @@ NewBattleConst.PASSIVE_TRIGGER_TYPE = {
     SKILL_ADD_EFFECT = 16, ELEMENT_RATIO = 17, FRIEND_DEAD = 18, ENEMY_DEAD = 19, IMMUNITY_BUFF = 20,
     FRIEND_INFERNO_REMOVE = 21, FRIEND_INFERNO_CLEAR = 22, ADD_UNREDUCT_DMG = 23, KILL_ENEMY = 24,
     ENEMY_CAST_ACTIVE_SKILL = 25, TARGET_BUFF_ADD_DMG = 26, CHANGE_HP = 27, ADD_EXECUTE_DMG = 28, ADD_EXECUTE_CRI_DMG = 29,
+    FRIEND_CRI_HIT = 30, AE_ATK_HIT = 31, ENEMY_FRENZY_REMOVE = 32, GET_BUFF = 33, GET_DEBUFF = 34, ATK_MUST_CRI = 35,
+    ATK_ADD_BUFF = 36,
+    -- AURA ALL
+    AURA_SHIELD = 100, AURA_HEALTH = 101, AURA_CRI_HIT = 102, AURA_IMMUNITY_BUFF = 103, AURA_START_BATTLE = 104, AURA_DODGE_VALUE = 105, 
+    AURA_DODGE = 106, AURA_ATK_BY_BUFF = 107, AURA_BE_HIT = 108,
+    -- AURA ENEMY
+    AURA_ENENY_SHIELD = 200, AURA_ENENY_HEALTH = 201, AURA_ENENY_MAX_HP = 202, AURA_ENENY_RECOVER_HP = 203,
+    -- AURA FRIEND
+    AURA_FRIEND_ATK = 300,
 }
 --被動技能類型對應ID
 NewBattleConst.PASSIVE_TYPE_ID = {
     -- 開場觸發
     [NewBattleConst.PASSIVE_TRIGGER_TYPE.START_BATTLE] = { 1013, 1032, 1043, 1083, 1092, 1103, 1163, 1172, 1173, 1182, 1213, 1242, 
-                                                           3010, 3020, 3030, 3040, 3050, 3060, 3070, 3080, 3090, 3100, 3110, 3120, 3130, 3140, 3150,
+                                                           50004,
                                                            999998 },
     -- 血量條件觸發(持續檢查)
     [NewBattleConst.PASSIVE_TRIGGER_TYPE.HP] = { 1043, 1052, 1053 },
     -- 魔力條件觸發(持續檢查)
     [NewBattleConst.PASSIVE_TRIGGER_TYPE.MP] = { },
     -- CD觸發
-    [NewBattleConst.PASSIVE_TRIGGER_TYPE.CD] = { 1022, 1072, 1112, 1152, 1202, 1203, 1221, 1232 },
+    [NewBattleConst.PASSIVE_TRIGGER_TYPE.CD] = { 1022, 1072, 1112, 1152, 1202, 1203, 1221, 1232, 
+                                                 4001, 4002, 4003, 4004, 4005, 50012, 50022, 50026 },
     -- 普攻命中時觸發
-    [NewBattleConst.PASSIVE_TRIGGER_TYPE.ATK_HIT] = { 1023, 1141, 1162, 1171 },
+    [NewBattleConst.PASSIVE_TRIGGER_TYPE.ATK_HIT] = { 10201, 1023, 1141, 1162, 1171, 10101, 50015 },    -- 10201先判斷
     -- 傷害技能命中時觸發
     [NewBattleConst.PASSIVE_TRIGGER_TYPE.SKILL_HIT] = { },
     -- 普攻/傷害技能命中時觸發
@@ -174,13 +188,13 @@ NewBattleConst.PASSIVE_TYPE_ID = {
     -- 被傷害技能暴擊命中時觸發
     [NewBattleConst.PASSIVE_TRIGGER_TYPE.BE_CRI_SKILL_HIT] = { },
     -- 被普攻/傷害技能暴擊命中時觸發
-    [NewBattleConst.PASSIVE_TRIGGER_TYPE.BE_CRI_HIT] = { 1223 },
+    [NewBattleConst.PASSIVE_TRIGGER_TYPE.BE_CRI_HIT] = { 1223, 50002 },
     -- 技能附加額外效果
     [NewBattleConst.PASSIVE_TRIGGER_TYPE.SKILL_ADD_EFFECT] = { },
     -- 屬性額外增傷效果
     [NewBattleConst.PASSIVE_TRIGGER_TYPE.ELEMENT_RATIO] = { },
     -- 友方目標死亡時觸發
-    [NewBattleConst.PASSIVE_TRIGGER_TYPE.FRIEND_DEAD] = { 1243 },
+    [NewBattleConst.PASSIVE_TRIGGER_TYPE.FRIEND_DEAD] = { 1243, 50023 },
     -- 敵方目標死亡時觸發
     [NewBattleConst.PASSIVE_TRIGGER_TYPE.ENEMY_DEAD] = { },
     -- 免疫BUFF
@@ -189,6 +203,8 @@ NewBattleConst.PASSIVE_TYPE_ID = {
     [NewBattleConst.PASSIVE_TRIGGER_TYPE.FRIEND_INFERNO_REMOVE] = { 1062, 1063 },
     -- 友方業火被驅散時觸發
     [NewBattleConst.PASSIVE_TRIGGER_TYPE.FRIEND_INFERNO_CLEAR] = { 1062 },
+    -- 敵方狂亂移除時觸發(驅散, 時間結束, etc.)
+    [NewBattleConst.PASSIVE_TRIGGER_TYPE.ENEMY_FRENZY_REMOVE] = { 11701 },
     -- 追加額外無視減傷傷害
     [NewBattleConst.PASSIVE_TRIGGER_TYPE.ADD_UNREDUCT_DMG] = { 1081 },
     -- 自身擊殺敵方時觸發
@@ -203,6 +219,51 @@ NewBattleConst.PASSIVE_TYPE_ID = {
     [NewBattleConst.PASSIVE_TRIGGER_TYPE.ADD_EXECUTE_DMG] = { 1142 },
     -- 目標低血量額外爆傷
     [NewBattleConst.PASSIVE_TRIGGER_TYPE.ADD_EXECUTE_CRI_DMG] = { 1233 },
+    -- 友方普攻/傷害技能暴擊時觸發
+    [NewBattleConst.PASSIVE_TRIGGER_TYPE.FRIEND_CRI_HIT] = { 50004 },
+    -- 普攻濺射周圍目標
+    [NewBattleConst.PASSIVE_TRIGGER_TYPE.AE_ATK_HIT] = { 50003 },
+    -- 獲得Buff時觸發
+    [NewBattleConst.PASSIVE_TRIGGER_TYPE.GET_BUFF] = { },
+    -- 獲得DeBuff時觸發
+    [NewBattleConst.PASSIVE_TRIGGER_TYPE.GET_DEBUFF] = { 50013 },
+    -- 普攻必爆
+    [NewBattleConst.PASSIVE_TRIGGER_TYPE.ATK_MUST_CRI] = { 10102 },
+    -- 普攻附加buff
+    [NewBattleConst.PASSIVE_TRIGGER_TYPE.ATK_ADD_BUFF] = { 10102 },
+    --
+    -- 全場靈氣效果(護盾)
+    [NewBattleConst.PASSIVE_TRIGGER_TYPE.AURA_SHIELD] = { 50014 },
+    -- 全場靈氣效果(治療量)
+    [NewBattleConst.PASSIVE_TRIGGER_TYPE.AURA_HEALTH] = { 50014 },
+    -- 全場靈氣效果(爆擊時)
+    [NewBattleConst.PASSIVE_TRIGGER_TYPE.AURA_CRI_HIT] = { 60001, 60004 },
+    -- 全場靈氣效果(無視buff)
+    [NewBattleConst.PASSIVE_TRIGGER_TYPE.AURA_IMMUNITY_BUFF] = { 60001 },
+    -- 全場靈氣效果(開場時)
+    [NewBattleConst.PASSIVE_TRIGGER_TYPE.AURA_START_BATTLE] = { 60001, 60002, 60003 },
+    -- 全場靈氣效果(迴避值)
+    [NewBattleConst.PASSIVE_TRIGGER_TYPE.AURA_DODGE_VALUE] = { 60002 },
+    -- 全場靈氣效果(迴避時)
+    [NewBattleConst.PASSIVE_TRIGGER_TYPE.AURA_DODGE] = { 60002 },
+    -- 全場靈氣效果(攻擊力)
+    [NewBattleConst.PASSIVE_TRIGGER_TYPE.AURA_ATK_BY_BUFF] = { 50024 },
+    -- 全場靈氣效果(受傷時)
+    [NewBattleConst.PASSIVE_TRIGGER_TYPE.AURA_BE_HIT] = { 60004 },
+    -- 對敵人靈氣效果(治療量)
+    [NewBattleConst.PASSIVE_TRIGGER_TYPE.AURA_ENENY_HEALTH] = { 60000 },
+    -- 對敵人靈氣效果(最大生命)
+    [NewBattleConst.PASSIVE_TRIGGER_TYPE.AURA_ENENY_MAX_HP] = { 60000 },
+    -- 對敵人靈氣效果(普攻吸血)
+    [NewBattleConst.PASSIVE_TRIGGER_TYPE.AURA_ENENY_RECOVER_HP] = { 60000 },
+    -- 對友方靈氣效果(普通攻擊時)
+    [NewBattleConst.PASSIVE_TRIGGER_TYPE.AURA_FRIEND_ATK] = { 60002 },
+}
+--符石技能類型對應ID
+NewBattleConst.RUNE_PASSIVE_TYPE_ID = {
+    -- 開場觸發
+    [NewBattleConst.PASSIVE_TRIGGER_TYPE.START_BATTLE] = { 3012, 3014, 3015, 3016, 3017, 3018, 3019, 3020, 3021, 3022, 3023, 3024,
+                                                           3025, 3026, 3027, 3028, 3029, 3030, 3031, 3032, 3033 },
 }
 -- 被動技能減少技能開場CD資料
 NewBattleConst.SP_FIRSTCD_DATA = {
@@ -210,7 +271,7 @@ NewBattleConst.SP_FIRSTCD_DATA = {
 }
 -- 技能目標選擇條件
 NewBattleConst.SKILL_TARGET_CONDITION = {
-    HIGHEST_HP = 1, LOWEST_HP = 2, HIGHEST_MP = 3, LOWEST_MP = 4, WITHOUT_BUFF_TAUNT = 5, WITHOUT_SELF = 6,
+    HIGHEST_HP = 1, LOWEST_HP = 2, HIGHEST_MP = 3, LOWEST_MP = 4, WITHOUT_BUFF_TAUNT = 5, WITHOUT_SELF = 6, HAVE_DISPEL_BUFF = 7, HAVE_DISPEL_DEBUFF = 8, 
 }
 -- 受擊事件類型
 NewBattleConst.HURT_TYPE = {
@@ -301,6 +362,12 @@ NewBattleConst.SCENE_TYPE = {
     WORLD_BOSS = 4, -- 世界BOSS
     DUNGEON = 5, -- 地城
     CYCLE_TOWER = 6, --循環爬塔
+    SINGLE_BOSS = 7, --單人強敵
+    SINGLE_BOSS_SIM = 8, --單人強敵模擬
+    SEASON_TOWER = 9,
+    PUZZLE = 10,
+    LIMIT_TOWER = 11,
+    FEAR_TOWER = 12,
     GUIDE = 998, -- 新手教學
     AFK = 999,    -- 掛機
     EDIT_FIGHT_TEAM = 900,--戰鬥編隊
@@ -334,7 +401,7 @@ NewBattleConst.FIGHT_RESULT = {
     NEXT_LOG = 3,
 }
 -- 戰鬥屬性%數上下限
-NewBattleConst.MAX_DEF_PER = 0.75
+NewBattleConst.MAX_DEF_PER = 0.15
 NewBattleConst.MAX_CRI_PER = 0.95
 NewBattleConst.MIN_CRI_PER = 0.05
 NewBattleConst.MAX_HIT_PER = 0.95
@@ -375,6 +442,17 @@ NewBattleConst.BUFF = {
     ACCURACY_B = 91, FEAR = 92, EMBER = 93, ICE_WALL = 94, TWINE = 95, BROKEN = 96, EXHAUST = 97, SOUL_OF_POSION = 98, TOXIN_OF_POSION = 99, SNAKE_OF_POSION = 100,
     HEADWIND = 101, TAILWIND = 102, DODGE = 103, AVOID = 104, RESIST_A = 105, RESIST_B = 106, HOLY_A = 107, HOLY_B = 108, UNRIVALED = 109, PIERCING_ICE = 110,
     MAGICIAN = 111, LIGHT_CHARGE = 112, DARK_THUNDER = 113, FORCE_FIELD = 114, THORNS = 115, DEFNESE_HEART_A = 116, DEFENSE_HEART_B = 117, FRAGILE = 118,
+    FIRE_SHIELD = 119, WATER_SHIELD = 120, WIND_SHIELD = 121, LIGHT_SHIELD = 122, DARK_SHIELD = 123, FIRE_KILLER = 124, WATER_KILLER = 125, WIND_KILLER = 126,
+    LIGHT_KILLER = 127, DARK_KILLER = 128, HEALTH_BLOCK = 129, SHIELD_BLOCK = 130, BALANCE_ATTACK = 131, EMERGENCY_SUPPORT = 132, BROKEN_ATTACK = 133,
+    EXHAUST_ATTACK = 134, FROSTBITE_ATTACK = 135, BLEED_ATTACK = 136, SOUL_OF_POSION_ATTACK = 137, FIRE1_SKIN_SKILL1 = 138, ATK_HIT = 139, WILL_TO_FIGHT = 140,
+    FATE = 141, P_DEF_100 = 142, M_DEF_100 = 143,
+    -- 符石
+    RUNE_ATK_RANGE_1 = 3012, 
+    RUNE_TODMG_FIRE1 = 3014, RUNE_TODMG_WATER1 = 3015, RUNE_TODMG_WIND1 = 3016, RUNE_TODMG_LIGHT1 = 3017, RUNE_TODMG_DARK1 = 3018, 
+    RUNE_TODMG_FIRE_WATER1 = 3019, RUNE_TODMG_WATER_WIND1 = 3020, RUNE_TODMG_FIRE_WIND1 = 3021, RUNE_TODMG_LIGHT_DARK1 = 3022, 
+    RUNE_BEDMG_FIRE1 = 3023, RUNE_BEDMG_WATER1 = 3024, RUNE_BEDMG_WIND1 = 3025, RUNE_BEDMG_LIGHT1 = 3026, RUNE_BEDMG_DARK1 = 3027, 
+    RUNE_BEDMG_FIRE_WATER1 = 3028, RUNE_BEDMG_WATER_WIND1 = 3029, RUNE_BEDMG_FIRE_WIND1 = 3030, RUNE_BEDMG_LIGHT_DARK1 = 3031, 
+    RUNE_HEALTH = 3032, RUNE_BEHEALTH = 3033,
 }
 NewBattleConst.BUFF_COLOR = {
     [NewBattleConst.BUFF.EROSION] = { ["RED"] = 220, ["GREEN"] = 100, ["BLUE"] = 210, ["ALPHA"] = 255 },
@@ -475,6 +553,7 @@ NewBattleConst.LogDataType = {
 NewBattleConst.FunClassType = {
     BUFF_MANAGER = 1,
     NG_BATTLE_CHARACTER_UTIL = 2,
+    NEW_BATTLE_UTIL = 3,
 }
 NewBattleConst.PassiveLogType = {
     SKILL = 1,

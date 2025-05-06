@@ -85,10 +85,12 @@ function DetailContent:onRefreshContent(ccbRoot)
         if self.roleType == CONST.CHARACTER_TYPE.HERO then
             if self.id < CONST.ENEMY_BASE_IDX then -- 玩家
                 local roleInfo = UserMercenaryManager:getUserMercenaryByItemId(self.itemId)
-                NodeHelper:setSpriteImage(container, { mHeadIcon = "UI/Role/Portrait_" .. string.format("%02d", self.itemId) .. string.format("%03d", roleInfo.skinId) .. ".png" })
+                local iconId = roleInfo.skinId > 0 and string.format("%05d", roleInfo.skinId) or string.format("%02d000", self.itemId)
+                NodeHelper:setSpriteImage(container, { mHeadIcon = "UI/Role/Portrait_" .. iconId .. ".png" })
             else    -- 敵方
                 local skinId = NgBattleDataManager.battleEnemyCharacter[self.id - CONST.ENEMY_BASE_IDX].otherData[CONST.OTHER_DATA.SPINE_SKIN]
-                NodeHelper:setSpriteImage(container, { mHeadIcon = "UI/Role/Portrait_" .. string.format("%02d", self.itemId) .. string.format("%03d", skinId) .. ".png" })
+                local iconId = skinId > 0 and string.format("%05d", skinId) or string.format("%02d000", self.itemId)
+                NodeHelper:setSpriteImage(container, { mHeadIcon = "UI/Role/Portrait_" .. iconId .. ".png" })
             end
         elseif self.roleType == CONST.CHARACTER_TYPE.MONSTER or self.roleType == CONST.CHARACTER_TYPE.WORLDBOSS then
             local cfg = ConfigManager.getNewMonsterCfg()[self.itemId]
@@ -102,16 +104,22 @@ function DetailContent:onRefreshContent(ccbRoot)
 end
 
 function DetailContent:onDetail1(container)
-    NgBattleDetailTestPage_setUiType(1, self.id)
-    PageManager.pushPage("NgBattleDetailTestPage")
+    if libOS:getInstance():getIsDebug() then
+        --NgBattleDetailTestPage_setUiType(1, self.id)
+        --PageManager.pushPage("NgBattleDetailTestPage")
+    end
 end
 function DetailContent:onDetail2(container)
-    NgBattleDetailTestPage_setUiType(2, self.id)
-    PageManager.pushPage("NgBattleDetailTestPage")
+    if libOS:getInstance():getIsDebug() then
+        --NgBattleDetailTestPage_setUiType(2, self.id)
+        --PageManager.pushPage("NgBattleDetailTestPage")
+    end
 end
 function DetailContent:onDetail3(container)
-    NgBattleDetailTestPage_setUiType(3, self.id)
-    PageManager.pushPage("NgBattleDetailTestPage")
+    if libOS:getInstance():getIsDebug() then
+        --NgBattleDetailTestPage_setUiType(3, self.id)
+        --PageManager.pushPage("NgBattleDetailTestPage")
+    end
 end
 ------------------------------------------------
 

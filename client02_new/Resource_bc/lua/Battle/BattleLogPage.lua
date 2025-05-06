@@ -316,6 +316,25 @@ function BattleLogPage:initUI(container)
     elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.SEASON_TOWER then
         local cfg = ConfigManager.getTowerData()
         NodeHelper:setStringForLabel(container, { mTitle = cfg[NgBattleDataManager.dungeonId].StageName })
+    elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.LIMIT_TOWER then
+        local TowerDataBase = require "Tower.TowerPageData"
+        local cfg = TowerDataBase:getLimitCfg(NgBattleDataManager.dungeonId,NgBattleDataManager.limitType)
+        NodeHelper:setStringForLabel(container, { mTitle = cfg.StageName })
+    elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.FEAR_TOWER then
+        local TowerDataBase = require "Tower.TowerPageData"
+        local _type = NgBattleDataManager.dungeonId
+        
+        local data = TowerDataBase:getData(199, _type) or {}
+        local floor = math.max(tonumber(data.MaxFloor),1)
+        
+        local id = tonumber(string.format("%d%03d", _type, floor))
+        
+        local cfg = TowerDataBase:getFearCfg(id)
+
+        NodeHelper:setStringForLabel(container, { mTitle = cfg.StageName })
+    elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.PUZZLE then
+        local cfg = ConfigManager.getSubPuzzleCfg()
+        NodeHelper:setStringForLabel(container, { mTitle = cfg[NgBattleDataManager.dungeonId].StageName })
     elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.TEST_BATTLE then
     end
     -- 隊伍頭像設定
@@ -332,7 +351,8 @@ function BattleLogPage:initUI(container)
             if roleType == CONST.CHARACTER_TYPE.HERO then
                 local roleInfo = UserMercenaryManager:getUserMercenaryByItemId(itemId)
                 quality = (roleInfo.starLevel > 10 and 6) or (roleInfo.starLevel < 6 and 4) or 5
-                NodeHelper:setSpriteImage(container, { ["mHeadIcon" .. fData.idx] = "UI/RoleIcon/Icon_" .. string.format("%02d", itemId) .. string.format("%03d", roleInfo.skinId) .. ".png" })
+                local iconId = roleInfo.skinId > 0 and string.format("%05d", roleInfo.skinId) or string.format("%02d000", itemId)
+                NodeHelper:setSpriteImage(container, { ["mHeadIcon" .. fData.idx] = "UI/RoleIcon/Icon_" .. iconId .. ".png" })
             elseif roleType == CONST.CHARACTER_TYPE.MONSTER or roleType == CONST.CHARACTER_TYPE.WORLDBOSS then
                 local cfg = ConfigManager.getNewMonsterCfg()[itemId]
                 NodeHelper:setSpriteImage(container, { ["mHeadIcon" .. fData.idx] = cfg.Icon })
@@ -348,7 +368,8 @@ function BattleLogPage:initUI(container)
             local element = eData.battleData[CONST.BATTLE_DATA.ELEMENT]
             if roleType == CONST.CHARACTER_TYPE.HERO then
                 local skinId = eData.otherData[CONST.OTHER_DATA.SPINE_SKIN]
-                NodeHelper:setSpriteImage(container, { ["mHeadIcon" .. eData.idx] = "UI/RoleIcon/Icon_" .. string.format("%02d", itemId) .. string.format("%03d", skinId) .. ".png" })
+                local iconId = skinId > 0 and string.format("%05d", skinId) or string.format("%02d000", itemId)
+                NodeHelper:setSpriteImage(container, { ["mHeadIcon" .. eData.idx] = "UI/RoleIcon/Icon_" .. iconId .. ".png" })
             elseif roleType == CONST.CHARACTER_TYPE.MONSTER or roleType == CONST.CHARACTER_TYPE.WORLDBOSS then
                 local cfg = ConfigManager.getNewMonsterCfg()[itemId]
                 NodeHelper:setSpriteImage(container, { ["mHeadIcon" .. eData.idx] = cfg.Icon })

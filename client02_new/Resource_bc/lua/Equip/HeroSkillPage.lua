@@ -38,9 +38,9 @@ local SKILL_STAR_LIMIT = {   -- 用skill_num * 10 + skill_level當作key
 
 }
 local SKILL_STAR_MESSAGE_KEY = {   -- 用skill_num * 10 + skill_level當作key
-    [11] = "",[12] = "@HeroSkillUpgrade1", [13] = "@HeroSkillUpgrade10",
-    [21] = "",[22] = "@HeroSkillUpgrade2", [23] = "@HeroSkillUpgrade11",
-    [31] = "",[32] = "@HeroSkillUpgrade3", [33] = "@HeroSkillUpgrade12",
+    [11] = "",[12] = "@HeroSkillUpgrade6", [13] = "@HeroSkillUpgrade10",
+    [21] = "",[22] = "@HeroSkillUpgrade7", [23] = "@HeroSkillUpgrade11",
+    [31] = "",[32] = "@HeroSkillUpgrade8", [33] = "@HeroSkillUpgrade12",
     [41] = "@HeroSkillUnlock_equip1",[42] = "@HeroSkillUnlock_equip2", [43] = "@HeroSkillUnlock_equip3",   
 }
 local opcodes = {
@@ -149,7 +149,7 @@ function HeroSkillPage:refreshSkillItem(container, level)
         if not roleEquip then
             -- 未裝備專武，設定鎖定樣式和提示文字
             htmlStr = string.gsub(htmlStr, PAGE_INFO.UNLOCK_FONT_COLOR, PAGE_INFO.LOCK_FONT_COLOR)
-            tipStr = SKILL_STAR_MESSAGE_KEY[LimitIdx]
+            tipStr = PAGE_INFO.ROLEID and SKILL_STAR_MESSAGE_KEY[LimitIdx] or ""
         else
             -- 驗證裝備的星數和對應條件
             local equipId = roleEquip.equipItemId
@@ -290,13 +290,13 @@ end
 function HeroSkillPage_setPageRoleInfo(level, star,roleId,itemId)
     PAGE_INFO.ROLE_LEVEL = level
     PAGE_INFO.ROLE_STAR = star
-    PAGE_INFO.ROLEID=roleId
-    PAGE_INFO.ITEMID=itemId
+    PAGE_INFO.ROLEID = roleId
+    PAGE_INFO.ITEMID = itemId
 end
 
 function HeroSkillPage_setPageSkillId(id)
-    PAGE_INFO.BASE_SKILL_ID = string.sub(tostring(id), 1, 4)
-    PAGE_INFO.SKILL_NUM = tonumber(string.sub(tostring(id), 4, 4) + 1)
+    PAGE_INFO.BASE_SKILL_ID = tostring(math.floor(id / 10))
+    PAGE_INFO.SKILL_NUM = math.floor(id / 10) % 10 + 1
     PAGE_INFO.BUFF_LIST = common:split(skillCfg[id].buff, ",")
     PAGE_INFO.FULL_SKILL_ID = tonumber(PAGE_INFO.BASE_SKILL_ID .. ((PAGE_INFO.SKILL_LEVEL == 0) and 1 or PAGE_INFO.SKILL_LEVEL))
     PAGE_INFO.ALL_LEVEL_BUFF_LIST = { }

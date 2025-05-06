@@ -40,7 +40,7 @@ local CenterPos = 25
 local MinFlagPos = 1
 local MaxFlagPos = 24
 
-local DiceItemId = 250012   -- 更新時需換新id
+local DiceItemId = 7001   -- 更新時需換新id
 
 local Dice_spine = nil
 
@@ -151,10 +151,10 @@ function MonopolyDoneItem:refresh(container)
     local mItemNode = container:getVarNode("mItemNode")
 
     if self.mState == 0 then
-        mColorNode:setVisible(false)
-        mSelectSprite:setVisible(false)
+        --mColorNode:setVisible(false)
+        --mSelectSprite:setVisible(false)
         mGetSprite:setVisible(false)
-        mSupplementarySprite:setVisible(false)
+        --mSupplementarySprite:setVisible(false)
     end
 end
 
@@ -210,10 +210,12 @@ function MonopolyGameBase:onLoad(container)
     container.mScrollView:setBounceable(false)
     container.mScrollView:setContentSize(CCSizeMake(MAP_WIDTH * MAP_SCALE,MAP_HEIGHT * MAP_SCALE))
 
+    local langType = CCUserDefault:sharedUserDefault():getIntegerForKey("LanguageType")
     local doubleNode = container:getVarNode("mdoubletitle");
-    local spinePath ="Spine/Spine_reward"
+    local spinePath ="Spine/NGUI"
     local spineName ="Spine_reward"
     local double_spine = SpineContainer:create(spinePath, spineName)
+    double_spine:setSkin(langType)
     local stoNode = tolua.cast(double_spine, "CCNode");
     doubleNode:addChild(stoNode)
     double_spine:runAnimation(1,"animation_1",-1)
@@ -225,7 +227,7 @@ function MonopolyGameBase:onLoad(container)
 
     local Mapcontainer = MonopolyMap.container
     local flagNode = Mapcontainer:getVarNode("mMainflag");
-    spinePath ="Spine/Spine_flag"
+    spinePath ="Spine/NGUI"
     spineName ="Activity_141_flag"
     flag_spine = SpineContainer:create(spinePath, spineName)
     stoNode = tolua.cast(flag_spine, "CCNode");
@@ -287,7 +289,7 @@ function MonopolyGameBase:initMap(container)
     MonopolyMap.container = titleCell
 
     local spineNode = MonopolyMap.container:getVarNode("mdice");
-    local spinePath ="Spine/Spine_Dice"
+    local spinePath ="Spine/NGUI"
     local spineName ="Spine_Dice"
     Dice_spine = SpineContainer:create(spinePath, spineName)
     local spineToNode = tolua.cast(Dice_spine, "CCNode");

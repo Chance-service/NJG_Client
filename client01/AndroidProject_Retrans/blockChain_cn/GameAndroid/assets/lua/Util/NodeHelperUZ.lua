@@ -872,6 +872,10 @@ function NodeHelperUZ:buildScrollViewGrid_LT2RB(container, size, ccbiFile, funcC
             -- 取得尺寸
             local pItemSize = pItem:getContentSize()
 
+            if  options.ItemScale then
+                pItem:setScale(options.ItemScale)
+            end
+
             -- 紀錄 成員尺寸
             if itemSize.height < pItemSize.height then
                 itemSize.height = pItemSize.height * pItem:getScaleY()

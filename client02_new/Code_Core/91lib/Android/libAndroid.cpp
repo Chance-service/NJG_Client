@@ -101,13 +101,21 @@ void libAndroid::initWithConfigure(const SDK_CONFIG_STU& configure)//init(bool p
 	_boardcastUpdateCheckDone(true,"");
 }
 
+void libAndroid::setupSDK(int platformId)
+{
+}
+
 static std::string loginName = "";
 static std::string sessionId = "";
 static std::string userNickName = "";
 static std::string token = "";
 static bool IsH365 = false;
 static bool IsEroR18 = false;
-static bool IsJGG = false;
+static bool IsJSG = false;
+static bool IsLSJ = false;
+static bool IsMURA = false;
+static bool IsKUSO = false;
+static bool IsAPLUS = false;
 static std::string PayUrl = "";
 static int HoneyP = 0;
 static int isGuest = 0;
@@ -125,12 +133,13 @@ void libAndroid::login()
 {
 	//libAndroid_mLoginTime = timeGetTime();
 	loginName = "";
-	if (IsH365)
+	if (IsH365 || IsJSG || IsLSJ || IsKUSO || IsAPLUS)
 	{
 		LOGD("login standby");
 		callPlatformLoginJNI();//call java
 		LOGD("login finish");
 	}
+	//go to LoadingFrame::onLogin
 	libPlatformManager::getPlatform()->_boardcastLoginResult(true, "");
 	
 	//callPlatformLoginJNI();//call java
@@ -138,12 +147,13 @@ void libAndroid::login()
 
 void libAndroid::logout()
 {
-	if (IsH365)
+	if (IsH365 || IsJSG || IsLSJ || IsKUSO || IsAPLUS)
 	{
 		callPlatformLogoutJNI();
 	}
 	else
 	{
+		// /go to LoadingFrame::onPlatformLogout
 		libPlatformManager::getPlatform()->_boardcastPlatformLogout();
 	}
 }
@@ -188,7 +198,7 @@ int libAndroid::getIsGuest()
 
 const std::string& libAndroid::loginUin()
 {
-	if (IsH365)
+	if (IsH365 || IsJSG || IsLSJ || IsKUSO || IsAPLUS)
 	{
 		loginName = getPlatformLoginUinJNI();
 	}
@@ -199,6 +209,14 @@ const std::string& libAndroid::getToken()
 {
 	token = getPlatformTokenJNI();
 	return token;
+}
+
+void libAndroid::showPlatformProfile()
+{
+	if (IsKUSO || IsAPLUS)
+	{
+		showPlatformProfileJNI();
+	}
 }
 
 const std::string& libAndroid::sessionID()
@@ -233,7 +251,7 @@ void libAndroid::switchUsers()
 void libAndroid::buyGoods( BUYINFO& info)
 {
 	//BUYINFO的productCount是总价：单价*个数
-	if (IsH365)
+	if (IsH365 || IsKUSO || IsAPLUS)
 	{
 		int iCount = 1;
 		callPlatformPayRechargeJNI(info.productType, info.name.c_str(), info.cooOrderSerial.c_str(), info.productId.c_str(),
@@ -275,9 +293,19 @@ const std::string libAndroid::getClientChannel()
 	return getClientChannelJNI();
 }
 
+const std::string libAndroid::getClientCps()
+{
+	return getClientCpsJNI();
+}
+
 std::string libAndroid::getPlatformMoneyName()
 {
 	return "";
+}
+
+const unsigned int libAndroid::getPlatformId()
+{
+	return getPlatformIdJNI();
 }
 
 void libAndroid::notifyEnterGame()
@@ -390,9 +418,13 @@ void libAndroid::setPlatformName(int platform)
 {
 	IsH365 = (platform == 1);
 	IsEroR18 = (platform == 2);
-	//IsJGG = (platform == 3);
-	setPlatformNameJNI(platform);
-	H365API::setH365CheckJNI(IsH365);
+	IsJSG = (platform == 3);
+	IsLSJ = (platform == 4);
+	IsMURA = (platform == 5);
+	IsKUSO = (platform == 6);
+	IsAPLUS = (platform == 9);
+//	setPlatformNameJNI(platform);
+	//H365API::setH365CheckJNI(IsH365);
 }
 
 void libAndroid::setPayR18(int mid, int serverid, const std::string& url)
@@ -404,7 +436,7 @@ void libAndroid::setPayR18(int mid, int serverid, const std::string& url)
 
 void  libAndroid::setPayH365(const std::string& url)
 {
-	if (IsH365)
+	if (IsH365 || IsKUSO || IsAPLUS)
 	{
 		setPayUrlJNI(url.c_str()); // JNI to jave
 	}

@@ -8,8 +8,10 @@ local BuyManager = require("BuyManager")
 
 local GrowthFundPage = { }
 
+local EnterFun = "onStory"
+
 local option = {
-    ccbiFile = "GrowthBundle.ccbi",
+    ccbiFile = "GrowthBundleVer2.ccbi",
     handlerMap =
     {
         onHelp = "onHelp",
@@ -23,9 +25,13 @@ local option = {
 }
 
 local GrowthFundContent = {
-    ccbiFile = "GrowthBundleItem.ccbi",
+    ccbiFile = "GrowthBundleItemVer2.ccbi",
     rewardIds = {}
 }
+local TagContent = {
+    ccbiFile = "GrowthBundleVer2_tag.ccbi"
+}
+local TagContainers = {}
 
 local opcodes = {
     ACTIVITY162_Growth_LV_S = HP_pb.ACTIVITY162_Growth_LV_S,
@@ -39,7 +45,7 @@ local GROWTH_PAGE_TYPE = {
     LEVEL = 1, STAGE = 2, TOWER = 3
 }
 local GROWTH_DATA = {
-    [GROWTH_PAGE_TYPE.LEVEL] = { goodsId = { 101 }, cfg = ConfigManager.getGrowthLvCfg(), package = HP_pb.ACTIVITY162_Growth_LV_C }, 
+    [GROWTH_PAGE_TYPE.LEVEL] = { goodsId = { 101, 105}, cfg = ConfigManager.getGrowthLvCfg(), package = HP_pb.ACTIVITY162_Growth_LV_C }, 
     [GROWTH_PAGE_TYPE.STAGE] = { goodsId = { 102, 104 }, cfg = ConfigManager.getGrowthChCfg(), package = HP_pb.ACTIVITY163_Growth_CH_C },  
     [GROWTH_PAGE_TYPE.TOWER] = { goodsId = { 103 }, cfg = ConfigManager.getGrowthTwCfg(), package = HP_pb.ACTIVITY164_Growth_TW_C }, 
 }
@@ -50,7 +56,7 @@ local removeNotice = true
 local sendReward = false
 local Current_Type = 1
 local parentPage = nil
-local MAX_TYPE = 2
+local maxType = 2
 local Content = {
     [GROWTH_PAGE_TYPE.LEVEL] = { action = 0, costFlag = { false }, freeReward = { }, costRewards = { }, init = false },
     [GROWTH_PAGE_TYPE.STAGE] = { action = 0, costFlag = { false, false }, freeReward = { }, costRewards = { }, init = false },
@@ -62,6 +68,7 @@ local currentScrollviewOffset = nil
 local requesting = false
 
 local mainContainer = nil
+
 
 function GrowthFundPage:createPage(_parentPage)
     
@@ -99,7 +106,11 @@ function GrowthFundContent:onRefreshContent(ccbRoot)
     local lb2Str = {}
     local visibleMap = {}
     local colorMap = {}
-    
+    for i = 1 , 3 do
+        local _Type = i == nowPageType
+        visibleMap["mBg"..i] = _Type
+        visibleMap["mFlag"..i] = _Type
+    end
     for i = 2, 4 do
         visibleMap["mRewardNode" .. i] = false
     end
@@ -220,8 +231,7 @@ function GrowthFundContent:ButtonControl(container, data)
     end
 end
 function GrowthFundContent:onBtnClick(container)
-    local scrollview = mainContainer:getVarScrollView("mContent")
-    currentScrollviewOffset = scrollview:getContentOffset() 
+    currentScrollviewOffset = mainContainer.scrollview:getContentOffset() 
     local ItemInfo = GROWTH_DATA[nowPageType].cfg[self.id]
     local id = ItemInfo.id
     if self.status == 3 or self.status == 6 then return end
@@ -292,17 +302,30 @@ function GrowthFundPage:onEnter(ParentContainer)
         Content[i].init = false
     end
 
+    mainContainer.scrollview = mainContainer:getVarScrollView("mContent")
+    NodeHelper:autoAdjustResizeScrollview(mainContainer.scrollview)
+    NodeHelper:autoAdjustResizeScale9Sprite( mainContainer:getVarScale9Sprite("mContentBg"))
+    mainContainer:getVarNode("mTop"):setPositionY(750 + NodeHelper:calcAdjustResolutionOffY())
+
     if RechargeCfg == {} then
         --local msg = Recharge_pb.HPFetchShopList()
         --msg.platform = GameConfig.win32Platform
         --pb_data = msg:SerializeToString()
         --PacketManager:getInstance():sendPakcet(HP_pb.FETCH_SHOP_LIST_C, pb_data, #pb_data, true)
     else
-        self:onStory(self.container)
+        if GrowthFundPage and GrowthFundPage[EnterFun] then
+            GrowthFundPage[EnterFun](GrowthFundPage, self.container)
+        end
+        --self:onStory(self.container)
     end
 
     self:refreshUI(ParentContainer)
 end
+
+function GrowthFundPage:setEnterFun(FunName)
+    EnterFun = FunName
+end
+
 function GrowthFundPage:refresh(container)
     local itemInfo = nil
     for i = 1, #RechargeCfg do
@@ -311,8 +334,7 @@ function GrowthFundPage:refresh(container)
             break
         end
     end
-    local scrollview = container:getVarScrollView("mContent")
-    scrollview:removeAllCell()
+    mainContainer.scrollview:removeAllCell()
 
     NodeHelper:setMenuItemsEnabled(container, { 
         mPlayer = (nowPageType ~= GROWTH_PAGE_TYPE.LEVEL), 
@@ -340,33 +362,100 @@ function GrowthFundPage:refresh(container)
 
     for i, v in pairs(currCfg) do
         cell = CCBFileCell:create()
-        cell:setCCBFile("GrowthBundleItem.ccbi")
-        cell:setAnchorPoint(ccp(0.5, 0.5))
-        cell:setContentSize(CCSize(cell:getContentSize().width, cell:getContentSize().height))
+        cell:setCCBFile(GrowthFundContent.ccbiFile)
         local panel = common:new({id = v.id, index = i}, GrowthFundContent)
         cell:registerFunctionHandler(panel)
-        scrollview:addCell(cell)
-        local pos = ccp(0, cell:getContentSize().height * (#currCfg - i))
-        cell:setPosition(pos)
+        mainContainer.scrollview:addCell(cell)
     end
-    local size = CCSizeMake(cell:getContentSize().width, cell:getContentSize().height * #currCfg)
-    scrollview:setContentSize(size)
-    if not currentScrollviewOffset then
-        scrollview:setContentOffset(ccp(0, -cell:getContentSize().height * #currCfg + 605))
-    else
-        scrollview:setContentOffset(currentScrollviewOffset)
+        mainContainer.scrollview:orderCCBFileCells()
+    if currentScrollviewOffset then
+        mainContainer.scrollview:setContentOffset(currentScrollviewOffset)
     end
-    scrollview:forceRecaculateChildren()
 end
 function GrowthFundPage:refreshUI(container)
     local visibleMap = { }
-    for i = 1, 3 do
-        visibleMap["mTitle" .. i] = (nowPageType == i)
-        visibleMap["mBGSprite" .. i] = (nowPageType == i)
-        visibleMap["mIcon" .. i] = (nowPageType == i)
-        visibleMap["mActive" .. i] = (nowPageType == i)
+    
+    local DiamondCount = 0
+    local typeSet = {}
+    local typeList = {}  -- 存不同的 type
+    for _, value in pairs(GROWTH_DATA[nowPageType].cfg) do
+        if not typeSet[value.type] then
+            typeSet[value.type] = true
+        end
+
+        for _, rewards in ipairs({value.CostRewards, value.FreeRewards}) do
+            for _, reward in pairs(rewards) do
+                if reward.itemId == 1001 then
+                    DiamondCount = DiamondCount + reward.count
+                end
+            end
+        end
+
     end
-    for i = 1, MAX_TYPE do
+    for i = 1, 3 do
+        local isNowType = nowPageType == i
+        visibleMap["mTitle" .. i] = isNowType
+        visibleMap["mBGSprite" .. i] = isNowType
+        visibleMap["mCG"..i] = isNowType
+        visibleMap["mIcon" .. i] = isNowType
+        visibleMap["mActive" .. i] = isNowType
+        visibleMap["mRewardCount"..i] = isNowType
+        visibleMap["mBar"..i] = isNowType
+        NodeHelper:setStringForLabel(container,{["mRewardCount"..i] = DiamondCount})
+    end
+
+    maxType = #typeSet
+
+   local parentNode = container:getVarNode("mTagNode")
+    if not parentNode then
+        print("Error: parentNode is nil")
+        return
+    end
+    
+    for i = 1, maxType do
+        local width = 720 / maxType
+        local height = 75
+   
+    
+        -- 創建內容
+        local TagContent = ScriptContentBase:create("GrowthBundleVer2_tag")
+        TagContent:setContentSize(CCSizeMake(width, height))
+        parentNode:addChild(TagContent)
+
+        local option = {}
+        option.scale9Name = {"mBg_1","mBg_2"}
+        option.scale9Size = CCSizeMake(width,height)
+        option.scale9Pos = ccp(-width/2,-height/2)
+        option.TxtNode = {"mTxt_1","mTxt_2"}
+        option.TxtPosX = 0
+        option.TxtName = "Vol."..i
+        option.Btn = "mBtn"
+        option.BtnScaleX = width/50 
+        option.BtnScaleY = 1.5
+        GrowthFundPage:setTagContent(TagContent,option)
+        TagContent.idx = i
+        TagContainers[i] = TagContent
+        local isChosen = Current_Type == i
+        NodeHelper:setNodesVisible(TagContent,{unSelect = not isChosen,Selected = isChosen})
+        TagContent:registerFunctionHandler(function(eventName, container)
+           if eventName == "onTag" then
+                Current_Type = container.idx
+
+                for id,_container in pairs (TagContainers) do
+                    local isChosen = id == container.idx
+                    NodeHelper:setNodesVisible(_container,{unSelect = not isChosen,Selected = isChosen})
+                end
+                GrowthFundPage:refresh(mainContainer)
+                GrowthFundPage:refreshUI(mainContainer)
+           end
+        end)
+        -- 設定位置
+        local posX = (i - 0.5) * width
+        TagContent:setPosition(ccp(posX, 40))
+    end
+
+
+    for i = 1, maxType do
         visibleMap["mTypeNode" .. i] = (GROWTH_DATA[nowPageType].cfg[1]["type"] and GROWTH_DATA[nowPageType].goodsId[Current_Type] and (Current_Type == i)) and true or false
     end
     visibleMap["mPassed"] = (nowPageType ~= GROWTH_PAGE_TYPE.TOWER) and true or false
@@ -384,6 +473,34 @@ function GrowthFundPage:refreshUI(container)
     end
     NodeHelper:setStringForLabel(container, { mPassed = string })
 end
+function GrowthFundPage:setTagContent(container,option)
+    if option then
+        --scale9Sprite
+        for _,name in pairs (option.scale9Name) do
+            local node = container:getVarScale9Sprite(name)
+            if node then
+                node:setContentSize(option.scale9Size)
+            end
+            local varNode = container:getVarNode(name)
+            if varNode then
+                varNode:setPosition(option.scale9Pos)
+                --varNode:setAnchorPoint(ccp(0.5,0.5))
+            end
+        end
+        --txt
+        for _,name in pairs (option.TxtNode) do         
+            NodeHelper:setStringForLabel(container,{[name] = option.TxtName})
+        end
+        --Btn
+        if option.Btn then
+            local node = container:getVarNode(option.Btn) 
+            if node then
+                node:setScaleX(option.BtnScaleX)
+                node:setScaleY(option.BtnScaleY)
+            end
+        end
+    end
+end
 
 function GrowthFundPage:onReceivePacket(packet)
     local opcode = packet.opcode
@@ -395,7 +512,7 @@ function GrowthFundPage:onReceivePacket(packet)
         PacketManager:getInstance():sendPakcet(GROWTH_DATA[nowPageType].package, pb, #pb, false)
         CCLuaLog(">>>>>>GROWTH_PASS_BUY_SUCC_S")
     elseif opcode == HP_pb.ACTIVITY162_Growth_LV_S or opcode == HP_pb.ACTIVITY163_Growth_CH_S or opcode == HP_pb.ACTIVITY164_Growth_TW_S then
-        local msg = (opcode == HP_pb.ACTIVITY163_Growth_CH_S) and Activity5_pb.GrowthCHPassRes() or Activity5_pb.GrowthPassRes()
+        local msg = Activity5_pb.GrowthPassRes()
         msg:ParseFromString(msgBuff)
         Content[nowPageType].action = msg.action
         Content[nowPageType].costFlag = msg.costFlag
@@ -435,7 +552,7 @@ function RewardSort()
         Content[nowPageType].costFlag = { Content[nowPageType].costFlag }
     elseif type(Content[nowPageType].costFlag) == "table" then
         local costFlag = { }
-        for i = 1, MAX_TYPE do
+        for i = 1, maxType do
             table.insert(costFlag, false)
         end
         for i = 1, #Content[nowPageType].costFlag do
@@ -445,8 +562,7 @@ function RewardSort()
     end
 end
 function GrowthFundPage:onBuy(container)
-    local scrollview = container:getVarScrollView("mContent")
-    currentScrollviewOffset = scrollview:getContentOffset() 
+    currentScrollviewOffset = mainContainer.scrollview:getContentOffset() 
     BuyItem(GROWTH_DATA[nowPageType].goodsId[Current_Type])
 end
 function BuyItem(id)

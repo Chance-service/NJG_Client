@@ -55,12 +55,17 @@ end
 function ActPopUpSaleSubPage_Content:initUi(container)
     PopUpData=common:getPopUpData(GiftId)
     self.rewardItems = PopUpData.Reward
-    PopUpData.price = getPrice(GiftId)
+    PopUpData.price = ActPopUpSalePage_getPrice(GiftId)
     -- 初始化 獲得列表
     NodeHelper:initScrollView(container, "mContent", #self.rewardItems);
 
     self:updateItems()
-
+    --可購買次數
+    local canBuyCount = ConfigManager:getPopUpCfg2()[GiftId] and ConfigManager:getPopUpCfg2()[GiftId].Count or 1
+    local LeftCount = canBuyCount - _serverData[GiftId].buyCount
+    local txt = common:getLanguageString("@popsale_buycount",LeftCount,canBuyCount)
+    NodeHelper:setStringForLabel(container,{leftCountText = txt })
+    NodeHelper:setNodesVisible(container,{leftCountText = LeftCount >= canBuyCount})
     local bg = container:getVarSprite("mBg")
     bg:setScale(NodeHelper:getScaleProportion())
 
@@ -188,6 +193,7 @@ end
 function ActPopUpSaleSubPage_Content:onRecharge(container)
     local msg = Activity5_pb.MaxJumpGiftReq()
     msg.action = 1
+    msg.type = GameConfig.GIFT_TYPE.POPUP_GIFT
     msg.goodsId = GiftId
     common:sendPacket(HP_pb.ACTIVITY187_MAXJUMP_GIFT_C, msg, false)
 end
@@ -235,6 +241,7 @@ end
 function ActPopUpSaleSubPage_Content_sendInfoRequest()
     local msg = Activity5_pb.MaxJumpGiftReq()
     msg.action = 0
+    msg.type = GameConfig.GIFT_TYPE.POPUP_GIFT
     common:sendPacket(HP_pb.ACTIVITY187_MAXJUMP_GIFT_C, msg, false)
 end
 
@@ -257,20 +264,12 @@ end
 function ActPopUpSaleSubPage_setGiftId(_id)
     GiftId = _id
 end
-function ActPopUpSaleSubPage_Content_setServerData(msg)
-    for i = 1, #msg.info do
-        local itemData = msg.info[i]
-        local goodsId = itemData.goodsId
-        if not  _serverData[goodsId] then  _serverData[goodsId] = {} end
-        _serverData[goodsId] = { 
-            id = goodsId, 
-            isGot = itemData.count >= ConfigManager:getPopUpCfg2()[goodsId].Count,
-            limitDate = itemData.leftTime + os.time()
-        }
-
-        if _serverData[goodsId] and _serverData[goodsId].limitDate then
+function ActPopUpSaleSubPage_Content_setServerData(info)
+    _serverData = info
+    for goodsId,data in pairs (_serverData ) do
+        if data and data.limitDate then
             local PopUpPage = require("ActPopUpSale.ActPopUpSalePage")
-            PopUpPage:setTime(goodsId, _serverData[goodsId].limitDate , _serverData[goodsId].isGot)
+            PopUpPage:setTime(goodsId, data.limitDate , data.isGot)
         end
     end
 end

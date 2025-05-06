@@ -257,16 +257,20 @@ void SkeletonRenderer::draw () {
 				blendMode = slot->data->blendMode;
 				switch (slot->data->blendMode) {
 				case SP_BLEND_MODE_ADDITIVE:
-					ccGLBlendFunc(premultipliedAlpha ? GL_ONE : GL_SRC_ALPHA, GL_ONE);
+					//ccGLBlendFunc(premultipliedAlpha ? GL_ONE : GL_SRC_ALPHA, GL_ONE);
+					glBlendFuncSeparate(premultipliedAlpha ? GL_ONE : GL_SRC_ALPHA, GL_ONE, premultipliedAlpha ? GL_ONE : GL_SRC_ALPHA, GL_ONE);
 					break;
 				case SP_BLEND_MODE_MULTIPLY:
-					ccGLBlendFunc(GL_DST_COLOR, GL_ONE_MINUS_SRC_ALPHA);
+					//ccGLBlendFunc(GL_DST_COLOR, GL_ONE_MINUS_SRC_ALPHA);
+					glBlendFuncSeparate(GL_DST_COLOR, GL_ONE_MINUS_SRC_ALPHA, GL_DST_COLOR, GL_ONE_MINUS_SRC_ALPHA);
 					break;
 				case SP_BLEND_MODE_SCREEN:
-					ccGLBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_COLOR);
+					//ccGLBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_COLOR);
+					glBlendFuncSeparate(GL_ONE, GL_ONE_MINUS_SRC_COLOR, GL_ONE, GL_ONE_MINUS_SRC_COLOR);
 					break;
 				default:
-					ccGLBlendFunc(blendFunc.src, blendFunc.dst);
+					//ccGLBlendFunc(blendFunc.src, blendFunc.dst);
+					glBlendFuncSeparate(blendFunc.src, blendFunc.dst, blendFunc.src, blendFunc.dst);
 				}
 			}
 			color.a = skeleton->a * slot->a * a * 255;

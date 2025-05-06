@@ -49,8 +49,14 @@ function FateDataManager:syncFateDatas(msg)
                 mRoleFateDataList[newRoleId][runeId] = true
             end
         end
+        local RuneInfoPage = require("Equip.RuneInfoPage")
+        RuneInfoPage:RefreshLockIcon()
         PackagePage_refreshPage()
         PageManager.refreshPage(FateDataManager.ModelName, "UpdateData")
+        local RuneBuildSelectPage = require ("RuneBuildSelectPage")
+        RuneBuildSelectPage:RefreshPage()
+        local InventoryPage = require("Inventory.InventoryPage")
+        InventoryPage:refreshPage()
     elseif msg.type == MysticalDress_pb.All then
         mNoRoleFateDataList = { }
         mRoleFateDataList = { }

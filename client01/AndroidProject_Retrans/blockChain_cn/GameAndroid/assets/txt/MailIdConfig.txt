@@ -112,3 +112,7 @@ id	内容
 7013	<font  color="#807e7d" face = "HelveticaBD22" size ="100">#v1#活动「净化计划」-你所属的队伍获得第1名。</font>
 7014	<font  color="#807e7d" face = "HelveticaBD22" size ="100">#v1#活动「净化计划」-你所属的队伍获得第2名。</font>
 7015	<font  color="#807e7d" face = "HelveticaBD22" size ="100">#v1#活动「净化计划」-以下为你尚未领取的奖励。</font>
+7016	<font  color="#807e7d" face = "HelveticaBD22" size ="100">恭喜你在活动「强敌挑战」中获得第#v1#名，以下是您的奖励。</font>
+7017	<font  color="#807e7d" face = "HelveticaBD22" size ="100">恭喜你在活动「试炼之塔」中获得第#v1#名，以下是您的奖励。</font>
+7018	<font  color="#807e7d" face = "HelveticaBD22" size ="100">出价已被超越\n已退还#V1#钻石</font>
+7019	<font  color="#807e7d" face = "HelveticaBD22" size ="100">恭喜竞标成功!</font>

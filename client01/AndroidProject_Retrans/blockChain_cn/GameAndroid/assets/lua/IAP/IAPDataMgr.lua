@@ -27,6 +27,27 @@ Inst.SubPageCfgs = {
     },
     {
         -- 子頁面名稱 : 禮包
+        subPageName = "GiftShop",
+        
+        -- 分頁 相關
+        scriptName = "IAP.IAPSubPage_GiftShop",
+        iconImg_normal = "SubBtn_SuperBundle.png",
+        iconImg_selected = "SubBtn_SuperBundle_On.png",
+        
+        -- 標題
+        title = common:getLanguageString("@BundleShopTitle"),
+        
+        -- 貨幣資訊
+        currencyInfos = {{priceStr = "10000_1002_0"}, {priceStr = "10000_1001_0"}},
+        
+        -- 其他子頁資訊 ----------
+        TopisVisible = true,
+        LOCK_KEY = GameConfig.LOCK_PAGE_KEY.DAILY_BUNDLE,
+        --isRedOn = function() return RedPointManager_getShowRedPoint(RedPointManager.PAGE_IDS.PACKAGE_GOODS_TAB) end,
+        activityID = Const_pb.ACTIVITY187_MaxJump
+    }, 
+    {
+        -- 子頁面名稱 : 禮包
         subPageName = "Recharge",
         
         -- 分頁 相關
@@ -70,7 +91,7 @@ Inst.SubPageCfgs = {
     },
     {
         -- 子頁面名稱 : 成長
-        subPageName = "GrowFund",
+        subPageName = "StageFund",
         
         -- 分頁 相關
         scriptName = "IAP.IAPSubPage_GrowthFund",
@@ -86,6 +107,31 @@ Inst.SubPageCfgs = {
         -- 其他子頁資訊 ----------
         TopisVisible = true,
         LOCK_KEY = GameConfig.LOCK_PAGE_KEY.GROWTH_BUNDLE,
+        callFun = function() 
+                     require("IAP.IAPSubPage_GrowthFund"):setEnterFun("onStory")
+                  end
+    },
+    {
+        -- 子頁面名稱 : 成長
+        subPageName = "LevelFound",
+        
+        -- 分頁 相關
+        scriptName = "IAP.IAPSubPage_GrowthFund",
+        iconImg_normal = "SubBtn_LevelPass.png",
+        iconImg_selected = "SubBtn_LevelPass_On.png",
+        
+        -- 標題
+        title = common:getLanguageString("@GrowthPassTitle"),
+        
+        -- 貨幣資訊
+        currencyInfos = {{priceStr = "10000_1002_0"}, {priceStr = "10000_1001_0"}},
+        
+        -- 其他子頁資訊 ----------
+        TopisVisible = true,
+        LOCK_KEY = GameConfig.LOCK_PAGE_KEY.GROWTH_BUNDLE,
+        callFun = function() 
+                     require("IAP.IAPSubPage_GrowthFund"):setEnterFun("onPlayer")
+                  end
     },
     
     {

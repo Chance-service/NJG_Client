@@ -70,6 +70,8 @@ function NgCharacterManager:initAllChaNode()
     local time2 = os.clock()
     CCLuaLog(">>>>>preloadAllHitEffect End Time : " .. time2)
     CCLuaLog(">>>>>preloadAllHitEffect Cost Time : " .. (time2 - time1))
+    -- 影響角色初始值光環技能處理
+    self:calAuraSkillValue(heroList, enemyList)
 end
 
 function NgCharacterManager:initTarChaNode(pos)
@@ -230,24 +232,35 @@ function NgCharacterManager:newCharacter(idx, isMine)
     local spinePath, spineName = unpack(common:split(cfg[itemId].Spine, ","))
     local isHero = (roleType == CONST.CHARACTER_TYPE.LEADER or 
                     roleType == CONST.CHARACTER_TYPE.HERO)
+    if isHero then
+        if roleInfo and roleInfo.skinId > 0 then
+            spineName = "NG_" .. string.format("%05d", roleInfo.skinId)
+        else
+            spineName = spineName .. "000"
+        end
+    end
+    -- 測試用
+    --if isMine and itemId == 1 then
+    --    roleInfo.skinId = 1
+    --end
     local oData = {
         [CONST.OTHER_DATA.SPINE_PATH] = spinePath,
-        [CONST.OTHER_DATA.SPINE_NAME] = isHero and spineName .. string.format("%03d", roleInfo and roleInfo.skinId or 0) or spineName,
+        [CONST.OTHER_DATA.SPINE_NAME] = spineName,
         [CONST.OTHER_DATA.SPINE_SKIN] = isHero and (roleInfo and roleInfo.skinId or 0) or cfg[itemId].Skin,
         [CONST.OTHER_DATA.INIT_POS_X] = NgBattleDataManager.battlePageContainer:getVarNode("mPos" .. posId):getPositionX(),
         [CONST.OTHER_DATA.INIT_POS_Y] = NgBattleDataManager.battlePageContainer:getVarNode("mPos" .. posId):getPositionY(),
         [CONST.OTHER_DATA.IS_LEADER] = (roleType == Const_pb.MAIN_ROLE),
         [CONST.OTHER_DATA.IS_ENEMY] = not isMine,
         [CONST.OTHER_DATA.SPINE_PATH_BACK_FX] = "Spine/CharacterFX",
-        [CONST.OTHER_DATA.SPINE_NAME_BACK_FX] = isHero and effectCfg[tonumber(string.format("%02d", itemId) .. string.format("%03d", roleInfo and roleInfo.skinId or 0))].HeroFx .. "_FX2" or cfg[itemId].CharFxName .. "_FX2",
+        [CONST.OTHER_DATA.SPINE_NAME_BACK_FX] = isHero and effectCfg[(roleInfo and roleInfo.skinId > 0) and tonumber(string.format("%05d", roleInfo.skinId)) or tonumber(string.format("%02d000", itemId))].HeroFx .. "_FX2" or cfg[itemId].CharFxName .. "_FX2",
         [CONST.OTHER_DATA.SPINE_PATH_FRONT_FX] = "Spine/CharacterFX",
-        [CONST.OTHER_DATA.SPINE_NAME_FRONT_FX] = isHero and effectCfg[tonumber(string.format("%02d", itemId) .. string.format("%03d", roleInfo and roleInfo.skinId or 0))].HeroFx .. "_FX1" or cfg[itemId].CharFxName .. "_FX1",
+        [CONST.OTHER_DATA.SPINE_NAME_FRONT_FX] = isHero and effectCfg[(roleInfo and roleInfo.skinId > 0) and tonumber(string.format("%05d", roleInfo.skinId)) or tonumber(string.format("%02d000", itemId))].HeroFx .. "_FX1" or cfg[itemId].CharFxName .. "_FX1",
         [CONST.OTHER_DATA.SPINE_PATH_FLOOR_FX] = "Spine/CharacterFX",
-        [CONST.OTHER_DATA.SPINE_NAME_FLOOR_FX] = isHero and effectCfg[tonumber(string.format("%02d", itemId) .. string.format("%03d", roleInfo and roleInfo.skinId or 0))].HeroFx .. "_FX3" or cfg[itemId].CharFxName .. "_FX3",
+        [CONST.OTHER_DATA.SPINE_NAME_FLOOR_FX] = isHero and effectCfg[(roleInfo and roleInfo.skinId > 0) and tonumber(string.format("%05d", roleInfo.skinId)) or tonumber(string.format("%02d000", itemId))].HeroFx .. "_FX3" or cfg[itemId].CharFxName .. "_FX3",
         [CONST.OTHER_DATA.SPINE_PATH_BULLET] = "Spine/CharacterBullet",
         [CONST.OTHER_DATA.IS_FLIP] = cfg[itemId].Reflect,
         [CONST.OTHER_DATA.CFG] = cfg[itemId],
-        [CONST.OTHER_DATA.BULLET_SPINE_NAME] = isHero and effectCfg[tonumber(string.format("%02d", itemId) .. string.format("%03d", roleInfo and roleInfo.skinId or 0))].Bullet or cfg[itemId].BulletName,
+        [CONST.OTHER_DATA.BULLET_SPINE_NAME] = isHero and effectCfg[(roleInfo and roleInfo.skinId > 0) and tonumber(string.format("%05d", roleInfo.skinId)) or tonumber(string.format("%02d000", itemId))].Bullet or cfg[itemId].BulletName,
         [CONST.OTHER_DATA.CHARACTER_TYPE] = roleType,
         [CONST.OTHER_DATA.ITEM_ID] = itemId,
         [CONST.OTHER_DATA.CHARACTER_LEVEL] = level,
@@ -263,18 +276,21 @@ function NgCharacterManager:newCharacter(idx, isMine)
         end
     end
     
+    -- 測試用
+    self:addTestSkill(skills, { isMine = isMine })
+
     local sData = { }
     local spFirstCDData = { }
     for i = 1, #skills do
         local skillId = tonumber(skills[i]) or tonumber(skills[i].itemId)
-        if skillCfg[skillId] then
+        if skillCfg[skillId] and (skillId > 40000 or skillId < 30000) then
             local skillType = skillCfg[skillId].skillType or CONST.SKILL_DATA.PASSIVE
             sData[skillType] = sData[skillType] or { }
             local skillBaseId = math.floor(skillId / 10)
             local skillLevel = skillId % 10
             table.insert(sData[skillType], skillId, 
                          { ["COUNT"] = 0, ["CD"] = skillCfg[skillId].firstCD, ["ACTION"] = skillCfg[skillId].actionName,
-                           ["TIMER"] = 0, ["LEVEL"] = skillLevel })
+                           ["TIMER"] = 0, ["LEVEL"] = skillLevel, ["COUNTER"] = 0 })
             -- 重設FirstCD
             if CONST.SP_FIRSTCD_DATA[skillBaseId] and skillLevel >= CONST.SP_FIRSTCD_DATA[skillBaseId]["LV"] then
                 spFirstCDData[CONST.SP_FIRSTCD_DATA[skillBaseId]["SKILL"]] = skillId
@@ -292,7 +308,25 @@ function NgCharacterManager:newCharacter(idx, isMine)
             end
         end
     end
-    local character = CHAR_UTIL:new({ parent = fightNode, idx = posId, battleData = bData, otherData = oData, skillData = sData })
+    local rData = { }
+    local runeSkills = roleInfo and roleInfo.dress or { } -- 符石技能
+    for i = 1, #runeSkills do
+        local skillId = tonumber(runeSkills[i]) or tonumber(runeSkills[i].skillId)
+        if skillCfg[skillId] then
+            local skillType = skillCfg[skillId].skillType or CONST.SKILL_DATA.PASSIVE
+            rData[skillType] = rData[skillType] or { }
+            local skillBaseId = math.floor(skillId / 10)
+            local skillLevel = skillId % 10
+            if rData[skillType][skillBaseId] then
+                rData[skillType][skillBaseId]["NUM"] = rData[skillType][skillBaseId]["NUM"] + 1
+            else
+                table.insert(rData[skillType], skillBaseId, 
+                            { ["COUNT"] = 0, ["CD"] = skillCfg[skillId].firstCD, ["ACTION"] = skillCfg[skillId].actionName,
+                              ["TIMER"] = 0, ["LEVEL"] = skillLevel, ["NUM"] = 1, ["COUNTER"] = 0 })
+            end
+        end
+    end
+    local character = CHAR_UTIL:new({ parent = fightNode, idx = posId, battleData = bData, otherData = oData, skillData = sData, runeData = rData })
     NgBattleCharacterBase:registSpineEventFunction(character)
     NgBattleCharacterBase:registCallBackFunction(character)
     NgBattleCharacterBase:setOnAnimationFunction(character)
@@ -390,7 +424,7 @@ function NgCharacterManager:newSprite(roleInfo, posIdx)
             local skillLevel = skillId % 10
             table.insert(sData[skillType], skillId, 
                          { ["COUNT"] = 0, ["CD"] = skillCfg[skillId].firstCD, ["ACTION"] = skillCfg[skillId].actionName,
-                           ["TIMER"] = 0, ["LEVEL"] = skillLevel })
+                           ["TIMER"] = 0, ["LEVEL"] = skillLevel, ["COUNTER"] = 0 })
             -- 重設FirstCD
             if CONST.SP_FIRSTCD_DATA[skillBaseId] and skillLevel >= CONST.SP_FIRSTCD_DATA[skillBaseId]["LV"] then
                 spFirstCDData[CONST.SP_FIRSTCD_DATA[skillBaseId]["SKILL"]] = skillId
@@ -408,7 +442,25 @@ function NgCharacterManager:newSprite(roleInfo, posIdx)
             end
         end
     end
-    local character = CHAR_UTIL:new({ parent = fightNode, idx = posIdx, battleData = bData, otherData = oData, skillData = sData })
+    local rData = { }
+    local runeSkills = roleInfo and roleInfo.dress or { } -- 符石技能
+    for i = 1, #runeSkills do
+        local skillId = tonumber(runeSkills[i]) or tonumber(runeSkills[i].skillId)
+        if skillCfg[skillId] then
+            local skillType = skillCfg[skillId].skillType or CONST.SKILL_DATA.PASSIVE
+            rData[skillType] = rData[skillType] or { }
+            local skillBaseId = math.floor(skillId / 10)
+            local skillLevel = skillId % 10
+            if rData[skillType][skillBaseId] then
+                rData[skillType][skillBaseId]["NUM"] = rData[skillType][skillBaseId]["NUM"] + 1
+            else
+                table.insert(rData[skillType], skillBaseId, 
+                            { ["COUNT"] = 0, ["CD"] = skillCfg[skillId].firstCD, ["ACTION"] = skillCfg[skillId].actionName,
+                              ["TIMER"] = 0, ["LEVEL"] = skillLevel, ["NUM"] = 1, ["COUNTER"] = 0 })
+            end
+        end
+    end
+    local character = CHAR_UTIL:new({ parent = fightNode, idx = posIdx, battleData = bData, otherData = oData, skillData = sData, runeData = rData })
     NgBattleCharacterBase:registSpineEventFunction(character)
     NgBattleCharacterBase:setOnAnimationFunction(character)
 
@@ -497,6 +549,52 @@ function NgCharacterManager:preloadAllHitEffect(fList, eList)
                     end
                 end
             end
+        end
+    end
+end
+
+function NgCharacterManager:calAuraSkillValue(fList, eList)
+    for f = 1, CONST.HERO_COUNT do
+        if fList[f] then
+            local ratio = NewBattleUtil:calAuraSkillRatio(fList[f], CONST.PASSIVE_TRIGGER_TYPE.AURA_ENENY_MAX_HP)  -- 生命值光環
+            if ratio > 0 then
+                fList[f].battleData[CONST.BATTLE_DATA.MAX_HP] = NewBattleUtil:calRoundValue(fList[f].battleData[CONST.BATTLE_DATA.MAX_HP] * ratio, 1)
+                fList[f].battleData[CONST.BATTLE_DATA.PRE_HP] = NewBattleUtil:calRoundValue(fList[f].battleData[CONST.BATTLE_DATA.PRE_HP] * ratio, 1)
+                fList[f].battleData[CONST.BATTLE_DATA.HP] = NewBattleUtil:calRoundValue(fList[f].battleData[CONST.BATTLE_DATA.HP] * ratio, 1)
+                NgBattlePageInfo_updateTargetCardHpInfo(fList[f].idx, fList[f].battleData[CONST.BATTLE_DATA.HP], fList[f].battleData[CONST.BATTLE_DATA.MAX_HP])
+            end
+            ratio = NewBattleUtil:calAuraSkillRatio(fList[f], CONST.PASSIVE_TRIGGER_TYPE.AURA_ENENY_RECOVER_HP, true)  -- 吸血光環
+            if math.abs(ratio) > 0 then
+                fList[f].battleData[CONST.BATTLE_DATA.RECOVER_HP] = fList[f].battleData[CONST.BATTLE_DATA.RECOVER_HP] + ratio
+            end
+        end
+    end
+    for e = 1, CONST.ENEMY_COUNT do
+        if eList[e] then
+            local ratio = NewBattleUtil:calAuraSkillRatio(eList[e], CONST.PASSIVE_TRIGGER_TYPE.AURA_ENENY_MAX_HP)  -- 生命值光環
+            if ratio > 0 then
+                eList[e].battleData[CONST.BATTLE_DATA.MAX_HP] = NewBattleUtil:calRoundValue(eList[e].battleData[CONST.BATTLE_DATA.MAX_HP] * ratio, 1)
+                eList[e].battleData[CONST.BATTLE_DATA.HP] = NewBattleUtil:calRoundValue(eList[e].battleData[CONST.BATTLE_DATA.HP] * ratio, 1)
+            end
+            ratio = NewBattleUtil:calAuraSkillRatio(eList[e], CONST.PASSIVE_TRIGGER_TYPE.AURA_ENENY_RECOVER_HP, true)  -- 吸血光環
+            if math.abs(ratio) > 0 then
+                eList[e].battleData[CONST.BATTLE_DATA.RECOVER_HP] = eList[e].battleData[CONST.BATTLE_DATA.RECOVER_HP] + ratio
+            end
+        end
+    end
+end
+
+function NgCharacterManager:addTestSkill(skillData, option)
+    if CC_TARGET_PLATFORM_LUA ~= common.platform.CC_PLATFORM_WIN32 then
+        return
+    end
+    if true then
+        return  -- 關閉測試
+    end
+    local skillIds = { 600041 }
+    if option and option.isMine then
+        for k, v in pairs(skillIds) do
+            table.insert(skillData, v)
         end
     end
 end

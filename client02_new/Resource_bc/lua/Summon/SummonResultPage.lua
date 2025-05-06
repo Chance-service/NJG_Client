@@ -1047,7 +1047,11 @@ function Inst:playHighlight (reward, options)
     end
     -- 星數圖片
     if imageMap.highlightStarImg1 == nil then
-        imageMap.highlightStarImg1 = PathAccesser:getStarIconPath(reward.star)
+        if reward.type == SummonDataMgr.RewardType.HERO then
+            imageMap.highlightStarImg1 = self:_getQualityStarImagePath(reward.star)
+        else
+            imageMap.highlightStarImg1 = PathAccesser:getStarIconPath(reward.star)
+        end
     end
 
     -- 設置
@@ -1294,17 +1298,26 @@ end
 
 
 function Inst:_getQualityImagePath (qualityNum)
-    if 0 < qualityNum and qualityNum < 6 then
+    if qualityNum == 4 then
         return "Imagesetfile/Common_UI02/SummonResult_SR.png"
-    elseif 5 < qualityNum and qualityNum < 11 then
-        return "Imagesetfile/Common_UI02/SummonResult_SSR.png"
-    elseif 10 < qualityNum and qualityNum < 16 then
+    elseif qualityNum >= 5 then
         return "Imagesetfile/Common_UI02/SummonResult_SSR.png"
     else
         return "Imagesetfile/Common_UI02/SummonResult_R.png"
     end 
 end
 
+function Inst:_getQualityStarImagePath (qualityNum)
+    if qualityNum == 4 then
+        return "Imagesetfile/Common_UI02/common_star_4.png" -- SR
+    elseif qualityNum == 5 then
+        return "Imagesetfile/Common_UI02/common_star_2.png" -- SSR
+    elseif qualityNum == 6 then
+        return "Imagesetfile/Common_UI02/common_star_3.png"
+    else
+        return ""
+    end
+end
 
 local CommonPage = require('CommonPage')
 return CommonPage.newSub(Inst, Inst.pageName, {

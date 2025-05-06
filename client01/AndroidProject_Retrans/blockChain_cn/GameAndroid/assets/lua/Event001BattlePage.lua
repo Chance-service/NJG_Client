@@ -4,6 +4,10 @@ local InfoAccesser = require("Util.InfoAccesser")
 local Event001Page = require "Event001Page"
 local HP_pb = require("HP_pb")
 local Dungeon_pb= require("Dungeon_pb")
+local NodeHelperUZ = require("Util.NodeHelperUZ")
+local ResManager = require("ResManagerForLua")
+local ItemManager = require("Item.ItemManager")
+local EventDataMgr = require("Event001DataMgr")
 
 local Event001BattleBase =  {}
 local opcodes = {
@@ -12,13 +16,13 @@ local opcodes = {
     PLAYER_AWARD_S = HP_pb.PLAYER_AWARD_S
 }
 local option = {
-    ccbiFile = "NGEvent_001_Page.ccbi",
+    ccbiFile = EventDataMgr[EventDataMgr.nowActivityId].BATTLEPAGE_CCB,
     handlerMap ={},
     opcodes = opcodes
 }
 --5555
 local PageContent = {
-    ccbiFile = "NGEvent_001_PageContent.ccbi",
+    ccbiFile = EventDataMgr[EventDataMgr.nowActivityId].BATTLEPAGE_CONTENT_CCB,
 }
 
 
@@ -51,28 +55,33 @@ function Event001BattleBase:onEnter(container)
     self:refresh(container)
     require("TransScenePopUp")
     TransScenePopUp_closePage()
+
+    if not EventDataMgr[EventDataMgr.nowActivityId].isCommonUI then
+        local bg = container:getVarSprite("mBg")
+        bg:setScale(NodeHelper:getTargetScaleProportion(1600, 720))
+    end
 end
 
 function Event001BattleBase:refresh(container)
-  Event001BattleBase:BuildScrollview(container)
-  local Count_7003 = InfoAccesser:getUserItemInfo(Const_pb.TOOL, 7003).count or 0
-  local stringTable = {}
-  stringTable["mCount"] = common:getLanguageString("@activitystageCount",Count_7003)
-  NodeHelper:setStringForLabel(container,stringTable)
-
-  NodeHelper:setMenuItemsEnabled(container,{mNormalBtn = nowMode ~= 1,mHardBtn = nowMode ~= 2})
-
-  --UseItemContent
-  NodeHelper:setNodesVisible(container,{mCountNode = false })
-
-  local stringTable = {}
-  stringTable["mCost"] = common:getLanguageString("@SurplusSearchTimes")
-  stringTable["mCostCount"] = Count_7003
-  stringTable["mNum"] = ItemUsingCount
-  stringTable["mTitle"] = common:getLanguageString("@FastSweep")
-  stringTable["mContent"] = common:getLanguageString("@FastSweepDesc")
-  stringTable["BtnTxt"] = common:getLanguageString("@FastSweep")
-  NodeHelper:setStringForLabel(container,stringTable)
+    Event001BattleBase:BuildScrollview(container)
+    local Count_7003 = InfoAccesser:getUserItemInfo(Const_pb.TOOL, EventDataMgr[EventDataMgr.nowActivityId].CHALLANGE_ID).count or 0
+    local stringTable = {}
+    stringTable["mCount"] = common:getLanguageString("@activitystageCount",Count_7003)
+    NodeHelper:setStringForLabel(container,stringTable)
+    
+    NodeHelper:setMenuItemsEnabled(container,{mNormalBtn = nowMode ~= 1,mHardBtn = nowMode ~= 2})
+    
+    --UseItemContent
+    --NodeHelper:setNodesVisible(container,{mCountNode = false })
+    container:runAnimation("Default Timeline")
+    local stringTable = {}
+    stringTable["mCost"] = common:getLanguageString("@SurplusSearchTimes")
+    stringTable["mCostCount"] = Count_7003
+    stringTable["mNum"] = ItemUsingCount
+    stringTable["mTitle"] = common:getLanguageString("@FastSweep")
+    stringTable["mContent"] = common:getLanguageString("@FastSweepDesc")
+    stringTable["BtnTxt"] = common:getLanguageString("@FastSweep")
+    NodeHelper:setStringForLabel(container,stringTable)
 end
 
 function Event001BattleBase.onFunction(eventName,container)
@@ -81,7 +90,7 @@ function Event001BattleBase.onFunction(eventName,container)
     elseif eventName == "luaEnter" then
         Event001BattleBase:onEnter(container)
     elseif eventName =="onReturn" then
-        local cfg = ConfigManager.get191StageCfg()
+        local cfg = EventDataMgr[EventDataMgr.nowActivityId].STAGE_CFG
         for k,v in pairs (cfg) do
             if CountDown[v.id] then
                 CCDirector:sharedDirector():getScheduler():unscheduleScriptEntry(CountDown[v.id])
@@ -113,7 +122,7 @@ function Event001BattleBase.onFunction(eventName,container)
         ItemUsingCount = 1
         Event001BattleBase:setNum()
     elseif eventName == "onAmountBtn_max" then
-        ItemUsingCount = InfoAccesser:getUserItemInfo(Const_pb.TOOL, 7003).count
+        ItemUsingCount = InfoAccesser:getUserItemInfo(Const_pb.TOOL, EventDataMgr[EventDataMgr.nowActivityId].CHALLANGE_ID).count
         Event001BattleBase:setNum()
     elseif eventName == "onOneBtn" then
         NodeHelper:setNodesVisible(container,{mCountNode = false })
@@ -125,7 +134,7 @@ function Event001BattleBase.onFunction(eventName,container)
 end
 
 function Event001BattleBase:setNum()
-    local Count_7003 = InfoAccesser:getUserItemInfo(Const_pb.TOOL, 7003).count or 0
+    local Count_7003 = InfoAccesser:getUserItemInfo(Const_pb.TOOL, EventDataMgr[EventDataMgr.nowActivityId].CHALLANGE_ID).count or 0
     if ItemUsingCount < 1 then
         ItemUsingCount = 1
     elseif ItemUsingCount > Count_7003 then
@@ -147,6 +156,8 @@ function Event001BattleBase:onReceivePacket(container)
             NgBattleDataManager_setDungeonId(tonumber(msg.mapId))
             PageManager.changePage("NgBattlePage")
             battlePage:onCycle(self.container, msg.resultInfo, msg.battleId, msg.battleType, tonumber(msg.mapId))
+            local Event001Base = require ("Event001Page")
+            Event001Base:closeMovie(container)
         end
     end
     if opcode == HP_pb.CYCLE_ONEKEY_CLEARANCE_S then
@@ -158,21 +169,152 @@ function Event001BattleBase:onReceivePacket(container)
 end
 
 function PageContent:onFast()
-    
-     local itemCount = InfoAccesser:getUserItemInfo(Const_pb.TOOL, 7003).count or 0
+     --local SliderHelper = require("SliderHelper")
+     --local sliderOption = {
+     --    bgFile = "CombatStats_bar1.png",                    -- 背景圖片
+     --    progressFile = "CombatStats_bar3.png",              -- 進度條圖片
+     --    thumbFile = "Icon_Hcoin.png",                       -- 滑塊圖片
+     --    position = ccp(360, 160),                           -- 滑塊位置
+     --    minValue = 1,                                       -- 最小值
+     --    maxValue = 100,                                     -- 最大值
+     --    initialValue = 1,                                  -- 初始值
+     --    parentNode = MainContainer:getVarNode("mCountNode"), -- 父節點
+     --    step = 10,                                           -- 步長
+     --}
+     --local slider = SliderHelper:createSlider(sliderOption)
+     --
+     ---- 動態監控滑塊值變化
+     --SliderHelper:monitorSliderValue(slider, function(currentValue)
+     --    print(string.format("Slider Value: %.2f", currentValue))
+     --end)
+
+     local itemCount = InfoAccesser:getUserItemInfo(Const_pb.TOOL, EventDataMgr[EventDataMgr.nowActivityId].CHALLANGE_ID).count or 0
      if itemCount < 1 then
          MessageBoxPage:Msg_Box(common:getLanguageString("@ERRORCODE_25015"))
          return
      end
 
-     NodeHelper:setNodesVisible(MainContainer,{mCountNode = true }) 
+     --NodeHelper:setNodesVisible(MainContainer,{mCountNode = true }) 
+     MainContainer:runAnimation("WindowPopout")
      NowClickingId = self.Info.id 
+    Event001BattleBase.rewardItems = self.Info.dropItems
+     NodeHelper:initScrollView(MainContainer, "mFastScrollview", #Event001BattleBase.rewardItems);
+     Event001BattleBase:updateItems()
+end
+function Event001BattleBase:updateItems()
+	local size = #self.rewardItems
+		
+	local colMax = 3
+
+	local options = {
+		-- magic layout number 
+		-- 因為CommonRewardContent尺寸異常，導致各使用處需要自行處理
+		interval = ccp(0, 0),
+		colMax = colMax,
+		paddingTop = 0,
+		paddingBottom = 0,
+		originScrollViewSize = CCSizeMake(550, 100),
+		isDisableTouchWhenNotFull = true,
+        ItemScale = 0.7
+	}
+
+	-- 未滿 1行 則 橫向置中
+	if size < colMax then
+		options.isAlignCenterHorizontal = true
+	end
+	
+	-- 未達 2行 則 垂直置中
+	if size <= colMax then
+		options.isAlignCenterVertical = true
+		options.startOffset = ccp(0, 0)
+	-- 達到 2行 則 偏移在首項 並 偏移paddingTop
+	else
+		options.startOffsetAtItemIdx = 1
+		options.startOffset = ccp(0, -options.paddingTop)
+	end
+
+	--[[ 滾動視圖 左上至右下 ]]
+	NodeHelperUZ:buildScrollViewGrid_LT2RB(
+		MainContainer,
+		size,
+		"CommonRewardContent.ccbi",
+		function (eventName, container)
+			self:onScrollViewFunction(eventName, container)
+		end,
+		options
+	)
+			
+	-- 顯示/隱藏 列表 或 無獎勵提示
+	NodeHelper:setNodesVisible(SelfContainer, {
+		mContent = size ~= 0
+	})
+	
+	-- 若 數量 尚未超過 每行數量 的話
+	if size <= colMax  then
+		local node = MainContainer:getVarNode("mFastScrollview")
+		node:setTouchEnabled(false)
+	end
+end
+function Event001BattleBase:onScrollViewFunction(eventName, container)
+	if eventName == "luaRefreshItemView" then
+		--- 每?子空??建的?候??用??函?
+		local contentId = container:getItemDate().mID;
+		-- ?取到?第几行
+		local idx = contentId
+		-- ?取?前的index      i是每行的第几? 用??取?件用的
+		local node = container:getVarNode("mItem")
+		local itemNode = ScriptContentBase:create('GoodsItem.ccbi')
+
+		local itemData = self.rewardItems[idx]
+		local resInfo = ResManager:getResInfoByTypeAndId(itemData and itemData.type or 30000, itemData and itemData.itemId or 104001, itemData and itemData.count or 1);
+		--NodeHelper:setStringForLabel(itemNode, { mName = "" });
+		local numStr = ""
+		if resInfo.count > 0 then
+			numStr = tostring(resInfo.count)
+		end
+		local lb2Str = {
+			mNumber = numStr
+		};
+		local showName = "";
+		if itemData and itemData.type == 30000 then
+			showName = ItemManager:getShowNameById(itemData.itemId)
+		else
+			showName = resInfo.name           
+		end
+		NodeHelper:setNodesVisible(itemNode, { m2Percent = false, m5Percent = false });
+
+		if itemData.type == 40000 then
+			for i = 1, 6 do
+				NodeHelper:setNodesVisible(itemNode, { ["mStar" .. i] = i == resInfo.quality })
+			end
+		end
+		NodeHelper:setNodesVisible(itemNode, { mStarNode = itemData.type == 40000 })
+		
+		--NodeHelper:setBlurryString(itemNode, "mName", showName, GameConfig.BlurryLineWidth - 10, 4)
+		NodeHelper:setStringForLabel(itemNode, lb2Str);
+		NodeHelper:setSpriteImage(itemNode, { mPic = resInfo.icon }, { mPic = 1 });
+		NodeHelper:setQualityFrames(itemNode, { mHand = resInfo.quality });
+		NodeHelper:setColorForLabel(itemNode, { mName = ConfigManager.getQualityColor()[resInfo.quality].textColor })
+		NodeHelper:setNodesVisible(itemNode, { mName = false})
+
+		node:addChild(itemNode);
+		itemNode:registerFunctionHandler(function (eventName, container)
+			if eventName == "onHand" then
+				local id = container.id
+				GameUtil:showTip(container:getVarNode("mHand"), self.rewardItems[id])
+			end  
+		end)
+		itemNode.id = contentId
+	end
 end
 function PageContent:onFight()
     -- 條件檢查：是否解鎖
     local nextId = 1
     if StageInfo.PassedId ~=0 then
-         nextId = ConfigManager.get191StageCfg()[StageInfo.PassedId].nextId
+         nextId = EventDataMgr[EventDataMgr.nowActivityId].STAGE_CFG[StageInfo.PassedId].nextId
+    end
+    if nextId == 0 then
+        nextId = StageInfo.PassedId
     end
     if nextId < self.Info.id then
         MessageBoxPage:Msg_Box(common:getLanguageString("@activitystagetNotice02"))
@@ -189,7 +331,7 @@ function PageContent:onFight()
 
     -- 檢查挑戰道具或次數是否足夠
 
-     local itemCount = InfoAccesser:getUserItemInfo(Const_pb.TOOL, 7003).count or 0
+     local itemCount = InfoAccesser:getUserItemInfo(Const_pb.TOOL, EventDataMgr[EventDataMgr.nowActivityId].CHALLANGE_ID).count or 0
      if itemCount < 1 then
          MessageBoxPage:Msg_Box(common:getLanguageString("@ERRORCODE_25015"))
          return
@@ -207,7 +349,7 @@ function PageContent:onFight()
         end
     end
 
-    local fetterControlCfg = ConfigManager:getEvent001ControlCfg()
+    local fetterControlCfg = EventDataMgr[EventDataMgr.nowActivityId].FETTER_CONTROL_CFG
     local chapter = self.Info.type
     local level = self.Info.star
     local id = tonumber(chapter..string.format("%02d",level).."101")
@@ -228,7 +370,7 @@ function PageContent:onFight()
 end
 
 function Event001BattleBase:BuildScrollview(container)
-   local cfg = ConfigManager.get191StageCfg()
+   local cfg = EventDataMgr[EventDataMgr.nowActivityId].STAGE_CFG
    local EasyTable = {}
    local HardTable = {}
    for _,v in pairs(cfg) do
@@ -277,9 +419,9 @@ function PageContent:onRefreshContent(ccbRoot)
 
     local function setBannerState(isClose)
         if isClose then
-            NodeHelper:setScale9SpriteImage2(container,{ mBg = "BG/NGEvent_001/Event001_Img02_02.png"})
+            NodeHelper:setScale9SpriteImage2(container, { mBg = EventDataMgr[EventDataMgr.nowActivityId].BATTLE_BG_IMG })
         else
-            NodeHelper:setScale9SpriteImage2(container,{mBg = data.Banner})
+            NodeHelper:setScale9SpriteImage2(container, { mBg = data.Banner })
         end
     end
 
@@ -300,7 +442,7 @@ function PageContent:onRefreshContent(ccbRoot)
     -- 根據通過的關卡ID和倒計時時間設置鎖定狀態
     local nextId = 1
     if StageInfo.PassedId ~= 0 then 
-        nextId = ConfigManager.get191StageCfg()[StageInfo.PassedId].nextId
+        nextId = EventDataMgr[EventDataMgr.nowActivityId].STAGE_CFG[StageInfo.PassedId].nextId
     end
     if nextId == data.id then
         if countdownTime > 0 then

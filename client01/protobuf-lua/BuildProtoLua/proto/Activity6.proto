@@ -9,14 +9,12 @@ message SeasonTowerReq{
 
 // 194.季爬塔關卡資訊
 message SeasonTowerData{
-	// 已到達樓層
+	// 達成任務樓層
 	required int32 MaxFloor  = 1;
 	// 活動結束時間
 	required int64 endTime = 2;
     // 已領取獎勵樓層
     repeated int32 takeId = 3;
-    // 可否選擇樓層
-    optional bool chooseFloor = 4;
 }
 
 // 194.季爬塔排行信息
@@ -54,17 +52,213 @@ message SeasonTowerResp{
 message PuzzleBattleReq{
 	//動作
 	required int32 action = 1; // 0.同步活動資訊 1.使用小關卡鑰匙
-    optional int32 subStageId = 2; // 鑰匙使用關卡
+	optional int32 mainId = 2; // 鑰匙使用大關卡
+    optional int32 subStageId = 3; // 鑰匙使用小關卡
 }
 
 // 195.九宮格活動 回應
 message PuzzleBattleResp{
 	//動作
 	required int32 action = 1;  // 0.同步活動資訊
-    required int32 currId = 2;  // 目前大關卡ID
+    repeated int32 passId = 2;  // 已通關大關卡ID
     repeated int32 puzzleId =3; // 已通關小關卡ID(只給此大關卡下小關卡ID)
     required int32 usePay = 4;  // 可付費挑戰次數
     required int32 useFree = 5; // 免費挑戰次數
     required int32 leftTime = 6;// 可進行活動剩餘時間(秒)
+	repeated int32 groupId = 7; // 目前開啟的groupId
+}
+
+// 超級抽池抽獎請求
+message SuperPickUpDraw
+{
+	//召喚ID
+	required int32 id = 1;
+	//召喚次数
+	required int32 times = 2;
+}
+
+// 超級抽池同步資訊請求
+message SuperPickUpSync
+{
+	//欲同步抽池ID 0.全部同步
+	required int32 id = 1;
+}
+
+// 單筆抽池資訊
+message SuperPickUpItem
+{
+	//活動ID
+	required int32 id = 1;
+	//活動剩餘時間
+	required int32 leftTime = 2;
+	//免費抽次數
+	required int32 freeTimes = 3;
+	//單抽需要消耗的鑽石
+	required int32 onceCostGold = 4;
+	//十抽需要消耗的鑽石
+	required int32 tenCostGold = 5;
+	//保底剩餘次數
+	required int32 leftAwardTimes=6;
+	//抽池代券
+	required string ticket=7;
+	//抽中或領去的獎勵
+	repeated string reward = 8;
+}
+
+// 抽池列表
+message SuperPickUpList
+{
+	// 抽池資訊
+	repeated SuperPickUpItem allInfo = 1;
+	//同步抽池ID 0.全部同步
+	required int32 id = 2;
+}
+
+// 198.屬性限制爬塔活動 請求
+message LimitTowerReq{
+	//動作
+	required int32 action = 1; // 0.同步活動資訊
+	// 同步哪個類型的塔 or 0.全部同步
+    optional int32 type = 2;
+}
+
+// 198.屬性限制爬塔關卡資訊
+message LimitTowerData{
+	// 塔樓限制類型
+	required int32 type = 1;
+	// 已完成樓層
+	required int32 DoneFloor  = 2;
+}
+
+// 198.屬性限制塔回應
+message LimitTowerResp{
+    required int32 action = 1; // 0.同步活動資訊
+    repeated LimitTowerData baseInfo = 2 ; // 關卡資訊
+}
+
+// 199.(一命)無畏塔活動 請求
+message FearLessTowerReq{
+	//動作
+	required int32 action = 1; // 0.同步活動資訊 1.同步排行榜 2.購買塔樓商品 3.離開塔樓商店 4.同步成就資訊 5.領取成就獎勵
+	//塔樓Id 0.全部塔樓
+	required int32 towerId = 2;
+	// 購買商品ID(action 5 可作為領取哪個成就cfgID)
+    optional int32 commodityId = 3;
+	// 技能欄位索引(1..4)
+    optional int32 skillIdx = 4;
+}
+
+// 199.(一命)無畏塔關卡資訊
+message FearLessTowerData{
+	// 塔樓類型
+	required int32 towerType  = 1;
+	// 正攻略樓層
+	required int32 currFloor  = 2;
+	// 達成任務樓層
+	required int32 passFloor  = 3;
+	// 目前士氣
+	required int32 nowMorale = 4;
+	// 最大士氣
+	required int32 maxMorale = 5;
+	// 如果是商店樓層會有商品列表
+	repeated int32 commodityList = 6;
+	// 對應商品列表已購買數量
+	repeated int32 brought = 7;
+	// skill列表 1..4
+	repeated int32 SkillList = 8;
+}
+
+// 199.(一命)無畏塔排行信息
+message FearLessTowerRankInfo{
+	// 排名
+	required int32 rank = 1;
+	// 達成的塔樓
+	required int32 passFloor = 2;
+	// 玩家名稱
+	required string name = 3;
+	// 頭像ID
+	required int32 headIcon = 4;
+	// 皮膚ID
+	optional int32 skin = 5;
+    // 完成時間
+    optional int64 doneTime = 6;
+}
+
+// 199.(一命)無畏塔成就資料
+message FearLessTowerAchi{
+	// 成就種類
+	required int32 achiType = 1;
+	// 計數次數
+	required int32 counter = 2;
+}
+
+// 199.(一命)無畏塔排行榜資訊
+message FearLessTowerRanking{
+	// 塔樓類型
+	required int32 towerType  = 1;
+	// 自身排名資料
+	required FearLessTowerRankInfo selfRankItem = 2;
+	// 其他玩家排名資料
+	repeated FearLessTowerRankInfo otherRankItem = 3;	// 前100名
+}
+
+// 199.(一命)無畏塔回應
+message FearLessTowerResp{
+    required int32 action = 1; // 0.同步活動資訊 1.同步排行榜 2.購買塔樓商品 3.離開塔樓商店 4.同步成就資訊 5.領取成就獎勵
+	required int64 endTime = 2; // 活動結束時間
+    repeated FearLessTowerData baseInfo = 3 ; // 關卡資訊
+    repeated FearLessTowerRanking rankingInfo = 4; // 排行榜資訊
+	repeated FearLessTowerAchi achievementInfo = 5; // 成就資訊
+	repeated int32 achiTakeId = 6; // 成就已領取的CfgID
+}
+
+//塔樓系列通行證請求
+message SuperTowerPassReq
+{
+	// 0.同步 1.領獎 2.購買通行證
+	required int32 action 	  = 1;
+	// 同步通行證 儲值ID
+	required int32 rechargeId  = 2;
+	// 領取哪個通關樓層獎項
+	optional int32 passStageId 	  = 3;
+}
+
+//塔樓系列通行證回傳
+message SuperTowerPassRes
+{
+	// 0.同步 1.領獎
+	required int32 action = 1;
+	// 同步通行證 儲值ID
+	required int32 rechargeId = 2;
+	// 是否已付費
+	required bool costFlag = 3;
+	// 免費已領取StageId
+	repeated int32 freeStageId = 4;
+	// 收費已領取StageId
+	repeated int32 costStageId = 5;
+	// 通過關卡盡量會給所有通關關卡,不能的話就會給最大通關關卡
+	repeated int32 passStageId = 6;
+}
+
+//通用八天登入獎勵請求
+message EightDayLoginAwardReq
+{
+	// 0.同步 2.領獎
+	required int32 action 	 = 1;
+	//2.領獎+領取第幾天獎勵
+	optional int32 day 	 = 2;
+}
+
+//通用八天登入獎勵回傳
+message EightDayLoginAwardRep
+{
+	// 0.同步 2.領獎
+	required int32 action 	 = 1;
+	//活動剩餘時間
+	required int32 surplusTime=2;
+	//達標天數
+	required int32 days=3;
+	//已領取紀錄
+	repeated int32 awardDays=4;
 }
 

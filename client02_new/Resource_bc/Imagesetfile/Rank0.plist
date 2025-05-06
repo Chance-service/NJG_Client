@@ -229,6 +229,51 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
+            <key>Rank_small_1.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{32,32}</string>
+                <key>spriteSourceSize</key>
+                <string>{32,32}</string>
+                <key>textureRect</key>
+                <string>{{1985,108},{32,32}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>Rank_small_2.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{32,32}</string>
+                <key>spriteSourceSize</key>
+                <string>{32,32}</string>
+                <key>textureRect</key>
+                <string>{{1985,142},{32,32}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>Rank_small_3.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{32,32}</string>
+                <key>spriteSourceSize</key>
+                <string>{32,32}</string>
+                <key>textureRect</key>
+                <string>{{1985,176},{32,32}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
             <key>Rank_team.png</key>
             <dict>
                 <key>aliases</key>
@@ -333,7 +378,7 @@
             <key>size</key>
             <string>{2018,455}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:1a76836432e541b4e13d7b481d77a9ea:e07de63bebfe2b09a10368cdb0f26312:23316dce5c1a32c27f5db717a0a6df1e$</string>
+            <string>$TexturePacker:SmartUpdate:2334099c19a2189c52ab836b387dfb4c:9083521768b16eceee2c9e1ca87dc71c:23316dce5c1a32c27f5db717a0a6df1e$</string>
             <key>textureFileName</key>
             <string>Rank0.png</string>
         </dict>

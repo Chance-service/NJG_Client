@@ -58,7 +58,7 @@ local Activity2BannerSetting = {
             if LockManager_getShowLockByPageName(GameConfig.LOCK_PAGE_KEY.GROWTH_BUNDLE) then
                 MessageBoxPage:Msg_Box(LockManager_getLockStringByPageName(GameConfig.LOCK_PAGE_KEY.GROWTH_BUNDLE))
             else
-                require("IAP.IAPPage"):setEntrySubPage("GrowFund")
+                require("IAP.IAPPage"):setEntrySubPage("LevelFound")
                 PageManager.pushPage("IAP.IAPPage")
             end
         end,
@@ -85,6 +85,22 @@ local Activity2BannerSetting = {
             end
         end,
     },
+    -- 179 : 階段
+    [179] = {
+        onEnter = function ()
+            if LockManager_getShowLockByPageName(GameConfig.LOCK_PAGE_KEY.STEPBUNDLE) then
+                MessageBoxPage:Msg_Box(LockManager_getLockStringByPageName(GameConfig.LOCK_PAGE_KEY.STEPBUNDLE))
+            else 
+                local StepBundle =  require ("IAP.IAPSubPage_StepBundle")
+                if StepBundle:isBuyAll() then
+                    MessageBoxPage:Msg_Box(common:getLanguageString("@ERRORCODE_10000"))
+                    return
+                end
+                require("IAP.IAPPage"):setEntrySubPage("StepBundle")
+                PageManager.pushPage("IAP.IAPPage")
+            end
+        end,
+    },
     -- 999 : 水晶商城 > 月卡
     [999] = {
         onEnter = function ()
@@ -95,6 +111,91 @@ local Activity2BannerSetting = {
                 PageManager.pushPage("IAP.IAPPage")
             end
         end,
+    },
+     [147] = {
+        onEnter = function ()
+            if LockManager_getShowLockByPageName(GameConfig.LOCK_PAGE_KEY.WISHING_WELL) then
+                MessageBoxPage:Msg_Box(LockManager_getLockStringByPageName(GameConfig.LOCK_PAGE_KEY.WISHING_WELL))
+            else
+                PageManager.pushPage("WishingWell.WishingWellPage")
+            end
+        end,
+    },
+     [172] = {
+        onEnter = function ()
+           MainFrame_onBackpackPageBtn("PickUp")
+        end,
+    },
+    [173] = {
+        onEnter = function ()
+            MainFrame_onBackpackPageBtn("PickUp2")
+        end,
+    },
+    -- 循環活動191
+    [Const_pb.ACTIVITY191_CycleStage] = {
+        onEnter = function (_page)
+            if not ActivityInfo:getActivityIsOpenById(Const_pb.ACTIVITY191_CycleStage) then
+                MessageBoxPage:Msg_Box(common:getLanguageString("@CurrentActivityIsClosed"))
+                return
+            end
+            if LockManager_getShowLockByPageName(GameConfig.LOCK_PAGE_KEY.Event001) then
+                MessageBoxPage:Msg_Box(LockManager_getLockStringByPageName(GameConfig.LOCK_PAGE_KEY.Event001))
+            else
+                local MainScenePage = require("MainScenePage")
+                MainScenePage.onFunction("onActivity", nil)
+                PageManager.popAllPage()
+            end
+        end,
+    },
+    -- 循環活動196
+    [Const_pb.ACTIVITY196_CycleStage_Part2] = {
+        onEnter = function (_page)
+            if not ActivityInfo:getActivityIsOpenById(Const_pb.ACTIVITY196_CycleStage_Part2) then
+                MessageBoxPage:Msg_Box(common:getLanguageString("@CurrentActivityIsClosed"))
+                return
+            end
+            if LockManager_getShowLockByPageName(GameConfig.LOCK_PAGE_KEY.Event001) then
+                MessageBoxPage:Msg_Box(LockManager_getLockStringByPageName(GameConfig.LOCK_PAGE_KEY.Event001))
+            else
+                local MainScenePage = require("MainScenePage")
+                MainScenePage.onFunction("onActivity", nil)
+                PageManager.popAllPage()
+            end
+        end,
+    },
+    [197] = {
+        onEnter = function (_page)
+             if type(_page) == "string" then
+                require("Summon.SummonPage"):setEntrySubPage(_page)
+             end
+             MainFrame_onBackpackPageBtn()
+        end,
+    },
+    [998] = {
+        onEnter =  function(pageName,txt)
+             if not txt then
+                 MessageBoxPage:Msg_Box("URL EMPTY")
+                 return
+             end
+             common:openURL(txt)
+        end
+    },
+    -- 997 : 商店 > 皮膚商店
+    [997] = {
+        onEnter = function ()
+            if LockManager_getShowLockByPageName(GameConfig.LOCK_PAGE_KEY.SHOP) then
+                MessageBoxPage:Msg_Box(LockManager_getLockStringByPageName(GameConfig.LOCK_PAGE_KEY.SHOP))
+            else
+                require("ShopControlPage")
+                ShopTypeContainer_SetSubPageType(16)
+                PageManager.pushPage("ShopControlPage")
+            end
+        end,
+    },
+    [9999] = {
+         onEnter =  function()
+            return
+        end
     },
 }
 
@@ -157,8 +258,8 @@ function LobbyMarqueeBanner:new ()
         end
         self.commMarqueeBanner = CommMarqueeBanner:new():init({
             contentScript = LobbyMarqueeBannerContent,
-            objPoolSize = #cfg*2,
-            displayCount = #cfg*2,
+            objPoolSize = math.min(#cfg * 2, 2),
+            displayCount = 2,--#cfg*2,
         })
 
         self:updateBanners()
@@ -180,19 +281,26 @@ function LobbyMarqueeBanner:new ()
         local bannerCfgs = ConfigManager:getBannerCfg()
         for idx, cfg in ipairs(bannerCfgs) do while true do
             -- 若 沒有開啟 則 忽略
-           local isOpen = (os.time() >= cfg.startTime and os.time() <= cfg.endTime) or (cfg.endTime == 0)
+           local isOpen = (cfg.startTime and os.time() >= cfg.startTime and os.time() <= cfg.endTime) or (cfg.endTime and cfg.endTime == 0)
            if cfg.activityId  == 159 then
                 local DailyBundleData = require ("Activity.DailyBundleData")
                 if DailyBundleData:isGetAll() then isOpen =false end
-           elseif cfg.activityId == 999 then
+           elseif cfg.activityId == 179 then
+                local StepBundle =  require ("IAP.IAPSubPage_StepBundle")
+                if StepBundle:isBuyAll() then isOpen =false end
+           --待新增
            end
            if cfg.group == 0 and isOpen then
                local bannerInfo = {}
-               local bannerSetting = Activity2BannerSetting[cfg.Page]
+               local bannerSetting = Activity2BannerSetting[cfg.activityId]
                if bannerSetting == nil then break end -- continue
                
                bannerInfo.pos = #bannerInfos * BANNER_WIDTH
                bannerInfo.bg = cfg.Image .. ".png"
+               bannerInfo.url = cfg.url
+               if cfg.activityId == 197 then
+                    bannerInfo.PageName = "PickUp"..cfg.Page
+               end
                
                local endTime
                if bannerSetting.getEndTime ~= nil then
@@ -229,6 +337,11 @@ function LobbyMarqueeBanner:new ()
     return Inst
 end
 
+function LobbyMarqueeBanner:jumpActivityById(id)
+    local bannerSetting = Activity2BannerSetting[id]
+    if bannerSetting == nil then return end
+    bannerSetting.onEnter()
+end
 
 ---------------------------------------------------------------------------------
 

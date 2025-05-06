@@ -20,11 +20,23 @@ using namespace cocos2d;
 #define PUSH_TAG_LAYER 100230
 #define PUSH_TAG_BLUR 100232
 
+#define PLAY_MOVIE 1
+#define CLOSE_MOVIE 2
+
 struct PageStruct{
 	std::string mName;
 	BasePage* mBasePage;
 	PageStruct(const std::string& name,BasePage* basePage)
 		:mName(name),mBasePage(basePage)
+	{}
+};
+struct MovieStruct{
+	std::string pageName;
+	std::string movieName;
+	int loop;
+	int autoScale;
+	MovieStruct(const std::string& pageName, const std::string& movieName, int loop, int autoScale)
+		:pageName(pageName), movieName(movieName), loop(loop), autoScale(autoScale)
 	{}
 };
 
@@ -63,6 +75,8 @@ private:
 	
 	typedef std::list<PageStruct*> PageList;
 	PageList mPageList;
+	typedef std::list<MovieStruct*> MovieList;
+	MovieList mMovieList;
 
 	PageStruct* getPageFromPageList(const std::string& name);
 	void removePageFromPageList(const std::string& name);
@@ -166,5 +180,9 @@ public:
 	bool popCurrentPage();
 
 	int getPageNum();
+
+	void addMovie(std::string pageName, std::string movieName, int isLoop, int autoScale);
+	void removeMovieByPage(std::string pageName);
+	void settingMoviePushPageVisible(std::string pageName, int moviePlayType);
 };
 

@@ -151,7 +151,7 @@ void MainFrame::reEnter(GamePrecedure*)
 	libPlatformManager::getPlatform()->notifyEnterGame();
 	//
 	setBackgroundColor(0, 0, 0, 1);
-	GamePrecedure::Get()->closeMovie();
+	GamePrecedure::Get()->closeMovie("LoadingFrame");	// 關閉OP
 	return;
 }
 
@@ -226,8 +226,8 @@ void MainFrame::Enter( GamePrecedure* )
 	}
 
     libPlatformManager::getPlatform()->notifyEnterGame();
-	setBackgroundColor(0, 0, 0, 1);
-	GamePrecedure::Get()->closeMovie();
+	//setBackgroundColor(0, 0, 0, 1);
+	GamePrecedure::Get()->closeMovie("LoadingFrame");	// 關閉OP
 }
 
 void MainFrame::Exit( GamePrecedure* )
@@ -1412,4 +1412,117 @@ int MainFrame::getPageNum()
 		return 1;
 	}
 	return mPageList.size();
+}
+
+void MainFrame::addMovie(std::string pageName, std::string movieName, int isLoop, int autoScale)
+{
+	CCLog("MovieLog -- Add Movie : %s", pageName.c_str());
+	MovieList::iterator iter = mMovieList.begin();
+	bool isExit = false;
+	for (; iter != mMovieList.end(); ++iter)
+	{
+		if ((*iter)->pageName == pageName) {
+			if ((*iter)->movieName == movieName && (*iter)->loop == isLoop && (*iter)->autoScale == autoScale) {	// 已存在
+				isExit = true;
+			}
+			else {
+				// 播放設定不同 更新資訊
+				(*iter)->movieName = movieName;
+				(*iter)->loop = isLoop;
+				(*iter)->autoScale = autoScale;
+				isExit = true;
+			}
+		}
+	}
+	if (!isExit) {	// 該頁面沒有影片設定 -> 加入list
+		MovieStruct* pMovieStruct = new MovieStruct(pageName, movieName, isLoop, autoScale);
+		mMovieList.push_back(pMovieStruct);
+	}
+	// 關閉UI顯示
+	if (pageName != "MainScenePage" && pageName != "EquipmentPage" &&
+		pageName != "NgBattlePage" && pageName != "Lobby2Page") {
+		if (mNodeBack) {
+			mNodeBack->setVisible(false);
+		}
+		if (mMainFrameButtons) {
+			mMainFrameButtons->setVisible(false);
+		}
+		CCLog("MovieLog -- UI Visible = False");
+	}
+	else {
+		// 主頁UI不關NodeBack跟Buttons
+		if (mNodeBack) {
+			mNodeBack->setVisible(true);
+		}
+		if (mMainFrameButtons) {
+			mMainFrameButtons->setVisible(true);
+		}
+		CCLog("MovieLog -- UI Visible = True");
+	}
+	setBackgroundColor(0, 0, 0, 0);
+	// 設定隱藏下方pushPage顯示
+	settingMoviePushPageVisible(pageName, PLAY_MOVIE);
+}
+
+void MainFrame::removeMovieByPage(std::string pageName)
+{
+	CCLog("MovieLog -- Remove Movie : %s", pageName.c_str());
+	MovieList::iterator iter = mMovieList.begin();
+	bool getTarget = false;
+	for (; iter != mMovieList.end(); ++iter)
+	{
+		if ((*iter)->pageName == pageName) {
+			delete *iter;
+			iter = mMovieList.erase(iter);
+			break;
+		}
+	}
+	MovieList::iterator lastIter = mMovieList.end();
+	if (!mMovieList.empty()) {
+		lastIter = mMovieList.end();
+		--lastIter; // 指向最後一個元素
+	}
+	// 開啟全部pushPage顯示
+	settingMoviePushPageVisible("", CLOSE_MOVIE);
+	// 移除後播放剩餘最上層影片
+	if (lastIter != mMovieList.end()) {
+		CCLog("MovieLog -- Play Next Movie : %s", (*lastIter)->pageName.c_str());
+		GamePrecedure::Get()->playMovie((*lastIter)->pageName, (*lastIter)->movieName, (*lastIter)->loop, (*lastIter)->autoScale);
+	}
+	else {
+		if (mNodeBack) {
+			mNodeBack->setVisible(true);
+		}
+		if (mMainFrameButtons) {
+			mMainFrameButtons->setVisible(true);
+		}
+		setBackgroundColor(0, 0, 0, 1);
+	}
+}
+
+void MainFrame::settingMoviePushPageVisible(std::string pageName, int moviePlayType)
+{
+	PageList::iterator iter = mPageList.begin();
+	bool getTarget = false;
+	for (; iter != mPageList.end(); ++iter)
+	{
+		if ((*iter)->mName == pageName)
+		{
+			getTarget = true;
+		}
+		if ((*iter)->mName == "TransScenePopUp") {	// 轉場UI永遠在最上層 -> 不關閉
+			(*iter)->mBasePage->setVisible(true);
+		}
+		else if (moviePlayType == PLAY_MOVIE) {	// play
+			if (!getTarget) {	// 只關閉目標頁面下層page顯示
+				(*iter)->mBasePage->setVisible(false);
+			}
+			else {
+				(*iter)->mBasePage->setVisible(true);
+			}
+		}
+		else if (moviePlayType == CLOSE_MOVIE) {	// close
+			(*iter)->mBasePage->setVisible(true);
+		}
+	}
 }

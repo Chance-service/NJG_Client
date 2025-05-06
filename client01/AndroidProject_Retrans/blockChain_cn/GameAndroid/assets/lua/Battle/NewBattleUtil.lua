@@ -57,18 +57,27 @@ function NewBattleUtil:calNormalAtkResult(chaNode, target, hitNum)
     local dmgTable, tarTable, isCriTable, weakTable = { }, { }, { }, { }
     local healTable, healTarTable, healCriTable = { }, { }, { }
     local buffTable, buffTargetTable, buffTimeTable, buffCountTable = { }, { }, { }, { }
+    local spClassTable, spNameTable, spParamTable, spTarTable = { }, { }, { }, { }
     local resultTable = { }
     local externTar = BuffManager:getExternNormalAtkTarget(chaNode, target)
     table.insert(externTar, target)
+
+    local triggerCri = false
+    for k, v in pairs(CONST.PASSIVE_TYPE_ID[CONST.PASSIVE_TRIGGER_TYPE.ATK_MUST_CRI]) do -- 普攻必爆
+        local cri = NewBattleUtil:castPassiveSkill(chaNode, v, resultTable, { }, CONST.PASSIVE_TRIGGER_TYPE.ATK_MUST_CRI, { })
+        if not triggerCri then
+            triggerCri = cri
+        end
+    end
     for i = 1, #externTar do
         --計算基礎傷害, 是否剋屬
         local baseDmg, weakType = NewBattleUtil:calBaseDamage(chaNode, externTar[i])
         local oneHitDmg = baseDmg / hitNum
         --chaNode.ATTACK_PARAMS["weak_type"] = weakType or 0
-        if self:calIsHit(chaNode, externTar[i]) then
+        if self:calIsHit(chaNode, externTar[i], true) then
             -- 爆傷
             local criRate = 1
-            local isCri = self:calIsCri(chaNode, externTar[i], false, true)
+            local isCri = triggerCri or self:calIsCri(chaNode, externTar[i], false, true)
             if isCri then
                 -- 1 + 基礎爆傷 + 爆傷增益 - 爆傷抵免
                 criRate = self:calFinalCriDmgRate(chaNode, externTar[i])
@@ -96,6 +105,16 @@ function NewBattleUtil:calNormalAtkResult(chaNode, target, hitNum)
                     table.insert(buffCountTable, externBuffData[idx].buffCount)
                 end
             end
+            -- 額外特效
+            local externSpFunData = BuffManager:getExternNormalAtkSpFun(chaNode, externTar[i])
+            if #externSpFunData > 0 then
+                for idx = 1, #externSpFunData do
+                    table.insert(spClassTable, externSpFunData[idx].spClass)
+                    table.insert(spNameTable, externSpFunData[idx].spName)
+                    table.insert(spParamTable, externSpFunData[idx].spParam)
+                    table.insert(spTarTable, externSpFunData[idx].spTar)
+                end
+            end
         else
             table.insert(dmgTable, 0)
             table.insert(tarTable, externTar[i])
@@ -119,6 +138,18 @@ function NewBattleUtil:calNormalAtkResult(chaNode, target, hitNum)
     resultTable[CONST.LogDataType.BUFF_TAR] = buffTargetTable
     resultTable[CONST.LogDataType.BUFF_TIME] = buffTimeTable
     resultTable[CONST.LogDataType.BUFF_COUNT] = buffCountTable
+    --普攻造成特效結果紀錄
+    resultTable[CONST.LogDataType.SP_FUN_CLASS] = spClassTable
+    resultTable[CONST.LogDataType.SP_FUN_NAME] = spNameTable
+    resultTable[CONST.LogDataType.SP_FUN_PARAM] = spParamTable
+    resultTable[CONST.LogDataType.SP_FUN_TAR] = spTarTable
+
+    for k, v in pairs(CONST.PASSIVE_TYPE_ID[CONST.PASSIVE_TRIGGER_TYPE.AE_ATK_HIT]) do -- 普攻濺射
+        NewBattleUtil:castPassiveSkill(chaNode, v, resultTable, { }, CONST.PASSIVE_TRIGGER_TYPE.AE_ATK_HIT, { target })
+    end
+    for k, v in pairs(CONST.PASSIVE_TYPE_ID[CONST.PASSIVE_TRIGGER_TYPE.ATK_ADD_BUFF]) do -- 普攻附加BUFF
+        NewBattleUtil:castPassiveSkill(chaNode, v, resultTable, { }, CONST.PASSIVE_TRIGGER_TYPE.ATK_ADD_BUFF, { target })
+    end
 
     return resultTable
 end
@@ -142,6 +173,7 @@ function NewBattleUtil:calAtk(attacker, target)
             atk = atk * NgBattleDataManager.testFriendAttackRatio
         end
     end
+    atk = atk * self:calAuraSkillRatio(attacker, CONST.PASSIVE_TRIGGER_TYPE.AURA_ATK_BY_BUFF, false)
     return self:calRoundValue(atk, 1)
 end
 --計算物攻
@@ -158,6 +190,7 @@ function NewBattleUtil:calPhyAtk(attacker, target)
             atk = atk * NgBattleDataManager.testFriendAttackRatio
         end
     end
+    atk = atk * self:calAuraSkillRatio(attacker, CONST.PASSIVE_TRIGGER_TYPE.AURA_ATK_BY_BUFF, false)
     return self:calRoundValue(atk, 1)
 end
 --計算魔攻
@@ -174,6 +207,7 @@ function NewBattleUtil:calMagAtk(attacker, target)
             atk = atk * NgBattleDataManager.testFriendAttackRatio
         end
     end
+    atk = atk * self:calAuraSkillRatio(attacker, CONST.PASSIVE_TRIGGER_TYPE.AURA_ATK_BY_BUFF, false)
     return self:calRoundValue(atk, 1)
 end
 
@@ -200,7 +234,7 @@ function NewBattleUtil:calBaseDef(attacker, target, isPhy)
 end
 --計算(目標)物/魔防(計算穿透)
 function NewBattleUtil:calDef(attacker, target, isPhy)
-    local def = self:calBaseDef(attacker, target, isPhy) * (1 - self:calPenetrate(attacker, target))
+    local def = self:calBaseDef(attacker, target, isPhy) * math.max(0, (1 - self:calPenetrate(attacker, target)))
     return self:calRoundValue(def, 1)
 end
 --計算(目標)物/魔防(不計算穿透)
@@ -214,7 +248,7 @@ function NewBattleUtil:calReduction(attacker, target, isPhy)
     local def = self:calDef(attacker, target, isPhy)
     local reduction = def / (def + self:calRoundValue(1 + level / 3, 1) * (800 - level))
     reduction = math.max(reduction, 0)   -- 防止負數
-    reduction = math.min(reduction, CONST.MAX_DEF_PER)   -- 75%減傷上限
+    reduction = math.min(reduction, CONST.MAX_DEF_PER)   -- 15%減傷上限
     return self:calRoundValue(reduction, -4)
 end
 --計算(目標)物/魔減傷(%)(不計算穿透)
@@ -223,7 +257,7 @@ function NewBattleUtil:calReduction2(attacker, target, isPhy)
     local def = self:calDef2(attacker, target, isPhy)
     local reduction = def / (def + self:calRoundValue(1 + level / 3, 1) * (800 - level))
     reduction = math.max(reduction, 0)   -- 防止負數
-    reduction = math.min(reduction, CONST.MAX_DEF_PER)   -- 75%減傷上限
+    reduction = math.min(reduction, CONST.MAX_DEF_PER)   -- 15%減傷上限
     return self:calRoundValue(reduction, -4)
 end
 
@@ -311,6 +345,8 @@ function NewBattleUtil:calDodge(attacker, target)
     local level = target.otherData[CONST.OTHER_DATA.CHARACTER_LEVEL]
     local buffValue, auraValue, markValue = BuffManager:checkDodgeBuffValue(target.buffData)
     local dodgeValue = target.battleData[CONST.BATTLE_DATA.DODGE]
+    local dodgeValueRatio = NewBattleUtil:calAuraSkillRatio(target, CONST.PASSIVE_TRIGGER_TYPE.AURA_DODGE_VALUE)
+    dodgeValue = dodgeValue * dodgeValueRatio
     local dodgeRate = dodgeValue / (dodgeValue + self:calRoundValue(1 + level / 2, 1) * (700 - level))
     dodgeRate = math.max(dodgeRate, 0)   -- 防止負數
     dodgeRate = dodgeRate + buffValue + auraValue + markValue
@@ -334,19 +370,23 @@ end
 function NewBattleUtil:calRecover(attacker, target)
     local recoverRate = 0
     recoverRate = attacker.battleData[CONST.BATTLE_DATA.RECOVER_HP] --+ buff
-    return self:calRoundValue(recoverRate, -4)
+    return math.max(0, self:calRoundValue(recoverRate, -4))
 end
 
 --計算是否命中
-function NewBattleUtil:calIsHit(attacker, target)
+function NewBattleUtil:calIsHit(attacker, target, isNormalAtk)
     local rand = math.random(1, 10000)
     -- 80%基礎命中
     local hitRate = (CONST.BASE_HIT + self:calHit(attacker, target) - self:calDodge(attacker, target))
     hitRate = math.min(hitRate, CONST.MAX_HIT_PER)   -- 95%命中率上限
     hitRate = math.max(hitRate, CONST.MIN_HIT_PER)   -- 5%命中率下限
     if hitRate * 10000 >= rand then
-        -- 消耗順序: 無敵 > 鬼魅 > 必閃 
-        if BuffManager:isInInvincible(target.buffData) or BuffManager:isInGhost(target.buffData) or BuffManager:isInDodge(target.buffData) then
+        -- 消耗順序: 無敵 > 鬼魅 > 必中 > 必閃 
+        if BuffManager:isInInvincible(target.buffData) or BuffManager:isInGhost(target.buffData) then
+            return false
+        elseif isNormalAtk and BuffManager:isInHit(attacker.buffData) then
+            return true
+        elseif BuffManager:isInDodge(target.buffData) then
             return false
         else
             return true
@@ -374,7 +414,7 @@ end
 function NewBattleUtil:calRecoverHp(attacker, target, dmg)
     local buffValue, auraValue, markValue = BuffManager:checkRecoverHpBuffValue(attacker, attacker.buffData)
     local heal = dmg * (attacker.battleData[CONST.BATTLE_DATA.RECOVER_HP] + buffValue + auraValue + markValue)
-    return self:calRoundValue(heal, 1)
+    return math.max(0, self:calRoundValue(heal, 1))
 end
 
 --計算攻擊獲得魔力
@@ -531,8 +571,9 @@ function NewBattleUtil:initAliveTable(list)
     aliveIdTable = {}
     for k, v in pairs(list) do
         if v and (CHAR_UTIL:getState(v) == CONST.CHARACTER_STATE.WAIT or CHAR_UTIL:getState(v) == CONST.CHARACTER_STATE.MOVE 
-             or CHAR_UTIL:getState(v) == CONST.CHARACTER_STATE.ATTACK or CHAR_UTIL:getState(v) == CONST.CHARACTER_STATE.HURT)
-             and CHAR_UTIL:isInBattleField(v) then
+             or CHAR_UTIL:getState(v) == CONST.CHARACTER_STATE.ATTACK or CHAR_UTIL:getState(v) == CONST.CHARACTER_STATE.HURT
+             or CHAR_UTIL:getState(v) == CONST.CHARACTER_STATE.INIT)
+             --[[and CHAR_UTIL:isInBattleField(v)]] then
             table.insert(aliveIdTable, k)
         end
     end
@@ -550,22 +591,54 @@ function NewBattleUtil:checkSkill(skillId, skillData)
     end
     return 0, 0
 end
+--檢查是否有符石技能
+function NewBattleUtil:checkRuneSkill(skillId, skillData)
+    if skillData[CONST.SKILL_DATA.PASSIVE]  then
+        for k, v in pairs(skillData[CONST.SKILL_DATA.PASSIVE]) do
+            if tonumber(skillId) == k then
+                return CONST.SKILL_DATA.PASSIVE, tonumber(skillId .. v.LEVEL), v.NUM
+            end
+        end
+    end
+    return 0, 0, 0
+end
 --施放被動技能(沒有spine動畫的技能)
-function NewBattleUtil:castPassiveSkill(chaNode, skillId, resultTable, allPassiveTable, triggerType, targetTable)
+function NewBattleUtil:castPassiveSkill(chaNode, skillId, resultTable, allPassiveTable, triggerType, targetTable, ignoreCheck)
     if not chaNode or not chaNode.heroNode.heroSpine then
         return false
     end
     local skillType, fullSkillId = self:checkSkill(skillId, chaNode.skillData)
-    if skillType ~= CONST.SKILL_DATA.PASSIVE then  -- 角色沒有該技能/不是被動技能
+    if not ignoreCheck and skillType ~= CONST.SKILL_DATA.PASSIVE then  -- 角色沒有該技能/不是被動技能
         return false
     end
-    if not SkillManager:isSkillUsable(chaNode, skillType, fullSkillId, triggerType) then
+    fullSkillId = fullSkillId > 0 and fullSkillId or skillId
+    if not SkillManager:isSkillUsable(chaNode, skillType, fullSkillId, triggerType, targetTable) then
         return false    -- 技能沒有達到發動條件
     end
     SkillManager:castSkill(chaNode, skillType, fullSkillId)
     SkillManager:runSkill(chaNode, fullSkillId, resultTable, allPassiveTable, targetTable)
     allPassiveTable[chaNode.idx] = allPassiveTable[chaNode.idx] or { }
     table.insert(allPassiveTable[chaNode.idx], CONST.PassiveLogType.SKILL .. "_" .. fullSkillId)
+    return true
+end
+--施放符石被動技能(沒有spine動畫的技能)
+function NewBattleUtil:castRunePassiveSkill(chaNode, skillId, resultTable, allPassiveTable, triggerType, targetTable)
+    if not chaNode or not chaNode.heroNode.heroSpine then
+        return false
+    end
+    local skillType, fullSkillId, num = self:checkRuneSkill(skillId, chaNode.runeData)
+    if skillType ~= CONST.SKILL_DATA.PASSIVE then  -- 角色沒有該技能/不是被動技能
+        return false
+    end
+    if not SkillManager:isSkillUsable(chaNode, skillType, fullSkillId, triggerType) then
+        return false    -- 技能沒有達到發動條件
+    end
+    for i = 1, num do
+        SkillManager:castSkill(chaNode, skillType, fullSkillId)
+        SkillManager:runSkill(chaNode, fullSkillId, resultTable, allPassiveTable, targetTable)
+        allPassiveTable[chaNode.idx] = allPassiveTable[chaNode.idx] or { }
+        table.insert(allPassiveTable[chaNode.idx], CONST.PassiveLogType.SKILL .. "_" .. fullSkillId)
+    end
     return true
 end
 
@@ -677,7 +750,7 @@ function NewBattleUtil:playBuffSpine(node, buffId, buffData)
                 local offsetY = 0
                 local buffCfg = ConfigManager:getNewBuffCfg()
                 if tonumber(posType[i]) == CONST.BUFF_POSITION_TYPE.CENTER then
-                    offsetY = node.otherData[CONST.OTHER_DATA.CFG] and node.otherData[CONST.OTHER_DATA.CFG].CenterOffsetY or 0
+                    offsetY = node.otherData[CONST.OTHER_DATA.CFG] and node.otherData[CONST.OTHER_DATA.CFG].CenterOffsetY - 20 or 0
                 elseif tonumber(posType[i]) == CONST.BUFF_POSITION_TYPE.HEAD then
                     offsetY = node.otherData[CONST.OTHER_DATA.CFG] and node.otherData[CONST.OTHER_DATA.CFG].HeadOffsetY or 0
                 end
@@ -738,9 +811,33 @@ function NewBattleUtil:removeBuff(node, buffId, isPlayEnd)
     NewBattleUtil:removeBuffIcon(node, buffId)
     NewBattleUtil:removeBuffSpine(node, buffId, isPlayEnd)
     NewBattleUtil:refreshBuffEffect(node, buffId)
+    NewBattleUtil:checkRemoveBuffPassive(node, buffId)
 
     local LOG_UTIL = require("Battle.NgBattleLogUtil")
     LOG_UTIL:addTestLog(LOG_UTIL.TestLogType.REMOVE_BUFF, node, nil, buffId, false, false, 0)
+end
+--移除Buff觸發被動技能
+function NewBattleUtil:checkRemoveBuffPassive(node, buffId)
+     -- 移除後觸發被動技能
+     local mainBuffId = math.floor(buffId / 100) % 1000
+     if mainBuffId == CONST.BUFF.FRENZY then  -- 狂亂
+         local list = NgBattleDataManager_getEnemyList(node)
+         local aliveIdTable = NewBattleUtil:initAliveTable(list)
+         for k2, v2 in pairs(CONST.PASSIVE_TYPE_ID[CONST.PASSIVE_TRIGGER_TYPE.ENEMY_FRENZY_REMOVE]) do -- 敵方Buff移除時觸發被動
+             for i = 1, #aliveIdTable do
+                 local resultTable = { }
+                 local allPassiveTable = { }
+                 local actionResultTable = { }
+                 local allTargetTable = { }
+                 if NewBattleUtil:castPassiveSkill(list[aliveIdTable[i]], v2, resultTable, allPassiveTable, CONST.PASSIVE_TRIGGER_TYPE.ENEMY_FRENZY_REMOVE, { node }) then
+                     local LOG_UTIL = require("Battle.NgBattleLogUtil")
+                     local CHAR_UTIL = require("Battle.NgBattleCharacterUtil")
+                     LOG_UTIL:setPreLog(list[aliveIdTable[i]], resultTable)
+                     CHAR_UTIL:calculateAllTable(list[aliveIdTable[i]], resultTable, isSkipCal, actionResultTable, allTargetTable, v2 * 10, allPassiveTable)   -- 全部傷害/治療/buff...處理
+                 end
+             end
+         end
+     end
 end
 --移除特定Buff後刷新剩餘Buff效果
 function NewBattleUtil:refreshBuffEffect(chaNode, buffId)
@@ -869,6 +966,121 @@ function NewBattleUtil:clearBuffColor(node)
     rgbNode:setColor(ccc3(255, 255, 255))
     rgbNode:setOpacity(255)
 end
+-- 紀錄單人強敵分數
+function NewBattleUtil:addSingleBossScore(dmg)
+    local singleBossCfg = ConfigManager.getSingleBoss()[NgBattleDataManager.SingleBossId]
+    if not singleBossCfg then
+        return
+    end
+    local ratio = singleBossCfg.rate
+    NgBattleDataManager.SingleBossScore = NgBattleDataManager.SingleBossScore + dmg-- * ratio
+end
+-- 取得單人強敵當前分數
+function NewBattleUtil:getSingleBossScore()
+    local singleBossCfg = ConfigManager.getSingleBoss()[NgBattleDataManager.SingleBossId]
+    if not singleBossCfg then
+        return 0
+    end
+    local ratio = singleBossCfg.rate
+    return math.floor(NgBattleDataManager.SingleBossScore * ratio + 0.5)
+end
+-- 設定單人強敵分數條
+function NewBattleUtil:setSingleBossScoreBar(container)
+    local BAR_DIS = 50
+    local BAR_WIDTH = 846
+    local BAR_HEIGHT = 7
+    local BAR_STAGE_START_POS = { 22, 116, 210, 304, 398, 492, 586, 680, 774 }
+    local STAGE_START_POS = 35
+    local STAGE_DIS = 94
+    local STAGE_CENTER_POS = 255
+    local STAGE_MAX_MOVE = 1000 - STAGE_CENTER_POS * 2 - STAGE_START_POS
+    --
+    local singleBossCfg = ConfigManager.getSingleBoss()[NgBattleDataManager.SingleBossId]
+    if not singleBossCfg then
+        return
+    end
+    local ratio = singleBossCfg.rate
+    local stagePoint = common:split(singleBossCfg.stagePoint, ",")
+    local nextPoint = 0
+    local nowPoint = math.floor(NgBattleDataManager.SingleBossScore * ratio + 0.5)
+    local nowStage = 0
+    for i = 1, #stagePoint do
+        nextPoint = tonumber(stagePoint[i])
+        if tonumber(stagePoint[i]) > nowPoint then
+            break
+        end
+        nowStage = i
+    end
+    if NgBattleDataManager.SingleBossId == 999 then    -- 999 > 無限血量
+        NodeHelper:setStringForLabel(container, { mRewardPointTxt = GameUtil:formatDotNumber(nowPoint) })
+    else
+        NodeHelper:setStringForLabel(container, { mRewardPointTxt = GameUtil:formatDotNumber(nowPoint) .. "/" .. GameUtil:formatDotNumber(nextPoint) })
+    end
+    --
+    for i = 1, #stagePoint do
+        NodeHelper:setNodesVisible(container, { ["mRewardNode" .. i] = nowStage >= i })
+    end
+    --
+    local bar = container:getVarScale9Sprite("mRewardBar")
+    if nowStage >= #stagePoint then
+        bar:setContentSize(CCSize(BAR_WIDTH, BAR_HEIGHT))
+    elseif nowStage == 0 then
+        bar:setContentSize(CCSize(0, BAR_HEIGHT))
+    else
+        local thisStageDis = tonumber(nextPoint) - tonumber(stagePoint[nowStage])
+        local thisStageScore = nowPoint - tonumber(stagePoint[nowStage])
+        local thisStagPer = thisStageScore / thisStageDis
+        bar:setContentSize(CCSize(BAR_STAGE_START_POS[nowStage] + (BAR_DIS * thisStagPer), BAR_HEIGHT))
+    end
+    NodeHelper:setNodesVisible(container, { mRewardBar = (nowStage > 0) })
+    --
+    local moveNode = container:getVarNode("mMoveNode")
+    if STAGE_START_POS + STAGE_DIS * (nowStage - 1) < STAGE_CENTER_POS then
+        NgBattleDataManager.SingleBossBarPos = 0
+        moveNode:setPositionX(0)
+    elseif nowStage > 7 then
+        local newPos = (STAGE_START_POS + STAGE_DIS * 7 - STAGE_CENTER_POS) * -1
+        if NgBattleDataManager.SingleBossBarPos ~= newPos then
+            NgBattleDataManager.SingleBossBarPos = newPos
+            moveNode:stopAllActions()
+            local array = CCArray:create()
+            array:addObject(CCMoveTo:create(0.2, ccp(newPos, moveNode:getPositionY())))
+            moveNode:runAction(CCSequence:create(array))
+        end
+    else
+        local newPos = (STAGE_START_POS + STAGE_DIS * (nowStage - 1) - STAGE_CENTER_POS) * -1
+        if NgBattleDataManager.SingleBossBarPos ~= newPos then
+            NgBattleDataManager.SingleBossBarPos = newPos
+            moveNode:stopAllActions()
+            local array = CCArray:create()
+            array:addObject(CCMoveTo:create(0.2, ccp(newPos, moveNode:getPositionY())))
+            moveNode:runAction(CCSequence:create(array))
+        end
+    end
+    --
+    local bossNode = NgBattleDataManager.battleEnemyCharacter[NgBattleDataManager.SingleBossBarIdx]
+    if bossNode then
+        local bar = container:getVarScale9Sprite("mBossHpBar")
+        if NgBattleDataManager.SingleBossId == 999 then    -- 999 > 無限血量
+            NodeHelper:setStringForLabel(container, { mBossHpPerTxt = "100.0%" })
+            bar:setInsetLeft(5)
+            bar:setInsetRight(5)
+            bar:setContentSize(CCSize(400, 14))
+            NodeHelper:setNodesVisible(container, { mBossHpBar = true })
+        else
+            local hpStr = GameUtil:formatDotNumber(math.max(0, bossNode.battleData[CONST.BATTLE_DATA.HP]))
+            local maxHpStr = GameUtil:formatDotNumber(bossNode.battleData[CONST.BATTLE_DATA.MAX_HP])
+            local per = math.max(0, bossNode.battleData[CONST.BATTLE_DATA.HP] / bossNode.battleData[CONST.BATTLE_DATA.MAX_HP])
+            NodeHelper:setStringForLabel(container, { mBossHpPerTxt = string.format("%.1f", math.floor(per * 1000 + 0.5) / 10) .. "%" })
+            
+            bar:setInsetLeft((per * 400 > 5 * 2) and 5 or (per * 400 / 2))
+            bar:setInsetRight((per * 400 > 5 * 2) and 5 or (per * 400 / 2))
+            bar:setContentSize(CCSize(400 * math.min(1, per), 14))
+            NodeHelper:setNodesVisible(container, { mBossHpBar = (per > 0) })
+        end
+        --NodeHelper:setStringForLabel(container, { mRewardPointTxt = hpStr .. "/" .. maxHpStr })
+    end
+end
 local logs = {}
 --清除log
 function NewBattleUtil:clearLog()
@@ -930,65 +1142,65 @@ end
 --紀錄log
 --Action 1: 攻擊 2: 回血 3: 回魔
 function NewBattleUtil:addLog(actionType, attacker, targetList, skillId, skillGroupId, markTime, actionResultTable, passiveTable)
-    local log = {}
-    -------------------------------------------------------------------------------
-    local roleInfo = {}
-    roleInfo.posId = tonumber(attacker.idx)
-    roleInfo.action = tonumber(actionType)
-    roleInfo.skillGroupId = tonumber(skillGroupId)
-    roleInfo.skillId = skillId and tonumber(skillId) or nil
-    roleInfo.buff = {}
-    for k, v in pairs(attacker.buffData) do
-        table.insert(roleInfo.buff, k)
-    end
-    roleInfo.nowShield = tonumber(attacker.battleData[CONST.BATTLE_DATA.PRE_SHIELD])
-    roleInfo.newShield = tonumber(attacker.battleData[CONST.BATTLE_DATA.SHIELD])
-    roleInfo.nowHp = tonumber(attacker.battleData[CONST.BATTLE_DATA.PRE_HP])
-    roleInfo.newHp = tonumber(attacker.battleData[CONST.BATTLE_DATA.HP])
-    roleInfo.nowMp = tonumber(attacker.battleData[CONST.BATTLE_DATA.PRE_MP])
-    roleInfo.newMp = tonumber(attacker.battleData[CONST.BATTLE_DATA.MP])
-    roleInfo.status = nil
-    roleInfo.passive = {}
-    if passiveTable and passiveTable[attacker.idx] then
-        for k, v in pairs(passiveTable[attacker.idx]) do
-            table.insert(roleInfo.passive, v)
-        end
-    end
-    log.roleInfo = roleInfo
-    -------------------------------------------------------------------------------
-    local allTarget = {}
-    if targetList then
-        for i = 1, #targetList do
-            local target = {}
-            target.posId = tonumber(targetList[i].idx)
-            target.action = nil
-            target.skillGroupId = nil
-            target.skillId = nil
-            target.buff = {}
-            for k, v in pairs(targetList[i].buffData) do
-                table.insert(target.buff, k)
-            end
-            target.nowShield = tonumber(targetList[i].battleData[CONST.BATTLE_DATA.PRE_SHIELD])
-            target.newShield = tonumber(targetList[i].battleData[CONST.BATTLE_DATA.SHIELD])
-            target.nowHp = tonumber(targetList[i].battleData[CONST.BATTLE_DATA.PRE_HP])
-            target.newHp = tonumber(targetList[i].battleData[CONST.BATTLE_DATA.HP])
-            target.nowMp = tonumber(targetList[i].battleData[CONST.BATTLE_DATA.PRE_MP])
-            target.newMp = tonumber(targetList[i].battleData[CONST.BATTLE_DATA.MP])
-            target.status = tonumber(actionResultTable[i])
-            target.passive = {}
-            if passiveTable and passiveTable[targetList[i].idx] then
-                for k, v in pairs(passiveTable[targetList[i].idx]) do
-                    table.insert(target.passive, v)
-                end
-            end
-            table.insert(allTarget, target)
-        end
-    end
-    log.targetRoleInfo = allTarget
-    -------------------------------------------------------------------------------
-    log.markTime = tonumber(math.floor(markTime))   -- 毫秒
-    -------------------------------------------------------------------------------
-    table.insert(logs, log)
+    --local log = {}
+    ---------------------------------------------------------------------------------
+    --local roleInfo = {}
+    --roleInfo.posId = tonumber(attacker.idx)
+    --roleInfo.action = tonumber(actionType)
+    --roleInfo.skillGroupId = tonumber(skillGroupId)
+    --roleInfo.skillId = skillId and tonumber(skillId) or nil
+    --roleInfo.buff = {}
+    --for k, v in pairs(attacker.buffData) do
+    --    table.insert(roleInfo.buff, k)
+    --end
+    --roleInfo.nowShield = tonumber(attacker.battleData[CONST.BATTLE_DATA.PRE_SHIELD])
+    --roleInfo.newShield = tonumber(attacker.battleData[CONST.BATTLE_DATA.SHIELD])
+    --roleInfo.nowHp = tonumber(attacker.battleData[CONST.BATTLE_DATA.PRE_HP])
+    --roleInfo.newHp = tonumber(attacker.battleData[CONST.BATTLE_DATA.HP])
+    --roleInfo.nowMp = tonumber(attacker.battleData[CONST.BATTLE_DATA.PRE_MP])
+    --roleInfo.newMp = tonumber(attacker.battleData[CONST.BATTLE_DATA.MP])
+    --roleInfo.status = nil
+    --roleInfo.passive = {}
+    --if passiveTable and passiveTable[attacker.idx] then
+    --    for k, v in pairs(passiveTable[attacker.idx]) do
+    --        table.insert(roleInfo.passive, v)
+    --    end
+    --end
+    --log.roleInfo = roleInfo
+    ---------------------------------------------------------------------------------
+    --local allTarget = {}
+    --if targetList then
+    --    for i = 1, #targetList do
+    --        local target = {}
+    --        target.posId = tonumber(targetList[i].idx)
+    --        target.action = nil
+    --        target.skillGroupId = nil
+    --        target.skillId = nil
+    --        target.buff = {}
+    --        for k, v in pairs(targetList[i].buffData) do
+    --            table.insert(target.buff, k)
+    --        end
+    --        target.nowShield = tonumber(targetList[i].battleData[CONST.BATTLE_DATA.PRE_SHIELD])
+    --        target.newShield = tonumber(targetList[i].battleData[CONST.BATTLE_DATA.SHIELD])
+    --        target.nowHp = tonumber(targetList[i].battleData[CONST.BATTLE_DATA.PRE_HP])
+    --        target.newHp = tonumber(targetList[i].battleData[CONST.BATTLE_DATA.HP])
+    --        target.nowMp = tonumber(targetList[i].battleData[CONST.BATTLE_DATA.PRE_MP])
+    --        target.newMp = tonumber(targetList[i].battleData[CONST.BATTLE_DATA.MP])
+    --        target.status = tonumber(actionResultTable[i])
+    --        target.passive = {}
+    --        if passiveTable and passiveTable[targetList[i].idx] then
+    --            for k, v in pairs(passiveTable[targetList[i].idx]) do
+    --                table.insert(target.passive, v)
+    --            end
+    --        end
+    --        table.insert(allTarget, target)
+    --    end
+    --end
+    --log.targetRoleInfo = allTarget
+    ---------------------------------------------------------------------------------
+    --log.markTime = tonumber(math.floor(markTime))   -- 毫秒
+    ---------------------------------------------------------------------------------
+    --table.insert(logs, log)
 end
 
 function NewBattleUtil:printLog(attacker, target, formatStr)
@@ -1022,4 +1234,121 @@ function NewBattleUtil:calPassiveSkillAttrPercent(attacker, attr)
             end
         end
     end
+end
+-- 計算光環技能影響倍率
+function NewBattleUtil:calAuraSkillRatio(chaNode, auraType, isAdd)
+    if not CONST.PASSIVE_TYPE_ID[auraType] then
+        return isAdd and 0 or 1
+    end
+    local ratio = isAdd and 0 or 1
+    local flist = NgBattleDataManager_getFriendList(chaNode)
+    local elist = NgBattleDataManager_getEnemyList(chaNode)
+    local aliveIdTableF = self:initAliveTable(flist)
+    local aliveIdTableE = self:initAliveTable(elist)
+    for k, v in pairs(CONST.PASSIVE_TYPE_ID[auraType]) do
+        local auraTriggerType = math.floor(auraType / 100)
+        local triggerValue = 0   -- 同系列技能不重複觸發(取大)
+        if auraTriggerType == CONST.AURA_TRIGGER_TYPE.ALL or auraTriggerType == CONST.AURA_TRIGGER_TYPE.FRIEND then
+            for i = 1, #aliveIdTableF do
+                local skillType, fullSkillId = self:checkSkill(v, flist[aliveIdTableF[i]].skillData)
+                if skillType == CONST.SKILL_DATA.PASSIVE then
+                    local params = SkillManager:calSkillSpecialParams(fullSkillId, { auraType = auraType, job = chaNode.otherData[CONST.OTHER_DATA.CFG].Job, buff = chaNode.buffData })
+                    if math.abs(params[1]) > triggerValue then
+                        ratio = ratio + params[1]
+                        triggerValue = math.abs(params[1])
+                    end
+                end
+            end
+        end
+        if auraTriggerType == CONST.AURA_TRIGGER_TYPE.ALL or auraTriggerType == CONST.AURA_TRIGGER_TYPE.ENEMY then
+            for i = 1, #aliveIdTableE do
+                local skillType, fullSkillId = self:checkSkill(v, elist[aliveIdTableE[i]].skillData)
+                if skillType == CONST.SKILL_DATA.PASSIVE then
+                    local params = SkillManager:calSkillSpecialParams(fullSkillId, { auraType = auraType, job = chaNode.otherData[CONST.OTHER_DATA.CFG].Job, buff = chaNode.buffData })
+                    if math.abs(params[1]) > triggerValue then
+                        ratio = ratio + params[1]
+                        triggerValue = math.abs(params[1])
+                    end
+                end
+            end
+        end
+    end
+    ratio = math.max(0, ratio)
+    return ratio
+end
+-- 計算光環技能額外效果
+function NewBattleUtil:calAuraSkillEffect(chaNode, auraType)
+    if not CONST.PASSIVE_TYPE_ID[auraType] then
+        return
+    end
+    local flist = NgBattleDataManager_getFriendList(chaNode)
+    local elist = NgBattleDataManager_getEnemyList(chaNode)
+    local aliveIdTableF = self:initAliveTable(flist)
+    local aliveIdTableE = self:initAliveTable(elist)
+    local triggerSkills = { }
+    for k, v in pairs(CONST.PASSIVE_TYPE_ID[auraType]) do
+        local auraTriggerType = math.floor(auraType / 100)
+        if auraTriggerType == CONST.AURA_TRIGGER_TYPE.ALL or auraTriggerType == CONST.AURA_TRIGGER_TYPE.FRIEND then
+            for i = 1, #aliveIdTableF do
+                local skillType, fullSkillId = self:checkSkill(v, flist[aliveIdTableF[i]].skillData)
+                if skillType == CONST.SKILL_DATA.PASSIVE then
+                    if not triggerSkills[v] or triggerSkills[v]["FULLID"] < fullSkillId then
+                        triggerSkills[v] = { ["FULLID"] = fullSkillId, ["CHA"] = flist[aliveIdTableF[i]] }
+                    end
+                end
+            end
+        end
+        if auraTriggerType == CONST.AURA_TRIGGER_TYPE.ALL or auraTriggerType == CONST.AURA_TRIGGER_TYPE.ENEMY then
+            for i = 1, #aliveIdTableE do
+                local skillType, fullSkillId = self:checkSkill(v, elist[aliveIdTableE[i]].skillData)
+                if skillType == CONST.SKILL_DATA.PASSIVE then
+                    if not triggerSkills[v] or triggerSkills[v]["FULLID"] < fullSkillId then
+                        triggerSkills[v] = { ["FULLID"] = fullSkillId, ["CHA"] = elist[aliveIdTableE[i]] }
+                    end
+                end
+            end
+        end
+    end
+    for k, v in pairs(triggerSkills) do
+        local resultTable = { }
+        local allPassiveTable = { }
+        local actionResultTable = { }
+        local allTargetTable = { }
+        if NewBattleUtil:castPassiveSkill(chaNode, v["FULLID"], resultTable, allPassiveTable, auraType, { chaNode }, true) then
+            local LOG_UTIL = require("Battle.NgBattleLogUtil")
+            local CHAR_UTIL = require("Battle.NgBattleCharacterUtil")
+            LOG_UTIL:setPreLog(chaNode, resultTable)
+            CHAR_UTIL:calculateAllTable(chaNode, resultTable, isSkipCal, actionResultTable, allTargetTable, k * 10, allPassiveTable)   -- 全部傷害/治療/buff...處理
+        end
+    end
+end
+-- 計算光環技能是否發動
+function NewBattleUtil:calAuraSkillisTrigger(chaNode, baseSkillId)
+    local flist = NgBattleDataManager_getFriendList(chaNode)
+    local elist = NgBattleDataManager_getEnemyList(chaNode)
+    local aliveIdTableF = self:initAliveTable(flist)
+    local aliveIdTableE = self:initAliveTable(elist)
+    local triggerId = 0
+
+    for i = 1, #aliveIdTableF do
+        if flist[aliveIdTableF[i]].skillData[CONST.SKILL_DATA.PASSIVE] then
+            for skillId, data in pairs(flist[aliveIdTableF[i]].skillData[CONST.SKILL_DATA.PASSIVE]) do
+                local mainSkillId = math.floor(skillId / 10)
+                if mainSkillId == baseSkillId then
+                    triggerId = (skillId > triggerId) and skillId or triggerId
+                end
+            end
+        end
+    end
+    for i = 1, #aliveIdTableE do
+        if elist[aliveIdTableE[i]].skillData[CONST.SKILL_DATA.PASSIVE] then
+            for skillId, data in pairs(elist[aliveIdTableE[i]].skillData[CONST.SKILL_DATA.PASSIVE]) do
+                local mainSkillId = math.floor(skillId / 10)
+                if mainSkillId == baseSkillId then
+                    triggerId = (skillId > triggerId) and skillId or triggerId
+                end
+            end
+        end
+    end
+    return (triggerId > 0), triggerId
 end

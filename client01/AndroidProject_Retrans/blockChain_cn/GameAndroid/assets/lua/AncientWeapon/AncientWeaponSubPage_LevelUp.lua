@@ -264,7 +264,36 @@ function Inst:loadUserEquip (userEquipId)
     local txtMap = {
         equipNameTxt = common:getLanguageString(firstStarCfg.name)
     }
-    
+     local RankPic = {
+                [1] = {Frame = "AWS_Img01_T3.png",Bg ="BG/UI/AWS_bg_T3.png" ,Icon = "AWS_Tag_T3.png" },
+                [2] = {Frame = "AWS_Img01_T2.png",Bg ="BG/UI/AWS_bg_T2.png" ,Icon = "AWS_Tag_T2.png" },
+                [3] = {Frame = "AWS_Img01_T1.png",Bg ="BG/UI/AWS_bg_T1.png" ,Icon = "AWS_Tag_T3.png" }
+              }
+    local nowRank = tonumber( string.sub(self._currentEquipID,1,1))
+    local spriteImg = {}
+    if nowRank < 4 then
+        --Bg
+        spriteImg["bgImg"] = RankPic[nowRank].Bg
+        --Icon
+        spriteImg["mRank"] = RankPic[nowRank].Icon
+        --Frame
+        NodeHelper:setScale9SpriteImage2(self.container,{ mFrame = RankPic[nowRank].Frame})
+    else
+        --Bg
+        spriteImg["bgImg"] = "AWS_bg_T"..nowRank..".png"
+        --Icon
+        spriteImg["mRank"] = "AWS_Tag_T"..nowRank..".png"
+        --Frame
+        NodeHelper:setScale9SpriteImage2(self.container,{ mFrame = "AWS_Img01_T"..nowRank..".png"})
+    end
+    NodeHelper:setSpriteImage(self.container,spriteImg)
+    local function SetScale9Size (name,x,y) 
+        local sprite=tolua.cast(self.container:getVarNode(name), "CCScale9Sprite")
+        if sprite then
+            sprite:setContentSize(CCSizeMake(x,y))
+        end
+    end
+    SetScale9Size("mFrame",647,800)
     -- 顯示星數
     NodeHelperUZ:showRareStar(self.container, parsedEquip.star)
 

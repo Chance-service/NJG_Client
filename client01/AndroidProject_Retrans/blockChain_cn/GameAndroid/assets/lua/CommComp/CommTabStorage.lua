@@ -498,6 +498,17 @@ function CommTabStorage:new ()
         for idx = 1, CURRENCY_UI_COUNT do
             nodeVisble["currency_"..tostring(idx)] = idx <= #currencyDatas
         end
+        --加號 顯示/隱藏
+        --if currencyDatas[1] and (currencyDatas[1].id == 7002 or (self.currencyDatas[1].itemInfo and self.currencyDatas[1].itemInfo.itemId == 6005)) then  -- TODO 改讀DataMgr設定
+        if self.lastSelectIdx and self.tabInfos[self.lastSelectIdx] then
+            if self.tabInfos[self.lastSelectIdx].closePlus then
+                nodeVisble["mBtn"] = false
+            else
+                nodeVisble["mBtn"] = true
+            end
+        else
+            nodeVisble["mBtn"] = true
+        end
         
         -- dump(nodeText, "CommonTabStorage nodeText")
         -- dump(nodeImage, "CommonTabStorage nodeImage")

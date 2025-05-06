@@ -40,6 +40,9 @@ local POP_UP_SAVE_KEY = "POP_ALL_"
 PopUpDatas = { }
 
 function AutoPopupManager_checkAutoPopup()
+    if CC_TARGET_PLATFORM_LUA == common.platform.CC_PLATFORM_WIN32 then
+        return  -- TODO 非常耗效能 待優化
+    end
     local GuideManager = require("Guide.GuideManager")
     if GuideManager.isInGuide then
         return  -- 新手教學中
@@ -47,6 +50,13 @@ function AutoPopupManager_checkAutoPopup()
     local currPage = MainFrame:getInstance():getPageNum()
     if currPage > 0 then
         return -- 有其他頁面
+    end
+    local ADPopString = CCUserDefault:sharedUserDefault():getStringForKey("POPAD_" .. UserInfo.playerInfo.playerId)
+    local todayDate = AutoPopupManager:getCurrentDateString()
+    if ADPopString ~= todayDate then
+        PageManager.pushPage("PopADPage")
+        CCUserDefault:sharedUserDefault():setStringForKey("POPAD_" .. UserInfo.playerInfo.playerId,todayDate)
+        return
     end
     -- 彈跳禮包
     local PopSaledata = next(ActPopUpSaleSubPage_Content_getServerData())

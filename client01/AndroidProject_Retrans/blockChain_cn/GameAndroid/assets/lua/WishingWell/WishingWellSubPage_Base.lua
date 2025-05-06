@@ -239,14 +239,14 @@ function Inst:onEnter (selfContainer, parentPage)
     -------------------
 
     -- 自適應
-    --local fitResult = NodeHelperUZ:fitBGNode(self.wishingWellUI.container:getVarNode("bgNode"), {
-    --    -- 原始比例
-    --    originalScale = 1,
-    --    -- 縮放比例修正
-    --    ratioSizeFix = CCSizeMake(0, -213),
-    --    -- 螢幕縮放比例修正
-    --    ratioSizeFixFrame = CCSizeMake(0, 0),
-    --})
+    local fitResult = NodeHelperUZ:fitBGNode(self.wishingWellUI.container:getVarNode("bgNode"), {
+        -- 原始比例
+        originalScale = 1,
+        -- 縮放比例修正
+        ratioSizeFix = CCSizeMake(0, -213),
+        -- 螢幕縮放比例修正
+        ratioSizeFixFrame = CCSizeMake(0, 0),
+    })
     --self.gachaSpineNode:setScale(fitResult.scale)
     -- NodeHelperUZ:fitBGSpine(self.gachaSpineNode) -- 需要以背景縮放值為準, 才能對齊球特效
     -- NodeHelperUZ:fitBGSpine(self.bgSpineNode) -- 包含在bgNode中, 此處不處理
@@ -266,21 +266,21 @@ function Inst:onExecute()
     
     local clientTime = os.time()
 
-    -- 免費刷新剩餘時間
-    local refreshFreeLeftTime = 0
-    if self.refreshFreeNextTime ~= -1 then
-        -- 計算剩餘時間
-        refreshFreeLeftTime = self.refreshFreeNextTime - clientTime
-        -- 小於0 視為 0
-        if refreshFreeLeftTime < 0 then refreshFreeLeftTime = 0 end
-    end
-    -- 設置 免費刷新剩餘時間
-    self.wishingWellUI:setRefreshFree(refreshFreeLeftTime)
-
-    -- 若 仍在冷卻 則 冷卻
-    if self.requestCooldownLeft > 0 then
-        self.requestCooldownLeft = self.requestCooldownLeft - 1
-    end
+    ---- 免費刷新剩餘時間
+    --local refreshFreeLeftTime = 0
+    --if self.refreshFreeNextTime ~= -1 then
+    --    -- 計算剩餘時間
+    --    refreshFreeLeftTime = self.refreshFreeNextTime - clientTime
+    --    -- 小於0 視為 0
+    --    if refreshFreeLeftTime < 0 then refreshFreeLeftTime = 0 end
+    --end
+    ---- 設置 免費刷新剩餘時間
+    --self.wishingWellUI:setRefreshFree(refreshFreeLeftTime)
+    --
+    ---- 若 仍在冷卻 則 冷卻
+    --if self.requestCooldownLeft > 0 then
+    --    self.requestCooldownLeft = self.requestCooldownLeft - 1
+    --end
 
     local isNeedRequestInfo = false
 
@@ -298,6 +298,18 @@ function Inst:onExecute()
         end
     end
 
+    local timeDiff = math.max(0, self.refreshAutoNextTime - clientTime)
+    if timeDiff == 0 then
+        self.wishingWellUI:setAutoRefreshTime(common:getLanguageString("@WishingWell.refreshAuto") .. "00:00:00")
+    else
+        local hour = string.format("%02d", math.floor(timeDiff / 3600))
+        timeDiff = timeDiff - hour * 3600
+        local min = string.format("%02d", math.floor(timeDiff / 60))
+        timeDiff = timeDiff - min * 60
+        local sec = string.format("%02d", timeDiff)
+        self.wishingWellUI:setAutoRefreshTime(common:getLanguageString("@WishingWell.refreshAuto") .. hour .. ":" .. min .. ":" .. sec)
+    end
+    
 
     if isNeedRequestInfo then
         -- 若 已結束冷卻
@@ -408,6 +420,11 @@ function Inst:handleInfo (msgInfo)
     self.freeQuota = msgInfo.freeDraw
     if self.freeQuota == nil then self.freeQuota = 0 end
     self.wishingWellUI:setSummonFree(self.freeQuota, self.subPageCfg.refreshFreeQuota)
+
+    -- 剩餘獎項數/最大獎項數
+    self.nowReward = msgInfo.nowReward
+    self.maxReward = msgInfo.maxReward
+    self.wishingWellUI:setRewardCounter(common:getLanguageString("@WishingWell.count") .. self.nowReward .. "/" .. self.maxReward)
 
     -- 免費刷新倒數
     local clientTime = os.time()
@@ -618,10 +635,10 @@ function Inst:handleInfo (msgInfo)
     -- end
 
     -- 紅點
-    local isShow, group = WishingWellPageBase_calIsShowRedPoint(msgInfo)
-    RedPointManager_setShowRedPoint(thisPageName, group, isShow)
-    RedPointManager_setOptionData(thisPageName, group, { })
-    WishingWellPageBase_setRedPoint(self.wishingWellUI.container, group)
+    --local isShow, group = WishingWellPageBase_calIsShowRedPoint(msgInfo)
+    --RedPointManager_setShowRedPoint(thisPageName, group, isShow)
+    --RedPointManager_setOptionData(thisPageName, group, { })
+    --WishingWellPageBase_setRedPoint(self.wishingWellUI.container, group)
 end
 
 --[[ 更新 貨幣 ]]
@@ -711,29 +728,29 @@ end
 
 --[[ 送出 手動刷新 ]]
 function Inst:sendManualRefresh ()
-    if self.isSummoning then
-        return
-    end
-    self.isSummoning = true
-    -- 載入 召喚Spine
-    local gachaSpineCfg = self.subPageCfg.gachaSpine
-    local texNum = self.gachaSpine and 0 or 30
-    self.task = ALFManager:loadSpineTask(gachaSpineCfg[1] .. "/", gachaSpineCfg[2], texNum, function() 
-        self:loadSummonSpine()
-
-        local msg = Activity4_pb.WishingWellDraw()
-        msg.kind = self.wishingWellType
-
-        -- 若 免費刷新沒有倒數中 則 免費刷新
-        if self.refreshFreeNextTime == -1 then
-            msg.action = 4 -- 1.單抽 2.十抽 3.領幸運獎 4.免費刷新 5.付費刷新 6.星輪免費抽
-        else
-            msg.action = 5
-        end
-        common:sendPacket(HP_pb.ACTIVITY147_WISHING_DRAW_C, msg, true)
-
-        self.isSummoning = false
-    end)
+    --if self.isSummoning then
+    --    return
+    --end
+    --self.isSummoning = true
+    ---- 載入 召喚Spine
+    --local gachaSpineCfg = self.subPageCfg.gachaSpine
+    --local texNum = self.gachaSpine and 0 or 30
+    --self.task = ALFManager:loadSpineTask(gachaSpineCfg[1] .. "/", gachaSpineCfg[2], texNum, function() 
+    --    self:loadSummonSpine()
+    --
+    --    local msg = Activity4_pb.WishingWellDraw()
+    --    msg.kind = self.wishingWellType
+    --
+    --    -- 若 免費刷新沒有倒數中 則 免費刷新
+    --    if self.refreshFreeNextTime == -1 then
+    --        msg.action = 4 -- 1.單抽 2.十抽 3.領幸運獎 4.免費刷新 5.付費刷新 6.星輪免費抽
+    --    else
+    --        msg.action = 5
+    --    end
+    --    common:sendPacket(HP_pb.ACTIVITY147_WISHING_DRAW_C, msg, true)
+    --
+    --    self.isSummoning = false
+    --end)
 end
 
 
@@ -774,13 +791,13 @@ function Inst:updateRefreshAutoTime(lastRefreshTime)
 end
 
 function WishingWellPageBase_calIsShowRedPoint(msg)
-    if not msg then
-        return false
-    end
-    local freeDraw = msg.freeDraw or 0
-    local group = msg.kind
-
-    return freeDraw > 0, group
+    --if not msg then
+    --    return false
+    --end
+    --local freeDraw = msg.freeDraw or 0
+    --local group = msg.kind
+    --
+    --return freeDraw > 0, group
 end
 
 function WishingWellPageBase_setRedPoint(container, group)

@@ -1,17 +1,22 @@
 {
    "files" : [
       {
-         "c" : 18910,
-         "f" : "/server_eror18.txt",
-         "s" : 493
+         "c" : 3920,
+         "f" : "/server_full.txt",
+         "s" : 576
       },
       {
-         "c" : 12131,
-         "f" : "/server_h365.txt",
-         "s" : 497
+         "c" : 53334,
+         "f" : "/server_maintain.txt",
+         "s" : 578
+      },
+      {
+         "c" : 33855,
+         "f" : "/version.manifest",
+         "s" : 594
       }
    ],
    "severVersion" : "",
-   "totalByteSize" : 990,
+   "totalByteSize" : 1748,
    "version" : 1
 }

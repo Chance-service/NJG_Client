@@ -599,7 +599,7 @@ function PVPActivityPage.onManyPeople(container)
         MessageBoxPage:Msg_Box_Lan("@MultiEliteEnterLevelLimit")
         return
     end
-    common:sendEmptyPacket(HP_pb.MULTIELITE_LIST_INFO_C)
+    common:sendEmptyPacket(HP_pb.MULTIELITE_LIST_INFO_C, false)
 end
 
 function PVPActivityPage.onCrossServerWar(container)
@@ -636,7 +636,7 @@ end
 
 function PVPActivityPage:sendMsgForTeamCopyinfo(container)
     --    PacketManager:getInstance():sendPakcet(opcodes.FETCH_WORLD_BOSS_INFO_C, "", 0, true);
-    common:sendEmptyPacket(opcodes.MULTIELITE_LIST_INFO_C, true)
+    common:sendEmptyPacket(opcodes.MULTIELITE_LIST_INFO_C, false)
 end
 
 

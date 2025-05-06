@@ -95,6 +95,7 @@ local loadingOpcodes = {
     [HP_pb.ROLE_PANEL_INFOS_S] = { done = false, lock = nil },
     --[HP_pb.MULTIELITE_LIST_INFO_S] = { done = false, lock = GameConfig.LOCK_PAGE_KEY.DUNGEON },
     [HP_pb.FETCH_SHOP_LIST_S] = { done = false, lock = nil },
+    [HP_pb.NP_CONTINUE_RECHARGE_MONEY_S] = { done = false, lock = nil },
 }
 local loadingClose = false
 local loadingTime = 0
@@ -206,9 +207,9 @@ function PackageLogicForLua.onReceivePlayerStates(eventName, handler)
 
             -- 元素背包大小
             if msg:HasField("elementBagSize") then
-                local ElementManager = require("Element.ElementManager")
+                --local ElementManager = require("Element.ElementManager")
                 -- ElementManager:checkPackage()
-                PageManager.refreshPage("ElementPackagePage")
+                --PageManager.refreshPage("ElementPackagePage")
             end
             --友情點數
             if msg:HasField("friendship") then
@@ -219,9 +220,13 @@ function PackageLogicForLua.onReceivePlayerStates(eventName, handler)
                 UserInfo.stateInfo.vipPoint = msg.vipPoint
             end
             -- 刷新
-            local msg2 = MsgRechargeSuccess:new()
-			MessageManager:getInstance():sendMessageForScript(msg2)
-            CCLuaLog("@MsgRechargeSuccess -- IAP.IAPPage")
+            if not msg.isFirstLogin then
+                local msg2 = MsgRechargeSuccess:new()
+			    MessageManager:getInstance():sendMessageForScript(msg2)
+                CCLuaLog("isFirstLogin == false")
+            else
+                CCLuaLog("isFirstLogin == true")
+            end
             -- 工口刷新honeyP
             if (Golb_Platform_Info.is_r18) then
                 local playtoken =  CCUserDefault:sharedUserDefault():getStringForKey("ecchigamer.token")
@@ -887,7 +892,7 @@ function PackageLogicForLua.onReceivePlayerAward(msgbuff)
             PageManager.pushPage("CommPop.CommItemReceivePage")
         end
         -- 高速扫荡卷实时监测
-        local isCancelBattlePoint, leftTime = common:getHighSpeedPointAndChangePoint()
+        --local isCancelBattlePoint, leftTime = common:getHighSpeedPointAndChangePoint()
         --NodeHelper:mainFrameSetPointVisible( { mBattlePagePoint = leftTime or isCancelBattlePoint })
     else
         CCLuaLog("@onReceivePlayerAward -- error in data");
@@ -1651,20 +1656,24 @@ PackageLogicForLua.HPSyncSyncDungeon = PacketScriptHandler:new(HP_pb.MULTIELITE_
 function PackageLogicForLua.onRecieveSyncShop(eventName, handler)
     if eventName == "luaReceivePacket" then
         local msgbuff = handler:getRecPacketBuffer()
-        require("Util.RedPointManager")
-        local pageId = RedPointManager.PAGE_IDS.MYSTERY_FREE_BTN
-        local pageId2 = RedPointManager.PAGE_IDS.MYSTERY_REFRESH_BTN
-        local RedPointCfg = ConfigManager.getRedPointSetting()
-        local groupNum = RedPointCfg[pageId].groupNum
-        local ALFManager = require("Util.AsyncLoadFileManager")
-        for i = 1, groupNum do
-            local fn = function()
-                RedPointManager_refreshPageShowPoint(pageId, i, msgbuff)
-                RedPointManager_setPageSyncDone(pageId, i)
-                RedPointManager_refreshPageShowPoint(pageId2, i, msgbuff)
-                RedPointManager_setPageSyncDone(pageId2, i)
+        local msg = Shop_pb.ShopItemInfoResponse()
+        msg:ParseFromString(msgbuff)
+        if msg.shopType == Const_pb.MYSTERY_MARKET then
+            require("Util.RedPointManager")
+            local pageId = RedPointManager.PAGE_IDS.MYSTERY_FREE_BTN
+            local pageId2 = RedPointManager.PAGE_IDS.MYSTERY_REFRESH_BTN
+            local RedPointCfg = ConfigManager.getRedPointSetting()
+            local groupNum = RedPointCfg[pageId].groupNum
+            local ALFManager = require("Util.AsyncLoadFileManager")
+            for i = 1, groupNum do
+                local fn = function()
+                    --RedPointManager_refreshPageShowPoint(pageId, i, msg)
+                    --RedPointManager_setPageSyncDone(pageId, i)
+                    RedPointManager_refreshPageShowPoint(pageId2, i, msg)
+                    RedPointManager_setPageSyncDone(pageId2, i)
+                end
+                ALFManager:loadRedPointTask(fn, pageId * 100 + i)
             end
-            ALFManager:loadRedPointTask(fn, pageId * 100 + i)
         end
     end
 end
@@ -1783,12 +1792,12 @@ function PackageLogicForLua.onRecieveAttrChange(eventName, handler)
             if attr.attrValue ~= 0 then
                 local valStr = "";
                 if EquipManager:getAttrGrade(attr.attrId) == Const_pb.GODLY_ATTR and not EquipManager:isGodlyAttrPureNum(attr.attrId) then
-                    if attr.attrId >= Const_pb.ICE_ATTACK and attr.attrId < Const_pb.ICE_ATTACK_RATIO then
-                        valStr = string.format(" %+d", attr.attrValue);
-                    else
-                        valStr = string.format(" %+.2f%%", attr.attrValue / 100);
-                    end
-
+                    --if attr.attrId >= Const_pb.ICE_ATTACK and attr.attrId < Const_pb.ICE_ATTACK_RATIO then
+                    --    valStr = string.format(" %+d", attr.attrValue);
+                    --else
+                    --    valStr = string.format(" %+.2f%%", attr.attrValue / 100);
+                    --end
+                    valStr = string.format(" %+.2f%%", attr.attrValue)
                 else
                     valStr = string.format(" %+d", attr.attrValue);
                 end
@@ -2089,6 +2098,13 @@ function PackageLogicForLua.onReceiveRechargeList(eventName, handler)
     end
 end
 PackageLogicForLua.HPShopListSync = PacketScriptHandler:new(HP_pb.FETCH_SHOP_LIST_S, PackageLogicForLua.onReceiveRechargeList);
+
+function PackageLogicForLua.onReceiveContinueRecharge(eventName, handler)
+    if eventName == "luaReceivePacket" then
+        if loadingOpcodes[HP_pb.NP_CONTINUE_RECHARGE_MONEY_S].done == false then loadingOpcodes[HP_pb.NP_CONTINUE_RECHARGE_MONEY_S].done = true end
+    end
+end
+PackageLogicForLua.HPContinueRechargeSync = PacketScriptHandler:new(HP_pb.NP_CONTINUE_RECHARGE_MONEY_S, PackageLogicForLua.onReceiveContinueRecharge);
 
 function PackageLogicForLua.onReceiveLoginDay(eventName, handler)
     if eventName == "luaReceivePacket" then
@@ -3351,9 +3367,8 @@ function PackageLogicForLua.onActivity_187_Info(eventName, handler)
         local msg = Activity5_pb.MaxJumpGiftResp();
         local msgbuff = handler:getRecPacketBuffer();
         msg:ParseFromString(msgbuff)
-        require("ActPopUpSale.ActPopUpSaleSubPage_Content")
-        ActPopUpSaleSubPage_Content_setServerData(msg)
-        PageManager.refreshPage("MainScenePage", "isShowActivity187Icon")
+        require("Act187_DataBase")
+        Act187_DataBase_SetData(msg)
     end
 end
 PackageLogicForLua.HPonActivity_187_Info = PacketScriptHandler:new(HP_pb.ACTIVITY187_MAXJUMP_GIFT_S, PackageLogicForLua.onActivity_187_Info)
@@ -3625,7 +3640,7 @@ function PackageLogicForLua.r18BuyResult(eventName, handler)
             MessageBoxPage:Msg_Box_Lan("@BuyFailed")
         else
             if Golb_Platform_Info.is_r18 then
-                AdjustManager:onTrackRevenueEvent("z8ak7i", msg.costmoney or 0)
+                AdjustManager:onTrackRevenueEvent("z8ak7i", msg.costmoney / 10 or 0) -- 轉人民幣
             end
         end
     end
@@ -3704,15 +3719,80 @@ function PackageLogicForLua.TowerData(eventName, handler)
        local msg = Activity6_pb.SeasonTowerResp()
        msg:ParseFromString(msgBuff)
        require "Tower.TowerPageData"
-       TowerBase_SetInfo(msg)
+       TowerDataBase_SetInfo(msg,194)
        require "Tower.TowerSubPage_Rank"
        TowerRank_refresh()
-       --if msg.action == 0 then
-       --   PageManager.pushPage("Tower.TowerPage")
-       --end
     end
 end
 PackageLogicForLua.HPTowerData = PacketScriptHandler:new(HP_pb.ACTIVITY194_SEASON_TOWER_S, PackageLogicForLua.TowerData)
+
+function PackageLogicForLua.TowerData_Limit(eventName, handler)
+    if eventName == "luaReceivePacket" then
+       local Activity6_pb = require("Activity6_pb")
+       local msgBuff = handler:getRecPacketBuffer()
+       local msg = Activity6_pb.LimitTowerResp()
+       msg:ParseFromString(msgBuff)
+       require "Tower.TowerPageData"
+       for k,v in pairs (msg.baseInfo) do
+        local _type = v.type 
+        if _type then
+            TowerDataBase_SetInfo(msg,198,_type,k)
+        end
+       end
+    end
+end
+PackageLogicForLua.HPTowerData_Limit = PacketScriptHandler:new(HP_pb.ACTIVITY198_LIMIT_TOWER_S, PackageLogicForLua.TowerData_Limit)
+
+function PackageLogicForLua.TowerData_Fear(eventName, handler)
+    if eventName == "luaReceivePacket" then
+       local Activity6_pb = require("Activity6_pb")
+       local msgBuff = handler:getRecPacketBuffer()
+       local msg = Activity6_pb.FearLessTowerResp()
+       msg:ParseFromString(msgBuff)
+       require "Tower.TowerPageData"
+       if msg.baseInfo then
+        for k,v in pairs (msg.baseInfo) do
+         if type(k) == "number" then
+                local _type = v.towerType
+                TowerDataBase_SetInfo(msg,199,_type,k)
+            end
+         end
+       end
+       if msg.rankingInfo then
+        for k,v in pairs (msg.rankingInfo) do
+            if type(k) == "number" then
+                local _type = v.towerType
+                TowerDataBase_SetInfo(msg,199,_type,k)
+            end
+        end
+       end
+    end
+end
+PackageLogicForLua.HPTowerData_Fear = PacketScriptHandler:new(HP_pb.ACTIVITY199_FEAR_LESS_TOWER_S, PackageLogicForLua.TowerData_Fear)
+
+function PackageLogicForLua.PickUpData(eventName, handler)
+    if eventName == "luaReceivePacket" then
+       local Activity6_pb = require("Activity6_pb")
+       local msgBuff = handler:getRecPacketBuffer()
+       local msg = Activity6_pb.SuperPickUpList()
+       msg:ParseFromString(msgBuff)
+       require ("Summon.SummonPickUpData")
+       SummonPickUpDataBase_SetInfo(msg)
+
+       local transPage = require("TransScenePopUp")
+       TransScenePopUp_setCallbackFun(function()
+           local GuideManager = require("Guide.GuideManager")
+           if GuideManager.isInGuide then
+               require("Summon.SummonPage"):setEntrySubPage("Premium")
+           end
+           PageManager.pushPage("Summon.SummonPage")
+       end)
+       setCCBMenuAnimation("mBackpackPageBtn", "Normal")
+       UserInfo.sync()
+       PageManager.pushPage("TransScenePopUp")
+    end
+end
+PackageLogicForLua.PickUpData = PacketScriptHandler:new(HP_pb.ACTIVITY197_SUPER_PICKUP_INFO_S, PackageLogicForLua.PickUpData)
 
 
 -----------JGG get order handler------------
@@ -3828,6 +3908,7 @@ function validateAndRegisterAllHandler()
     PackageLogicForLua.HPCampWarLastRankSync:registerFunctionHandler(PackageLogicForLua.onReceiveCampRankInfo);
     PackageLogicForLua.HPTitleInfoSyncS:registerFunctionHandler(PackageLogicForLua.onReceivePlayerTitleInfo);
     PackageLogicForLua.HPShopListSync:registerFunctionHandler(PackageLogicForLua.onReceiveRechargeList);
+    PackageLogicForLua.HPContinueRechargeSync:registerFunctionHandler(PackageLogicForLua.onReceiveContinueRecharge);
     PackageLogicForLua.HPLoginDaySync:registerFunctionHandler(PackageLogicForLua.onReceiveLoginDay);
     PackageLogicForLua.HPGuildBossVitalitySync:registerFunctionHandler(PackageLogicForLua.onReceiveGuildBossVitality);
     PackageLogicForLua.HPRoleRingSync:registerFunctionHandler(PackageLogicForLua.onReceiveRoleRingInfoSync);
@@ -3895,6 +3976,9 @@ function validateAndRegisterAllHandler()
 
     PackageLogicForLua.HPKusoPayResult:registerFunctionHandler(PackageLogicForLua.KusoPayResult)
     PackageLogicForLua.HPTowerData:registerFunctionHandler(PackageLogicForLua.TowerData)
+    PackageLogicForLua.HPTowerData_Limit:registerFunctionHandler(PackageLogicForLua.TowerData_Limit)
+    PackageLogicForLua.HPTowerData_Fear:registerFunctionHandler(PackageLogicForLua.TowerData_Fear)
+    PackageLogicForLua.PickUpData:registerFunctionHandler(PackageLogicForLua.PickUpData)
     --JGG order
  --   PackageLogicForLua.HPJggGetOrder = PacketScriptHandler:new(HP_pb.SHOP_JGG_ORDER_S, PackageLogicForLua.onJggGetOrder)
 
@@ -3928,6 +4012,11 @@ function checkAndCloseMainSceneLoadingEnd(dt)
                         msg.platform = GameConfig.win32Platform
                         pb_data = msg:SerializeToString()
                         PacketManager:getInstance():sendPakcet(HP_pb.FETCH_SHOP_LIST_C, pb_data, #pb_data, true)
+                    elseif k == HP_pb.NP_CONTINUE_RECHARGE_MONEY_S then
+                        local msg = Activity5_pb.NPContinueRechargeReq()
+                        msg.action = 0
+                        local pb_data = msg:SerializeToString()
+                        PacketManager:getInstance():sendPakcet(HP_pb.NP_CONTINUE_RECHARGE_MONEY_C, pb_data, #pb_data, true)
                     else
                         common:sendEmptyPacket(k - 1, true)
                     end

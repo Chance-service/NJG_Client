@@ -20,6 +20,8 @@ local StepBundleCfg = ConfigManager.getStepBundleCfg()
 local parentPage = nil
 local requesting = false
 
+-- 購買資料請求中
+local requestingLastShop = false
 local SeverData = {}
 local opcodes = {
     FETCH_SHOP_LIST_S = HP_pb.FETCH_SHOP_LIST_S,
@@ -74,11 +76,12 @@ function StepBunlePage:onEnter(ParentContainer)
     self.container = ParentContainer
     parentPage:registerPacket(opcodes)
     parentPage:registerMessage(MSG_MAINFRAME_REFRESH)
+    parentPage:registerMessage(MSG_RECHARGE_SUCCESS)
     requesting = false
+    requestingLastShop = false
     --self:refresh(self.container)
     local scrollview = self.container:getVarScrollView("mContent")
-    NodeHelper:autoAdjustResizeScrollview(scrollview)
-    self:refresh(self.container)
+    --NodeHelper:autoAdjustResizeScrollview(scrollview)
     StepBunlePage:ItemInfoRequest()
     --self:ListRequest()
 end
@@ -110,20 +113,23 @@ function StepBunlePage:refresh(container)
         local cell = CCBFileCell:create()
         cell:setCCBFile("StepBundleItem.ccbi")
         ContentSizeH=cell:getContentSize().height
-        cell:setContentSize(CCSize(cell:getContentSize().width,ContentSizeH+50))
+        cell:setContentSize(CCSize(cell:getContentSize().width,ContentSizeH))
         local panel = common:new({id = v.id,idx=k}, StepBunleItem)
         cell:registerFunctionHandler(panel)
         scrollview:addCell(cell)  
     end
 
     scrollview:setTouchEnabled(true)
-    scrollview:setContentSize(CCSize(scrollview:getContentSize().width,(ContentSizeH+50)*#cfg))
+    scrollview:setContentSize(CCSize(scrollview:getContentSize().width,(ContentSizeH)*#cfg))
     scrollview:orderCCBFileCells()
 end
 
 function StepBunlePage:onReceiveMessage(message)
 	local typeId = message:getTypeId()
 	if typeId == MSG_RECHARGE_SUCCESS then
+        if requestingLastShop then
+            return
+        end
         CCLuaLog(">>>>>>onReceiveMessage StepBunleItem")
         StepBunlePage:ItemInfoRequest()
         common:sendEmptyPacket(HP_pb.LAST_SHOP_ITEM_C, true)
@@ -176,18 +182,18 @@ function StepBunleItem:onRefreshContent(content)
     end
 
     -- 設置上下邊線的可見性和高度
-    if self.idx == 1 then
-        visibleMap["mUpperLine"] = false
-        setScale9SpriteHeight(container, "mLowerLine", LINE_HEIGHT)
-    elseif self.idx == #cfg then
-        visibleMap["mLowerLine"] = false
-        setScale9SpriteHeight(container, "mUpperLine", LINE_HEIGHT)
-    else
-        visibleMap["mUpperLine"] = true
-        visibleMap["mLowerLine"] = true
-        setScale9SpriteHeight(container, "mUpperLine", LINE_HEIGHT)
-        setScale9SpriteHeight(container, "mLowerLine", LINE_HEIGHT)
-    end
+    --if self.idx == 1 then
+    --    visibleMap["mUpperLine"] = false
+    --    --setScale9SpriteHeight(container, "mLowerLine", LINE_HEIGHT)
+    --elseif self.idx == #cfg then
+    --    visibleMap["mLowerLine"] = false
+    --    --setScale9SpriteHeight(container, "mUpperLine", LINE_HEIGHT)
+    --else
+    --    visibleMap["mUpperLine"] = true
+    --    visibleMap["mLowerLine"] = true
+    --    --setScale9SpriteHeight(container, "mUpperLine", LINE_HEIGHT)
+    --    --setScale9SpriteHeight(container, "mLowerLine", LINE_HEIGHT)
+    --end
 
     -- 設置文本
     local txt = common:getLanguageString("@PLAYER_STEP" .. self.idx)
@@ -197,7 +203,7 @@ function StepBunleItem:onRefreshContent(content)
     StepBunleItem:fillContent(container, ItemInfo, #ItemInfo, self.id)
 
     -- 設置剩餘數量文本
-    local leftcont = common:getLanguageString("@Shop.Item.leftAmount", (0 and isSold or 1), 1)
+    local leftcont = common:getLanguageString("@Shop.Item.leftAmount", (isSold and 0 or 1), 1)
     NodeHelper:setStringForLabel(container, { 
         mBtnLabel = self:getPrice(self.id), 
         mLv = self.idx, 
@@ -218,7 +224,7 @@ function StepBunleItem:onRefreshContent(content)
 
         -- 檢查當前包之前的所有包是否已購買
         for k, v in pairs(cfg) do
-            if v.id < self.id and GotId.status[v.id] == 0 then
+            if v.id < self.id and GotId.status[v.id] == 0 or isSold then
                 return false  -- 如果有前置包未購買，則按鈕不可用
             end
         end
@@ -295,8 +301,10 @@ end
 function StepBunlePage:setData(msg)
      GotId.id=msg.takeId or 0
      GotId.status={}
-     StatusSync() 
-    
+     self:StatusSync() 
+     if self.container then
+        self:refresh(self.container)
+     end
 end
 function StepBunlePage:onReceivePacket(packet)
     local opcode = packet.opcode
@@ -311,13 +319,17 @@ function StepBunlePage:onReceivePacket(packet)
         --requesting = false
     end
     if opcode==HP_pb.ACTIVITY179_STEP_GIFT_S then
-          if self.container then self:refresh(self.container) end
+       local msg = Activity5_pb.GiftResp()
+       msg:ParseFromString(msgBuff)     
+       self:setData(msg)
+          --if self.container then self:refresh(self.container) end
     end
     --if opcode == HP_pb.PLAYER_AWARD_S then
     --    local PackageLogicForLua = require("PackageLogicForLua")
     --    PackageLogicForLua.PopUpReward(msgBuff)
     --end
      if opcode == HP_pb.LAST_SHOP_ITEM_S then
+        requestingLastShop = false
         local Recharge_pb = require("Recharge_pb")
         local msg = Recharge_pb.LastGoodsItem()
         msg:ParseFromString(msgBuff)
@@ -331,12 +343,14 @@ function StepBunlePage:onReceivePacket(packet)
     end
 end
 function StepBunlePage:isBuyAll()
-    return GotId.status[603]==1
+    local cfg = StepBunlePage:getSortedTable(StepBundleCfg)
+    local lastId = cfg[#cfg].id
+    return GotId.status[lastId]==1
 end
-function StatusSync()
+function StepBunlePage:StatusSync()
     for k, _ in pairs(StepBundleCfg) do
         -- 确保 status[k] 是一个有效的键值并初始化为 0
-        GotId.status[k] = GotId.status[k] or 0
+        GotId.status[k] =  0
     
         -- 如果 k 小于或等于 GotId.id，则标记为 1，否则为 0
         if k <= tonumber(GotId.id) then
@@ -364,6 +378,7 @@ function StepBunleItem:getPrice(id)
             break
         end
     end
+    if not itemInfo then return 999999999999 end
     return itemInfo.productPrice
 end
 

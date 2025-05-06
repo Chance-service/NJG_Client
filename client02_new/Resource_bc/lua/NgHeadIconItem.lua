@@ -35,7 +35,7 @@ function NgHeadIconItem:refreshByItemId(iconItem)
         NodeHelper:setSpriteImage(iconItem.container, { mFrame = GameConfig.MercenaryRarityFrame[quality],
                                                         mIcon = "UI/RoleShowCards/Hero_" .. string.format("%02d", itemId) .. "000.png",
                                                         mElement = GameConfig.MercenaryElementImg[heroCfg.Element],
-                                                        mClass=GameConfig.MercenaryClassImg[heroCfg.Job]})
+                                                        mClass = GameConfig.MercenaryClassImg[heroCfg.Job]})
         NodeHelper:setNodesVisible(iconItem.container, { mInTeamImg = false, mLv = false, mBpNode = false, mStarNode = false, mMaskNode = false,
                                                          mInExpedition = false, mStarBg = false, mClass = true,
                                                          mBarNode = roleStatus.roleStage ~= Const_pb.IS_ACTIVITE,
@@ -74,9 +74,10 @@ function NgHeadIconItem:refreshByItemId(iconItem)
         local roleInfo = UserMercenaryManager:getUserMercenaryByItemId(itemId)
         local star = iconItem.optionData and iconItem.optionData.starLevel or roleInfo.starLevel
         local quality = (star <= 5 and 4) or (star >= 11 and 6) or 5
+        local iconId = roleInfo.skinId > 0 and string.format("%05d", roleInfo.skinId) or string.format("%02d000", itemId)
         NodeHelper:setSpriteImage(iconItem.container, { mFrame = GameConfig.MercenaryRarityFrame[quality],
-                                                        mIcon = "UI/RoleShowCards/Hero_" .. string.format("%02d", itemId) .. "000.png",
-                                                        mElement = GameConfig.MercenaryElementImg[heroCfg.Element],
+                                                        mIcon = "UI/RoleShowCards/Hero_" .. iconId .. ".png",
+                                                        mElement = GameConfig.MercenaryElementImg[roleInfo.elements],
                                                         mClass=GameConfig.MercenaryClassImg[heroCfg.Job] })
         NodeHelper:setNodesVisible(iconItem.container, { mInTeamImg = false, mLv = true, mBpNode = true, mStarNode = true, mBarNode = false,
                                                          mRedPoint = false, mMaskNode = false, mInExpedition = false })
@@ -126,9 +127,10 @@ function NgHeadIconItem:refreshCellData()
 
         NodeHelper:setStringForLabel(self.container, { mLv = "Lv." .. curRoleInfo.level, 
                                                        mBp = "BP " .. curRoleInfo.fight })
+        local iconId = curRoleInfo.skinId > 0 and string.format("%05d", curRoleInfo.skinId) or string.format("%02d000", itemId)
         NodeHelper:setSpriteImage(self.container, { mFrame = GameConfig.MercenaryRarityFrame[quality],
-                                                    mIcon = "UI/RoleShowCards/Hero_" .. string.format("%02d", itemId) .. string.format("%03d", curRoleInfo.skinId) .. ".png",
-                                                    mElement = GameConfig.MercenaryElementImg[heroCfg.Element],
+                                                    mIcon = "UI/RoleShowCards/Hero_" .. iconId .. ".png",
+                                                    mElement = GameConfig.MercenaryElementImg[curRoleInfo.elements],
                                                     mClass=GameConfig.MercenaryClassImg[heroCfg.Job]})
         for i = 1, 13 do
             NodeHelper:setNodesVisible(self.container, { ["mStar" .. i] = (i == curRoleInfo.starLevel) })
@@ -168,6 +170,7 @@ function NgHeadIconItem:onHead(container)
     local index = self.id
     if NgHeadIconItem.pageType == GameConfig.NgHeadIconType.HERO_PAGE then
         local rolePage = require("EquipLeadPage")
+        PageManager.popAllPage()
         PageManager.pushPage("EquipLeadPage")
         rolePage:setMercenaryId(self.roleId)
     elseif NgHeadIconItem.pageType == GameConfig.NgHeadIconType.GALLERY_PAGE or 
@@ -211,7 +214,7 @@ function NgHeadIconItem:setRoleData(iconItem)
     iconItem.roleData = iconItem.roleData or { }
     local curRoleInfo = UserMercenaryManager:getUserMercenaryById(iconItem.handler.roleId)
     local heroCfg = ConfigManager.getNewHeroCfg()[curRoleInfo.itemId]
-    iconItem.roleData.element = heroCfg.Element
+    iconItem.roleData.element = curRoleInfo.elements
     iconItem.roleData.star = curRoleInfo.starLevel
     iconItem.roleData.level = curRoleInfo.level
     iconItem.roleData.class = heroCfg.Job

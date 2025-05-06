@@ -7,6 +7,7 @@
 #include "Gamelua.h"
 #include "MessageManager.h"
 #include "ResManager.h"
+#include <chrono>
 
 //#define LUA_LINK_THIS mLualink=this;
 #define RUN_SCRIPT_FUN(funname) \
@@ -109,7 +110,13 @@ void CCBScriptContainer::Enter( MainFrame* )
 
 void CCBScriptContainer::Execute( MainFrame* )
 {
+	auto time1 = std::chrono::high_resolution_clock::now();
 	RUN_SCRIPT_FUN("luaExecute");
+	auto time2 = std::chrono::high_resolution_clock::now();
+	std::chrono::duration<double> diff1 = time2 - time1;
+	if ((double)diff1.count() > 0.1f) {
+		std::cout << ">>>>>>>>>>>>>>> luaExecute Time: " << diff1.count() << " sec\n";
+	}
 }
 
 void CCBScriptContainer::Exit( MainFrame* )

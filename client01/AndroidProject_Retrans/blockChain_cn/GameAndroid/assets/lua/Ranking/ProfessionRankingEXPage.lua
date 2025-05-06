@@ -293,6 +293,14 @@ function ProfessionRankingEXPageBase:BuildRewardScrollview(container)
     if #NotAchiveTable~=0 then
         NowGoalString = common:getLanguageString(NotAchiveTable[1].content,NotAchiveTable[1].mission)
     end
+    if NotAchiveTable[1] and NotAchiveTable[1].type == 3 then
+        local stage = NotAchiveTable[1].mission
+        local configData = ConfigManager.getNewMapCfg()[stage]
+        local ch = configData.Chapter
+        local childCh = configData.Level
+        local string = ch .. "-" .. childCh
+        NowGoalString = common:getLanguageString(NotAchiveTable[1].content,string)
+    end
     NodeHelper:setStringForLabel(container,{mNowGoal=NowGoalString})
     local FinalTable={}
     FinalTable=tableSync(CanGetTable,tableSync(NotAchiveTable,GotTable)) or {}
@@ -355,7 +363,7 @@ function RewardContent:onRefreshContent(ccbRoot)
           }
     local resInfo = ResManagerForLua:getResInfoByTypeAndId(self.rewardItems.type, self.rewardItems.itemId,self.rewardItems.count)
     local normalImage = NodeHelper:getImageByQuality(resInfo.quality)
-    NodeHelper:setNodesVisible(container,{mStarNode=false,nameBelowNode=false})
+    NodeHelper:setNodesVisible(container,{mStarNode=false,nameBelowNode=false, mPoint = false})
     local iconBg = NodeHelper:getImageBgByQuality(resInfo.quality)
     NodeHelper:setMenuItemImage(container, {mHand1 = {normal = normalImage}})
     NodeHelper:setSpriteImage(container, {mPic1 = resInfo.icon, mFrameShade1 = iconBg})
@@ -586,7 +594,7 @@ function ProfessionRankingEXPageBase:onReceiveRankingInfo(container, msg)
             
             local icon = common:getPlayeIcon(itemInfo.prof, itemInfo.headIcon)
             if PageInfo.curProType==5 then
-                local ID= string.format("%02d",itemInfo.itemId).. string.format("%03d",itemInfo.skinId)
+                local ID= string.format("%02d000",itemInfo.itemId)--.. string.format("%03d",itemInfo.skinId)
                 icon=common:getPlayeIcon(nil,ID)
             end
             if NodeHelper:isFileExist(icon) then
@@ -712,7 +720,7 @@ function ProfessionRankingEXPageBase:setPlayerMessage(container, data, isSelf, i
                         icon= roleIcon[trueIcon].MainPageIcon
                     end
                 else
-                    local ID= string.format("%02d",data.itemId).. string.format("%03d",data.skinId)
+                    local ID= string.format("%02d000",data.itemId)--.. string.format("%03d",data.skinId)
                     icon=common:getPlayeIcon(nil,ID)
                 end
             end

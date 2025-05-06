@@ -1,11 +1,19 @@
 #ifndef  _ECCHI_GAMER_SDK_H_
 #define  _ECCHI_GAMER_SDK_H_
 
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #include "Config.h"
 #include "cocos2d.h"
 #include "Coresdk.h"
 #include "util.h"
 #include "Enum.h"
+#else
+#include "ecchigamer/Config.h"
+#include "cocos2d.h"
+#include "coresdk/Coresdk.h"
+#include "coresdk/util.h"
+#include "coresdk/Enum.h"
+#endif
 
 namespace ecchigamer {
 	namespace EcchiGamerSDK {

@@ -216,6 +216,8 @@ function AlbumStoryDisplayBase:startPlayStory()
         local txtNode = tolua.cast(spine2, "CCNode")
         parentNode3:addChild(txtNode)
         spine2:runAnimation(1, SpineData[SpineIdx].anime, 0)
+        local langType = CCUserDefault:sharedUserDefault():getIntegerForKey("LanguageType")
+        spine2:setSkin(langType)
     end
     --AlbumStoryDisplayBase:initSetting(selfContainer)
     nowBgmName = SpineData[lineIndex].BGM
@@ -426,12 +428,13 @@ function AlbumStoryDisplayBase:onNext()
             --MiniGame
             GameTime = tonumber(SpineData[SpineIdx].Game)
             nowTime = GameTime
-            
+            local langType = CCUserDefault:sharedUserDefault():getIntegerForKey("LanguageType")
             local parentNode = selfContainer:getVarNode("mTouchSpine")
             local spinePath = "Spine/NGUI"
             local spineName = "NGUI_87_touchscreen"
             local spine = SpineContainer:create(spinePath, spineName)
             local TouchNode = tolua.cast(spine, "CCNode")
+            spine:setSkin(langType)
             parentNode:addChild(TouchNode)
             parentNode:setScale(0.5)
             spine:runAnimation(1, "animation", -1)
@@ -448,6 +451,8 @@ function AlbumStoryDisplayBase:onNext()
             parentNode3:removeAllChildrenWithCleanup(true)
             parentNode3:addChild(txtNode)
             spine2:runAnimation(1, SpineData[SpineIdx].anime, 0)
+            local langType = CCUserDefault:sharedUserDefault():getIntegerForKey("LanguageType")
+            spine2:setSkin(langType)
         end
     else
         --PageManager.popPage(thisPageName)
@@ -533,7 +538,7 @@ function AlbumStoryDisplayBase:update(dt, container)
         if labelTimer >= labelSpeed then
             NeedTimes = SpineData[GameIndex].TypeTimes*6
             NodeHelper:setNodesVisible(container,{mHit=true})
-            nowTime = nowTime - 0.03
+            nowTime = nowTime - dt * 60 * 0.03
             if TapTimes > 0 then
                 TapTimes = TapTimes - 0.3
             else
@@ -544,11 +549,13 @@ function AlbumStoryDisplayBase:update(dt, container)
             end
             if nowTime <= 0 then
                 if TapTimes < NeedTimes*0.8 then
+                    local langType = CCUserDefault:sharedUserDefault():getIntegerForKey("LanguageType")
                     local parentNode = selfContainer:getVarNode("mResultSpine")
                     parentNode:removeAllChildrenWithCleanup(true)
                     local spinePath = "Spine/NGUI"
                     local spineName = "NGUI_86_minigame_result"
                     local spine = SpineContainer:create(spinePath, spineName)
+                    spine:setSkin(langType)
                     local ResultNode = tolua.cast(spine, "CCNode")
                     parentNode:addChild(ResultNode)
                     local array = CCArray:create()
@@ -563,13 +570,15 @@ function AlbumStoryDisplayBase:update(dt, container)
                      TapDB_Data["#game_result"] = isAlbum and 5 or 2 
                      TapDBManager.trackEvent("#event_game",json.encode(TapDB_Data))
                     return
-               elseif not Gamepassed then                    
+               elseif not Gamepassed then                
+                    local langType = CCUserDefault:sharedUserDefault():getIntegerForKey("LanguageType")    
                     Gamepassed = true
                     local parentNode = selfContainer:getVarNode("mResultSpine")
                     parentNode:removeAllChildrenWithCleanup(true)
                     local spinePath = "Spine/NGUI"
                     local spineName = "NGUI_86_minigame_result"
                     local spine = SpineContainer:create(spinePath, spineName)
+                    spine:setSkin(langType)
                     local ResultNode = tolua.cast(spine, "CCNode")
                     parentNode:addChild(ResultNode)
                     local array = CCArray:create()

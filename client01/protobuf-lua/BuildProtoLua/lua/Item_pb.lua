@@ -39,8 +39,8 @@ ITEMINFO_COUNT_FIELD.index = 2
 ITEMINFO_COUNT_FIELD.label = 2
 ITEMINFO_COUNT_FIELD.has_default_value = false
 ITEMINFO_COUNT_FIELD.default_value = 0
-ITEMINFO_COUNT_FIELD.type = 5
-ITEMINFO_COUNT_FIELD.cpp_type = 1
+ITEMINFO_COUNT_FIELD.type = 3
+ITEMINFO_COUNT_FIELD.cpp_type = 2
 
 ITEMINFO_STATUS_FIELD.name = "status"
 ITEMINFO_STATUS_FIELD.full_name = ".ItemInfo.status"

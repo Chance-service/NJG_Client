@@ -167,7 +167,15 @@ void CCRichAtlas::draw()
 		this->updateRichRenderData();
 	}
 
-	CCAtlasNode::draw();
+	//CCAtlasNode::draw();
+	CC_NODE_DRAW_SETUP();
+
+	glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_SRC_ALPHA, GL_DST_ALPHA);
+
+	GLfloat colors[4] = {_displayedColor.r / 255.0f, _displayedColor.g / 255.0f, _displayedColor.b / 255.0f, _displayedOpacity / 255.0f};
+	getShaderProgram()->setUniformLocationWith4fv(m_nUniformColor, colors, 1);
+
+	m_pTextureAtlas->drawNumberOfQuads(m_uQuadsToDraw, 0);
 
 #if CCRICH_DEBUG
 	// atlas bounding box

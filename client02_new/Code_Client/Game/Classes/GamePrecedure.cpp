@@ -1,10 +1,9 @@
-
+﻿
 #include "stdafx.h"
 
 #include "GamePrecedure.h"
 
 #include "StateMachine.h"
-#include "UpdateVersion.h"
 #include "LoadingFrame.h"
 #include "LogoFrame.h"
 #include "MainFrame.h"
@@ -46,6 +45,9 @@
 #include <iostream>
 #include <sstream>
 #include <iomanip>
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+#include <chrono>
+#endif
 //
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 #include <jni.h>
@@ -354,20 +356,6 @@ void GamePrecedure::reEnterGame()
 	enterLoading();
 }
 
-void GamePrecedure::enterUpdateVersion()
-{
-    if (!mUpdateVersion)
-    {
-        mUpdateVersion = dynamic_cast<UpdateVersion*>(CCBManager::Get()->getPage("UpdateVersion"));
-        mUpdateVersion->retain();
-    }
-    
-    if (!m_pStateMachine)
-        m_pStateMachine = new StateMachine<GamePrecedure>(this);
-    
-    m_pStateMachine->ChangeState(mUpdateVersion);
-}
-
 void GamePrecedure::enterLoading()
 {
 	if(!mLoadingFrame)
@@ -446,6 +434,9 @@ static bool sbgo = false;
 
 void GamePrecedure::update( float dt )
 {
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	auto time1 = std::chrono::high_resolution_clock::now();
+#endif
 	if(m_logoutCallback)
 	{
 		m_logoutCallback = false;
@@ -455,7 +446,9 @@ void GamePrecedure::update( float dt )
     //{
     //    m_pBulletinMgr->update(dt);
    // }
-    
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	auto time2 = std::chrono::high_resolution_clock::now();
+#endif
 	mFrameTime = dt;
 	mTotalTime += dt;
 	static float durationTime=0;
@@ -466,16 +459,31 @@ void GamePrecedure::update( float dt )
 		//++mServerTime;
 	}
 	m_pStateMachine->Update();
-
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	auto time3 = std::chrono::high_resolution_clock::now();
+#endif
 
 	PacketManager::Get()->update(dt);
-
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	auto time4 = std::chrono::high_resolution_clock::now();
+#endif
 
 	MessageManager::Get()->update();
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	auto time5 = std::chrono::high_resolution_clock::now();
+#endif
 	waitingManager::Get()->update(dt);
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	auto time6 = std::chrono::high_resolution_clock::now();
+#endif
 	TimeCalculator::Get()->update();
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	auto time7 = std::chrono::high_resolution_clock::now();
+#endif
 	LoginPacket::Get()->update(dt);	
-
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	auto time8 = std::chrono::high_resolution_clock::now();
+#endif
 	//显示服务器名称
 
 	if (mLoadingFrame&&(mLoadingFrame->getUpdateServerState()) && SeverConsts::Get()->checkUpdateInfo() == SeverConsts::CS_OK)
@@ -485,7 +493,9 @@ void GamePrecedure::update( float dt )
 		mLoadingFrame->updateSeverName();
 		mLoadingFrame->setUpdateServerState(false);
 	}
-
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	auto time9 = std::chrono::high_resolution_clock::now();
+#endif
 	// 处理logoframe
 	if (mLogoFrame)
 	{
@@ -496,7 +506,9 @@ void GamePrecedure::update( float dt )
 			mLogoFrame = 0;
 		}
 	}
-
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	auto time10 = std::chrono::high_resolution_clock::now();
+#endif
 	if (mInLoadingScene)
 	{		
 		if (mStartLoginJiShi)
@@ -531,7 +543,9 @@ void GamePrecedure::update( float dt )
 			fLoginJiShiSeconds = 0.f;
 		}
 	}
-	
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	auto time11 = std::chrono::high_resolution_clock::now();
+#endif
 	bool preparePacketDone = false;
 	//m_loginPacketAssemblySuccess  代表收到了服务器登录收尾的AssemblyFinish包
 	//mHasMainRole 表示新手还没有角色时，如果没有角色，需要进入选角色页面
@@ -716,6 +730,62 @@ void GamePrecedure::update( float dt )
 		mGotHeartBeatTime += dt;
 		
 	}
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	auto time12 = std::chrono::high_resolution_clock::now();
+#endif
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	std::chrono::duration<double> diff1 = time2 - time1;
+	if ((double)diff1.count() > 0.1f) {
+		std::cout << "GamePrecedure Diff1: " << diff1.count() << " sec\n";
+	}
+	std::chrono::duration<double> diff2 = time3 - time2;
+	if ((double)diff2.count() > 0.1f) {
+		std::cout << "GamePrecedure Diff2: " << diff2.count() << " sec\n";
+	}
+	std::chrono::duration<double> diff3 = time4 - time3;
+	if ((double)diff3.count() > 0.1f) {
+		std::cout << "GamePrecedure Diff3: " << diff3.count() << " sec\n";
+	}
+	std::chrono::duration<double> diff4 = time5 - time4;
+	if ((double)diff4.count() > 0.1f) {
+		std::cout << "GamePrecedure Diff4: " << diff4.count() << " sec\n";
+	}
+	std::chrono::duration<double> diff5 = time6 - time5;
+	if ((double)diff5.count() > 0.1f) {
+		std::cout << "GamePrecedure Diff5: " << diff5.count() << " sec\n";
+	}
+	std::chrono::duration<double> diff6 = time7 - time6;
+	if ((double)diff6.count() > 0.1f) {
+		std::cout << "GamePrecedure Diff6: " << diff6.count() << " sec\n";
+	}
+	std::chrono::duration<double> diff7 = time8 - time7;
+	if ((double)diff7.count() > 0.1f) {
+		std::cout << "GamePrecedure Diff7: " << diff7.count() << " sec\n";
+	}
+	std::chrono::duration<double> diff8 = time9 - time8;
+	if ((double)diff8.count() > 0.1f) {
+		std::cout << "GamePrecedure Diff8: " << diff8.count() << " sec\n";
+	}
+	std::chrono::duration<double> diff9 = time10 - time9;
+	if ((double)diff9.count() > 0.1f) {
+		std::cout << "GamePrecedure Diff9: " << diff9.count() << " sec\n";
+	}
+	std::chrono::duration<double> diff10 = time11 - time10;
+	if ((double)diff10.count() > 0.1f) {
+		std::cout << "GamePrecedure Diff10: " << diff10.count() << " sec\n";
+	}
+	std::chrono::duration<double> diff11 = time12 - time11;
+	if ((double)diff11.count() > 0.1f) {
+		std::cout << "GamePrecedure Diff11: " << diff11.count() << " sec\n";
+	}
+	std::chrono::duration<double> diff12 = time12 - time1;
+	if ((double)diff12.count() > 0.1f) {
+		std::cout << "GamePrecedure Total Diff: " << diff12.count() << " sec\n";
+	}
+	if (dt > 1 / 20.0f) {
+		std::cout << "GamePrecedure dt: " << dt << " sec\n";
+	}
+#endif
 }
 
 
@@ -869,36 +939,6 @@ void GamePrecedure::initLuaEnv(){
 		mInitLuaDone = true;
 
 }
-
-void GamePrecedure::initLuaUpdateVersionEnv()
-{
-	CCLOG("initLuas");
-		if(!cocos2d::CCScriptEngineManager::sharedManager()->getScriptEngine())
-		{
-			cocos2d::CCLuaEngine* pEngine = cocos2d::CCLuaEngine::defaultEngine();
-			cocos2d::CCScriptEngineManager::sharedManager()->setScriptEngine(pEngine);
-			pEngine->start();
-			tolua_Gamelua_open(pEngine->getLuaStack()->getLuaState());
-			luaopen_pb(pEngine->getLuaStack()->getLuaState());
-			luaopen_cjson(pEngine->getLuaStack()->getLuaState());
-			luaopen_cjson_safe(pEngine->getLuaStack()->getLuaState());
-
-			pEngine->executeString("require \"HotUpdate\"");
-
-			pEngine->executeGlobalFunctionByName("UpdateVersion",this,"GamePrecedure");
-
-			//修改lua堆栈大小
-			int stack_size = 32;
-			while (lua_checkstack(pEngine->getLuaStack()->getLuaState(), stack_size))
-				stack_size <<= 1;
-
-			CCLog("lua stack size: %d", stack_size >> 1);
-		}
-
-		mInitLuaDone = true;
-		//有可能需要在这里加入初始化lua 结束指令，发给后端，代表前段已经做好了准备工作，再由他们发assembly 消息。
-}
-
 
 float GamePrecedure::getFrameTime()
 {
@@ -1819,42 +1859,36 @@ extern "C"
 	}
 #endif
 
-void GamePrecedure::playMovie(std::string fileName, int isLoop, int autoScale)
+void GamePrecedure::playMovie(std::string pageName, std::string fileName, int isLoop, int autoScale)
 {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 	callPlatformPlayMovieJNI(fileName.c_str(), isLoop, autoScale);
 #endif
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-    libOS::getInstance()->playMovie(("Video/" + fileName).c_str(), isLoop);
+	fileName = fileName + "Video/";
+	libOS::getInstance()->playMovie(fileName);
 #endif
+	MainFrame::getInstance()->addMovie(pageName, fileName, isLoop, autoScale);
 }
 
-void GamePrecedure::closeMovie()
+void GamePrecedure::closeMovie(std::string pageName)
 {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 	callPlatformCloseMovieJNI();
 #endif
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-    libOS::getInstance()->stopMovie();
-#endif
+	MainFrame::getInstance()->removeMovieByPage(pageName);
 }
 
-void GamePrecedure::pauseMovie()
+void GamePrecedure::pauseMovie(std::string pageName)
 {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 	callPlatformPauseMovieJNI();
 #endif
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-    libOS::getInstance()->pauseMovie();
-#endif
 }
 
-void GamePrecedure::resumeMovie()
+void GamePrecedure::resumeMovie(std::string pageName)
 {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 	callPlatformResumeMovieJNI();
-#endif
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-    libOS::getInstance()->resumeMovie();
 #endif
 }

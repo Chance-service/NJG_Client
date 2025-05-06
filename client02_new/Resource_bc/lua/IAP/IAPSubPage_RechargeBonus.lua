@@ -164,6 +164,8 @@ function RechargeBonusPage:getSortedTable(Config)
                     insert = true
                 elseif v.platform == 6 and Golb_Platform_Info.is_kuso then
                     insert = true
+                elseif v.platform == 9 and Golb_Platform_Info.is_aplus then
+                    insert = true
                 elseif CC_TARGET_PLATFORM_LUA == common.platform.CC_PLATFORM_WIN32 then
                     insert = true
                 end
@@ -301,6 +303,8 @@ function RechargeBonusItem:onRefreshContent(ccbRoot)
             NodeHelper:setStringForLabel(container, { mTxt2 = common:getLanguageString("@Total_RECHARGE", v1) })
         elseif Golb_Platform_Info.is_kuso then
             NodeHelper:setStringForLabel(container, { mTxt2 = common:getLanguageString("@Total_RECHARGE69", v1) })
+        elseif Golb_Platform_Info.is_aplus then
+            NodeHelper:setStringForLabel(container, { mTxt2 = common:getLanguageString("@Total_RECHARGEAPLUS", v1) })
         else
             NodeHelper:setStringForLabel(container, { mTxt2 = common:getLanguageString("@Total_RECHARGE", v1) })
         end
@@ -313,6 +317,8 @@ function RechargeBonusItem:onRefreshContent(ccbRoot)
             NodeHelper:setStringForLabel(container, { mTxt2 = common:getLanguageString("@Total_RECHARGE", v1) })
         elseif Golb_Platform_Info.is_kuso then
             NodeHelper:setStringForLabel(container, { mTxt2 = common:getLanguageString("@Total_RECHARGE69", v1) })
+        elseif Golb_Platform_Info.is_aplus then
+            NodeHelper:setStringForLabel(container, { mTxt2 = common:getLanguageString("@Total_RECHARGEAPLUS", v1) })
         else
             NodeHelper:setStringForLabel(container, { mTxt2 = common:getLanguageString("@Total_RECHARGE", v1) })
         end

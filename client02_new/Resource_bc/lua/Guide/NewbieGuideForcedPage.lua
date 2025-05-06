@@ -95,6 +95,9 @@ function NewbieGuideForcedBase:refreshPage( container )
         PageManager.popPage(thisPageName)
         GuideManager.isInGuide = false
         GuideManager.IsNeedShowPage = false
+        if currStepIdx == 0 then
+            return
+        end
         currStepIdx = 0
         GuideManager.currGuide[GuideManager.currGuideType] = 0
         self:setStepPacket(container, currGuideType, currStepIdx)

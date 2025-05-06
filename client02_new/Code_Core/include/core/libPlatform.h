@@ -91,7 +91,7 @@ public:
 	virtual void onRequestBindTryUserToOkUser(const char* tyrUin, const char* okUin){};
 	virtual void onTryUserRegistSuccess(){};
 	virtual void onShareEngineMessage(bool result){};
-	virtual void onPlayMovieEnd();
+	virtual void onPlayMovieEnd(){};
 	virtual void onMotionShake(){};
 	virtual void onReLogin(){};
 	virtual void onFBShareBack(bool success){};
@@ -150,6 +150,8 @@ public:
 	virtual void showPlatformProfile() = 0;
 
 	virtual const std::string getClientChannel() = 0;
+
+	virtual const std::string getClientCps() = 0;
 
 	virtual const std::string getChannelID(){ return ""; }
 

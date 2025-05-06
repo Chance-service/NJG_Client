@@ -7,10 +7,13 @@ public enum E_PLATFORM {
     JSG(3),
     LSJ(4),
     MURA(5),
-    KUSO(6);
+    KUSO(6),
+    EROLAB(7),
+    TEMP2(8),
+    APLUS(9);
     private int value;
     E_PLATFORM(int value) {
-        this.value=value;
+        this.value = value;
     }
     public int getValue(){
         return  value;
@@ -24,6 +27,9 @@ public enum E_PLATFORM {
             case 4: return LSJ;
             case 5: return MURA;
             case 6: return KUSO;
+            case 7: return EROLAB;
+            case 8: return TEMP2;
+            case 9: return APLUS;
             default: return null;
         }
     }

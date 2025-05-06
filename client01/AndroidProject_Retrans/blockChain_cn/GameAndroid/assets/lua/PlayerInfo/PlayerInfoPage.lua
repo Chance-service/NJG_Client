@@ -37,6 +37,7 @@ local option = {
         onCDKFunction = "onCDKFunction",
         onServiceAnnounce = "onServiceAnnounce",
         onChangePlayerIcon = "onChangePlayerIcon",
+        onLangSetting = "onLangSetting",
     },
     opcode = opcodes
 }
@@ -112,10 +113,17 @@ function PlayerInfoPageBase:showPlayerInfo(container)
     UserInfo.sync()
     local vipTexture = "PlayerInfo_VIP" .. UserInfo.playerInfo.vipLevel .. ".png"
 
-    NodeHelper:setNodesVisible(container, { mBoundAccountNode = (Golb_Platform_Info.is_r18) })
+    NodeHelper:setNodesVisible(container, { mBoundAccountNode = (Golb_Platform_Info.is_r18) or (Golb_Platform_Info.is_kuso) or (Golb_Platform_Info.is_aplus) })
     bindState = libPlatformManager:getPlatform():getIsGuest()  -- 0 = 舊帳號登入, 1 = 遊客登入
-    NodeHelper:setMenuItemEnabled(container, "mBindBtn", (bindState ~= 0)) --綁定開關
+    NodeHelper:setMenuItemEnabled(container, "mBindBtn", (bindState ~= 0) or (Golb_Platform_Info.is_kuso) or (Golb_Platform_Info.is_aplus)) --綁定開關
     NodeHelper:setNodeIsGray(container, { mAccount = (bindState == 0) })
+    if (Golb_Platform_Info.is_r18) then
+        NodeHelper:setMenuItemImage(container, { mBindBtn = { normal = "Btn_AccountBinding_N.png", press = "Btn_AccountBinding_S.png" } })
+    elseif (Golb_Platform_Info.is_kuso) then
+        NodeHelper:setMenuItemImage(container, { mBindBtn = { normal = "Btn_PersonalConfidence69_N.png", press = "Btn_PersonalConfidence69_S.png" } })
+    elseif (Golb_Platform_Info.is_aplus) then
+        NodeHelper:setMenuItemImage(container, { mBindBtn = { normal = "Btn_PersonalConfidence69_N.png", press = "Btn_PersonalConfidence69_S.png" } })
+    end
 
     local lb2Str = {
         mName = UserInfo.roleInfo.name,
@@ -167,6 +175,8 @@ function PlayerInfoPageBase:onServiceAnnounce(container)
         PageManager.showHelp(GameConfig.HelpKey.HELP_AGREEMENT_R18)
     elseif Golb_Platform_Info.is_kuso then
         PageManager.showHelp(GameConfig.HelpKey.HELP_AGREEMENT_KUSO)
+    elseif Golb_Platform_Info.is_aplus then
+        PageManager.showHelp(GameConfig.HelpKey.HELP_AGREEMENT_KUSO)    -- 跟69共用
     else
         PageManager.showHelp(GameConfig.HelpKey.HELP_AGREEMENT)
     end
@@ -194,6 +204,10 @@ end
 
 function PlayerInfoPageBase:onChangePlayerIcon()
     PageManager.pushPage("ChangePlayerIconPage")
+end
+
+function PlayerInfoPageBase:onLangSetting()
+    PageManager.pushPage("LangSettingPopUp")
 end
 
 function PlayerInfoPageBase:onEntermateLogout(container)
@@ -255,42 +269,43 @@ function PlayerInfoPageBase:onChangeName(container)
     SetInputBoxInfo2("", "", "", inputBoxCallback, 1, 2)
 end
 
-function PlayerInfoPageBase:onLanguageSwitch(container)
-    PageManager.pushPage("LanguageSwitchPopUp")
-end
-
 function PlayerInfoPageBase:onBoundAccount(container)
     if bindState ~= 0 then
-        CCLuaLog("onClickBind")
-        local openBindGameCallback = function (BindGameResult)
-            CCLuaLog("BindGameResult1")
-            CCLuaLog("isSuccess = " .. tostring(BindGameResult.isSuccess))
-            CCLuaLog("result: " .. BindGameResult.result)
-            if BindGameResult.isSuccess == true then
-                local userID = BindGameResult.user_id
-                local token = EcchiGamerSDK.getToken()
-                CCLuaLog("userID: " .. userID)
-                CCLuaLog("token: " .. token)
-                local AccountBound_pb = require("AccountBound_pb")
-                local msg = AccountBound_pb.HPAccountBoundConfirm()
-                msg.userId = userID
-                msg.wallet = ""
-                common:sendPacket(HP_pb.ACCOUNT_BOUND_REWARD_C, msg, false)
-            else
-                CCLuaLog("BindGameResult2")
-                if BindGameResult.exception ~= "" then
-                    CCLuaLog("exception: " .. BindGameResult.exception)
+        if Golb_Platform_Info.is_r18 then
+            CCLuaLog("onClickBind")
+            local openBindGameCallback = function (BindGameResult)
+                CCLuaLog("BindGameResult1")
+                CCLuaLog("isSuccess = " .. tostring(BindGameResult.isSuccess))
+                CCLuaLog("result: " .. BindGameResult.result)
+                if BindGameResult.isSuccess == true then
+                    local userID = BindGameResult.user_id
+                    local token = EcchiGamerSDK.getToken()
+                    CCLuaLog("userID: " .. userID)
+                    CCLuaLog("token: " .. token)
+                    local AccountBound_pb = require("AccountBound_pb")
+                    local msg = AccountBound_pb.HPAccountBoundConfirm()
+                    msg.userId = userID
+                    msg.wallet = ""
+                    common:sendPacket(HP_pb.ACCOUNT_BOUND_REWARD_C, msg, false)
+                else
+                    CCLuaLog("BindGameResult2")
+                    if BindGameResult.exception ~= "" then
+                        CCLuaLog("exception: " .. BindGameResult.exception)
+                    end
+                    CCLuaLog("errorCode: " .. BindGameResult.result)
+                    MessageBoxPage:Msg_Box_Lan("@ERRORCODE_12003")
                 end
-                CCLuaLog("errorCode: " .. BindGameResult.result)
-                MessageBoxPage:Msg_Box_Lan("@ERRORCODE_12003")
+                CCLuaLog("BindGameResult3")
             end
-            CCLuaLog("BindGameResult3")
+            PageManager.showConfirm(common:getLanguageString("@SDK10"), common:getLanguageString("@SDK10"), function(bool)
+                if bool then
+                    EcchiGamerSDK:openAccountBindGame(UserInfo.playerInfo.playerId, openBindGameCallback)
+                end 
+            end)
         end
-        PageManager.showConfirm(common:getLanguageString("@SDK10"), common:getLanguageString("@SDK10"), function(bool)
-            if bool then
-                EcchiGamerSDK:openAccountBindGame(UserInfo.playerInfo.playerId, openBindGameCallback)
-            end 
-        end)
+    end
+    if Golb_Platform_Info.is_kuso or Golb_Platform_Info.is_aplus then
+        libPlatformManager:getPlatform():showPlatformProfile()
     end
 end
 

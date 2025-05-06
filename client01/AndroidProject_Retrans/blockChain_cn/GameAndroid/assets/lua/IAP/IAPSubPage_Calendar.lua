@@ -241,7 +241,7 @@ function Calendar:onEnter(container)
         NRIcon = true,
         PRIcon = false, })
     NodeHelper:setMenuItemsEnabled(container, {NRBtn = false, PRBtn = true,mBtn=false})
-    NodeHelper:setStringForLabel(self.container,{mCost=getPrice(NR_CALENDAR)})
+    NodeHelper:setStringForLabel(self.container,{mCost=Calendar_getPrice(NR_CALENDAR)})
     --self:ShopListQuest()
     self:initData(false)
     --新手教學
@@ -506,7 +506,7 @@ function Calendar:onNR(container)
         PRIcon = false, })
     NodeHelper:setMenuItemsEnabled(container, {NRBtn = false, PRBtn = true})
     self:initData(false)
-    NodeHelper:setStringForLabel(self.container,{mCost=getPrice(NR_CALENDAR)})
+    NodeHelper:setStringForLabel(self.container,{mCost=Calendar_getPrice(NR_CALENDAR)})
 end
 function Calendar:onPR(container)
     curCalendar = 2
@@ -518,7 +518,7 @@ function Calendar:onPR(container)
         PRIcon = true, })
     NodeHelper:setMenuItemsEnabled(container, {NRBtn = true, PRBtn = false})
     self:initData(true)
-    NodeHelper:setStringForLabel(self.container,{mCost=getPrice(PR_CALENDAR)})
+    NodeHelper:setStringForLabel(self.container,{mCost=Calendar_getPrice(PR_CALENDAR)})
 end
 
 function Calendar:onReceiveMessage(message)
@@ -529,7 +529,7 @@ function Calendar:onReceiveMessage(message)
 		--self:ShopListQuest()
 	end
 end
-function getPrice(id)
+function Calendar_getPrice(id)
    local itemInfo = nil
    for i=1 ,#RechargeCfg do
        if tonumber(RechargeCfg[i].productId)==id then

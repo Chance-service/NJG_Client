@@ -2,7 +2,11 @@
 #define  _CORESDK_API_UTIL_H_
 
 #include "cocos2d.h"
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #include "Result.h"
+#else
+#include "coresdk/Result.h"
+#endif
 
 namespace coresdk {
 	class APIUtil : public cocos2d::CCObject

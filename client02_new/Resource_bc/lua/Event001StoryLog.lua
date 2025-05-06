@@ -55,12 +55,12 @@ function StoryLogPageBase:onEnter(container)
     NodeHelper:setNodesVisible(mainContainer,{mElementNode=false})
     container.mScrollView = container:getVarScrollView("mContent")
     -- scrollview自適應
-    NodeHelper:autoAdjustResizeScrollview(container.mScrollView)
-    local oldSize = container.mScrollView:getViewSize()
-    oldSize.width = oldSize.width + 50
-    container.mScrollView:setViewSize(oldSize)
-    local X=container.mScrollView:getPositionX()
-    container.mScrollView:setPositionX(X-10)
+    --NodeHelper:autoAdjustResizeScrollview(container.mScrollView)
+    --local oldSize = container.mScrollView:getViewSize()
+    --oldSize.width = oldSize.width + 50
+    --container.mScrollView:setViewSize(oldSize)
+    --local X=container.mScrollView:getPositionX()
+    --container.mScrollView:setPositionX(X-10)
    self:initScrollView(container)
 end
 -- ScrollView初始化
@@ -88,7 +88,7 @@ function AlbumSideStory:onRefreshContent(content)
     ]]
     local Event001Base = require "Event001Page"
     local Passed = Event001Base:getStageInfo().PassedId
-    local Img = EventDataMgr[EventDataMgr.nowActivityId].STAGE_CFG[Passed].storyBanner
+    local Img = Passed <= 0 and EventDataMgr[EventDataMgr.nowActivityId].STAGE_CFG[1].storyBanner or EventDataMgr[EventDataMgr.nowActivityId].STAGE_CFG[Passed].storyBanner
     NodeHelper:setSpriteImage(container, { mBg = Img })
     UserInfo.sync()
     --local passedMap = UserInfo.stateInfo.passMapId
@@ -101,8 +101,9 @@ function AlbumSideStory:onRefreshContent(content)
          NodeHelper:setNodesVisible(container,{mLock=true,mMask=true})
          self.isLock=true
     end
-    local idx= self.chapter .. string.format("%02d",self.level)..self.storyIdx
-    local string=common:getLanguageString("@ActivitystoryTitle" .. idx ) 
+    local key = EventDataMgr[EventDataMgr.nowActivityId].AVG_TITLE_KEY
+    local idx = self.chapter .. string.format("%02d",self.level)..self.storyIdx
+    local string=common:getLanguageString(key .. idx ) 
     NodeHelper:setStringForLabel(container,{mTxt=string})
 
 end

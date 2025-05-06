@@ -78,7 +78,7 @@ function Skill_1220:runSkill(chaNode, skillId, resultTable, allPassiveTable, tar
             --施法者造成治療buff
             local buffValue = BuffManager:checkHealBuffValue(chaNode.buffData)
             --目標受到治療buff
-            local buffValue2 = BuffManager:checkBeHealBuffValue(chaNode.buffData)
+            local buffValue2 = BuffManager:checkBeHealBuffValue(chaNode)
             --基礎傷害
             local health = math.floor(dmg * tonumber(params[1]) * buffValue * buffValue2 + 0.5)
             --最終結果

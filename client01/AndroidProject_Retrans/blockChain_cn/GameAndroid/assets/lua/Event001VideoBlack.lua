@@ -2,41 +2,52 @@ local thisPageName = "Event001VideoBlack"
 
 local opcodes = {
     
-    }
+}
 
 local option = {
     ccbiFile = "AlbumStoryDisplayPage_Flip.ccbi",
     handlerMap = {
     },
 }
-local Event001BlackBase = {}
+local Event001BlackBase = { }
 local libPlatformListener1 = { }
+isACT191Played = false
 
 function libPlatformListener1:onPlayMovieEnd(listener)
-    if not listener then return end
-    GameUtil:setPlayMovieVisible(true)
-    GamePrecedure:getInstance():closeMovie()
+    if not listener or isACT191Played then return end
+    isACT191Played = true
+    GamePrecedure:getInstance():closeMovie(thisPageName)
     local mainContainer = tolua.cast(MainFrame:getInstance(), "CCBContainer")
     local backNode = mainContainer:getCCNodeFromCCB("mNodeMid")
     backNode:setVisible(true)
     PageManager.pushPage("Event001Page")
     PageManager.popPage(thisPageName)
-    --libPlatformListener = { }
 end
 
-
-
 function Event001BlackBase:onEnter(container)
-     SoundManager:getInstance():stopMusic()
-     NodeHelper:setStringForLabel(container,{mTxt = ""})
-     PageManager.pushPage("TransScenePopUp")
-     local video = ConfigManager.getEvent001ActionCfg()[99999901].spine
-     LibPlatformScriptListener:new(libPlatformListener1)
-     GamePrecedure:getInstance():playMovie(video, 0, 0)
-     GameUtil:setPlayMovieVisible(false)
-     local mainContainer = tolua.cast(MainFrame:getInstance(), "CCBContainer")
-     local backNode = mainContainer:getCCNodeFromCCB("mNodeMid")
-     backNode:setVisible(false)
+    if CC_TARGET_PLATFORM_LUA == common.platform.CC_PLATFORM_WIN32 then
+        PageManager.pushPage("Event001Page")
+        PageManager.popPage(thisPageName)
+        return
+    end
+    SoundManager:getInstance():stopMusic()
+    NodeHelper:setStringForLabel(container, { mTxt = "" })
+    PageManager.pushPage("TransScenePopUp")
+    local EventDataMgr = require("Event001DataMgr")
+    local video = EventDataMgr[EventDataMgr.nowActivityId].FETTER_MOVEMENT_CFG[99999901].spine
+    if video ~= "" then
+        LibPlatformScriptListener:new(libPlatformListener1)
+        GamePrecedure:getInstance():playMovie(thisPageName, video, 0, 0)
+        local mainContainer = tolua.cast(MainFrame:getInstance(), "CCBContainer")
+        local backNode = mainContainer:getCCNodeFromCCB("mNodeMid")
+        backNode:setVisible(false)
+    else
+        PageManager.pushPage("Event001Page")
+        PageManager.popPage(thisPageName)
+    end
+    if EventDataMgr[EventDataMgr.nowActivityId].isCommonUI then
+        SoundManager:getInstance():playMusic(EventDataMgr[EventDataMgr.nowActivityId].FETTER_MOVEMENT_CFG[99999901].spine .. ".mp3")
+    end
 end
 function Event001BlackBase:setSpine(container)
     

@@ -97,7 +97,7 @@ function LivenessPageItem:refresh(container)
     NodeHelper:setSpriteImage(container, { mIconSprite = resInfo.icon, mDiBan = iconBgSprite })
     NodeHelper:setQualityFrames(container, { mQuality = resInfo.quality })
     local icon = container:getVarSprite("mIconSprite")
-    icon:setPosition(ccp(0, 0))
+    --icon:setPosition(ccp(0, 0))
 
     NodeHelper:setStringForLabel(container, { mNumLabel = (self.rewardData.type == 40000 and "" or tostring(resInfo.count)) })
 

@@ -4,6 +4,7 @@ local UserItemManager = require("Item.UserItemManager")
 local FetterPage = require("FetterPage")
 local FetterManager = require("FetterManager")
 local GuideManager = require("Guide.GuideManager")
+local EventDataMgr = require("Event001DataMgr")
 
 local option = {
 	ccbiFile = "FetterGirlsDiary.ccbi",
@@ -63,8 +64,8 @@ local nowState = DiaryState.SPINE
 local diarySpine = nil
 local diarySpineFade = nil
 
-local fetterControlCfg = ConfigManager:getEvent001ControlCfg()
-local fetterMovementCfg = ConfigManager:getEvent001ActionCfg()
+local fetterControlCfg = EventDataMgr[EventDataMgr.nowActivityId].FETTER_CONTROL_CFG
+local fetterMovementCfg = EventDataMgr[EventDataMgr.nowActivityId].FETTER_MOVEMENT_CFG
 
 local mSpineNode = nil
 local mSpineFadeNode = nil
@@ -152,8 +153,7 @@ local mEditInputType = 0
 
 function libPlatformListener:onPlayMovieEnd(listener)
     if not listener then return end
-    GameUtil:setPlayMovieVisible(true)
-    GamePrecedure:getInstance():closeMovie()
+    GamePrecedure:getInstance():closeMovie(thisPageName)
     local mainContainer = tolua.cast(MainFrame:getInstance(), "CCBContainer")
     local backNode = mainContainer:getCCNodeFromCCB("mNodeMid")
     backNode:setVisible(true)
@@ -194,7 +194,7 @@ function Event001AVG:onEnter(container)
 	---
 	Event001AVG:registerPacket(container)
 	--Event001AVG:refreshPage(container)
-	NodeHelper:setNodesVisible(container, {mLogNode = false})
+	NodeHelper:setNodesVisible(container, {mLogNode = false,mTouch = false})
 	--------------------------------------------------------------------
 	--Debug
 	if NodeHelper:isDebug() then
@@ -204,6 +204,26 @@ function Event001AVG:onEnter(container)
 	else
 		NodeHelper:setNodesVisible(container, {mTestNode = false})
 	end
+
+    local layer = CCLayer:create()
+    layer:setTag(100001)
+    container:addChild(layer)
+    layer:setContentSize(CCEGLView:sharedOpenGLView():getDesignResolutionSize())
+    layer:registerScriptTouchHandler( function(eventName, pTouch)
+        if eventName == "began" then
+            self:onTouch(container,"onTouch")
+        elseif eventName == "moved" then
+
+        elseif eventName == "ended" then
+          
+        elseif eventName == "cancelled" then
+
+        end
+    end
+    , false, -129, false)
+    layer:setTouchEnabled(true)
+    layer:setVisible(true)
+
 	--------------------------------------------------------------------
 	--Tutorial
 	Event001AVG:setTutorialState(container)
@@ -229,6 +249,7 @@ function Event001AVG:HSPINESync(container)
 	end
 end
 function Event001AVG:onClose(container)
+    SoundManager:getInstance():playMusic("Event_bgm.mp3")
 	if mSpineNode then
 		mSpineNode:unscheduleUpdate()
 		mSpineNode = nil
@@ -241,6 +262,9 @@ function Event001AVG:onClose(container)
         if nowSpines[i] then
             nowSpines[i] = nil
         end
+    end
+    if Event001AVG.libPlatformListener then
+        Event001AVG.libPlatformListener:delete()
     end
 end
 
@@ -353,13 +377,17 @@ function Event001AVG:onReturn(container)
         PageJumpMange.JumpPageById(51)
 		--require("Battle.NgBattleResultManager")
 		--NgBattleResultManager_playNextResult()
+        local Event001Base = require("Event001Page")
+        Event001Base:playMovie(container)
 	else
 		local currPage = MainFrame:getInstance():getCurShowPageName()
 		if currPage == "NgBattlePage" then  --回復BGM
 			local sceneHelper = require("Battle.NgFightSceneHelper")
 			sceneHelper:setGameBgm()
 		else
-			SoundManager:getInstance():playGeneralMusic()
+			SoundManager:getInstance():playMusic("Event_bgm.mp3")
+            local Event001Base = require("Event001Page")
+            Event001Base:playMovie(container)
 		end
 	end
 end
@@ -669,7 +697,7 @@ function Event001AVG:onTouch(container, eventName)
 			local nowControlCfg = fetterControlCfg[nowControlId]
 			--關閉對話提示
 			NodeHelper:setNodesVisible(diaryContainer , { mTalkArrowNode = false })
-			if string.find(lines[nowLine], "@") then --劇情結束
+			if not lines[nowLine] or string.find(lines[nowLine], "@") then --劇情結束
 				nowLine = nowLine - 1
 				logNowLine = nowLine
 				self:onReturn(diaryContainer )
@@ -845,7 +873,7 @@ end
 
 function Event001AVG:initSetting(container)
 	--end
-	local langForward = "@Activitystory"
+	local langForward = EventDataMgr[EventDataMgr.nowActivityId].AVG_KEY
 	for i = 1, 99 do 
 		local str = common:getLanguageString(langForward .. areaNum.. string.format("%02d", stageNum) .. storyIdx .. string.format("%02d", i))
 		--local str=NodeHelper:FunSetLinefeed(tmp,63)
@@ -1454,9 +1482,8 @@ function Event001AVG:createAction(container, para, action, bgAction, chAction)
          action:addObject(CCCallFunc:create(function()
 			 if para.spine ~=""  then
                 --libPlatformListener = {}
-                LibPlatformScriptListener:new(libPlatformListener)
-                GamePrecedure:getInstance():playMovie(para.spine, 0, 0)
-                GameUtil:setPlayMovieVisible(false)
+                Event001AVG.libPlatformListener = LibPlatformScriptListener:new(libPlatformListener)
+                GamePrecedure:getInstance():playMovie(thisPageName, para.spine, 0, 0)
                  local mainContainer = tolua.cast(MainFrame:getInstance(), "CCBContainer")
                  local backNode = mainContainer:getCCNodeFromCCB("mNodeMid")
                  backNode:setVisible(false)

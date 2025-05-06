@@ -16,4 +16,4 @@ id	name	content	needCount	排序ID	任务獎勵	任务奖励数量	任务图标	
 15	@GloryHoleQuestName_004	@GloryHoleQuestContent_015	5	15	30000_7197_2	2	Item/I_7055.png	0	NULL	0	5	4
 16	@GloryHoleQuestName_004	@GloryHoleQuestContent_016	10	16	30000_7034_1	1	Item/I_7012.png	0	NULL	0	5	4
 17	@GloryHoleQuestName_004	@GloryHoleQuestContent_017	20	17	30000_6004_2	2	Item/I_6004.png	0	NULL	0	5	4
-18	@GloryHoleQuestName_004	@GloryHoleQuestContent_018	30	18	30000_7193_3	3	Item/I_7053.png	0	NULL	0	5	4
+18	@GloryHoleQuestName_004	@GloryHoleQuestContent_018	30	18	30000_7191_3	3	Item/I_7053.png	0	NULL	0	5	4

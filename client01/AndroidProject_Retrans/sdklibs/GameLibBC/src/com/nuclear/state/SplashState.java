@@ -36,7 +36,7 @@ public class SplashState extends BaseState {
 		imageView_logo = (ImageView)findViewById(R.id.imageView_logo);
 		nowDrawable = 0;
 		//Drawable[] drawables;
-		if (getPlatformName() == E_PLATFORM.KUSO){
+		if (getPlatformName() == E_PLATFORM.KUSO || getPlatformName() == E_PLATFORM.APLUS){
 			scaleTypes = new ImageView.ScaleType[]{ ImageView.ScaleType.FIT_CENTER, ImageView.ScaleType.FIT_CENTER };
 			drawables = new Drawable[]{ getActivity().getLogo69Drawable(), getActivity().getLogoDrawable() };
 		}

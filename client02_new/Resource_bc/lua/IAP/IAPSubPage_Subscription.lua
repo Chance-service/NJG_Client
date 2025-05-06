@@ -20,6 +20,8 @@ local SubscriptionCfg = ConfigManager.getSubscription()
 local parentPage = nil
 local requesting = false
 
+-- 購買資料請求中
+local requestingLastShop = false
 local SeverData = {}
 local opcodes = {
     FETCH_SHOP_LIST_S = HP_pb.FETCH_SHOP_LIST_S,
@@ -73,6 +75,7 @@ function SubscriptionPage:onEnter(ParentContainer)
     parentPage:registerPacket(opcodes)
     parentPage:registerMessage(MSG_MAINFRAME_REFRESH)
     requesting = false
+    requestingLastShop = false
     --self:refresh(self.container)
     local scrollview = self.container:getVarScrollView("mContent")
     NodeHelper:autoAdjustResizeScrollview(scrollview)
@@ -132,6 +135,9 @@ end
 function SubscriptionPage:onReceiveMessage(message)
 	local typeId = message:getTypeId()
 	if typeId == MSG_RECHARGE_SUCCESS then
+        if requestingLastShop then
+            return
+        end
         CCLuaLog(">>>>>>onReceiveMessage SubscriptionItem")
        SubscriptionPage:ItemInfoRequest()
        common:sendEmptyPacket(HP_pb.LAST_SHOP_ITEM_C, true)
@@ -238,6 +244,7 @@ function SubscriptionPage:onReceivePacket(packet)
         PackageLogicForLua.PopUpReward(msgBuff)
     end
     if opcode == HP_pb.LAST_SHOP_ITEM_S then
+        requestingLastShop = false
         local Recharge_pb = require("Recharge_pb")
         local msg = Recharge_pb.LastGoodsItem()
         msg:ParseFromString(msgBuff)

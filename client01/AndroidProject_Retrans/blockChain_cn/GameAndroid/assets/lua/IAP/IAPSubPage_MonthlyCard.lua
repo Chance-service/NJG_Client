@@ -28,6 +28,8 @@ local requesting = false
 
 local SeverData = {}
 
+-- 購買資料請求中
+local requestingLastShop = false
 
 local opcodes = {
     MONTHCARD_INFO_S = HP_pb.CONSUME_MONTHCARD_INFO_S,
@@ -109,6 +111,7 @@ function MonthCardPage_130:onEnter(ParentContainer)
     ----大月卡
     common:sendEmptyPacket(HP_pb.CONSUME_WEEK_CARD_INFO_C, false)
     requesting = false
+    requestingLastShop = false
     self:ListRequest()
 end
 
@@ -304,6 +307,7 @@ function MonthCardPage_130:onReceivePacket(packet)
         PackageLogicForLua.PopUpReward(msgBuff)
     end
      if opcode == HP_pb.LAST_SHOP_ITEM_S then
+        requestingLastShop = false
         local Recharge_pb = require("Recharge_pb")
         local msg = Recharge_pb.LastGoodsItem()
         msg:ParseFromString(msgBuff)
@@ -401,6 +405,9 @@ end
 function MonthCardPage_130:onReceiveMessage(message)
 	local typeId = message:getTypeId()
 	if typeId == MSG_RECHARGE_SUCCESS then
+        if requestingLastShop then
+            return
+        end
         CCLuaLog(">>>>>>onReceiveMessage MonthCardPage_130")
 		self:ListRequest()
         common:sendEmptyPacket(HP_pb.LAST_SHOP_ITEM_C, true)

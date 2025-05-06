@@ -118,6 +118,7 @@ PageManager.showConfirm = function(title, message, callback, autoClose, yes, no,
         DecisionPage_setDecision(title, message, callback, autoClose, yes, no, _showclose, isCanClose, ScaleX , closeCallback , IsClickBlankClose , isBuyQues)
     end
     PageManager.pushPage(confirmPageName);
+    confirmPageName = "DecisionPage" -- 回復預設值 避免其他function開啟時是橫版ui
 end
 
 

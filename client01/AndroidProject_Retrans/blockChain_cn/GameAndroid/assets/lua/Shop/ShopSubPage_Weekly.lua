@@ -87,14 +87,14 @@ function ShopSubPage_Weekly.new()
             self.requestCooldownLeft = self.requestCooldownLeft - 1
         end
 
-        if self.refreshAutoNextTime > 0 then
+        if self.refreshAutoNextTime and self.refreshAutoNextTime > 0 then
             if clientTime > self.refreshAutoNextTime then
 
                 -- 若 已結束冷卻
                 if self.requestCooldownLeft <= 0 then
 
                     -- 請求 被動刷新
-                    self:requestPassiveRefreshShop()
+                    --self:requestPassiveRefreshShop()
                     
                     -- 開始冷卻
                     self.requestCooldownLeft = self.requestCooldownFrame
@@ -127,7 +127,8 @@ function ShopSubPage_Weekly.new()
 
     --[[ 更新 自動刷新 時間 ]]
     function Inst:updateRefreshAutoTime(lastRefreshTime)
-
+        local Event001Page = require "Event001Page"
+        local leftTime = Event001Page:getStageInfo().leftTime
         local nextTime
 
         -- 若 存在 上次刷新時間 則
@@ -155,18 +156,16 @@ function ShopSubPage_Weekly.new()
             nextDate.hour = 0
             nextDate.min = 0
             nextDate.sec = 0
-            -- 調整 刷新日期 校正回UTC+0
-            nextDate.hour = nextDate.hour - 8
-            
+          
             nextTime = TimeDateUtil:utcDate2Time(nextDate)
 
         end
 
         -- 設置 自動刷新 下次時間
-        self.refreshAutoNextTime = nextTime
+        self.refreshAutoNextTime = leftTime
 
         -- 設置 自動刷新 下次時間
-        self.controlPage:setRefreshAutoNextTime(nextTime)
+        self.controlPage:setRefreshAutoNextTime(leftTime)
     end
 
     return Inst

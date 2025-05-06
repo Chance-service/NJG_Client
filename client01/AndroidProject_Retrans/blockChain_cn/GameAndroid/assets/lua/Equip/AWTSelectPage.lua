@@ -16,19 +16,23 @@ local opcodes = {
     EQUIP_DRESS_S = HP_pb.EQUIP_DRESS_S
 }
 local UNLOCK_STARLEVEL = {
-    0, 6, 11
+    3, 6, 9
 }
 local EquipItem = {
     ccbiFile = "GoodsItem.ccbi",
 }
 local option = {
-    ccbiFile = "AWSystemPage.ccbi",
+    ccbiFile = "AWSystemPage2.ccbi",
     handlerMap =
     {
     },
     opcode = opcodes
 }
-
+local RankPic = {
+                [1] = {Frame = "AWS_Card_T3.png", Frame2 = "AWS_Img01_T3.png",Bg ="BG/UI/AWS_bg_T3.png" ,Icon = "AWS_Tag_T3.png" },
+                [2] = {Frame = "AWS_Card_T2.png",Frame2 = "AWS_Img01_T2.png",Bg ="BG/UI/AWS_bg_T2.png" ,Icon = "AWS_Tag_T2.png" },
+                [3] = {Frame = "AWS_Card_T1.png",Frame2 = "AWS_Img01_T1.png",Bg ="BG/UI/AWS_bg_T1.png" ,Icon = "AWS_Tag_T1.png" }
+              }
 local AWTSelectPageBase = { }
 local PageInfo = {
     roleId = 0,
@@ -141,7 +145,7 @@ function AWTSelectPageBase:setPage(id)
     local stringTable = {}
     local nodesVisible = {}
     local spriteImg = {}
-
+   
 
     --Pic
     local Pic = "UI/AncientWeaponSystem/AWS_"..string.sub(equipId,1,3).."01.jpg"
@@ -153,6 +157,35 @@ function AWTSelectPageBase:setPage(id)
         name = EquipManager:getNameById(equipId)
         star = EquipManager:getStarById(equipId)
     end
+    local nowRank = tonumber (string.sub(equipId,1,1))
+    if nowRank < 4 then
+         --Effect
+          NodeHelper:setNodesVisible(container,{mT2 = nowRank == 2 ,mT3 = nowRank == 1})
+        --Bg
+        spriteImg["bgImg"] = RankPic[nowRank].Bg
+        --Icon
+        spriteImg["mIcon"] = RankPic[nowRank].Icon
+        --Frame
+        NodeHelper:setScale9SpriteImage2(container,{ mFrame2 = RankPic[nowRank].Frame2})
+        spriteImg["mFrame"] = RankPic[nowRank].Frame
+    else
+         NodeHelper:setNodesVisible(container,{mT2 = false ,mT3 = true})
+        --Bg
+        spriteImg["bgImg"] = "AWS_bg_T"..nowRank..".png"
+        --Icon
+        spriteImg["mIcon"] = "AWS_Tag_T"..nowRank..".png"
+        --Frame
+        NodeHelper:setScale9SpriteImage2(container,{ mFrame2 = "AWS_Card_T"..nowRank..".png"})
+        spriteImg["mFrame"] = "AWS_Img01_T"..nowRank..".png"
+    end
+    local function SetScale9Size (name,x,y) 
+        local sprite=tolua.cast(container:getVarNode(name), "CCScale9Sprite")
+        if sprite then
+            sprite:setContentSize(CCSizeMake(x,y))
+        end
+    end
+    SetScale9Size("mFrame",647,800)
+    SetScale9Size("mFrame2",726,1286)
 
     stringTable["equipNameTxt"] = name
     -- 初始化所有節點為不可見
@@ -199,7 +232,7 @@ function AWTSelectPageBase:setPage(id)
         nodesVisible["mNotice"] = true
      end
      stringTable["mNoticeTxt"] = common:getLanguageString("@EquipCondition", common:getLanguageString("@HeroName_" .. awRoleId))
-     stringTable["curLvNum"] = userEquip.strength .. "/" .. 30
+     stringTable["curLvNum"] = userEquip.strength
      --Skill
      self:loadEquipSkills (userEquip)
      local skillName = { }
@@ -209,11 +242,11 @@ function AWTSelectPageBase:setPage(id)
             nodesVisible["mUnlock"..i] = true
             stringTable["mUnlockTxt"..i] = ""
             NodeHelper:setStringForLabel(container,stringTable)
-            local freeTypeCfg = FreeTypeConfig[math.floor(tonumber(self.skillEffects[i].skillDesc))]
+            local freeTypeCfg = FreeTypeConfig[math.floor(tonumber(self.skillEffects[i].skillTitle))]
             local str = common:fill(freeTypeCfg and freeTypeCfg.content or "xxx")
             local parent = container:getVarNode("mUnlockTxt"..i)
             parent:removeAllChildrenWithCleanup(true)
-            local labChatHtml = NodeHelper:addHtmlLable(parent, str, tonumber(skillDesc), CCSizeMake(560, 80),parent)
+            local labChatHtml = NodeHelper:addHtmlLable(parent, str, tonumber(skillTitle), CCSizeMake(560, 80),parent)
         else
             nodesVisible["mLock"..i] = true
             nodesVisible["mUnlock"..i] = false
@@ -245,11 +278,12 @@ function AWTSelectPageBase:loadEquipSkills (userEquip)
         local skillEffect = {}
         skillEffect.level = idx
         skillEffect.skillDesc = roleEquipCfg["desc"..tostring(idx)]
-        if idx ~= 1 then
-            skillEffect.unlockDesc = common:getLanguageString("@HeroSkillUpgrade" .. (UNLOCK_STARLEVEL[idx] - 5))
-        else
-            skillEffect.unlockDesc = ""
-        end
+        skillEffect.skillTitle = roleEquipCfg["descTitle"..tostring(idx)]
+        --if idx ~= 1 then
+            skillEffect.unlockDesc = common:getLanguageString("@HeroSkillUpgrade" .. (UNLOCK_STARLEVEL[idx]))
+        --else
+        --    skillEffect.unlockDesc = ""
+        --end
 
         local isUnlock = false
         local parsedEquip = InfoAccesser:parseAWEquipStr(userEquip.equipId)
@@ -327,18 +361,31 @@ function AWTSelectPageBase:removePacket(container)
     end
 end
 function AWTSelectPageBase:setCurrentEquipId()
-    local roleEquip = nil
+    local roleEquip = UserMercenaryManager:getEquipByPart(PageInfo.roleId, 10)
+    PageInfo.currentEquipId = roleEquip and roleEquip.equipId or nil
 
-    roleEquip = UserMercenaryManager:getEquipByPart(PageInfo.roleId, 10)
-
-    if roleEquip then
-        PageInfo.currentEquipId = roleEquip.equipId
-        PageInfo.dressType = GameConfig.DressEquipType.Change
+    -- 根據裝備狀態設定 dressType
+    if PageInfo.currentEquipId then
+        PageInfo.dressType = (PageInfo.currentEquipId ~= PageInfo.selectedEquipId) and 
+                             GameConfig.DressEquipType.Change or 
+                             GameConfig.DressEquipType.Off
     else
-        PageInfo.currentEquipId = nil
         PageInfo.dressType = GameConfig.DressEquipType.On
     end
+
+    -- 根據 dressType 設定按鈕文字
+    local dressTypeTextMap = {
+        [GameConfig.DressEquipType.Change] = "@Replace",
+        [GameConfig.DressEquipType.On] = "@Equip",
+        [GameConfig.DressEquipType.Off] = "@TakeOff"
+    }
+    local txt = common:getLanguageString(dressTypeTextMap[PageInfo.dressType])
+
+    -- 更新 UI 標籤文字
+    NodeHelper:setStringForLabel(PageInfo.container, {mBtnTxt = txt})
 end
+
+
 function AWTSelectPageBase:setOptionIds()
     PageInfo.optionIds = { }
 
@@ -382,8 +429,20 @@ end
 function AWTSelectPageBase:initScrollview(container)
     local mScrollView = container:getVarScrollView("mItemScrollview")
     mScrollView:removeAllCell()
-    
     local count = 0
+    if PageInfo.currentEquipId then
+        local AncientWeaponDataMgr = require("AncientWeapon.AncientWeaponDataMgr")
+        local userEquip = UserEquipManager:getUserEquipById(PageInfo.currentEquipId)
+        local equipId = userEquip.equipId
+        local cell = CCBFileCell:create()
+        cell:setCCBFile(EquipItem.ccbiFile)
+        cell:setScale(0.9)
+        cell:setContentSize(CCSizeMake(134, 134))
+        local panel = common:new( { id= PageInfo.currentEquipId }, EquipItem)
+        cell:registerFunctionHandler(panel)
+        mScrollView:addCell(cell)
+        count = count + 1
+    end
     for key, value in pairs (PageInfo.optionIds) do
         local AncientWeaponDataMgr = require("AncientWeapon.AncientWeaponDataMgr")
         local userEquip = UserEquipManager:getUserEquipById(value)
@@ -400,11 +459,11 @@ function AWTSelectPageBase:initScrollview(container)
             count = count + 1
         end
     end
-    if count <= 0 then
-        NodeHelper:setStringForLabel(container,{mNoEquip = common:getLanguageString("@ExclusiveEquip_Missing2")})
-    else
+    --if count <= 0 then
+    --    NodeHelper:setStringForLabel(container,{mNoEquip = common:getLanguageString("@ExclusiveEquip_Missing2")})
+    --else
         NodeHelper:setStringForLabel(container,{mNoEquip = ""})
-    end
+    --end
     mScrollView:orderCCBFileCells()
     if count > 4 then
         mScrollView:setTouchEnabled(true)
@@ -420,9 +479,11 @@ function AWTSelectPageBase.onFunction(eventName,container)
     elseif eventName == "luaGameMessage" then
         AWTSelectPageBase:onReceiveMessage(container)
     elseif eventName == "onCard" then
-        NodeHelper:setNodesVisible(container,{nFullNode = true})
+        --NodeHelper:setNodesVisible(container,{nFullNode = true})
+        container:runAnimation("OpenCard")
     elseif eventName == "onExitFull" then
-         NodeHelper:setNodesVisible(container,{nFullNode = false})
+         --NodeHelper:setNodesVisible(container,{nFullNode = false})
+         container:runAnimation("CloseCard")
     elseif eventName == "onSkill" then
          NodeHelper:setNodesVisible(container,{mSkill = true})
          AWTSelectPageBase:initScrollview(container)
@@ -442,14 +503,29 @@ function AWTSelectPageBase.onFunction(eventName,container)
         NodeHelper:setNodesVisible(container,{mChangNode = false,mItemNode = true,mEquipBtn = true})
         AWTSelectPageBase:initScrollview(container)
     elseif eventName == "onEquip" then
-        if PageInfo.selectedEquipId then         
-            EquipOprHelper:dressEquip(PageInfo.selectedEquipId, PageInfo.roleId, PageInfo.dressType)
+        if PageInfo.dressType == GameConfig.DressEquipType.Off then
+            local userEquipId = PageInfo.currentEquipId
+            EquipOprHelper:dressEquip(userEquipId, PageInfo.roleId, PageInfo.dressType)
+            common:sendEmptyPacket(HP_pb.ROLE_PANEL_INFOS_C, true)
             NodeHelper:deleteScrollView(PageInfo.container)
             PageManager.popPage(thisPageName)
+        else
+            if PageInfo.selectedEquipId then         
+                EquipOprHelper:dressEquip(PageInfo.selectedEquipId, PageInfo.roleId, PageInfo.dressType)
+                NodeHelper:deleteScrollView(PageInfo.container)
+                PageManager.popPage(thisPageName)
+            end
         end
     elseif eventName == "onStarUp" then
-        require("AncientWeapon.AncientWeaponPage"):prepare(PageInfo.selectedEquipId)
-        PageManager.pushPage("AncientWeapon.AncientWeaponPage")
+        --require("AncientWeapon.AncientWeaponPage"):prepare(PageInfo.selectedEquipId)
+        --PageManager.pushPage("AncientWeapon.AncientWeaponPage")
+        local AWT_StarUpPage = require "AncientWeaponSubPage_StarUpNew"
+        AWT_StarUpPage:setNowId(PageInfo.selectedEquipId)
+        PageManager.pushPage("AncientWeaponSubPage_StarUpNew")
+    elseif eventName == "onLevelUp" then
+         local AWT_LevelUpPage = require "AncientWeaponSubPage_LevelUpNew"
+        AWT_LevelUpPage:setNowId(PageInfo.selectedEquipId)
+        PageManager.pushPage("AncientWeaponSubPage_LevelUpNew")
     end
 end
 
@@ -460,6 +536,15 @@ function EquipItem:onRefreshContent(content)
     local userEquip = UserEquipManager:getUserEquipById(userEquipId)
     local equipId = userEquip.equipId
     PageInfo.ItemNodes[self.id] = container
+    if self.id == PageInfo.selectedEquipId then
+        NodeHelper:setNodesVisible(container,{mTapping = true})
+    end
+    if self.id == PageInfo.currentEquipId then
+        NodeHelper:setNodesVisible(container,{mWearing = true})
+    else
+        NodeHelper:setNodesVisible(container,{mWearing = false})
+    end
+
     local lb2Str = {
         mNumber = ""
     }
@@ -474,8 +559,13 @@ function EquipItem:onRefreshContent(content)
     NodeHelper:setQualityFrames(container, { mHand = equipCfg.quality })
 end
 function EquipItem:onHand(container)
+    if PageInfo.selectedEquipId == self.id then return end
+    for id,node in pairs(PageInfo.ItemNodes) do
+        NodeHelper:setNodesVisible(node,{mTapping = id == self.id })
+    end
     AWTSelectPageBase:setPage(self.id)
     PageInfo.selectedEquipId = self.id
+    AWTSelectPageBase:setCurrentEquipId()
 end
 
 function AWTSelectPage_setPart(part, roleId,itemId)
@@ -485,29 +575,31 @@ function AWTSelectPage_setPart(part, roleId,itemId)
 
     AWTSelectPageBase:setCurrentEquipId()
     AWTSelectPageBase:setOptionIds()
-    local userEquipId = PageInfo.optionIds[1]
-
-    for key, value in pairs (PageInfo.optionIds) do
-        local AncientWeaponDataMgr = require("AncientWeapon.AncientWeaponDataMgr")
-        local userEquip = UserEquipManager:getUserEquipById(value)
-        local equipId = userEquip.equipId
-        local isTargetRoleEquip = AncientWeaponDataMgr:getIsTargetHeroEquip(equipId, PageInfo.itemId)
-        if isTargetRoleEquip then
-            userEquipId = value
-            break
+    local userEquipId = PageInfo.currentEquipId or 0
+    if userEquipId == 0 then
+        for key, value in pairs (PageInfo.optionIds) do
+            local AncientWeaponDataMgr = require("AncientWeapon.AncientWeaponDataMgr")
+            local userEquip = UserEquipManager:getUserEquipById(value)
+            local equipId = userEquip.equipId
+            local isTargetRoleEquip = AncientWeaponDataMgr:getIsTargetHeroEquip(equipId, PageInfo.itemId)
+            if isTargetRoleEquip then
+                userEquipId = value
+                break
+            end
         end
     end
-
+    
     PageInfo.selectedEquipId = userEquipId
-    if PageInfo.currentEquipId then
-        PageInfo.selectedEquipId = PageInfo.currentEquipId
-        NodeHelper:setNodesVisible(PageInfo.container,{mChangNode = true,mItemNode = false,mEquipBtn = false})
-        userEquipId = PageInfo.currentEquipId
-    else
-        NodeHelper:setNodesVisible(PageInfo.container,{mChangNode = false,mItemNode = true,mEquipBtn = true})
-        AWTSelectPageBase:initScrollview(PageInfo.container)
-    end
-
+    --if PageInfo.currentEquipId then
+    --    PageInfo.selectedEquipId = PageInfo.currentEquipId
+    --    NodeHelper:setNodesVisible(PageInfo.container,{mChangNode = false,mItemNode = true,mEquipBtn = true})
+    --    userEquipId = PageInfo.currentEquipId
+    --else
+    --    NodeHelper:setNodesVisible(PageInfo.container,{mChangNode = false,mItemNode = true,mEquipBtn = true})
+    --    AWTSelectPageBase:initScrollview(PageInfo.container)
+    --end
+    NodeHelper:setNodesVisible(PageInfo.container,{mChangNode = false,mItemNode = true,mEquipBtn = true})
+    AWTSelectPageBase:initScrollview(PageInfo.container)
     AWTSelectPageBase:setPage(userEquipId)
 
 end		

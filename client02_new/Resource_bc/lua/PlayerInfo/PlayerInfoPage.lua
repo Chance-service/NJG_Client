@@ -37,6 +37,7 @@ local option = {
         onCDKFunction = "onCDKFunction",
         onServiceAnnounce = "onServiceAnnounce",
         onChangePlayerIcon = "onChangePlayerIcon",
+        onLangSetting = "onLangSetting",
     },
     opcode = opcodes
 }
@@ -112,13 +113,15 @@ function PlayerInfoPageBase:showPlayerInfo(container)
     UserInfo.sync()
     local vipTexture = "PlayerInfo_VIP" .. UserInfo.playerInfo.vipLevel .. ".png"
 
-    NodeHelper:setNodesVisible(container, { mBoundAccountNode = (Golb_Platform_Info.is_r18) or (Golb_Platform_Info.is_kuso) })
+    NodeHelper:setNodesVisible(container, { mBoundAccountNode = (Golb_Platform_Info.is_r18) or (Golb_Platform_Info.is_kuso) or (Golb_Platform_Info.is_aplus) })
     bindState = libPlatformManager:getPlatform():getIsGuest()  -- 0 = 舊帳號登入, 1 = 遊客登入
-    NodeHelper:setMenuItemEnabled(container, "mBindBtn", (bindState ~= 0) or (Golb_Platform_Info.is_kuso)) --綁定開關
+    NodeHelper:setMenuItemEnabled(container, "mBindBtn", (bindState ~= 0) or (Golb_Platform_Info.is_kuso) or (Golb_Platform_Info.is_aplus)) --綁定開關
     NodeHelper:setNodeIsGray(container, { mAccount = (bindState == 0) })
     if (Golb_Platform_Info.is_r18) then
         NodeHelper:setMenuItemImage(container, { mBindBtn = { normal = "Btn_AccountBinding_N.png", press = "Btn_AccountBinding_S.png" } })
     elseif (Golb_Platform_Info.is_kuso) then
+        NodeHelper:setMenuItemImage(container, { mBindBtn = { normal = "Btn_PersonalConfidence69_N.png", press = "Btn_PersonalConfidence69_S.png" } })
+    elseif (Golb_Platform_Info.is_aplus) then
         NodeHelper:setMenuItemImage(container, { mBindBtn = { normal = "Btn_PersonalConfidence69_N.png", press = "Btn_PersonalConfidence69_S.png" } })
     end
 
@@ -172,6 +175,8 @@ function PlayerInfoPageBase:onServiceAnnounce(container)
         PageManager.showHelp(GameConfig.HelpKey.HELP_AGREEMENT_R18)
     elseif Golb_Platform_Info.is_kuso then
         PageManager.showHelp(GameConfig.HelpKey.HELP_AGREEMENT_KUSO)
+    elseif Golb_Platform_Info.is_aplus then
+        PageManager.showHelp(GameConfig.HelpKey.HELP_AGREEMENT_KUSO)    -- 跟69共用
     else
         PageManager.showHelp(GameConfig.HelpKey.HELP_AGREEMENT)
     end
@@ -199,6 +204,10 @@ end
 
 function PlayerInfoPageBase:onChangePlayerIcon()
     PageManager.pushPage("ChangePlayerIconPage")
+end
+
+function PlayerInfoPageBase:onLangSetting()
+    PageManager.pushPage("LangSettingPopUp")
 end
 
 function PlayerInfoPageBase:onEntermateLogout(container)
@@ -260,10 +269,6 @@ function PlayerInfoPageBase:onChangeName(container)
     SetInputBoxInfo2("", "", "", inputBoxCallback, 1, 2)
 end
 
-function PlayerInfoPageBase:onLanguageSwitch(container)
-    PageManager.pushPage("LanguageSwitchPopUp")
-end
-
 function PlayerInfoPageBase:onBoundAccount(container)
     if bindState ~= 0 then
         if Golb_Platform_Info.is_r18 then
@@ -299,7 +304,7 @@ function PlayerInfoPageBase:onBoundAccount(container)
             end)
         end
     end
-    if Golb_Platform_Info.is_kuso then
+    if Golb_Platform_Info.is_kuso or Golb_Platform_Info.is_aplus then
         libPlatformManager:getPlatform():showPlatformProfile()
     end
 end

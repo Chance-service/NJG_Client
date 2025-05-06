@@ -1,5 +1,6 @@
 local HP_pb = require("HP_pb")
 require("SecretMessage.SecretMessageManager")
+local EventDataMgr = require("Event001DataMgr")
 local thisPageName = "Event001StoryLog"
 ----------------------------------------------------------
 
@@ -54,12 +55,12 @@ function StoryLogPageBase:onEnter(container)
     NodeHelper:setNodesVisible(mainContainer,{mElementNode=false})
     container.mScrollView = container:getVarScrollView("mContent")
     -- scrollview自適應
-    NodeHelper:autoAdjustResizeScrollview(container.mScrollView)
-    local oldSize = container.mScrollView:getViewSize()
-    oldSize.width = oldSize.width + 50
-    container.mScrollView:setViewSize(oldSize)
-    local X=container.mScrollView:getPositionX()
-    container.mScrollView:setPositionX(X-10)
+    --NodeHelper:autoAdjustResizeScrollview(container.mScrollView)
+    --local oldSize = container.mScrollView:getViewSize()
+    --oldSize.width = oldSize.width + 50
+    --container.mScrollView:setViewSize(oldSize)
+    --local X=container.mScrollView:getPositionX()
+    --container.mScrollView:setPositionX(X-10)
    self:initScrollView(container)
 end
 -- ScrollView初始化
@@ -85,12 +86,13 @@ function AlbumSideStory:onRefreshContent(content)
     mMask:遮罩
     mTxt:標題
     ]]
-    local Img="BG/NGEvent_001/AlbumReview_001_Event.png"
+    local Event001Base = require "Event001Page"
+    local Passed = Event001Base:getStageInfo().PassedId
+    local Img = Passed <= 0 and EventDataMgr[EventDataMgr.nowActivityId].STAGE_CFG[1].storyBanner or EventDataMgr[EventDataMgr.nowActivityId].STAGE_CFG[Passed].storyBanner
     NodeHelper:setSpriteImage(container, { mBg = Img })
     UserInfo.sync()
     --local passedMap = UserInfo.stateInfo.passMapId
-    local Event001Base = require "Event001Page"
-    local Passed = Event001Base:getStageInfo().PassedId
+    
     NodeHelper:setNodesVisible(container,{mLock=false,mMask=false})
     if self.mapId and Passed>=self.mapId then
         NodeHelper:setNodesVisible(container,{mLock=false,mMask=false})
@@ -99,8 +101,9 @@ function AlbumSideStory:onRefreshContent(content)
          NodeHelper:setNodesVisible(container,{mLock=true,mMask=true})
          self.isLock=true
     end
-    local idx= self.chapter .. string.format("%02d",self.level)..self.storyIdx
-    local string=common:getLanguageString("@ActivitystoryTitle" .. idx ) 
+    local key = EventDataMgr[EventDataMgr.nowActivityId].AVG_TITLE_KEY
+    local idx = self.chapter .. string.format("%02d",self.level)..self.storyIdx
+    local string=common:getLanguageString(key .. idx ) 
     NodeHelper:setStringForLabel(container,{mTxt=string})
 
 end

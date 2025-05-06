@@ -466,7 +466,13 @@ function CommItemInfoPage:new ()
     function inst:setPreset(preset)
         local presetSetting = CommItemInfoConst.PresetSetting[preset]
         if presetSetting == nil then return end
-
+        --特規處理
+        if preset == CommItemInfoConst.Preset.AFK_Treasure then
+            local Page = require "CommPop.AFKTreasureBoxPage"
+            Page:setData(self)
+            PageManager.pushPage("CommPop.AFKTreasureBoxPage")
+            return
+        end
         if presetSetting.visibles ~= nil then 
             self:setUIVisible(presetSetting.visibles)
         end
@@ -519,7 +525,7 @@ function CommItemInfoPage:new ()
 
         -- 敘述 
         local itemDesc = common:getLanguageString(self.itemInfo.describe)
-        itemDesc = "<font color=\"#6f2f00\" face = \"Helvetica\" >" .. itemDesc .. "</font>"
+        itemDesc = "<font color=\"#625141\" face = \"Barlow-SemiBold20\" >" .. itemDesc .. "</font>"
         if self.itemInfo.describe2 then
             if self.itemInfo.describe2 ~= "" then
                 local strTb = { }

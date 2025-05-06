@@ -99,7 +99,8 @@ Golb_Platform_Info = {
 	is_h365 = false, --android_h365
 	is_r18 = false, --android_hutuo
 	is_jgg = false, --android_jgg
-    	is_kuso = false, --android_kuso
+    is_kuso = false, --android_kuso
+    is_aplus = false, --android_aplus
 }
 local platformName = GamePrecedure:getInstance():getPlatformName()
 local resourcePath = GamePrecedure:getInstance():getWin32ResourcePath()
@@ -154,6 +155,12 @@ if string.find(platformName, "android_kuso") then  --kuso
     Golb_Platform_Info.is_Android = true
     Golb_Platform_Info.is_google = true
     Golb_Platform_Info.is_kuso = true
+end
+
+if string.find(platformName, "android_aplus") then  --aplus
+    Golb_Platform_Info.is_Android = true
+    Golb_Platform_Info.is_google = true
+    Golb_Platform_Info.is_aplus = true
 end
 
 if string.find(platformName, "ios_r18") then  --工口

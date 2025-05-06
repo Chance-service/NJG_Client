@@ -15,6 +15,7 @@ NgBattleDataManager.battleState = 0             -- 戰鬥狀態(初始化, 進場中, 戰鬥
 NgBattleDataManager.battleType = 0              -- 戰鬥類型(掛機, 挑戰BOSS, PVP, 世界BOSS...)
 NgBattleDataManager.battleMapId = 0             -- 地圖ID
 NgBattleDataManager.defenderRank = 0            -- PVP挑戰rank
+NgBattleDataManager.limitType = 1               -- 限制塔類型
 -------------------------------------------------
 NgBattleDataManager.battleIsPause = false       -- 是否暫停
 NgBattleDataManager.battleId = 0                -- 戰鬥ID
@@ -251,18 +252,18 @@ function NgBattleDataManager_setPlayerLevel(level)
 end
 -- Debug功能
 function NgBattleDataManager_getTestOpenFx()
-    return (not libOS:getInstance():getIsDebug() or not NgBattleDataManager.testCloseFx)
+    return (not libOS:getInstance():getIsDebug() or not NgBattleDataManager.testCloseFx)-- and (CC_TARGET_PLATFORM_LUA ~= common.platform.CC_PLATFORM_WIN32)
 end
 function NgBattleDataManager_getTestOpenBuff()
-    return (not libOS:getInstance():getIsDebug() or not NgBattleDataManager.testCloseBuff)
+    return (not libOS:getInstance():getIsDebug() or not NgBattleDataManager.testCloseBuff)-- and (CC_TARGET_PLATFORM_LUA ~= common.platform.CC_PLATFORM_WIN32)
 end
 function NgBattleDataManager_getTestOpenHit()
-    return (not libOS:getInstance():getIsDebug() or not NgBattleDataManager.testCloseHit)
+    return (not libOS:getInstance():getIsDebug() or not NgBattleDataManager.testCloseHit)-- and (CC_TARGET_PLATFORM_LUA ~= common.platform.CC_PLATFORM_WIN32)
 end
 function NgBattleDataManager_getTestOpenSound()
     --return (not libOS:getInstance():getIsDebug() or not NgBattleDataManager.testCloseSound)
     return false
 end
 function NgBattleDataManager_getTestOpenNum()
-    return (not libOS:getInstance():getIsDebug() or not NgBattleDataManager.testCloseNum)
+    return (not libOS:getInstance():getIsDebug() or not NgBattleDataManager.testCloseNum)-- and (CC_TARGET_PLATFORM_LUA ~= common.platform.CC_PLATFORM_WIN32)
 end

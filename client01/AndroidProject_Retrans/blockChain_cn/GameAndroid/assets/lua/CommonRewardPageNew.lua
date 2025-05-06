@@ -248,6 +248,12 @@ end
 
 function CommonRewardPageNewBase:mDisChoose(container)
     NodeHelper:clearScrollView(container)
+    if next(rewadItems) then
+        local CommonRewardPage = require("CommPop.CommItemReceivePage")
+        CommonRewardPage:setData(rewadItems, common:getLanguageString("@ItemObtainded"), nil)
+        --CommonRewardPageBase_setPageParm(showReward, true, msg.rewardType)
+        PageManager.pushPage("CommPop.CommItemReceivePage")
+    end
     timeStr = nil
     Coin = nil
     EXP = nil

@@ -195,13 +195,13 @@ function ShopSubPage_Base.new ()
     end
 
     --[[ 取得 協定封包資訊 ]]
-    function Inst:getPacketInfo()
+    function Inst:getPacketInfo(parentContainer)
         local shopPacketInfo = ShopDataMgr:getPacketInfo(self.shopType)
 
         if not shopPacketInfo.isInit then
             ShopDataMgr:sendShopItemInfoInitRequest(self.shopType)
         else
-            self:onReceivePacket(nil)
+            self:onReceivePacket(parentContainer)
         end
     end
 

@@ -515,7 +515,8 @@ void CCProgressTimer::draw(void)
 
     CC_NODE_DRAW_SETUP();
 
-    ccGLBlendFunc( m_pSprite->getBlendFunc().src, m_pSprite->getBlendFunc().dst );
+    //ccGLBlendFunc( m_pSprite->getBlendFunc().src, m_pSprite->getBlendFunc().dst );
+	glBlendFuncSeparate(m_pSprite->getBlendFunc().src, m_pSprite->getBlendFunc().dst, m_pSprite->getBlendFunc().src, m_pSprite->getBlendFunc().dst);
 
     ccGLEnableVertexAttribs(kCCVertexAttribFlag_PosColorTex );
 

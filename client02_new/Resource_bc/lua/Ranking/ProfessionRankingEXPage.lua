@@ -594,7 +594,7 @@ function ProfessionRankingEXPageBase:onReceiveRankingInfo(container, msg)
             
             local icon = common:getPlayeIcon(itemInfo.prof, itemInfo.headIcon)
             if PageInfo.curProType==5 then
-                local ID= string.format("%02d",itemInfo.itemId).. string.format("%03d",itemInfo.skinId)
+                local ID= string.format("%02d000",itemInfo.itemId)--.. string.format("%03d",itemInfo.skinId)
                 icon=common:getPlayeIcon(nil,ID)
             end
             if NodeHelper:isFileExist(icon) then
@@ -720,7 +720,7 @@ function ProfessionRankingEXPageBase:setPlayerMessage(container, data, isSelf, i
                         icon= roleIcon[trueIcon].MainPageIcon
                     end
                 else
-                    local ID= string.format("%02d",data.itemId).. string.format("%03d",data.skinId)
+                    local ID= string.format("%02d000",data.itemId)--.. string.format("%03d",data.skinId)
                     icon=common:getPlayeIcon(nil,ID)
                 end
             end

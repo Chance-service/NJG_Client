@@ -14,7 +14,7 @@ local ShopSubPage_Mestrey = {}
 
 
 --[[ 免費刷新 最大次數 ]]
-local MAX_FREE_REFRESH_MANUAL = 1
+local MAX_FREE_REFRESH_MANUAL = 3
 
 --[[ 付費刷新 最大次數 ]]
 local MAX_COST_REFRESH_MANUAL = 100
@@ -283,7 +283,7 @@ function ShopSubPage_Mestrey.new()
 
         -- 刷新紅點設定
         local pageIds = {
-            RedPointManager.PAGE_IDS.MYSTERY_REFRESH_BTN, RedPointManager.PAGE_IDS.MYSTERY_FREE_BTN
+            RedPointManager.PAGE_IDS.MYSTERY_REFRESH_BTN--, RedPointManager.PAGE_IDS.MYSTERY_FREE_BTN
         }
         for k, pageId in pairs(pageIds) do
             local RedPointCfg = ConfigManager.getRedPointSetting()
@@ -292,7 +292,7 @@ function ShopSubPage_Mestrey.new()
                 RedPointManager_refreshPageShowPoint(pageId, i, packetInfo)
             end
         end
-        self:refreshAllPoint(container)
+        self:refreshAllPoint(self.container)
     end
 
     -- ########  ##     ## ########  ##       ####  ######  
@@ -344,20 +344,18 @@ function ShopSubPage_Mestrey.new()
     end
 
     function Inst:refreshAllPoint(container)
-        NodeHelper:setNodesVisible(container, { mExpressRedPoint = RedPointManager_getShowRedPoint(RedPointManager.PAGE_IDS.MYSTERY_FREE_BTN) })
+        --NodeHelper:setNodesVisible(container, { mExpressRedPoint = RedPointManager_getShowRedPoint(RedPointManager.PAGE_IDS.MYSTERY_FREE_BTN) })
         NodeHelper:setNodesVisible(container, { mExpressRedPoint = RedPointManager_getShowRedPoint(RedPointManager.PAGE_IDS.MYSTERY_REFRESH_BTN) })
     end
 
     return Inst
 end
 
-function ShopSubPage_Mestrey_calIsShowRedPoint(pageId, msgBuff)
-    local msg = Shop_pb.ShopItemInfoResponse()
-    msg:ParseFromString(msgBuff)
+function ShopSubPage_Mestrey_calIsShowRedPoint(pageId, msg)
     if pageId == RedPointManager.PAGE_IDS.MYSTERY_REFRESH_BTN then
         return (msg.freeRefresh > 0)
-    elseif pageId == RedPointManager.PAGE_IDS.MYSTERY_FREE_BTN then
-        return false
+    --elseif pageId == RedPointManager.PAGE_IDS.MYSTERY_FREE_BTN then
+    --    return false
     end
     return false
 end

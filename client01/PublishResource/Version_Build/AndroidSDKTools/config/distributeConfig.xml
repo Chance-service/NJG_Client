@@ -1,4 +1,0 @@
-<distributeCfg>
-  <client portNumber="8406" ipAddress="127.0.0.1" workingThread="2" isClient="True" />
-  <server portNumber="" ipAddress="" workingThread="0" isServer="False" />
-</distributeCfg>

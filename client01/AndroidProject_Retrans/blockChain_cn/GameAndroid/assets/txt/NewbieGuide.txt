@@ -139,8 +139,9 @@
 11608	11603	1	11601	4													11021	
 11701	11702	1	11751	1	@NewbieGuideStr17				@HeroName_1			HalfBody/role/teach_01000.png						NewbieGuide_Vo_17
 11702	11703	1	11751	2			NgBattlePage	mTreasure			guideBtnItem.ccbi|A_Shou3.ccbi					BattlePage.ccbi_onTreasure		
-11703	11704	1	0	2			CommonRewardPageNew	mDisChoose			guideBtnItem.ccbi|A_Shou3.ccbi		1			IdleRewardPopUp.ccbi_onConfirmation		
-11704	11705	1	0	5														
+11703	11704	1	0	2			CommonRewardPageNew	mGuideNode			guideBtnItem.ccbi|A_Shou3.ccbi		1			IdleRewardPopUp.ccbi_onConfirmation		
+11704	11706	1	0	5														
+11706	11705	1	0	5														
 11705	0	1	0	1	@NewbieGuideStr20				@HeroName_1			HalfBody/role/teach_01000.png						NewbieGuide_Vo_20
 11751	11701	1	11751	2			MainFrame	mBattlePageBtn			guideBtnItem.ccbi|A_Shou3.ccbi					MainFrame.ccbi_onBattlePageBtn		
 	11802	0	11851	1	@NewbieGuideStr18				@HeroName_1			HalfBody/role/teach_01000.png						NewbieGuide_Vo_18
@@ -154,7 +155,7 @@
 11901	11902	1	11901	1	@NewbieGuideStr26				@HeroName_1			HalfBody/role/teach_01000.png						NewbieGuide_Vo_26
 11902	11903	1	11901	2			MainFrame	mLeaderPageBtn			guideBtnItem.ccbi|A_Shou3.ccbi					MainFrame.ccbi_onLeaderPageBtn		
 11903	11904	1	11901	2			EquipmentPageFire1_cell	mHeadNode			guideBtnItem.ccbi|A_Shou3.ccbi					EquipmentPage_new_Item.ccbi_onHead		
-11904	11905	1	11901	2			EquipLeadPage	mBtn4			guideBtnItem.ccbi|A_Shou4.ccbi		1			EquipmentPageRoleContent_new.ccbi_onUpgradePage		
+11904	11905	1	11901	2			EquipLeadPage	mBtn3			guideBtnItem.ccbi|A_Shou4.ccbi		1			EquipmentPageRoleContent_new.ccbi_onUpgradePage		
 11905	11906	1	11901	2			EquipLeadPage	mRarityUpBtn			guideBtnItem.ccbi|A_Shou3.ccbi		1			EquipmentPageRoleContent_new.ccbi_onUpgrade		
 11906	11907	1	11301	1	@NewbieGuideStr27				@HeroName_1			HalfBody/role/teach_01000.png						NewbieGuide_Vo_27
 11907	11908	1	11301	5														
@@ -193,7 +194,7 @@
 60051	60001	6	60051	2			MainFrame	mBattlePageBtn			guideBtnItem.ccbi|A_Shou3.ccbi					MainFrame.ccbi_onBattlePageBtn		
 70001	70002	7	70001	1	@NewbieGuideStr29				@HeroName_1			HalfBody/role/teach_01000.png						NewbieGuide_Vo_29
 70002	70003	7	70001	2			MainFrame	mBackpackPageBtn			guideBtnItem.ccbi|A_Shou4.ccbi					MainFrame.ccbi_onBackpackPageBtn		
-70003	0	7	70001	2			SummonPageBase	summon10Node			guideBtnItem.ccbi|A_Shou4.ccbi					Summon_Premium.ccbi_onSummon10		
+70003	0	7	70001	2			SummonPageBase	summon10Guide			guideBtnItem.ccbi|A_Shou4.ccbi					Summon_Premium.ccbi_onSummon10		
 80001	80002	8	80001	1	@NewbieGuideStr30				@HeroName_1			HalfBody/role/teach_01000.png						NewbieGuide_Vo_30
 80002	80003	8	80001	2			MainFrame	mLeaderPageBtn			guideBtnItem.ccbi|A_Shou3.ccbi					MainFrame.ccbi_onLeaderPageBtn		
 80003	80004	8	80001	2			EquipmentPageFire1_cell	mHeadNode			guideBtnItem.ccbi|A_Shou3.ccbi					EquipmentPage_new_Item.ccbi_onHead		
@@ -227,7 +228,7 @@
 130004	0	13	130001	1	@NewbieGuideStr41				@HeroName_1			HalfBody/role/teach_01000.png						NewbieGuide_Vo_41
 140001	140002	14	140051	1	@NewbieGuideStr42				@HeroName_1			HalfBody/role/teach_01000.png						NewbieGuide_Vo_42
 140002	140003	14	140051	2			MainFrame	mMainPageBtn			guideBtnItem.ccbi|A_Shou3.ccbi					MainFrame.ccbi_onMainPageBtn		
-140003	140004	14	140051	2			MainScene	mBagBtn			guideBtnItem.ccbi|A_Shou2.ccbi					MainScene.ccbi_onBag		
+140003	140004	14	140051	2			MainScene	mGuideBagBtn			guideBtnItem.ccbi|A_Shou2.ccbi					MainScene.ccbi_onBag		
 140004	140005	14	140051	2			BagPage	mGuideNode			guideBtnItem.ccbi|A_Shou3.ccbi					CommItem.ccbi_onHand1		
 140005	140006	14	140051	2			CommItemInfoPage	mGuideNode			guideBtnItem.ccbi|A_Shou3.ccbi					CommonItemInfoPage.ccbi_onOneBtn		
 140006	140007	14	140009	5														
@@ -255,12 +256,13 @@
 150012	150013	15	150052	1	@NewbieGuideStr50				@HeroName_1			HalfBody/role/teach_01000.png						NewbieGuide_Vo_50
 150013	150014	15	150052	2			AlbumIndvidualPopup	mUnlockNode			guideBtnItem.ccbi|A_Shou3.ccbi		1			AlbumIndvidualPopoutContent_onConfirm		
 150014	150020	15	150056	4														
-150015	150016	15	150056	1	@NewbieGuideStr51				@HeroName_1			HalfBody/role/teach_01000.png						NewbieGuide_Vo_51
+150015	150021	15	150056	1	@NewbieGuideStr51				@HeroName_1			HalfBody/role/teach_01000.png						NewbieGuide_Vo_51
 150016	150017	15	150056	2			CommonTabItem_Album	btnImg			guideBtnItem.ccbi|A_Shou3.ccbi		1			CommonTabStorageItem.ccbi_onBtn		
 150017	150018	15	150056	1	@NewbieGuideStr52				@HeroName_1			HalfBody/role/teach_01000.png						NewbieGuide_Vo_52
 150018	150019	15	150056	2			CommonTabItem_HCG	btnImg			guideBtnItem.ccbi|A_Shou4.ccbi					CommonTabStorageItem.ccbi_onBtn		
 150019	0	15	0	1	@NewbieGuideStr53				@HeroName_1			HalfBody/role/teach_01000.png						NewbieGuide_Vo_53
 150020	150015	15	150056	5														
+150021	150016	15	150056	2			CommonTabStorage_Album.AlbumPage	returnBtn			guideBtnItem.ccbi|A_Shou3.ccbi		1			CommonTabStorage.ccbi_onReturnBtn		
 150051	150003	15	150051	1	@NewbieGuideStr45				@HeroName_1			HalfBody/role/teach_01000.png						NewbieGuide_Vo_45
 150052	150053	15	150052	1	@NewbieGuideStr45				@HeroName_1			HalfBody/role/teach_01000.png						NewbieGuide_Vo_45
 150053	150054	15	150052	2			MainScene	mGuideSecretNode			guideBtnItem.ccbi|A_Shou2.ccbi					MainSceneBtn.ccbi_onBtn		
@@ -274,16 +276,16 @@
 160004	160005	16	160051	2			NgBattleExpressPage	mExpressBtn			guideBtnItem.ccbi|A_Shou3.ccbi					ExpressBattle.ccbi_onExpress		
 160005	0	16	160051	2			DecisionPage	mGuideNode			guideBtnItem.ccbi|A_Shou3.ccbi		1			GeneralDecisionPopUp.ccbi_onConfirmation		
 160051	160001	16	160051	2			MainFrame	mBattlePageBtn			guideBtnItem.ccbi|A_Shou3.ccbi					MainFrame.ccbi_onBattlePageBtn		
-170001	170002	17	170001	1	@GloryHoleNewbieGuide01				@HeroName_17			HalfBody/role/teach_17000.png						
-170002	170003	17	170001	1	@GloryHoleNewbieGuide02				@HeroName_999			HalfBody/role/teach_99000.png						
-170003	170004	17	170001	1	@GloryHoleNewbieGuide03				@HeroName_17			HalfBody/role/teach_17000.png						
-170004	170005	17	170001	1	@GloryHoleNewbieGuide04				@HeroName_999			HalfBody/role/teach_99005.png						
-170005	170006	17	170001	1	@GloryHoleNewbieGuide05				@HeroName_17			HalfBody/role/teach_17007.png						
-170006	170007	17	170001	1	@GloryHoleNewbieGuide06				@HeroName_17			HalfBody/role/teach_17007.png						
-170007	170008	17	170001	1	@GloryHoleNewbieGuide07				@HeroName_17			HalfBody/role/teach_17007.png						
-170008	170009	17	170001	1	@GloryHoleNewbieGuide08				@HeroName_999			HalfBody/role/teach_99005.png						
-170009	170010	17	170001	1	@GloryHoleNewbieGuide09				@HeroName_17			HalfBody/role/teach_17007.png						
-170010	0	17	0	1	@GloryHoleNewbieGuide10				@HeroName_17			HalfBody/role/teach_17007.png						
+170001	170002	17	170001	1	@GloryHoleNewbieGuide01				@HeroName_17			HalfBody/role/teach_17000.png						GloryHoleNewbieGuide_Vo_1
+170002	170003	17	170001	1	@GloryHoleNewbieGuide02				@HeroName_999			HalfBody/role/teach_99000.png						GloryHoleNewbieGuide_Vo_2
+170003	170004	17	170001	1	@GloryHoleNewbieGuide03				@HeroName_17			HalfBody/role/teach_17000.png						GloryHoleNewbieGuide_Vo_3
+170004	170005	17	170001	1	@GloryHoleNewbieGuide04				@HeroName_999			HalfBody/role/teach_99005.png						GloryHoleNewbieGuide_Vo_4
+170005	170006	17	170001	1	@GloryHoleNewbieGuide05				@HeroName_17			HalfBody/role/teach_17007.png						GloryHoleNewbieGuide_Vo_5
+170006	170007	17	170001	1	@GloryHoleNewbieGuide06				@HeroName_17			HalfBody/role/teach_17007.png						GloryHoleNewbieGuide_Vo_6
+170007	170008	17	170001	1	@GloryHoleNewbieGuide07				@HeroName_17			HalfBody/role/teach_17007.png						GloryHoleNewbieGuide_Vo_7
+170008	170009	17	170001	1	@GloryHoleNewbieGuide08				@HeroName_999			HalfBody/role/teach_99005.png						GloryHoleNewbieGuide_Vo_8
+170009	170010	17	170001	1	@GloryHoleNewbieGuide09				@HeroName_17			HalfBody/role/teach_17007.png						GloryHoleNewbieGuide_Vo_9
+170010	0	17	0	1	@GloryHoleNewbieGuide10				@HeroName_17			HalfBody/role/teach_17007.png						GloryHoleNewbieGuide_Vo_10
 1	0	0	0															
 2	9	0	0															
 3	14	0	0															
@@ -297,7 +299,7 @@
 11	78	0	1															
 12	79	0	1															
 13	83	0	1															
-14	98	0	1															
+14	37	0	1															
 15	59	0	1															
 16	23	0	1															
 17	0	0	0															

@@ -130,8 +130,8 @@ void LightSweepSprite::initProgram()
 void LightSweepSprite::draw()
 {
 	ccGLEnableVertexAttribs(kCCVertexAttribFlag_PosColorTex );
-//    ccGLBlendFunc( GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
-    ccGLBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    //ccGLBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     
 	getShaderProgram()->use();
 	getShaderProgram()->setUniformsForBuiltins();

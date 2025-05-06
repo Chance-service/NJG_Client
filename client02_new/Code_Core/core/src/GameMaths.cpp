@@ -1,6 +1,6 @@
 
 #include "stdafx.h"
-
+#include "cocos2d.h"
 #include "GameMaths.h"
 #include <stdarg.h>
 #include <math.h>

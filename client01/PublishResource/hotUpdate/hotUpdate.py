@@ -93,7 +93,7 @@ def FolderToZip():
         fulldir = os.path.join(Res_assets,adir)
         if os.path.isdir(fulldir):
             print("ZIP..... :"+fulldir)
-            zippath = os.path.join(Res_ZipDone,adir+'.zip') 
+            zippath = os.path.join(Res_ZipDone,adir+'.zip')
             zf = zipfile.ZipFile(zippath,mode='w',compression=zipfile.ZIP_DEFLATED)
             os.chdir(fulldir)
             fileidx = 1
@@ -101,16 +101,17 @@ def FolderToZip():
                 fpath = root.replace(Res_assets,'') #壓縮檔內的檔案路徑,加上與檔名相同的資料夾
                 fpath = fpath and fpath + os.sep or ''
                 for sfile in files:
+                    if (os.path.getsize(zippath) >= zipsizelimit):
+                        zf.close()
+                        zippath = os.path.join(Res_ZipDone,adir+'_'+str(fileidx)+'.zip')
+                        print("zippath..... :"+adir+'_'+str(fileidx)+'.zip')
+                        zf = zipfile.ZipFile(zippath,mode='w',compression=zipfile.ZIP_DEFLATED)
+                        fileidx = fileidx + 1
                     aFile = os.path.join(root,sfile)    #被壓縮的檔案路徑
                     #printdebug('aFile :'+ aFile) 
                     bfile = fpath+sfile     
                     #printdebug('bfile: '+ bfile) 
                     zf.write(aFile,bfile)
-                    if (os.path.getsize(zippath) >= zipsizelimit):
-                        zf.close()
-                        zippath = os.path.join(Res_ZipDone,adir+'_'+str(fileidx)+'.zip')
-                        zf = zipfile.ZipFile(zippath,mode='w',compression=zipfile.ZIP_DEFLATED)
-                        fileidx = fileidx + 1
             zf.close()
 
 def Expotr_Manifest():

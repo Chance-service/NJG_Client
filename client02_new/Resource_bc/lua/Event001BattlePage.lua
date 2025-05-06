@@ -56,30 +56,32 @@ function Event001BattleBase:onEnter(container)
     require("TransScenePopUp")
     TransScenePopUp_closePage()
 
-    local bg = container:getVarSprite("mBg")
-    bg:setScale(NodeHelper:getTargetScaleProportion(1600, 720))
+    if not EventDataMgr[EventDataMgr.nowActivityId].isCommonUI then
+        local bg = container:getVarSprite("mBg")
+        bg:setScale(NodeHelper:getTargetScaleProportion(1600, 720))
+    end
 end
 
 function Event001BattleBase:refresh(container)
-  Event001BattleBase:BuildScrollview(container)
-  local Count_7003 = InfoAccesser:getUserItemInfo(Const_pb.TOOL, EventDataMgr[EventDataMgr.nowActivityId].CHALLANGE_ID).count or 0
-  local stringTable = {}
-  stringTable["mCount"] = common:getLanguageString("@activitystageCount",Count_7003)
-  NodeHelper:setStringForLabel(container,stringTable)
-
-  NodeHelper:setMenuItemsEnabled(container,{mNormalBtn = nowMode ~= 1,mHardBtn = nowMode ~= 2})
-
-  --UseItemContent
-  --NodeHelper:setNodesVisible(container,{mCountNode = false })
-  container:runAnimation("Default Timeline")
-  local stringTable = {}
-  stringTable["mCost"] = common:getLanguageString("@SurplusSearchTimes")
-  stringTable["mCostCount"] = Count_7003
-  stringTable["mNum"] = ItemUsingCount
-  stringTable["mTitle"] = common:getLanguageString("@FastSweep")
-  stringTable["mContent"] = common:getLanguageString("@FastSweepDesc")
-  stringTable["BtnTxt"] = common:getLanguageString("@FastSweep")
-  NodeHelper:setStringForLabel(container,stringTable)
+    Event001BattleBase:BuildScrollview(container)
+    local Count_7003 = InfoAccesser:getUserItemInfo(Const_pb.TOOL, EventDataMgr[EventDataMgr.nowActivityId].CHALLANGE_ID).count or 0
+    local stringTable = {}
+    stringTable["mCount"] = common:getLanguageString("@activitystageCount",Count_7003)
+    NodeHelper:setStringForLabel(container,stringTable)
+    
+    NodeHelper:setMenuItemsEnabled(container,{mNormalBtn = nowMode ~= 1,mHardBtn = nowMode ~= 2})
+    
+    --UseItemContent
+    --NodeHelper:setNodesVisible(container,{mCountNode = false })
+    container:runAnimation("Default Timeline")
+    local stringTable = {}
+    stringTable["mCost"] = common:getLanguageString("@SurplusSearchTimes")
+    stringTable["mCostCount"] = Count_7003
+    stringTable["mNum"] = ItemUsingCount
+    stringTable["mTitle"] = common:getLanguageString("@FastSweep")
+    stringTable["mContent"] = common:getLanguageString("@FastSweepDesc")
+    stringTable["BtnTxt"] = common:getLanguageString("@FastSweep")
+    NodeHelper:setStringForLabel(container,stringTable)
 end
 
 function Event001BattleBase.onFunction(eventName,container)
@@ -154,6 +156,8 @@ function Event001BattleBase:onReceivePacket(container)
             NgBattleDataManager_setDungeonId(tonumber(msg.mapId))
             PageManager.changePage("NgBattlePage")
             battlePage:onCycle(self.container, msg.resultInfo, msg.battleId, msg.battleType, tonumber(msg.mapId))
+            local Event001Base = require ("Event001Page")
+            Event001Base:closeMovie(container)
         end
     end
     if opcode == HP_pb.CYCLE_ONEKEY_CLEARANCE_S then
@@ -415,9 +419,9 @@ function PageContent:onRefreshContent(ccbRoot)
 
     local function setBannerState(isClose)
         if isClose then
-            NodeHelper:setScale9SpriteImage2(container,{ mBg = EventDataMgr[EventDataMgr.nowActivityId].BATTLE_BG_IMG })
+            NodeHelper:setScale9SpriteImage2(container, { mBg = EventDataMgr[EventDataMgr.nowActivityId].BATTLE_BG_IMG })
         else
-            NodeHelper:setScale9SpriteImage2(container,{mBg = data.Banner})
+            NodeHelper:setScale9SpriteImage2(container, { mBg = data.Banner })
         end
     end
 

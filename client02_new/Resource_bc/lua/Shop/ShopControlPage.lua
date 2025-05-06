@@ -131,6 +131,7 @@ function Inst:onEnter(container)
 
     -- 註冊 訊息
     container:registerMessage(MSG_MAINFRAME_REFRESH)
+    container:registerMessage(MSG_REFRESH_REDPOINT)
 
     -- 取得 節點
     mSubNode = container:getVarNode("mContentNode")
@@ -189,8 +190,9 @@ function Inst:onEnter(container)
     mCommTabStorage.CommTabStorageContainer = CommTabStorageContainer
 
     -- 當前 商店資訊
-    local selectIdx = 1
-    ShopDataMgr.currentShopType = avaliableShopTypes[1]
+    local selectIdx = self:getShopAvaliableIdxByType(ShopDataMgr.settingShopType)
+    ShopDataMgr.settingShopType = -1
+    ShopDataMgr.currentShopType = avaliableShopTypes[selectIdx]
     --for i = 1, #ShopDataMgr.ShopTypeIndexes do
     --    if ShopDataMgr.Type2SubPageInfo[ShopDataMgr.ShopTypeIndexes[i]].LOCK_KEY then
     --        if not LockManager_getShowLockByPageName(ShopDataMgr.Type2SubPageInfo[ShopDataMgr.ShopTypeIndexes[i]].LOCK_KEY) then
@@ -492,6 +494,11 @@ function Inst:onReceiveMessage(container)
             self:refreshCurrencyInfo(container)
         end
     end
+    if typeId == MSG_REFRESH_REDPOINT then
+        for idx, each in ipairs(avaliableShopTypes) do
+            mCommTabStorage:refreshRedPoint(idx)
+        end
+    end
 end
 
 --  #     # ### 
@@ -699,7 +706,7 @@ function Inst:refreshPage(container)
 
         -- 若 子頁面 有 "取得 封包資訊" 可呼叫 則 呼叫
         if self.subPage["getPacketInfo"] then
-            self.subPage:getPacketInfo()
+            self.subPage:getPacketInfo(container)
         end
 
         -- 釋放?
@@ -723,6 +730,16 @@ function Inst:refreshCurrencyInfo(container)
 
 end
 
+--[[ 取得 可用的 商店idx ]]
+function Inst:getShopAvaliableIdxByType(shopType)
+    for i = 1, #avaliableShopTypes do
+        if avaliableShopTypes[i] == shopType then
+            return i
+        end
+    end
+    return 1 -- 預設
+end
+
 function Inst:_getRevertIdx (idx, count) 
     return (count+1) - idx
 end
@@ -732,10 +749,15 @@ end
 -- 舊有 外部呼叫介面 ------------------------
 ShopTypeContainer = {}
 
---[[ 設置 當前商店 ]]
+--[[ 設置 當前商店(idx) ]]
 function ShopTypeContainer_SetSubPageIndex(index)
     local shopType = ShopDataMgr:getShopTypeByIndex(index)
     ShopDataMgr.currentShopType = shopType
+end
+
+--[[ 設置 開啟商店(type) ]]
+function ShopTypeContainer_SetSubPageType(shopType)
+    ShopDataMgr.settingShopType = shopType
 end
 
 --[[ Jupm 至 指定序號的子頁面 ]]

@@ -499,9 +499,10 @@ function Inst:prepare (data)
         if val.type == SummonDataMgr.RewardType.HERO then
             local heroID = val.id
             local heroCfg = heroCfgs[heroID]
+            local itemInfo = InfoAccesser:getItemInfo(Const_pb.TOOL, val.id, val.piece)
             local heroInfo = InfoAccesser:getHeroInfo(heroID, {"name"})
             reward.name = heroInfo.name
-            reward.star = heroCfg.Star
+            reward.star = itemInfo.quality
             reward.element = heroCfg.Element
             reward.spineRes = PathAccesser:getHeroChibiSpinePath(heroID)
             reward.spineChibiRes = PathAccesser:getHeroChibiSpinePath(heroID)
@@ -518,7 +519,7 @@ function Inst:prepare (data)
             local itemInfo = InfoAccesser:getItemInfo(Const_pb.TOOL, val.id, val.piece)
             local equipCfg = parsedEquip.firstStarCfg
             reward.name = itemInfo.name
-            reward.star = equipCfg.stepLevel
+            reward.star = equipCfg.quality
             reward.imageRes = itemInfo.icon
             reward.imageDrawRes = itemInfo.icon
             reward.spineDrawScale = NodeHelper:getScaleProportion()
@@ -544,7 +545,7 @@ function Inst:prepare (data)
             local runeCfg = ConfigManager.getFateDressCfg()[val.id]
             if runeCfg then
             reward.name = common:getLanguageString(runeCfg.name) .. common:getLanguageString("@Rune")
-            reward.star = runeCfg.quality
+            reward.star = runeCfg.rank
             reward.imageRes = runeCfg.icon
             reward.imageDrawRes = runeCfg.icon
             else
@@ -1046,7 +1047,11 @@ function Inst:playHighlight (reward, options)
     end
     -- 星數圖片
     if imageMap.highlightStarImg1 == nil then
-        imageMap.highlightStarImg1 = PathAccesser:getStarIconPath(reward.star)
+        if reward.type == SummonDataMgr.RewardType.HERO then
+            imageMap.highlightStarImg1 = self:_getQualityStarImagePath(reward.star)
+        else
+            imageMap.highlightStarImg1 = PathAccesser:getStarIconPath(reward.star)
+        end
     end
 
     -- 設置
@@ -1293,17 +1298,26 @@ end
 
 
 function Inst:_getQualityImagePath (qualityNum)
-    if 0 < qualityNum and qualityNum < 6 then
+    if qualityNum == 4 then
         return "Imagesetfile/Common_UI02/SummonResult_SR.png"
-    elseif 5 < qualityNum and qualityNum < 11 then
-        return "Imagesetfile/Common_UI02/SummonResult_SSR.png"
-    elseif 10 < qualityNum and qualityNum < 16 then
+    elseif qualityNum >= 5 then
         return "Imagesetfile/Common_UI02/SummonResult_SSR.png"
     else
         return "Imagesetfile/Common_UI02/SummonResult_R.png"
     end 
 end
 
+function Inst:_getQualityStarImagePath (qualityNum)
+    if qualityNum == 4 then
+        return "Imagesetfile/Common_UI02/common_star_4.png" -- SR
+    elseif qualityNum == 5 then
+        return "Imagesetfile/Common_UI02/common_star_2.png" -- SSR
+    elseif qualityNum == 6 then
+        return "Imagesetfile/Common_UI02/common_star_3.png"
+    else
+        return ""
+    end
+end
 
 local CommonPage = require('CommonPage')
 return CommonPage.newSub(Inst, Inst.pageName, {

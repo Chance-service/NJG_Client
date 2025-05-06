@@ -12,6 +12,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Properties;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -91,6 +92,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 //import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 import android.widget.VideoView;
@@ -130,18 +132,18 @@ public class PlatformSDKActivity extends GameActivity {
 //	protected String mTrackingId = "UA-1";
 	/*mIsEnterGame
 	 *  账户中心返回的当前puid 已经绑定的 gpid
-		是否已进入游戏  进入游戏之前的google登录：视为 账号登录 
+		是否已进入游戏  进入游戏之前的google登录：视为 账号登录
 		进入游戏之后的google登录：视为账号绑定
 	 */
 	protected boolean	mWasBindGP = false;//是否已经绑定 google paly or game center
 	protected String	mCurDeviceId = null;
 //	private String security= "3d1b05aee18b9870a52b733ccedc11bf";
-	
+
     protected List<String> mPermissionList = new ArrayList();
     protected String[] permissions = { "android.permission.WRITE_EXTERNAL_STORAGE", "android.permission.READ_EXTERNAL_STORAGE" };
     protected boolean mNeedCallLogin = false;
 	private MessageListener listener = new MessageListener() {
-		
+
 		@Override
 		public void unregisterMsg() {
 			MessageManager.getInstance().removeMsgHandler("facebookShare");
@@ -166,7 +168,7 @@ public class PlatformSDKActivity extends GameActivity {
 			MessageManager.getInstance().removeMsgHandler("G2P_REPORT_HANDLER");
 			MessageManager.getInstance().removeMsgHandler("G2P_TAPDB_HANDLER");
 		}
-		
+
 		@Override
 		public void registerMsg() {
 			MessageManager.getInstance().setMsgHandler("facebookShare", listener);
@@ -298,7 +300,7 @@ public class PlatformSDKActivity extends GameActivity {
 						msgJsonObj.getString("time"),
 						msgJsonObj.getString("version"),
 						msgJsonObj.getString("url"));
-			
+
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
@@ -312,7 +314,7 @@ public class PlatformSDKActivity extends GameActivity {
 				OnFaceBookShare(
 						msgJsonObj.getString("picture"),
 						msgJsonObj.getString("caption"));
-			
+
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
@@ -320,7 +322,7 @@ public class PlatformSDKActivity extends GameActivity {
 		}
 		public String G2P_BIND_GC_GP(String msg)
 		{//libPlatformManager:getPlatform():sendMessageG2P("G2P_ENTER_RECHARGE_PAGE","G2P_Invild_Friend")
-			
+
 			//BindGooglePlus();
 			return null;
 		}
@@ -374,7 +376,7 @@ public class PlatformSDKActivity extends GameActivity {
 			}
 			return null;
 		}
-		
+
 		public String G2P_CLEAN_NOTIFICATION_LOOP(String msg)
 		{//libPlatformManager:getPlatform():sendMessageG2P("G2P_ENTER_RECHARGE_PAGE","G2P_Invild_Friend")
 //			LogUtil.LOGE("PlatformSDKActivity", "G2P_CLEAN_NOTIFICATION_LOOP= :" + msg);
@@ -431,7 +433,7 @@ public class PlatformSDKActivity extends GameActivity {
 		}
 		public String G2P_CHANGE_PWD(String msg)
 		{//libPlatformManager:getPlatform():sendMessageG2P("G2P_ENTER_RECHARGE_PAGE","G2P_Invild_Friend")
-			
+
 			JSONObject msgJsonObj;
 			try {
 				msgJsonObj = new JSONObject(msg);
@@ -446,7 +448,7 @@ public class PlatformSDKActivity extends GameActivity {
 		}
 		public String G2P_DATA_TRANSFER(String msg)
 		{//libPlatformManager:getPlatform():sendMessageG2P("G2P_ENTER_RECHARGE_PAGE","G2P_Invild_Friend")
-			
+
 			JSONObject msgJsonObj;
 			try {
 				msgJsonObj = new JSONObject(msg);
@@ -465,10 +467,10 @@ public class PlatformSDKActivity extends GameActivity {
 			showToast(msg);
 			return null;
 		}
-		
+
 		public String G2P_GET_PUSH_STATE(String msg)
 		{//libPlatformManager:getPlatform():sendMessageG2P("G2P_ENTER_RECHARGE_PAGE","G2P_Invild_Friend")
-			
+
 			//Cocos2dxHelper.nativeSendMessageP2G("P2G_GET_PUSH_STATE", XGPushApi.msReceiverPushMsg);
 			//XGPushApi.msReceiverPushMsg = "";
 			return null;
@@ -541,16 +543,16 @@ public class PlatformSDKActivity extends GameActivity {
             out.write(buffer,0,n);
         }
     }
-	
+
 	/*
-	 *  
+	 *
 	 * */
 	public PlatformSDKActivity() {
 	}
 
 	@Override
 	public void init() {
-		
+
 		UzipState.allowStorage = isStoragePermissionGranted(10001);
 		LogUtil.LOGE("googlelogin","platformSdk init");
 
@@ -577,8 +579,6 @@ public class PlatformSDKActivity extends GameActivity {
 		listener.registerMsg();
 
 	    mWaitView = new WaitView(PlatformSDKActivity.this);
-	    
-	   
 	}
 	  public boolean isStoragePermissionGranted(int paramInt)
 	  {
@@ -600,8 +600,8 @@ public class PlatformSDKActivity extends GameActivity {
 	    Log.v(TAG, "WRITE_EXTERNAL_STORAGE Permission is granted");
 	    return true;
 	  }
-	  
-	  
+
+
 	  public void onRequestPermissionsResult(int paramInt, String[] paramArrayOfString, int[] paramArrayOfInt)
 	  {
 		  switch (paramInt) {
@@ -622,7 +622,7 @@ public class PlatformSDKActivity extends GameActivity {
       }
 
 	 }
-	  
+
 	  private void goIntentSetting()
 	  {
 	    Intent localIntent = new Intent();
@@ -682,7 +682,7 @@ public class PlatformSDKActivity extends GameActivity {
 	    return hex.toString();
 	}
 	public void callUserSeverLogin(){
-		
+
 		String tempgpid = "";
 		//tempgpid = getProfileIDInformation(mGoogleApiClient);//屏蔽google登录
 		LogUtil.LOGE("googleLogin", "call mWaitView= : show");
@@ -698,7 +698,7 @@ public class PlatformSDKActivity extends GameActivity {
 				String result = callResult[0];
 				/*
 				 * 成功标识|原因|是否为新账号|gcid|gpid，
-				 * 成功标识：1成功0为失败 
+				 * 成功标识：1成功0为失败
 				 * 原因：0为没有原因，一般代表成功，1代表puid不合法；
 				 * 是否为新账号1是，0非；
 				 * gcid（可以为空字符串，代表没有绑定过）；
@@ -707,13 +707,13 @@ public class PlatformSDKActivity extends GameActivity {
 				LogUtil.LOGE(TAG, "QueryUid onSuccess= :"+success);
 				LogUtil.LOGE(TAG, "callResult :"+ callResult.toString());
 				LogUtil.LOGE(TAG, "callResult :"+ callResult.length);
-				
-				
+
+
 				if(callResult.length>=6)
 				{
-					
+
 					if(result.equals("1")){
-						
+
 						String tmpmUserCode    =  mUserCode;
 						mUserCode = callResult[5];
 						if(tmpmUserCode.equals(mUserCode))//相同代表没有移行过账号
@@ -726,7 +726,7 @@ public class PlatformSDKActivity extends GameActivity {
 						mWasBindGP = !callResult[4].equals("");
 						LogUtil.LOGE(TAG, "QueryUid mUserCode= :"+mUserCode);
 						LogUtil.LOGE(TAG, "QueryUid mWasBindGP= :"+mWasBindGP);
-					
+
 						//DeviceUtil.SetDeviceID(mUserCode);
 						doLogin(mUserCode);
 					}
@@ -759,27 +759,17 @@ public class PlatformSDKActivity extends GameActivity {
 	}
 	@Override
 	public void callPlayMovie(String fileName, int isLoop, int autoScale) {
-		RelativeLayout layout = findViewById(R.id.GameApp_LogoRelativeLayout);
+		FrameLayout videoMask = (FrameLayout)findViewById(R.id.videoMask);
+		videoMask.setVisibility(View.VISIBLE);
 		videoView = (VideoView)findViewById(R.id.videovideo);
 		videoView.setVisibility(View.VISIBLE);
 		String fullVideoPath = filesPath + "/Video/" + fileName + ".mp4";
 		String fullHotUpdateVideoPath = getContext().getFilesDir().getAbsolutePath() + "/hotUpdate/Video/" + fileName + ".mp4";
 		File file1 = new File(fullVideoPath);
 		File file2 = new File(fullHotUpdateVideoPath);
-		int height = layout.getMeasuredHeight();
-		int width = layout.getMeasuredWidth();
-		float baseRatio = 1600.0f / 720.0f;
-		float trueRatio = (float)height / width;
-		float scale = 1.0f;
-		if (trueRatio > baseRatio && autoScale == 1) {
-			scale = trueRatio / baseRatio;
-		}
 		if (fileName.contains("op")){
 			int rawId = getResources().getIdentifier(fileName,  "raw", getPackageName());
 			videoView.setVideoPath("android.resource://" + getPackageName() + "/" + rawId);
-			if (baseRatio > trueRatio) {
-				scale = baseRatio / trueRatio;
-			}
 		}
 		else {
 			if (file2.exists())
@@ -788,17 +778,53 @@ public class PlatformSDKActivity extends GameActivity {
 				videoView.setVideoPath(fullVideoPath);
 			else {
 				videoView.setOnTouchListener(null);
-				videoView.setVisibility(View.GONE);
 				videoView = null;
 				return;
 			}
 		}
-		videoView.setScaleX(scale);
-		videoView.setScaleY(scale);
 		mVideoLoop = isLoop;
-		videoView.seekTo(0);
-        videoView.start();
 //
+		videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+			@Override
+			public void onPrepared(MediaPlayer mp) {
+				int videoWidth = mp.getVideoWidth();
+				int videoHeight = mp.getVideoHeight();
+				RelativeLayout layout = findViewById(R.id.GameApp_LogoRelativeLayout);
+				int height = layout.getMeasuredHeight();
+				int width = layout.getMeasuredWidth();
+				float videoRatio = (float)videoHeight / videoWidth;
+				float layoutRatio = (float)height / width;
+				float scale = 1.0f;
+				if (videoRatio > layoutRatio) {	// 影片比例比裝置長 -> 放大填滿寬度
+					scale = videoRatio / layoutRatio;
+				}
+				if (layoutRatio > videoRatio) {	// 裝置比例比影片長 -> 檢查是否要自適應
+					if (autoScale == 1) {	// 需要自適應 -> 放大填滿高度
+						scale = layoutRatio / videoRatio;
+					}
+				}
+				videoView.setScaleX(scale);
+				videoView.setScaleY(scale);
+				Log.d(TAG, "Video scale: " + scale);
+				Log.d(TAG, "Video width: " + videoWidth + ", height: " + videoHeight);
+				videoView.seekTo(0);
+				videoView.start();
+			}
+		});
+
+		videoView.setOnInfoListener(new MediaPlayer.OnInfoListener() {
+			@Override
+			public boolean onInfo(MediaPlayer mp, int what, int extra) {
+				if (what == MediaPlayer.MEDIA_INFO_VIDEO_RENDERING_START) {
+					Log.d(TAG, "Video rendering started – hide mask now");
+					FrameLayout videoMask = (FrameLayout) findViewById(R.id.videoMask);
+					videoMask.setVisibility(View.GONE);
+					return true;
+				}
+				return false;
+			}
+		});
+
         videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
         	 @Override
         	 public void onCompletion(MediaPlayer mp) {
@@ -812,11 +838,8 @@ public class PlatformSDKActivity extends GameActivity {
 					 }
 					 else {
 						 Cocos2dxHelper.nativeSendMessageP2G("onPlayMovieEnd", "");
+						 videoView.stopPlayback();
 						 videoView.setOnTouchListener(null);
-						 videoView.setVisibility(View.VISIBLE);
-						 videoView.setVisibility(View.GONE);
-						 videoView.suspend();
-						 videoView = null;
 					 }
         		 }
 
@@ -830,13 +853,9 @@ public class PlatformSDKActivity extends GameActivity {
 				if (videoView != null)
 				{
 					videoView.setOnTouchListener(null);
-					videoView.setVisibility(View.VISIBLE);
-					videoView.setVisibility(View.GONE);
-					videoView.suspend();
-					videoView = null;
 				}
 				mVideoLoop = 0;
-        		return false;
+        		return true;
         	}
         });
 	}
@@ -845,12 +864,9 @@ public class PlatformSDKActivity extends GameActivity {
 		LogUtil.LOGE(TAG,"VideoView Notice: callClose");
 		if (videoView != null)
 		{
+			videoView.suspend();
 			Cocos2dxHelper.nativeSendMessageP2G("onPlayMovieEnd","");
 			videoView.setOnTouchListener(null);
-			videoView.setVisibility(View.VISIBLE);
-			videoView.setVisibility(View.GONE);
-			videoView.suspend();
-			videoView = null;
 		}
 		mVideoLoop = 0;
 	}
@@ -928,10 +944,17 @@ public class PlatformSDKActivity extends GameActivity {
 			case KUSO:
 				Log.d(TAG,"ClientChannel is android_kuso");
 				return "android_kuso";
+			case APLUS:
+				Log.d(TAG,"ClientChannel is android_aplus");
+				return "android_aplus";
 			default:
 				Log.d(TAG,"ClientChannel is NULL");
 				return "android_h365";
 		}
+	}
+
+	public String getClientCps() {
+		return "#" + getCpsName().getValue();
 	}
 		
 	@Override

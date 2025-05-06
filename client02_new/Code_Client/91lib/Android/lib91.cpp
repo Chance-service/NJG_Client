@@ -222,6 +222,11 @@ const std::string lib91::getClientChannel()
 	return getClientChannelJNI();
 }
 
+const std::string lib91::getClientCps()
+{
+	return getClientCpsJNI();
+}
+
 std::string lib91::getPlatformMoneyName()
 {
 	return "";

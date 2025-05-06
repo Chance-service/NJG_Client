@@ -34,14 +34,14 @@ function Skill_1062:runSkill(chaNode, skillId, resultTable, allPassiveTable, tar
     --施法者造成治療buff
     local buffValue = BuffManager:checkHealBuffValue(target.buffData)
     --目標受到治療buff
-    local buffValue2 = BuffManager:checkBeHealBuffValue(target.buffData)
+    local buffValue2 = BuffManager:checkBeHealBuffValue(target)
     --基礎傷害
     local baseDmg = atk * tonumber(params[1]) * buffValue * buffValue2
 
     local isCri = false
     --爆傷
     local criRate = 1
-    isCri = NewBattleUtil:calIsCri(target, target)
+    isCri = false--NewBattleUtil:calIsCri(target, target)
     if isCri then
         criRate = NewBattleUtil:calFinalCriDmgRate(target, target)
     end

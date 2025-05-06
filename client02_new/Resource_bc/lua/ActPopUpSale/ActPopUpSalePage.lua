@@ -173,6 +173,9 @@ ActPopUpSalePage._originScrollViewSize = nil
 -- 初始進入頁面
 ActPopUpSalePage.entryTab = nil
 
+-- 購買資料請求中
+ActPopUpSalePage.requestingLastShop = false
+
 --獎勵
 local TmpReward = { }
 
@@ -191,6 +194,10 @@ function ActPopUpSalePage:onReceiveMessage(container)
     local message = container:getMessage();
     local typeId = message:getTypeId();
     if typeId == MSG_RECHARGE_SUCCESS then
+        if ActPopUpSalePage.requestingLastShop then
+            return
+        end
+        ActPopUpSalePage.requestingLastShop = true
         --popUp資料要求
         require("ActPopUpSale.ActPopUpSaleSubPage_132")
         require("ActPopUpSale.ActPopUpSaleSubPage_177")
@@ -198,7 +205,7 @@ function ActPopUpSalePage:onReceiveMessage(container)
         ActPopUpSaleSubPage_177_sendInfoRequest()      
         require("ActPopUpSale.ActPopUpSaleSubPage_Content")
         ActPopUpSaleSubPage_Content_sendInfoRequest()
-
+        CCLuaLog(">>>>>>onReceiveMessage ActPopUpSalePage")
         common:sendEmptyPacket(HP_pb.LAST_SHOP_ITEM_C, true)
     end
  
@@ -215,6 +222,7 @@ function ActPopUpSalePage:onReceivePacket(container)
         --PackageLogicForLua.PopUpReward(msgBuff)
         --PageManager.popPage(thisPageName)
     elseif opcode == HP_pb.LAST_SHOP_ITEM_S then
+        ActPopUpSalePage.requestingLastShop = false
         local Recharge_pb = require("Recharge_pb")
         local msg = Recharge_pb.LastGoodsItem()
         msg:ParseFromString(msgBuff)
@@ -289,6 +297,8 @@ function ActPopUpSalePage:onEnter (container)
     -- 設 已初始化
     self._isInited = true
     
+    ActPopUpSalePage.requestingLastShop = false
+
     if #self.tabInfos > 0 then
         if self.entryTab ~= nil then
             local typ = type(self.entryTab)
@@ -394,20 +404,21 @@ function ActPopUpSalePage:getAvaliableActs()
     --        })
     --    end
     --end
-
     local cfg = ConfigManager.getPopUpCfg2()
     for _, data in pairs(cfg) do
-       table.insert(Table, {
-           name = tostring(data.GiftId),
-           sort = data.Sort + 1 ,--空出戰敗或等級
-           subPage = "ActPopUpSale.ActPopUpSaleSubPage_Content",
-           isShowFn = function(self)
-               if IS_DEBUG then return true end
-               require(self.subPage)
-               local result = ActPopUpSaleSubPage_Content_getIsShowMainSceneIcon(data.GiftId)
-               return result.isShowIcon
-           end,
-       })
+       if data.type == GameConfig.GIFT_TYPE.POPUP_GIFT then
+            table.insert(Table, {
+                name = tostring(data.GiftId),
+                sort = data.Sort + 1 ,--空出戰敗或等級
+                subPage = "ActPopUpSale.ActPopUpSaleSubPage_Content",
+                isShowFn = function(self)
+                    if IS_DEBUG then return true end
+                    require(self.subPage)
+                    local result = ActPopUpSaleSubPage_Content_getIsShowMainSceneIcon(data.GiftId)
+                    return result.isShowIcon
+                end,
+            })
+       end
     end
 
     local Infos = self:mergeServerData(Table)

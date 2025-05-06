@@ -1016,6 +1016,12 @@ enum ActivityId
     ACTIVITY195_PuzzleBattle = 195;
     // 循環地城活動復刻
     ACTIVITY196_CycleStage_Part2 = 196;
+	// 超級PICKUP
+    ACTIVITY197_SUPER_PICKUP = 197;
+	// 屬性限制爬塔活動
+    ACTIVITY198_LIMIT_TOWER = 198;
+	// 一命爬塔活動
+    ACTIVITY199_FearLess_TOWER = 199;
 }
 
 enum FriendChatMsgType

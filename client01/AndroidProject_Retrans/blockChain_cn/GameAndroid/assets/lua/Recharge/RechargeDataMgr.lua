@@ -25,7 +25,7 @@ RechargeDataMgr.SubPageInfos = {
 
 --[[ 取得 商品 ]]
 function RechargeDataMgr:getDiamondImgPath (index)
-    return "Imagesetfile/Recharge/DiamondShop_icon"..tostring(index)..".png"
+    return "Imagesetfile/Recharge/DiamondShop_icon"..tostring(math.min(6, index))..".png"
 end
 
 return RechargeDataMgr

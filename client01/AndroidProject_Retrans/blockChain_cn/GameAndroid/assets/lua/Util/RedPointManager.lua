@@ -20,13 +20,13 @@ RedPointManager.PAGE_IDS = {
     --
     LOBBY_MAIN_BTN = 10101, 
     LOBBY_MAIL_BTN = 10201, LOBBY_SEVENDAY_BTN = 10202, LOBBY_PACKAGE_BTN = 10203, LOBBY_SHOP_BTN = 10204, LOBBY_FRIEND_BTN = 10205,
-    LOBBY_FORGE_BTN = 10206, LOBBY_BOUNTY_BTN = 10207, LOBBY_QUEST_BTN = 10208,
+    LOBBY_FORGE_BTN = 10206, LOBBY_BOUNTY_BTN = 10207, LOBBY_QUEST_BTN = 10208, LOBBY_BAG_BTN = 10209,
     MAIL_NORMAL_TAB = 10301, MAIL_SYSTEM_TAB = 10302, SEVENDAY_MISSION_TAB = 10303, SEVENDAY_QUEST3_TAB = 10304, PACKAGE_GOODS_TAB = 10305,
     SHOP_MYSTERY_TAB = 10306, FRIEND_SENDPOINT_BTN = 10307, FRIEND_GETPOINT_BTN = 10308, FRIEND_APPLY_BTN = 10309, FORGE_EQUIP_TAB = 10310, 
-    QUEST_TYPE_TAB = 10311,
+    QUEST_TYPE_TAB = 10311, PACKAGE_AW_TAB = 10312,
     SEVENMISSION_DAY_TAB = 10401, SEVENMISSION_TREASURE_BTN = 10402, QUEST3_REWARD_BTN = 10403, GOODS_DAILY_TAB = 10404, MYSTERY_FREE_BTN = 10405,
     MYSTERY_REFRESH_BTN = 10406, EQUIP_WEAPON_TAB = 10407, QUEST_TREASURE_BTN = 10408, QUEST_REWARD_BTN = 10409, EQUIP_CHEST_TAB = 10410,
-    EQUIP_RING_TAB = 10411, EQUIP_FOOT_TAB = 10412, GOODS_WEEKLY_TAB = 10413, GOODS_MONTHLY_TAB = 10414,
+    EQUIP_RING_TAB = 10411, EQUIP_FOOT_TAB = 10412, GOODS_WEEKLY_TAB = 10413, GOODS_MONTHLY_TAB = 10414, PACKAGE_AW_ICON = 10415,
     SEVENMISSION_REWARD_BTN = 10501, WEAPON_ALL_BTN = 10502, WEAPON_ONE_ICON = 10503, CHEST_ALL_BTN = 10504, CHEST_ONE_ICON = 10505,
     RING_ALL_BTN = 10506, RING_ONE_ICON = 10507, FOOT_ALL_BTN = 10508, FOOT_ONE_ICON = 10509, DAILY_REWARD_BTN = 10510,
     WEEKLY_REWARD_BTN = 10511, MONTHLY_REWARD_BTN = 10512,
@@ -130,7 +130,7 @@ function RedPointManager_initSyncAllPageData()
     if not LockManager_getShowLockByPageName(RedPointCfg[RedPointManager.PAGE_IDS.DUNGEON_REWARD_BTN].unlock) then -- 地下城資料
         local isDone = RedPointManager.AllPageData[RedPointManager.PAGE_IDS.DUNGEON_REWARD_BTN][1].syncDone
         if not isDone then
-            common:sendEmptyPacket(HP_pb.MULTIELITE_LIST_INFO_C, true)
+            common:sendEmptyPacket(HP_pb.MULTIELITE_LIST_INFO_C, false)
         end
     end
     if not LockManager_getShowLockByPageName(RedPointCfg[RedPointManager.PAGE_IDS.RANKING_BP_REWARD].unlock) then -- 排行榜獎勵
@@ -177,8 +177,9 @@ function RedPointManager_getShowRedPoint(pageId, _type)
     end
     if RedPointManager.AllPageData[pageId] then
         if _type == 0 then
-            for i = 1, #RedPointManager.AllPageData[pageId] do
-                if RedPointManager.AllPageData[pageId][i].show then
+            --for i = 1, #RedPointManager.AllPageData[pageId] do
+            for k, v in pairs(RedPointManager.AllPageData[pageId]) do
+                if v.show then
                     return true
                 end
             end
@@ -319,6 +320,17 @@ function RedPointManager_refreshPageShowPoint(pageId, group, option)
                pageId == RedPointManager.PAGE_IDS.MONTHLY_REWARD_BTN then -- 每月禮包
             require("IAP.IAPSubPage_Recharge")
             isShow = DiscountGiftPage_calIsShowRedPoint(pageId, option)
+        elseif pageId == RedPointManager.PAGE_IDS.PACKAGE_AW_ICON then -- 專武碎片
+            local UserItemManager = require("Item.UserItemManager")
+            local InfoAccesser = require("Util.InfoAccesser")
+            local itemIds = UserItemManager:getItemIdsByType(19)
+            for i = 1, #itemIds do
+                local _isShow, _group = false, nil
+                _isShow = InfoAccesser:getAncientPieceCanFusion(itemIds[i])
+                _group = itemIds[i]
+                RedPointManager_setShowRedPoint(pageId, _group, _isShow)
+            end
+            return
         end
     end
     RedPointManager_setShowRedPoint(pageId, group, isShow)
@@ -329,6 +341,7 @@ function RedPointManager_setShowRedPoint(pageId, _type, isShow)
     if not tonumber(pageId) then
         return
     end
+    RedPointManager.AllPageData[pageId][_type] = RedPointManager.AllPageData[pageId][_type] or { }
     local isChange = (RedPointManager.AllPageData[pageId][_type].show  ~= isShow)
     RedPointManager.AllPageData[pageId][_type].show = isShow
     if isChange then

@@ -469,7 +469,8 @@ void CCArmature::draw()
     if (m_pParentBone == NULL && m_pBatchNode == NULL)
     {
         CC_NODE_DRAW_SETUP();
-        ccGLBlendFunc(m_sBlendFunc.src, m_sBlendFunc.dst);
+        //ccGLBlendFunc(m_sBlendFunc.src, m_sBlendFunc.dst);
+		glBlendFuncSeparate(m_sBlendFunc.src, m_sBlendFunc.dst, m_sBlendFunc.src, m_sBlendFunc.dst);
     }
 
     CCObject *object = NULL;
@@ -508,12 +509,14 @@ void CCArmature::draw()
                 if (blendDirty)
                 {
                     ccBlendFunc func = bone->getBlendFunc();
-                    ccGLBlendFunc(func.src, func.dst);
+                    //ccGLBlendFunc(func.src, func.dst);
+					glBlendFuncSeparate(func.src, func.dst, m_sBlendFunc.src, m_sBlendFunc.dst);
 
                     m_pAtlas->drawQuads();
                     m_pAtlas->removeAllQuads();
 
-                    ccGLBlendFunc(m_sBlendFunc.src, m_sBlendFunc.dst);
+                    //ccGLBlendFunc(m_sBlendFunc.src, m_sBlendFunc.dst);
+					glBlendFuncSeparate(m_sBlendFunc.src, m_sBlendFunc.dst, m_sBlendFunc.src, m_sBlendFunc.dst);
                     bone->setBlendDirty(false);
                 }
             }
@@ -546,7 +549,8 @@ void CCArmature::draw()
                 node->visit();
 
                 CC_NODE_DRAW_SETUP();
-                ccGLBlendFunc(m_sBlendFunc.src, m_sBlendFunc.dst);
+                //ccGLBlendFunc(m_sBlendFunc.src, m_sBlendFunc.dst);
+				glBlendFuncSeparate(m_sBlendFunc.src, m_sBlendFunc.dst, m_sBlendFunc.src, m_sBlendFunc.dst);
             }
             break;
             }
@@ -561,7 +565,8 @@ void CCArmature::draw()
             node->visit();
 
             CC_NODE_DRAW_SETUP();
-            ccGLBlendFunc(m_sBlendFunc.src, m_sBlendFunc.dst);
+            //ccGLBlendFunc(m_sBlendFunc.src, m_sBlendFunc.dst);
+			glBlendFuncSeparate(m_sBlendFunc.src, m_sBlendFunc.dst, m_sBlendFunc.src, m_sBlendFunc.dst);
         }
     }
 

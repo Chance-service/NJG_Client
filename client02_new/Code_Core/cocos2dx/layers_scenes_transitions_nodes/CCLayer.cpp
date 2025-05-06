@@ -795,7 +795,8 @@ void CCLayerColor::draw()
     glVertexAttribPointer(kCCVertexAttrib_Color, 4, GL_FLOAT, GL_FALSE, 0, m_pSquareColors);
 #endif // EMSCRIPTEN
 
-    ccGLBlendFunc( m_tBlendFunc.src, m_tBlendFunc.dst );
+    //ccGLBlendFunc( m_tBlendFunc.src, m_tBlendFunc.dst );
+	glBlendFuncSeparate(m_tBlendFunc.src, m_tBlendFunc.dst, GL_SRC_ALPHA, GL_DST_ALPHA);
 
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 

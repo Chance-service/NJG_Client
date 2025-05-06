@@ -61,7 +61,26 @@ function RechargeBonusPage:new(o)
 end
 
 function RechargeBonusPage:onExecute(container)
-
+    if serverData.timeTable and serverData.timeTable[nowPage] then
+        local leftTime = serverData.timeTable[nowPage].endTime - os.time()
+        if leftTime < 0 then
+            local str = common:getLanguageString("@ERRORCODE_80104")
+            NodeHelper:setStringForLabel(container, { refreshAutoCountdownText = str })
+        else
+            local d = math.floor(leftTime / 86400)
+            leftTime = leftTime - 86400 * d
+            local h = math.floor(leftTime / 3600)
+            leftTime = leftTime - 3600 * h
+            local m = math.floor(leftTime / 60)
+            leftTime = leftTime - 60 * m
+            local s = leftTime
+            local str = string.format(common:getLanguageString("@ActPopUpSale.LeftTimeText.dhm"), d, h, m, s)
+            NodeHelper:setStringForLabel(container, { refreshAutoCountdownText = str })
+        end
+    else
+        local str = string.format(common:getLanguageString("@ERRORCODE_80104"))
+        NodeHelper:setStringForLabel(container, { refreshAutoCountdownText = str })
+    end
 end
 
 function RechargeBonusPage:onEnter(container)
@@ -128,14 +147,6 @@ function RechargeBonusPage:refresh(container)
         num = num + 1
     end
 
-    if serverData.curStartTime and serverData.curEndTime then
-        local sy, sm, sd = serverData.curStartTime.year, serverData.curStartTime.month, serverData.curStartTime.day
-        local ey, em, ed = serverData.curEndTime.year, serverData.curEndTime.month, serverData.curEndTime.day
-        NodeHelper:setStringForLabel(container, { refreshAutoCountdownText = common:getLanguageString("@RechargeBounce_time", sy, sm, sd, ey, em, ed) })
-    else
-        NodeHelper:setStringForLabel(container, { refreshAutoCountdownText = "" })
-    end
-
     scrollview:setTouchEnabled(num > 4)
     scrollview:orderCCBFileCells()
 end
@@ -145,15 +156,19 @@ function RechargeBonusPage:getSortedTable(Config)
     -- 過濾資料
     for k, v  in pairs (Config) do
         local insert = false
-        if v.type == nowPage then 
-            if v.platform == 1 and Golb_Platform_Info.is_h365 then
-                insert = true
-            elseif v.platform == 2 and Golb_Platform_Info.is_r18 then
-                insert = true
-            elseif v.platform == 6 and Golb_Platform_Info.is_kuso then
-                insert = true
-            elseif CC_TARGET_PLATFORM_LUA == common.platform.CC_PLATFORM_WIN32 then
-                insert = true
+        if v.type == nowPage and serverData.timeTable[nowPage] then 
+            if (v.timeIndex == serverData.timeTable[nowPage].timeIndex) then
+                if v.platform == 1 and Golb_Platform_Info.is_h365 then
+                    insert = true
+                elseif v.platform == 2 and Golb_Platform_Info.is_r18 then
+                    insert = true
+                elseif v.platform == 6 and Golb_Platform_Info.is_kuso then
+                    insert = true
+                elseif v.platform == 9 and Golb_Platform_Info.is_aplus then
+                    insert = true
+                elseif CC_TARGET_PLATFORM_LUA == common.platform.CC_PLATFORM_WIN32 then
+                    insert = true
+                end
             end
         end
         if insert then
@@ -181,18 +196,28 @@ function RechargeBonusPage:onReceivePacket(packet)
         serverData = { }
 
         local action = msg.action
-        local startTime = msg.starTime / 1000
-        serverData.curStartTime = os.date("!*t", startTime - common:getServerOffset_UTCTime())
-        local endTime = msg.endTime / 1000
-        serverData.curEndTime = os.date("!*t", endTime - common:getServerOffset_UTCTime())
-        if action == ACTION_TYPE.SYNC then 
-            serverData.deposit = msg.deposit
-            serverData.consume = msg.consume
+
+        serverData.deposit = msg.deposit
+        serverData.consume = msg.consume
+
+        local timeInfos = msg.timeInfo
+        serverData.timeTable = { }
+        for i = 1, #timeInfos do
+            serverData.timeTable[timeInfos[i].type] = serverData.timeTable[timeInfos[i].type] or  { }
+            serverData.timeTable[timeInfos[i].type].startTime = timeInfos[i].starTime and timeInfos[i].starTime / 1000 or 0
+            serverData.timeTable[timeInfos[i].type].endTime = timeInfos[i].endTime and  timeInfos[i].endTime / 1000 or 0
+            serverData.timeTable[timeInfos[i].type].timeIndex = timeInfos[i].timeIndex
         end
+
         local itemInfos = msg.itemInfo
         serverData.gotTable = { }
         for i = 1, #itemInfos do
             serverData.gotTable[itemInfos[i].cfgId] = (itemInfos[i].isGot == 1) and BTN_TYPE.RECEIVED or BTN_TYPE.COMPLETED
+        end
+        local countInfos = msg.singleInfo or { }
+        serverData.countTable = { }
+        for i = 1, #countInfos do
+            serverData.countTable[countInfos[i].cfgId] = countInfos[i].left
         end
         self:refresh(self.container)
     elseif opcode == HP_pb.PLAYER_AWARD_S then
@@ -268,6 +293,7 @@ function RechargeBonusItem:onRefreshContent(ccbRoot)
     local v1 = selfCfg.needCount
     local v2 = (nowPage == PAGE_TYPE.TOTAL_CONSUME and serverData.consume) or (nowPage == PAGE_TYPE.TOTAL_RECHARGE and serverData.deposit) or 0
     local v3 = selfCfg.needCount
+    local v4 = selfCfg.count
     NodeHelper:setStringForLabel(container, { mStepTxt = "" })
     if nowPage == PAGE_TYPE.TOTAL_RECHARGE then
         NodeHelper:setStringForLabel(container, { mTxt1 = common:getLanguageString("@RechargeBounce_title") })
@@ -276,7 +302,9 @@ function RechargeBonusItem:onRefreshContent(ccbRoot)
         elseif Golb_Platform_Info.is_r18 then
             NodeHelper:setStringForLabel(container, { mTxt2 = common:getLanguageString("@Total_RECHARGE", v1) })
         elseif Golb_Platform_Info.is_kuso then
-            NodeHelper:setStringForLabel(container, { mTxt2 = common:getLanguageString("@Total_RECHARGE", v1) })
+            NodeHelper:setStringForLabel(container, { mTxt2 = common:getLanguageString("@Total_RECHARGE69", v1) })
+        elseif Golb_Platform_Info.is_aplus then
+            NodeHelper:setStringForLabel(container, { mTxt2 = common:getLanguageString("@Total_RECHARGEAPLUS", v1) })
         else
             NodeHelper:setStringForLabel(container, { mTxt2 = common:getLanguageString("@Total_RECHARGE", v1) })
         end
@@ -288,11 +316,14 @@ function RechargeBonusItem:onRefreshContent(ccbRoot)
         elseif Golb_Platform_Info.is_r18 then
             NodeHelper:setStringForLabel(container, { mTxt2 = common:getLanguageString("@Total_RECHARGE", v1) })
         elseif Golb_Platform_Info.is_kuso then
-            NodeHelper:setStringForLabel(container, { mTxt2 = common:getLanguageString("@Total_RECHARGE", v1) })
+            NodeHelper:setStringForLabel(container, { mTxt2 = common:getLanguageString("@Total_RECHARGE69", v1) })
+        elseif Golb_Platform_Info.is_aplus then
+            NodeHelper:setStringForLabel(container, { mTxt2 = common:getLanguageString("@Total_RECHARGEAPLUS", v1) })
         else
             NodeHelper:setStringForLabel(container, { mTxt2 = common:getLanguageString("@Total_RECHARGE", v1) })
         end
-        NodeHelper:setStringForLabel(container, { mTxt3 = "" })
+        local leftCount = serverData.countTable[id] and math.max(v4 - serverData.countTable[id], 0) or v4
+        NodeHelper:setStringForLabel(container, { mTxt3 = common:getLanguageString("@Total_RECHARGE_2", 0, leftCount, v4) })
     elseif nowPage == PAGE_TYPE.TOTAL_CONSUME then
         NodeHelper:setStringForLabel(container, { mTxt1 = common:getLanguageString("@Diamond_Consum") })
         NodeHelper:setStringForLabel(container, { mTxt2 = common:getLanguageString("@Diamond_Consum_2", v1) })

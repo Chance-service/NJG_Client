@@ -247,6 +247,82 @@ function Inst:getEquipAttr (equipID, addtives)
     return result
 end
 
+function Inst:getEquipMaxAttr (equipID)
+    local equipCfgs = ConfigManager.getEquipCfg()
+    
+    local equipCfg = equipCfgs[equipID]
+    if equipCfg == nil then return nil end
+    
+    local parsedAttrs = InfoAccesser:parseAttrStr(equipCfg.equipAttr)
+    
+    -- 設置 基礎屬性
+    local baseAttrs = {}
+    for idx = 1, #parsedAttrs do
+        local parsedAttr = parsedAttrs[idx]
+        local attrInfo = InfoAccesser:getAttrInfo(parsedAttr.attr, parsedAttr.val)
+        baseAttrs[idx] = attrInfo
+    end
+    
+    local result = {}
+
+    local parsedEquip = InfoAccesser:parseAWEquipStr(equipID)
+    local equipID_series = parsedEquip.id*100
+    
+    -- 升級
+    local equipEnhanceAttrCfgs = ConfigManager.getEquipEnhanceAttrCfg()
+    -- local equipEnhanceAttrCfg = equipEnhanceAttrCfgs[equipCfg.part]
+    local equipEnhanceAttrCfg = equipEnhanceAttrCfgs[1]
+
+    local sumAttrs, maxLv
+    
+    local staredEquipID = equipID_series + 13--addtive.star
+    local staredEquipCfg = equipCfgs[staredEquipID]
+    if staredEquipCfg then
+        local parsedAttrs = InfoAccesser:parseAttrStr(staredEquipCfg.equipAttr)
+        
+        sumAttrs = {}
+        for idx = 1, #parsedAttrs do
+            local parsedAttr = parsedAttrs[idx]
+            local attrInfo = InfoAccesser:getAttrInfo(parsedAttr.attr, parsedAttr.val)
+            sumAttrs[#sumAttrs+1] = attrInfo
+        end 
+    end
+
+    if sumAttrs ~= nil then
+
+        if equipEnhanceAttrCfg ~= nil then 
+    
+            local attrScales = equipEnhanceAttrCfg.mainAttr
+        
+            local lv = #attrScales
+            maxLv = #attrScales
+            if lv ~= nil then
+
+                local upLv = lv - 1
+                if upLv <= #attrScales then 
+                    
+                    -- 加成
+                    local scale = 1
+                    if upLv > 0 then
+                        scale = scale + (tonumber(attrScales[upLv]) / 10000) -- 以萬分比紀錄
+                    end
+                    
+                    for idx = 1, #sumAttrs do
+                        local sumAttr = sumAttrs[idx]
+                        sumAttr.val = math.floor(sumAttr.val * scale)
+                    end
+                else
+                    sumAttrs = nil
+                end
+            
+            end
+
+        end
+        
+    end
+
+    return sumAttrs, maxLv
+end
     
 
 return Inst

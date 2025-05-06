@@ -110,7 +110,6 @@ function FlyItemManager:onHit(data, autoEnd)
         BuffManager:addBuffCount(data.attacker, data.attacker.buffData, buffEvent)        -- 增加buff層數
         local triggerBuffList = BuffManager:specialBuffEffect(data.attacker.buffData, buffEvent, data.attacker, nil, data.skillId)   -- 觸發buff效果
         CHAR_UTIL:calculateAllTable(data.attacker, data.resultTable, data.isSkipCal, actionResultTable, allTargetTable, data.skillId, data.allPassiveTable)   -- 全部傷害/治療/buff...處理
-        LOG_UTIL:addLog(logActionType, data.attacker, allTargetTable, data.skillId, data.skillGroupId, actionResultTable, data.allPassiveTable)
     end
     -- 檢查被動技能發動(需等log記錄完)
     CHAR_UTIL:checkPassiveSkill(data.attacker)
@@ -256,7 +255,6 @@ end
 function FlyItemManager:addLog(actionType, attacker, targetList, skillId, skillGroupId, actionResultTable, allPassiveTable)
     local sceneHelper = require("Battle.NewFightSceneHelper")
     if sceneHelper:getSceneType() ~= NewBattleConst.SCENE_TYPE.AFK then
-        NewBattleUtil:addLog(actionType, attacker, targetList, skillId, skillGroupId, sceneHelper:getBattleTime(), actionResultTable, allPassiveTable)
     end
 end
 

@@ -612,7 +612,7 @@ function EquipMercenaryPage:showFightAttrInfo(container)
         end
     end
 
-    if status == Const_pb.FIGHTING then
+    if status == Const_pb.FIGHTING or status == Const_pb.MIXTASK then
         if curIdx == 0 then
             count = count + 1
             if count > GameConfig.MercenaryFightintMaxCount then
@@ -630,7 +630,7 @@ function EquipMercenaryPage:showFightAttrInfo(container)
     visibleMap["mCanFightNode"] = false
     visibleMap["mStateNode"] = true
     visibleMap["mMercenaryNumNode"] = false
-    if status == Const_pb.FIGHTING then
+    if status == Const_pb.FIGHTING or status == Const_pb.MIXTASK then
         statusImage = GameConfig.MercenaryBattleState.status_fight
 
         if curIdx < GameConfig.MercenaryFightintMaxCount + 1 then

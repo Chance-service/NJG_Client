@@ -46,10 +46,12 @@ function BattleLogDetailPage:initUI(container)
             if data.idx < 10 then
                 local roleInfo = UserMercenaryManager:getUserMercenaryByItemId(itemId)
                 quality = (roleInfo.starLevel > 10 and 6) or (roleInfo.starLevel < 6 and 4) or 5
-                NodeHelper:setSpriteImage(container, { ["mHeadIcon" .. addStr] = "UI/RoleIcon/Icon_" .. string.format("%02d", itemId) .. string.format("%03d", roleInfo.skinId) .. ".png" })
+                local iconId = roleInfo.skinId > 0 and string.format("%05d", roleInfo.skinId) or string.format("%02d000", itemId)
+                NodeHelper:setSpriteImage(container, { ["mHeadIcon" .. addStr] = "UI/RoleIcon/Icon_" .. iconId .. ".png" })
             else
-                local skinId = eData.otherData[CONST.OTHER_DATA.SPINE_SKIN]
-                NodeHelper:setSpriteImage(container, { ["mHeadIcon" .. addStr] = "UI/RoleIcon/Icon_" .. string.format("%02d", itemId) .. string.format("%03d", skinId) .. ".png" })
+                local skinId = data.otherData[CONST.OTHER_DATA.SPINE_SKIN]
+                local iconId = skinId > 0 and string.format("%05d", skinId) or string.format("%02d000", itemId)
+                NodeHelper:setSpriteImage(container, { ["mHeadIcon" .. addStr] = "UI/RoleIcon/Icon_" .. iconId .. ".png" })
             end
         elseif roleType == CONST.CHARACTER_TYPE.MONSTER or roleType == CONST.CHARACTER_TYPE.WORLDBOSS then
             local cfg = ConfigManager.getNewMonsterCfg()[itemId]

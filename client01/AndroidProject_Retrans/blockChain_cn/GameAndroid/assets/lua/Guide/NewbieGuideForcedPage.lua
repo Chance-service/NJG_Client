@@ -34,6 +34,8 @@ local msgHandler = nil
 
 local NewbieGuideCfg = ConfigManager.getNewbieGuideCfg()
 
+newbieVoiceId = 0
+
 function NewbieGuideForcedBase:onEnter(container)
     self:registerPacket(container)
     container:registerMessage(MSG_MAINFRAME_REFRESH)
@@ -74,7 +76,6 @@ function NewbieGuideForcedBase.refreshTalkText()
 end
 
 function NewbieGuideForcedBase:refreshPage( container )
-    SoundManager:getInstance():stopAllEffect()
     NodeHelper:setNodesVisible(container, { mTestNode = false })
     if EFUNSHOWNEWBIE() == false  then
         PageManager.popPage("NewbieGuideForcedPage")
@@ -94,6 +95,9 @@ function NewbieGuideForcedBase:refreshPage( container )
         PageManager.popPage(thisPageName)
         GuideManager.isInGuide = false
         GuideManager.IsNeedShowPage = false
+        if currStepIdx == 0 then
+            return
+        end
         currStepIdx = 0
         GuideManager.currGuide[GuideManager.currGuideType] = 0
         self:setStepPacket(container, currGuideType, currStepIdx)
@@ -138,7 +142,7 @@ function NewbieGuideForcedBase:refreshPage( container )
             NodeHelper:setStringForLabel(talkLayer, { mNewGuideRightName = common:getLanguageString(currStepCfg.showName) })
         end
         if currStepCfg.voice and currStepCfg.voice ~= "" then
-            SoundManager:getInstance():playEffectByName(currStepCfg.voice .. ".mp3", false)
+            newbieVoiceId = SoundManager:getInstance():playEffectByName(currStepCfg.voice .. ".mp3", false)
         end
 
         mStrShowIdx = 0
@@ -254,6 +258,11 @@ function NewbieGuideForcedBase:refreshPage( container )
 end
 
 function NewbieGuideForcedBase:onNext(container) -- 點擊對話 進行下一步
+    if newbieVoiceId > 0 then
+        SimpleAudioEngine:sharedEngine():stopEffect(newbieVoiceId)
+        newbieVoiceId = 0
+    end
+
     if mHandler ~= nil then -- 對話未顯示完 顯示完整對話
         CCDirector:sharedDirector():getScheduler():unscheduleScriptEntry(mHandler)
         mHandler = nil
@@ -363,6 +372,9 @@ local connectMsgHandler = MessageScriptHandler:new(function(eventName, gameMsg)
         local opcode = MsgSendPackageFailed:getTrueType(gameMsg).opcode
         CCLuaLog("GUIDE CONNECT FAILED : " .. opcode)
         if not GuideManager.currGuideType then
+            return
+        end
+        if GuideManager.currGuide[GuideManager.currGuideType] == 0 then
             return
         end
         local waitOpcode = NewbieGuideCfg[GuideManager.currGuide[GuideManager.currGuideType]].waitOpcode

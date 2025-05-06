@@ -148,9 +148,6 @@ private:
 	int mSelectedSeverID;
 	void showSevers(bool);
 	void showInputUI(bool);
-	void showFeedBack();
-	void showChangeUser();
-	void showAnnounce();
     bool mNetWorkNotWorkMsgShown;
 	bool mIsFirstLoginNotServerIDInfo;
 	bool mIsServerListBuild;
@@ -189,7 +186,6 @@ private:
 	
 private:
 	CompareStat versionAppCompareStat;
-	CompareStat versionCodeStat;
 	CompareStat versionResourceStat;
 	int  connectCount;
 	float lastPercent;
@@ -251,9 +247,6 @@ public:
     virtual void onInputboxEnter(const std::string& content);
     virtual void onShowMessageBox(const std::string& msgString, int tag);
 	void showLoginUser(const std::string& UserID = "", const std::string& aPwd = "", const ERO_LOGINTYPE = ERO_LOGINTYPE::LOGINTYPE_NONE);
-	void showBCLogin();
-	void getLocalSpineDataCfg();
-    void showLogin();
 	void showEnter();
 	void hideLoginingInPercent();
 
@@ -271,7 +264,6 @@ public:
 	void checkVersion();
 	void setTips(std::string meg);
 	void setVersion(std::string meg);
-	void setActionBtnTxt(std::string meg);
 
 	void getUpdateVersionTips();
 	void getLocalVersionCfg();
@@ -321,11 +313,9 @@ public:
 	bool getUpdateServerState(){ return m_bUpdateServerName; }
 	void updateSeverName();
 	void setUpdateServerState(bool state){ m_bUpdateServerName = state; }
-	void Encrypt_GirlFile(std::string txt_files_path, std::string src_path, std::string des_path);
 	void updateLocalSeverId();
 	void ontestLogin();
 	void sendGuestLogin();
-	void showLangSetting();
 
 private:
 	void setEnterGameNodeVisible(bool isVisible);

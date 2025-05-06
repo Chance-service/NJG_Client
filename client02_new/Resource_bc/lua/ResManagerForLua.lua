@@ -148,6 +148,11 @@ function ResManagerForLua:getResInfoByMainTypeAndId(resMainType, resId, resCount
         local iconCfg = GameConfig.LeaderAvatarInfo[resId]
         ResInfoLua.icon = iconCfg.icon[UserInfo.roleInfo.prof]
         ResInfoLua.describe = avatarCfg[resId]["desc"]
+    elseif resMainType == Const_pb.SKIN then
+        ResInfoLua.name = "Skin" .. resId
+        ResInfoLua.quality = 5
+        ResInfoLua.icon = "UI/RoleIcon/Icon_" .. string.format("%05d", resId) .. ".png"
+        ResInfoLua.describe = "Skin" .. resId
     end
 
     return ResInfoLua

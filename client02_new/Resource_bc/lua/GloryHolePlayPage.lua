@@ -286,12 +286,14 @@ function GloryHole_PlayBase:setOtherAnim(container)
 end
 function GloryHole_PlayBase:setCountDownSpine(container)
     NodeHelper:setNodesVisible(SelfContainer, {mCountDown = true})
+    local langType = CCUserDefault:sharedUserDefault():getIntegerForKey("LanguageType")
     local parent = container:getVarNode("mCountDownSpine")
     local SpineName2 = "GloryHole_UI_countdown"
     Spine = SpineContainer:create("Spine/Gloryhole", SpineName2)
     spineNode = tolua.cast(Spine, "CCNode")
     Spine:registerFunctionHandler("COMPLETE", GloryHole_PlayBase.onFunction)
     parent:addChild(spineNode)
+    Spine:setSkin(langType)
     Spine:runAnimation(1, "animation", 0)
     local layer = container:getVarNode("mCountDownBlack")
     if layer then
@@ -313,10 +315,12 @@ function GloryHole_PlayBase:setCountDownSpine2(container)
     if isCountingDown then return end
     isCountingDown = true
     local array = CCArray:create()
+    local langType = CCUserDefault:sharedUserDefault():getIntegerForKey("LanguageType")
     local parent = container:getVarNode("mCountDownSpine2")
     local SpineName3 = "GloryHole_UI_countdown"
     local EndSpine = SpineContainer:create("Spine/Gloryhole", SpineName3)
     local EndspineNode = tolua.cast(EndSpine, "CCNode")
+    EndSpine:setSkin(langType)
     local Ani = CCCallFunc:create(function()
         parent:addChild(EndspineNode)
         EndSpine:runAnimation(1, "animation2", -1)

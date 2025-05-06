@@ -31,6 +31,10 @@ THE SOFTWARE.
 #include "support/data_support/ccCArray.h"
 #include "cocoa/CCArray.h"
 #include "script_support/CCScriptSupport.h"
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+#include <chrono>
+#endif
+#include <iostream>
 
 using namespace std;
 
@@ -791,7 +795,9 @@ void CCScheduler::update(float dt)
 
     // Iterate over all the Updates' selectors
     tListEntry *pEntry, *pTmp;
-
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	auto time1 = std::chrono::high_resolution_clock::now();
+#endif
     // updates with priority < 0
     DL_FOREACH_SAFE(m_pUpdatesNegList, pEntry, pTmp)
     {
@@ -800,7 +806,9 @@ void CCScheduler::update(float dt)
             pEntry->target->update(dt);
         }
     }
-
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	auto time2 = std::chrono::high_resolution_clock::now();
+#endif
     // updates with priority == 0
     DL_FOREACH_SAFE(m_pUpdates0List, pEntry, pTmp)
     {
@@ -809,7 +817,9 @@ void CCScheduler::update(float dt)
             pEntry->target->update(dt);
         }
     }
-
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	auto time3 = std::chrono::high_resolution_clock::now();
+#endif
     // updates with priority > 0
     DL_FOREACH_SAFE(m_pUpdatesPosList, pEntry, pTmp)
     {
@@ -818,7 +828,9 @@ void CCScheduler::update(float dt)
             pEntry->target->update(dt);
         }
     }
-
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	auto time4 = std::chrono::high_resolution_clock::now();
+#endif
     // Iterate over all the custom selectors
     for (tHashTimerEntry *elt = m_pHashForTimers; elt != NULL; )
     {
@@ -857,7 +869,9 @@ void CCScheduler::update(float dt)
             removeHashElement(m_pCurrentTarget);
         }
     }
-
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	auto time5 = std::chrono::high_resolution_clock::now();
+#endif
     // Iterate over all the script callbacks
     if (m_pScriptHandlerEntries)
     {
@@ -874,7 +888,9 @@ void CCScheduler::update(float dt)
             }
         }
     }
-
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	auto time6 = std::chrono::high_resolution_clock::now();
+#endif
     // delete all updates that are marked for deletion
     // updates with priority < 0
     DL_FOREACH_SAFE(m_pUpdatesNegList, pEntry, pTmp)
@@ -884,7 +900,9 @@ void CCScheduler::update(float dt)
             this->removeUpdateFromHash(pEntry);
         }
     }
-
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	auto time7 = std::chrono::high_resolution_clock::now();
+#endif
     // updates with priority == 0
     DL_FOREACH_SAFE(m_pUpdates0List, pEntry, pTmp)
     {
@@ -893,7 +911,9 @@ void CCScheduler::update(float dt)
             this->removeUpdateFromHash(pEntry);
         }
     }
-
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	auto time8 = std::chrono::high_resolution_clock::now(); 
+#endif
     // updates with priority > 0
     DL_FOREACH_SAFE(m_pUpdatesPosList, pEntry, pTmp)
     {
@@ -902,10 +922,46 @@ void CCScheduler::update(float dt)
             this->removeUpdateFromHash(pEntry);
         }
     }
-
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	auto time9 = std::chrono::high_resolution_clock::now();
+#endif
     m_bUpdateHashLocked = false;
 
     m_pCurrentTarget = NULL;
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	std::chrono::duration<double> diff1 = time2 - time1;
+	if ((double)diff1.count() > 0.1f) {
+		std::cout << "CCScheduler Diff1: " << diff1.count() << " sec\n";
+	}
+	std::chrono::duration<double> diff2 = time3 - time2;
+	if ((double)diff2.count() > 0.1f) {
+		std::cout << "CCScheduler Diff2: " << diff2.count() << " sec\n";
+	}
+	std::chrono::duration<double> diff3 = time4 - time3;
+	if ((double)diff3.count() > 0.1f) {
+		std::cout << "CCScheduler Diff3: " << diff3.count() << " sec\n";
+	}
+	std::chrono::duration<double> diff4 = time5 - time4;
+	if ((double)diff4.count() > 0.1f) {
+		std::cout << "CCScheduler Diff4: " << diff4.count() << " sec\n";
+	}
+	std::chrono::duration<double> diff5 = time6 - time5;
+	if ((double)diff5.count() > 0.1f) {
+		std::cout << "CCScheduler Diff5: " << diff5.count() << " sec\n";
+	}
+	std::chrono::duration<double> diff6 = time7 - time6;
+	if ((double)diff6.count() > 0.1f) {
+		std::cout << "CCScheduler Diff6: " << diff6.count() << " sec\n";
+	}
+	std::chrono::duration<double> diff7 = time8 - time7;
+	if ((double)diff7.count() > 0.1f) {
+		std::cout << "CCScheduler Diff7: " << diff7.count() << " sec\n";
+	}
+	std::chrono::duration<double> diff8 = time9 - time8;
+	if ((double)diff8.count() > 0.1f) {
+		std::cout << "CCScheduler Diff8: " << diff8.count() << " sec\n";
+	}
+#endif
 }
 
 

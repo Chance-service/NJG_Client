@@ -1,106 +1,115 @@
-local common = require("common")
-local HP_pb = require("HP_pb")
-local Friend_pb = require("Friend_pb")
-local PageManager = require("PageManager")
-local UserInfo = require("PlayerInfo.UserInfo");
-local OSPVPManager = require("OSPVPManager")
-local table = require "table"
+----------------------------------------------------------------------------------
+-- FriendManager.lua
+-- 好友管理模組
+----------------------------------------------------------------------------------
+
+local common         = require("common")
+local HP_pb          = require("HP_pb")
+local Friend_pb      = require("Friend_pb")
+local PageManager    = require("PageManager")
+local UserInfo       = require("PlayerInfo.UserInfo")
+local OSPVPManager   = require("OSPVPManager")
 local MessageBoxPage = MessageBoxPage
-local ipairs = ipairs
-local pairs = pairs
-local string = string
-local tostring = tostring
-local print = print
 
-module("FriendManager")
+----------------------------------------------------------------------------------
+-- 模組定義
+----------------------------------------------------------------------------------
+local FriendManager = {}
 
-local friend_apply_list = {}
+----------------------------------------------------------------------------------
+-- 局部變量
+----------------------------------------------------------------------------------
+local friend_apply_list = {}   -- 好友申請列表
+local friend_list       = {}   -- 好友列表
+-- new_friend_list 目前未使用
 
-local friend_list = {}
+local isInitFriendList       = false
+local isInitFriendApplyList  = false
 
-local new_friend_list = {}
-
---local send_apply_list = {}
-
-local isInitFriendList = false
-local isInitFriendApplyList = false
-
-local FRIEND_MAIN_PAGE = "FriendPage"
+local FRIEND_MAIN_PAGE  = "FriendPage"
 local FRIEND_APPLY_PAGE = "FriendApplyPage"
-local MAIN_PAGE = "MainScenePage"
+local MAIN_PAGE         = "MainScenePage"
 
-onSyncApplyList = "onSyncApplyList"
-onSyncList = "onSyncList"
-onNewFriendApply = "onNewFriendApply"
-onNewFriendAdd = "onNewFriendAdd"
-onNoticeChecked = "onFriendNoticeChecked"
+-- 事件常量
+FriendManager.onSyncApplyList  = "onSyncApplyList"
+FriendManager.onSyncList       = "onSyncList"
+FriendManager.onNewFriendApply = "onNewFriendApply"
+FriendManager.onNewFriendAdd   = "onNewFriendAdd"
+FriendManager.onNoticeChecked  = "onFriendNoticeChecked"
 
-local needCheck = false
-
-local viewPlayerId = nil
-
+local needCheck     = false
+local viewPlayerId  = nil
 local agreePlayerId = nil
-
 local deletePlayerId = nil
 
+----------------------------------------------------------------------------------
+-- 本地輔助函數
+----------------------------------------------------------------------------------
 local function doNoticeCheck()
-    if friend_apply_list and #friend_apply_list > 0 then
+    if #friend_apply_list > 0 then
         needCheck = true
-        PageManager.refreshPage(MAIN_PAGE, onSyncApplyList)
-        PageManager.refreshPage(FRIEND_MAIN_PAGE, onNewFriendApply)
+        PageManager.refreshPage(MAIN_PAGE, FriendManager.onSyncApplyList)
+        PageManager.refreshPage(FRIEND_MAIN_PAGE, FriendManager.onNewFriendApply)
     else
         needCheck = false
-        PageManager.refreshPage(MAIN_PAGE, onNoticeChecked)
-        PageManager.refreshPage(FRIEND_MAIN_PAGE, onNoticeChecked)
+        PageManager.refreshPage(MAIN_PAGE, FriendManager.onNoticeChecked)
+        PageManager.refreshPage(FRIEND_MAIN_PAGE, FriendManager.onNoticeChecked)
     end
 end
 
--- friendID : 0: all >0:特定好友
-function requestGiftTo(friendID)
+----------------------------------------------------------------------------------
+--【請求相關函數】
+----------------------------------------------------------------------------------
+-- 發送送禮請求
+-- friendID : 0 表示全部，>0 表示特定好友
+function FriendManager.requestGiftTo(friendID)
     local msg = Friend_pb.HPGiftFriendshipReq()
-	msg.friendId = friendID
+    msg.friendId = friendID
     print(string.format("Send[%s] MsgType[%s] friendID[%s]", "HP_pb.FRIEND_POINT_GIFT_C", "HPGiftFriendshipReq", tostring(friendID)))
-	common:sendPacket(HP_pb.FRIEND_POINT_GIFT_C, msg, true)
+    common:sendPacket(HP_pb.FRIEND_POINT_GIFT_C, msg, true)
 end
 
--- friendID : 0: all >0:特定好友
-function requestGiftFrom(friendID) 
+-- 發送領取禮物請求
+function FriendManager.requestGiftFrom(friendID)
     local msg = Friend_pb.HPGetFriendshipReq()
-	msg.friendId = friendID
-	common:sendPacket(HP_pb.FRIEND_POINT_GET_C, msg, true)
+    msg.friendId = friendID
+    common:sendPacket(HP_pb.FRIEND_POINT_GET_C, msg, true)
 end
 
-function requestFriendApplyList()
+-- 請求好友申請列表（僅初始化時請求一次）
+function FriendManager.requestFriendApplyList()
     if isInitFriendApplyList then return end
     common:sendEmptyPacket(HP_pb.FRIEND_APPLY_LIST_C, false)
 end
 
-function requestFriendList()
-    if isInitFriendList then 
-        PageManager.refreshPage(FRIEND_MAIN_PAGE, onSyncList)
-        return 
-    end
+-- 請求好友列表
+function FriendManager.requestFriendList()
+   --if isInitFriendList then
+   --    PageManager.refreshPage(FRIEND_MAIN_PAGE, FriendManager.onSyncList)
+   --    return 
+   --end
     common:sendEmptyPacket(HP_pb.FRIEND_LIST_C, false)
 end
 
-function searchFriendById(id)
+-- 按玩家ID搜索好友
+function FriendManager.searchFriendById(id)
     local msg = Friend_pb.HPFindFriendReq()
     msg.playerId = id
     common:sendPacket(HP_pb.FRIEND_FIND_C, msg, true)
 end
 
-function searchFriendByName(name)
+-- 按玩家名稱搜索好友
+function FriendManager.searchFriendByName(name)
     local msg = Friend_pb.HPFindFriendReq()
     msg.playerId = 0
     msg.playerName = name
     common:sendPacket(HP_pb.FRIEND_FIND_C, msg, true)
 end
-function sendApplyById(id)
---    if common:table_hasValue(send_apply_list,id) then
---        MessageBoxPage:Msg_Box('@FriendAlreadyRecommendTxt')
---        return
---    end
-    if getFriendInfoById(id).playerId then
+
+-- 申請添加好友（根據ID）
+function FriendManager.sendApplyById(id)
+    local info = FriendManager.getFriendInfoById(id)
+    if info.playerId then
         MessageBoxPage:Msg_Box("@AlreadyBeFriendTxt")
         return
     end
@@ -111,51 +120,99 @@ function sendApplyById(id)
     local msg = Friend_pb.HPApplyFriend()
     msg.playerId = id
     common:sendPacket(HP_pb.FRIEND_APPLY_C, msg, false)
-    --MessageBoxPage:Msg_Box("@RecommendSuccessTxt")
-    --table.insert(send_apply_list,id)
+    FriendSendedList[id] = true
 end
 
-function agreeApply(id)
+-- 同意好友申請
+function FriendManager.agreeApply(id)
     agreePlayerId = id
-    local msg = Friend_pb.HPRefuseApplyFriend()
+    local msg = Friend_pb.HPRefuseApplyFriend()  -- 此處協議類型根據實際情況可能需要調整
     msg.playerId = id
     common:sendPacket(HP_pb.FRIEND_AGREE_C, msg, false)
 end
 
-function refuseApply(id)
+-- 拒絕好友申請
+function FriendManager.refuseApply(id)
     local msg = Friend_pb.HPRefuseApplyFriend()
     msg.playerId = id
     common:sendPacket(HP_pb.FRIEND_REFUSE_C, msg, true)
 end
 
-function deleteById(id)
-    PageManager.showConfirm(common:getLanguageString("@FriendDeleteTitle"),common:getLanguageString("@FriendDeleteTxt"),function(isSure)
-        if isSure then
-            deletePlayerId = id
-            local msg = Friend_pb.HPFriendDel()
-            msg.targetId = id
-            common:sendPacket(HP_pb.FRIEND_DELETE_C, msg, true)
+-- 刪除好友（單個）
+function FriendManager.deleteById(id)
+    PageManager.showConfirm(
+        common:getLanguageString("@FriendDeleteTitle"),
+        common:getLanguageString("@FriendDeleteTxt"),
+        function(isSure)
+            if isSure then
+                deletePlayerId = id
+                local msg = Friend_pb.HPFriendDel()
+                msg.targetId:append(id)
+                common:sendPacket(HP_pb.FRIEND_DELETE_C, msg, true)
+            end
         end
-    end)
+    )
 end
 
-function syncFriendList(msg)
-    --isInitFriendList = true
-    if msg.friendItem then
-        friend_list = {}
-        local playerIds = {}
-        for i = 1, #msg.friendItem do
-            table.insert(friend_list, msg.friendItem[i])
-            table.insert(playerIds, msg.friendItem[i].playerId)
+-- 刪除好友（批量）
+function FriendManager.deleteByIds(ids)
+    PageManager.showConfirm(
+        common:getLanguageString("@FriendDeleteTitle"),
+        common:getLanguageString("@FriendDeleteTxt"),
+        function(isSure)
+            if isSure then
+                local msg = Friend_pb.HPFriendDel()
+                for _, id in ipairs(ids) do
+                    msg.targetId:append(id)
+                end
+                common:sendPacket(HP_pb.FRIEND_DELETE_C, msg, true)
+            end
         end
-        if #playerIds > 0 then
-            OSPVPManager.reqLocalPlayerInfo(playerIds)
-        end
-        PageManager.refreshPage(FRIEND_MAIN_PAGE, onSyncList)
+    )
+end
+
+----------------------------------------------------------------------------------
+--【同步處理函數】
+----------------------------------------------------------------------------------
+-- 同步好友列表
+function FriendManager.syncFriendList(msg)
+    if not msg.friendItem then 
+        return 
     end
+
+    friend_list = {}
+    local playerIds = {}
+
+    for i = 1, #msg.friendItem do
+        local data = msg.friendItem[i]
+        local friendItem = {
+            playerId     = data.playerId,
+            level        = data.level,
+            name         = data.name,
+            roleId       = data.roleId,
+            fightValue   = data.fightValue,
+            rebirthStage = data.rebirthStage,
+            signature    = data.signature or "",
+            offlineTime  = data.offlineTime or 0,
+            avatarId     = data.avatarId or 0,
+            headIcon     = data.headIcon or 1000,
+            haveGift     = data.haveGift or false,
+            canGift      = data.canGift or false,
+        }
+        table.insert(friend_list, friendItem)
+        table.insert(playerIds, data.playerId)
+    end
+
+    if #playerIds > 0 then
+        OSPVPManager.reqLocalPlayerInfo(playerIds)
+    end
+
+    PageManager.refreshPage(FRIEND_MAIN_PAGE, FriendManager.onSyncList)
+    isInitFriendList = true
 end
 
-function syncFriendApplyList(msg)
+-- 同步好友申請列表
+function FriendManager.syncFriendApplyList(msg)
     isInitFriendApplyList = true
     if msg.friendItem then
         friend_apply_list = {}
@@ -167,140 +224,151 @@ function syncFriendApplyList(msg)
         if #playerIds > 0 then
             OSPVPManager.reqLocalPlayerInfo(playerIds)
         end
-        PageManager.refreshPage(FRIEND_APPLY_PAGE, onSyncApplyList)
+        PageManager.refreshPage(FRIEND_APPLY_PAGE, FriendManager.onSyncApplyList)
         doNoticeCheck()
     end
 end
 
-function onNewApply(playerItem)
-    for k,v in pairs(friend_apply_list) do
+----------------------------------------------------------------------------------
+--【更新/事件處理函數】
+----------------------------------------------------------------------------------
+-- 新的好友申請進來
+function FriendManager.onNewApply(playerItem)
+    for _, v in pairs(friend_apply_list) do
         if v.playerId == playerItem.playerId then return end
     end
     needCheck = true
-    table.insert(friend_apply_list,playerItem)
-    OSPVPManager.reqLocalPlayerInfo({playerItem.playerId})
-    PageManager.refreshPage(FRIEND_APPLY_PAGE, onSyncApplyList)
-    PageManager.refreshPage(FRIEND_MAIN_PAGE, onNewFriendApply)
-    PageManager.refreshPage(MAIN_PAGE, onNewFriendApply)
+    table.insert(friend_apply_list, playerItem)
+    OSPVPManager.reqLocalPlayerInfo({ playerItem.playerId })
+    PageManager.refreshPage(FRIEND_APPLY_PAGE, FriendManager.onSyncApplyList)
+    PageManager.refreshPage(FRIEND_MAIN_PAGE, FriendManager.onNewFriendApply)
+    PageManager.refreshPage(MAIN_PAGE, FriendManager.onNewFriendApply)
 end
 
-function onNewFriend(playerItem)
-    for k,v in pairs(friend_list) do
+-- 新的好友添加成功
+function FriendManager.onNewFriend(playerItem)
+    for _, v in pairs(friend_list) do
         if v.playerId == playerItem.playerId then return end
     end
     local new_apply_list = {}
     local needRefreshApply = false
-    for i,v in pairs(friend_apply_list) do
+    for _, v in pairs(friend_apply_list) do
         if v.playerId == playerItem.playerId then
             needRefreshApply = true
         else
             table.insert(new_apply_list, v)
         end
     end
-    table.insert(friend_list,playerItem)
-    OSPVPManager.reqLocalPlayerInfo({playerItem.playerId})
-    PageManager.refreshPage(MAIN_PAGE, onNewFriendAdd)
-    PageManager.refreshPage(FRIEND_MAIN_PAGE, onSyncList)
+    table.insert(friend_list, playerItem)
+    OSPVPManager.reqLocalPlayerInfo({ playerItem.playerId })
+    PageManager.refreshPage(MAIN_PAGE, FriendManager.onNewFriendAdd)
+    PageManager.refreshPage(FRIEND_MAIN_PAGE, FriendManager.onSyncList)
     if needRefreshApply then
         friend_apply_list = new_apply_list
-        PageManager.refreshPage(FRIEND_APPLY_PAGE, onSyncApplyList)
-        --doNoticeCheck()
+        PageManager.refreshPage(FRIEND_APPLY_PAGE, FriendManager.onSyncApplyList)
     end
     if agreePlayerId then
         agreePlayerId = nil
-        MessageBoxPage:Msg_Box(common:getLanguageString("@FriendAddSuccessTxt",playerItem.name))
+        MessageBoxPage:Msg_Box(common:getLanguageString("@FriendAddSuccessTxt", playerItem.name))
     end
-    --send_apply_list = common:table_removeFromArray(send_apply_list, playerItem.playerId)
 end
 
-function onDeleteFriend(playerId)
-    local newList = {}
-    for k,v in ipairs(friend_list) do
-        if v.playerId ~= playerId then
-            table.insert(newList, v)
+-- 好友刪除事件
+-- 此處的參數為待刪除的好友ID集合（table）
+function FriendManager.onDeleteFriend(playerIds)
+    for i = #friend_list, 1, -1 do
+        for _, id in ipairs(playerIds) do
+            if friend_list[i].playerId == id then
+                table.remove(friend_list, i)
+                break  
+            end
         end
     end
-    friend_list = newList
-    --send_apply_list = common:table_removeFromArray(send_apply_list, playerId)
-    PageManager.refreshPage(FRIEND_MAIN_PAGE, onSyncList)
-    if deletePlayerId and deletePlayerId == playerId then
-        deletePlayerId = nil
-        MessageBoxPage:Msg_Box("@DelFriendSuccess")
-    end
+    MessageBoxPage:Msg_Box("@DelFriendSuccess")
+    PageManager.refreshPage(FRIEND_MAIN_PAGE, FriendManager.onSyncList)
 end
 
-function onRefuseApply(playerId)
+-- 拒絕好友申請事件
+function FriendManager.onRefuseApply(playerId)
     local newList = {}
-    for k,v in ipairs(friend_apply_list) do
+    for _, v in ipairs(friend_apply_list) do
         if v.playerId ~= playerId then
             table.insert(newList, v)
         end
     end
     friend_apply_list = newList
-    --send_apply_list = common:table_removeFromArray(send_apply_list, playerId)
-    PageManager.refreshPage(FRIEND_APPLY_PAGE, onSyncApplyList)  
-    --doNoticeCheck()
+    PageManager.refreshPage(FRIEND_APPLY_PAGE, FriendManager.onSyncApplyList)
 end
 
-function getFriendApplyList()
+----------------------------------------------------------------------------------
+--【Getter 函數】
+----------------------------------------------------------------------------------
+function FriendManager.getFriendApplyList()
     return friend_apply_list
 end
 
-function getFriendList()
+function FriendManager.getFriendList()
     return friend_list
 end
 
-function getApplyInfoById(playerId)
-    local info = {}
-    for i,v in ipairs(friend_apply_list) do
+function FriendManager.getApplyInfoById(playerId)
+    for _, v in ipairs(friend_apply_list) do
         if v.playerId == playerId then
-            info = v
-            break
+            return v
         end
     end
-    return info
+    return {}
 end
 
-function getFriendInfoById(playerId)
-    local info = {}
-    for i,v in ipairs(friend_list) do
+function FriendManager.getFriendInfoById(playerId)
+    for _, v in ipairs(friend_list) do
         if v.playerId == playerId then
-            info = v
-            break
+            return v
         end
     end
-    return info
+    return {}
 end
 
-function getFriendInfoByName(name)
-    local info = {}
-    for i,v in ipairs(friend_list) do
+function FriendManager.getFriendInfoByName(name)
+    for _, v in ipairs(friend_list) do
         if v.name == name then
-            info = v
-            break
+            return v
         end
     end
-    return info
+    return {}
 end
 
-function hasCheckedApply()
+----------------------------------------------------------------------------------
+--【通知與狀態處理】
+----------------------------------------------------------------------------------
+-- 清除好友申請通知
+function FriendManager.hasCheckedApply()
     needCheck = false
-    PageManager.refreshPage(MAIN_PAGE, onNoticeChecked)
-    PageManager.refreshPage(FRIEND_MAIN_PAGE, onNoticeChecked)
+    PageManager.refreshPage(MAIN_PAGE, FriendManager.onNoticeChecked)
+    PageManager.refreshPage(FRIEND_MAIN_PAGE, FriendManager.onNoticeChecked)
 end
 
-function needCheckNotice()
+-- 是否需要顯示通知
+function FriendManager.needCheckNotice()
     return needCheck
 end
 
-function setViewPlayerId(playerId)
+----------------------------------------------------------------------------------
+--【玩家查看相關】
+----------------------------------------------------------------------------------
+function FriendManager.setViewPlayerId(playerId)
     viewPlayerId = playerId
 end
 
-function getViewPlayerId()
+function FriendManager.getViewPlayerId()
     return viewPlayerId
 end
 
-function cleanViewPlayer()
+function FriendManager.cleanViewPlayer()
     viewPlayerId = nil
 end
+
+----------------------------------------------------------------------------------
+-- 模塊導出
+----------------------------------------------------------------------------------
+return FriendManager

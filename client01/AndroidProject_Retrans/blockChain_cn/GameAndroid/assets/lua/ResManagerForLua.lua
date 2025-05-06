@@ -86,6 +86,7 @@ function ResManagerForLua:getResInfoByMainTypeAndId(resMainType, resId, resCount
         ResInfoLua.icon = itemCfg[resId]["icon"]
         ResInfoLua.describe2 = itemCfg[resId]["description2"]
         ResInfoLua.iconScale = 1
+        ResInfoLua.afkHour = itemCfg[resId]["AFKhour"]
         local _type = itemCfg[resId]["type"]
         if _type == Const_pb.AVATAR_GIFT then
             local insideItem = common:parseItemWithComma(itemCfg[resId].containItem)[1]
@@ -147,6 +148,11 @@ function ResManagerForLua:getResInfoByMainTypeAndId(resMainType, resId, resCount
         local iconCfg = GameConfig.LeaderAvatarInfo[resId]
         ResInfoLua.icon = iconCfg.icon[UserInfo.roleInfo.prof]
         ResInfoLua.describe = avatarCfg[resId]["desc"]
+    elseif resMainType == Const_pb.SKIN then
+        ResInfoLua.name = "Skin" .. resId
+        ResInfoLua.quality = 5
+        ResInfoLua.icon = "UI/RoleIcon/Icon_" .. string.format("%05d", resId) .. ".png"
+        ResInfoLua.describe = "Skin" .. resId
     end
 
     return ResInfoLua

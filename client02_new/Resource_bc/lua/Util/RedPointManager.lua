@@ -130,7 +130,7 @@ function RedPointManager_initSyncAllPageData()
     if not LockManager_getShowLockByPageName(RedPointCfg[RedPointManager.PAGE_IDS.DUNGEON_REWARD_BTN].unlock) then -- 地下城資料
         local isDone = RedPointManager.AllPageData[RedPointManager.PAGE_IDS.DUNGEON_REWARD_BTN][1].syncDone
         if not isDone then
-            common:sendEmptyPacket(HP_pb.MULTIELITE_LIST_INFO_C, true)
+            common:sendEmptyPacket(HP_pb.MULTIELITE_LIST_INFO_C, false)
         end
     end
     if not LockManager_getShowLockByPageName(RedPointCfg[RedPointManager.PAGE_IDS.RANKING_BP_REWARD].unlock) then -- 排行榜獎勵

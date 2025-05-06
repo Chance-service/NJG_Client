@@ -551,9 +551,9 @@ function EquipManager:getBattleAttrEffect(attrId, attrVal, level)
     elseif attrId == Const_pb.DODGE then
         value = string.format("%.2f", NewBattleUtil:calRoundValue(100 * attrVal / (attrVal + NewBattleUtil:calRoundValue((1 + level / 2), 1) * (700 - level)), -2))
     elseif attrId == Const_pb.PHYDEF then
-        value = string.format("%.2f", NewBattleUtil:calRoundValue(100 * attrVal / (attrVal + NewBattleUtil:calRoundValue((1 + level / 3), 1) * (800 - level)), -2))
+        value = string.format("%.2f", NewBattleUtil:calRoundValue(100 * math.min(attrVal / (attrVal + NewBattleUtil:calRoundValue((1 + level / 3), 1) * (800 - level)), NewBattleConst.MAX_DEF_PER), -2))
     elseif attrId == Const_pb.MAGDEF then
-        value = string.format("%.2f", NewBattleUtil:calRoundValue(100 * attrVal / (attrVal + NewBattleUtil:calRoundValue((1 + level / 3), 1) * (800 - level)), -2))
+        value = string.format("%.2f", NewBattleUtil:calRoundValue(100 * math.min(attrVal / (attrVal + NewBattleUtil:calRoundValue((1 + level / 3), 1) * (800 - level)), NewBattleConst.MAX_DEF_PER), -2))
     elseif attrId == Const_pb.RESILIENCE then
         value = string.format("%.2f", NewBattleUtil:calRoundValue(100 * attrVal / (attrVal + NewBattleUtil:calRoundValue((1 + level / 3), 1) * (700 - level)), -2))
     elseif attrId == Const_pb.BUFF_PHYDEF_PENETRATE or attrId == Const_pb.BUFF_MAGDEF_PENETRATE then

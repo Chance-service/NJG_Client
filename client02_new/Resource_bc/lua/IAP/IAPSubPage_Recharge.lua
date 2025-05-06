@@ -77,6 +77,7 @@ local opcodes = {
     DISCOUNT_GIFT_GET_REWARD_S = HP_pb.DISCOUNT_GIFT_GET_REWARD_S,
     FETCH_SHOP_LIST_S         = HP_pb.FETCH_SHOP_LIST_S,
     PLAYER_AWARD_S            = HP_pb.PLAYER_AWARD_S,
+    LAST_SHOP_ITEM_S          = HP_pb.LAST_SHOP_ITEM_S
 }
 
 -- 用 state 表集中管理所有狀態資料
@@ -96,7 +97,8 @@ local state = {
 }
 
 local rechargeCfg = RechargeCfg  -- 充值配置（下發時填充）
-
+--進入時執行Fun
+local EnterFun = "onDay"
 -- ccbi 設定與回呼對應關係
 local option = {
     ccbiFile = "DailyBundleShop.ccbi",
@@ -196,11 +198,11 @@ function DiscountGiftPage:onReceivePacket(packet)
     if opcode == HP_pb.DISCOUNT_GIFT_INFO_S then
         state.serverData = parseServerData(buff)
         self:SetItemInfo()
-        if not state.currentBundle then
-            self:onDay(state.container)
-        else
-            self:refresh(state.container)
+        
+        if DiscountGiftPage and DiscountGiftPage[EnterFun] then
+            DiscountGiftPage[EnterFun](DiscountGiftPage, state.container)
         end
+
         RedPointManager_refreshPageShowPoint(RedPointManager.PAGE_IDS.GOODS_DAILY_TAB, 1, buff)
         RedPointManager_refreshPageShowPoint(RedPointManager.PAGE_IDS.GOODS_WEEKLY_TAB, 1, buff)
         RedPointManager_refreshPageShowPoint(RedPointManager.PAGE_IDS.GOODS_MONTHLY_TAB, 1, buff)
@@ -216,6 +218,18 @@ function DiscountGiftPage:onReceivePacket(packet)
 
     elseif opcode == HP_pb.PLAYER_AWARD_S then
         require("PackageLogicForLua").PopUpReward(buff)
+    end
+     if opcode == HP_pb.LAST_SHOP_ITEM_S then
+        local Recharge_pb = require("Recharge_pb")
+        local msg = Recharge_pb.LastGoodsItem()
+        msg:ParseFromString(buff)
+        if msg.Items == "" then return end
+        local Items = common:parseItemWithComma(msg.Items)
+        if next(Items) then
+            local CommonRewardPage = require("CommPop.CommItemReceivePage")
+            CommonRewardPage:setData(Items, common:getLanguageString("@ItemObtainded"), nil)
+            PageManager.pushPage("CommPop.CommItemReceivePage")
+        end
     end
 end
 
@@ -271,6 +285,7 @@ function DiscountGiftPage:refresh(container)
         scroll:setContentOffset(ccp(0, scroll:getViewSize().height - cellHeight * #state.currentBundle - 10))
     else
         scroll:setContentOffset(state.scrollOffset)
+        state.scrollOffset = nil
     end
     scroll:forceRecaculateChildren()
 end
@@ -278,7 +293,6 @@ end
 -- 通用禮包切換函式（根據配置設定按鈕與 Banner 狀態）
 local function selectBundle(self, bundle, configKey, container)
     state.currentBundle = bundle
-    state.scrollOffset = nil
     NodeHelper:setNodesVisible(container, bundleUIConfig[configKey])
     self:onTimer(container)
     self:refresh(state.container)
@@ -287,19 +301,26 @@ end
 function DiscountGiftPage:onDay(container)
     if state.dailyBundle then
         selectBundle(self, state.dailyBundle, "day", container)
+        DiscountGiftPage:setEnterFun("onDay")
     end
 end
 
 function DiscountGiftPage:onWeek(container)
     if state.weeklyBundle then
         selectBundle(self, state.weeklyBundle, "week", container)
+        DiscountGiftPage:setEnterFun("onWeek")
     end
 end
 
 function DiscountGiftPage:onMonth(container)
     if state.monthlyBundle then
         selectBundle(self, state.monthlyBundle, "month", container)
+        DiscountGiftPage:setEnterFun("onMonth")
     end
+end
+
+function  DiscountGiftPage:setEnterFun(FunName)
+    EnterFun = FunName
 end
 
 function DiscountGiftPage:onExecute(container)
@@ -314,6 +335,7 @@ function DiscountGiftPage:onReceiveMessage(message)
     if typeId == MSG_RECHARGE_SUCCESS then
         CCLuaLog("DiscountGiftPage received recharge success")
         self:ItemInfoRequest()
+        common:sendEmptyPacket(HP_pb.LAST_SHOP_ITEM_C, true)
     elseif typeId == MSG_REFRESH_REDPOINT then
         self:refreshAllPoint(state.container)
     end
@@ -395,14 +417,12 @@ function SaleContent:onRefreshContent(cell)
     end
     for _, sItem in ipairs(state.serverData) do
         if sItem.id == packageId then
-            if sItem.status == 0 then
-                NodeHelper:setNodeVisible(container:getVarNode("mSold"), true)
+            if sItem.status == 0 then 
+                NodeHelper:setNodesVisible(container,{mSold = true,mBtn = false, mCount = false,mCost = false,mReceive = false,mCoin = false})
             elseif sItem.status == 1 then
-                NodeHelper:setNodesVisible(container, { mCoin = true, mCost = true, mReceive = false })
-                NodeHelper:setNodeVisible(container:getVarNode("mSold"), false)
+                NodeHelper:setNodesVisible(container, { mSold = false ,mBtn = true,mCoin = true, mCost = true, mReceive = false ,mCount = true})
             elseif sItem.status == 2 then
-                NodeHelper:setNodesVisible(container, { mCoin = false, mCost = false, mReceive = true })
-                NodeHelper:setNodeVisible(container:getVarNode("mSold"), false)
+                NodeHelper:setNodesVisible(container, { mSold = false ,mCoin = false,mBtn = true, mCost = false, mReceive = true ,mCount = true})
             end
             local show = ((item.limitNum - sItem.boughtTimes) > 0) and (SaleContent:getPrice(packageId) == 0)
             NodeHelper:setNodesVisible(container, { mPoint = show })
@@ -411,6 +431,7 @@ function SaleContent:onRefreshContent(cell)
     end
     local leftAmount = item.limitNum - getBoughtTimes(packageId, state)
     local leftStr = common:getLanguageString("@Shop.Item.leftAmount", leftAmount, item.limitNum)
+
     NodeHelper:setStringForLabel(container, { mTitle = item.name, mCount = leftStr, mCost = tonumber(SaleContent:getPrice(packageId)) })
 end
 

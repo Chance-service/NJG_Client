@@ -63,24 +63,21 @@ function CDKeyPageBase:onEnter(container)
     if BlackBoard:getInstance().PLATFORM_TYPE_FOR_LUA == 2 or Golb_Platform_Info.is_win32_platform then
         CDKeyPageBase.editBox = NodeHelper:addEditBox(CCSize(470, 200), container:getVarNode("mCDKey"), function(eventType)
             if eventType == "began" then
-                --NodeHelper:cursorNode(container, "mCDKey", true)
+                CCLuaLog("CDKeyPageBase.editBox began 1")
                 NodeHelper:setStringForLabel(container, { mCDKeyHint = "" })
-                -- triggered when an edit box gains focus after keyboard is shown
+                CCLuaLog("CDKeyPageBase.editBox began 2")
             elseif eventType == "ended" then
+                CCLuaLog("CDKeyPageBase.editBox ended 1")
                 CDKeyPageBase.onEditBoxReturn(container, CDKeyPageBase.editBox, CDKeyPageBase.editBox:getText())
-                --NodeHelper:cursorNode(container, "mCDKey", true)
-                -- CDKeyPageBase.onEditBoxReturn(container,CDKeyPageBase.editBox,CDKeyPageBase.editBox:getText())
-                -- triggered when an edit box loses focus after keyboard is hidden.
+                CCLuaLog("CDKeyPageBase.editBox ended 2")
             elseif eventType == "changed" then
+                CCLuaLog("CDKeyPageBase.editBox changed 1")
                 CDKeyPageBase.onEditBoxReturn(container, CDKeyPageBase.editBox, CDKeyPageBase.editBox:getText(), true)
-                --NodeHelper:cursorNode(container, "mCDKey", true)
-                -- CDKeyPageBase.onEditBoxReturn(container,CDKeyPageBase.editBox,CDKeyPageBase.editBox:getText())
-                -- triggered when the edit box text was changed.
+                CCLuaLog("CDKeyPageBase.editBox changed 2")
             elseif eventType == "return" then
-                --NodeHelper:cursorNode(container, "mCDKey", true)
+                CCLuaLog("CDKeyPageBase.editBox return 1")
                 CDKeyPageBase.onEditBoxReturn(container, CDKeyPageBase.editBox, CDKeyPageBase.editBox:getText())
-                -- CDKeyPageBase.onEditBoxReturn(container,CDKeyPageBase.editBox,CDKeyPageBase.editBox:getText())
-                -- triggered when the return button was pressed or the outside area of keyboard was touched.
+                CCLuaLog("CDKeyPageBase.editBox return 2")
             end
         end , ccp(-235, 0), common:getLanguageString('@InputCDKey'))
         -- container:getVarNode("mCDKey"):setPosition(ccp(0,46))
@@ -208,11 +205,16 @@ function CDKeyPageBase:luaonCloseKeyboard(container)
 --        mTipAniSprite:stopAllActions()
 --        mCdKey:removeChildByTag(10086,true)
 --    end
+    CCLuaLog("CDKeyPageBase:luaonCloseKeyboard1")
     NodeHelper:cursorNode(container, "mCDKey", false)
+    CCLuaLog("CDKeyPageBase:luaonCloseKeyboard2")
 end
 function CDKeyPageBase:onInputboxEnter(container)
+    CCLuaLog("CDKeyPageBase:onInputboxEnter1")
     self:InputDone(container)
+    CCLuaLog("CDKeyPageBase:onInputboxEnter2")
     NodeHelper:cursorNode(container, "mCDKey", true)
+    CCLuaLog("CDKeyPageBase:onInputboxEnter3")
 end
 
 

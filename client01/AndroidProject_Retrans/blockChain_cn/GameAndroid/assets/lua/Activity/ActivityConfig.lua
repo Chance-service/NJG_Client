@@ -1189,4 +1189,7 @@ ActivityConfig =
         activityType = ACTIVITY_TYPE.REWARD,
         page = RewardSubPage_Recharge_Bonus,
     },
+    [Const_pb.ACTIVITY193_SingleBoss] = {
+        -- 單人強敵
+    },
 }

@@ -34,7 +34,7 @@ function Skill_1243:runSkill(chaNode, skillId, resultTable, allPassiveTable, tar
     --施法者造成治療buff
     local buffValue = BuffManager:checkHealBuffValue(chaNode.buffData)
     --目標受到治療buff
-    local buffValue2 = BuffManager:checkBeHealBuffValue(chaNode.buffData)
+    local buffValue2 = BuffManager:checkBeHealBuffValue(chaNode)
     --治療
     local heal = chaNode.battleData[NewBattleConst.BATTLE_DATA.MAX_HP] * tonumber(params[1]) * buffValue * buffValue2
     heal = math.floor(heal + 0.5)

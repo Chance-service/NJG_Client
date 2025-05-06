@@ -106,7 +106,7 @@ function ChangePlayerIconPage:initData(container)
         if v.stageLevel > 0 then
             table.insert(useableHero, v.itemId * CFG_ID_DATA.BASE_HERO_RATIO, true)
             for idx = 1, #v.ownSkin do
-                table.insert(useableHero, v.itemId * CFG_ID_DATA.BASE_HERO_RATIO + v.ownSkin[idx], true)    
+                table.insert(useableHero, v.ownSkin[idx], true)    
             end
         end
     end

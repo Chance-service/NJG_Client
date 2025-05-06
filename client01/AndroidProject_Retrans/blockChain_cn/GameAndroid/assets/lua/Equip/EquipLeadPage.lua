@@ -12,6 +12,7 @@ local UserMercenaryManager = require("UserMercenaryManager")
 local EquipOprHelper = require("Equip.EquipOprHelper")
 local UserItemManager = require("UserItemManager")
 local CONST = require("Battle.NewBattleConst")
+local GuideManager = require("Guide.GuideManager")
 local FateDataManager = require("FateDataManager")
 require "Equip.AWTSelectPage"
 local thisPageContainer = nil
@@ -126,6 +127,8 @@ local nowChibiSkin = -1
 local heroCfg = nil
 local heroLevelCfg = ConfigManager.getHeroLevelCfg()
 local heroStarCfg = ConfigManager.getHeroStarCfg()
+local skinCfg = ConfigManager.getSkinCfg()
+local skinSkillCfg = ConfigManager.getSkinSkillCfg()
 
 local effectSpineParent = nil    -- 特效spine父節點
 local effectSpine = nil  -- 特效spine
@@ -172,12 +175,19 @@ local mercenaryInfos = nil
 local HeroTable={}
 local nowRoleId_Idx=0
 
+local pageContainer = nil
+local libPlatformListener = { }
+function libPlatformListener:onPlayMovieEnd(listener)
+    if not listener then return end
+    --EquipLeadPage:closeMovie(pageContainer)
+end
+-----------------------------------------------------------------------------------------------------
 local AttributeContent = { }
 local AttributeSetting = {
     { Const_pb.BUFF_CRITICAL_DAMAGE, 4 },
     { Const_pb.BUFF_AVOID_CONTROL, 6 },
-    { Const_pb.BUFF_MAGDEF_PENETRATE, 3 },
-    { Const_pb.BUFF_PHYDEF_PENETRATE, 3 },
+    { Const_pb.BUFF_MAGDEF_PENETRATE, 1 },
+    { Const_pb.BUFF_PHYDEF_PENETRATE, 1 },
     { Const_pb.RESILIENCE, 3 },
     { Const_pb.CRITICAL, 3 },
     { Const_pb.DODGE, 3 },
@@ -198,11 +208,14 @@ function AttributeContent:onRefreshContent(ccbRoot)
         NodeHelper:setStringForLabel(container, { mAtt1 = common:getLanguageString("@Combatattr_" .. key) })
     end
     if AttributeSetting[self.id][2] == 4 then
-        value = value + 100
+        value = (value + 100) .. "%"
+    end
+    if AttributeSetting[self.id][2] == 1 or AttributeSetting[self.id][2] == 6 then
+        value = value .. "%"
     end
     NodeHelper:setStringForLabel(container, { mAtt2 = value })
     if AttributeSetting[self.id][2] == 2 or AttributeSetting[self.id][2] == 3 then
-        NodeHelper:setNodesVisible(container, { mAttr3 = true })
+        NodeHelper:setNodesVisible(container, { mAtt3 = true })
         NodeHelper:setStringForLabel(container, { mAtt3 = "(" .. EquipManager:getBattleAttrEffect(key, value, curRoleInfo.level) .. "%)" })
     else
         NodeHelper:setNodesVisible(container, { mAtt3 = false })
@@ -220,6 +233,7 @@ function EquipLeadPage:onEnter(container)
     mercenaryInfos = UserMercenaryManager:getMercenaryStatusInfos()
 
     self.container = container
+    pageContainer = container
 
     if not self.container or tolua.isnull(self.container) then
         self.container = ScriptContentBase:create(EquipLeadPage.ccbiFile)
@@ -248,13 +262,17 @@ function EquipLeadPage:onEnter(container)
     self:initSpine(selfContainer)
 
     nowPageType = PAGE_TYPE.BASE_INFO
+    -- 播放影片
+    self:playMovie(container)
     self:refreshMainButton(container)
     self:refreshPage(selfContainer)
     self:showRoleSpine(selfContainer)
 
+    if not GuideManager.isInGuide then
+        container:runAnimation("SoulStarOpen")
+    end
     ----------------------------------------------------------
     --新手教學
-    local GuideManager = require("Guide.GuideManager")
     GuideManager.PageContainerRef["EquipLeadPage"] = self.container
     PageManager.pushPage("NewbieGuideForcedPage")
     return self.container
@@ -274,7 +292,7 @@ function EquipLeadPage:showMainPageInfo(container)
     end
     -- 屬性, 職業顯示
     NodeHelper:setSpriteImage(container, { mClassIcon = GameConfig.MercenaryClassImg[heroCfg.Job],
-                                           mElementIcon = GameConfig.MercenaryElementImg[heroCfg.Element] })
+                                           mElementIcon = GameConfig.MercenaryElementImg[curRoleInfo.elements] })
     -- 等級, 戰力顯示
     local starCfg = STAR_UP_DATA.STAR_UP_TABLE[itemId][curRoleInfo.starLevel]
     NodeHelper:setStringForLabel(container, { mLvTxtHero = curRoleInfo.level ,
@@ -310,7 +328,7 @@ end
 -- UI顯示切換
 function EquipLeadPage:setShowPage(container)
     -- 故事/服裝按鈕切換
-    NodeHelper:setNodesVisible(container, { mTopBtnNormal = (nowPageType ~= PAGE_TYPE.SKIN), mTopBtnCostume = (nowPageType == PAGE_TYPE.SKIN) })
+    NodeHelper:setNodesVisible(container, { mTopBtnNormal = (nowPageType ~= PAGE_TYPE.SKIN), mTopBtnCostume = (libOS:getInstance():getIsDebug()) })
     -- 主UI切換
     NodeHelper:setNodesVisible(container, { mNormalUiNode = (nowPageType ~= PAGE_TYPE.SKIN), mCostumeUiNode = (nowPageType == PAGE_TYPE.SKIN) })
     -- 子UI切換
@@ -325,8 +343,10 @@ function EquipLeadPage:showRoleSpine(container, _spineName, _skinId)
 end 
 -- 設定立繪spine
 function EquipLeadPage:showTachieSpine(container, _spineName) 
-    local spineName = _spineName or ((COSTUME_DATA.NOW_SKIN == 0) and "NG2D_" .. string.format("%02d", itemId) or 
-                                                                      "NG2D_" .. string.format("%02d", itemId) .. string.format("%03d", COSTUME_DATA.NOW_SKIN))
+    if COSTUME_DATA.NOW_SKIN > 0 then   -- skin播放mp4
+        return
+    end
+    local spineName = _spineName or "NG2D_" .. string.format("%02d", itemId)
     if nowSpineName == spineName and not _spineName then
         return
     end
@@ -337,7 +357,7 @@ function EquipLeadPage:showTachieSpine(container, _spineName)
     local spineNode = tolua.cast(spine, "CCNode")
     spine:runAnimation(1, "animation", -1)
     spineNode:setScale(NodeHelper:getScaleProportion())
-    parentNode:addChild(spineNode)
+    parentNode:addChild(spineNode, 1)
 
     nowSpineName = spineName
 end
@@ -351,7 +371,11 @@ function EquipLeadPage:showChibiSpine(container, _skinId)
     local parentNode = container:getVarNode("mSpineLittle")
     parentNode:removeAllChildrenWithCleanup(true)
     local spineFolder, spineName = unpack(common:split(heroCfg.Spine, ","))
-    spineName = spineName .. string.format("%03d", nowChibiSkin)
+    if nowChibiSkin > 0 then
+        spineName = string.format("NG_%05d", nowChibiSkin)
+    else
+        spineName = spineName .. string.format("%03d", nowChibiSkin)
+    end
 
     local spine = SpineContainer:create(spineFolder, spineName)
     local spineNode = tolua.cast(spine, "CCNode")
@@ -372,6 +396,11 @@ function EquipLeadPage:initRoleStarTable(container)
         local heroId = heroStarCfg[i].RoleId
         STAR_UP_DATA.STAR_UP_TABLE[heroId] = STAR_UP_DATA.STAR_UP_TABLE[heroId] or { }
         table.insert(STAR_UP_DATA.STAR_UP_TABLE[heroId], heroStarCfg[i])
+    end
+    for i = 1, #skinSkillCfg do
+        local skinId = skinSkillCfg[i].skinId
+        STAR_UP_DATA.STAR_UP_TABLE[skinId] = STAR_UP_DATA.STAR_UP_TABLE[skinId] or { }
+        table.insert(STAR_UP_DATA.STAR_UP_TABLE[skinId], skinSkillCfg[i])
     end
 end
 --生成可切換的英雄表格
@@ -440,6 +469,7 @@ end
 function EquipLeadPage:initSpine(container)
     effectSpine = SpineContainer:create("Spine/NGUI", "NGUI_02_HLevelUp")
     local spineNode = tolua.cast(effectSpine, "CCNode")
+    spineNode:setVisible(false)
     effectSpineParent = container:getVarNode("mSpineNode")
     effectSpineParent:removeAllChildrenWithCleanup(true)
     effectSpineParent:addChild(spineNode)
@@ -451,11 +481,15 @@ function EquipLeadPage:onReturn(container)
     PageManager.refreshPage("EquipmentPage", "refreshScrollView")
     --PageManager.refreshPage("EquipmentPage", "refreshRedPoint")
     PageManager.popPage(thisPageName)
+    EquipLeadPage:closeMovie(container)
 end
 
 function EquipLeadPage:onInfoPage(container)
     if nowPageType == PAGE_TYPE.BASE_INFO then
         return
+    end
+    if not GuideManager.isInGuide then
+        container:runAnimation("SoulStarOpen")
     end
     nowPageType = PAGE_TYPE.BASE_INFO
     self:refreshMainButton(container)
@@ -468,6 +502,9 @@ function EquipLeadPage:onEquipPage(container)
     if nowPageType == PAGE_TYPE.EQUIPMENT then
         return
     end
+    if not GuideManager.isInGuide then
+        container:runAnimation("SoulStarOpen")
+    end
     nowPageType = PAGE_TYPE.EQUIPMENT
     self:refreshMainButton(container)
     self:returnToNowSkinItem(container)
@@ -479,6 +516,9 @@ function EquipLeadPage:onUpgradePage(container)
     if nowPageType == PAGE_TYPE.UPGRADE then
         return
     end
+    if not GuideManager.isInGuide then
+        container:runAnimation("SoulStarOpen")
+    end
     nowPageType = PAGE_TYPE.UPGRADE
     self:refreshMainButton(container)
     self:returnToNowSkinItem(container)
@@ -487,14 +527,9 @@ function EquipLeadPage:onUpgradePage(container)
 end
 
 function EquipLeadPage:onSkinPage(container)
-    if nowPageType == PAGE_TYPE.SKIN then
-        return
-    end
-    nowPageType = PAGE_TYPE.SKIN
-    self:refreshMainButton(container)
-    self:returnToNowSkinItem(container)
-    self:refreshPage(container)
-    self:showRoleSpine(container)
+    local skinPage = require("NgSkinPage")
+    PageManager.pushPage("NgSkinPage")
+    skinPage:setPageInfo(roleId, COSTUME_DATA.NOW_SKIN)
 end
 
 function EquipLeadPage:onRebirth(container)
@@ -505,7 +540,11 @@ end
 
 function EquipLeadPage:onSetMainHero(container)
     if itemId and COSTUME_DATA.NOW_SKIN then
-        CCUserDefault:sharedUserDefault():setIntegerForKey("MAIN_HERO_" .. UserInfo.playerInfo.playerId, itemId .. string.format("%03d", COSTUME_DATA.ALL_SKIN[COSTUME_DATA.NOW_COSTUME_ID]))
+        if COSTUME_DATA.NOW_SKIN > 0 then
+            CCUserDefault:sharedUserDefault():setIntegerForKey("MAIN_HERO_" .. UserInfo.playerInfo.playerId, COSTUME_DATA.NOW_SKIN)
+        else
+            CCUserDefault:sharedUserDefault():setIntegerForKey("MAIN_HERO_" .. UserInfo.playerInfo.playerId, itemId .. string.format("%03d", 0))
+        end
         NodeHelper:setMenuItemEnabled(container, "mSetMainHeroBtn", false)
         MessageBoxPage:Msg_Box_Lan("@SetMainSpineSuccess")
     end
@@ -528,11 +567,16 @@ function EquipLeadPage:refreshMainButton(container)
         NodeHelper:setNodesVisible(container, { ["mSelectEffect" .. i] = (i == nowPageType) })
     end
     local mainHero = CCUserDefault:sharedUserDefault():getIntegerForKey("MAIN_HERO_" .. UserInfo.playerInfo.playerId)
-    NodeHelper:setMenuItemEnabled(container, "mSetMainHeroBtn", (mainHero ~= itemId * 1000 + COSTUME_DATA.ALL_SKIN[COSTUME_DATA.NOW_COSTUME_ID]))
+    if COSTUME_DATA.NOW_SKIN > 0 then
+        NodeHelper:setMenuItemEnabled(container, "mSetMainHeroBtn", (mainHero ~= COSTUME_DATA.NOW_SKIN))
+    else
+        NodeHelper:setMenuItemEnabled(container, "mSetMainHeroBtn", (mainHero ~= itemId * 1000))
+    end
 end
 
 function EquipLeadPage:onPlus(container)
-     for k,v in pairs(HeroTable) do
+    EquipLeadPage:closeMovie(container)
+    for k,v in pairs(HeroTable) do
         if v.roleId == roleId then
             nowRoleId_Idx=k
         end
@@ -553,6 +597,7 @@ function EquipLeadPage:onPlus(container)
     self:initSkinItem(selfContainer)
     self:initSpine(selfContainer)
 
+    EquipLeadPage:playMovie(container)
     --nowPageType = PAGE_TYPE.BASE_INFO
     self:refreshMainButton(container)
     self:refreshPage(selfContainer)
@@ -560,6 +605,7 @@ function EquipLeadPage:onPlus(container)
 end
 
 function EquipLeadPage:onMinus(container)
+    EquipLeadPage:closeMovie(container)
     for k,v in pairs(HeroTable) do
         if v.roleId == roleId then
             nowRoleId_Idx=k
@@ -582,6 +628,7 @@ function EquipLeadPage:onMinus(container)
     self:initSkinItem(selfContainer)
     self:initSpine(selfContainer)
 
+    EquipLeadPage:playMovie(container)
     --nowPageType = PAGE_TYPE.BASE_INFO
     self:refreshMainButton(container)
     self:refreshPage(selfContainer)
@@ -657,7 +704,12 @@ end
 
 function EquipLeadPage:showSkill(container, eventName)
     local id = string.sub(eventName, -1)
-    local skill = tonumber(common:split(heroCfg.Skills, ",")[tonumber(id)])
+    local skill
+    if COSTUME_DATA.NOW_SKIN == 0 then
+        skill = tonumber(common:split(heroCfg.Skills, ",")[tonumber(id)])
+    else
+        skill = tonumber(common:split(skinCfg[curRoleInfo.skinId].skills, ",")[tonumber(id)])
+    end
     local skillLv = 0
     for i = 1, #curRoleInfo.skills do
         if math.floor(curRoleInfo.skills[i].itemId / 10) == math.floor(skill / 10) then
@@ -835,20 +887,25 @@ function EquipLeadPage:showAllAttrInfo(container)
 end
 
 function EquipLeadPage:showSkillInfo(container)
-    local skills = common:split(heroCfg.Skills, ",")
-    for k, v in ipairs(skills)do  
-        local skillBaseId = string.sub(v, 1, 4)
-        NodeHelper:setSpriteImage(self.container, { ["Skill" .. k] = "skill/S_" .. skillBaseId .. ".png" })
+    local skills
+    if curRoleInfo.skinId == 0 then
+        skills = common:split(heroCfg.Skills, ",")
+    else
+        skills = common:split(skinCfg[curRoleInfo.skinId].skills, ",")
     end
     local ownSkills = curRoleInfo.skills
     for i = 1, 4 do
         NodeHelper:setStringForLabel(self.container, { ["mSkillLv" .. i] = 0 })
     end
-    for i = 1, 4 do
-        if ownSkills[i] then
-            local skillIdx = math.floor(ownSkills[i].itemId / 10) % 10 + 1
-            local level = string.sub(ownSkills[i].itemId, -1)
-            NodeHelper:setStringForLabel(self.container, { ["mSkillLv" .. skillIdx] = level })
+    for k, v in ipairs(skills)do  
+        local skillBaseId = math.floor(v / 10)
+        NodeHelper:setSpriteImage(self.container, { ["Skill" .. k] = "skill/S_" .. skillBaseId .. ".png" })
+        for i = 1, #ownSkills do
+            local ownBaseId = math.floor(ownSkills[i].itemId / 10)
+            if ownBaseId == tonumber(skillBaseId) then
+                local level = string.sub(ownSkills[i].itemId, -1)
+                NodeHelper:setStringForLabel(self.container, { ["mSkillLv" .. k] = level })
+            end
         end
     end
 end
@@ -1189,8 +1246,15 @@ function EquipLeadPage:showUpgradeInfo(container)
         end
     end
     -- 提升技能顯示
-    local preSkills = common:split(STAR_UP_DATA.STAR_UP_TABLE[itemId][curRoleInfo.starLevel].Skills, ",")
-    local newSkills = common:split(STAR_UP_DATA.STAR_UP_TABLE[itemId][curRoleInfo.starLevel + 1].Skills, ",")
+    local preSkills
+    local newSkills
+    if curRoleInfo.skinId == 0 then
+        preSkills = common:split(STAR_UP_DATA.STAR_UP_TABLE[itemId][curRoleInfo.starLevel].Skills, ",")
+        newSkills = common:split(STAR_UP_DATA.STAR_UP_TABLE[itemId][curRoleInfo.starLevel + 1].Skills, ",")
+    else
+        preSkills = common:split(STAR_UP_DATA.STAR_UP_TABLE[curRoleInfo.skinId][curRoleInfo.starLevel].skills, ",")
+        newSkills = common:split(STAR_UP_DATA.STAR_UP_TABLE[curRoleInfo.skinId][curRoleInfo.starLevel + 1].skills, ",")
+    end
     NodeHelper:setNodesVisible(container, { mUpgradeSkillNode = false })
     for i = 1, #newSkills do
         if tonumber(preSkills[i]) ~= tonumber(newSkills[i]) then
@@ -1265,6 +1329,9 @@ function EquipLeadPage:initSkinItem(container)
             itemParentNode:addChild(itemCCB)
             table.insert(COSTUME_DATA.COSTUME_ITEMS, itemCCB)
             local skinImgName = "HeroSkin_" .. string.format("%02d", itemId) .. string.format("%03d", COSTUME_DATA.ALL_SKIN[i])
+            if COSTUME_DATA.ALL_SKIN[i] > 0 then
+                skinImgName = "HeroSkin_" .. string.format("%05d", COSTUME_DATA.ALL_SKIN[i])
+            end
             NodeHelper:setMenuItemImage(itemCCB, { mCostumeBtn = { normal = "UI/RoleSkinSeries/" .. skinImgName .. ".png", 
                                                                    press = "UI/RoleSkinSeries/" .. skinImgName .. ".png" } })
             NodeHelper:setNodesVisible(itemCCB, { mCostumeUseImg = (COSTUME_DATA.NOW_SKIN == COSTUME_DATA.ALL_SKIN[i]) })
@@ -1319,7 +1386,7 @@ function EquipLeadPage:changeCostumeItem(container, nowId, toId, showAni)
     self:refreshSkinUI(container)
     local spineName = (COSTUME_DATA.COSTUME_ITEMS[COSTUME_DATA.NOW_COSTUME_ID].skinId == 0) and 
                       "NG2D_" .. string.format("%02d", itemId) or 
-                      "NG2D_" .. string.format("%02d", itemId) .. string.format("%03d", COSTUME_DATA.COSTUME_ITEMS[COSTUME_DATA.NOW_COSTUME_ID].skinId)
+                      "NG2D_" .. string.format("%05d", COSTUME_DATA.COSTUME_ITEMS[COSTUME_DATA.NOW_COSTUME_ID].skinId)
     self:showRoleSpine(container, spineName, COSTUME_DATA.COSTUME_ITEMS[COSTUME_DATA.NOW_COSTUME_ID].skinId)
 
     self:refreshMainButton(container)
@@ -1432,6 +1499,8 @@ function EquipLeadPage:onReceivePacket(container)
         UserEquipManager:checkAllEquipNotice()
         self:refreshPage(selfContainer)
     elseif opcode == option.opcodes.ROLE_UP_LEVEL_S then
+        local spineNode = tolua.cast(effectSpine, "CCNode")
+        spineNode:setVisible(true)
         effectSpine:runAnimation(1, "animation", 0)
         self:refreshPage(selfContainer)
         --新手教學
@@ -1461,6 +1530,8 @@ function EquipLeadPage:onReceivePacket(container)
         end
         NodeHelper:setMenuItemsEnabled(container,{ mMaxLv = true , mTrainBtn = true,mStoneBtn = true})
     elseif opcode == option.opcodes.ROLE_LEVEL_MAX_S then
+        local spineNode = tolua.cast(effectSpine, "CCNode")
+        spineNode:setVisible(true)
         effectSpine:runAnimation(1, "animation", 0)
         self:refreshPage(selfContainer)
         --新手教學
@@ -1515,9 +1586,10 @@ function EquipLeadPage:onReceivePacket(container)
         msg:ParseFromString(msgBuff)
         COSTUME_DATA.NOW_SKIN = msg.toRoleId
         self:showRoleSpine(container)
-        self:refreshSkinUI(selfContainer)
-
-        MessageBoxPage:Msg_Box("@HasSwitch")
+        --self:refreshSkinUI(selfContainer)
+        self:showSkillInfo(container)
+        self:refreshMainButton(container)
+        --MessageBoxPage:Msg_Box("@HasSwitch")
     elseif opcode == HP_pb.FETCH_ARCHIVE_INFO_S then
         local msg = RoleOpr_pb.HPArchiveInfoRes()
         local msgbuff = container:getRecPacketBuffer()
@@ -1539,6 +1611,10 @@ function EquipLeadPage:onExit(container)
     container:removeMessage(MSG_MAINFRAME_REFRESH)
     container:removeMessage(MSG_MAINFRAME_POPPAGE)
     container:removeMessage(MSG_REFRESH_REDPOINT)
+    if EquipLeadPage.libPlatformListener then
+        EquipLeadPage.libPlatformListener:delete()
+        EquipLeadPage.libPlatformListener = nil
+    end
 end
 
 function EquipLeadPage:setMercenaryId(id)
@@ -1585,6 +1661,24 @@ function EquipLeadPage:onExecute(container)
         LEVEL_UP_DATA.IS_TOUCHING = false   
     end
 end
+function EquipLeadPage:playMovie(container)
+    -- 播放影片
+    if COSTUME_DATA.NOW_SKIN ~= 0 then
+        local fileName = "Hero/Hero" .. string.format("%05d", COSTUME_DATA.NOW_SKIN)
+        local isFileExist =  CCFileUtils:sharedFileUtils():isFileExist("Video/" .. fileName .. ".mp4")
+        if isFileExist then
+            EquipLeadPage.libPlatformListener = LibPlatformScriptListener:new(libPlatformListener)
+            GamePrecedure:getInstance():playMovie(thisPageName, fileName, 1, 0)
+            NodeHelper:setNodesVisible(container, { mSpine = false })
+        end
+    end
+end
+function EquipLeadPage:closeMovie(container)
+    -- 關閉影片
+    CCLuaLog("EquipLeadPage:closeMovie")
+    NodeHelper:setNodesVisible(container, { mSpine = true })
+    GamePrecedure:getInstance():closeMovie(thisPageName)
+end
 
 function EquipLeadPage_getCurRoleInfo()
     return curRoleInfo
@@ -1599,7 +1693,7 @@ function EquipLeadPage:refreshAllPoint(container)
     NodeHelper:setNodesVisible(container, { mBreakLvPoint = RedPointManager_getShowRedPoint(RedPointManager.PAGE_IDS.CHAR_LEVELUP_BTN, itemId) })
     NodeHelper:setNodesVisible(container, { mAutoEquipPoint = RedPointManager_getShowRedPoint(RedPointManager.PAGE_IDS.CHAR_AUTOEQUIP_BTN, itemId) })
     NodeHelper:setNodesVisible(container, { mRarityUpPoint = RedPointManager_getShowRedPoint(RedPointManager.PAGE_IDS.CHAR_RARITYUP_BTN, itemId) })
-    NodeHelper:setNodesVisible(container, { mBioRedPoint = RedPointManager_getShowRedPoint(RedPointManager.PAGE_IDS.CHAR_INFO_BTN, itemId) })
+    NodeHelper:setNodesVisible(container, { mBioRedPoint = RedPointManager_getShowRedPoint(RedPointManager.PAGE_IDS.CHAR_INFO_BTN2, itemId) })
     for equipName, part in pairs(EquipPartNames) do
         if equipName == "AncientWeapon" then
             NodeHelper:setNodesVisible(container, { mAWPoint = RedPointManager_getShowRedPoint(page, itemId) })

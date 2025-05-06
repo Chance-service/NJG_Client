@@ -1,48 +1,62 @@
 
 NGSceneB_02a_08.png
-size: 483,483
+size: 2048,64
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 A19
-  rotate: true
-  xy: 32, 155
+  rotate: false
+  xy: 989, 2
   size: 226, 32
   orig: 226, 32
   offset: 0, 0
   index: -1
 A28
   rotate: false
-  xy: 2, 383
+  xy: 736, 32
   size: 250, 30
   orig: 250, 30
   offset: 0, 0
   index: -1
 B19
-  rotate: true
-  xy: 2, 130
+  rotate: false
+  xy: 736, 2
   size: 251, 28
   orig: 251, 28
   offset: 0, 0
   index: -1
 B28
   rotate: false
-  xy: 255, 419
+  xy: 483, 2
   size: 213, 27
   orig: 213, 27
   offset: 0, 0
   index: -1
 C19
   rotate: false
-  xy: 2, 448
+  xy: 2, 29
   size: 479, 33
   orig: 479, 33
   offset: 0, 0
   index: -1
 C28
   rotate: false
-  xy: 2, 415
+  xy: 483, 31
   size: 251, 31
   orig: 251, 31
+  offset: 0, 0
+  index: -1
+D19
+  rotate: false
+  xy: 988, 36
+  size: 240, 26
+  orig: 240, 26
+  offset: 0, 0
+  index: -1
+D28
+  rotate: false
+  xy: 1230, 36
+  size: 183, 26
+  orig: 183, 26
   offset: 0, 0
   index: -1

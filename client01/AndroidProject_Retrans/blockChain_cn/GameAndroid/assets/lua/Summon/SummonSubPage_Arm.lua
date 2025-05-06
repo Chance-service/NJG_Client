@@ -19,7 +19,7 @@ local ALFManager = require("Util.AsyncLoadFileManager")
 local SummonDataMgr = require("Summon.SummonDataMgr")
 
 local PRICE_ITEM_WITHOUT_COUNT_STR = "10000_1001_"
-local VOUCHER_ITEM_STR = "30000_6011_0"
+local VOUCHER_ITEM_STR = "30000_6004_0"
 
 --[[ 測試資料模式 ]]
 local IS_MOCK = false

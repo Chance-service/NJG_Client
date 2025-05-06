@@ -428,6 +428,17 @@ function Inst:showUISummonState (isSummonState)
         self.container:runAnimation("SummonOut")
         -- 分頁列UI 退場
         self.parentPage.tabStorage:anim_Out()
+        NodeHelper:setNodesVisible(self.container,{mSkipAnimNode = false})
+
+        self.container:runAction(
+            CCSequence:createWithTwoActions(
+                CCDelayTime:create(1),
+                CCCallFunc:create(function()
+                    NodeHelper:setNodesVisible(self.container, {mAvata = false})
+                end)
+            )
+        )   
+
 
     -- 入場
     else
@@ -435,6 +446,7 @@ function Inst:showUISummonState (isSummonState)
         self.container:runAnimation("SummonIn")
         -- 分頁列UI 入場
         self.parentPage.tabStorage:anim_In()
+        NodeHelper:setNodesVisible(self.container,{mSkipAnimNode = true,mAvata = true})
     end
 end
 
@@ -599,7 +611,7 @@ function Inst:handleRewards (itemStrs)
             self.spineBG:setToSetupPose()
             self.spineBG:runAnimation(1, self.subPageCfg.spineAnimName_bg_idle, -1)
         end
-          NodeHelper:setNodesVisible(self.container,{mAvata=true})
+          --NodeHelper:setNodesVisible(self.container,{mAvata=true})
           SoundManager:getInstance():playMusic("summon_page_bgm.mp3")
     end
 

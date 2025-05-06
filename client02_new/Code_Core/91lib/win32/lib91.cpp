@@ -28,6 +28,12 @@ bool lib91::getLogined()
 static std::string loginName = "";
 static std::string token = "";
 static bool IsH365 = false;
+static bool IsEroR18 = false;
+static bool IsJSG = false;
+static bool IsLSJ = false;
+static bool IsMURA = false;
+static bool IsKUSO = false;
+static bool IsAPLUS = false;
 static std::string PayUrl = "";
 static int HoneyP = 0;
 static int isGuest = 0;
@@ -78,6 +84,10 @@ void lib91::login()
 const std::string& lib91::getToken()
 {	
 	return token;
+}
+
+void lib91::showPlatformProfile()
+{
 }
 
 const std::string& lib91::loginUin()
@@ -170,9 +180,19 @@ return "android_NG";
 	//return "win32";
 }
 
+const std::string lib91::getClientCps()
+{
+	return "#0";
+}
+
 std::string lib91::getPlatformMoneyName()
 {
 	return "91dou";
+}
+
+const unsigned int lib91::getPlatformId()
+{
+	return 0;
 }
 
 void lib91::notifyEnterGame()
@@ -272,6 +292,12 @@ void lib91::setLanguageName( const std::string& lang )
 void lib91::setPlatformName(int platform)
 {
 	IsH365 = (platform == 1);
+	IsEroR18 = (platform == 2);
+	IsJSG = (platform == 3);
+	IsLSJ = (platform == 4);
+	IsMURA = (platform == 5);
+	IsKUSO = (platform == 6);
+	IsAPLUS = (platform == 9);
 }
 
 void  lib91::setHoneyP(int aMoney)

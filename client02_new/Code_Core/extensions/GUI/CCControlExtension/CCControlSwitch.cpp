@@ -158,7 +158,8 @@ void CCControlSwitchSprite::draw()
     CC_NODE_DRAW_SETUP();
 
     ccGLEnableVertexAttribs(kCCVertexAttribFlag_PosColorTex);
-    ccGLBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    //ccGLBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     getShaderProgram()->setUniformsForBuiltins();
 
     glActiveTexture(GL_TEXTURE0);

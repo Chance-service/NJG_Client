@@ -63,15 +63,15 @@ function GloryHoleBase_SetInfo(data)
         PageInfo.dailyLeftTime=data.actInfo.dailyLeftTime
         PageInfo.participants=data.actInfo.participants
         PageInfo.BestScore=data.actInfo.maxScore
-        if data.actInfo.teamitem[1] then
-            PageInfo.Team1_Score=data.actInfo.teamitem[1].score
-        else
-            PageInfo.Team1_Score=0
-        end
-        if data.actInfo.teamitem[2] then
-            PageInfo.Team2_Score=data.actInfo.teamitem[2].score
-        else
-            PageInfo.Team2_Score=0
+        PageInfo.Team1_Score=0
+        PageInfo.Team2_Score=0
+        for _,data in pairs(data.actInfo.teamitem) do
+            local team = data.teamId
+            if team == 1 then
+                 PageInfo.Team1_Score = data.score
+            elseif team == 2 then
+                 PageInfo.Team2_Score = data.score
+            end
         end
     end
     if data.action==1 then
@@ -101,19 +101,17 @@ function GloryHoleBase_SetInfo(data)
              table.sort(RankInfo.Daily,function(a,b) return (a.Rank > b.Rank) end )
         end
         --Team
-        if data.rankInfo.teamitem[1] then
-            RankInfo.Team.Team1.Score=data.rankInfo.teamitem[1].score
-            RankInfo.Team.Team1.TeamId=data.rankInfo.teamitem[1].teamId
-        else
-             RankInfo.Team.Team1.Score=0
-            RankInfo.Team.Team1.TeamId=1
-        end
-        if data.rankInfo.teamitem[2] then
-            RankInfo.Team.Team2.Score=data.rankInfo.teamitem[2].score
-            RankInfo.Team.Team2.TeamId=data.rankInfo.teamitem[2].teamId
-        else
-            RankInfo.Team.Team2.Score=0
-            RankInfo.Team.Team2.TeamId=2
+        RankInfo.Team.Team1.Score=0
+        RankInfo.Team.Team1.TeamId=1
+        RankInfo.Team.Team2.Score=0
+        RankInfo.Team.Team2.TeamId=2
+        for _,data in pairs (data.rankInfo.teamitem) do
+            local team = data.teamId
+            if team == 1 then
+                RankInfo.Team.Team1.Score = data.score
+            elseif team == 2 then
+                RankInfo.Team.Team2.Score = data.score
+            end
         end
         --HistoryRank
         RankInfo.HistoryRank={}
@@ -142,9 +140,11 @@ function GloryHoleBase_SetInfo(data)
                 table.insert(finishedQuest,data.dailyInfo.allDailyQuest[i])
             else
                 table.insert(MissionInfo.DailyMission.Quest,data.dailyInfo.allDailyQuest[i])
-                MissionInfo.DailyPoint=data.dailyInfo.dailyPoint
-                MissionInfo.DailyMission.Target[i]=data.dailyInfo.dailyPointCore[i] or nil
             end
+        end
+        MissionInfo.DailyPoint=data.dailyInfo.dailyPoint
+        for i = 1,4 do
+             MissionInfo.DailyMission.Target[i]=data.dailyInfo.dailyPointCore[i] or nil
         end
         table.merge(MissionInfo.DailyMission.Quest,finishedQuest)
         function table.merge(t1, t2)

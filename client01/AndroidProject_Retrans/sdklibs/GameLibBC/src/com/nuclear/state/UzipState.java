@@ -600,6 +600,7 @@ public class UzipState extends BaseState {
 		//
 		tempDir = null;
 		//
+		// 需要時才清除舊熱更資料
 		if (checkExternalStorageResourcesVersion()) {
 			tempDir = new File(mAppDataExternalStorageHotupdateFullPath);
 			StorageUtil.removeFileDirectory(tempDir);

@@ -1,97 +1,104 @@
 
 NGUI_15_BattleStart.png
-size: 992,992
+size: 897,897
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 FireBG2
-  rotate: true
-  xy: 541, 664
-  size: 326, 347
-  orig: 326, 362
-  offset: 0, 15
+  rotate: false
+  xy: 2, 98
+  size: 290, 308
+  orig: 290, 322
+  offset: 0, 14
   index: -1
 img01
-  rotate: false
-  xy: 541, 535
-  size: 446, 127
-  orig: 446, 127
+  rotate: true
+  xy: 294, 10
+  size: 396, 113
+  orig: 396, 113
+  offset: 0, 0
+  index: -1
+img01_EN
+  rotate: true
+  xy: 772, 333
+  size: 562, 103
+  orig: 562, 103
   offset: 0, 0
   index: -1
 img02
   rotate: false
-  xy: 2, 442
-  size: 537, 548
-  orig: 537, 548
+  xy: 2, 408
+  size: 478, 487
+  orig: 478, 487
   offset: 0, 0
   index: -1
 img03
   rotate: false
-  xy: 580, 221
-  size: 325, 312
-  orig: 325, 312
+  xy: 409, 103
+  size: 289, 278
+  orig: 289, 278
   offset: 0, 0
   index: -1
 light01
-  rotate: true
-  xy: 2, 116
-  size: 324, 576
-  orig: 324, 576
+  rotate: false
+  xy: 482, 383
+  size: 288, 512
+  orig: 288, 512
   offset: 0, 0
   index: -1
 petals_blue_2
   rotate: false
-  xy: 2, 22
-  size: 23, 26
-  orig: 23, 26
-  offset: 0, 0
-  index: -1
-petals_blue_3
-  rotate: false
-  xy: 2, 82
-  size: 31, 32
-  orig: 31, 32
-  offset: 0, 0
-  index: -1
-petals_blue_6
-  rotate: false
-  xy: 27, 25
+  xy: 409, 383
   size: 21, 23
   orig: 21, 23
   offset: 0, 0
   index: -1
+petals_blue_3
+  rotate: false
+  xy: 2, 68
+  size: 27, 28
+  orig: 27, 28
+  offset: 0, 0
+  index: -1
+petals_blue_6
+  rotate: false
+  xy: 877, 874
+  size: 18, 21
+  orig: 18, 21
+  offset: 0, 0
+  index: -1
 petals_blue_7
   rotate: false
-  xy: 2, 50
-  size: 28, 30
-  orig: 28, 30
+  xy: 409, 75
+  size: 25, 26
+  orig: 25, 26
   offset: 0, 0
   index: -1
 petals_blue_9
   rotate: false
-  xy: 2, 3
-  size: 21, 17
-  orig: 21, 17
+  xy: 432, 391
+  size: 18, 15
+  orig: 18, 15
   offset: 0, 0
   index: -1
 petals_green_10
   rotate: false
-  xy: 25, 3
-  size: 20, 17
-  orig: 20, 17
+  xy: 2, 51
+  size: 18, 15
+  orig: 18, 15
   offset: 0, 0
   index: -1
 petals_green_8
   rotate: false
-  xy: 47, 2
-  size: 23, 21
-  orig: 23, 21
+  xy: 700, 363
+  size: 20, 18
+  orig: 20, 18
   offset: 0, 0
   index: -1
 petals_green_9
   rotate: false
-  xy: 32, 60
-  size: 12, 20
-  orig: 12, 20
+  xy: 31, 78
+  size: 10, 18
+  orig: 10, 18
   offset: 0, 0
   index: -1

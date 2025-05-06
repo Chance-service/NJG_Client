@@ -34,8 +34,8 @@ local option = {
         onReturn = "onReturn",
         onStory = "onStory",            -- 故事
         onInfoPage = "onInfoPage",      -- 切換基礎資訊頁面
-        onSkinPage = "onSkinPage",      -- 切換皮膚頁面
-        onCostumeShop = "onCostumeShop",-- 開啟皮膚商城
+        --onSkinPage = "onSkinPage",      -- 切換皮膚頁面
+        --onCostumeShop = "onCostumeShop",-- 開啟皮膚商城
         onChangInfo = "onChangInfo",    --切換Max&Min
         onPlus="onPlus",                --切換角色
         onMinus="onMinus",               --切換角色
@@ -124,11 +124,11 @@ function NgArchivePage:onEnter(container)
         nowPageType = PAGE_TYPE.BASE_INFO
     end
     container:registerMessage(MSG_REFRESH_REDPOINT)
-    self:initSkinData(selfContainer)
-    self:initSkinItem(selfContainer)
+    --self:initSkinData(selfContainer)
+    --self:initSkinItem(selfContainer)
     self:refreshMainButton(container)
     self:refreshPage(selfContainer) 
-    --self:showRoleSpine(selfContainer)
+    self:showRoleSpine(selfContainer)
     --if SkinActive then
     --    self:onSkinPage(selfContainer)
     --end
@@ -211,7 +211,12 @@ end
 -- 設定立繪spine
 function NgArchivePage:showTachieSpine(container, _spineName, _skinId) 
     local skinId = _skinId or COSTUME_DATA.NOW_SKIN
-    local spineName = "NG2D_" .. string.format("%02d", itemId) .. (skinId ~= 0 and string.format("%03d", skinId) or "")
+    local spineName
+    if skinId > 0 then
+        spineName = "NG2D_" .. string.format("%05d", COSTUME_DATA.NOW_SKIN)
+    else
+        spineName = "NG2D_" .. string.format("%02d", itemId)
+    end
     if nowSpineName == spineName and not _spineName then
         return
     end
@@ -322,10 +327,11 @@ function NgArchivePage:onPlus(container)
     heroArchiveCfg = ConfigManager.getHeroEncyclopediaCfg()[itemId]
     nowSpineName = ""
     nowChibiSkin = -1
-    self:initSkinData(selfContainer)
-    self:initSkinItem(selfContainer)
+    --self:initSkinData(selfContainer)
+    --self:initSkinItem(selfContainer)
     self:refreshMainButton(container)
     self:refreshPage(selfContainer)
+    self:showRoleSpine(selfContainer)
 end
 
 function NgArchivePage:onMinus(container)
@@ -344,10 +350,11 @@ function NgArchivePage:onMinus(container)
     heroArchiveCfg = ConfigManager.getHeroEncyclopediaCfg()[itemId]
     nowSpineName = ""
     nowChibiSkin = -1
-    self:initSkinData(selfContainer)
-    self:initSkinItem(selfContainer)
+    --self:initSkinData(selfContainer)
+    --self:initSkinItem(selfContainer)
     self:refreshMainButton(container)
     self:refreshPage(selfContainer)
+    self:showRoleSpine(selfContainer)
 end
 
 function NgArchivePage:onInfoPage(container)
@@ -379,8 +386,8 @@ function NgArchivePage:onCostumeShop(container)
     end
 end
 function NgArchivePage_setToSkin(isActive,id)
-    SkinActive=isActive
-    SkinId=id
+    SkinActive=false--isActive
+    SkinId=0--id
 end
 function NgArchivePage:onStory(container)
     require("HeroBioPage")
@@ -453,7 +460,7 @@ function NgArchivePage:showSkillInfo(container)
         NodeHelper:setSpriteImage(self.container, { ["Skill" .. k] = "skill/S_" .. skillBaseId .. ".png" })
     end
     for i = 1, 4 do
-        NodeHelper:setStringForLabel(self.container, { ["mSkillLv" .. i] = 1 })
+        NodeHelper:setStringForLabel(self.container, { ["mSkillLv" .. i] = 3 })
     end
 end
 ------------------------------------------------------------------------------------------
@@ -501,7 +508,7 @@ function NgArchivePage:initSkinItem(container)
     self:changeCostumeItem(container, COSTUME_DATA.NOW_COSTUME_ID, changeId, false)
 end
 function NgArchivePage:refreshSkinUI(container)
-    local skinId = COSTUME_DATA.ALL_SKIN[COSTUME_DATA.NOW_COSTUME_ID] or 0
+    local skinId = 0--COSTUME_DATA.ALL_SKIN[COSTUME_DATA.NOW_COSTUME_ID] or 0
     NodeHelper:setNodesVisible(container, { mCostumeAbilityNode = (skinId ~= 0),mDontHave=false })
     NodeHelper:setStringForLabel(container, { mCostumeDressTxt = common:getLanguageString("@SkinDress_" .. string.format("%02d", skinId)),
                                               mCostumeAllTxt = common:getLanguageString("@SkinAll_" .. string.format("%02d", skinId)) })

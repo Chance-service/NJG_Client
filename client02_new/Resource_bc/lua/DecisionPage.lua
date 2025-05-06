@@ -140,8 +140,16 @@ end
 
 -------------------------------------------------------------------------------
 function DecisionPage_setDecision(title, msg, callback, auto, yes, no, isshowclose, isCanClose, ScaleX, CloseCallback, IsClickBlankClose,_isBuyQues)
-    decisionTitle = title;
-    decisionMsg = msg;
+    if string.find(title,"@") then
+        decisionTitle = common:getLanguageString(title)
+    else
+        decisionTitle = title;
+    end
+    if string.find(msg,"@") then
+        decisionMsg = common:getLanguageString(msg)
+    else
+        decisionMsg = msg;
+    end
     decisionCB = callback;
     autoClose =(auto or auto == nil) and true or false;
     decisionYes = yes and yes or "@Confirmation"

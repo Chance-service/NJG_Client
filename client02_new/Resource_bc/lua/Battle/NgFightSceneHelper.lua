@@ -69,7 +69,10 @@ function NgFightSceneHelper:EnterState(container, state, isSkipInitChar, isEnter
                NgBattleDataManager.battleType == CONST.SCENE_TYPE.CYCLE_TOWER or
                NgBattleDataManager.battleType == CONST.SCENE_TYPE.SINGLE_BOSS or
                NgBattleDataManager.battleType == CONST.SCENE_TYPE.SINGLE_BOSS_SIM or
-               NgBattleDataManager.battleType == CONST.SCENE_TYPE.SEASON_TOWER  then
+               NgBattleDataManager.battleType == CONST.SCENE_TYPE.SEASON_TOWER or 
+               NgBattleDataManager.battleType == CONST.SCENE_TYPE.LIMIT_TOWER or
+               NgBattleDataManager.battleType == CONST.SCENE_TYPE.FEAR_TOWER or
+               NgBattleDataManager.battleType == CONST.SCENE_TYPE.PUZZLE then
                 NgBattleDataManager_setBattleState(CONST.FIGHT_STATE.EDIT_TEAM) -- 避免非主線關卡編隊時倒數戰鬥時間
             end
         end  
@@ -157,9 +160,34 @@ function NgFightSceneHelper:EnterState(container, state, isSkipInitChar, isEnter
         elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.SEASON_TOWER then        
             local PageJumpMange = require("PageJumpMange")
             PageJumpMange.JumpPageById(53)
-        else
+        elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.PUZZLE then        
+            local PageJumpMange = require("PageJumpMange")
+            PageJumpMange.JumpPageById(54)
+        elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.LIMIT_TOWER then        
+            local TabName = {[2] = {"Fire","Water","Wood","Light_and_Dark"},
+                             [3] = {"Shield","Sword","Heal","Magic"}  
+            }
+            local limitType = NgBattleDataManager.limitType
+            local tabIndex, subIndex
+
+            if limitType < 10 then
+                tabIndex = 2
+                subIndex = limitType
+                PageJumpMange._JumpCfg[55]._ThirdFunc = "onType2"
+            else
+                tabIndex = 3
+                subIndex = limitType - 10
+                PageJumpMange._JumpCfg[55]._ThirdFunc = "onType3"
+            end
+
+            local subPage = TabName[tabIndex][subIndex]
+            require("TowerLimit.TowerLimitPage"):setEntrySubPage(subPage)
+            PageJumpMange.JumpPageById(55)
+         elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.FEAR_TOWER then
+            PageJumpMange.JumpPageById(56)
+         else
             self:EnterState(container, CONST.FIGHT_STATE.FIGHTING)
-        end
+         end
     end
 end
 
@@ -193,7 +221,10 @@ function NgFightSceneHelper:UpdateState(container, dt)
                    NgBattleDataManager.battleType == CONST.SCENE_TYPE.CYCLE_TOWER or
                    NgBattleDataManager.battleType == CONST.SCENE_TYPE.SINGLE_BOSS or
                    NgBattleDataManager.battleType == CONST.SCENE_TYPE.SINGLE_BOSS_SIM or
-                   NgBattleDataManager.battleType == CONST.SCENE_TYPE.SEASON_TOWER then
+                   NgBattleDataManager.battleType == CONST.SCENE_TYPE.SEASON_TOWER or
+                   NgBattleDataManager.battleType == CONST.SCENE_TYPE.LIMIT_TOWER or
+                   NgBattleDataManager.battleType == CONST.SCENE_TYPE.FEAR_TOWER or
+                   NgBattleDataManager.battleType == CONST.SCENE_TYPE.PUZZLE then
                 self:EnterState(container, CONST.FIGHT_STATE.START_CHALLANGE)
             else
                 self:EnterState(container, CONST.FIGHT_STATE.MOVING)
@@ -362,7 +393,7 @@ function NgFightSceneHelper:update(container, dt)
                 end
             end
             -- 飛行道具
-            FlyItemManager:update(dt * NgBattleDataManager.battleSpeed) 
+            FlyItemManager:update(dt * NgBattleDataManager.battleSpeed)
             -- 場景特效時間
             sceneFxTimer = sceneFxTimer - dt * NgBattleDataManager.battleSpeed
             if sceneFxTimer <= 0 then

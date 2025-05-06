@@ -73,7 +73,8 @@ void RadialBlurSprite::draw()
 	ccGLEnableVertexAttribs(kCCVertexAttribFlag_PosColorTex );
 	
     ccBlendFunc blend = getBlendFunc();
-    ccGLBlendFunc(blend.src, blend.dst);
+    //ccGLBlendFunc(blend.src, blend.dst);
+	glBlendFuncSeparate(blend.src, blend.dst, blend.src, blend.dst);
     
 	getShaderProgram()->use();
 	getShaderProgram()->setUniformsForBuiltins();

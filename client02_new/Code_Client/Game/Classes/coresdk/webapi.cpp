@@ -1,17 +1,21 @@
-//#include "../coresdk/webapi.h"
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #include "webapi.h"
+#else
+#include "../coresdk/webapi.h"
+#endif
 
 #include "cocos2d.h"
-//#include "../coresdk/APIUtil.h"
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #include "APIUtil.h"
-//#include "../coresdk/Coresdk.h"
 #include "Coresdk.h"
-
-
-//#include "../rapidjson/rapidjson.h"
 #include "rapidjson.h"
 #include "document.h"
-//#include "../rapidjson/document.h"
+#else
+#include "../coresdk/APIUtil.h"
+#include "../coresdk/Coresdk.h"
+#include "../rapidjson/rapidjson.h"
+#include "../rapidjson/document.h"
+#endif
 
 USING_NS_CC;
 

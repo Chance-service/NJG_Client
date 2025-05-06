@@ -274,12 +274,17 @@ function SecretMessagePage:createPage(_parentPage)
     return container
 end
 function SecretMessagePage:onEnter(container)
+
+    local msg = SecretMsg_pb.secretMsgRequest()
+    msg.action = 0
+    common:sendPacket(HP_pb.SECRET_MESSAGE_ACTION_C, msg, false)
+
     AlbumData=SecretMessageManager_getAlbumData(nowChatId)
-    
+    self:getPower()
      if not GetPower then
        GetPower = CCDirector:sharedDirector():getScheduler():scheduleScriptFunc(function()
             self:getPower()
-            end, 59 , false)
+            end, 30 , false)
      end
 
     NodeHelper:setNodesVisible(container, {mAnswerNode = false})
@@ -817,6 +822,12 @@ function SecretMessagePage:onReceivePacket(packet)
             SecretMessageManager_setServerData(msg)
             return
         end
+        if action == 4 then
+            local syncMsg = msg.syncMsg
+            SecretMessageManager_setServerData(syncMsg)
+            AlbumIndivualPage:refresh()
+            return
+        end
         -- 新手教學
         local GuideManager = require("Guide.GuideManager")
         if GuideManager.isInGuide then
@@ -835,6 +846,11 @@ function SecretMessagePage:onReceivePacket(packet)
             array:addObject(CCDelayTime:create(6))
             array:addObject(CCCallFunc:create(function()SecretMessagePage:newQues(mainContainer) end))
             mainContainer:runAction(CCSequence:create(array))
+        end
+        if action == 0 then
+            AlbumData=SecretMessageManager_getAlbumData(nowChatId)
+            self:onRefreshPage(mainContainer, true)
+            return
         end
         SecretMessagePage:GradeGet()
     end

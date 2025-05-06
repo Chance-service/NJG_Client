@@ -31,6 +31,9 @@ local RechargeDiamondItem = {}
 local RechargeSubPage_Diamond = {}
 local requesting = false
 
+-- 購買資料請求中
+local requestingLastShop = false
+
 local TmpReward = {}
 
 function RechargeSubPage_Diamond:createPage(_parentPage)
@@ -64,6 +67,7 @@ function RechargeSubPage_Diamond:onEnter(Parentcontainer)
     parentPage:registerMessage(MSG_RECHARGE_SUCCESS)
 
     requesting = false
+    requestingLastShop = false
     self:ItemInfoRequest()
     
     self:setVIPLevelInfo(InfoAccesser:getVIPLevelInfo())
@@ -124,6 +128,7 @@ function RechargeSubPage_Diamond:onReceivePacket(packet)
         self:refresh(self.container)
     end
     if opcode == HP_pb.LAST_SHOP_ITEM_S then
+        requestingLastShop = false
         local Recharge_pb = require("Recharge_pb")
         local msg = Recharge_pb.LastGoodsItem()
         msg:ParseFromString(msgBuff)
@@ -330,6 +335,9 @@ end
 function RechargeSubPage_Diamond:onReceiveMessage(message)
 	local typeId = message:getTypeId()
 	if typeId == MSG_RECHARGE_SUCCESS then
+        if requestingLastShop then
+            return
+        end
         CCLuaLog(">>>>>>onReceiveMessage RechargeSubPage_Diamond")
 
         self:ItemInfoRequest()

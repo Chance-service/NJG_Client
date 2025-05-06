@@ -46,7 +46,7 @@ extern "C" {
 			libOS::getInstance()->TheEditTextOpenKeyboardCallback(s_ctx);
 		}
 		else{
-			LOGD("Java_org_cocos2dx_lib_Cocos2dxHelper_nativeOnCloseKeyboard s_ctx== null");
+			LOGD("Java_org_cocos2dx_lib_Cocos2dxHelper_nativeOnOpenKeyboard s_ctx== null");
 		}
 	}
 	JNIEXPORT void JNICALL Java_org_cocos2dx_lib_Cocos2dxHelper_nativeUpdateKeyboardHight(JNIEnv * env, jobject obj, int nHight) {
@@ -56,20 +56,25 @@ extern "C" {
 	}
     JNIEXPORT void JNICALL Java_org_cocos2dx_lib_Cocos2dxHelper_nativeSetEditTextDialogResult(JNIEnv * env, jobject obj, jbyteArray text) {
         jsize  size = env->GetArrayLength(text);
-
         if (size > 0) {
             jbyte * data = (jbyte*)env->GetByteArrayElements(text, 0);
             char* pBuf = (char*)malloc(size+1);
             if (pBuf != NULL) {
                 memcpy(pBuf, data, size);
                 pBuf[size] = '\0';
+				LOGD("Java_org_cocos2dx_lib_Cocos2dxHelper_nativeSetEditTextDialogResult1");
                 // pass data to edittext's delegate
-                if (s_pfEditTextCallbackWithCancelFlag) s_pfEditTextCallbackWithCancelFlag(pBuf, s_ctx, false);
+				if (s_pfEditTextCallbackWithCancelFlag) {
+					s_pfEditTextCallbackWithCancelFlag(pBuf, s_ctx, false);
+				}
+				LOGD("Java_org_cocos2dx_lib_Cocos2dxHelper_nativeSetEditTextDialogResult2");
                 free(pBuf);
             }
             env->ReleaseByteArrayElements(text, data, 0);
         } else {
+			LOGD("Java_org_cocos2dx_lib_Cocos2dxHelper_nativeSetEditTextDialogResult3");
             if (s_pfEditTextCallbackWithCancelFlag) s_pfEditTextCallbackWithCancelFlag("", s_ctx, false);
+			LOGD("Java_org_cocos2dx_lib_Cocos2dxHelper_nativeSetEditTextDialogResult4");
         }
     }
 
@@ -83,12 +88,16 @@ extern "C" {
 				memcpy(pBuf, data, size);
 				pBuf[size] = '\0';
 				// pass data to edittext's delegate
+				LOGD("Java_org_cocos2dx_lib_Cocos2dxHelper_nativeSetEditTextDialogCancelResult1");
 				if (s_pfEditTextCallbackWithCancelFlag) s_pfEditTextCallbackWithCancelFlag(pBuf, s_ctx, true);
+				LOGD("Java_org_cocos2dx_lib_Cocos2dxHelper_nativeSetEditTextDialogCancelResult2");
 				free(pBuf);
 			}
 			env->ReleaseByteArrayElements(text, data, 0);
 		} else {
+			LOGD("Java_org_cocos2dx_lib_Cocos2dxHelper_nativeSetEditTextDialogCancelResult3");
 			if (s_pfEditTextCallbackWithCancelFlag) s_pfEditTextCallbackWithCancelFlag("", s_ctx, true);
+			LOGD("Java_org_cocos2dx_lib_Cocos2dxHelper_nativeSetEditTextDialogCancelResult4");
 		}
 	}
 
@@ -908,6 +917,20 @@ std::string getClientChannelJNI()
 	}
 
 	return "Android";
+}
+
+std::string getClientCpsJNI()
+{
+	JniMethodInfo t;
+
+	if (JniHelper::getStaticMethodInfo(t, CLASS_NAME, "getClientCps", "()Ljava/lang/String;")) {
+		jstring str = (jstring)t.env->CallStaticObjectMethod(t.classID, t.methodID);
+		t.env->DeleteLocalRef(t.classID);
+
+		return JniHelper::jstring2string(str);
+	}
+
+	return "#0";
 }
 
  void showAnnouncement(const char* pAnnounceUrl)

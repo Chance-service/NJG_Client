@@ -21,6 +21,7 @@ local MissionManager = require("MissionManager")
 require("Util.RedPointManager")
 require("NgBattleDataManager")
 require("Battle.NewBattleUtil")
+local EventDataMgr = require("Event001DataMgr")
 
 local mapCfg = ConfigManager.getNewMapCfg()
 
@@ -81,7 +82,12 @@ local option = {
         DUNGEON_BATTLE_LOG_C = HP_pb.DUNGEON_BATTLE_LOG_C,
         DUNGEON_BATTLE_LOG_S = HP_pb.DUNGEON_BATTLE_LOG_S,
         CYCLE_BATTLE_LOG_S = HP_pb.CYCLE_BATTLE_LOG_S,
+        SINGLE_BOSS_BATTLE_LOG_S = HP_pb.SINGLE_BOSS_BATTLE_LOG_S,
         STATE_INFO_SYNC_S = HP_pb.STATE_INFO_SYNC_S,
+        SEASON_TOWER_BATTLE_LOG_S = HP_pb.SEASON_TOWER_BATTLE_LOG_S,
+        LIMIT_TOWER_BATTLE_LOG_S = HP_pb.LIMIT_TOWER_BATTLE_LOG_S,
+        FEAR_LESS_TOWER_BATTLE_LOG_S = HP_pb.FEAR_LESS_TOWER_BATTLE_LOG_S,
+        PUZZLE_BATTLE_LOG_S = HP_pb.PUZZLE_BATTLE_LOG_S,
         -- 取得編隊訊息
         GET_FORMATION_EDIT_INFO_C = HP_pb.GET_FORMATION_EDIT_INFO_C,
         -- 返回編隊訊息
@@ -166,7 +172,8 @@ function TeamCard:updateCardInfo(characterData, roleTable)
     local element = characterData.battleData[CONST.BATTLE_DATA.ELEMENT]
     local itemId = characterData.otherData[CONST.OTHER_DATA.ITEM_ID]
     local roleInfo = UserMercenaryManager:getUserMercenaryByItemId(itemId)
-    NodeHelper:setSpriteImage(self.container, { mRole = "UI/NewPlayeIcon/CardIcon/Role/RoleCard_" .. string.format("%02d", itemId) .. string.format("%03d", roleInfo and roleInfo.skinId or 0) .. ".png"  })
+    local iconId = (roleInfo and roleInfo.skinId > 0) and string.format("%05d", roleInfo.skinId) or string.format("%02d000", itemId)
+    NodeHelper:setSpriteImage(self.container, { mRole = "UI/NewPlayeIcon/CardIcon/Role/RoleCard_" .. iconId .. ".png"  })
 end
 function TeamCard:updateShield(shield, maxHp)
     if self.container == nil then
@@ -288,7 +295,7 @@ function TeamCard:setGrayCard(isGray)
         end
         if self.effectSpineBack then
             local effectSpineBackNode = tolua.cast(self.effectSpineBack, "CCNode")
-            effectSpineBackNode:setVisible(true)
+            --effectSpineBackNode:setVisible(true)
         end
         NodeHelper:setNodeIsGray(self.container, { mRole = false, mMpBar = false })
     end
@@ -301,6 +308,7 @@ function NgBattlePageInfo:onEnter(container)
     --else
     --    battleSpeedTable = { [1.5] = 1, [2.5] = 2 }
     --end
+    UserInfo.sync()
     
     self:MiniGameSync(container)
     NgBattleDataManager_setBattlePageContainer(container) 
@@ -349,7 +357,6 @@ function NgBattlePageInfo:onEnter(container)
     NodeHelper:setNodesVisible(container, { mAutoAni = (battleAuto ~= 0), 
                                             mSpeedAni = (battleSpeed > 1.5),
                                             mVipSpeedAni = isVipSpeed })  
-    container:runAnimation("Default Timeline")
     --背景圖初始化 
     self:setBattleBg()
     --取得第一隊資料
@@ -368,9 +375,11 @@ function NgBattlePageInfo:onEnter(container)
     --新手教學
     local GuideManager = require("Guide.GuideManager")
     GuideManager.PageContainerRef["NgBattlePage"] = container
-    --if GuideManager.isInGuide then
-    --    PageManager.pushPage("NewbieGuideForcedPage")
-    --end
+    if not GuideManager.isInGuide then
+        container:runAnimation("OpenAni")
+    else
+        container:runAnimation("Default Timeline")
+    end
 
     --測試按鈕
     NodeHelper:setNodesVisible(container, { mTestNode = libOS:getInstance():getIsDebug() })
@@ -380,7 +389,9 @@ function NgBattlePageInfo:onEnter(container)
     if PageJumpMange._IsPageJump then
         if PageJumpMange._CurJumpCfgInfo._SecondFunc ~= "" then
             local fun, param = unpack(common:split(PageJumpMange._CurJumpCfgInfo._SecondFunc, ","))
-            NgBattlePageInfo[fun](param, container)
+            if param and container then
+                NgBattlePageInfo[fun](param, container)
+            end
         end
         PageJumpMange._IsPageJump = false
     end
@@ -526,6 +537,54 @@ function NgBattlePageInfo:onCycle(container, resultInfo, battleId, battleType, m
     NgFightSceneHelper:EnterState(container, CONST.FIGHT_STATE.EDIT_TEAM)
     --NodeHelper:setMenuItemEnabled(container, "InfoBtn", false)
 end
+function NgBattlePageInfo:onSeasonTower(container, resultInfo, battleId, battleType, mapId)
+    NgBattleDataManager_setBattleType(CONST.SCENE_TYPE.SEASON_TOWER)
+    NgBattleDataManager.serverEnemyInfo = resultInfo
+    NgBattleDataManager.battleId = battleId
+    NgBattleDataManager.TowerId = mapId
+    NgFightSceneHelper:EnterState(container, CONST.FIGHT_STATE.EDIT_TEAM)
+    --NodeHelper:setMenuItemEnabled(container, "InfoBtn", false)
+end
+function NgBattlePageInfo:onLimitTower(container, resultInfo, battleId, battleType, mapId,_limitType)
+    NgBattleDataManager_setBattleType(CONST.SCENE_TYPE.LIMIT_TOWER)
+    NgBattleDataManager.serverEnemyInfo = resultInfo
+    NgBattleDataManager.battleId = battleId
+    NgBattleDataManager.TowerId = mapId
+    NgBattleDataManager.limitType = _limitType
+    NgFightSceneHelper:EnterState(container, CONST.FIGHT_STATE.EDIT_TEAM)
+    --NodeHelper:setMenuItemEnabled(container, "InfoBtn", false)
+end
+function NgBattlePageInfo:onFearTower(container, resultInfo, battleId, battleType, mapId)
+    NgBattleDataManager_setBattleType(CONST.SCENE_TYPE.FEAR_TOWER)
+    NgBattleDataManager.serverEnemyInfo = resultInfo
+    NgBattleDataManager.battleId = battleId
+    NgBattleDataManager.TowerId = mapId
+    NgFightSceneHelper:EnterState(container, CONST.FIGHT_STATE.EDIT_TEAM)
+    --NodeHelper:setMenuItemEnabled(container, "InfoBtn", false)
+end
+function NgBattlePageInfo:onPuzzle(container, resultInfo, battleId, battleType, mapId)
+    NgBattleDataManager_setBattleType(CONST.SCENE_TYPE.PUZZLE)
+    NgBattleDataManager.serverEnemyInfo = resultInfo
+    NgBattleDataManager.battleId = battleId
+    NgBattleDataManager.TowerId = mapId
+    NgFightSceneHelper:EnterState(container, CONST.FIGHT_STATE.EDIT_TEAM)
+    --NodeHelper:setMenuItemEnabled(container, "InfoBtn", false)
+end
+function NgBattlePageInfo:onSingleBoss(container, resultInfo, battleId, battleType, mapId)
+    NgBattleDataManager_setBattleType(CONST.SCENE_TYPE.SINGLE_BOSS)
+    NgBattleDataManager.serverEnemyInfo = resultInfo
+    NgBattleDataManager.battleId = battleId
+    NgBattleDataManager.SingleBossId = mapId
+    NgFightSceneHelper:EnterState(container, CONST.FIGHT_STATE.EDIT_TEAM)
+end
+
+function NgBattlePageInfo:onSingleBossSim(container, resultInfo, battleId, battleType, mapId)
+    NgBattleDataManager_setBattleType(CONST.SCENE_TYPE.SINGLE_BOSS_SIM)
+    NgBattleDataManager.serverEnemyInfo = resultInfo
+    NgBattleDataManager.battleId = battleId
+    NgBattleDataManager.SingleBossId = mapId
+    NgFightSceneHelper:EnterState(container, CONST.FIGHT_STATE.EDIT_TEAM)
+end
 
 function NgBattlePageInfo_onRestartBoss(container)
     NgBattleDataManager_clearBattleData()
@@ -569,7 +628,7 @@ function NgBattlePageInfo_onRestartBoss(container)
             common:sendPacket(HP_pb.BATTLE_FORMATION_C, msg, false)
         end
     elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.CYCLE_TOWER then
-        local dungeonCfg = ConfigManager:get191StageCfg()
+        local dungeonCfg = EventDataMgr[EventDataMgr.nowActivityId].STAGE_CFG
         if dungeonCfg[NgBattleDataManager.dungeonId] then
             local msg = Battle_pb.NewBattleFormation()
             msg.type = CONST.FORMATION_PROTO_TYPE.REQUEST_ENEMY
@@ -577,11 +636,64 @@ function NgBattlePageInfo_onRestartBoss(container)
             msg.mapId = tostring(NgBattleDataManager.dungeonId)
             common:sendPacket(HP_pb.BATTLE_FORMATION_C, msg, false)
         end
+    elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.SINGLE_BOSS or
+           NgBattleDataManager.battleType == CONST.SCENE_TYPE.SINGLE_BOSS_SIM then
+        local msg = Battle_pb.NewBattleFormation()
+        msg.type = CONST.FORMATION_PROTO_TYPE.REQUEST_ENEMY
+        msg.battleType = NgBattleDataManager.battleType
+        msg.mapId = tostring(NgBattleDataManager.SingleBossId)
+        common:sendPacket(HP_pb.BATTLE_FORMATION_C, msg, false)
     elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.TEST_BATTLE then
         local msg = Battle_pb.NewBattleFormation()
         msg.type = CONST.FORMATION_PROTO_TYPE.REQUEST_ENEMY
         msg.battleType = NgBattleDataManager.battleType
         common:sendPacket(HP_pb.BATTLE_FORMATION_C, msg, false)
+    elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.SEASON_TOWER then
+        local dungeonCfg = ConfigManager:getTowerData()
+        if dungeonCfg[NgBattleDataManager.dungeonId] then
+            local msg = Battle_pb.NewBattleFormation()
+            msg.type = CONST.FORMATION_PROTO_TYPE.REQUEST_ENEMY
+            msg.battleType = NgBattleDataManager.battleType
+            msg.mapId = tostring(NgBattleDataManager.dungeonId)
+            common:sendPacket(HP_pb.BATTLE_FORMATION_C, msg, false)
+        end
+     elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.LIMIT_TOWER then
+        local TowerDataBase = require "Tower.TowerPageData"
+        local cfg = TowerDataBase:getLimitCfg(NgBattleDataManager.dungeonId)
+        if cfg then
+            local msg = Battle_pb.NewBattleFormation()
+            msg.type = CONST.FORMATION_PROTO_TYPE.REQUEST_ENEMY
+            msg.battleType = NgBattleDataManager.battleType
+            msg.mapId = tostring(NgBattleDataManager.dungeonId)
+            msg.limitType = NgBattleDataManager.limitType
+            common:sendPacket(HP_pb.BATTLE_FORMATION_C, msg, false)
+        end
+      elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.FEAR_TOWER then
+        local TowerDataBase = require "Tower.TowerPageData"
+        local _type = NgBattleDataManager.dungeonId
+        
+        local data = TowerDataBase:getData(199, _type) or {}
+        local floor = math.max(tonumber(data.MaxFloor),1)
+        
+        local id = tonumber(string.format("%d%03d", _type, floor))
+        
+        local cfg = TowerDataBase:getFearCfg(id)
+        if cfg then
+            local msg = Battle_pb.NewBattleFormation()
+            msg.type = CONST.FORMATION_PROTO_TYPE.REQUEST_ENEMY
+            msg.battleType = NgBattleDataManager.battleType
+            msg.mapId = tostring(NgBattleDataManager.dungeonId)
+            common:sendPacket(HP_pb.BATTLE_FORMATION_C, msg, false)
+        end
+     elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.PUZZLE then
+        local Cfg = ConfigManager.getSubPuzzleCfg()
+        if Cfg[NgBattleDataManager.dungeonId] then
+            local msg = Battle_pb.NewBattleFormation()
+            msg.type = CONST.FORMATION_PROTO_TYPE.REQUEST_ENEMY
+            msg.battleType = NgBattleDataManager.battleType
+            msg.mapId = tostring(NgBattleDataManager.dungeonId)
+            common:sendPacket(HP_pb.BATTLE_FORMATION_C, msg, false)
+        end
     end
 end
 --------------------------------------------------------
@@ -971,6 +1083,8 @@ function NgBattlePageInfo:setUIType(container)
         mExpressLock = LockManager_getShowLockByPageName(GameConfig.LOCK_PAGE_KEY.FAST_BATTLE),
         mAutoLock = (not isGuide) and (LockManager_getShowLockByPageName(GameConfig.LOCK_PAGE_KEY.AUTO_BATTLE)),
         mVipSpeedLock = (not isGuide) and (FlagDataBase_GetData()[flagDataBase.FlagId.BATTLE_SPEED_X4] ~= 1),
+        mSingleBossNode = (NgBattleDataManager.battleType == NewBattleConst.SCENE_TYPE.SINGLE_BOSS) or
+                          (NgBattleDataManager.battleType == NewBattleConst.SCENE_TYPE.SINGLE_BOSS_SIM)
     })
     NodeHelper:setMenuItemEnabled(NgBattleDataManager.battlePageContainer, "InfoBtn", true)
     NodeHelper:setMenuItemImage(container, { mSpeedBtnImg = { normal = "Battle_btn_speedx" .. math.floor(battleSpeed) .. ".png" } })
@@ -1034,9 +1148,40 @@ function NgBattlePageInfo:setBattleBg()
         local fileName = cfg[NgBattleDataManager.dungeonId].bgFileName
         bgPath = "BG/Battle/" .. fileName .. ".png"
     elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.CYCLE_TOWER then
-        local cfg = ConfigManager:get191StageCfg()
+        local cfg = EventDataMgr[EventDataMgr.nowActivityId].STAGE_CFG
         local fileName = cfg[NgBattleDataManager.dungeonId].battleBg
         bgPath = "BG/Battle/" .. fileName .. ".png"
+    elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.SINGLE_BOSS or
+           NgBattleDataManager.battleType == CONST.SCENE_TYPE.SINGLE_BOSS_SIM then
+        local cfg = ConfigManager.getSingleBoss()[tonumber(NgBattleDataManager.SingleBossId)]
+        local fileName = cfg.BattleBg
+        bgPath = "BG/Battle/"..fileName..".png"
+    elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.SEASON_TOWER then
+        local cfg = ConfigManager.getTowerData()
+        local fileName = cfg[NgBattleDataManager.dungeonId].battleBg
+        bgPath = "BG/Battle/" .. fileName .. ".png"
+     elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.LIMIT_TOWER then
+        local TowerDataBase = require "Tower.TowerPageData"
+        local cfg = TowerDataBase:getLimitCfg(NgBattleDataManager.dungeonId,NgBattleDataManager.limitType)
+        local fileName = cfg.battleBg
+        bgPath = "BG/Battle/" .. fileName .. ".png"
+     elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.FEAR_TOWER then
+        local TowerDataBase = require "Tower.TowerPageData"
+        local _type = NgBattleDataManager.dungeonId
+        
+        local data = TowerDataBase:getData(199, _type) or {}
+        if data.MaxFloor == 0 then data.MaxFloor = 1001 end
+        local floor = math.max(tonumber(string.sub(data.MaxFloor,2,4)),1)
+        
+        local id = tonumber(string.format("%d%03d", _type, floor))
+        
+        local cfg = TowerDataBase:getFearCfg(id)
+        local fileName = cfg.battleBg
+        bgPath = "BG/Battle/" .. fileName .. ".png"
+    elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.PUZZLE then
+        local cfg = ConfigManager.getSubPuzzleCfg()
+        local fileName = cfg[NgBattleDataManager.dungeonId].battleBg
+        bgPath = fileName
     elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.TEST_BATTLE then
         bgPath = "BG/Battle/worldboss_02_2.png"
     end
@@ -1069,7 +1214,33 @@ function NgBattlePageInfo:setTitle()
         titleTxt:setString(common:getLanguageString("@RaidTitle"))
         NodeHelper:setStringForLabel(NgBattleDataManager.battlePageContainer, { mMonsterTitle = cfg[NgBattleDataManager.dungeonId].name })
     elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.CYCLE_TOWER then
-        local cfg = ConfigManager:get191StageCfg()
+        local cfg = EventDataMgr[EventDataMgr.nowActivityId].STAGE_CFG
+        titleTxt:setString(common:getLanguageString("@RaidTitle"))
+        NodeHelper:setStringForLabel(NgBattleDataManager.battlePageContainer, { mMonsterTitle = cfg[NgBattleDataManager.dungeonId].StageName })
+    elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.SINGLE_BOSS or
+           NgBattleDataManager.battleType == CONST.SCENE_TYPE.SINGLE_BOSS_SIM then
+        local cfg = ConfigManager.getSingleBoss()[tonumber(NgBattleDataManager.SingleBossId)]
+        titleTxt:setString(cfg.BossName)
+        NodeHelper:setStringForLabel(NgBattleDataManager.battlePageContainer, { mMonsterTitle = cfg.BossName })
+     elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.SEASON_TOWER then
+        local cfg = ConfigManager:getTowerData()
+        titleTxt:setString(common:getLanguageString("@RaidTitle"))
+        NodeHelper:setStringForLabel(NgBattleDataManager.battlePageContainer, { mMonsterTitle = cfg[NgBattleDataManager.dungeonId].StageName })
+     elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.LIMIT_TOWER then
+        local TowerDataBase = require "Tower.TowerPageData"
+        local cfg = TowerDataBase:getLimitCfg(NgBattleDataManager.dungeonId,NgBattleDataManager.limitType)
+        NodeHelper:setStringForLabel(NgBattleDataManager.battlePageContainer, { mMonsterTitle = cfg.StageName })
+     elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.FEAR_TOWER then
+       local TowerDataBase = require "Tower.TowerPageData"
+        local _type = NgBattleDataManager.dungeonId
+        
+        local data = TowerDataBase:getData(199, _type) or {}
+        local floor = math.max(tonumber(data.MaxFloor),1001)
+        
+        local cfg = TowerDataBase:getFearCfg(floor)
+        NodeHelper:setStringForLabel(NgBattleDataManager.battlePageContainer, { mMonsterTitle = cfg.StageName })
+     elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.PUZZLE then
+        local cfg = ConfigManager.getSubPuzzleCfg()
         titleTxt:setString(common:getLanguageString("@RaidTitle"))
         NodeHelper:setStringForLabel(NgBattleDataManager.battlePageContainer, { mMonsterTitle = cfg[NgBattleDataManager.dungeonId].StageName })
     elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.TEST_BATTLE then
@@ -1340,7 +1511,12 @@ function NgBattlePageInfo:onReceivePacket(container)
            opcode == HP_pb.PVP_BATTLE_LOG_S or
            opcode == HP_pb.WORLD_BOSS_BATTLE_LOG_S or
            opcode == HP_pb.DUNGEON_BATTLE_LOG_S or
-           opcode == HP_pb.CYCLE_BATTLE_LOG_S then
+           opcode == HP_pb.CYCLE_BATTLE_LOG_S or
+           opcode == HP_pb.SINGLE_BOSS_BATTLE_LOG_S or
+           opcode == HP_pb. SEASON_TOWER_BATTLE_LOG_S or
+           opcode == HP_pb. LIMIT_TOWER_BATTLE_LOG_S or 
+           opcode == HP_pb. FEAR_LESS_TOWER_BATTLE_LOG_S or 
+           opcode == HP_pb. PUZZLE_BATTLE_LOG_S then
         local msg = Battle_pb.NewBattleLog()
         msg:ParseFromString(msgBuff)
         local result = msg.resault
@@ -1436,6 +1612,20 @@ function NgBattlePageInfo_sendTeamInfoToServer(teamInfo)
         msg.mapId = tostring(NgBattleDataManager.dungeonId)
     elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.CYCLE_TOWER then
         msg.mapId = tostring(NgBattleDataManager.dungeonId)
+    elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.SINGLE_BOSS or 
+           NgBattleDataManager.battleType == CONST.SCENE_TYPE.SINGLE_BOSS_SIM then
+        msg.mapId = tostring(NgBattleDataManager.SingleBossId)
+    elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.SEASON_TOWER then
+        msg.mapId = tostring(NgBattleDataManager.dungeonId)
+    elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.LIMIT_TOWER then
+        msg.mapId = tostring(NgBattleDataManager.dungeonId)
+        msg.limitType = NgBattleDataManager.limitType
+    elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.FEAR_TOWER then
+        msg.mapId = tostring(NgBattleDataManager.dungeonId)
+    elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.PUZZLE then
+        msg.mapId = tostring(NgBattleDataManager.dungeonId)
+        local cfg = ConfigManager.getSubPuzzleCfg()
+        msg.Id = cfg[NgBattleDataManager.dungeonId].mainId
     elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.EDIT_FIGHT_TEAM then
         local EditMercenaryTeam = require("EditMercenaryTeamPage")
         local Ids = {}
@@ -1529,6 +1719,10 @@ function NgBattlePageInfo_sendBattleResult()
         local str = NgBattleDetailPage_formatLogString(resultType + 1)
         msg.tapdbjstr = str
         ---------------------------------------------------------
+        if NgBattleDataManager.battleType == CONST.SCENE_TYPE.SINGLE_BOSS then
+            msg.battleScore = NewBattleUtil:getSingleBossScore()
+        end
+        ---------------------------------------------------------
         local GuideManager = require("Guide.GuideManager")
         local opcode = nil
         if NgBattleDataManager.battleType == CONST.SCENE_TYPE.BOSS or NgBattleDataManager.battleType == CONST.SCENE_TYPE.TEST_BATTLE then
@@ -1543,6 +1737,16 @@ function NgBattlePageInfo_sendBattleResult()
             opcode = HP_pb.DUNGEON_BATTLE_LOG_C
         elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.CYCLE_TOWER then
             opcode = HP_pb.CYCLE_BATTLE_LOG_C
+        elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.SEASON_TOWER then
+            opcode = HP_pb.SEASON_TOWER_BATTLE_LOG_C
+        elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.LIMIT_TOWER then
+            opcode = HP_pb.LIMIT_TOWER_BATTLE_LOG_C
+        elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.FEAR_TOWER then
+            opcode = HP_pb.FEAR_LESS_TOWER_BATTLE_LOG_C
+        elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.PUZZLE then
+            opcode = HP_pb.PUZZLE_BATTLE_LOG_C
+        elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.SINGLE_BOSS then
+            opcode = HP_pb.SINGLE_BOSS_BATTLE_LOG_C
         end
         if opcode then
             common:sendPacket(opcode, msg, true)
@@ -1676,7 +1880,7 @@ function NgBattlePageInfo:getCurrentDayString()
 
     local nextDate = TimeDateUtil:utcTime2LocalDate(clientSafeTime)
     if nextDate then
-        return nextDate.year .. "_" .. nextDate.month .. "_" .. nextDate.day
+        return nextDate.year .. "_" .. string.format("%02d", nextDate.month) .. "_" .. string.format("%02d", nextDate.day)
     else
         return nil  -- 日期轉換失敗時返回 nil
     end

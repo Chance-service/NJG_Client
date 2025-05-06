@@ -441,6 +441,44 @@ function SkillUtil:getRandomTarget(attacker, list, num, addCond)
                     table.insert(targetTable, list[condIdTable[i]])
                 end
             end
+        elseif addCond and addCond == CONST.SKILL_TARGET_CONDITION.HAVE_DISPEL_BUFF then
+            local buffConfig = ConfigManager:getNewBuffCfg()
+            local condIdTable = { }
+            for i = 1, #aliveIdTable do
+                local buff = list[aliveIdTable[i]].buffData
+                if buff then
+                    for fullBuffId, buffData in pairs(buff) do
+                        if buffConfig[buffId].gain == 1 and buffConfig[buffId].dispel == 1 then
+                            table.insert(condIdTable, aliveIdTable[i])
+                            break
+                        end
+                    end
+                end
+            end 
+            for i = 1, num do
+                if condIdTable[i] then
+                    table.insert(targetTable, list[condIdTable[i]])
+                end
+            end
+        elseif addCond and addCond == CONST.SKILL_TARGET_CONDITION.HAVE_DISPEL_DEBUFF then
+            local buffConfig = ConfigManager:getNewBuffCfg()
+            local condIdTable = { }
+            for i = 1, #aliveIdTable do
+                local buff = list[aliveIdTable[i]].buffData
+                if buff then
+                    for fullBuffId, buffData in pairs(buff) do
+                        if buffConfig[fullBuffId].gain == 0 and buffConfig[fullBuffId].dispel == 1 then
+                            table.insert(condIdTable, aliveIdTable[i])
+                            break
+                        end
+                    end
+                end
+            end 
+            for i = 1, num do
+                if condIdTable[i] then
+                    table.insert(targetTable, list[condIdTable[i]])
+                end
+            end
         else
             for i = 1, #aliveIdTable do
                 local rand = math.random(1, #aliveIdTable)

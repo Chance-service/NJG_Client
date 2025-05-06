@@ -26,15 +26,13 @@ package org.cocos2dx.lib;
 
 import org.cocos2dx.lib.ListenerEditText.KeyImeChange;
 
+//noinspection SuspiciousImport
 import android.R;
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.graphics.Point;
 import android.graphics.Rect;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
@@ -46,17 +44,17 @@ import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnAttachStateChangeListener;
 import android.view.View.OnLayoutChangeListener;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
+
+import java.util.Objects;
 
 public class Cocos2dxEditBoxDialog extends Dialog {
 	// ===========================================================
@@ -150,7 +148,7 @@ public class Cocos2dxEditBoxDialog extends Dialog {
 	private int mInputModeContraints;
 	private boolean mIsMultiline;
 	private int lastHight = 0;
-	private String TAG = "Cocos2dxEditBoxDialog";
+	private final String TAG = "Cocos2dxEditBoxDialog";
     //private Cocos2dxActivity theActivity ;
 	// ===========================================================
 	// Constructors
@@ -158,8 +156,6 @@ public class Cocos2dxEditBoxDialog extends Dialog {
 
 	public Cocos2dxEditBoxDialog(final Context pContext, final String pTitle, final String pMessage, final int pInputMode, final int pInputFlag, final int pReturnType, final int pMaxLength) {
 		super(pContext, android.R.style.Theme_Translucent_NoTitleBar_Fullscreen);
-//		super(context, R.style.Theme_Translucent);
-		//theActivity = (Cocos2dxActivity) pContext;
 		this.mTitle = pTitle;
 		this.mMessage = pMessage;
 		this.mInputMode = pInputMode;
@@ -193,18 +189,15 @@ public class Cocos2dxEditBoxDialog extends Dialog {
 		final LinearLayout.LayoutParams editTextParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 		editTextParams.leftMargin = editTextParams.rightMargin = this.convertDipsToPixels(10);
 		this.mInputEditText.addOnLayoutChangeListener(new OnLayoutChangeListener() {
-			
+
 			@Override
 			public void onLayoutChange(View arg0, int arg1, int arg2, int arg3,
 					int arg4, int arg5, int arg6, int arg7, int arg8) {
-				// TODO Auto-generated method stub
 				Log.w(TAG, "__________onLayoutChange");
 				OnGetEditBoxHight();
-				Log.w(TAG, "__________arg1 = " + arg1 + "arg2 = " + arg2+"arg3"+arg3+"arg4"+arg4+"arg5"+arg5+"arg6"+arg6+"arg7"+arg7+"arg8"+arg8);
-				//System.out.println("__________onLayoutChange");
 			}
 		});
-		
+
 		this.mInputEditText.setKeyImeChangeListener(new KeyImeChange(){
 		    @Override
 		    public void onKeyIme(int keyCode, KeyEvent event)
@@ -234,12 +227,11 @@ public class Cocos2dxEditBoxDialog extends Dialog {
 		        }
 				Log.w(TAG, "__________onKeyIme END");
 		    }});
-		
+
 		this.mInputEditText.addTextChangedListener(new TextWatcher() {
-			
+
 			@Override
 			public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
-				// TODO Auto-generated method stub
 				//System.out.println("__________onTextChanged");
 				Log.w(TAG, "__________onTextChanged");
 				if (arg0 == null)
@@ -254,22 +246,19 @@ public class Cocos2dxEditBoxDialog extends Dialog {
 	            }
 				Log.w(TAG, "__________onTextChanged END");
 			}
-			
+
 			@Override
 			public void beforeTextChanged(CharSequence arg0, int arg1, int arg2,
 					int arg3) {
-				// TODO Auto-generated method stub
 				Log.w(TAG, "__________beforeTextChanged");
 			}
-			
+
 			@Override
 			public void afterTextChanged(Editable arg0) {
-				// TODO Auto-generated method stub
-				Log.w(TAG, "__________afterTextChanged");
 				String txt = Cocos2dxEditBoxDialog.this.mInputEditText.getText().toString();
-				Log.w(TAG, "__________afterTextChanged2");
+				Log.w(TAG, "__________afterTextChanged");
 				Cocos2dxHelper.setEditTextDialogResult(txt);
-				Log.w(TAG, "__________afterTextChanged3");
+				Log.w(TAG, "__________afterTextChanged END");
 			}
 		});
 		this.mInputEditText.setSingleLine(true);
@@ -279,24 +268,18 @@ public class Cocos2dxEditBoxDialog extends Dialog {
 			@Override
 			public boolean onEditorAction(final TextView v, final int actionId, final KeyEvent event) {
 				/* If user didn't set keyboard type, this callback will be invoked twice with 'KeyEvent.ACTION_DOWN' and 'KeyEvent.ACTION_UP'. */
-				Log.w(TAG, "__________onEditorAction");
-				if (actionId != EditorInfo.IME_NULL || (actionId == EditorInfo.IME_NULL && event != null && event.getAction() == KeyEvent.ACTION_DOWN)) {
-					Log.w(TAG, "__________onEditorAction1");
-					Cocos2dxHelper.setEditTextDialogResult(Cocos2dxEditBoxDialog.this.mInputEditText.getText().toString());
-					Log.w(TAG, "__________onEditorAction2");
+				Log.w(TAG, "__________onEditorAction ");
+				if (actionId != EditorInfo.IME_NULL || event != null && event.getAction() == KeyEvent.ACTION_DOWN) {
+					//Cocos2dxHelper.setEditTextDialogResult(Cocos2dxEditBoxDialog.this.mInputEditText.getText().toString());
 					Cocos2dxEditBoxDialog.this.closeKeyboard();
-					Log.w(TAG, "__________onEditorAction3");
-					//Log.e("cocos2dxDialog", "----onEditorAction-" + actionId);
 					Cocos2dxEditBoxDialog.this.dismiss();
-					Log.w(TAG, "__________onEditorAction4");
 					return true;
 				}
-				Log.w(TAG, "__________onEditorAction5");
 				return false;
 			}
 		});
 		layout.addView(this.mInputEditText, editTextParams);
-		
+
 		{
 			final LinearLayout layout1 = new LinearLayout(this.getContext());
 			layout1.setOrientation(LinearLayout.HORIZONTAL);
@@ -332,10 +315,10 @@ public class Cocos2dxEditBoxDialog extends Dialog {
 				@Override
 				public void onClick(View v) {
 					Log.w(TAG, "__________onClick");
-					String txt = Cocos2dxEditBoxDialog.this.mInputEditText.getText().toString();
+					//String txt = Cocos2dxEditBoxDialog.this.mInputEditText.getText().toString();
 					//
-					if (!txt.isEmpty())
-						Cocos2dxHelper.setEditTextDialogResult(txt);
+					//if (!txt.isEmpty())
+					//	Cocos2dxHelper.setEditTextDialogResult(txt);
 					Cocos2dxEditBoxDialog.this.closeKeyboard();
 					//Log.e("cocos2dxDialog", "-----this.mOkBtn.setOnClickListener");
 					Cocos2dxEditBoxDialog.this.dismiss();
@@ -367,7 +350,7 @@ public class Cocos2dxEditBoxDialog extends Dialog {
 
 		this.setContentView(layout, layoutParams);
 
-		this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		Objects.requireNonNull(this.getWindow()).addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 		this.mTextViewTitle.setText(this.mTitle);
 		this.mInputEditText.setText(this.mMessage);
@@ -473,165 +456,25 @@ public class Cocos2dxEditBoxDialog extends Dialog {
 		this.mCancelBtn.setVisibility(View.GONE);
 		this.mOkBtn.setVisibility(View.GONE);
 		mInputEditTextRef = this.mInputEditText;
-		
-		
-//		this.setOnKeyListener(new OnKeyListener() {
-//			
-//			@Override
-//			public boolean onKey(DialogInterface arg0, int keyCode, KeyEvent event) {
-//				
-//				Log.e("cocos2dxDialog", "----onKey---");
-//				
-//				
-//				if (keyCode == KeyEvent.KEYCODE_BACK)
-//			    {
-//					
-//					Log.e("cocos2dxDialog", "-keyCode---KEYCODE_BACK---");
-//		    		Cocos2dxEditBoxDialog.this.closeKeyboard();
-//					Log.e("cocos2dxDialog", "-----event.getAction() == MotionEvent.ACTION_DOWN");
-//					Cocos2dxEditBoxDialog.this.dismiss();
-//					
-//			     return true;
-//			    }
-//			    else  if(keyCode == KeyEvent.KEYCODE_HOME)
-//			    {
-//			    	Log.e("cocos2dxDialog", "--keyCode--KEYCODE_HOME---");
-//		    		Cocos2dxEditBoxDialog.this.closeKeyboard();
-//					Log.e("cocos2dxDialog", "-----event.getAction() == MotionEvent.ACTION_DOWN");
-//					Cocos2dxEditBoxDialog.this.dismiss();
-//					return true ;
-//					
-//			    }else
-//			    {
-//			    	return false; //默认返回 false
-//			    }
-//		}});
-
-
-//		this.setOnKeyListener(new OnKeyListener() {
-//			
-//			@Override
-//			public boolean onKey(DialogInterface arg0, int keyCode, KeyEvent event) {
-//				
-//				Log.e("cocos2dxDialog", "----onKey---");
-//				
-//				
-//				if (keyCode == KeyEvent.KEYCODE_BACK)
-//			    {
-//					
-//					Log.e("cocos2dxDialog", "-keyCode---KEYCODE_BACK---");
-//		    		Cocos2dxEditBoxDialog.this.closeKeyboard();
-//					Log.e("cocos2dxDialog", "-----event.getAction() == MotionEvent.ACTION_DOWN");
-//					Cocos2dxEditBoxDialog.this.dismiss();
-//					
-//			     return true;
-//			    }
-//			    else  if(keyCode == KeyEvent.KEYCODE_HOME)
-//			    {
-//			    	Log.e("cocos2dxDialog", "--keyCode--KEYCODE_HOME---");
-//		    		Cocos2dxEditBoxDialog.this.closeKeyboard();
-//					Log.e("cocos2dxDialog", "-----event.getAction() == MotionEvent.ACTION_DOWN");
-//					Cocos2dxEditBoxDialog.this.dismiss();
-//					return true ;
-//					
-//			    }else
-//			    {
-//			    	return false; //默认返回 false
-//			    }
-//		}});
-		
-		
-		
-//		DialogInterface.OnKeyListener keylistener = new DialogInterface.OnKeyListener(){
-//	        public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
-//	        	
-//	        	Log.e("cocos2dxDialog", "-keyCode-----DialogInterface-");
-//	        	
-//	        	
-//	            if (keyCode==KeyEvent.KEYCODE_BACK&&event.getRepeatCount()==0)
-//	            {
-//	            	Log.e("cocos2dxDialog", "-keyCode---KEYCODE_BACK--DialogInterface-");
-//	                return false;
-//	            }
-//	            else
-//	            {
-//	                return true;
-//	            }
-//	        }
-//	    } ;
-//	    
-//	    this.setOnKeyListener(keylistener);
 
 		Log.w(TAG, "__________onCreate END");
 	}
-//    @Override
-//    public boolean onKeyDown(int keyCode , KeyEvent event)
-//    {
-//    	
-//    	Log.e("cocos2dxDialog", "----onKeyDown---");
-//    	
-//    	
-//    	switch(keyCode)
-//    	{
-//    	case KeyEvent.KEYCODE_BACK:
-//    		Log.e("cocos2dxDialog", "----KEYCODE_BACK---");
-//    		
-//    		Cocos2dxEditBoxDialog.this.closeKeyboard();
-//			Log.e("cocos2dxDialog", "-----event.getAction() == MotionEvent.ACTION_DOWN");
-//			Cocos2dxEditBoxDialog.this.dismiss();
-//			
-//    		break;
-//    	case KeyEvent.KEYCODE_HOME:
-//    		Log.e("cocos2dxDialog", "----KEYCODE_HOME---");
-//    		Cocos2dxEditBoxDialog.this.closeKeyboard();
-//			Log.e("cocos2dxDialog", "-----event.getAction() == MotionEvent.ACTION_DOWN");
-//			Cocos2dxEditBoxDialog.this.dismiss();
-//    		
-//    		break;
-//    	}
-//    	
-//		return super.onKeyDown(keyCode, event);
-//    }
 
-	// ===========================================================
-	// Getter & Setter
-	// ===========================================================
-
-	// ===========================================================
-	// Methods for/from SuperClass/Interfaces
-	// ===========================================================
-
-	// ===========================================================
-	// Methods
-	// ===========================================================
-	 
-	@SuppressLint("NewApi") public int OnGetEditBoxHight() {
+	@SuppressLint({"NewApi", "SuspiciousIndentation"})
+	public void OnGetEditBoxHight() {
 		Log.w(TAG, "__________OnGetEditBoxHight");
 		WindowManager  wm = (WindowManager) Cocos2dxEditBoxDialog.this.getContext().getSystemService(Context.WINDOW_SERVICE);
-		int w = wm.getDefaultDisplay().getWidth();
-		int h = wm.getDefaultDisplay().getHeight();
-		
 		
 	    Point outSize = new Point();
 	    wm.getDefaultDisplay().getRealSize(outSize);
-	    int x = outSize.x;
-	    int y = outSize.y;
-	    
-		
-		
-		
-		
-		int s = mInputEditText.getTop();
+		int y = outSize.y;
 		Rect r = new Rect();
-        getWindow().getDecorView().getWindowVisibleDisplayFrame(r);
+        Objects.requireNonNull(getWindow()).getDecorView().getWindowVisibleDisplayFrame(r);
         int dif = y - r.height();
-        Log.w(TAG, "__________x = " + x + ",y = " + y+"r.height()"+r.height()+"lastHight"+lastHight);
         if(dif != lastHight) 
         {
-        	//if(lastHight>0 && (dif == 0||lastHight>r.height()/3))//˵�����̹ر�
-        	if(lastHight>0 && (dif == 0))//˵�����̹ر�
+        	if(lastHight>0 && (dif == 0))
         	{
-        		//Log.e("cocos2dxDialog", "-----lastHight-----" + lastHight + "--dif---" + dif  + "---r.height()---" + r.height());
 				Log.w(TAG, "__________closeKeyboard");
         		closeKeyboard();
 				Log.w(TAG, "__________closeKeyboard2");
@@ -646,22 +489,18 @@ public class Cocos2dxEditBoxDialog extends Dialog {
         	}
         }
 		Log.w(TAG, "__________OnGetEditBoxHight END");
-		return dif;
-    }
+	}
 	@Override 
     public boolean onTouchEvent(MotionEvent event) {
-		Log.w(TAG, "__________onTouchEvent");
-        // TODO Auto-generated method stub  
-		System.out.println("____________");
-		System.out.println(event.getAction());
-        if (event.getAction() == MotionEvent.ACTION_DOWN) {  
-
-            Cocos2dxHelper.setEditTextDialogResult(Cocos2dxEditBoxDialog.this.mInputEditText.getText().toString());
+		//Log.w(TAG, "__________onTouchEvent " + event.getAction());
+		//System.out.println("____________");
+		//System.out.println(event.getAction());
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            //Cocos2dxHelper.setEditTextDialogResult(Cocos2dxEditBoxDialog.this.mInputEditText.getText().toString());
 			Cocos2dxEditBoxDialog.this.closeKeyboard();
-			//Log.e("cocos2dxDialog", "-----event.getAction() == MotionEvent.ACTION_DOWN");
 			Cocos2dxEditBoxDialog.this.dismiss();
         }
-		Log.w(TAG, "__________onTouchEvent END");
+		//Log.w(TAG, "__________onTouchEvent END");
         return super.onTouchEvent(event);
     }
 	private int convertDipsToPixels(final float pDIPs) {
@@ -673,8 +512,11 @@ public class Cocos2dxEditBoxDialog extends Dialog {
 
 	private void openKeyboard() {
 		Log.e("cocos2dxDialog", "---openKeyboard-------");
-		final InputMethodManager imm = (InputMethodManager) this.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-		imm.showSoftInput(this.mInputEditText, 0);
+		final InputMethodManager imm;
+		if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.CUPCAKE) {
+			imm = (InputMethodManager) this.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+			imm.showSoftInput(this.mInputEditText, 0);
+		}
 		Cocos2dxHelper.EditopenKeyboard();
 		OnGetEditBoxHight();
 		Log.e("cocos2dxDialog", "---openKeyboard END-------");
@@ -684,8 +526,11 @@ public class Cocos2dxEditBoxDialog extends Dialog {
 		
 		Log.e("cocos2dxDialog", "---closeKeyboard-------");
 		Cocos2dxHelper.EditcloseKeyboard();
-		final InputMethodManager imm = (InputMethodManager) this.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-		imm.hideSoftInputFromWindow(this.mInputEditText.getWindowToken(), 0);
+		final InputMethodManager imm;
+		if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.CUPCAKE) {
+			imm = (InputMethodManager) this.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+			imm.hideSoftInputFromWindow(this.mInputEditText.getWindowToken(), 0);
+		}
 		mInputEditTextRef = null;
 		Log.e("cocos2dxDialog", "---closeKeyboard END-------");
 	}
@@ -699,7 +544,4 @@ public class Cocos2dxEditBoxDialog extends Dialog {
 		}
 		Log.e("cocos2dxDialog", "---setEditBoxText END-------");
 	}
-	// ===========================================================
-	// Inner and Anonymous Classes
-	// ===========================================================
 }

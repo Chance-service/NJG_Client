@@ -161,7 +161,7 @@ function AlbumMainPage:onEnter(container)
 
     container.mScrollView = container:getVarScrollView("mContent")
     -- scrollview自適應
-    NodeHelper:autoAdjustResizeScrollview(container.mScrollView)
+    --NodeHelper:autoAdjustResizeScrollview(container.mScrollView)
     -- 設定過濾按鈕
     local filterBg = container:getVarScale9Sprite("mFilterBg")
     filterBg:setContentSize(filterCloseSize)

@@ -89,13 +89,12 @@ def getMd5(filename):
 def FolderToZip():
     filelist = os.listdir(Res_assets)
     printdebug(filelist)
-    zippath = os.path.join(Res_ZipDone,'fixFile.zip') 
-    zf = zipfile.ZipFile(zippath,mode='w',compression=zipfile.ZIP_DEFLATED)
     for adir in filelist:
         fulldir = os.path.join(Res_assets,adir)
         if os.path.isdir(fulldir):
             print("ZIP..... :"+fulldir)
-            #zf = zipfile.ZipFile(zippath,mode='w',compression=zipfile.ZIP_DEFLATED)
+            zippath = os.path.join(Res_ZipDone,adir+'.zip') 
+            zf = zipfile.ZipFile(zippath,mode='w',compression=zipfile.ZIP_DEFLATED)
             os.chdir(fulldir)
             fileidx = 1
             for root,folders,files in os.walk(fulldir):
@@ -107,12 +106,13 @@ def FolderToZip():
                     bfile = fpath+sfile     
                     #printdebug('bfile: '+ bfile) 
                     zf.write(aFile,bfile)
-                    #if (os.path.getsize(zippath) >= zipsizelimit):
-                    #    zf.close()
-                    #    zippath = os.path.join(Res_ZipDone,'fixFile.zip')
-                    #    zf = zipfile.ZipFile(zippath,mode='w',compression=zipfile.ZIP_DEFLATED)
-                    #    fileidx = fileidx + 1
-    zf.close()
+                    if (os.path.getsize(zippath) >= zipsizelimit):
+                        zf.close()
+                        zippath = os.path.join(Res_ZipDone,adir+'_'+str(fileidx)+'.zip')
+                        zf = zipfile.ZipFile(zippath,mode='w',compression=zipfile.ZIP_DEFLATED)
+                        fileidx = fileidx + 1
+            zf.close()
+
 def Expotr_Manifest():
     fulljsonfile = os.path.join(ResUp_path,upjsonfile)
     printdebug("jsonphp FilePath : "+ fulljsonfile)

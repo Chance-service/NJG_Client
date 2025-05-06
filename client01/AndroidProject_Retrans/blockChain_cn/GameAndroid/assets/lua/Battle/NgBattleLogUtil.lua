@@ -34,77 +34,11 @@ end
 -- ¬ö¿ýlog
 -- Action 1: §ðÀ» 2: ¦^¦å 3: ¦^Å]
 function NgBattleLogUtil:addLog(actionType, attacker, targetList, skillId, skillGroupId, actionResultTable, passiveTable, logTime)
-    --local markTime = logTime or NgBattleDataManager.battleTime
-    --if NgBattleDataManager.battleType ~= CONST.SCENE_TYPE.AFK and NgBattleDataManager.battleState ~= CONST.FIGHT_STATE.EDIT_TEAM then
-    --    NgBattleDataManager.battleLog = NgBattleDataManager.battleLog or { }
-    --    local log = {}
-    --    -------------------------------------------------------------------------------
-    --    local roleInfo = {}
-    --    roleInfo.posId = tonumber(attacker.idx)
-    --    roleInfo.action = tonumber(actionType)
-    --    roleInfo.skillGroupId = tonumber(skillGroupId)
-    --    roleInfo.skillId = skillId and tonumber(skillId) or nil
-    --    roleInfo.buff = {}
-    --    for k, v in pairs(attacker.buffData) do
-    --        table.insert(roleInfo.buff, k)
-    --    end
-    --    roleInfo.nowShield = tonumber(attacker.battleData[CONST.BATTLE_DATA.PRE_SHIELD])
-    --    roleInfo.newShield = tonumber(attacker.battleData[CONST.BATTLE_DATA.SHIELD])
-    --    roleInfo.nowHp = tonumber(attacker.battleData[CONST.BATTLE_DATA.PRE_HP])
-    --    roleInfo.newHp = tonumber(attacker.battleData[CONST.BATTLE_DATA.HP])
-    --    roleInfo.nowMp = tonumber(attacker.battleData[CONST.BATTLE_DATA.PRE_MP])
-    --    roleInfo.newMp = tonumber(attacker.battleData[CONST.BATTLE_DATA.MP])
-    --    roleInfo.status = nil
-    --    roleInfo.passive = {}
-    --    if passiveTable and passiveTable[attacker.idx] then
-    --        for k, v in pairs(passiveTable[attacker.idx]) do
-    --            table.insert(roleInfo.passive, v)
-    --        end
-    --    end
-    --    log.roleInfo = roleInfo
-    --    -------------------------------------------------------------------------------
-    --    local allTarget = {}
-    --    if targetList then
-    --        for i = 1, #targetList do
-    --            local target = {}
-    --            target.posId = tonumber(targetList[i].idx)
-    --            target.action = nil
-    --            target.skillGroupId = nil
-    --            target.skillId = nil
-    --            target.buff = {}
-    --            for k, v in pairs(targetList[i].buffData) do
-    --                table.insert(target.buff, k)
-    --            end
-    --            target.nowShield = tonumber(targetList[i].battleData[CONST.BATTLE_DATA.PRE_SHIELD])
-    --            target.newShield = tonumber(targetList[i].battleData[CONST.BATTLE_DATA.SHIELD])
-    --            target.nowHp = tonumber(targetList[i].battleData[CONST.BATTLE_DATA.PRE_HP])
-    --            target.newHp = tonumber(targetList[i].battleData[CONST.BATTLE_DATA.HP])
-    --            target.nowMp = tonumber(targetList[i].battleData[CONST.BATTLE_DATA.PRE_MP])
-    --            target.newMp = tonumber(targetList[i].battleData[CONST.BATTLE_DATA.MP])
-    --            target.status = tonumber(actionResultTable[i])
-    --            target.passive = {}
-    --            if passiveTable and passiveTable[targetList[i].idx] then
-    --                for k, v in pairs(passiveTable[targetList[i].idx]) do
-    --                    table.insert(target.passive, v)
-    --                end
-    --            end
-    --            table.insert(allTarget, target)
-    --        end
-    --    end
-    --    log.targetRoleInfo = allTarget
-    --    -------------------------------------------------------------------------------
-    --    log.markTime = tonumber(math.floor(markTime))   -- ²@¬í
-    --    -------------------------------------------------------------------------------
-    --    table.insert(NgBattleDataManager.battleLog, log)
-    --end
+
 end
 
 function NgBattleLogUtil:addBuffLog(chaNode, buffId)
-    local sceneHelper = require("Battle.NgFightSceneHelper")
-    local skillGroupId = sceneHelper:getNewSkillGroupId()
-    if NgBattleDataManager.battleType ~= CONST.SCENE_TYPE.AFK then
-        self:addLog(CONST.LogActionType.BUFF, chaNode, { chaNode }, buffId, skillGroupId, { CONST.LogActionResultType.HIT }, {}, NgBattleDataManager.battleTime)
-    end
+
 end
 
 function NgBattleLogUtil:addAttackLog(chaNode, skillId, skillGroupId)
@@ -117,48 +51,46 @@ function NgBattleLogUtil:setPreLog(chaNode, resultTable, isHit)
     chaNode.battleData[CONST.BATTLE_DATA.PRE_MP] = chaNode.battleData[CONST.BATTLE_DATA.MP]
     chaNode.battleData[CONST.BATTLE_DATA.PRE_SHIELD] = chaNode.battleData[CONST.BATTLE_DATA.SHIELD]
     if resultTable then
-        --for i = 1, #resultTable do
-            if resultTable[NewBattleConst.LogDataType.DMG_TAR] then
-                for dmgTar = 1, #resultTable[NewBattleConst.LogDataType.DMG_TAR] do
-                    local tar = resultTable[NewBattleConst.LogDataType.DMG_TAR][dmgTar]
-                    tar.battleData[CONST.BATTLE_DATA.PRE_HP] = tar.battleData[CONST.BATTLE_DATA.HP]
-                    tar.battleData[CONST.BATTLE_DATA.PRE_MP] = tar.battleData[CONST.BATTLE_DATA.MP]
-                    tar.battleData[CONST.BATTLE_DATA.PRE_SHIELD] = tar.battleData[CONST.BATTLE_DATA.SHIELD]
-                end
+        if resultTable[NewBattleConst.LogDataType.DMG_TAR] then
+            for dmgTar = 1, #resultTable[NewBattleConst.LogDataType.DMG_TAR] do
+                local tar = resultTable[NewBattleConst.LogDataType.DMG_TAR][dmgTar]
+                tar.battleData[CONST.BATTLE_DATA.PRE_HP] = tar.battleData[CONST.BATTLE_DATA.HP]
+                tar.battleData[CONST.BATTLE_DATA.PRE_MP] = tar.battleData[CONST.BATTLE_DATA.MP]
+                tar.battleData[CONST.BATTLE_DATA.PRE_SHIELD] = tar.battleData[CONST.BATTLE_DATA.SHIELD]
             end
-            if resultTable[NewBattleConst.LogDataType.HEAL_TAR] then
-                for healTar = 1, #resultTable[NewBattleConst.LogDataType.HEAL_TAR] do
-                    local tar = resultTable[NewBattleConst.LogDataType.HEAL_TAR][healTar]
-                    tar.battleData[CONST.BATTLE_DATA.PRE_HP] = tar.battleData[CONST.BATTLE_DATA.HP]
-                    tar.battleData[CONST.BATTLE_DATA.PRE_MP] = tar.battleData[CONST.BATTLE_DATA.MP]
-                    tar.battleData[CONST.BATTLE_DATA.PRE_SHIELD] = tar.battleData[CONST.BATTLE_DATA.SHIELD]
-                end
+        end
+        if resultTable[NewBattleConst.LogDataType.HEAL_TAR] then
+            for healTar = 1, #resultTable[NewBattleConst.LogDataType.HEAL_TAR] do
+                local tar = resultTable[NewBattleConst.LogDataType.HEAL_TAR][healTar]
+                tar.battleData[CONST.BATTLE_DATA.PRE_HP] = tar.battleData[CONST.BATTLE_DATA.HP]
+                tar.battleData[CONST.BATTLE_DATA.PRE_MP] = tar.battleData[CONST.BATTLE_DATA.MP]
+                tar.battleData[CONST.BATTLE_DATA.PRE_SHIELD] = tar.battleData[CONST.BATTLE_DATA.SHIELD]
             end
-            if resultTable[NewBattleConst.LogDataType.BUFF_TAR] then
-                for buffTar = 1, #resultTable[NewBattleConst.LogDataType.BUFF_TAR] do
-                    local tar = resultTable[NewBattleConst.LogDataType.BUFF_TAR][buffTar]
-                    tar.battleData[CONST.BATTLE_DATA.PRE_HP] = tar.battleData[CONST.BATTLE_DATA.HP]
-                    tar.battleData[CONST.BATTLE_DATA.PRE_MP] = tar.battleData[CONST.BATTLE_DATA.MP]
-                    tar.battleData[CONST.BATTLE_DATA.PRE_SHIELD] = tar.battleData[CONST.BATTLE_DATA.SHIELD]
-                end
+        end
+        if resultTable[NewBattleConst.LogDataType.BUFF_TAR] then
+            for buffTar = 1, #resultTable[NewBattleConst.LogDataType.BUFF_TAR] do
+                local tar = resultTable[NewBattleConst.LogDataType.BUFF_TAR][buffTar]
+                tar.battleData[CONST.BATTLE_DATA.PRE_HP] = tar.battleData[CONST.BATTLE_DATA.HP]
+                tar.battleData[CONST.BATTLE_DATA.PRE_MP] = tar.battleData[CONST.BATTLE_DATA.MP]
+                tar.battleData[CONST.BATTLE_DATA.PRE_SHIELD] = tar.battleData[CONST.BATTLE_DATA.SHIELD]
             end
-            if resultTable[NewBattleConst.LogDataType.SP_GAIN_MP_TAR] then
-                for mpTar = 1, #resultTable[NewBattleConst.LogDataType.SP_GAIN_MP_TAR] do
-                    local tar = resultTable[NewBattleConst.LogDataType.SP_GAIN_MP_TAR][mpTar]
-                    tar.battleData[CONST.BATTLE_DATA.PRE_HP] = tar.battleData[CONST.BATTLE_DATA.HP]
-                    tar.battleData[CONST.BATTLE_DATA.PRE_MP] = tar.battleData[CONST.BATTLE_DATA.MP]
-                    tar.battleData[CONST.BATTLE_DATA.PRE_SHIELD] = tar.battleData[CONST.BATTLE_DATA.SHIELD]
-                end
+        end
+        if resultTable[NewBattleConst.LogDataType.SP_GAIN_MP_TAR] then
+            for mpTar = 1, #resultTable[NewBattleConst.LogDataType.SP_GAIN_MP_TAR] do
+                local tar = resultTable[NewBattleConst.LogDataType.SP_GAIN_MP_TAR][mpTar]
+                tar.battleData[CONST.BATTLE_DATA.PRE_HP] = tar.battleData[CONST.BATTLE_DATA.HP]
+                tar.battleData[CONST.BATTLE_DATA.PRE_MP] = tar.battleData[CONST.BATTLE_DATA.MP]
+                tar.battleData[CONST.BATTLE_DATA.PRE_SHIELD] = tar.battleData[CONST.BATTLE_DATA.SHIELD]
             end
-            if resultTable[NewBattleConst.LogDataType.SP_FUN_TAR] then
-                for spTar = 1, #resultTable[NewBattleConst.LogDataType.SP_FUN_TAR] do
-                    local tar = resultTable[NewBattleConst.LogDataType.SP_FUN_TAR][spTar]
-                    tar.battleData[CONST.BATTLE_DATA.PRE_HP] = tar.battleData[CONST.BATTLE_DATA.HP]
-                    tar.battleData[CONST.BATTLE_DATA.PRE_MP] = tar.battleData[CONST.BATTLE_DATA.MP]
-                    tar.battleData[CONST.BATTLE_DATA.PRE_SHIELD] = tar.battleData[CONST.BATTLE_DATA.SHIELD]
-                end
+        end
+        if resultTable[NewBattleConst.LogDataType.SP_FUN_TAR] then
+            for spTar = 1, #resultTable[NewBattleConst.LogDataType.SP_FUN_TAR] do
+                local tar = resultTable[NewBattleConst.LogDataType.SP_FUN_TAR][spTar]
+                tar.battleData[CONST.BATTLE_DATA.PRE_HP] = tar.battleData[CONST.BATTLE_DATA.HP]
+                tar.battleData[CONST.BATTLE_DATA.PRE_MP] = tar.battleData[CONST.BATTLE_DATA.MP]
+                tar.battleData[CONST.BATTLE_DATA.PRE_SHIELD] = tar.battleData[CONST.BATTLE_DATA.SHIELD]
             end
-        --end
+        end
     end
 end
 

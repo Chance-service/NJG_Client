@@ -242,11 +242,11 @@ function AWTSelectPageBase:setPage(id)
             nodesVisible["mUnlock"..i] = true
             stringTable["mUnlockTxt"..i] = ""
             NodeHelper:setStringForLabel(container,stringTable)
-            local freeTypeCfg = FreeTypeConfig[math.floor(tonumber(self.skillEffects[i].skillDesc))]
+            local freeTypeCfg = FreeTypeConfig[math.floor(tonumber(self.skillEffects[i].skillTitle))]
             local str = common:fill(freeTypeCfg and freeTypeCfg.content or "xxx")
             local parent = container:getVarNode("mUnlockTxt"..i)
             parent:removeAllChildrenWithCleanup(true)
-            local labChatHtml = NodeHelper:addHtmlLable(parent, str, tonumber(skillDesc), CCSizeMake(560, 80),parent)
+            local labChatHtml = NodeHelper:addHtmlLable(parent, str, tonumber(skillTitle), CCSizeMake(560, 80),parent)
         else
             nodesVisible["mLock"..i] = true
             nodesVisible["mUnlock"..i] = false
@@ -278,6 +278,7 @@ function AWTSelectPageBase:loadEquipSkills (userEquip)
         local skillEffect = {}
         skillEffect.level = idx
         skillEffect.skillDesc = roleEquipCfg["desc"..tostring(idx)]
+        skillEffect.skillTitle = roleEquipCfg["descTitle"..tostring(idx)]
         --if idx ~= 1 then
             skillEffect.unlockDesc = common:getLanguageString("@HeroSkillUpgrade" .. (UNLOCK_STARLEVEL[idx]))
         --else

@@ -1936,6 +1936,18 @@ function common:getServerTimeByUpdate()
     end
 end
 
+function common:stringToTimestamp(dateStr)--YYYY-MM-DD_HH:MM:SS
+    local year, month, day, hour, min, sec = dateStr:match("(%d+)-(%d+)-(%d+)_(%d+):(%d+):(%d+)")
+    return os.time({
+        year = tonumber(year),
+        month = tonumber(month),
+        day = tonumber(day),
+        hour = tonumber(hour),
+        min = tonumber(min),
+        sec = tonumber(sec)
+    })
+end
+
 function common:getPlayeIcon(prof, iconID, isChatPage)
     local table = {
         MainPageIcon =
@@ -1989,7 +2001,7 @@ function common:getPopUpData(GiftId)
     local cfg = ConfigManager.getPopUpCfg2()
     local _data = common:deepCopy(cfg)
     for _, data in pairs(_data) do
-        if data.GiftId == GiftId then                   
+        if data.GiftId == GiftId and data.type == GameConfig.GIFT_TYPE.POPUP_GIFT then                   
             data.Icon = "BG/Act_TimeLimit_132/" ..data.Icon
             data.BG = "BG/Act_TimeLimit_132/" .. data.BG               
             return data

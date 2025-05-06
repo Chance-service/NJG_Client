@@ -9,6 +9,7 @@ local ResManager = require("ResManagerForLua")
 local Const_pb = require("Const_pb")
 local common = require("common")
 local CONST = require("Battle.NewBattleConst")
+local PageJumpMange = require("PageJumpMange")
 local UserMercenaryManager = require("UserMercenaryManager")
 local ALFManager = require("Util.AsyncLoadFileManager")
 require("Battle.NgBattleDetailPage")
@@ -59,7 +60,6 @@ function NgBattleResultPage:onEnter(container)
     UserInfo.syncRoleInfo()
     -- 計算玩家MVP
     NgBattleDetailPage_calculateMvp(container)
-
     --self:registerPacket(container)
     container:registerLibOS()
     NodeHelper:setNodesVisible(container, { mTestDpsNode = libOS:getInstance():getIsDebug(), mTestLogNode = libOS:getInstance():getIsDebug() })
@@ -129,7 +129,7 @@ function NgBattleResultPage:onEnter(container)
         local roleInfo = UserMercenaryManager:getUserMercenaryByItemId(mvpID)
         local spineMvp = nil -- 抓MVP角色
         if roleInfo.skinId > 0 then
-            spineMvp = SpineContainer:create("NG2D", "NG2D_" .. string.format("%02d", mvpID) .. string.format("%03d", roleInfo.skinId))
+            spineMvp = SpineContainer:create("NG2D", "NG2D_" .. string.format("%05d", roleInfo.skinId))
         else
             spineMvp = SpineContainer:create("NG2D", "NG2D_" .. string.format("%02d", mvpID))
         end
@@ -140,14 +140,10 @@ function NgBattleResultPage:onEnter(container)
             spineNode:addChild(sToNodeMvp)
         end
 
-        if #rewardItemInfo > 0 and NgBattleDataManager.battleType ~= CONST.SCENE_TYPE.PVP then  -- PVP用跳窗顯示
-            self:initScroll(container)
-            NodeHelper:setNodesVisible(container,{mTowerWinNode = false})
-        elseif  #rewardItemInfo == 0 then
-            if NgBattleDataManager.battleType == CONST.SCENE_TYPE.SEASON_TOWER then
-               NodeHelper:setNodesVisible(container,{mTowerWinNode = true})
-            else
-               NodeHelper:setNodesVisible(container,{mTowerWinNode = false})
+        if #rewardItemInfo > 0 then 
+            if NgBattleDataManager.battleType ~= CONST.SCENE_TYPE.PVP and
+                NgBattleDataManager.battleType ~= CONST.SCENE_TYPE.PUZZLE then  -- 用跳窗顯示
+                self:initScroll(container)
             end
         end
 
@@ -158,6 +154,11 @@ function NgBattleResultPage:onEnter(container)
                                                 mPvpWinNode = NgBattleDataManager.battleType == CONST.SCENE_TYPE.PVP,
                                                 mDungeonWinNode = NgBattleDataManager.battleType == CONST.SCENE_TYPE.MULTI,
                                                 mWorldBossWinNode = NgBattleDataManager.battleType == CONST.SCENE_TYPE.WORLD_BOSS,
+                                                mTowerWinNode = #rewardItemInfo == 0 and 
+                                                                (NgBattleDataManager.battleType == CONST.SCENE_TYPE.SEASON_TOWER or
+                                                                 NgBattleDataManager.battleType == CONST.SCENE_TYPE.LIMIT_TOWER),
+                                                mFearTowerWinNode =  NgBattleDataManager.battleType == CONST.SCENE_TYPE.FEAR_TOWER,
+                                                mPuzzleWinNode = (NgBattleDataManager.battleType == CONST.SCENE_TYPE.PUZZLE) ,
         })
         -- PVP排名顯示
         if NgBattleDataManager.battleType == CONST.SCENE_TYPE.PVP then
@@ -236,6 +237,11 @@ function NgBattleResultPage:onEnter(container)
             local CommonRewardPage = require("CommPop.CommItemReceivePage")
             CommonRewardPage:setData(rewardItemInfo, common:getLanguageString("@ItemObtainded"), nil)
             PageManager.pushPage("CommPop.CommItemReceivePage")
+        end
+    elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.PUZZLE then
+        if #rewardItemInfo > 0 then
+            local puzzlePage = require("PuzzlePage")
+            puzzlePage:setReward(rewardItemInfo)
         end
     end
 end
@@ -342,7 +348,6 @@ function NgBattleResultPage:onMercenaryCulture()
         MessageBoxPage:Msg_Box("@MercenaryLevelNotEnough")
         return
     else
-        local PageJumpMange = require("PageJumpMange")
         PageJumpMange._IsPageJump = true
         PageJumpMange._CurJumpCfgInfo = PageJumpMange._JumpCfg[25]
         PageManager.changePage("EquipmentPage")
@@ -388,16 +393,12 @@ function NgBattleResultPage:onWinBtn(container)
     if NgBattleDataManager.battleType == CONST.SCENE_TYPE.BOSS then
         nextShowType = NgBattleResultManager_playNextResult()
     elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.MULTI then
-        local PageJumpMange = require("PageJumpMange")
         PageJumpMange.JumpPageById(48)
     elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.PVP then
-        local PageJumpMange = require("PageJumpMange")
         PageJumpMange.JumpPageById(21)
     elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.WORLD_BOSS then
-        local PageJumpMange = require("PageJumpMange")
         PageJumpMange.JumpPageById(45)
     elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.DUNGEON then
-        local PageJumpMange = require("PageJumpMange")
         PageJumpMange.JumpPageById(49)
     elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.CYCLE_TOWER then
          if (NgBattleDataManager.battleResult == CONST.FIGHT_RESULT.WIN) then
@@ -405,15 +406,41 @@ function NgBattleResultPage:onWinBtn(container)
             pageManager.popPage(thisPageName)
             if NgBattleResultManager.showMainStory then return end
          end
-        local PageJumpMange = require("PageJumpMange")
-        PageJumpMange.JumpPageById(51)
+         PageJumpMange.JumpPageById(51)
     elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.SINGLE_BOSS or
            NgBattleDataManager.battleType == CONST.SCENE_TYPE.SINGLE_BOSS_SIM then
-        local PageJumpMange = require("PageJumpMange")
-        PageJumpMange.JumpPageById(52)
-     elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.SEASON_TOWER then
-        local PageJumpMange = require("PageJumpMange")
+           PageJumpMange.JumpPageById(52)
+     elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.SEASON_TOWER then     
         PageJumpMange.JumpPageById(53)
+        needNewTowerData = false
+     elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.LIMIT_TOWER then
+        needNewTowerData = false
+        local TabName = {[2] = {"Fire","Water","Wood","Light_and_Dark"},
+                         [3] = {"Shield","Sword","Heal","Magic"}  
+        }
+        local limitType = NgBattleDataManager.limitType
+        local tabIndex, subIndex
+
+        if limitType < 10 then
+            tabIndex = 2
+            subIndex = limitType
+            PageJumpMange._JumpCfg[55]._ThirdFunc = "onType2"
+        else
+            tabIndex = 3
+            subIndex = limitType - 10
+            PageJumpMange._JumpCfg[55]._ThirdFunc = "onType3"
+        end
+
+        local subPage = TabName[tabIndex][subIndex]
+        require("TowerLimit.TowerLimitPage"):setEntrySubPage(subPage)
+        PageJumpMange.JumpPageById(55)
+     elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.FEAR_TOWER then
+        PageJumpMange.JumpPageById(56)
+     elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.PUZZLE then
+       local PageJumpMange = require("PageJumpMange")
+       PageJumpMange.JumpPageById(54)
+       local puzzlePage = require("PuzzlePage")
+       puzzlePage:setPassState(true)
     else
         require("Battle.NgBattlePage")
         NgBattlePageInfo_restartAfk(NgBattleDataManager.battlePageContainer)
@@ -431,26 +458,50 @@ function NgBattleResultPage:onLoseBtn(container)
         NgBattlePageInfo_restartAfk(NgBattleDataManager.battlePageContainer)
         NgBattleResultManager_playNextResult(true)
     elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.MULTI then
-        local PageJumpMange = require("PageJumpMange")
+
         PageJumpMange.JumpPageById(48)
     elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.PVP then
-        local PageJumpMange = require("PageJumpMange")
+
         PageJumpMange.JumpPageById(21)
     elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.WORLD_BOSS then
-        local PageJumpMange = require("PageJumpMange")
+
         PageJumpMange.JumpPageById(45)
     elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.DUNGEON then
-        local PageJumpMange = require("PageJumpMange")
+
         PageJumpMange.JumpPageById(49)
     elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.CYCLE_TOWER then
-        local PageJumpMange = require("PageJumpMange")
+
         PageJumpMange.JumpPageById(51)
     elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.SEASON_TOWER then
-        local PageJumpMange = require("PageJumpMange")
+
         PageJumpMange.JumpPageById(53)
+    elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.LIMIT_TOWER then
+        local TabName = {[2] = {"Fire","Water","Wood","Light_and_Dark"},
+                         [3] = {"Shield","Sword","Heal","Magic"}  
+        }
+        local limitType = NgBattleDataManager.limitType
+        local tabIndex, subIndex
+
+        if limitType < 10 then
+            tabIndex = 2
+            subIndex = limitType
+            PageJumpMange._JumpCfg[55]._ThirdFunc = "onType2"
+        else
+            tabIndex = 3
+            subIndex = limitType - 10
+            PageJumpMange._JumpCfg[55]._ThirdFunc = "onType3"
+        end
+
+        local subPage = TabName[tabIndex][subIndex]
+        require("TowerLimit.TowerLimitPage"):setEntrySubPage(subPage)
+        PageJumpMange.JumpPageById(55)
+    elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.FEAR_TOWER then
+        PageJumpMange.JumpPageById(56)
+    elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.PUZZLE then
+        PageJumpMange.JumpPageById(54)
     elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.SINGLE_BOSS or
            NgBattleDataManager.battleType == CONST.SCENE_TYPE.SINGLE_BOSS_SIM then
-        local PageJumpMange = require("PageJumpMange")
+
         PageJumpMange.JumpPageById(52)
     else
         require("Battle.NgBattlePage")

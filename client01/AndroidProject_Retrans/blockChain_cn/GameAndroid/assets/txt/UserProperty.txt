@@ -20,6 +20,8 @@ Fid	名称	品质	描述	对应Icon图片路径
 1024	@UserProperty_Name_1024	2	@UserProperty_Desc_1024	Imagesetfile/HelpFight/hp_recoverbox_small.png
 1025	@UserProperty_Name_1025	5	@UserProperty_Desc_1025	Item/25.png
 1026	@UserProperty_Name_1026	5	@UserProperty_Desc_1026	Item/26.png
+1027	@UserProperty_Name_1027	5	@UserProperty_Desc_1027	Item/26.png
+1028	@UserProperty_Name_1028	5	@UserProperty_Desc_1028	Item/26.png
 2001	@UserProperty_Name_2001	2	@UserProperty_Desc_2001	Item/18.png
 2002	@UserProperty_Name_2002	5	@UserProperty_Desc_2002	UI/MainScene/Font/u_Num01.png
 2003	@UserProperty_Name_2003	5	@UserProperty_Desc_2003	UI/MainScene/Font/u_Num02.png
@@ -30,8 +32,8 @@ Fid	名称	品质	描述	对应Icon图片路径
 1	@RoleSoul_1	4	@RoleSoul_Desc_1	Item/Shard_001.png
 2	@RoleSoul_2	4	@RoleSoul_Desc_2	Item/Shard_002.png
 3	@RoleSoul_3	5	@RoleSoul_Desc_3	Item/Shard_003.png
-4	@RoleSoul_4	4	@RoleSoul_Desc_4	Item/Shard_004.png
-5	@RoleSoul_5	4	@RoleSoul_Desc_5	Item/Shard_005.png
+4	@RoleSoul_4	5	@RoleSoul_Desc_4	Item/Shard_004.png
+5	@RoleSoul_5	5	@RoleSoul_Desc_5	Item/Shard_005.png
 6	@RoleSoul_6	4	@RoleSoul_Desc_6	Item/Shard_006.png
 7	@RoleSoul_7	5	@RoleSoul_Desc_7	Item/Shard_007.png
 8	@RoleSoul_8	5	@RoleSoul_Desc_8	Item/Shard_008.png
@@ -44,7 +46,7 @@ Fid	名称	品质	描述	对应Icon图片路径
 15	@RoleSoul_15	5	@RoleSoul_Desc_15	Item/Shard_015.png
 16	@RoleSoul_16	4	@RoleSoul_Desc_16	Item/Shard_016.png
 17	@RoleSoul_17	4	@RoleSoul_Desc_17	Item/Shard_017.png
-18	@RoleSoul_18	4	@RoleSoul_Desc_18	Item/Shard_018.png
+18	@RoleSoul_18	5	@RoleSoul_Desc_18	Item/Shard_018.png
 19	@RoleSoul_19	5	@RoleSoul_Desc_19	Item/Shard_019.png
 20	@RoleSoul_20	5	@RoleSoul_Desc_20	Item/Shard_020.png
 21	@RoleSoul_21	5	@RoleSoul_Desc_21	Item/Shard_021.png

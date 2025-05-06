@@ -13,6 +13,8 @@ class SpineContainer
 	void unregisterLuaListener();
 	bool isPlayingAnimation(const char* name, int trackIndex);
 	void setToSetupPose ();
+	void setBonesToSetupPose ();
+	void setSlotsToSetupPose ();
 	spSlot* findSlot(const char* slotName);
 	spAttachment* getAttachment (const char* slotName, const char* attachmentName);
 	bool setAttachment (const char* slotName, const char* attachmentName);

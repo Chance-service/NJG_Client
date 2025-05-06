@@ -431,10 +431,24 @@ function WishingWellUI:new ()
 
     end
 
+    --[[ 設置 剩餘獎項 數量 ]]
+    function inst:setRewardCounter (str) 
+        NodeHelper:setStringForLabel(inst.container, {
+            mRewardCountTxt = str
+        })
+    end
+
     --[[ 設置 進度 描述 ]]
     function inst:setProgressDesc (str) 
         NodeHelper:setStringForLabel(inst.container, {
             progressDescText = str
+        })
+    end
+    
+    --[[ 設置 自動刷新 倒數 ]]
+    function inst:setAutoRefreshTime (str) 
+        NodeHelper:setStringForLabel(inst.container, {
+            mAutoRefreshTime = str
         })
     end
 

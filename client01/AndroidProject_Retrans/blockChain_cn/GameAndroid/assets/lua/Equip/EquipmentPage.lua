@@ -579,9 +579,9 @@ function EquipPageBase:sortData(info)
                 return false
             end
         end
-        if (info1.status == Const_pb.FIGHTING) and (info2.status ~= Const_pb.FIGHTING) then
+        if (info1.status == Const_pb.FIGHTING or info1.status == Const_pb.MIXTASK) and (info2.status ~= Const_pb.FIGHTING and info2.status ~= Const_pb.MIXTASK) then
             return true
-        elseif (info1.status ~= Const_pb.FIGHTING) and (info2.status == Const_pb.FIGHTING) then
+        elseif (info1.status ~= Const_pb.FIGHTING and info1.status ~= Const_pb.MIXTASK) and (info2.status == Const_pb.FIGHTING or info2.status == Const_pb.MIXTASK) then
             return false
         elseif mInfo1.level ~= mInfo2.level then
             return mInfo1.level > mInfo2.level
@@ -602,8 +602,8 @@ function EquipPageBase:sortData(info)
         if info.roleNumberList[i] > 0 then
             local index = EquipPageBase:getMercenaryIndex(info.roleNumberList[i])
             if index > 0 then
-                local data = table.remove(_mercenaryInfos.roleInfos, index)
-                table.insert(t, data)
+                --local data = table.remove(_mercenaryInfos.roleInfos, index)
+                --table.insert(t, data)
             end
         end
     end
@@ -728,6 +728,10 @@ function EquipPageBase:onHero(container)
         self:setTabState(container)
         return
     end
+    local GuideManager = require("Guide.GuideManager")
+    if not GuideManager.isInGuide then
+        container:runAnimation("OpenAni_Hero")
+    end
     pageType = EquipPageBase.PAGE_TYPE.HERO_PAGE
     NgHeadIconItem_setPageType(GameConfig.NgHeadIconType.HERO_PAGE)
     self:setTabState(container)
@@ -735,6 +739,8 @@ function EquipPageBase:onHero(container)
     if EquipPageBase.INIT_TABLE.HERO_PAGE then
         self:refreshHeroItems(container)
         EquipPageBase.INIT_TABLE.HERO_PAGE = false
+    else
+        self:refreshAllHeroItemShow(container)
     end
     self:closeFilter(container)
     self:onElement(container, "onElement0") 
@@ -745,6 +751,10 @@ function EquipPageBase:onGallery(container)
     if pageType == EquipPageBase.PAGE_TYPE.GALLERY_PAGE then  
         self:setTabState(container)
         return
+    end
+    local GuideManager = require("Guide.GuideManager")
+    if not GuideManager.isInGuide then
+        container:runAnimation("OpenAni_Gallery")
     end
     pageType = EquipPageBase.PAGE_TYPE.GALLERY_PAGE
     NgHeadIconItem_setPageType(GameConfig.NgHeadIconType.GALLERY_PAGE)
@@ -765,6 +775,10 @@ function EquipPageBase:onCollection(container)
     if pageType == EquipPageBase.PAGE_TYPE.COLLECTION_PAGE then  
         self:setTabState(container)
         return
+    end
+    local GuideManager = require("Guide.GuideManager")
+    if not GuideManager.isInGuide then
+        container:runAnimation("OpenAni_Collection")
     end
     pageType = EquipPageBase.PAGE_TYPE.COLLECTION_PAGE
     NgHeadIconItem_setPageType(GameConfig.NgHeadIconType.COLLECTION_PAGE)
@@ -949,10 +963,16 @@ function EquipPageBase:refreshAllPoint(container)
             NgHeadIconItem:refreshByItemId(GalleryCardItems[_type][idx])
         end
     end
-    for i = 1, #CollectionItems do
-        if CollectionItems[i].cls.showContainer then
-            NodeHelper:setNodesVisible(CollectionItems[i].cls.showContainer, { mRedPoint = RedPointManager_getShowRedPoint(RedPointManager.PAGE_IDS.HERO_FETTER_BTN, i) })
-        end
+    --for i = 1, #CollectionItems do
+    --    if CollectionItems[i].cls.showContainer then
+    --        NodeHelper:setNodesVisible(CollectionItems[i].cls.showContainer, { mRedPoint = RedPointManager_getShowRedPoint(RedPointManager.PAGE_IDS.HERO_FETTER_BTN, i) })
+    --    end
+    --end
+end
+
+function EquipPageBase:refreshAllHeroItemShow(container)
+    for i = 1, #self.mAllHeroItem do
+        self.mAllHeroItem[i].handler:refreshCellData()
     end
 end
 

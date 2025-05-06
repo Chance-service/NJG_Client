@@ -1,89 +1,117 @@
 
 NGSceneB_01a_09.png
-size: 629,629
+size: 2048,128
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
+D23
+  rotate: false
+  xy: 175, 81
+  size: 381, 27
+  orig: 381, 27
+  offset: 0, 0
+  index: -1
+D24
+  rotate: false
+  xy: 558, 81
+  size: 322, 27
+  orig: 322, 27
+  offset: 0, 0
+  index: -1
+D25
+  rotate: false
+  xy: 2, 82
+  size: 171, 26
+  orig: 171, 26
+  offset: 0, 0
+  index: -1
+D26
+  rotate: false
+  xy: 882, 78
+  size: 288, 30
+  orig: 288, 30
+  offset: 0, 0
+  index: -1
 a23
   rotate: false
-  xy: 2, 384
+  xy: 1485, 75
   size: 366, 33
   orig: 366, 33
   offset: 0, 0
   index: -1
 a24
   rotate: false
-  xy: 2, 350
+  xy: 1172, 76
   size: 311, 32
   orig: 311, 32
   offset: 0, 0
   index: -1
 a25
   rotate: false
-  xy: 2, 207
+  xy: 1853, 75
   size: 166, 33
   orig: 166, 33
   offset: 0, 0
   index: -1
 a26
   rotate: false
-  xy: 2, 312
+  xy: 1721, 2
   size: 280, 36
   orig: 280, 36
   offset: 0, 0
   index: -1
 b23
   rotate: false
-  xy: 2, 524
+  xy: 2, 46
   size: 517, 33
   orig: 517, 33
   offset: 0, 0
   index: -1
 b24
   rotate: false
-  xy: 2, 454
+  xy: 1379, 40
   size: 479, 33
   orig: 479, 33
   offset: 0, 0
   index: -1
 b25
   rotate: false
-  xy: 2, 242
+  xy: 521, 46
   size: 182, 33
   orig: 182, 33
   offset: 0, 0
   index: -1
 b26
   rotate: false
-  xy: 2, 489
+  xy: 2, 11
   size: 515, 33
   orig: 515, 33
   offset: 0, 0
   index: -1
 c23
   rotate: false
-  xy: 2, 594
+  xy: 1094, 5
   size: 625, 33
   orig: 625, 33
   offset: 0, 0
   index: -1
 c24
   rotate: false
-  xy: 2, 419
+  xy: 705, 43
   size: 416, 33
   orig: 416, 33
   offset: 0, 0
   index: -1
 c25
   rotate: false
-  xy: 2, 277
+  xy: 1123, 41
   size: 254, 33
   orig: 254, 33
   offset: 0, 0
   index: -1
 c26
   rotate: false
-  xy: 2, 559
+  xy: 519, 8
   size: 573, 33
   orig: 573, 33
   offset: 0, 0

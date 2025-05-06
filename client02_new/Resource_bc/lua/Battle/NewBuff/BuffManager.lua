@@ -48,6 +48,20 @@ function BuffManager:getBuff(chaNode, target, buffId, buffTime, buffCount)
             end
         end
     end
+    -- 檢查光環技能免疫特定Buff
+    for k, v in pairs(CONST.PASSIVE_TYPE_ID[CONST.PASSIVE_TRIGGER_TYPE.AURA_IMMUNITY_BUFF]) do -- 免疫特定Buff
+        local isTrigger, skillId = NewBattleUtil:calAuraSkillisTrigger(target, v)
+        if isTrigger then
+            local immunityId = SkillManager:calSkillSpecialParams(skillId, { job = target.otherData[CONST.OTHER_DATA.CFG].Job, 
+                                                                             auraType = CONST.PASSIVE_TRIGGER_TYPE.AURA_IMMUNITY_BUFF })
+            for idx = 1, #immunityId do
+                local mainBuffId = math.floor(buffId / 100) % 1000
+                if mainBuffId == immunityId[idx] then
+                    return false
+                end
+            end
+        end
+    end
     if target.buffData[buffId] then   --buff已存在
         if target.buffData[buffId][CONST.BUFF_DATA.TIME] < buffTime or     --剩餘時間較少
            buffId == CONST.BUFF.TAUNT then --嘲諷強制舊蓋新
@@ -117,7 +131,7 @@ function BuffManager:getBuff(chaNode, target, buffId, buffTime, buffCount)
                 local LOG_UTIL = require("Battle.NgBattleLogUtil")
                 local CHAR_UTIL = require("Battle.NgBattleCharacterUtil")
                 LOG_UTIL:setPreLog(target, resultTable)
-                CHAR_UTIL:calculateAllTable(target, resultTable, isSkipCal, actionResultTable, allTargetTable, v, allPassiveTable)   -- 全部傷害/治療/buff...處理
+                CHAR_UTIL:calculateAllTable(target, resultTable, isSkipCal, actionResultTable, allTargetTable, v * 10, allPassiveTable)   -- 全部傷害/治療/buff...處理
             end
         end
     end
@@ -131,14 +145,63 @@ function BuffManager:getBuff(chaNode, target, buffId, buffTime, buffCount)
                 local LOG_UTIL = require("Battle.NgBattleLogUtil")
                 local CHAR_UTIL = require("Battle.NgBattleCharacterUtil")
                 LOG_UTIL:setPreLog(target, resultTable)
-                CHAR_UTIL:calculateAllTable(target, resultTable, isSkipCal, actionResultTable, allTargetTable, v, allPassiveTable)   -- 全部傷害/治療/buff...處理
+                CHAR_UTIL:calculateAllTable(target, resultTable, isSkipCal, actionResultTable, allTargetTable, v * 10, allPassiveTable)   -- 全部傷害/治療/buff...處理
             end
         end
     end
 
     return true
 end
+-- 計算光環技能影響倍率
+function BuffManager:calAuraBuffRatio(chaNode, auraType)
+    local ratio = 1
+    local flist = NgBattleDataManager_getFriendList(chaNode)
+    local elist = NgBattleDataManager_getEnemyList(chaNode)
+    local aliveIdTableF = NewBattleUtil:initAliveTable(flist)
+    local aliveIdTableE = NewBattleUtil:initAliveTable(elist)
 
+    local calValueFn = function(buff, triggerValues)
+        if buff then
+            for fullBuffId, buffData in pairs(buff) do
+                if buffConfig[fullBuffId] then
+                    local mainBuffId = math.floor(fullBuffId / 100) % 1000
+                    local buffValues = common:split(buffConfig[fullBuffId].values, ",")
+                    if auraType == CONST.PASSIVE_TRIGGER_TYPE.AURA_HEALTH then  -- 治療光環
+                        ---------------------------------------------------------------
+                        if mainBuffId == CONST.BUFF.HEALTH_BLOCK then  -- 治療妨礙
+                            if not triggerValues[mainBuffId] or math.abs(tonumber(buffValues[1])) > math.abs(triggerValues[mainBuffId]) then
+                                triggerValues[mainBuffId] = tonumber(buffValues[1])
+                            end
+                        end
+                    end
+                    if auraType == CONST.PASSIVE_TRIGGER_TYPE.AURA_SHIELD then  -- 護盾光環
+                        ---------------------------------------------------------------
+                        if mainBuffId == CONST.BUFF.SHIELD_BLOCK then  -- 護盾妨礙
+                            if not triggerValues[mainBuffId] or math.abs(tonumber(buffValues[1])) > math.abs(triggerValues[mainBuffId]) then
+                                triggerValues[mainBuffId] = tonumber(buffValues[1])
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    end
+
+    local triggerValues = { }   -- 同系列技能不重複觸發(取大)
+    for i = 1, #aliveIdTableF do
+        local buff = flist[aliveIdTableF[i]].buffData
+        calValueFn(buff, triggerValues)
+    end
+    for i = 1, #aliveIdTableE do
+        local buff = elist[aliveIdTableE[i]].buffData
+        calValueFn(buff, triggerValues)
+    end
+    for k, v in pairs(triggerValues) do
+        ratio = ratio + v
+    end
+    ratio = math.max(0, ratio)
+    return ratio
+end
 -- 攻擊力加成(%數)
 function BuffManager:checkAtkBuffValue(chaNode, isPhy, aniName)
     local buffValue, auraValue, markValue = 1, 1, 1
@@ -295,6 +358,9 @@ function BuffManager:checkDefBuffValue(target, buff, isPhy, aniName)
                     if mainBuffId == CONST.BUFF.DEFENSE_HEART_B then  -- 防守之心
                         addValue = tonumber(buffValues[1])
                     end
+                    if mainBuffId == CONST.BUFF.P_DEF_100 then  -- 物防100%
+                        addValue = tonumber(buffValues[1])
+                    end
                     ---------------------------------------------------------------
                     if mainBuffId == CONST.BUFF.BROKEN then  -- 破防
                         addValue = tonumber(buffValues[1])
@@ -316,6 +382,9 @@ function BuffManager:checkDefBuffValue(target, buff, isPhy, aniName)
                         addValue = tonumber(buffValues[1])
                     end
                     if mainBuffId == CONST.BUFF.FORCE_FIELD then  -- 力場
+                        addValue = tonumber(buffValues[1])
+                    end
+                    if mainBuffId == CONST.BUFF.M_DEF_100 then  -- 魔防100%
                         addValue = tonumber(buffValues[1])
                     end
                     ---------------------------------------------------------------
@@ -425,6 +494,23 @@ function BuffManager:checkDmgBuffValue(attacker, target, isPhy, aniName)
                         addValue = tonumber(buffValues[1])
                     end
                 end
+                if target.battleData[CONST.BATTLE_DATA.ELEMENT] == tonumber(buffValues[1]) then
+                    if mainBuffId == CONST.BUFF.FIRE_KILLER then  -- 火系特攻
+                        addValue = tonumber(buffValues[2])
+                    end
+                    if mainBuffId == CONST.BUFF.WATER_KILLER then  -- 水系特攻
+                        addValue = tonumber(buffValues[2])
+                    end
+                    if mainBuffId == CONST.BUFF.WIND_KILLER then  -- 風系特攻
+                        addValue = tonumber(buffValues[2])
+                    end
+                    if mainBuffId == CONST.BUFF.LIGHT_KILLER then  -- 光系特攻
+                        addValue = tonumber(buffValues[2])
+                    end
+                    if mainBuffId == CONST.BUFF.DARK_KILLER then  -- 暗系特攻
+                        addValue = tonumber(buffValues[2])
+                    end
+                end
                 ---------------------------------------------------------------
                 mainBuffId = math.floor(fullBuffId / 10)
                 if mainBuffId == CONST.BUFF.RUNE_TODMG_FIRE1 or   -- 符石
@@ -472,6 +558,13 @@ function BuffManager:checkBeDmgBuffValue(attacker, target, isPhy, aniName)
                 end
                 if mainBuffId == CONST.BUFF.GUARD then  -- 守護
                     addValue = tonumber(buffValues[1])
+                end
+                if mainBuffId == CONST.BUFF.FIRE1_SKIN_SKILL1 then  -- 夜半的絕色
+                    addValue = tonumber(buffValues[1])
+                    buffData[CONST.BUFF_DATA.COUNT] = math.max(buffData[CONST.BUFF_DATA.COUNT] - 1, 0)
+                    if buffData[CONST.BUFF_DATA.COUNT] <= 0 then
+                        NewBattleUtil:removeBuff(target, fullBuffId, false)
+                    end
                 end
                 ---------------------------------------------------------------
                 if mainBuffId == CONST.BUFF.NATURE then   -- 自然印記
@@ -534,6 +627,25 @@ function BuffManager:checkBeDmgBuffValue(attacker, target, isPhy, aniName)
                                 local skillValues = common:split(skillCfg[fullSkillId].values, ",")
                                 addValue = tonumber(skillValues[5])
                             end
+                        end
+                    end
+                end
+                if aniName then -- 有動作名稱(非dot類)
+                    if attacker.battleData[CONST.BATTLE_DATA.ELEMENT] == tonumber(buffValues[1]) then
+                        if mainBuffId == CONST.BUFF.FIRE_SHIELD then  -- 火盾
+                            addValue = tonumber(buffValues[2])
+                        end
+                        if mainBuffId == CONST.BUFF.WATER_SHIELD then  -- 水盾
+                            addValue = tonumber(buffValues[2])
+                        end
+                        if mainBuffId == CONST.BUFF.WIND_SHIELD then  -- 風盾
+                            addValue = tonumber(buffValues[2])
+                        end
+                        if mainBuffId == CONST.BUFF.LIGHT_SHIELD then  -- 光盾
+                            addValue = tonumber(buffValues[2])
+                        end
+                        if mainBuffId == CONST.BUFF.DARK_SHIELD then  -- 暗盾
+                            addValue = tonumber(buffValues[2])
                         end
                     end
                 end
@@ -687,7 +799,7 @@ function BuffManager:checkCriDmgBuffValue(chaNode, isPhy, aniName)
                                 local LOG_UTIL = require("Battle.NgBattleLogUtil")
                                 local CHAR_UTIL = require("Battle.NgBattleCharacterUtil")
                                 LOG_UTIL:setPreLog(list[aliveIdTable[i]], resultTable)
-                                CHAR_UTIL:calculateAllTable(list[aliveIdTable[i]], resultTable, isSkipCal, actionResultTable, allTargetTable, v, allPassiveTable)   -- 全部傷害/治療/buff...處理
+                                CHAR_UTIL:calculateAllTable(list[aliveIdTable[i]], resultTable, isSkipCal, actionResultTable, allTargetTable, v * 10, allPassiveTable)   -- 全部傷害/治療/buff...處理
                             end
                         end
                     end
@@ -959,8 +1071,9 @@ function BuffManager:checkHealBuffValue(buff, isPhy, aniName)
     return math.max(buffValue, 0) * math.max(auraValue, 0) * math.max(markValue, 0)
 end
 -- 受到治療加成
-function BuffManager:checkBeHealBuffValue(buff, isPhy, aniName)
+function BuffManager:checkBeHealBuffValue(target, isPhy, aniName)
     local buffValue, auraValue, markValue = 1, 1, 1
+    local buff = target.buffData  -- 目標的Buff
     if buff then
         for fullBuffId, buffData in pairs(buff) do
             if buffConfig[fullBuffId] then
@@ -989,6 +1102,24 @@ function BuffManager:checkBeHealBuffValue(buff, isPhy, aniName)
                 if addValue then
                     buffValue, auraValue, markValue = self:addBuffValue(fullBuffId, addValue, buffValue, auraValue, markValue)
                 end
+            end
+        end
+    end
+    return math.max(buffValue, 0) * math.max(auraValue, 0) * math.max(markValue, 0) * BuffManager:calAuraBuffRatio(target, CONST.PASSIVE_TRIGGER_TYPE.AURA_HEALTH)
+end
+-- 獲得護盾加成
+function BuffManager:checkGetShieldBuffValue(attacker, target, isPhy, aniName)
+    local buffValue, auraValue, markValue = 1, 1, 1
+    local buff = target.buffData
+    if buff then
+        for fullBuffId, buffData in pairs(buff) do
+            if buffConfig[fullBuffId] then
+                local mainBuffId = math.floor(fullBuffId / 100) % 1000
+                local buffValues = common:split(buffConfig[fullBuffId].values, ",")
+                local addValue = nil
+                ---------------------------------------------------------------
+                ---------------------------------------------------------------
+                ---------------------------------------------------------------
             end
         end
     end
@@ -1260,6 +1391,12 @@ function BuffManager:minusBuffCount(chaNode, eventType)
                         end
                     end
                     if mainBuffId == CONST.BUFF.DARK_THUNDER then   -- 暗雷引導
+                        buffData[CONST.BUFF_DATA.COUNT] = math.max(buffData[CONST.BUFF_DATA.COUNT] - 1, 0)
+                        if buffData[CONST.BUFF_DATA.COUNT] <= 0 then
+                            NewBattleUtil:removeBuff(chaNode, fullBuffId, false)
+                        end
+                    end
+                    if mainBuffId == CONST.BUFF.ATK_HIT then  -- 必中
                         buffData[CONST.BUFF_DATA.COUNT] = math.max(buffData[CONST.BUFF_DATA.COUNT] - 1, 0)
                         if buffData[CONST.BUFF_DATA.COUNT] <= 0 then
                             NewBattleUtil:removeBuff(chaNode, fullBuffId, false)
@@ -1593,6 +1730,18 @@ function BuffManager:isInDodge(buff)
     end
     return false
 end
+-- 是否必中
+function BuffManager:isInHit(buff)
+    if buff then
+        for fullBuffId, buffData in pairs(buff) do
+            local mainBuffId = math.floor(fullBuffId / 100) % 1000
+            if mainBuffId == CONST.BUFF.ATK_HIT then  -- 必中
+                return true
+            end
+        end
+    end
+    return false
+end
 -- 是否隱身
 function BuffManager:isInStealth(buff)
     if buff then
@@ -1681,11 +1830,32 @@ function BuffManager:clearRandomBuffByNum(target, buff, num)
                             local LOG_UTIL = require("Battle.NgBattleLogUtil")
                             local CHAR_UTIL = require("Battle.NgBattleCharacterUtil")
                             LOG_UTIL:setPreLog(list[aliveIdTable[i]], resultTable)
-                            CHAR_UTIL:calculateAllTable(list[aliveIdTable[i]], resultTable, isSkipCal, actionResultTable, allTargetTable, v2, allPassiveTable)   -- 全部傷害/治療/buff...處理
+                            CHAR_UTIL:calculateAllTable(list[aliveIdTable[i]], resultTable, isSkipCal, actionResultTable, allTargetTable, v2 * 10, allPassiveTable)   -- 全部傷害/治療/buff...處理
                         end
                     end
                 end
             end
+        end
+    end
+end
+-- 隨機驅散特定數量DEBUFF
+function BuffManager:clearRandomDeBuffByNum(target, buff, num)
+    if buff then
+        local dispelBuffTable = { }
+        for k, v in pairs(buff) do  -- 記錄所有可驅散的buff
+            local cfg = buffConfig[k]
+            if cfg.gain == 0 and cfg.dispel == 1 then   --debuff&可驅散
+                table.insert(dispelBuffTable, k)
+            end
+        end
+        local shuffleTable = GameUtil:shuffleTable(dispelBuffTable)
+        for i = 1, num do
+            local k = shuffleTable[i]
+            if not k then
+                break
+            end
+            local cfg = buffConfig[k]
+            NewBattleUtil:removeBuff(target, k, false)
         end
     end
 end
@@ -1717,7 +1887,7 @@ function BuffManager:clearAllBuff(target, buff)
                                 local LOG_UTIL = require("Battle.NgBattleLogUtil")
                                 local CHAR_UTIL = require("Battle.NgBattleCharacterUtil")
                                 LOG_UTIL:setPreLog(list[aliveIdTable[i]], resultTable)
-                                CHAR_UTIL:calculateAllTable(list[aliveIdTable[i]], resultTable, isSkipCal, actionResultTable, allTargetTable, v2, allPassiveTable)   -- 全部傷害/治療/buff...處理
+                                CHAR_UTIL:calculateAllTable(list[aliveIdTable[i]], resultTable, isSkipCal, actionResultTable, allTargetTable, v2 * 10, allPassiveTable)   -- 全部傷害/治療/buff...處理
                             end
                         end
                     end
@@ -1806,7 +1976,7 @@ function BuffManager:castHotHealth(node, buffId, isSkipPre, isSkipAdd)
         --施法者造成治療buff
         local buffValue = self:checkHealBuffValue(node.buffData[buffId][CONST.BUFF_DATA.CASTER].buffData)
         --目標受到治療buff
-        local buffValue2 = self:checkBeHealBuffValue(node.buffData)
+        local buffValue2 = self:checkBeHealBuffValue(node)
         if mainBuffId == CONST.BUFF.RECOVERY then  -- 再生
             -- 施法者最大HP
             local maxHp = node.buffData[buffId][CONST.BUFF_DATA.CASTER].battleData[CONST.BATTLE_DATA.MAX_HP]
@@ -2257,11 +2427,58 @@ function BuffManager:getExternNormalAtkBuff(chaNode, target)
                     end
                 end
             end
+            if mainBuffId == CONST.BUFF.BROKEN_ATTACK or     -- 破防攻擊
+               mainBuffId == CONST.BUFF.EXHAUST_ATTACK or     -- 破魔攻擊
+               mainBuffId == CONST.BUFF.FROSTBITE_ATTACK or   -- 凍傷攻擊
+               mainBuffId == CONST.BUFF.BLEED_ATTACK or     -- 流血攻擊
+               mainBuffId == CONST.BUFF.SOUL_OF_POSION_ATTACK then  -- 猛血攻擊
+                local data = { }
+                local buffValue = common:split(buffConfig[fullBuffId].values, ",")
+                if not tonumber(buffValue[3]) or (tonumber(buffValue[3]) * 100 >= math.random(1, 100)) then
+                    data.buffId = tonumber(buffValue[1])
+                    data.buffCount = 1
+                    data.buffTime = tonumber(buffValue[2]) * 1000
+                    data.buffTar = target
+                    table.insert(externData, data)
+                end
+            end
         end
     end
     return externData
 end
-
+-- 造成普攻額外特效
+function BuffManager:getExternNormalAtkSpFun(chaNode, target)
+    local externData = { }
+    local buff = chaNode.buffData
+    if buff then
+        for fullBuffId, buffData in pairs(buff) do
+            local mainBuffId = math.floor(fullBuffId / 100) % 1000
+            if mainBuffId == CONST.BUFF.BALANCE_ATTACK then   -- 平衡打擊
+                local data = { }
+                data.spClass = NewBattleConst.FunClassType.BUFF_MANAGER
+                data.spName = "clearRandomBuffByNum"
+                data.spParam = { target, target.buffData, 1 }
+                data.spTar = target
+                table.insert(externData, data)
+            end
+            if mainBuffId == CONST.BUFF.EMERGENCY_SUPPORT then   -- 緊急支援
+                local SKILL_UTIL = require("Battle.NewSkill.SkillUtil")
+                local friendList = NgBattleDataManager_getFriendList(chaNode)
+                aliveIdTable = NewBattleUtil:initAliveTable(NgBattleDataManager_getFriendList(chaNode))
+                local allTarget = SKILL_UTIL:getRandomTarget(chaNode, friendList, 1, NewBattleConst.SKILL_TARGET_CONDITION.HAVE_DISPEL_DEBUFF)
+                if allTarget[1] then
+                    local data = { }
+                    data.spClass = NewBattleConst.FunClassType.BUFF_MANAGER
+                    data.spName = "clearRandomDeBuffByNum"
+                    data.spParam = { allTarget[1], allTarget[1].buffData, 1 }
+                    data.spTar = allTarget[1]
+                    table.insert(externData, data)
+                end
+            end
+        end
+    end
+    return externData
+end
 function BuffManager:addBuffValue(buffId, addValue, buffValue, auraValue, markValue)
     if buffConfig[buffId].buffType == CONST.BUFF_TYPE.NORMAL_BUFF then
         buffValue = buffValue + addValue

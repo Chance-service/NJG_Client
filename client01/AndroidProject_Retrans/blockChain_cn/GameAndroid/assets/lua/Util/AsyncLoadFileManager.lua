@@ -106,6 +106,9 @@ end
 
 --[[ 新增 紅點 任務 ]]
 function ALFManager:loadRedPointTask (fn, tag)
+    if CC_TARGET_PLATFORM_LUA == common.platform.CC_PLATFORM_WIN32 then -- windows環境不刷新紅點 避免卡頓
+        --return
+    end
     for idx, eachTask in ipairs(self.redPointTasks) do
         if eachTask.tag == tag then
             --CCLuaLog("Duplicate RedPoint Task----")

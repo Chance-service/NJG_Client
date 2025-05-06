@@ -7,7 +7,7 @@ local Inst = {}
 Inst.SubPageCfgs = {
     {
         -- 子頁面名稱 : 戰力成就
-        subPageName = "Album",
+        subPageName = "Album_Indiviual",
 
         -- 分頁 相關
         scriptName = "Album.AlbumSubPage_Indiviual",

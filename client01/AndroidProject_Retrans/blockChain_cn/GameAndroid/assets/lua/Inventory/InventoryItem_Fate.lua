@@ -32,8 +32,6 @@ function Inst.sort (a, b)
     local conf_2 = b:getConf()
     if a.itemId ~= b.itemId then
         return a.itemId > b.itemId
-    elseif a.skill ~= b.skill then
-        return a.skill > b.skill
     elseif a.id ~= b.id then
         return a.id > b.id
     else

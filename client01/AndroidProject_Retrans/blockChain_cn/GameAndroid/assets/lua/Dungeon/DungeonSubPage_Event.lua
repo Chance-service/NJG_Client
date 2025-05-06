@@ -38,7 +38,7 @@ local opcodes = {
     MULTIELITE_LIST_INFO_S = HP_pb.MULTIELITE_LIST_INFO_S,
     BATTLE_FORMATION_S = HP_pb.BATTLE_FORMATION_S,
 }
-
+local REFRESH_TIME = {12,24}
 function DungeonPageBase:new(o)
     o = o or {}
     setmetatable(o, self)
@@ -74,7 +74,7 @@ function DungeonPageBase:onEnter(container)
     local bg = container:getVarSprite("mBg")
     bg:setScale(NodeHelper:getScaleProportion())
     local scrollView = container:getVarScrollView("mContent")
-    NodeHelper:autoAdjustResizeScrollview(scrollView)
+    --NodeHelper:autoAdjustResizeScrollview(scrollView)
     
     self:TableSort(container)
     if not DungeonPageData.isDirty then
@@ -85,6 +85,8 @@ function DungeonPageBase:onEnter(container)
     self:refreshAllPoint(container)
 
     parentPage:registerMessage(MSG_REFRESH_REDPOINT)
+    require("TransScenePopUp")
+    TransScenePopUp_closePage()
     --local mainContainer = tolua.cast(MainFrame:getInstance(), "CCBContainer")
     --local mainButtons = mainContainer:getCCNodeFromCCB("mMainFrameButtons")
     --mainButtons:setVisible(true)
@@ -97,12 +99,12 @@ end
  function DungeonPageBase:TableSort(container)
     local cfg=MultiEliteCfg
     MapInfo={}
-    for i=1,#cfg do
-        local Type=cfg[i].eventType
+    for k, v in pairs(cfg) do
+        local Type = v.eventType
         if not MapInfo[Type] then
             MapInfo[Type]={}
         end
-        table.insert(MapInfo[Type],cfg[i])
+        table.insert(MapInfo[Type], v)
     end
 
  end
@@ -110,7 +112,7 @@ function DungeonPageBase:onExit(container)
 end
 function DungeonPageBase:BuildScrollview(container)
     local scrollView = container:getVarScrollView("mContent")
-    NodeHelper:autoAdjustResizeScrollview(scrollView)
+    --NodeHelper:autoAdjustResizeScrollview(scrollView)
     scrollView:removeAllCell()
     local guideItem = nil
     DungeonItems = { }
@@ -146,7 +148,7 @@ function DungeonItem:checkBtnState(id)
     if not MapInfo[id] then
         return 0
     end
-    local ItemInfo = MapInfo[id][DungeonPageData.Stars[id]]
+    local ItemInfo = MapInfo[id][math.min(DungeonPageData.Stars[id], #MapInfo[id])]
     local mapCfg = ConfigManager.getNewMapCfg()
     local mapId = mapCfg[UserInfo.stateInfo.curBattleMap] and UserInfo.stateInfo.curBattleMap or 
                   (mapCfg[UserInfo.stateInfo.passMapId] and UserInfo.stateInfo.passMapId or UserInfo.stateInfo.curBattleMap - 1)
@@ -155,6 +157,7 @@ function DungeonItem:checkBtnState(id)
         3:關卡未達成,BP達成;
         4:關卡達成,BP達成]]
     local BtnState = 1 
+    if not UserInfo.roleInfo.marsterFight then return BtnState end
     if mapId > ItemInfo.stageLimit then
         if UserInfo.roleInfo.marsterFight < ItemInfo.powerLimit then
            BtnState = 2
@@ -174,7 +177,7 @@ end
 function DungeonItem:onRefreshContent(content)
     local container=content:getCCBFileNode()
     local id=self.id
-    local ItemInfo=MapInfo[id][DungeonPageData.Stars[id]]
+    local ItemInfo=MapInfo[id][math.min(DungeonPageData.Stars[id], #MapInfo[id])]
     local reward=ItemInfo.reward or {}
     
     --mapInfo
@@ -188,7 +191,9 @@ function DungeonItem:onRefreshContent(content)
     --Level
     NodeHelper:setStringForLabel(container,{mLevelTxt="Lv".. DungeonPageData.Stars[id]})
     --LockTxt
-    if mapId > ItemInfo.stageLimit then
+    if not MapInfo[id][DungeonPageData.Stars[id]+1] then
+        NodeHelper:setStringForLabel(container,{mFightLimit=common:getLanguageString("@MultiStageMax")})
+    elseif mapId > ItemInfo.stageLimit then
         NodeHelper:setStringForLabel(container,{mFightLimit=common:getLanguageString("@MultiBPUnlock",ItemInfo.powerLimit)})
     else
         local stageLimitCfg=mapCfg[ItemInfo.stageLimit]
@@ -229,6 +234,8 @@ function DungeonItem:onRefreshContent(content)
     if DungeonPageData.Stars[id]==1 then
         NodeHelper:setNodesVisible(container,{mReceiveTxt=false,mReceiveBtn=false})
         return
+    else
+        NodeHelper:setNodesVisible(container,{mReceiveTxt=true,mReceiveBtn=true})
     end
 
     if DungeonPageData.CanGetCount[id]>0 then
@@ -236,8 +243,48 @@ function DungeonItem:onRefreshContent(content)
          NodeHelper:setStringForLabel(container,{mReceiveTxt=common:getLanguageString("@CanReceive")})
     else
          NodeHelper:setMenuItemsEnabled(container,{mReceiveBtn=false})
-         NodeHelper:setStringForLabel(container,{mReceiveTxt=common:getLanguageString("@AlreadyReceive")})
+         DungeonPageBase:setRefreshTime(container)
+         --NodeHelper:setStringForLabel(container,{mReceiveTxt=common:getLanguageString("@AlreadyReceive")})
     end
+end
+function DungeonPageBase:setRefreshTime(container)
+    -- 獲取伺服器當前時間
+    local curTime = common:getServerTimeByUpdate()
+    local curServerTime = os.date("!*t", curTime - common:getServerOffset_UTCTime())
+    local currentHour = curServerTime.hour
+
+    -- 初始化變數
+    local leftTime = 0
+    local day_start = curTime - (curTime - common:getServerOffset_UTCTime()) % 86400 -- 當天起始時間戳(+8時區)
+    local timestamp_next = 0
+
+    -- 遍歷刷新時間，計算下一個刷新時間戳
+    for i, v in ipairs(REFRESH_TIME) do
+        if currentHour <= v then
+            -- 如果是剛好到刷新點，跳過到下一個刷新時間
+            if currentHour == v then
+                v = REFRESH_TIME[(i % #REFRESH_TIME) + 1]  -- 下一個刷新時間
+                day_start = day_start + (v == 0 and 86400 or 0)  -- 若跳到明天 0 點
+            end
+
+            timestamp_next = day_start + v * 3600
+            leftTime = timestamp_next - curTime  -- 剩餘時間
+            container.RefreshTime = CCDirector:sharedDirector():getScheduler():scheduleScriptFunc(function()
+                -- 刷新處理邏輯
+                leftTime = leftTime-1
+                local txt = common:dateFormat2String(leftTime, true)
+                NodeHelper:setStringForLabel(container,{ mReceiveTxt = txt })
+                if leftTime <= 0 then
+                     CCDirector:sharedDirector():getScheduler():unscheduleScriptEntry(container.RefreshTime)
+                     container.RefreshTime = nil
+                     DungeonPageBase:InfoReq()
+                end
+            end, 1, false)
+            break
+        end
+    end
+       -- Debug 打印下一次刷新時間
+    --print("Next refresh time:", os.date("!*t", timestamp_next).hour, "Left time (s):", leftTime)
 end
 function DungeonPageBase:onExecute(container)
 

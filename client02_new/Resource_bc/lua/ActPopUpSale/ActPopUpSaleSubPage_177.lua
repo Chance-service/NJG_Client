@@ -121,7 +121,7 @@ function ActPopUpSaleSubPage_177:initUi(container)
     self:updateItems()
 
     NodeHelper:setMenuItemEnabled(container, "mRechargeBtn", not _buyData.canbuy)
-
+    NodeHelper:setNodesVisible(container,{leftCountText = false})
     local bg = container:getVarSprite("mBg")
     bg:setScale(NodeHelper:getScaleProportion())
 

@@ -42,7 +42,7 @@ function SummonResultItem:new()
     inst.handlerMap = {
         
     }
-
+    inst.star = 4
     inst.piece = 0
     inst.isNew = false
     inst.type = nil
@@ -84,7 +84,8 @@ function SummonResultItem:new()
         NodeHelper:setSpriteImage(self.container, {
             starImg = PathAccesser:getStarIconPath(star)
         })
-
+        self.star = star
+        self:updateSign()
     end
 
     --[[ 設置名稱 ]]
@@ -122,20 +123,25 @@ function SummonResultItem:new()
 
     --[[ 更新記號 ]]
     function inst:updateSign ()
-        local isShowNew = self.isNew
+        local isShowNew = false--self.isNew
         local isShowPiece = self.piece > 0
         NodeHelper:setNodesVisible(self.container, {
             newSignNode = isShowNew,
             pieceNode = not isShowNew and isShowPiece,
             starImg = not isShowPiece,
-            mPieceImg = (self.type == SummonDataMgr.RewardType.AW_EQUIP or self.type == SummonDataMgr.RewardType.HERO),
-            mItemImg = (self.type ~= SummonDataMgr.RewardType.AW_EQUIP and self.type ~= SummonDataMgr.RewardType.HERO),
+            mPieceImg = (self.type == SummonDataMgr.RewardType.HERO),
+            mItemImg = (self.type ~= SummonDataMgr.RewardType.HERO),
             mItemName = true,
         })
 
         NodeHelper:setStringForLabel(self.container, {
             mItemName = common:getLanguageString(self.name),
             pieceNum = common:getLanguageString("@Summon.ResultItem.pieceNum", GameUtil:formatNumber(self.piece))
+        })
+
+        NodeHelper:setSpriteImage(self.container, {
+            mPieceImg = GameConfig.summonPieceImg[self.star],
+            mItemImg = GameConfig.summonTreasureImg[self.star],
         })
     end
 

@@ -1,6 +1,6 @@
 /*
 ** Lua binding: Gamelua
-** Generated automatically by tolua++-1.0.92 on 01/09/25 12:56:23.
+** Generated automatically by tolua++-1.0.92 on 05/06/25 11:41:00.
 */
 
 /****************************************************************************
@@ -7588,6 +7588,113 @@ static int tolua_Gamelua_MainFrame_getPageNum00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'getPageNum'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: addMovie of class  MainFrame */
+#ifndef TOLUA_DISABLE_tolua_Gamelua_MainFrame_addMovie00
+static int tolua_Gamelua_MainFrame_addMovie00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"MainFrame",0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,5,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,6,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  MainFrame* self = (MainFrame*)  tolua_tousertype(tolua_S,1,0);
+  std::string pageName = ((std::string)  tolua_tocppstring(tolua_S,2,0));
+  std::string movieName = ((std::string)  tolua_tocppstring(tolua_S,3,0));
+  int isLoop = ((int)  tolua_tonumber(tolua_S,4,0));
+  int autoScale = ((int)  tolua_tonumber(tolua_S,5,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'addMovie'", NULL);
+#endif
+  {
+   self->addMovie(pageName,movieName,isLoop,autoScale);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'addMovie'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: removeMovieByPage of class  MainFrame */
+#ifndef TOLUA_DISABLE_tolua_Gamelua_MainFrame_removeMovieByPage00
+static int tolua_Gamelua_MainFrame_removeMovieByPage00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"MainFrame",0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  MainFrame* self = (MainFrame*)  tolua_tousertype(tolua_S,1,0);
+  std::string pageName = ((std::string)  tolua_tocppstring(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'removeMovieByPage'", NULL);
+#endif
+  {
+   self->removeMovieByPage(pageName);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'removeMovieByPage'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: settingMoviePushPageVisible of class  MainFrame */
+#ifndef TOLUA_DISABLE_tolua_Gamelua_MainFrame_settingMoviePushPageVisible00
+static int tolua_Gamelua_MainFrame_settingMoviePushPageVisible00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"MainFrame",0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  MainFrame* self = (MainFrame*)  tolua_tousertype(tolua_S,1,0);
+  std::string pageName = ((std::string)  tolua_tocppstring(tolua_S,2,0));
+  int moviePlayType = ((int)  tolua_tonumber(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'settingMoviePushPageVisible'", NULL);
+#endif
+  {
+   self->settingMoviePushPageVisible(pageName,moviePlayType);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'settingMoviePushPageVisible'.",&tolua_err);
  return 0;
 #endif
 }
@@ -34922,23 +35029,25 @@ static int tolua_Gamelua_GamePrecedure_playMovie00(lua_State* tolua_S)
  if (
      !tolua_isusertype(tolua_S,1,"GamePrecedure",0,&tolua_err) ||
      !tolua_iscppstring(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,3,0,&tolua_err) ||
      !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,5,&tolua_err)
+     !tolua_isnumber(tolua_S,5,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,6,&tolua_err)
  )
   goto tolua_lerror;
  else
 #endif
  {
   GamePrecedure* self = (GamePrecedure*)  tolua_tousertype(tolua_S,1,0);
-  std::string fileName = ((std::string)  tolua_tocppstring(tolua_S,2,0));
-  int isLoop = ((int)  tolua_tonumber(tolua_S,3,0));
-  int autoScale = ((int)  tolua_tonumber(tolua_S,4,0));
+  std::string pageName = ((std::string)  tolua_tocppstring(tolua_S,2,0));
+  std::string fileName = ((std::string)  tolua_tocppstring(tolua_S,3,0));
+  int isLoop = ((int)  tolua_tonumber(tolua_S,4,0));
+  int autoScale = ((int)  tolua_tonumber(tolua_S,5,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'playMovie'", NULL);
 #endif
   {
-   self->playMovie(fileName,isLoop,autoScale);
+   self->playMovie(pageName,fileName,isLoop,autoScale);
   }
  }
  return 0;
@@ -34958,18 +35067,20 @@ static int tolua_Gamelua_GamePrecedure_closeMovie00(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"GamePrecedure",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
+     !tolua_iscppstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
  else
 #endif
  {
   GamePrecedure* self = (GamePrecedure*)  tolua_tousertype(tolua_S,1,0);
+  std::string pageName = ((std::string)  tolua_tocppstring(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'closeMovie'", NULL);
 #endif
   {
-   self->closeMovie();
+   self->closeMovie(pageName);
   }
  }
  return 0;
@@ -34989,18 +35100,20 @@ static int tolua_Gamelua_GamePrecedure_pauseMovie00(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"GamePrecedure",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
+     !tolua_iscppstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
  else
 #endif
  {
   GamePrecedure* self = (GamePrecedure*)  tolua_tousertype(tolua_S,1,0);
+  std::string pageName = ((std::string)  tolua_tocppstring(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'pauseMovie'", NULL);
 #endif
   {
-   self->pauseMovie();
+   self->pauseMovie(pageName);
   }
  }
  return 0;
@@ -35020,18 +35133,20 @@ static int tolua_Gamelua_GamePrecedure_resumeMovie00(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"GamePrecedure",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
+     !tolua_iscppstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
  else
 #endif
  {
   GamePrecedure* self = (GamePrecedure*)  tolua_tousertype(tolua_S,1,0);
+  std::string pageName = ((std::string)  tolua_tocppstring(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'resumeMovie'", NULL);
 #endif
   {
-   self->resumeMovie();
+   self->resumeMovie(pageName);
   }
  }
  return 0;
@@ -37757,6 +37872,68 @@ static int tolua_Gamelua_SpineContainer_setToSetupPose00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'setToSetupPose'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setBonesToSetupPose of class  SpineContainer */
+#ifndef TOLUA_DISABLE_tolua_Gamelua_SpineContainer_setBonesToSetupPose00
+static int tolua_Gamelua_SpineContainer_setBonesToSetupPose00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"SpineContainer",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  SpineContainer* self = (SpineContainer*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setBonesToSetupPose'", NULL);
+#endif
+  {
+   self->setBonesToSetupPose();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setBonesToSetupPose'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setSlotsToSetupPose of class  SpineContainer */
+#ifndef TOLUA_DISABLE_tolua_Gamelua_SpineContainer_setSlotsToSetupPose00
+static int tolua_Gamelua_SpineContainer_setSlotsToSetupPose00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"SpineContainer",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  SpineContainer* self = (SpineContainer*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setSlotsToSetupPose'", NULL);
+#endif
+  {
+   self->setSlotsToSetupPose();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setSlotsToSetupPose'.",&tolua_err);
  return 0;
 #endif
 }
@@ -41542,6 +41719,9 @@ TOLUA_API int tolua_Gamelua_open (lua_State* tolua_S)
    tolua_function(tolua_S,"popCurrentPage",tolua_Gamelua_MainFrame_popCurrentPage00);
    tolua_function(tolua_S,"setBackgroundColor",tolua_Gamelua_MainFrame_setBackgroundColor00);
    tolua_function(tolua_S,"getPageNum",tolua_Gamelua_MainFrame_getPageNum00);
+   tolua_function(tolua_S,"addMovie",tolua_Gamelua_MainFrame_addMovie00);
+   tolua_function(tolua_S,"removeMovieByPage",tolua_Gamelua_MainFrame_removeMovieByPage00);
+   tolua_function(tolua_S,"settingMoviePushPageVisible",tolua_Gamelua_MainFrame_settingMoviePushPageVisible00);
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"Language","Language","",NULL);
   tolua_beginmodule(tolua_S,"Language");
@@ -43152,6 +43332,8 @@ TOLUA_API int tolua_Gamelua_open (lua_State* tolua_S)
    tolua_function(tolua_S,"unregisterLuaListener",tolua_Gamelua_SpineContainer_unregisterLuaListener00);
    tolua_function(tolua_S,"isPlayingAnimation",tolua_Gamelua_SpineContainer_isPlayingAnimation00);
    tolua_function(tolua_S,"setToSetupPose",tolua_Gamelua_SpineContainer_setToSetupPose00);
+   tolua_function(tolua_S,"setBonesToSetupPose",tolua_Gamelua_SpineContainer_setBonesToSetupPose00);
+   tolua_function(tolua_S,"setSlotsToSetupPose",tolua_Gamelua_SpineContainer_setSlotsToSetupPose00);
    tolua_function(tolua_S,"findSlot",tolua_Gamelua_SpineContainer_findSlot00);
    tolua_function(tolua_S,"getAttachment",tolua_Gamelua_SpineContainer_getAttachment00);
    tolua_function(tolua_S,"setAttachment",tolua_Gamelua_SpineContainer_setAttachment00);

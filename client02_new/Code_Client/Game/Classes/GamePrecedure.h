@@ -151,7 +151,6 @@ public:
 	LoadingFrame* getLoadingFrame();
 
 	void enterLogoMovie();
-    void enterUpdateVersion();
 	void enterLoading();
 	void reEnterLoading();
 	void reEnterGame();
@@ -184,7 +183,6 @@ public:
     void enterForeGround();
 
 	void initLuaEnv();
-	void initLuaUpdateVersionEnv();
 
 	bool getLoginAssemblyFinished(){return m_loginPacketAssemblySuccess;};
 	void setLoginAssemblyFinished(bool flag){m_loginPacketAssemblySuccess = flag;};
@@ -250,10 +248,10 @@ public:
     //获取版本号
     std::string getLocalVersionToLua();
 
-	void playMovie(std::string fileName, int isLoop, int autoScale);
-	void closeMovie();
-	void pauseMovie();
-	void resumeMovie();
+	void playMovie(std::string pageName, std::string fileName, int isLoop, int autoScale);
+	void closeMovie(std::string pageName);
+	void pauseMovie(std::string pageName);
+	void resumeMovie(std::string pageName);
 
 	void sendhttpRequest(const std::string aurl);//数据只管发不做返回处理
 

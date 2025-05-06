@@ -1,15 +1,15 @@
 local NodeHelper = require("NodeHelper")
-local thisPageName = 'Event001Page'
-local Activity5_pb = require("Activity5_pb");
-local HP_pb = require("HP_pb");
+local thisPageName = "Event001Page"
+local Activity5_pb = require("Activity5_pb")
+local HP_pb = require("HP_pb")
 local InfoAccesser = require("Util.InfoAccesser")
 local GuideManager = require("Guide.GuideManager")
 local EventDataMgr = require("Event001DataMgr")
 
-local Event001Base =  {}
+local Event001Base =  { }
 local option = {
     ccbiFile = EventDataMgr[EventDataMgr.nowActivityId].MAINPAGE_CCB,
-    handlerMap ={},
+    handlerMap = { },
 }
 
 local DailyMissionContent = {
@@ -21,8 +21,8 @@ local AchivementContent = {
     BarLong = 121
 }
 
-local StageData = {}
-local QuestData = {Daily = {content = {},DailyPoint = { },Target = {}},Achive = {}}
+local StageData = { }
+local QuestData = { Daily = { content = { }, DailyPoint = { }, Target = { } },Achive = { } }
 
 local opcodes = {
     CYCLE_LIST_INFO_S = HP_pb.CYCLE_LIST_INFO_S,
@@ -31,9 +31,9 @@ local opcodes = {
     PLAYER_AWARD_S = HP_pb.PLAYER_AWARD_S
 }
 
-local DailyCCB = {}
+local DailyCCB = { }
 
-local EventPageInfo={
+local EventPageInfo = {
     container = nil,
     CountDown = nil,
     Update = nil
@@ -41,6 +41,14 @@ local EventPageInfo={
 
 local BtnLayer = { }
 local BtnBeginIdx = 0
+
+local nowType = "Daily"
+
+local libPlatformListener1 = { }
+
+function libPlatformListener1:onPlayMovieEnd(listener)
+
+end
 
 function Event001Base:onLoad(container)
     container:loadCcbiFile(option.ccbiFile)
@@ -52,12 +60,11 @@ function Event001Base:onEnter(container)
     container:registerFunctionHandler(Event001Base.onFunction)
     Event001Base:sendQuest(2)
     self:registerPacket(container)
-    --common:sendEmptyPacket(HP_pb.CYCLE_LIST_INFO_C,false)
     self:refresh()
     local PageJumpMange = require("PageJumpMange")
     if PageJumpMange._IsPageJump then
         if PageJumpMange._CurJumpCfgInfo._ThirdFunc ~= "" then
-           Event001Base.onFunction(PageJumpMange._CurJumpCfgInfo._ThirdFunc,container)
+           Event001Base.onFunction(PageJumpMange._CurJumpCfgInfo._ThirdFunc, container)
         end
         PageJumpMange._IsPageJump = false
     else
@@ -67,15 +74,21 @@ function Event001Base:onEnter(container)
     if not GuideManager.isInGuide then
         container:runAnimation("OpenAni")
     end
-    CCUserDefault:sharedUserDefault():setStringForKey("ACT191_"..UserInfo.playerInfo.playerId,StageData.startTime)
-    self:setSpine(container)
-    local mBg = container:getVarNode("mBg")
-    mBg:setScale(NodeHelper:getTargetScaleProportion(1600, 720))
+    CCUserDefault:sharedUserDefault():setStringForKey("ACT191_" .. UserInfo.playerInfo.playerId, StageData.startTime)
+    CCLuaLog("ACT191_setStringForKey startTime : " .. StageData.startTime)
+    if not EventDataMgr[EventDataMgr.nowActivityId].isCommonUI then
+        self:setSpine(container)
+        local mBg = container:getVarNode("mBg")
+        mBg:setScale(NodeHelper:getTargetScaleProportion(1600, 720))
+    else
+        self:playMovie(container)
+    end
 
     if EventDataMgr[EventDataMgr.nowActivityId].openTouchLayer then
         Event001Base:initBtnTouchLayer(container)
     end
 end
+
 function Event001Base:setSpine(container)
     -- 獲取父節點
     local parentNode = container:getVarNode("mSpine")
@@ -134,6 +147,18 @@ function Event001Base:setSpine(container)
      addSpineToParentWithAnimation(EventDataMgr[EventDataMgr.nowActivityId].MAIN_SPINE, parentNode, "animation")
 end
 
+function Event001Base:playMovie(container)
+    local video = EventDataMgr[EventDataMgr.nowActivityId].FETTER_MOVEMENT_CFG[99999901].spine
+    if video ~= "" then
+        Event001Base.libPlatformListener = LibPlatformScriptListener:new(libPlatformListener1)
+        GamePrecedure:getInstance():playMovie(thisPageName, video, 1, 0)
+    end
+end
+
+function Event001Base:closeMovie(container)
+    GamePrecedure:getInstance():closeMovie(thisPageName)
+end
+
 function Event001Base:refresh()
     local container = EventPageInfo.container
     EventPageInfo.Update = CCDirector:sharedDirector():getScheduler():scheduleScriptFunc(function()
@@ -143,14 +168,14 @@ function Event001Base:refresh()
     if not container then return end
     local Count_7002 = InfoAccesser:getUserItemInfo(Const_pb.TOOL, EventDataMgr[EventDataMgr.nowActivityId].TOKEN_ID).count or 0
     local Count_7003 = InfoAccesser:getUserItemInfo(Const_pb.TOOL, EventDataMgr[EventDataMgr.nowActivityId].CHALLANGE_ID).count or 0
-    local stringTable = {}
+    local stringTable = { }
     stringTable["m7002Count"] = Count_7002
-    stringTable["m7003Count"] = common:getLanguageString("@activitystageCount",Count_7003)
+    stringTable["m7003Count"] = common:getLanguageString("@activitystageCount", Count_7003)
 
     local txt = common:getDayNumber(StageData.leftTime) + 1 .. common:getLanguageString("@Days")
     stringTable["mLeftTime"] = txt
  
-    NodeHelper:setStringForLabel(container,stringTable)
+    NodeHelper:setStringForLabel(container, stringTable)
 end
 
 function Event001Base:onExecute(container)
@@ -160,7 +185,7 @@ function Event001Base:update(container)
     if not container then return end
     local Count_7002 = InfoAccesser:getUserItemInfo(Const_pb.TOOL, EventDataMgr[EventDataMgr.nowActivityId].TOKEN_ID).count or 0
     local Count_7003 = InfoAccesser:getUserItemInfo(Const_pb.TOOL, EventDataMgr[EventDataMgr.nowActivityId].CHALLANGE_ID).count or 0
-    local stringTable = {}
+    local stringTable = { }
     stringTable["m7002Count"] = Count_7002
     stringTable["m7003Count"] = common:getLanguageString("@activitystageCount",Count_7003)
     NodeHelper:setStringForLabel(container,stringTable)
@@ -172,48 +197,65 @@ function Event001Base.onFunction(eventName,container)
     elseif eventName == "luaEnter" then
         Event001Base:onEnter(container)
     elseif eventName =="onReturn" then
+        Event001Base:closeMovie(container)
         SoundManager:getInstance():playGeneralMusic()
         PageManager.popPage(thisPageName)
         if EventPageInfo.CountDown then
             CCDirector:sharedDirector():getScheduler():unscheduleScriptEntry(EventPageInfo.CountDown)
             EventPageInfo.CountDown = nil
         end
-        if EventPageInfo.Update  then
+        if EventPageInfo.Update then
             CCDirector:sharedDirector():getScheduler():unscheduleScriptEntry(EventPageInfo.Update)
-            EventPageInfo.Update=nil                   
+            EventPageInfo.Update = nil                   
+        end
+        if Event001Base.libPlatformListener then
+            Event001Base.libPlatformListener:delete()
         end
     elseif eventName == "onMission" then
-        NodeHelper:setNodesVisible(container, {mMission = true, mDailyOn = true, mAchiveOn = false, mAchiveScrollview = false, mTaskNode = true, mNotOpenMask = false})
-        NodeHelper:setStringForLabel(container, {mTitle = common:getLanguageString("@Act141DailyTasksBtnText")})
+        NodeHelper:setNodesVisible(container, { mMission = true, mDailyOn = true, mAchiveOn = false, mAchiveScrollview = false, mTaskNode = true, mNotOpenMask = false })
+        NodeHelper:setStringForLabel(container, { mTitle = common:getLanguageString("@Act141DailyTasksBtnText") })
     elseif eventName == "onCloseMission" then
-        NodeHelper:setNodesVisible(container,{mMission = false})
+        NodeHelper:setNodesVisible(container, { mMission = false })
+        nowType = "Daily"
     elseif eventName == "onDailyMission" then
-       NodeHelper:setNodesVisible(container, {mDailyOn = true, mAchiveOn = false, mAchiveScrollview = false, mTaskNode = true, mNotOpenMask = false})
+       if nowType == "Daily" then return end
+       nowType = "Daily"
+       NodeHelper:setNodesVisible(container, { mDailyOn = true, mAchiveOn = false, mAchiveScrollview = false, mTaskNode = true, mNotOpenMask = false })
        Event001Base:sendQuest(2)
-       NodeHelper:setStringForLabel(container, {mTitle = common:getLanguageString("@Act141DailyTasksBtnText")})
+       NodeHelper:setStringForLabel(container, { mTitle = common:getLanguageString("@Act141DailyTasksBtnText") })
      elseif eventName == "onAchiveMission" then
-        NodeHelper:setNodesVisible(container, {mDailyOn = false, mAchiveOn = true, mAchiveScrollview = true, mTaskNode = false , mNotOpenMask = false})
+        if nowType == "Achive" then return end
+        nowType = "Achive"
+        NodeHelper:setNodesVisible(container, { mDailyOn = false, mAchiveOn = true, mAchiveScrollview = true, mTaskNode = false , mNotOpenMask = false })
         Event001Base:sendQuest(0)
-        NodeHelper:setStringForLabel(container, {mTitle = common:getLanguageString("@TaskAchievementName")})
-    elseif eventName =="onBattle" then
+        NodeHelper:setStringForLabel(container, { mTitle = common:getLanguageString("@TaskAchievementName") })
+    elseif eventName == "onBattle" then
         PageManager.pushPage("Event001BattlePage")
     elseif eventName == "onShop" then
+        require("ShopControlPage")
+        if EventDataMgr.nowActivityId == Const_pb.ACTIVITY191_CycleStage then
+            ShopTypeContainer_SetSubPageType(15)
+        elseif EventDataMgr.nowActivityId == Const_pb.ACTIVITY196_CycleStage_Part2 then
+            ShopTypeContainer_SetSubPageType(17)
+        end
         PageManager.pushPage("ShopControlPage")
     elseif eventName == "onHistory" then
         local StoryTable = Event001Base:CreateMapTable()
-        local StoryLogPage= require("Event001StoryLog")
+        local StoryLogPage = require("Event001StoryLog")
         StoryLogPage:SetData(StoryTable)
         PageManager.pushPage("Event001StoryLog")
-    elseif eventName =="luaReceivePacket" then
+    elseif eventName == "luaReceivePacket" then
         Event001Base:onReceivePacket(container)
-    elseif eventName =="onRewardDetail" then
-        PageManager.pushPage("Event001RewardPopUp")
+    elseif eventName == "onRewardDetail" then
+        AWPreview = require("AncientWeaponPreview_PopUp")
+        AWPreview:setShowId(EventDataMgr[EventDataMgr.nowActivityId].REWARD_EQUIP_ID)
+        PageManager.pushPage("AncientWeaponPreview_PopUp")
     end
 end
 
 function  Event001Base:onReceivePacket(container)
-    local opcode = container:getRecPacketOpcode();
-    local msgBuff = container:getRecPacketBuffer();
+    local opcode = container:getRecPacketOpcode()
+    local msgBuff = container:getRecPacketBuffer()
 
     if opcode == HP_pb.PLAYER_AWARD_S then
         local PackageLogicForLua = require("PackageLogicForLua")
@@ -221,7 +263,6 @@ function  Event001Base:onReceivePacket(container)
     end
 end
 function DailyCCB.onFunction(eventName, container)
-    --local BgImg = "message_GH_bg.png"
     local function handleEvent(targetIndex, dataPoint, rewardPoint)
         if Target[targetIndex] == targetIndex then
             MessageBoxPage:Msg_Box_Lan("@dailyQuestPointGotTxt")
@@ -236,7 +277,7 @@ function DailyCCB.onFunction(eventName, container)
             ShowRewardPreview(cfg[rewardPoint].award, common:getLanguageString("@TaskDailyRewardPreviewTitle"), common:getLanguageString("@TaskDailyRewardPreviewInfo"), BgImg)
             PageManager.pushPage("DailyTaskRewardPreview")
         else
-            Event001Base:sendQuest(4,rewardPoint)
+            Event001Base:sendQuest(4, rewardPoint)
         end
     end
     
@@ -253,20 +294,21 @@ end
 
 function Event001Base:SetStageInfo(msg)
     StageData.PassedId = msg.passId
-    StageData.startTime = msg.starTime/1000
+    StageData.startTime = msg.starTime / 1000
     StageData.leftTime = msg.leftTime
     StageData.useItem = msg.item
+    CCLuaLog("ACT191_SetStageInfo startTime : " .. StageData.startTime)
 
-    if not EventPageInfo.CountDown and StageData.leftTime<86400 then
+    if not EventPageInfo.CountDown and StageData.leftTime < 86400 then
         EventPageInfo.CountDown = CCDirector:sharedDirector():getScheduler():scheduleScriptFunc(function()
             -- 更新 leftTime
             StageData.leftTime = StageData.leftTime - 1
             local txt = common:dateFormat2String(StageData.leftTime, true)
-            NodeHelper:setStringForLabel(EventPageInfo.container, {mLeftTime=txt})
+            NodeHelper:setStringForLabel(EventPageInfo.container, { mLeftTime = txt })
         end, 1, false)
     else
         local txt = common:getDayNumber(StageData.leftTime) + 1 .. common:getLanguageString("@Days")
-        NodeHelper:setStringForLabel(EventPageInfo.container, {mLeftTime=txt})
+        NodeHelper:setStringForLabel(EventPageInfo.container, { mLeftTime = txt })
     end
 end
 
@@ -275,7 +317,7 @@ function Event001Base:getStageInfo()
 end
 
 function Event001Base:SetQuestInfo(msg)
-    if msg.action==0 or msg.action==1 then
+    if msg.action == 0 or msg.action == 1 then
         local cfg
         if EventDataMgr.nowActivityId == Const_pb.ACTIVITY191_CycleStage then
             cfg = ConfigManager.getAct191Achive()
@@ -291,7 +333,6 @@ function Event001Base:SetQuestInfo(msg)
             -- 判斷是否完成任務
             achive.isPass = (msg.questInfo.passId >= quest.needCount)
 
-        
             -- 判斷獎勵是否已領取
             achive.isGot = false
             for _, takeId in ipairs(msg.questInfo.takeId) do
@@ -301,26 +342,24 @@ function Event001Base:SetQuestInfo(msg)
                 end
             end
         end
-         Event001Base:BuildScrollview(EventPageInfo.container)
+        Event001Base:BuildScrollview(EventPageInfo.container)
     end
-    if msg.action==2 or msg.action==3 or msg.action==4 then
-        local finishedQuest={}
-        QuestData.Daily.content = {}
+    if msg.action == 2 or msg.action == 3 or msg.action == 4 then
+        local finishedQuest = { }
+        QuestData.Daily.content = { }
         local QuestCount = #msg.dailyInfo.allDailyQuest
-        for i=1,QuestCount do
+        for i = 1, QuestCount do
             if msg.dailyInfo.allDailyQuest[i].takeStatus == 1 then
                 table.insert(finishedQuest,msg.dailyInfo.allDailyQuest[i])
             else
-                table.insert(QuestData.Daily.content,msg.dailyInfo.allDailyQuest[i])
-                               
+                table.insert(QuestData.Daily.content,msg.dailyInfo.allDailyQuest[i])        
             end
-
         end
-        QuestData.Daily.DailyPoint=msg.dailyInfo.dailyPoint
-        for i = 1 , 4 do
-            QuestData.Daily.Target[i]=msg.dailyInfo.dailyPointCore[i]
+        QuestData.Daily.DailyPoint = msg.dailyInfo.dailyPoint
+        for i = 1, 4 do
+            QuestData.Daily.Target[i] = msg.dailyInfo.dailyPointCore[i]
         end
-        table.merge(QuestData.Daily.content,finishedQuest)
+        table.merge(QuestData.Daily.content, finishedQuest)
         Event001Base:BuildScrollview(EventPageInfo.container, true)
     end
 
@@ -343,17 +382,17 @@ function Event001Base:BuildScrollview(container, isDaily)
         local parent = container:getVarNode("mTaskNode")
         parent:removeAllChildrenWithCleanup(true)
         local TaskCCB = ScriptContentBase:create(EventDataMgr[EventDataMgr.nowActivityId].MISSION_TREASURE_CONTENT_NAME)
-        Target = {[25]={},[50]={},[75]={},[100]={}}
+        Target = { [25] = { }, [50] = { }, [75] = { }, [100] = { } }
         for i = 1, 4 do
             local TargetId = Data.Daily.Target[i] and Data.Daily.Target[i].dailyPointNumber
             if TargetId then
-                Target[TargetId] = Data.Daily.Target[i] and Data.Daily.Target[i].dailyPointNumber or {}
+                Target[TargetId] = Data.Daily.Target[i] and Data.Daily.Target[i].dailyPointNumber or { }
             end
         end
 
         TaskCCB:registerFunctionHandler(DailyCCB.onFunction)
         Event001Base:SetContentSize(TaskCCB, 100, Data.Daily.DailyPoint)
-        NodeHelper:setStringForLabel(TaskCCB, {mNowPoint = Data.Daily.DailyPoint or 0})
+        NodeHelper:setStringForLabel(TaskCCB, { mNowPoint = Data.Daily.DailyPoint or 0 })
        -- 預先定義目標點數範圍與顯示條件
         local boxVisibilityConditions = {
             [25] = "mBoxPoint1",
@@ -365,7 +404,7 @@ function Event001Base:BuildScrollview(container, isDaily)
         -- 設定節點的可見狀態（自動處理條件）
         for point, boxName in pairs(boxVisibilityConditions) do
             local isVisible = Data.Daily.DailyPoint >= point and Target[point] ~= point
-            NodeHelper:setNodesVisible(TaskCCB, {[boxName] = isVisible})
+            NodeHelper:setNodesVisible(TaskCCB, { [boxName] = isVisible })
         end
         
         -- 處理每個目標點數的子節點顯示邏輯
@@ -399,7 +438,7 @@ function Event001Base:BuildScrollview(container, isDaily)
             local Info = Data
             local cell = CCBFileCell:create()
             cell:setCCBFile(DailyMissionContent.ccbiFile)
-            local handler = common:new({Data = Info}, DailyMissionContent)
+            local handler = common:new({ Data = Info }, DailyMissionContent)
             cell:registerFunctionHandler(handler)
             Scrollview:addCell(cell)
         end
@@ -408,18 +447,18 @@ function Event001Base:BuildScrollview(container, isDaily)
         local scrollview = container:getVarScrollView("mAchiveScrollview")
         scrollview:removeAllCell()
 
-        local BuildTable={}
-        local finishedTable={}
+        local BuildTable = { }
+        local finishedTable = { }
 
         for k, v in pairs(Data.Achive) do         
-            if k~= "nowPassed" and v.isGot then
-                table.insert(finishedTable,v)
-            elseif k~= "nowPassed" then
-                table.insert(BuildTable,v)
+            if k ~= "nowPassed" and v.isGot then
+                table.insert(finishedTable, v)
+            elseif k ~= "nowPassed" then
+                table.insert(BuildTable, v)
             end
         end
-        for k,v in pairs (finishedTable) do
-            table.insert(BuildTable,v)
+        for k, v in pairs (finishedTable) do
+            table.insert(BuildTable, v)
         end
         for i = 1, #BuildTable do
             local Info = BuildTable[i]
@@ -440,9 +479,9 @@ function Event001Base:setContentScale(container, MaxData, SeverData)
     local Bar = tolua.cast(container:getVarNode("mCountSprite"), "CCScale9Sprite")
     Bar:setContentSize(CCSize(DailyMissionContent.BarLong * Scale, Bar:getContentSize().height))
     if SeverData == 0 then
-        NodeHelper:setNodesVisible(container, {mCountSprite = false})
+        NodeHelper:setNodesVisible(container, { mCountSprite = false })
     else
-        NodeHelper:setNodesVisible(container, {mCountSprite = true})
+        NodeHelper:setNodesVisible(container, { mCountSprite = true })
     end
 end
 
@@ -452,9 +491,9 @@ function Event001Base:SetContentSize(container, MaxData, Data)
     local Bar = tolua.cast(container:getVarNode("mBar"), "CCScale9Sprite")
     Bar:setContentSize(CCSize(399 * Scale, Bar:getContentSize().height))
     if Data == 0 then
-        NodeHelper:setNodesVisible(container, {mBar = false})
+        NodeHelper:setNodesVisible(container, { mBar = false })
     else
-        NodeHelper:setNodesVisible(container, {mBar = true})
+        NodeHelper:setNodesVisible(container, { mBar = true })
     end
 end
 
@@ -478,15 +517,15 @@ end
 function Event001Base:CreateMapTable()
     local MapTable = {}
     local fetterControlCfg = EventDataMgr[EventDataMgr.nowActivityId].FETTER_CONTROL_CFG
-    for i = 1 , 2 do
+    for i = 1, 2 do
         local _chapter = i
-        for j = 1 , 99 do
+        for j = 1, 99 do
             local _level = j
-            local _mapId =  Event001Base:getMapId(_chapter,_level)
+            local _mapId =  Event001Base:getMapId(_chapter, _level)
             for k = 1, 2 do
-                local _id = tonumber(string.format("%02d", _chapter) .. string.format("%02d", _level) ..k.."01")
+                local _id = tonumber(string.format("%02d", _chapter) .. string.format("%02d", _level) .. k .. "01")
                 if fetterControlCfg[_id] then
-                    table.insert(MapTable, { mapId=_mapId, id=_id,chapter=_chapter,level=_level,StoryIdx=k ,MapIdx=1})
+                    table.insert(MapTable, { mapId = _mapId, id = _id, chapter = _chapter, level = _level, StoryIdx = k, MapIdx = 1 })
                 end      
             end
         end
@@ -516,8 +555,8 @@ function DailyMissionContent:onRefreshContent(ccbRoot)
     local questStatus = self.Data.questStatus
     local taskRewards = self.Data.taskRewards
     local questCompleteCount = self.Data.questCompleteCount
-    local StringTable = {}
-    local VisableTable = {}
+    local StringTable = { }
+    local VisableTable = { }
     local value = cfg[questId]
     local normalImage = NodeHelper:getImageByQuality(value.quality)
     local iconBg = NodeHelper:getImageBgByQuality(value.quality)
@@ -540,18 +579,18 @@ function DailyMissionContent:onRefreshContent(ccbRoot)
     StringTable["mNumber1_1"] = value.des
     Event001Base:setContentScale(container, value.targetCount, questCompleteCount)
     NodeHelper:setStringForLabel(container, StringTable)
-    NodeHelper:setMenuItemsEnabled(container, {mBtn = (takeStatus == 0 and questStatus == 1)})
+    NodeHelper:setMenuItemsEnabled(container, { mBtn = (takeStatus == 0 and questStatus == 1) })
     NodeHelper:setNodesVisible(container, VisableTable)
-    NodeHelper:setSpriteImage(container, {mFrameShade1 = iconBg, mPic1 = value.icon})
-    NodeHelper:setMenuItemImage(container, {mHand1 = {normal = normalImage}})
+    NodeHelper:setSpriteImage(container, { mFrameShade1 = iconBg, mPic1 = value.icon })
+    NodeHelper:setMenuItemImage(container, { mHand1 = { normal = normalImage } })
 end
 
 function DailyMissionContent:onBtn()
-    Event001Base:sendQuest(3,self.Data.questId)
+    Event001Base:sendQuest(3, self.Data.questId)
 end
 
 function DailyMissionContent:onHand1(container)
-    GameUtil:showTip(container:getVarNode('mPic1'), common:parseItemWithComma(self.Data.taskRewards)[1])
+    GameUtil:showTip(container:getVarNode("mPic1"), common:parseItemWithComma(self.Data.taskRewards)[1])
 end
 
 function AchivementContent:onRefreshContent(ccbRoot)
@@ -559,8 +598,8 @@ function AchivementContent:onRefreshContent(ccbRoot)
     local Quest = self.data.Quest
     local reward = Quest.reward[1]
     
-    local StringTable = {}
-    local VisableTable = {}
+    local StringTable = { }
+    local VisableTable = { }
 
     VisableTable["mStarNode"] = false
     VisableTable["selectedNode"] = false
@@ -570,16 +609,16 @@ function AchivementContent:onRefreshContent(ccbRoot)
     local resInfo = ResManagerForLua:getResInfoByTypeAndId(reward.type, reward.itemId, reward.count)
     local normalImage = NodeHelper:getImageByQuality(resInfo.quality)
     local iconBg = NodeHelper:getImageBgByQuality(resInfo.quality)
-    NodeHelper:setMenuItemImage(container, {mHand1 = {normal = normalImage}})
+    NodeHelper:setMenuItemImage(container, { mHand1 = { normal = normalImage } })
     container:getVarNode("mContent"):setScale(0.9)
     container:getVarLabelTTF("mContent"):setDimensions(CCSize(340, 100))
     
-    NodeHelper:setSpriteImage(container, {mPic1 = resInfo.icon, mFrameShade1 = iconBg})
+    NodeHelper:setSpriteImage(container, { mPic1 = resInfo.icon, mFrameShade1 = iconBg })
     StringTable["mNumber1_1"] = reward.count
     StringTable["mContent"] = common:getLanguageString(Quest.content)
     StringTable["mName"] = common:getLanguageString(Quest.name)
     local nowPass = math.max(QuestData.Achive.nowPassed,0)
-    StringTable["mCount"] = nowPass .."/"..Quest.needCount
+    StringTable["mCount"] = nowPass .. "/" .. Quest.needCount
     Event001Base:setContentScale(container, Quest.needCount, nowPass)
     if self.data.isPass then
         if self.data.isGot then
@@ -595,7 +634,7 @@ function AchivementContent:onRefreshContent(ccbRoot)
         end
     end
     NodeHelper:setStringForLabel(container, StringTable)
-    NodeHelper:setMenuItemsEnabled(container, {mBtn = self.data.isPass and not self.data.isGot})
+    NodeHelper:setMenuItemsEnabled(container, { mBtn = self.data.isPass and not self.data.isGot })
     NodeHelper:setNodesVisible(container, VisableTable)
 end
 
@@ -604,7 +643,7 @@ function AchivementContent:onBtn()
 end
 
 function AchivementContent:onHand1(container)
-    GameUtil:showTip(container:getVarNode('mPic1'), self.data.Quest.reward[1])
+    GameUtil:showTip(container:getVarNode("mPic1"), self.data.Quest.reward[1])
 end
 
 function Event001Base:registerPacket(container)
@@ -618,7 +657,7 @@ end
 function Event001Base:removePacket(container)
     for key, opcode in pairs(opcodes) do
         if string.sub(key, -1) == "S" then
-            container:removePacket(opcode);
+            container:removePacket(opcode)
         end
     end
 end 
@@ -712,7 +751,7 @@ function Event001Base:onTouchCancel(container, eventName, pTouch, idx)
     NodeHelper:setNodesVisible(container, { ["mBtnImg" .. idx] = false })
 end
 
-local CommonPage = require('CommonPage')
+local CommonPage = require("CommonPage")
 local Event001Page = CommonPage.newSub(Event001Base, thisPageName, option)
 
 return Event001Page

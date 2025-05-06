@@ -216,6 +216,8 @@ function AlbumStoryDisplayBase:startPlayStory()
         local txtNode = tolua.cast(spine2, "CCNode")
         parentNode3:addChild(txtNode)
         spine2:runAnimation(1, SpineData[SpineIdx].anime, 0)
+        local langType = CCUserDefault:sharedUserDefault():getIntegerForKey("LanguageType")
+        spine2:setSkin(langType)
     end
     --AlbumStoryDisplayBase:initSetting(selfContainer)
     nowBgmName = SpineData[lineIndex].BGM
@@ -426,12 +428,13 @@ function AlbumStoryDisplayBase:onNext()
             --MiniGame
             GameTime = tonumber(SpineData[SpineIdx].Game)
             nowTime = GameTime
-            
+            local langType = CCUserDefault:sharedUserDefault():getIntegerForKey("LanguageType")
             local parentNode = selfContainer:getVarNode("mTouchSpine")
             local spinePath = "Spine/NGUI"
             local spineName = "NGUI_87_touchscreen"
             local spine = SpineContainer:create(spinePath, spineName)
             local TouchNode = tolua.cast(spine, "CCNode")
+            spine:setSkin(langType)
             parentNode:addChild(TouchNode)
             parentNode:setScale(0.5)
             spine:runAnimation(1, "animation", -1)
@@ -448,6 +451,8 @@ function AlbumStoryDisplayBase:onNext()
             parentNode3:removeAllChildrenWithCleanup(true)
             parentNode3:addChild(txtNode)
             spine2:runAnimation(1, SpineData[SpineIdx].anime, 0)
+            local langType = CCUserDefault:sharedUserDefault():getIntegerForKey("LanguageType")
+            spine2:setSkin(langType)
         end
     else
         --PageManager.popPage(thisPageName)
@@ -533,7 +538,7 @@ function AlbumStoryDisplayBase:update(dt, container)
         if labelTimer >= labelSpeed then
             NeedTimes = SpineData[GameIndex].TypeTimes*6
             NodeHelper:setNodesVisible(container,{mHit=true})
-            nowTime = nowTime - dt * 60 * 0.03 -- 以fps60校正時間 原0.03數字原因不明
+            nowTime = nowTime - dt * 60 * 0.03
             if TapTimes > 0 then
                 TapTimes = TapTimes - 0.3
             else

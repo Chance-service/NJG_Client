@@ -231,8 +231,10 @@ function EquipBuildPageBase:initEquipTable(container)
     for k, v in pairs(cfg) do
         if v.part == Const_pb.WEAPON1 or v.part == Const_pb.CUIRASS or
            v.part == Const_pb.RING or v.part == Const_pb.SHOES then
-            equipTable[v.part] = equipTable[v.part] or { }
-            table.insert(equipTable[v.part], v)
+            if v.fixedMaterial[1].itemId then
+                equipTable[v.part] = equipTable[v.part] or { }
+                table.insert(equipTable[v.part], v)
+            end
         end
     end
     for k, v in pairs(equipTable) do
@@ -273,8 +275,8 @@ function EquipBuildPageBase:refreshScrollView(container, isAll)
         equipListTable = { }
         local targetTable = equipTable[nowPageType]
         if targetTable then
-            for i = 2, #targetTable do  -- 跳過最低階裝備
-                if i == 2 then
+            for i = 1, #targetTable do  -- 跳過最低階裝備
+                if i == 1 then
                     thisEquipId = targetTable[i].id
                 end
                 local cell = CCBFileCell:create()
@@ -360,7 +362,7 @@ function EquipBuildPageBase:calForgeAllResult(container)
     local userCoin = UserInfo.playerInfo.coin
     local totalCoin = 0
     if targetTable then
-        for i = 2, #targetTable do  -- 跳過最低階裝備
+        for i = 1, #targetTable do  -- 跳過最低階裝備
             local buildEquipcfg = ConfigManager:getEquipCfg()[targetTable[i].id]
             local costId, costNum, costCoin = nil, nil, 0
             for j = 1, #buildEquipcfg.fixedMaterial do  -- 消耗的資源
@@ -541,8 +543,8 @@ function EquipBuildPageBase:refreshAllPoint(container)
     NodeHelper:setNodesVisible(container, { mForgeAllPoint = RedPointManager_getShowRedPoint(typeToPointId[nowPageType]) })
     -- Icon紅點
     local targetTable = equipTable[nowPageType]
-    for i = 2, #targetTable do  -- 跳過最低階裝備
-        NodeHelper:setNodesVisible(equipListTable[i - 1].panel.container, { mRedPoint = RedPointManager_getShowRedPoint(typeToPointId[nowPageType] + 1, i) })
+    for i = 1, #targetTable do  -- 跳過最低階裝備
+        NodeHelper:setNodesVisible(equipListTable[i].panel.container, { mRedPoint = RedPointManager_getShowRedPoint(typeToPointId[nowPageType] + 1, i) })
     end
 end
 -------------------------------------------------------------------------
@@ -584,9 +586,9 @@ function EquipEnhancePage_showRequirementInfo(container, infoIndex, itemId, resM
 end
 
 function EquipBuildPage_calIsShowIconRedPoint(parentId, group)
-    if group <= 1 then
-        return false
-    end
+    --if group <= 1 then
+    --    return false
+    --end
     local pageType = idToPageType[parentId]
     if not pageType then
         return false
@@ -630,7 +632,7 @@ function EquipBuildPage_calIsShowTypeRedPoint(parentId)
         EquipBuildPageBase:initEquipTable(container)
     end
     local targetTable = equipTable[pageType]
-    for i = 2, #targetTable do  -- 跳過最低階裝備
+    for i = 1, #targetTable do  -- 跳過最低階裝備
         local show = EquipBuildPage_calIsShowIconRedPoint(parentId, i)
         if show then
             return true

@@ -53,10 +53,10 @@ public:
 	//用于玩家手动选择游戏语言
 	void setUserDefaultI18nSrcPath(int languageType);
 	std::string getServerNameById(int nServerId);
-	void playMovie(std::string fileName, int isLoop, int autoScale);
-	void closeMovie();
-	void pauseMovie();
-	void resumeMovie();
+	void playMovie(std::string pageName, std::string fileName, int isLoop, int autoScale);
+	void closeMovie(std::string pageName);
+	void pauseMovie(std::string pageName);
+	void resumeMovie(std::string pageName);
 	void sendhttpRequest(const std::string aurl);
 	bool CheckMailRule(const std::string&aStr);
 };

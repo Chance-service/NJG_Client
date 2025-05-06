@@ -195,6 +195,15 @@ function CommItemReceivePage:new ()
         else
             self:show()
         end
+
+        -- 增加特效
+        local effectParent = self.container:getVarNode("mEffectNode")
+        effectParent:removeAllChildrenWithCleanup(true)
+        local effect = SpineContainer:create("Spine/NGUI", "NGUI_01_GetItem")
+        local effectNode = tolua.cast(effect, "CCNode")
+        effectParent:addChild(effectNode)
+        effect:setToSetupPose()
+        effect:runAnimation(1, "animation", 0)
     end
 
     --[[ 當 頁面 離開 ]]
@@ -300,15 +309,15 @@ function CommItemReceivePage:new ()
         
         local size = #self.itemList
         
-        local colMax = 5
+        local colMax = 4
 
         local options = { -- magic layout number
             interval = ccp(0, 0),
             colMax = colMax,
             paddingTop = 0,
-            paddingBottom = 74,
+            paddingBottom = 0,
             paddingLeft = 0,
-            originScrollViewSize = CCSizeMake(600, 320),
+            originScrollViewSize = CCSizeMake(468, 235),
         }
         
         -- 只有1行 則 橫向置中
@@ -316,10 +325,10 @@ function CommItemReceivePage:new ()
             options.isAlignCenterHorizontal = true
         end
         
-        -- 未達 3行 則 垂直置中
-        if size <= colMax*2 then
+        -- 未達 2行 則 垂直置中
+        if size < colMax * 2 then
             options.isAlignCenterVertical = true
-            options.startOffset = ccp(0, 0)
+            options.startOffset = ccp(0, -74)
         -- 超過3行 則 顯示首項 並 偏移paddingTop
         else
             options.startOffsetAtItemIdx = 1
@@ -376,7 +385,7 @@ function CommItemReceivePage:new ()
         })
         
         -- 若 數量 尚未超過 每行數量 的話
-        if size <= colMax  then
+        if size <= colMax * 2  then
             local node = self.container:getVarNode("mContent")
             node:setTouchEnabled(false)
         end

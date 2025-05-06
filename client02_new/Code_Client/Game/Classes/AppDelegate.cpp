@@ -272,6 +272,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 
 	Lua_HttpsBridge::register_function();
 	int defaultLang = cocos2d::CCUserDefault::sharedUserDefault()->getIntegerForKey("LanguageType", currentLanguageType);
+	//int defaultLang = cocos2d::CCUserDefault::sharedUserDefault()->getIntegerForKey("LanguageType", kLanguageChinese);
 	if (!canSelectLang[defaultLang]) {
 		defaultLang = kLanguageChinese;
 	}
@@ -544,7 +545,6 @@ bool AppDelegate::applicationDidFinishLaunching()
 	GamePrecedure::Get()->startupreport();
 	//GamePrecedure::Get()->enterMainMenu();
 	// 安卓平台的logomovie是在java層實現的，所以直接進入loading狀態
-    //GamePrecedure::Get()->enterUpdateVersion();
 	GamePrecedure::Get()->enterLoading();
 
 

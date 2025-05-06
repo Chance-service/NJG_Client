@@ -103,7 +103,7 @@ function ActPopUpSaleSubPage_151:initUi(container)
         return
     end
 
-    itemInfo.price=getPrice(itemInfo.id)
+    itemInfo.price=ActPopUpSalePage_getPrice(itemInfo.id)
 
     local rewardItems = { }
     if itemInfo.reward ~= nil then

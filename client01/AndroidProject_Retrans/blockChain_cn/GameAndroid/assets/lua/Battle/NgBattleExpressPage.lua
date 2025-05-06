@@ -75,10 +75,11 @@ function NgBattleExpressPage:initUI(container)
     self:refreshUI(container)
 end
 function NgBattleExpressPage:refreshUI(container)
-    if canBuyTime > 0 and buyCost[nowBuyTime + 1] and tonumber(buyCost[nowBuyTime + 1]) == 0 then -- 還有免費次數
+    local buyCostIndex = math.min(nowBuyTime + 1, #buyCost)
+    if canBuyTime > 0 and buyCost[buyCostIndex] and tonumber(buyCost[buyCostIndex]) == 0 then -- 還有免費次數
         pageShowType = PAGE_TYPE.FREE
         NodeHelper:setStringForLabel(container, { mTipTxt = common:getLanguageString("@ExBattleTip1", nowFreeTime) })
-    elseif canBuyTime > 0 and buyCost[nowBuyTime + 1] and tonumber(buyCost[nowBuyTime + 1]) > 0 then -- 還有購買次數
+    elseif canBuyTime > 0 and buyCost[buyCostIndex] and tonumber(buyCost[buyCostIndex]) > 0 then -- 還有購買次數
         pageShowType = PAGE_TYPE.BUY
         NodeHelper:setStringForLabel(container, { mTipTxt = common:getLanguageString("@SilverMoonLimitTime", canBuyTime) })
     else    -- 不可購買不可使用
@@ -89,14 +90,15 @@ function NgBattleExpressPage:refreshUI(container)
 end
 
 function NgBattleExpressPage:onExpress(container)
+    local buyCostIndex = math.min(nowBuyTime + 1, #buyCost)
     if pageShowType == PAGE_TYPE.FREE or pageShowType == PAGE_TYPE.BUY then
         local cfg = ConfigManager.getUserPropertyCfg()[COST_ITEM_ID]
-        local str = common:getLanguageString("@ExBattleTip2", buyCost[nowBuyTime + 1])
+        local str = common:getLanguageString("@ExBattleTip2", buyCost[buyCostIndex])
         PageManager.showNotice(common:getLanguageString("@buy"), str, function(isOk)
             if not isOk then
                 return
             end
-            if UserInfo.playerInfo.gold < tonumber(buyCost[nowBuyTime + 1]) then
+            if UserInfo.playerInfo.gold < tonumber(buyCost[buyCostIndex]) then
                 -- 鑽石不足
                 MessageBoxPage:Msg_Box_Lan("@GoldNotEnough")
                 return

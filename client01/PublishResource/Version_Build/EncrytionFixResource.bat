@@ -1,5 +1,5 @@
 cd /d %~dp0
-rmdir /s /q ..\FixResourcesEncryptionExport
-mkdir ..\FixResourcesEncryptionExport
-utility\Utility.exe -VE ../FixResources ../none ../FixResourcesEncryptionExport update.php
+rmdir /s /q ..\fixHotUpdate\assets
+mkdir ..\fixHotUpdate\assets
+utility\Utility.exe -VE ../FixResources ../none ../hotUpdate/assets update.php
 pause

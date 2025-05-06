@@ -1,0 +1,28 @@
+{
+    "androidApk": {
+        "android_japan": "https://play.google.com/store/apps/details?id=jp.co.ryuk.leave2", 
+        "downloadMsg": "test test test", 
+        "rootAddress": ""
+    }, 
+    "announcement": "", 
+    "defaultSeverID": 1001, 
+    "internalAnnouncementFilePath": "https://d267m8pz2u3q8b.cloudfront.net/announcement.txt?t=20240904",
+    "internalAnnouncementVersion": 0, 
+    "rootAddress": "", 
+    "serverInGray": "test test", 
+    "serverInUpdate": "test", 
+    "severVerson": "1.0.2", 
+    "severs": [
+		{"id":1, "name":"测试-1服", "nameTW":"測試-1服" , "address":"54.255.44.130", "port":9599, "state":"full","order":99999},
+		{"id":2, "name":"测试-2服", "nameTW":"測試-2服" , "address":"18.143.35.236", "port":9599, "state":"full","order":99999},
+		{"id":3, "name":"测试-3服", "nameTW":"測試-3服" , "address":"18.143.216.175", "port":9599, "state":"full","order":99999},
+		{"id":1001, "name":"忍娘1服", "nameTW":"忍娘1服" , "address":"175.41.148.243", "port":9599, "state":"full","order":99999}
+	      ], 
+	"R18PayAddress": "http://devgoc.bigwin-tech.com",		  
+    "updateAddress": "", 
+    "updateByteSize": 3949, 
+    "updateMsg": "[OK]update msg", 
+    "keyVersion": 0, 
+	"openDataTransfer":true,
+    "version": 1
+}

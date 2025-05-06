@@ -1,89 +1,117 @@
 
 NGSceneB_02a_04.png
-size: 445,445
+size: 1024,128
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 A11
   rotate: false
-  xy: 2, 238
+  xy: 229, 23
   size: 198, 30
   orig: 198, 30
   offset: 0, 0
   index: -1
 A15
-  rotate: true
-  xy: 31, 59
+  rotate: false
+  xy: 728, 6
   size: 144, 30
   orig: 144, 30
   offset: 0, 0
   index: -1
 A7
   rotate: false
-  xy: 2, 270
+  xy: 445, 59
   size: 202, 33
   orig: 202, 33
   offset: 0, 0
   index: -1
 A9
   rotate: false
-  xy: 244, 337
+  xy: 897, 64
   size: 105, 33
   orig: 105, 33
   offset: 0, 0
   index: -1
 B11
-  rotate: true
-  xy: 92, 60
+  rotate: false
+  xy: 875, 35
   size: 143, 27
   orig: 143, 27
   offset: 0, 0
   index: -1
 B15
-  rotate: true
-  xy: 63, 56
+  rotate: false
+  xy: 579, 2
   size: 147, 27
   orig: 147, 27
   offset: 0, 0
   index: -1
 B7
   rotate: false
-  xy: 2, 372
+  xy: 2, 55
   size: 381, 35
   orig: 381, 35
   offset: 0, 0
   index: -1
 B9
-  rotate: true
-  xy: 2, 55
+  rotate: false
+  xy: 429, 2
   size: 148, 27
   orig: 148, 27
   offset: 0, 0
   index: -1
 C11
   rotate: false
-  xy: 2, 205
+  xy: 728, 38
   size: 145, 31
   orig: 145, 31
   offset: 0, 0
   index: -1
 C7
   rotate: false
-  xy: 2, 409
+  xy: 2, 92
   size: 441, 34
   orig: 441, 34
   offset: 0, 0
   index: -1
 C9
   rotate: false
-  xy: 2, 338
+  xy: 445, 94
   size: 240, 32
   orig: 240, 32
   offset: 0, 0
   index: -1
+D11
+  rotate: false
+  xy: 687, 71
+  size: 208, 26
+  orig: 208, 26
+  offset: 0, 0
+  index: -1
+D15
+  rotate: false
+  xy: 429, 31
+  size: 152, 26
+  orig: 152, 26
+  offset: 0, 0
+  index: -1
+D7
+  rotate: false
+  xy: 687, 99
+  size: 214, 27
+  orig: 214, 27
+  offset: 0, 0
+  index: -1
+D9
+  rotate: false
+  xy: 903, 99
+  size: 109, 27
+  orig: 109, 27
+  offset: 0, 0
+  index: -1
 c15
   rotate: false
-  xy: 2, 305
+  xy: 2, 22
   size: 225, 31
   orig: 225, 31
   offset: 0, 0

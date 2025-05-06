@@ -1,8 +1,11 @@
 #ifndef  _CORESDK_WEB_API_H_
 #define  _CORESDK_WEB_API_H_
 
-//#include "coresdk/Result.h"
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #include "Result.h"
+#else
+#include "coresdk/Result.h"
+#endif
 
 namespace coresdk {
 	namespace webapi {

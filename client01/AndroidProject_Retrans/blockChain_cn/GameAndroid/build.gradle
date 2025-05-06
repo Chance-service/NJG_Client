@@ -61,6 +61,9 @@ android {
         KUSO {
             res.srcDirs = ['KUSO/res']
         }
+        APLUS_CPS1 {
+            res.srcDirs = ['APLUS/res']
+        }
         // Move the tests to tests/java, tests/res, etc...
         androidTest.setRoot('tests')
 
@@ -110,10 +113,25 @@ android {
 //            dimension "app_type"
 //        }
         KUSO {
-            applicationId = /*"com.kusoplay.sample"*/"chance.debug.ninja.girl.kuso.cn"
+            applicationId = "chance.debug.ninja.girl.kuso.cn"
             dimension "app_type"
             dependencies {
                 implementation fileTree(dir: '../../sdklibs/GameLibBC/platformlibs/KUSO', include: ['*.aar'])
+                implementation fileTree(dir: '../../sdklibs/GameLibBC/libs', include: ['*.aar'])
+            }
+            packagingOptions {
+                exclude 'META-INF/kotlinx-serialization-json.kotlin_module'
+                exclude 'META-INF/kotlinx-serialization-core.kotlin_module'
+                exclude 'META-INF/atomicfu.kotlin_module'
+                exclude 'META-INF/com.android.tools/proguard/coroutines.pro'
+                exclude 'META-INF/kotlinx_coroutines_core.version'
+            }
+        }
+        APLUS_CPS1 {
+            applicationId = "chance.debug.ninja.girl.kuso.cn"
+            dimension "app_type"
+            dependencies {
+                implementation fileTree(dir: '../../sdklibs/GameLibBC/platformlibs/APLUS', include: ['*.aar'])
                 implementation fileTree(dir: '../../sdklibs/GameLibBC/libs', include: ['*.aar'])
             }
             packagingOptions {

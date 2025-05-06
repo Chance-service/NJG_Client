@@ -92,7 +92,7 @@ function onActivityOpenSync(eventName, handler)
         msg:ParseFromString(handler:getRecPacketBuffer())
         -- 20190524
         if not GameConfig.isIOSAuditVersion then
-            checkServerVersion()
+            --checkServerVersion()
         end
 
         UserInfo.syncPlayerInfo()

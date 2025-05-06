@@ -619,22 +619,16 @@ function ChatPage:registerKeyboard(container)
         ChatPage.editBox = NodeHelper:addEditBox(CCSize(380, sizeHeight), node, function(eventType)
             if eventType == "began" then
                 self:setFaceVisible(container, false)
-                -- triggered when an edit box gains focus after keyboard is shown
             elseif eventType == "ended" then
-                -- triggered when an edit box loses focus after keyboard is hidden.
             elseif eventType == "changed" then
                 if GameMaths:calculateStringCharacters(ChatPage.editBox:getText()) > 12 then
                     ChatPage.editBox:setFontSize(18)
-                    -- elseif GameMaths:calculateStringCharacters(ChatPage.editBox:getText()) > 30 then
-                    -- ChatPage.editBox:setPosition(ccp(-813,0))
                 else
                     ChatPage.editBox:setFontSize(26)
                 end
-                -- triggered when the edit box text was changed.
             elseif eventType == "return" then
                 ChatPage:onEditBoxReturn(ChatPage.editBox, ChatPage.editBox:getText())
                 ChatPage.editBox:setPosition(ccp(-189.5, 0))
-                -- triggered when the return button was pressed or the outside area of keyboard was touched.
             end
         end , ccp(-189.5, 0), common:getLanguageString("@ChatLabe"))
 
@@ -802,7 +796,7 @@ function ChatPage:onMsgSend(container)
         local contentLabel = container:getVarLabelTTF("mChatLabe")
         local label = Language:getInstance():getString("@ChatLabe")
         contentLabel:setString("")
-        container:getVarLabelTTF("mChatLabeHint"):setString("")
+        container:getVarLabelTTF("mChatLabeHint"):setString(common:getLanguageString("@ChatLabe"))
         UserTypeContent = "";
     else
         MessageBoxPage:Msg_Box_Lan("@PleaseEnterWordFirst")
@@ -827,7 +821,6 @@ function ChatPage:onInputboxEnter(container)
     if GameMaths:isStringHasUTF8mb4(content) then
         nameOK = false
     end
-
     CCLuaLog("ChatFace:------:" .. content .. ":")
     if content == "" then
         nameOK = false
@@ -848,19 +841,17 @@ function ChatPage:onInputboxEnter(container)
         content = nil
         return
     end
-
-     local length = GameMaths:calculateStringCharacters(content);
-        if length > g_nLimitNum then
-            -- 提示名字字数
-            content = GameMaths:getStringSubCharacters(content, 0, g_nLimitNum)
-            MessageBoxPage:Msg_Box_Lan("@ERRORCODE_14006");
-        end
+    local length = GameMaths:calculateStringCharacters(content);
+    if length > g_nLimitNum then
+        -- 提示名字字数
+        content = GameMaths:getStringSubCharacters(content, 0, g_nLimitNum)
+        MessageBoxPage:Msg_Box_Lan("@ERRORCODE_14006");
+    end
 
     content = RestrictedWord:getInstance():filterWordSentence(content)
     -- 屏蔽敏感字
     local contentLabel = container:getVarLabelTTF("mChatLabe");
     if contentLabel ~= nil then
-       
 
         UserTypeContent = content;
         local lines = 0;
@@ -917,20 +908,22 @@ function ChatPage:UpChatNode(container)
 end
 -- 聊天框弹出相关：回收 
 function ChatPage:DownChatNode(container)
-    CCLuaLog("moveChatNode DownChatNode ")
-    local MiddleFrameNode = container:getVarNode("mSpeakNode")
-    if MiddleFrameNode == nil then return end
-    local actionArr = CCArray:create();
-    if MiddleFrameNode:getPositionY() == chatNodeDefaultPosY then
-        return
-    end
-    -- actionArr:addObject(CCDelayTime:create(0.1))
-    actionArr:addObject(CCMoveTo:create(0.2, ccp(chatNodeDefaultPosX, chatNodeDefaultPosY)))
-    MiddleFrameNode:stopAllActions();
-    MiddleFrameNode:runAction(CCSequence:create(actionArr));
+    CCLuaLog("ChatPage:DownChatNode1")
+    --local MiddleFrameNode = container:getVarNode("mSpeakNode")
+    --if MiddleFrameNode == nil then return end
+    --local actionArr = CCArray:create();
+    --if MiddleFrameNode:getPositionY() == chatNodeDefaultPosY then
+    --    CCLuaLog("ChatPage:DownChatNode2")
+    --    return
+    --end
+    ---- actionArr:addObject(CCDelayTime:create(0.1))
+    --actionArr:addObject(CCMoveTo:create(0.2, ccp(chatNodeDefaultPosX, chatNodeDefaultPosY)))
+    --MiddleFrameNode:stopAllActions();
+    --MiddleFrameNode:runAction(CCSequence:create(actionArr));
 
-    NodeHelper:cursorNode(container, "mChatLabe", true)
+    NodeHelper:cursorNode(container, "mChatLabe", false)
     container:removeLibOS()
+    CCLuaLog("ChatPage:DownChatNode3")
 end
 ----------------------------------------------------------------------
 function ChatPage_onWorldChannel()

@@ -40,19 +40,28 @@ const std::string& libOS::generateSerial()
 void libOS::TheEditTextCloseKeyboardCallback(void* ctx)
 {
 	libOS* pLib = (libOS*)ctx;
+	if (!ctx) {
+		pLib = libOS::getInstance();
+	}
 	pLib->_boardcastCloseKeyboard();
-	//pTextï¿½Ñ¾ï¿½ï¿½ï¿½utf8ï¿½ï¿½
+	//pTextÒÑ¾­ÊÇutf8µÄ
 }
 void libOS::TheEditTextOpenKeyboardCallback(void* ctx)
 {
 	libOS* pLib = (libOS*)ctx;
+	if (!ctx) {
+		pLib = libOS::getInstance();
+	}
 	pLib->_boardcastOpenKeyboard();
-	//pTextï¿½Ñ¾ï¿½ï¿½ï¿½utf8ï¿½ï¿½
+	//pTextÒÑ¾­ÊÇutf8µÄ
 }
 void TheEditTextCallback(const char* pText, void* ctx, bool cancelPress)
 {
 	libOS* pLib = (libOS*)ctx;
-	//pTextï¿½Ñ¾ï¿½ï¿½ï¿½utf8ï¿½ï¿½
+	if (!ctx) {
+		pLib = libOS::getInstance();
+	}
+	//pTextÒÑ¾­ÊÇutf8µÄ
 	std::string content(pText);
 	if (!cancelPress)
 	{
@@ -66,6 +75,9 @@ void TheEditTextCallback(const char* pText, void* ctx, bool cancelPress)
 void libOS::UpdateKeyboardHight(void* ctx, int nHight)
 {
 	libOS* pLib = (libOS*)ctx;
+	if (!ctx) {
+		pLib = libOS::getInstance();
+	}
 	pLib->_boardcastKeyboardHight(nHight);
 }
 
@@ -119,6 +131,9 @@ void TheDialogOkCallback(int tag, void* ctx)
 {
 	libOS* pLib = (libOS*)ctx;
 	//
+	if (!ctx) {
+		pLib = libOS::getInstance();
+	}
 	pLib->_boardcastMessageboxOK(tag);
 }
 
@@ -129,7 +144,7 @@ void libOS::showMessagebox( const std::string& msg, int tag /*= 0*/ )
 // 	long freeram = avalibleMemory();
 // 	char szTemp[32] = {0};
 // 	sprintf(szTemp, "%d", freeram);
-// 	std::string temp = msg + "\nmagicnum: ";//freeram//Ã»ï¿½ï¿½Ê¾ï¿½ï¿½
+// 	std::string temp = msg + "\nmagicnum: ";//freeram//Ã»ÏÔÊ¾ÁË
 // 	temp.append(szTemp);
 // 	showDialogJNI(msg.c_str(), "", TheDialogOkCallback, this, tag);
 // 	return;
@@ -311,7 +326,7 @@ void libOS::OnEntermateCoupons(std::string& strCoupons)
 {
 	OnEntermateCouponsJNI(strCoupons);
 }
-//ï¿½ï¿½ï¿½Ã¼ï¿½ï¿½Ğ°ï¿½ï¿½ï¿½ï¿½ï¿½
+//ÉèÖÃ¼ôÇĞ°åÄÚÈİ
 void libOS::setClipboardText(std::string& text)
 {
 	setClipboardTextJNI(text.c_str());
@@ -319,12 +334,12 @@ void libOS::setClipboardText(std::string& text)
 std::string libOS::getGameVersion(){
 	return "";
 }
-//ï¿½ï¿½ï¿½Ã¼ï¿½ï¿½Ğ°ï¿½ï¿½ï¿½ï¿½ï¿½
+//ÉèÖÃ¼ôÇĞ°åÄÚÈİ
 void libOS::setEditBoxText(std::string& text)
 {
 	setEditBoxTextJNI(text.c_str());
 }
-//ï¿½ï¿½Ã¼ï¿½ï¿½Ğ°ï¿½ï¿½ï¿½ï¿½ï¿½
+//»ñµÃ¼ôÇĞ°åÄÚÈİ
 std::string libOS::getClipboardText()
 {
 	return getClipboardTextJNI();

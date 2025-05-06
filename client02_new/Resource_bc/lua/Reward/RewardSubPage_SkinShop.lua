@@ -157,7 +157,7 @@ function SkinShop:getMercenaryIndex(roleId)
 end
 function SkinShop:buildHeroScrollView(container)
     Skins = {}
-    local cfg = ConfigManager.getSkinCfg()
+    local cfg = ConfigManager.getSkinShopCfg()
     for i = 1, #cfg do
         if cfg[i].isShow == 1 then
             table.insert(Skins, cfg[i])

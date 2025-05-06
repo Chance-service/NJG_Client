@@ -1,6 +1,7 @@
 local thisPageName = "NewBattleMapPage2"
 local NewBattleMapItem = require("NewBattleMapItem")
 local AlbumIndivualPage=require("Album.AlbumSubPage_Indiviual")
+local GuideManager = require("Guide.GuideManager")
 
  
 local NewBattleMapPageBase = {
@@ -59,6 +60,9 @@ function NewBattleMapPageBase:onEnter(container)
     GVGManager.initCityConfig()
     leftSpine=container:getVarNode("mSpineL")
     RightSpine=container:getVarNode("mSpineR")
+    if not GuideManager.isInGuide then
+       container:runAnimation("OpenAni")
+    end
     --self:SetSpine(leftSpine)
     --self:SetSpine(RightSpine)
     local mWaitSuplyTime = GVGManager.getWaitSuplyTime()
@@ -220,7 +224,19 @@ function NewBattleMapPageBase:onLeftBtn(container)
     end
 end
 function NewBattleMapPageBase:onCloseMap(container)
-    MainFrame_onBattlePageBtn()
+    local array = CCArray:create()
+    array:addObject(CCCallFunc:create(function()
+        if not GuideManager.isInGuide then
+            container:runAnimation("CloseAni")
+        end
+    end))
+    array:addObject(CCDelayTime:create(0.6))
+    array:addObject(CCCallFunc:create(function()
+         MainFrame_onBattlePageBtn()
+    end))
+
+    -- ¢Xo|a¡±C|C
+    container:runAction(CCSequence:create(array))
 end
 function PlayAnim(container,scale)
     local spinePath = "Spine/NGUI"

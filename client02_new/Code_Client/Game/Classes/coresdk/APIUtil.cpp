@@ -6,8 +6,13 @@ USING_NS_CC;
 #include "../extensions/network/HttpRequest.h"
 USING_NS_CC_EXT;
 
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #include "../rapidjson/rapidjson.h"
 #include "../rapidjson/document.h"
+#else
+#include "rapidjson/rapidjson.h"
+#include "rapidjson/document.h"
+#endif
 
 namespace coresdk {
 	// 定義函式指標

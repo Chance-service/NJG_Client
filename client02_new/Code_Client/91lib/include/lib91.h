@@ -12,8 +12,9 @@ public:
 	NOTICE: Platform should call _boardcastInitDone to notify client logic WHEN initialization is done.
 	*/
 	virtual void initWithConfigure(const SDK_CONFIG_STU& configure);
+  virtual void setupSDK(int platformId);
     
-  /** check whether is logined */
+    /** check whether is logined */
 	virtual bool getLogined();
 
 	virtual bool getIsH365();
@@ -62,6 +63,7 @@ public:
 	virtual const std::string& nickName();
 
 	virtual const std::string getClientChannel();
+	virtual const std::string getClientCps();
 
     virtual std::string getPlatformMoneyName();
 
@@ -84,31 +86,31 @@ public:
 	virtual std::string sendMessageG2P(const std::string& tag, const std::string& msg);
 
 	/************************************************************/
-	/*ï¿½ï¿½ï¿½ï¿½kakaoï¿½ï¿½ï¿½Ñ½Ó¿ï¿½*/
+	/*º«¹úkakaoºÃÓÑ½Ó¿Ú*/
 
-	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	//»ñµÃÑûÇë´ÎÊý
 	virtual void OnKrGetInviteCount();
-	//ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
+	//ÑûÇëÁÐ±í
 	virtual void OnKrgetInviteLists();
-	//ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
+	//ºÃÓÑÁÐ±í
 	virtual void OnKrgetFriendLists();
-	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
+	//·¢ËÍÑûÇëÐÅÏ¢
 	virtual void OnKrsendInvite(const std::string& strUserId, const std::string& strServerId);
-	//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
+	//»ñÈ¡ÀñÎïÁÐ±í
 	virtual void OnKrgetGiftLists();
-	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	//½ÓÊÜÀñÎï
 	virtual void OnKrReceiveGift(const std::string& strGiftId, const std::string& strServerId);
-	//ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½ï¿½
+	//µ±Ç°Ëù½ÓÊÜÀñÎïµÄ¸öÊý
 	virtual void OnKrGetGiftCount();
-	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	//ÔùËÍÀñÎï
 	virtual void OnKrSendGift(const std::string& strUserName, const std::string& strServerId);
-	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	//ÆÁ±ÎÀñÎï
 	virtual void OnKrGiftBlock(bool bVisible);
 	virtual void OnKrGetKakaoId();
 	virtual void OnKrLoginGames();
 	virtual void OnKrIsShowFucForIOS();
 	/***********************************************************/
-	//R2ï¿½Ó¿ï¿½
+	//R2½Ó¿Ú
 	virtual void  setLanguageName(const std::string& lang);
 	virtual void  setPlatformName(int platform);
 	virtual void  setPayH365(const std::string& url){};

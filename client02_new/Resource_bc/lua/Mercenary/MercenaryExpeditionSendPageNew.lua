@@ -193,9 +193,10 @@ function mercenaryHeadContent:onHead(id)
         local quality = (curRoleInfo.starLevel <= 5 and 4) or (curRoleInfo.starLevel >= 11 and 6) or 5
         NodeHelper:setStringForLabel(headNode, {mLv = "Lv." .. curRoleInfo.level,
             mBp = "BP " .. curRoleInfo.fight})
+        local iconId = curRoleInfo.skinId > 0 and string.format("%05d", curRoleInfo.skinId) or string.format("%02d000", itemId)
         NodeHelper:setSpriteImage(headNode, {mFrame = GameConfig.MercenaryRarityFrame[quality],
-            mIcon = "UI/RoleShowCards/Hero_" .. string.format("%02d", itemId) .. string.format("%03d", curRoleInfo.skinId)..".png",
-            mElement = GameConfig.MercenaryElementImg[heroCfg.Element],
+            mIcon = "UI/RoleShowCards/Hero_" .. iconId..".png",
+            mElement = GameConfig.MercenaryElementImg[curRoleInfo.elements],
             mClass=GameConfig.MercenaryClassImg[heroCfg.Job]})
         for i = 1, 13 do
             NodeHelper:setNodesVisible(headNode, {["mStar" .. i] = (i == curRoleInfo.starLevel)})
@@ -227,7 +228,7 @@ function TableSync()
                 LimitComplete.Star = true
                 NodeHelper:setNodeIsGray(myContainer, {mStarNum = false, mStarSprite = false})
             end
-            if (Cfg.Element == limits.Element) then
+            if (curRoleInfo.elements == limits.Element) then
                 LimitComplete.Element = true
                 NodeHelper:setNodeIsGray(myContainer, {mElement = false})
             end

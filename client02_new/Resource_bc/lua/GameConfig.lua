@@ -598,7 +598,11 @@ GameConfig = {
         -- 單人強敵
         HELP_SINGLE_BOSS = "HelpSingleBoss",
         --爬塔
-        HELP_CLIMB_TOWER = "HelpSeasonTower"
+        HELP_CLIMB_TOWER = "HelpSeasonTower",
+        --九宮格
+        HELP_PUZZLE = "HelpPuzzleBattle",
+        --爬塔通行證
+        HELP_TOWER_PASS = "HelpTrialTowerPass"
     },
     ItemId = {
         EnhanceElite = 101001,
@@ -922,6 +926,8 @@ GameConfig = {
         Relationship_2_1_Close = 997,
         Relationship_Open = 992,
         Relationship_Close = 993,
+        -- NG
+        SkinShopDesc = 125,
     },
     Color = {
         Lack = {246, 54, 69},
@@ -1670,7 +1676,7 @@ GameConfig = {
         size = 3,
         price = 200,
     },
-    buyFastFightPrice = "0,50,100,200,300,500",
+    buyFastFightPrice = "0,0,50,50,50,50,100,100,100,100,100,100",
     -- 渠道配置   是否强制提示 0 关闭 1正常提示 2强制提示     网址     第三方支付开启  0关闭  1开启
     -- 第四个参数 是判断同包名 不同版本号判断第一个参数是否生效  s
     ChannelConfig = {
@@ -2080,7 +2086,7 @@ GameConfig.LOCK_PAGE_KEY = {
     HOLY_GRAIL = 101, ARENA = 102, DUNGEON = 103, GOLD_MINE = 104, EVENT = 105, WORLD_BOSS = 106,TOWER= 107, RANKING = 108,
     -- 福袋
     SUMMON_900 = 201, SKIN_SHOP = 202, SEVENDAY_QUEST = 203, POPUP_SALE = 206, DAILY_BUNDLE = 207, GROWTH_BUNDLE = 208, MONTHLY_CARD = 209, SUBSCIPTON = 210, CALENDAR = 211,STEPBUNDLE=214, 
-    DAILY_RECHARGE = 212, FIRST_RECHARGE = 213, GLORY_HOLE = 215, Event001 = 216, SINGLE_BOSS = 217,
+    DAILY_RECHARGE = 212, FIRST_RECHARGE = 213, GLORY_HOLE = 215, Event001 = 216, SINGLE_BOSS = 217,PUZZLE = 218,
     -- 工房
     RUNE_BUILD = 301,
     -- 商店
@@ -2156,4 +2162,15 @@ GameConfig.summonTreasureImg = {
     [5] = "SummonResult_ItemImg2.png",
     [6] = "SummonResult_ItemImg3.png",
 }
+
+GameConfig.GIFT_TYPE = {
+    POPUP_GIFT        = 1,
+    STARUP_GIFT       = 2,
+    ROLE_GIFT         = 3,
+    CYCLE_GIFT        = 4,
+    MEMORY_GIFT       = 5,
+    WISHINGWHEEL_GIFT = 6,
+    SUMMON_GIFT       = 7
+}
+
 return GameConfig

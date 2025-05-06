@@ -26,6 +26,9 @@ local option = {
 };
 local Lobby2Page = {}
 local mainContainer = nil
+
+needNewTowerData = true
+
 function Lobby2Page:onEnter(ParentContainer)
     local container = ScriptContentBase:create(option.ccbiFile)
     self.container = ParentContainer
@@ -68,6 +71,7 @@ function Lobby2Page:onExecute(container)
 end
 function Lobby2Page:onExit(container)
     container:removeMessage(MSG_REFRESH_REDPOINT)
+    needNewTowerData = true
 end
 function Lobby2Page:onReceiveMessage(container)
     local message = container:getMessage()
@@ -84,12 +88,41 @@ function Lobby2Page:refreshRedPoint(container)
     NodeHelper:setNodesVisible(container, { mHolyGrailPoint = RedPointManager_getShowRedPoint(RedPointManager.PAGE_IDS.LOBBY2_GRAIL_ENTRY) })
     
 end
+-- 判斷「塔」頁面是否關閉
+local function isTowerAccessible(showMsg)
+    -- 1. 檢查鎖定
+    local lock = LockManager_getShowLockByPageName(GameConfig.LOCK_PAGE_KEY.TOWER)
+    if lock then
+        if showMsg then
+            MessageBoxPage:Msg_Box(LockManager_getLockStringByPageName(GameConfig.LOCK_PAGE_KEY.TOWER))
+        end
+        return false
+    end
+
+    -- 2. 檢查活動
+    local activityIds = {
+        Const_pb.ACTIVITY194_SeasonTower,
+        Const_pb.ACTIVITY198_LIMIT_TOWER,
+        Const_pb.ACTIVITY199_FearLess_TOWER,
+    }
+    for _, actId in ipairs(activityIds) do
+        if ActivityInfo:getActivityIsOpenById(actId) then
+            -- 任一活動開啟，就可進入
+            return true
+        end
+    end
+
+    -- 3. 如果都沒開，就提示（如果需要）並回 false
+    if showMsg then
+        MessageBoxPage:Msg_Box(common:getLanguageString("@ActivityNotOpen"))
+    end
+    return false
+end
 
 -- 刷新各建築物上鎖圖示
 function Lobby2Page:refreshLockImg(container)
     NodeHelper:setNodesVisible(container, { 
-        mGuildLock = LockManager_getShowLockByPageName(GameConfig.LOCK_PAGE_KEY.TOWER) or 
-                    not ActivityInfo:getActivityIsOpenById(194),
+        mGuildLock = not isTowerAccessible(),
         mMineLock = LockManager_getShowLockByPageName(GameConfig.LOCK_PAGE_KEY.GOLD_MINE),
         mEventLock = LockManager_getShowLockByPageName(GameConfig.LOCK_PAGE_KEY.EVENT),
         mWorldBossLock = LockManager_getShowLockByPageName(GameConfig.LOCK_PAGE_KEY.WORLD_BOSS),
@@ -180,14 +213,10 @@ function Lobby2Page:onEvent()
     end
 end
 function Lobby2Page:onTower()
-   if LockManager_getShowLockByPageName(GameConfig.LOCK_PAGE_KEY.TOWER) or 
-      not ActivityInfo:getActivityIsOpenById(194) then
-       MessageBoxPage:Msg_Box(LockManager_getLockStringByPageName(GameConfig.LOCK_PAGE_KEY.TOWER))
-   else
-      --MessageBoxPage:Msg_Box(common:getLanguageString("@WaitingOpen"))
-
-       self:PlayAni_DelayEnter("Exit07",0.6,"Tower.TowerPage")
-    end
+    if not isTowerAccessible(true) then  
+        return
+    end   
+    self:PlayAni_DelayEnter("Exit07",0.6,"Tower.TowerMenu")
 end
 function Lobby2Page:onWorldBoss()
     if LockManager_getShowLockByPageName(GameConfig.LOCK_PAGE_KEY.WORLD_BOSS) then
@@ -254,13 +283,34 @@ function Lobby2Page:InfoReq()
         common:sendEmptyPacket(HP_pb.DUNGEON_LIST_INFO_C, false)
     end
     --Tower
-    if ActivityInfo:getActivityIsOpenById(194) then
+    if ActivityInfo:getActivityIsOpenById(194) and needNewTowerData then
         local Activity6_pb = require("Activity6_pb")
         local msg = Activity6_pb.SeasonTowerReq()
         msg.action = 0
         common:sendPacket(HP_pb.ACTIVITY194_SEASON_TOWER_C, msg, true)
     end
-
+    --LimitTower
+    if ActivityInfo:getActivityIsOpenById(198) and needNewTowerData then
+        local Activity6_pb = require("Activity6_pb")
+        local msg = Activity6_pb.LimitTowerReq()
+        msg.action = 0
+        common:sendPacket(HP_pb.ACTIVITY198_LIMIT_TOWER_C, msg, true)
+    end
+    --FearTower
+    if ActivityInfo:getActivityIsOpenById(199) and needNewTowerData then
+        local Activity6_pb = require("Activity6_pb")
+        local msg = Activity6_pb.FearLessTowerReq()
+        msg.action = 0
+        msg.towerId = 0
+        common:sendPacket(HP_pb.ACTIVITY199_FEAR_LESS_TOWER_C, msg, true)
+    end
+    if ActivityInfo:getActivityIsOpenById(199) then
+        local Activity6_pb = require("Activity6_pb")
+        local msg = Activity6_pb.FearLessTowerReq()
+        msg.action = 1
+        msg.towerId = 0
+        common:sendPacket(HP_pb.ACTIVITY199_FEAR_LESS_TOWER_C, msg, true)
+    end
 end
 
 local CommonPage = require('CommonPage')

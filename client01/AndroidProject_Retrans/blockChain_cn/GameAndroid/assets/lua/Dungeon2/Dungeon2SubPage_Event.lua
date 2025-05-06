@@ -274,8 +274,6 @@ function DungeonPageBase:onReceivePacket(packet)
         msg:ParseFromString(msgBuff)
         DungeonPageBase_setData(msg)
         self:refresh(self.container)
-        require("TransScenePopUp")
-        TransScenePopUp_closePage()
     elseif opcode == HP_pb.BATTLE_FORMATION_S then
         local msg = Battle_pb.NewBattleFormation()
         msg:ParseFromString(msgBuff)

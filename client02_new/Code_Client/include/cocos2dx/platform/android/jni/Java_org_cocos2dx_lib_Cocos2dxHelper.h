@@ -86,6 +86,7 @@ extern const Json::Value& callPlatformSendMessageG2PJNI(const std::string& tag, 
 extern std::string getDeviceInfoJNI();
 extern std::string getDeviceIDJNI();
 extern std::string getClientChannelJNI();
+extern std::string getClientCpsJNI();
 extern int getPlatformIdJNI();
 extern void notifyEnterGameJNI();
 

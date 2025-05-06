@@ -1,6 +1,7 @@
 local HP_pb = require("HP_pb")-- ¥]§t??id¤å¥ó
 local thisPageName = "CommPop.TreasureChoosePage"
 local ItemOpr_pb 	= require("ItemOpr_pb");
+local ItemManager 	= require("ItemManager")
 local ChooseItems = {}
 local UseCount = 1
 local ChoesnItem=0
@@ -47,7 +48,7 @@ function TreasureChoose:BuildScrollview(container)
        cell:registerFunctionHandler(panel)
        scrollview:addCell(cell)
     end
-    if #ChooseItems>5 then
+    if #ChooseItems > 4 then
         scrollview:setTouchEnabled(true)
     else
          scrollview:setTouchEnabled(false)

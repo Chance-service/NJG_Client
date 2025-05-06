@@ -152,10 +152,10 @@ local mEditInputType = 0
 
 function libPlatformListener:onPlayMovieEnd(listener)
     if not listener then return end
-    GameUtil:setPlayMovieVisible(true)
-    GamePrecedure:getInstance():closeMovie()
-    local mainContainer = tolua.cast(MainFrame:getInstance(), "CCBContainer")
-    local backNode = mainContainer:getCCNodeFromCCB("mNodeMid")
+    MainFrame:getInstance():removeMovieByPage(thisPageName);
+    --GamePrecedure:getInstance():closeMovie(thisPageName)
+    local Container = tolua.cast(MainFrame:getInstance(), "CCBContainer")
+    local backNode = Container:getCCNodeFromCCB("mNodeMid")
     backNode:setVisible(true)
     --libPlatformListener = { }
 end
@@ -194,7 +194,7 @@ function FetterGirlsDiary:onEnter(container)
 	---
 	FetterGirlsDiary:registerPacket(container)
 	--FetterGirlsDiary:refreshPage(container)
-	NodeHelper:setNodesVisible(container, {mLogNode = false})
+	NodeHelper:setNodesVisible(container, {mLogNode = false,mTouch = false})
 	--------------------------------------------------------------------
 	--Debug
 	if NodeHelper:isDebug() then
@@ -204,6 +204,27 @@ function FetterGirlsDiary:onEnter(container)
 	else
 		NodeHelper:setNodesVisible(container, {mTestNode = false})
 	end
+
+
+    local layer = CCLayer:create()
+    layer:setTag(100001)
+    container:addChild(layer)
+    layer:setContentSize(CCEGLView:sharedOpenGLView():getDesignResolutionSize())
+    layer:registerScriptTouchHandler( function(eventName, pTouch)
+        if eventName == "began" then
+            self:onTouch(container,"onTouch")
+        elseif eventName == "moved" then
+
+        elseif eventName == "ended" then
+          
+        elseif eventName == "cancelled" then
+
+        end
+    end
+    , false, -129, false)
+    layer:setTouchEnabled(true)
+    layer:setVisible(true)
+
 	--------------------------------------------------------------------
 	--Tutorial
 	FetterGirlsDiary:setTutorialState(container)
@@ -211,7 +232,6 @@ function FetterGirlsDiary:onEnter(container)
 	--------------------------------------------------------------------
 	diaryContainer = container
 	GuideManager.PageContainerRef["FetterGirlsDiary"] = container
-	
 	PageManager.setIsInGirlDiaryPage(true) 
 end
 function FetterGirlsDiary:HSPINESync(container)
@@ -241,6 +261,10 @@ function FetterGirlsDiary:onClose(container)
         if nowSpines[i] then
             nowSpines[i] = nil
         end
+    end
+    if FetterGirlsDiary.libPlatformListener then
+        FetterGirlsDiary.libPlatformListener:delete()
+        FetterGirlsDiary.libPlatformListener = nil
     end
 end
 
@@ -646,7 +670,6 @@ function FetterGirlsDiary:onTouch(container, eventName)
 		isLabelPlaying=true
 	end
 	if isBgMoving then return end
-	NodeHelper:setNodesVisible(diaryContainer ,{mTouch=true})
 	if nowState == DiaryState.SPINE then
 		--ºt¥X
 		if isLabelPlaying then
@@ -1430,6 +1453,7 @@ function FetterGirlsDiary:createAction(container, para, action, bgAction, chActi
 			NodeHelper:setMenuItemImage(container, {mAutoBtn = {normal = "Fetter_Btn_Auto_OFF.png", press = "Fetter_Btn_Auto_ON.png"}})
 			PhotoSettingState.isAuto = false
 			local ID=para.spine
+            isLabelPlaying = false
 			if string.sub(ID,1,3)=="990" then
 				local AlbumStoryDisplayPage=require('AlbumStoryDisplayPage')
 				local stagetype= string.sub(ID,5,6)
@@ -1452,9 +1476,9 @@ function FetterGirlsDiary:createAction(container, para, action, bgAction, chActi
          action:addObject(CCCallFunc:create(function()
 			 if para.spine ~=""  then
                 --libPlatformListener = {}
-                LibPlatformScriptListener:new(libPlatformListener)
-                GamePrecedure:getInstance():playMovie(para.spine, 0, 0)
-                GameUtil:setPlayMovieVisible(false)
+                --NodeHelper:setNodesVisible(diaryContainer,{mTouch = false})       
+                FetterGirlsDiary.libPlatformListener = LibPlatformScriptListener:new(libPlatformListener)
+                GamePrecedure:getInstance():playMovie(thisPageName, para.spine, 0, 0)
                  local mainContainer = tolua.cast(MainFrame:getInstance(), "CCBContainer")
                  local backNode = mainContainer:getCCNodeFromCCB("mNodeMid")
                  backNode:setVisible(false)

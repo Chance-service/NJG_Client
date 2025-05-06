@@ -23,6 +23,7 @@ function libPlatformListener:onPlayMovieEnd(listener)
     if isCloseing then
         return
     end
+    MainFrame:getInstance():removeMovieByPage(thisPageName)
     CCLuaLog("onPlayMovieEnd")
     if not listener then return end
     isCloseing = true
@@ -42,8 +43,16 @@ function GuideStoryPage:onEnter(container)
 
     SoundManager:getInstance():stopMusic()
 
-    GamePrecedure:getInstance():playMovie("phase" .. MANAGER.PLAYING_LIST_IDX, 0, 0)
-    GameUtil:setPlayMovieVisible(false) 
+    local langType = CCUserDefault:sharedUserDefault():getIntegerForKey("LanguageType")
+    local preName = "phase"
+    if langType == kLanguageChinese then
+		preName = preName
+	elseif langType == kLanguageCH_TW then
+		preName = preName .. "TW"
+	else
+		preName = preName
+    end
+    GamePrecedure:getInstance():playMovie(thisPageName, preName .. MANAGER.PLAYING_LIST_IDX, 0, 0)
 
     local cfg = GuideManager.getCurrentCfg()
     if cfg.showType == GameConfig.GUIDE_TYPE.PLAY_OP_MOVIE and tonumber(cfg.funcParam) == 3 then
@@ -81,7 +90,6 @@ function GuideStoryPage:onClose(container)
             --if GuideStoryPage.libPlatformListener then
             --    GuideStoryPage.libPlatformListener:delete()
             --end
-            GameUtil:setPlayMovieVisible(true)
         end))
         local scale = NodeHelper:getScaleProportion()
         shadeNode:setScale(scale)
@@ -95,7 +103,6 @@ function GuideStoryPage:onClose(container)
         --if GuideStoryPage.libPlatformListener then
         --    GuideStoryPage.libPlatformListener:delete()
         --end
-        GameUtil:setPlayMovieVisible(true)
     end
 end
 ------------------------------------- ¥\¯àªíEND
@@ -103,19 +110,18 @@ end
 function GuideStoryPage:onReturn(container)
     local title = common:getLanguageString("@SkipTitle")
     local msg = common:getLanguageString("@SkipStory")
-    GamePrecedure:getInstance():pauseMovie()
+    GamePrecedure:getInstance():pauseMovie(thisPageName)
     PageManager.showConfirm(title, msg, function(isSure)
         if isSure then
             if CC_TARGET_PLATFORM_LUA == common.platform.CC_PLATFORM_WIN32 then
                 GuideStoryPage:onClose(container)
             else
-                GamePrecedure:getInstance():closeMovie()
-                --GameUtil:setPlayMovieVisible(true)
+                GamePrecedure:getInstance():closeMovie(thisPageName)
             end
         else
-            GamePrecedure:getInstance():resumeMovie()
+            GamePrecedure:getInstance():resumeMovie(thisPageName)
         end
-    end, true, nil, nil, nil, 0.9, true, function() GamePrecedure:getInstance():resumeMovie() end)
+    end, true, nil, nil, nil, 0.9, true, function() GamePrecedure:getInstance():resumeMovie(thisPageName) end)
 end
 
 function GuideStoryPage.onFunction(eventName, container)
@@ -136,8 +142,7 @@ function GuideStoryPage:onTestSkip(container)
     if Golb_Platform_Info.is_win32_platform then
         GuideStoryPage:onClose(container)
     else
-        GamePrecedure:getInstance():closeMovie()
-        GameUtil:setPlayMovieVisible(true)
+        GamePrecedure:getInstance():closeMovie(thisPageName)
     end
     PageManager.popPage(thisPageName)
     MainFrame_onMainPageBtn()

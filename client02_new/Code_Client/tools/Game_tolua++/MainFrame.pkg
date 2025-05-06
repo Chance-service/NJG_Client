@@ -22,5 +22,8 @@ class MainFrame
 	void setBackgroundColor(float r, float g, float b, float a);
 	
 	int getPageNum();
+	void addMovie(std::string pageName, std::string movieName, int isLoop, int autoScale);
+	void removeMovieByPage(std::string pageName);
+	void settingMoviePushPageVisible(std::string pageName, int moviePlayType);
 };
 

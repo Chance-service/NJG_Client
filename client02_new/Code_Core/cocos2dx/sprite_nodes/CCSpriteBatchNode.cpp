@@ -411,7 +411,8 @@ void CCSpriteBatchNode::draw(void)
 
     arrayMakeObjectsPerformSelector(m_pChildren, updateTransform, CCSprite*);
 
-    ccGLBlendFunc( m_blendFunc.src, m_blendFunc.dst );
+    //ccGLBlendFunc( m_blendFunc.src, m_blendFunc.dst );
+	glBlendFuncSeparate(m_blendFunc.src, m_blendFunc.dst, m_blendFunc.src, m_blendFunc.dst);
 
 	CCTexture2D* pTexture = m_pobTextureAtlas->getTexture();
 	if (pTexture && pTexture->isPaletteTexture() && m_pShaderProgram &&

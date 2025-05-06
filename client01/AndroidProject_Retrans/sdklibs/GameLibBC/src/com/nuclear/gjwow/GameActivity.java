@@ -16,6 +16,7 @@ import org.cocos2dx.lib.Cocos2dxHandler.ShareMessage;
 import org.cocos2dx.lib.Cocos2dxHandler.ShowWaitingViewMessage;
 import org.json.JSONException;
 
+import com.chance.allsdk.E_APLUS_CPS;
 import com.nuclear.bean.LoginInfo;
 import com.nuclear.bean.PayInfo;
 import com.nuclear.bean.ShareInfo;
@@ -29,6 +30,7 @@ import com.nuclear.util.DeviceUtil;
 import com.nuclear.util.LogUtil;
 import com.guajibase.gamelib.R;
 import ConstValue.PlatformConst;
+import CpsConstValue.CpsConst;
 
 import android.annotation.SuppressLint;
 import android.app.AlarmManager;
@@ -1022,6 +1024,10 @@ public abstract class GameActivity extends Cocos2dxActivity {
 
 	public static E_PLATFORM getPlatformName() {
 		return PlatformConst.platform;
+	}
+
+	public static E_APLUS_CPS getCpsName() {
+		return CpsConst.cps;
 	}
 
 	// form c++

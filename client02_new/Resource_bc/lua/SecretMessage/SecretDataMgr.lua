@@ -63,6 +63,25 @@ Inst.SubPageCfgs = {
         TopisVisible=false,
 
     },
+     {
+        -- 子頁面名稱 : 相簿
+        subPageName = "Puzzle",
+
+        -- 分頁 相關
+        scriptName = "Album.AlbumPuzzlePage",
+        iconImg_normal = "SubBtn_Puzzle.png",
+        iconImg_selected = "SubBtn_Puzzle_On.png",
+        
+        -- 標題
+        title = common:getLanguageString("@PuzzleBattle_Title"),
+
+        -- 貨幣資訊 
+        currencyInfos = { },
+
+        -- 其他子頁資訊 ----------
+        TopisVisible=false,
+
+    },
 }
 
 --[[ 取得 子頁面 配置 ]]

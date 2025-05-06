@@ -391,9 +391,47 @@ PageJumpMange._JumpCfg = {
     [51] =
     {
         _Id = 51;-- CycleTower
-        _ToPage = "MainFrame_onMainPageBtn(true,true)",
+        _ToPage = "MainFrame_onMainPageBtn(true,false)",
         _SecondFunc = "onActivity",
         _ThirdFunc = "onBattle",
+    },
+    [52] =
+    {
+        _Id = 52;-- SingleBoss
+        _ToPage = "MainFrame_onMainPageBtn(true,true)",
+        _SecondFunc = "onSingleBoss",
+        _act = Const_pb.ACTIVITY193_SingleBoss
+    },
+    [53] =
+    {
+        _Id = 53;-- Season_Tower 
+        _ToPage = "MainFrame_onEquipmentPageBtn(true)",
+        _SecondFunc = "onTower",
+        _ThirdFunc = "onType1",
+        _act = Const_pb.ACTIVITY194_SeasonTower
+    },
+     [54] =
+    {
+        _Id = 54;-- Puzzle 
+        _ToPage = "MainFrame_onMainPageBtn(true,true)",
+        _SecondFunc = "onPuzzle",
+        _act = Const_pb.ACTIVITY195_PuzzleBattle
+    },
+     [55] =
+    {
+        _Id = 55;-- Season_Tower 
+        _ToPage = "MainFrame_onEquipmentPageBtn(true)",
+        _SecondFunc = "onTower",
+        _ThirdFunc = "onType1",
+        _act = Const_pb.ACTIVITY198_LIMIT_TOWER
+    },
+    [56] =
+    {
+        _Id = 55;-- Season_Tower 
+        _ToPage = "MainFrame_onEquipmentPageBtn(true)",
+        _SecondFunc = "onTower",
+        _ThirdFunc = "onType4",
+        _act = Const_pb.ACTIVITY199_FearLess_TOWER
     },
 }
 
@@ -402,6 +440,13 @@ function PageJumpMange.JumpPageById(id)
         require("Util.LockManager")
         if LockManager_getShowLockByPageName(PageJumpMange._JumpCfg[id]._Lock_Key) then
             MessageBoxPage:Msg_Box(LockManager_getLockStringByPageName(PageJumpMange._JumpCfg[id]._Lock_Key))
+            return
+        end
+    end
+    if PageJumpMange._JumpCfg[id]._act then
+        require("Activity.ActivityInfo")
+        if not ActivityInfo:getActivityIsOpenById(PageJumpMange._JumpCfg[id]._act) then
+            MessageBoxPage:Msg_Box(common:getLanguageString("@ERRORCODE_80104"))
             return
         end
     end
@@ -434,6 +479,11 @@ function PageJumpMange.JumpPageById(id)
     if id == 44 then    -- 符文合成
         require("EquipIntegrationPage")
         EquipIntegrationPage_SetCurrentPageIndex(1)
+    end
+    if id == 52 then    -- 單人強敵
+        local SingleBossDataMgr = require("SingleBoss.SingleBossDataMgr")
+        local data = SingleBossDataMgr:getPageData()
+        data.dataDirtyBase = true
     end
     PageJumpMange._CurJumpCfgInfo = PageJumpMange._JumpCfg[id];
     if PageJumpMange._CurJumpCfgInfo == nil then return end

@@ -76,7 +76,7 @@ public class Cocos2dxRenderer implements GLSurfaceView.Renderer
 	@Override
 	public void onSurfaceCreated(final GL10 pGL10, final EGLConfig pEGLConfig)
 	{
-		
+
 		/*
 		 * 这个耗时初始化调用不能放到主线程
 		 */

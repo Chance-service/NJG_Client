@@ -6,6 +6,23 @@ local isCreateTimeCalculator = false
 require("CCBIObjectPool")
 isOpenNewGuide = true
 
+local MainFrameScript = { }
+local libPlatformListener = { }
+function libPlatformListener:onKusoPay(listener)
+    if not listener then return end
+    local strResult = listener:getResultStr()
+    CCLuaLog("onKusoPay : " .. strResult)
+    local Shop_pb = require("Shop_pb")
+    local msg = Shop_pb.SixNineCoinTakeRequest()
+    local orderId, token, nonce, goodsId = unpack(common:split(strResult, "|"))
+    msg.token = token
+    msg.orderid = orderId
+    msg.nonce = nonce
+    msg.goodsId = tonumber(goodsId)
+    common:sendPacket(HP_pb.SHOP_69COIN_TAKE_C, msg, true)
+end
+MainFrameScript.libPlatformListener = LibPlatformScriptListener:new(libPlatformListener)
+
 function setCCBMenuAnimation(menuName, actionName)
     local container = tolua.cast(MainFrame:getInstance(), "CCBContainer")
     if container then
@@ -37,7 +54,7 @@ function resetMenu(menuName, needResetAll)
         resetAllMenu()
         -- setCCBMenuAnimation(menuName,"Normal")
     end
-    setCCBMenuAnimation(menuName, "Selected")
+    setCCBMenuAnimation(menuName, "TouchBegin")
 end
 -- 家園
 function MainFrame_onMainPageBtn(isTouchButton, isKeepAllPage)
@@ -107,22 +124,28 @@ function MainFrame_onChatBtn()
     return 0
 end
 -- 召喚
-function MainFrame_onBackpackPageBtn()
+function MainFrame_onBackpackPageBtn(_page)
     if LockManager_getShowLockByPageName(GameConfig.LOCK_PAGE_KEY.SUMMON) then
         MessageBoxPage:Msg_Box(LockManager_getLockStringByPageName(GameConfig.LOCK_PAGE_KEY.SUMMON))
         setCCBMenuAnimation("mBackpackPageBtn", "Normal")
     else
-        local transPage = require("TransScenePopUp")
-        TransScenePopUp_setCallbackFun(function()
-            local GuideManager = require("Guide.GuideManager")
-            if GuideManager.isInGuide then
-                require("Summon.SummonPage"):setEntrySubPage("Premium")
-            end
-            PageManager.pushPage("Summon.SummonPage")
-        end)
-        setCCBMenuAnimation("mBackpackPageBtn", "Normal")
-        UserInfo.sync()
-        PageManager.pushPage("TransScenePopUp")
+         local Activity6_pb = require("Activity6_pb")
+         local msg = Activity6_pb.SuperPickUpSync()
+         msg.id = 0
+         common:sendPacket(HP_pb.ACTIVITY197_SUPER_PICKUP_INFO_C, msg, true)
+        --local transPage = require("TransScenePopUp")
+        --TransScenePopUp_setCallbackFun(function()
+        --    local GuideManager = require("Guide.GuideManager")
+        --    if GuideManager.isInGuide then
+        --        require("Summon.SummonPage"):setEntrySubPage("Premium")
+        --    elseif type(_page) == "string" then
+        --        require("Summon.SummonPage"):setEntrySubPage(_page)
+        --    end
+        --    PageManager.pushPage("Summon.SummonPage")
+        --end)
+        --setCCBMenuAnimation("mBackpackPageBtn", "Normal")
+        --UserInfo.sync()
+        --PageManager.pushPage("TransScenePopUp")
     end
 end
 -- 冒險

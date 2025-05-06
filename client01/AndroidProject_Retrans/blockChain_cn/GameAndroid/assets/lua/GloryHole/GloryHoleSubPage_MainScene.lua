@@ -235,28 +235,27 @@ function GloryHoleBase:SetPageInfo(container)
     GloryHoleBase:buildBGSpine(container)
 end
 function GloryHoleBase:buildBGSpine(container)
-    -- ?取父??
+    -- 獲取父節點
     local parentNode = container:getVarNode("mSpine")
     if not parentNode then
         print("Parent node 'mSpine' not found.")
         return
     end
-    --NodeHelper:Add_9_16_Layer(container,"mBlack")
-    -- 清空父??的所有子??
+
+    -- 清空父節點的所有子節點
     parentNode:removeAllChildren()
-    
-    -- 函?：安全?建 Spine ?象
+
+    -- 函數：安全創建 Spine 物件
     local function createSpineSafely(spineName)
         if not spineName or spineName == "" then
             print("Invalid spine name provided.")
             return nil
         end
-    
-        -- 使用 pcall 捕捉?建 Spine ?程中可能?生的??
+
         local success, spineContainer = pcall(function()
             return SpineContainer:create("Spine/Gloryhole", spineName)
         end)
-    
+
         if success and spineContainer then
             return spineContainer
         else
@@ -264,34 +263,42 @@ function GloryHoleBase:buildBGSpine(container)
             return nil
         end
     end
-    
-    -- 函?：? Spine 添加到父??并播放??
-    local function addSpineWithAnimation(spineName, parent, animationName)
+
+    -- 函數：將 Spine 添加到父節點並播放動畫
+    local function addSpineToParentWithAnimation(spineName, parent, animationName)
         local spine = createSpineSafely(spineName)
         if not spine then
             return
         end
-        
+
         local spineNode = tolua.cast(spine, "CCNode")
-        if spineNode then
-            parent:addChild(spineNode)
-            spineNode:setScale(NodeHelper:getScaleProportion())
-            local animSuccess = pcall(function()
-                spine:runAnimation(1, animationName, -1)
-            end)
-            
-            if not animSuccess then
-                print("Failed to run animation:", animationName, "for spine:", spineName)
-            end
-        else
+        if not spineNode then
             print("Failed to cast SpineContainer to CCNode for:", spineName)
+            return
+        end
+
+        parent:addChild(spineNode)
+        spineNode:setScale(NodeHelper:getScaleProportion())
+
+        local animSuccess = pcall(function()
+            spine:runAnimation(1, animationName, -1)
+        end)
+        if not animSuccess then
+            print("Failed to run animation:", animationName, "for spine:", spineName)
         end
     end
 
-    -- 添加并?行?? Spine ??
-    addSpineWithAnimation("NGUI_93_GloryholeBG", parentNode, "animation")
-    addSpineWithAnimation("NGUI_93_GloryholeTOP", parentNode, "animation")
+    -- 添加並運行背景 Spine 動畫
+    local spineNames = {
+        {name = "NGUI_93_GloryholeBG", animation = "animation"},
+        {name = "NGUI_93_GloryholeTOP", animation = "animation"}
+    }
+
+    for _, spineInfo in ipairs(spineNames) do
+        addSpineToParentWithAnimation(spineInfo.name, parentNode, spineInfo.animation)
+    end
 end
+
 function GloryHoleBase:onReceivePacket(packet)
     local opcode = packet.opcode
     local msgBuff = packet.msgBuff
@@ -411,18 +418,54 @@ function GloryHoleBase:BuildScrollview(container, isDaily)
         local parent = container:getVarNode("mTaskNode")
         parent:removeAllChildrenWithCleanup(true)
         local TaskCCB = ScriptContentBase:create("GloryHole_DailyContent")
-        Target = {}
+        Target = {[25]={},[50]={},[75]={},[100]={}}
         for i = 1, 4 do
-            local TargetId = Data.DailyMission.Target[i] and Data.DailyMission.Target[i].dailyPointNumber or i * 25
-            Target[TargetId] = Data.DailyMission.Target[i] and Data.DailyMission.Target[i].dailyPointNumber or {}
+            local TargetId = Data.DailyMission.Target[i] and Data.DailyMission.Target[i].dailyPointNumber
+            if TargetId then
+                Target[TargetId] = Data.DailyMission.Target[i] and Data.DailyMission.Target[i].dailyPointNumber or {}
+            end
         end
         TaskCCB:registerFunctionHandler(DailyCCB.onFunction)
         GloryHoleBase:SetContentSize(TaskCCB, 100, Data.DailyPoint)
         NodeHelper:setStringForLabel(TaskCCB, {mNowPoint = Data.DailyPoint or 0})
-        NodeHelper:setNodesVisible(TaskCCB, {mBoxPoint1 = (Data.DailyPoint >= 25 and Target[25] ~= 25),
-            mBoxPoint2 = (Data.DailyPoint >= 50 and Target[50] ~= 50),
-            mBoxPoint3 = (Data.DailyPoint >= 75 and Target[75] ~= 75),
-            mBoxPoint4 = (Data.DailyPoint >= 100 and Target[100] ~= 100)})
+
+       local boxVisibilityConditions = {
+            [25] = "mBoxPoint1",
+            [50] = "mBoxPoint2",
+            [75] = "mBoxPoint3",
+            [100] = "mBoxPoint4"
+        }
+        
+        -- 設定節點的可見狀態（自動處理條件）
+        for point, boxName in pairs(boxVisibilityConditions) do
+            local isVisible = Data.DailyPoint >= point and Target[point] ~= point
+            NodeHelper:setNodesVisible(TaskCCB, {[boxName] = isVisible})
+        end
+        
+        -- 處理每個目標點數的子節點顯示邏輯
+        for i, v in pairs(Target) do
+            local dailyPointReached = Data.DailyPoint >= i -- 當前點數是否達標
+            local isRewardCollected = (i == v) -- 是否已領取
+        
+            for j = 0, 2 do
+                local curName = string.format("mTaskRewardBox%d_%d", j, i)
+                local sprite = TaskCCB:getVarNode(curName)
+        
+                if sprite then
+                    if j == 0 then
+                        -- 不可領取（未達成）
+                        sprite:setVisible(not dailyPointReached)
+                    elseif j == 1 then
+                        -- 可領取（達標但未領取）
+                        sprite:setVisible(dailyPointReached and not isRewardCollected)
+                    elseif j == 2 then
+                        -- 已領取
+                        sprite:setVisible(isRewardCollected)
+                    end
+                end
+            end
+        end
+
         parent:addChild(TaskCCB)
         local Scrollview = TaskCCB:getVarScrollView("mContent")
         Scrollview:removeAllCell()
@@ -501,6 +544,7 @@ function DailyMissionContent:onRefreshContent(ccbRoot)
     VisableTable["mStarNode"] = false
     VisableTable["selectedNode"] = false
     VisableTable["nameBelowNode"] = false
+    VisableTable["mPoint"] = false
     StringTable["mContent"] = common:getLanguageString(value.content)
     StringTable["mName"] = common:getLanguageString(value.name)
     StringTable["mCount"] = questCompleteCount .. "/" .. value.targetCount
@@ -534,6 +578,7 @@ function AchivementContent:onRefreshContent(ccbRoot)
     VisableTable["mStarNode"] = false
     VisableTable["selectedNode"] = false
     VisableTable["nameBelowNode"] = false
+    VisableTable["mPoint"] = false
     
     for k, v in pairs(TypeTable) do
         local _type, _id, _count = unpack(common:split(v.reward, "_"))
@@ -991,7 +1036,7 @@ function GloryHoleBase:ItemChose(idx)
     end
 end
 function GloryHoleBase:VIPSync()
-    return UserInfo.playerInfo.vipLevel < 5
+    return false --UserInfo.playerInfo.vipLevel < 5
 end
 function GloryHoleBase:onHelp(container)
     PageManager.showHelp(GameConfig.HelpKey.HELP_DAILY_BUNDLE)

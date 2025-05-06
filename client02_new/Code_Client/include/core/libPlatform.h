@@ -44,39 +44,39 @@ struct BUYINFO
 	}
 };
 
-//ï¿½Û¦ï¿½ï¿½ï¿½ï¿½xï¿½Ñ¼ï¿½
+//¦Û¦³¥­¥x°Ñ¼Æ
 struct COM4LOVES_CONFIG_STU
 {
 	COM4LOVES_CONFIG_STU()
 		:sdkappid(""), sdkappkey(""), channelid(""), platformid(""), appid(""), appstore_phpIP(""), appstore_phpURL(""){}
-	std::string sdkappid;       //ï¿½ï¿½ï¿½R ï¿½ï¿½xï¿½Î­pï¿½Îªï¿½appid
-	std::string sdkappkey;      //ï¿½ï¿½ï¿½R ï¿½ï¿½xï¿½Î­pï¿½Îªï¿½appkey
-	std::string channelid;      //ï¿½Uï¿½Ó¤pï¿½ï¿½Dï¿½ï¿½Dï¿½ï¿½
-	std::string platformid;     //ï¿½ï¿½Dï¿½W 91ï¿½Appï¿½Aappstoreï¿½Ahutuoï¿½ï¿½ï¿½ï¿½
-	std::string appid;          //(ï¿½Î­pï¿½Î¡Aï¿½ï¿½ï¿½ï¿½@ï¿½Î»Ý½Tï¿½{)
-	std::string appstore_phpIP; //AppStoreï¿½Mï¿½ï¿½ ï¿½ï¿½Iï¿½aï¿½}IP
-	std::string appstore_phpURL;//AppStoreï¿½Mï¿½ï¿½ ï¿½ï¿½Iï¿½aï¿½}URL
+	std::string sdkappid;       //¦³·R «á¥x²Î­p¥Îªºappid
+	std::string sdkappkey;      //¦³·R «á¥x²Î­p¥Îªºappkey
+	std::string channelid;      //¦U­Ó¤p´ë¹D´ë¹D¸¹
+	std::string platformid;     //´ë¹D¦W 91¡App¡Aappstore¡Ahutuoµ¥µ¥
+	std::string appid;          //(²Î­p¥Î¡A¨ãÅé§@¥Î»Ý½T»{)
+	std::string appstore_phpIP; //AppStore±M¥Î ¤ä¥I¦a§}IP
+	std::string appstore_phpURL;//AppStore±M¥Î ¤ä¥I¦a§}URL
 };
 
 struct PLATFORM_CONFIG_STU
 {
 	PLATFORM_CONFIG_STU()
 		:appkey(""), appid(""), uidPrefix(""), bbsurl(""), clientChannel(""), moneyName(""), merchantId(""), appScheme(""), bRelogin(true){}
-	std::string appkey;        //ï¿½Tï¿½ï¿½SDKappkey
-	std::string appid;         //ï¿½Tï¿½ï¿½SDKappid
-	std::string uidPrefix;     //uid ï¿½eï¿½ï¿½
-	std::string bbsurl;        //ï¿½×¾Â¦aï¿½}
-	std::string clientChannel; //ï¿½Uï¿½Ó¤pï¿½ï¿½Dï¿½Ï¤ï¿½
-	std::string moneyName;     //ï¿½ï¿½~ï¿½ï¿½ï¿½ï¿½Wï¿½ï¿½
-	std::string merchantId;    //ï¿½ï¿½ï¿½xï¿½ï¿½D
-	std::string appScheme;     //ï¿½Cï¿½ï¿½ï¿½W(KYï¿½Bï¿½ï¿½ï¿½Ö¥Î¨ï¿½)
-	bool        bRelogin;      //ï¿½ï¿½ï¿½Pï¿½Cï¿½ï¿½ï¿½^ï¿½ï¿½nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	std::string appkey;        //¤T¤èSDKappkey
+	std::string appid;         //¤T¤èSDKappid
+	std::string uidPrefix;     //uid «eºó
+	std::string bbsurl;        //½×¾Â¦a§}
+	std::string clientChannel; //¦U­Ó¤p´ë¹D°Ï¤À
+	std::string moneyName;     //¤è«~»ù®æ¦WºÙ
+	std::string merchantId;    //¥­¥x´ë¹D
+	std::string appScheme;     //¹CÀ¸¦W(KY¡B·í¼Ö¥Î¨ì)
+	bool        bRelogin;      //µù¾P¹CÀ¸¦^¨ìµn¿ý¤¶­±
 };
 
 struct SDK_CONFIG_STU
 {
-	PLATFORM_CONFIG_STU  platformconfig;  //ï¿½Tï¿½ï¿½SDKï¿½Ò»Ý°Ñ¼ï¿½
-	COM4LOVES_CONFIG_STU com4lovesconfig; //com4lovesSDKï¿½Ò»Ý°Ñ¼ï¿½
+	PLATFORM_CONFIG_STU  platformconfig;  //¤T¤èSDK©Ò»Ý°Ñ¼Æ
+	COM4LOVES_CONFIG_STU com4lovesconfig; //com4lovesSDK©Ò»Ý°Ñ¼Æ
 };
 
 
@@ -91,15 +91,15 @@ public:
 	virtual void onRequestBindTryUserToOkUser(const char* tyrUin, const char* okUin){};
 	virtual void onTryUserRegistSuccess(){};
 	virtual void onShareEngineMessage(bool result){};
-	virtual void onPlayMovieEnd();
+	virtual void onPlayMovieEnd(){};
 	virtual void onMotionShake(){};
 	virtual void onReLogin(){};
 	virtual void onFBShareBack(bool success){};
 	//return value is a member to a map of key for first and value for second
 	virtual std::string onReceiveCommonMessage(const std::string& tag, const std::string& msg){ return ""; };
 
-	//ï¿½ï¿½ï¿½ï¿½kakaoï¿½nï¿½Í¦^ï¿½ï¿½
-	//ï¿½ï¿½oï¿½Ü½Ð¦ï¿½ï¿½ï¿½
+	//Áú°êkakao¦n¤Í¦^½Õ
+	//Àò±oÁÜ½Ð¦¸¼Æ
 	virtual void onKrGetInviteCount(int nCount){};
 	virtual void onKrgetInviteLists(const std::string& strInviteInfo){};
 	virtual void onKrgetFriendLists(const std::string& strFriendInfo){};
@@ -109,10 +109,10 @@ public:
 	virtual void onKrGetGiftCount(int nCount){};
 	virtual void onKrSendGift(const std::string& result){};
 	virtual void onKrGiftBlock(const std::string& result){};
-	//CDKeyï¿½^ï¿½ï¿½
+	//CDKey¦^½Õ
 	virtual void onKrCouponsBack(const std::string& resultStr){};
 	virtual void OnKrGetKakaoIdBack(const std::string& resultStr){};
-	//kakaoï¿½Bï¿½ziOSï¿½ï¿½ï¿½ï¿½ï¿½fï¿½Ö®É±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ãªï¿½ï¿½\ï¿½ï¿½ï¿½ï¿½s
+	//kakao³B²ziOS³¡¤À¼f®Ö®É±±¨îÅã¥ÜÁôÂÃªº¥\¯à«ö¶s
 	virtual void OnKrIsShowFucForIOSBack(bool result){};
 };
 
@@ -125,7 +125,6 @@ public:
 	NOTICE: Platform should call _boardcastInitDone to notify client logic WHEN initialization is done.
 	*/
 	virtual void initWithConfigure(const SDK_CONFIG_STU& configure) = 0;
-  virtual void setupSDK(int platformId) = 0;
 
 	/**
 	MUST call this function AFTER updating is done(after call back function).
@@ -150,6 +149,8 @@ public:
 	virtual void showPlatformProfile() = 0;
 
 	virtual const std::string getClientChannel() = 0;
+
+	virtual const std::string getClientCps() = 0;
 
 	virtual const std::string getChannelID(){ return ""; }
 
@@ -216,31 +217,31 @@ public:
 
 	virtual void onFBShareBack(bool success);
 	/************************************************************/
-	/*ï¿½ï¿½ï¿½ï¿½kakaoï¿½nï¿½Í±ï¿½ï¿½f*/
+	/*Áú°êkakao¦n¤Í±µ¤f*/
 
-	//ï¿½ï¿½oï¿½Ü½Ð¦ï¿½ï¿½ï¿½
+	//Àò±oÁÜ½Ð¦¸¼Æ
 	virtual void OnKrGetInviteCount();
-	//ï¿½Ü½Ð¦Cï¿½ï¿½
+	//ÁÜ½Ð¦Cªí
 	virtual void OnKrgetInviteLists();
-	//ï¿½nï¿½Í¦Cï¿½ï¿½
+	//¦n¤Í¦Cªí
 	virtual void OnKrgetFriendLists();
-	//ï¿½oï¿½eï¿½Ü½Ð°Tï¿½ï¿½
+	//µo°eÁÜ½Ð°T®§
 	virtual void OnKrsendInvite(const std::string& strUserId, const std::string& strServerId);
-	//ï¿½ï¿½ï¿½Â§ï¿½ï¿½ï¿½Cï¿½ï¿½
+	//Àò¨úÂ§ª«¦Cªí
 	virtual void OnKrgetGiftLists();
-	//ï¿½ï¿½ï¿½ï¿½Â§ï¿½ï¿½
+	//±µ¨üÂ§ª«
 	virtual void OnKrReceiveGift(const std::string& strGiftId, const std::string& strServerId);
-	//ï¿½ï¿½ï¿½eï¿½Ò±ï¿½ï¿½ï¿½Â§ï¿½ï¿½ï¿½ï¿½ï¿½Ó¼ï¿½
+	//·í«e©Ò±µ¨üÂ§ª«ªº­Ó¼Æ
 	virtual void OnKrGetGiftCount();
-	//ï¿½Ø°eÂ§ï¿½ï¿½
+	//ÃØ°eÂ§ª«
 	virtual void OnKrSendGift(const std::string& strUserName, const std::string& strServerId);
-	//ï¿½Ì½ï¿½Â§ï¿½ï¿½
+	//«Ì½ªÂ§ª«
 	virtual void OnKrGiftBlock(bool bVisible);
-	//ï¿½Ð¨DkakaoId
+	//½Ð¨DkakaoId
 	virtual void OnKrGetKakaoId();
-	//ï¿½iï¿½Jï¿½Cï¿½ï¿½ï¿½Ä¤@ï¿½É¶ï¿½ï¿½Õ¥ï¿½kakao
+	//¶i¤J¹CÀ¸²Ä¤@®É¶¡½Õ¥Îkakao
 	virtual void OnKrLoginGames();
-	//kakaoï¿½Bï¿½ziOSï¿½ï¿½ï¿½ï¿½ï¿½fï¿½Ö®É±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ãªï¿½ï¿½\ï¿½ï¿½ï¿½ï¿½s
+	//kakao³B²ziOS³¡¤À¼f®Ö®É±±¨îÅã¥ÜÁôÂÃªº¥\¯à«ö¶s
 	virtual void OnKrIsShowFucForIOS();
 	enum KrFriendType
 	{
@@ -258,7 +259,7 @@ public:
 		KAKAO_IOS_ISSHOWFUC,
 	};
 	/***********************************************************/
-	//R2ï¿½ï¿½ï¿½f
+	//R2±µ¤f
 	virtual void  setLanguageName(const std::string& lang);
 
 	virtual void  setPlatformName(int platform);

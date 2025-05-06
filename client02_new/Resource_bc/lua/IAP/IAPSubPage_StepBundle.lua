@@ -20,6 +20,8 @@ local StepBundleCfg = ConfigManager.getStepBundleCfg()
 local parentPage = nil
 local requesting = false
 
+-- 購買資料請求中
+local requestingLastShop = false
 local SeverData = {}
 local opcodes = {
     FETCH_SHOP_LIST_S = HP_pb.FETCH_SHOP_LIST_S,
@@ -76,6 +78,7 @@ function StepBunlePage:onEnter(ParentContainer)
     parentPage:registerMessage(MSG_MAINFRAME_REFRESH)
     parentPage:registerMessage(MSG_RECHARGE_SUCCESS)
     requesting = false
+    requestingLastShop = false
     --self:refresh(self.container)
     local scrollview = self.container:getVarScrollView("mContent")
     --NodeHelper:autoAdjustResizeScrollview(scrollview)
@@ -124,6 +127,9 @@ end
 function StepBunlePage:onReceiveMessage(message)
 	local typeId = message:getTypeId()
 	if typeId == MSG_RECHARGE_SUCCESS then
+        if requestingLastShop then
+            return
+        end
         CCLuaLog(">>>>>>onReceiveMessage StepBunleItem")
         StepBunlePage:ItemInfoRequest()
         common:sendEmptyPacket(HP_pb.LAST_SHOP_ITEM_C, true)
@@ -197,7 +203,7 @@ function StepBunleItem:onRefreshContent(content)
     StepBunleItem:fillContent(container, ItemInfo, #ItemInfo, self.id)
 
     -- 設置剩餘數量文本
-    local leftcont = common:getLanguageString("@Shop.Item.leftAmount", (0 and isSold or 1), 1)
+    local leftcont = common:getLanguageString("@Shop.Item.leftAmount", (isSold and 0 or 1), 1)
     NodeHelper:setStringForLabel(container, { 
         mBtnLabel = self:getPrice(self.id), 
         mLv = self.idx, 
@@ -323,6 +329,7 @@ function StepBunlePage:onReceivePacket(packet)
     --    PackageLogicForLua.PopUpReward(msgBuff)
     --end
      if opcode == HP_pb.LAST_SHOP_ITEM_S then
+        requestingLastShop = false
         local Recharge_pb = require("Recharge_pb")
         local msg = Recharge_pb.LastGoodsItem()
         msg:ParseFromString(msgBuff)

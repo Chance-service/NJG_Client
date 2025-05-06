@@ -55,7 +55,8 @@ void ColorSprite::initProgram()
 void ColorSprite::draw()
 {
 	ccGLEnableVertexAttribs(kCCVertexAttribFlag_PosColorTex );
-	ccGLBlendFunc(GL_ONE, GL_ONE);
+	//ccGLBlendFunc(GL_ONE, GL_ONE);
+	glBlendFuncSeparate(GL_ONE, GL_ONE, GL_ONE, GL_ONE);
     
 	getShaderProgram()->use();
 	getShaderProgram()->setUniformsForBuiltins();
@@ -157,7 +158,8 @@ void StrokeChartlet::initProgram()
 void StrokeChartlet::draw()
 {
 	ccGLEnableVertexAttribs(kCCVertexAttribFlag_PosColorTex );
-	ccGLBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	//ccGLBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     
 	getShaderProgram()->use();
 	getShaderProgram()->setUniformsForBuiltins();

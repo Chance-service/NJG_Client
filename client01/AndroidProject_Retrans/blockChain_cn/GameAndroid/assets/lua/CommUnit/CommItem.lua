@@ -334,6 +334,13 @@ function CommItem:new ()
 
         self:setQuality(self.quality)
         self.showType = showType
+
+        local showPoint = false
+        itemInfo.id = itemInfo.id or itemInfo.itemId
+        if self.isInventory and InfoAccesser:getIsAncientWeaponSoul("30000_" .. itemInfo.id .. "_1") then
+            showPoint = RedPointManager_getShowRedPoint(RedPointManager.PAGE_IDS.PACKAGE_AW_ICON, itemInfo.id)
+        end
+        NodeHelper:setNodesVisible(self.container, { ["mPoint"] = showPoint })
     end
 
     --[[ 自動設置 以裝備ID ]]
@@ -408,6 +415,7 @@ function CommItem:new ()
         NodeHelper:setNodesVisible(container, { ["mShader"] = false });
         NodeHelper:setNodesVisible(container, { ["mName1"] = false });
         NodeHelper:setNodesVisible(container, { ["mNumber1_1"] = false });
+        NodeHelper:setNodesVisible(container, { ["mPoint"] = false });
 
         self:setQuality(self.quality)
         if userEquip.equipId >= 10000 then    --專武星數特別顯示
@@ -435,7 +443,8 @@ function CommItem:new ()
         NodeHelper:setSpriteImage(container, { ["mPic1"] = conf.icon });
         NodeHelper:setImgBgQualityFrames(container, { ["mFrameShade1"] = quality });
         NodeHelper:setQualityFrames(container, { ["mHand1"] = quality });
-        NodeHelper:setNodesVisible(container, { ["mAni1"] = false, ["mNumber1"] = true })
+        NodeHelper:setNodesVisible(container, { ["mAni1"] = false, ["mNumber1"] = true ,["mLock"] = fateData.lock == 1 })
+        NodeHelper:setNodesVisible(container, { ["mPoint"] = false });
 
     
         local textColor = ConfigManager.getQualityColor()[quality].textColor

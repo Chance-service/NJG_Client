@@ -1,6 +1,7 @@
 option java_package = "com.guaji.game.protocol";
 
 import "Const.proto";
+import "Attribute.proto";
 
 //角色洗属性
 message HPRoleBaptize
@@ -71,6 +72,8 @@ message HPRoleInfo
 	required int32 fight = 8;
 	//使用皮膚編號
 	required int32 skinId =9;
+    // 擁有皮膚列表
+	repeated int32 ownSkin = 10;
 }
 
 // 佣兵激活(雇佣)
@@ -206,4 +209,18 @@ message HPHeroLevelResetReq
 message HPHeroLevelResetRes
 {
 	required int32 id		= 1;//唯一ID，不是配置的ID
+}
+
+// 英雄數值計算請求
+message HPRoleCountAttrReq
+{
+required int32 roleId		= 1; //唯一ID，不是配置的ID
+required int32 skinId		= 2; //沒有皮膚送0
+}
+
+// 英雄數值計算回應
+message HPRoleCountAttrRes
+{
+required int32 roleId		= 1; //唯一ID，回應Id
+required AttrInfo attribute = 2;
 }

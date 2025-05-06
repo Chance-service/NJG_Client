@@ -242,6 +242,10 @@ end
 function ConfigManager.parseItemWithComma(rewards)
     return common:parseItemWithComma(rewards)
 end
+
+function ConfigManager.stringToTimestamp(string)--YYYY-MM-DD_HH:MM:SS
+    return common:stringToTimestamp(string)
+end
 -- (1,2,3)
 function ConfigManager.parseCfgWithComma(cfg)
     if cfg == nil then return end
@@ -343,9 +347,10 @@ function ConfigManager.getPopUpCfg2()
     local key = "PopUpCfg2"
     local cfg = ConfigManager.configs[key]
     if cfg == nil then
-        local attrMap = common:table_combineNumber( { "GiftId","Count", "BG", "Banner","Icon", "Content" , "Title" ,"Reward","Sort"})
+        local attrMap = common:table_combineNumber( { "GiftId","type","Count", "BG", "Banner","Icon", "Content" , "Title" ,"Reward","Sort"})
         local convertMap = {
             ["GiftId"] = tonumber,
+            ["type"] = tonumber,
             ["Count"] = tonumber,
             ["Sort"] = tonumber,
             ["Reward"] = ConfigManager.parseItemWithComma
@@ -949,7 +954,7 @@ function ConfigManager.RoleEquipDescCfg()
     if cfg == nil then
 
         local attrMap = common:table_combineNumber( {
-            "id","mercenaryId","desc1","desc2","desc3","equipId"
+            "id","mercenaryId","descTitle1","descTitle2","descTitle3","desc1","desc2","desc3","equipId"
         } );
         local convertMap = {
             ["id"] = tonumber,
@@ -989,7 +994,7 @@ function ConfigManager.getItemCfg()
             "id","name","type","levelLimit","profLimit",
             "price","needItem","containItem","levelUpCost","levelUpRate",
             "levelUpItem","strength","agility","intellect","stamina",
-            "icon","levelUpCostMax","description","smeltCost","quality",
+            "icon","levelUpCostMax","description","smeltCost","AFKhour","quality",
             "jumpPage","soulStoneExp","skillExp","heroTaskId","stoneType",
             "location","attr","isNewStone","stoneLevel","stoneLevelUpCost",
             "exchange","exchangeCrystalNum","suitLevel","part","description2","sortType",
@@ -1007,6 +1012,7 @@ function ConfigManager.getItemCfg()
             ["icon"] = checkFilePathValidate,
             ["intellect"] = tonumber,
             ["stamina"] = tonumber,
+            ["AFKhour"] = tonumber,
             ["quality"] = tonumber,
             ["smeltCost"] = tonumber,
             ["soulStoneExp"] = tonumber,
@@ -1183,10 +1189,10 @@ function ConfigManager.getRechargeDiscountCfg()
     local key = "RechargeDiscountCfg";
     local cfg = ConfigManager.configs[key];
     if cfg == nil then
-        local attrMap = common:table_combineNumber( { "id", "index", "salepacket", "minLevel", "maxLevel", "formerPrice", "originalHNP", "name", "limitType", "limitNum", "isgold" });
+        local attrMap = common:table_combineNumber( { "id", "Sort", "salepacket", "minLevel", "maxLevel", "formerPrice", "originalHNP", "name", "limitType", "limitNum", "isgold" });
         local convertMap = {
             ["id"] = tonumber,
-            ["index"] = tonumber,
+            ["Sort"] = tonumber,
             ["minLevel"] = tonumber,
             ["maxLevel"] = tonumber,
             ["limitType"] = tonumber,
@@ -1876,7 +1882,14 @@ function ConfigManager.getMailContentCfg()
         local convertMap = {
             ['mailId'] = tonumber
         }
-        cfg = ConfigManager.loadCfg("MailIdConfig.txt", attrMap, 0, convertMap)
+        local userType = CCUserDefault:sharedUserDefault():getIntegerForKey("LanguageType");
+	    if userType == kLanguageChinese then
+	    	cfg = ConfigManager.loadCfg("MailIdConfig.txt", attrMap, 0, convertMap)
+	    elseif userType == kLanguageCH_TW then
+	    	cfg = ConfigManager.loadCfg("MailIdConfigTW.txt", attrMap, 0, convertMap)
+	    else
+	    	cfg = ConfigManager.loadCfg("MailIdConfig.txt", attrMap, 0, convertMap)
+        end
         ConfigManager.configs[key] = cfg
     end
     return cfg
@@ -2523,7 +2536,7 @@ function ConfigManager.getSkillCfg()
 
         local attrMap = common:table_combineNumber( {
             "id", "values", "buff", "level", "cost", "times", 
-            "cd", "firstCD", "HitEffectPath", "actionName", "skillType", "effectType", "tagType"
+            "cd", "firstCD", "HitEffectPath", "actionName", "skillType", "effectType", "tagType", "script","isShowInfo"
         } )
         local convertMap = {
             ["id"] = tonumber,
@@ -2534,6 +2547,8 @@ function ConfigManager.getSkillCfg()
             ["firstCD"] = tonumber,
             ["skillType"] = tonumber,
             ["effectType"] = tonumber,
+            ["script"] = tonumber,
+            ["isShowInfo"] = tonumber,
         }
         cfg = ConfigManager.loadCfg("skill_New.txt", attrMap, 0, convertMap)
         ConfigManager.configs[key] = cfg
@@ -3354,24 +3369,23 @@ function ConfigManager.getSuitAtrrCfg()
     end
     return cfg;
 end
-function ConfigManager.getSkinCfg()
-    local key = "SkinCfg";
+function ConfigManager.getSkinShopCfg()
+    local key = "SkinShopCfg";
     local cfg = ConfigManager.configs[key];
     if cfg == nil then
-        local attrMap = common:table_combineNumber( { "id", "Item",  "Cost", "count","discount","HeroId","SkinId","isShow","Sort","SkinName", "Spine" });
+        local attrMap = common:table_combineNumber( { "id", "type",  "item", "price", "discount", "HeroId", "SkinId", "Sort" });
         local convertMap = {
             ["id"] = tonumber,
-            ["Item"] = ConfigManager.parseItemWithComma,
-            ["Cost"]=ConfigManager.parseItemWithComma,
-            ["count"] = tonumber,
+            ["type"] = tonumber,
+            ["item"] = ConfigManager.parseItemWithComma,
+            ["price"]=ConfigManager.parseItemWithComma,
             ["discount"] = tonumber,
             ["HeroId"] = tonumber,
             ["SkinId"] = tonumber,
-            ["isShow"] = tonumber,
             ["Sort"] = tonumber,
             
         };
-        cfg = ConfigManager.loadCfg("SkinShop.txt", attrMap, nil, convertMap);
+        cfg = ConfigManager.loadCfg("SkinShop_C.txt", attrMap, nil, convertMap);
         ConfigManager.configs[key] = cfg;
     end
     return cfg;
@@ -4428,9 +4442,10 @@ function ConfigManager.getGrowthLvCfg()
     local key = "GrowthLvCfg"
     local cfg = ConfigManager.configs[key]
     if cfg == nil then
-        local attrMap = common:table_combineNumber( { 'id', 'level', 'FreeRewards','CostRewards' })
+        local attrMap = common:table_combineNumber( { 'id', "type" ,'level', 'FreeRewards','CostRewards' })
         local convertMap = {
             ['id'] = tonumber,
+            ['type'] = tonumber,
             ['level'] = tonumber,
             ['FreeRewards'] = ConfigManager.parseItemWithComma,
             ['CostRewards'] = ConfigManager.parseItemWithComma,
@@ -5470,7 +5485,13 @@ function ConfigManager.getFateDressCfg()
             'icon',
             'basicAttr',-- 基础属性
             'OtherAttr',
-            'hasSkill'
+            'hasSkill',
+            'slot',
+            'skillpool',
+            'unlocksp',
+            'refineCost',
+            'lockCost',
+            'spRefineCost'
         } )
         local convertMap = {
             ['id'] = tonumber,
@@ -5480,6 +5501,16 @@ function ConfigManager.getFateDressCfg()
             ['star'] = tonumber,
             ['afterId'] = tonumber,
             ['hasSkill'] = tonumber,
+            ['slot'] = tonumber,
+            ['skillpool'] = tonumber,
+            ['unlocksp'] = tonumber,
+            ['refineCost'] = function(key)
+                return common:split(key,",")
+            end,
+            ['lockCost'] = function(key)
+                return common:split(key,",")
+            end,
+            ['spRefineCost'] = tonumber,
             ['name'] = function(key)
                 return common:getLanguageString(key)
             end,
@@ -5601,16 +5632,20 @@ function ConfigManager:getBannerCfg()
             'ID', -- ID
             'group',
             'activityId', -- 活動ID 
-            'Image',   -- 圖片
-            'Page', -- 活動ID 
+            'Page',   
+            'Image',
+            'type',
+            'openDay',
             'startTime',
-            'endTime'
+            'endTime',
+            'url'
         } )
         local convertMap = {
             ['ID'] = tonumber,
             ['Page'] = tonumber,
             ['activityId'] = tonumber,
             ['group'] = tonumber,
+            ['type'] = tonumber,
             ['startTime'] = tonumber,
             ['endTime'] = tonumber,
         }
@@ -5817,11 +5852,11 @@ function ConfigManager.getNewMapCfg()
     local cfg = ConfigManager.configs[key]
     if cfg == nil then
         local attrMap = common:table_combineNumber({ 'ID', 'NextID', 'Chapter','Level', 'MonsterID', 'BossID', 'Portrait', 'DropItems', 'BossDrop', 'EXP', 
-                                                     'SkyCoin', 'Potion', 'BP', 'Unlock' ,'GirlTxt'})
+                                                     'SkyCoin', 'Potion', 'BP', 'Unlock' ,'GirlTxt','Stone'})
         local convertMap = {
             ['ID'] = tonumber, ['NextID'] = tonumber, ['Portrait'] = tonumber, ['EXP'] = tonumber, 
             ['SkyCoin'] = tonumber, ['Potion'] = tonumber, ['BP'] = tonumber, ['Unlock'] = tonumber,['Chapter'] = tonumber,['Level'] = tonumber,
-        }
+        ['Stone'] = tonumber,}
         cfg = ConfigManager.loadCfg("map_New.txt", attrMap, 0, convertMap)
         ConfigManager.configs[key] = cfg
     end
@@ -6059,9 +6094,10 @@ function ConfigManager.getPickUpCfg()
     local key = "PickUpCfg";
     local cfg = ConfigManager.configs[key];
     if cfg == nil then
-        local attrMap = common:table_combineNumber( { "id","Spine","EFF","littleSpine" });
+        local attrMap = common:table_combineNumber( { "actId","id","Spine","EFF","littleSpine","Banner" });
         local convertMap = {
             ["id"] = tonumber,
+            ["actId"] = tonumber,
             --["price"] = tonumber,
             -- ["reward"] = ConfigManager.parseItemOnlyWithUnderline,
         };
@@ -6259,6 +6295,28 @@ function ConfigManager.getAct191Achive()
     end
     return cfg;
 end
+--活動196
+function ConfigManager.getAct196Achive()
+    local key = "Act196Achive";
+    local cfg = ConfigManager.configs[key];
+    if cfg == nil then
+        local attrMap = common:table_combineNumber( { "id", "name", "content", "needCount", "sort","reward","rewardCount","Icon","isJump","jumpValue","showType","quality","targetType" });
+        local convertMap = {
+            ["id"] = tonumber,
+            ["needCount"] = tonumber,
+            ["sort"] = tonumber,
+            ["reward"] = ConfigManager.parseItemWithComma,
+            ["isJump"] = tonumber,
+            ["showType"] = tonumber,
+            ["jumpValue"] = tonumber,
+            ["quality"] = tonumber,
+            ["targetType"] = tonumber,
+        };
+        cfg = ConfigManager.loadCfg("ActivityQuest_2.txt", attrMap, 0, convertMap);
+        ConfigManager.configs[key] = cfg;
+    end
+    return cfg;
+end
 
 function ConfigManager.get191DailyQuest()
     local key = "191DailyQuestCfg";
@@ -6282,6 +6340,28 @@ function ConfigManager.get191DailyQuest()
     return cfg;
 end
 
+function ConfigManager.get196DailyQuest()
+    local key = "196DailyQuestCfg";
+    local cfg = ConfigManager.configs[key];
+    if cfg == nil then
+        local attrMap = common:table_combineNumber( { "id", "name", "content", "type", "targetCount", "point", "des", "icon", "sortId", "isJump", "jumpValue", "showType", "quality" });
+        local convertMap = {
+            ["id"] = tonumber,
+            ["type"] = tonumber,
+            ["targetCount"] = tonumber,
+            ["content"] = tostring,
+            ["des"] = tostring,
+            ["isJump"] = tonumber,
+            ["showType"] = tonumber,
+            ["jumpValue"] = tonumber,
+            ["quality"] = tonumber,
+        };
+        cfg = ConfigManager.loadCfg("ActivityDailyQuest_2.txt", attrMap, nil, convertMap);
+        ConfigManager.configs[key] = cfg;
+    end
+    return cfg;
+end
+
 function ConfigManager.get191DailyQuestPointCfg()
     local key = "191dailyQuestPoint";
     local cfg = ConfigManager.configs[key];
@@ -6297,11 +6377,26 @@ function ConfigManager.get191DailyQuestPointCfg()
     return cfg;
 end
 
+function ConfigManager.get196DailyQuestPointCfg()
+    local key = "196dailyQuestPoint";
+    local cfg = ConfigManager.configs[key];
+    if cfg == nil then
+        local attrMap = common:table_combineNumber( { "id", "award" });
+        local convertMap = {
+            ["id"] = tonumber,
+            ["award"] = ConfigManager.parseItemWithComma,
+        };
+        cfg = ConfigManager.loadCfg("ActivityDailyQuestPoint_2.txt", attrMap, 0, convertMap);
+        ConfigManager.configs[key] = cfg;
+    end
+    return cfg;
+end
+
 function ConfigManager.get191StageCfg()
     local key = "191Stage";
     local cfg = ConfigManager.configs[key];
     if cfg == nil then
-        local attrMap = common:table_combineNumber( { "id", "nextId" ,"star","type","mosterIds","dropItems","unlockTime","replay","StageName","Banner","battleBg"});
+        local attrMap = common:table_combineNumber( { "id", "nextId" ,"star","type","mosterIds","dropItems","unlockTime","replay","StageName","Banner","battleBg","storyBanner"});
         local convertMap = {
             ["id"] = tonumber,
             ["nextId"] = tonumber,
@@ -6316,6 +6411,27 @@ function ConfigManager.get191StageCfg()
     end
     return cfg;
 end
+
+function ConfigManager.get196StageCfg()
+    local key = "196Stage";
+    local cfg = ConfigManager.configs[key];
+    if cfg == nil then
+        local attrMap = common:table_combineNumber( { "id", "nextId" ,"star","type","mosterIds","dropItems","unlockTime","replay","StageName","Banner","battleBg","storyBanner"});
+        local convertMap = {
+            ["id"] = tonumber,
+            ["nextId"] = tonumber,
+            ["star"] = tonumber,
+            ["type"] = tonumber,
+            ["dropItems"] = ConfigManager.parseItemWithComma,
+            ["unlockTime"] = tonumber,
+            ["replay"] = tonumber,
+        };
+        cfg = ConfigManager.loadCfg("activityStage191_196.txt", attrMap, 0, convertMap);
+        ConfigManager.configs[key] = cfg;
+    end
+    return cfg;
+end
+
 --- Event001日記設定
 function ConfigManager.getEvent001ControlCfg()
     local key = "Event001Control"
@@ -6330,6 +6446,23 @@ function ConfigManager.getEvent001ControlCfg()
             ['voiceWait'] = tonumber,
         }
         cfg = ConfigManager.loadCfg("fetterASControl.txt", attrMap, 0, convertMap)
+        ConfigManager.configs[key] = cfg
+    end
+    return cfg
+end
+function ConfigManager.getEvent001Control196Cfg()
+    local key = "Event001Control196"
+    local cfg = ConfigManager.configs[key]
+    if cfg == nil then
+        local attrMap = common:table_combineNumber( { 'id', 'role', 'bg','startMovementId', "endMovementId", 'bgm', 'eff', "voiceWait" })
+        local convertMap = {
+            ['id'] = tonumber,
+            ['role'] = tonumber,
+            ['startMovementId'] = tonumber,
+            ['endMovementId'] = tonumber,
+            ['voiceWait'] = tonumber,
+        }
+        cfg = ConfigManager.loadCfg("fetterASControl_2.txt", attrMap, 0, convertMap)
         ConfigManager.configs[key] = cfg
     end
     return cfg
@@ -6357,15 +6490,40 @@ function ConfigManager.getEvent001ActionCfg()
     end
     return cfg
 end
+
+function ConfigManager.getEvent001Action196Cfg()
+    local key = "EventActio196n"
+    local cfg = ConfigManager.configs[key]
+    if cfg == nil then
+        local attrMap = common:table_combineNumber( { 'id', 'actionType', 'spine', 'define','position','wait', 'transform', 'rotate', 'scale', 'time', 'parent', 'spawnId' })
+        local convertMap = {
+            ['id'] = tonumber,
+            ['actionType'] = tonumber,
+            ['define'] = tonumber,
+            ['wait'] = tonumber,
+            ['rotate'] = tonumber,
+            --['scale'] = tonumber,
+            ['time'] = tonumber,
+            ['parent'] = tonumber,
+            ['spawnId'] = tonumber,
+        }
+        cfg = ConfigManager.loadCfg("fetterASMovement_2.txt", attrMap, 0, convertMap)
+        ConfigManager.configs[key] = cfg
+    end
+    return cfg
+end
+
 --累積儲值
 function ConfigManager.getRechargeBonusCfg()
     local key = "RechargeBonusCfg";
     local cfg = ConfigManager.configs[key];
     if cfg == nil then
-        local attrMap = common:table_combineNumber( { "id", "type", "platform", "needCount", "reward", "rank" });
+        local attrMap = common:table_combineNumber( { "id", "type", "timeIndex", "count", "platform", "needCount", "reward", "rank" });
         local convertMap = {
             ["id"] = tonumber,
             ["type"] = tonumber,
+            ["timeIndex"] = tonumber,
+            ["count"] = tonumber,
             ["platform"] = tonumber,
             ["needCount"] = tonumber,
             ["rank"] = tonumber,
@@ -6387,6 +6545,379 @@ function ConfigManager.getWindowPopupCfg()
             ["rank"] = tonumber,
         };
         cfg = ConfigManager.loadCfg("window_popup.txt", attrMap, 0, convertMap);
+        ConfigManager.configs[key] = cfg;
+    end
+    return cfg;
+end
+function ConfigManager.getBadgeSkillCfg()
+    local key = "BadgeSkillCfg";
+    local cfg = ConfigManager.configs[key];
+    if cfg == nil then
+        local attrMap = common:table_combineNumber( { "id", "group", "rate","rare","type","skill" });
+        local convertMap = {
+            ["id"] = tonumber,
+            ["group"] = tonumber,
+            ["rate"] = tonumber,
+            ["rare"] = tonumber,
+            ["type"] = tonumber,
+            ["skill"] = tonumber,
+        };
+        cfg = ConfigManager.loadCfg("badgegachaList.txt", attrMap, 0, convertMap);
+        ConfigManager.configs[key] = cfg;
+    end
+    return cfg;
+end
+-- 單人強敵
+function ConfigManager.getSingleBoss()
+    local key = "SingleBoss";
+    local cfg = ConfigManager.configs[key];
+    if cfg == nil then
+        local attrMap = common:table_combineNumber( { "id", "monsterIds", "skill01", "skill02", "skill03", "rate", "stagePoint", 
+                                                      "stageReward1", "stageReward2", "stageReward3", "stageReward4", "stageReward5",
+                                                      "stageReward6", "stageReward7", "stageReward8", "stageReward9", "stageReward10",
+                                                      "BossSpine", "Trans", "BossName", "BossId", "BattleBg" });
+        local convertMap = {
+            ["id"] = tonumber,
+            ["skill01"] = tonumber,
+            ["skill02"] = tonumber,
+            ["skill03"] = tonumber,
+            ["rate"] = tonumber,
+            ["BossId"] = tonumber,
+        };
+        cfg = ConfigManager.loadCfg("SingleBoss.txt", attrMap, 0, convertMap);
+        local newCfg = { }
+        for k, v in pairs(cfg) do
+            if cfg.stage then
+                newCfg[v.stage] = newCfg[v.stage] or { }
+                newCfg[v.stage][k] = v
+            else
+                newCfg[1] = newCfg[1] or { }
+                newCfg[1][k] = v
+            end
+        end
+        cfg = newCfg
+        ConfigManager.configs[key] = cfg;
+    end
+    local activityId = Const_pb.ACTIVITY193_SingleBoss
+    local stageId = ActivityInfo.activities[activityId] and ActivityInfo.activities[activityId].newVersion or 1
+    return cfg[stageId] or cfg[1];
+end
+-- 單人強敵任務
+function ConfigManager.getSingleBossAchive()
+    local key = "SingleBossAchive";
+    local cfg = ConfigManager.configs[key];
+    if cfg == nil then
+        local attrMap = common:table_combineNumber( { "id", "name", "content", "needCount", "sort", "reward", "rewardCount", "Icon", 
+                                                      "isJump", "jumpValue", "showType", "quality", "targetType" });
+        local convertMap = {
+            ["id"] = tonumber,
+            ["needCount"] = tonumber,
+            ["sort"] = tonumber,
+            ["reward"] = ConfigManager.parseItemWithComma,
+            ["isJump"] = tonumber,
+            ["showType"] = tonumber,
+            ["jumpValue"] = tonumber,
+            ["quality"] = tonumber,
+            ["targetType"] = tonumber,
+        };
+        cfg = ConfigManager.loadCfg("SingleBossQuest.txt", attrMap, 0, convertMap);
+        ConfigManager.configs[key] = cfg;
+    end
+    return cfg;
+end
+-- 單人強敵任務
+function ConfigManager.getSingleBossRankAward()
+    local key = "SingleBossRankAward";
+    local cfg = ConfigManager.configs[key];
+    if cfg == nil then
+        local attrMap = common:table_combineNumber( { "id", "minRank", "reward" });
+        local convertMap = {
+            ["id"] = tonumber,
+            ["minRank"] = tonumber,
+        };
+        cfg = ConfigManager.loadCfg("releaseUrRank193Award.txt", attrMap, 0, convertMap);
+        ConfigManager.configs[key] = cfg;
+    end
+    return cfg;
+end
+
+-- 召喚機率表
+function ConfigManager.getSummonRate()
+    local key = "SummonRate";
+    local cfg = ConfigManager.configs[key];
+    if cfg == nil then
+        local attrMap = common:table_combineNumber( { "id", "ActId", "pool","poolrate","item","Title","Sort","Rate","SingleRate","FreeTypeFont" });
+        local convertMap = {
+            ["id"] = tonumber,
+            ["pool"] = tonumber,
+            ["poolrate"] = tonumber,
+            ["item"] = ConfigManager.parseItemWithComma,
+            ["Sort"] = tonumber,
+            ["SingleRate"] = tonumber,
+            ["FreeTypeFont"] = tonumber,
+        };
+        cfg = ConfigManager.loadCfg("helpgacha.txt", attrMap, 0, convertMap);
+        ConfigManager.configs[key] = cfg;
+    end
+    return cfg;
+end
+
+function ConfigManager.getTowerData()
+    local key = "TowerData";
+    local cfg = ConfigManager.configs[key];
+    if cfg == nil then
+        local attrMap = common:table_combineNumber( { "id","nextStage","monsterId","reward","stageBg","BuffId","Spine","scale","battleBg","StageName" });
+        local convertMap = {
+            ["id"] = tonumber,
+            ["nextStage"] = tonumber,
+            ["BuffId"] = tonumber,
+            ["reward"] = ConfigManager.parseItemWithComma,
+        };
+        cfg = ConfigManager.loadCfg("SeasonTower194.txt", attrMap, 0, convertMap);
+        ConfigManager.configs[key] = cfg;
+    end
+    return cfg;
+end
+function ConfigManager.getTowerRank()
+    local key = "TowerRank";
+    local cfg = ConfigManager.configs[key];
+    if cfg == nil then
+        local attrMap = common:table_combineNumber( { "id","minRank","reward" });
+        local convertMap = {
+            ["id"] = tonumber,
+            ["minRank"] = tonumber,
+            ["reward"] = ConfigManager.parseItemWithComma,
+        };
+        cfg = ConfigManager.loadCfg("SeasonTowerRankAward.txt", attrMap, 0, convertMap);
+        ConfigManager.configs[key] = cfg;
+    end
+    return cfg;
+end
+function ConfigManager.getPickUpCfg_New()
+    local key = "PickUpCfg_New";
+    local cfg = ConfigManager.configs[key];
+    if cfg == nil then
+        local attrMap = common:table_combineNumber( { "id","type","BG","spine","summonSpine","Jump","chibi","Desc","TabImg","Title","Banner" });
+        local convertMap = {
+            ["id"] = tonumber,
+            ["Jump"] = tonumber,
+        };
+        cfg = ConfigManager.loadCfg("pickUpGacha.txt", attrMap, 0, convertMap);
+        ConfigManager.configs[key] = cfg;
+    end
+    return cfg;
+end
+function ConfigManager.getMainPuzzleCfg()
+    local key = "MainPuzzleCfg";
+    local cfg = ConfigManager.configs[key];
+    if cfg == nil then
+        local attrMap = common:table_combineNumber( { "id","StageId","item","image","TrailNumber","HeroId","SmallImg","groupId"});
+        local convertMap = {
+            ["id"] = tonumber,
+            ["item"] = ConfigManager.parseItemWithComma,
+            ["TrailNumber"] = tonumber,
+            ["HeroId"] = tonumber,
+            ["groupId"] = tonumber,
+        };
+        cfg = ConfigManager.loadCfg("PuzzleBattleMain_C.txt", attrMap, 0, convertMap);
+        ConfigManager.configs[key] = cfg;
+    end
+    return cfg;
+end
+function ConfigManager.getSubPuzzleCfg()
+    local key = "SubPuzzleCfg";
+    local cfg = ConfigManager.configs[key];
+    if cfg == nil then
+        local attrMap = common:table_combineNumber( { "id","mainId","limitGirl","limitElement","limitPos","StageName","battleBg","bgm" });
+        local convertMap = {
+            ["mainId"] = tonumber,
+            ["id"] = tonumber,
+            ["limitGirl"] = tonumber,
+        };
+        cfg = ConfigManager.loadCfg("PuzzleBattleSub_C.txt", attrMap, 0, convertMap);
+        ConfigManager.configs[key] = cfg;
+    end
+    return cfg;
+end
+
+function ConfigManager.getLimitTowerCfg()
+    local key = "LimitTowerCfg";
+    local cfg = ConfigManager.configs[key];
+    if cfg == nil then
+        local attrMap = common:table_combineNumber( { "idx","id","type","LevelLimit","GirlLimit","nextStage","monsterId","reward","stageBg","Spine","scale","battleBg","StageName"});
+        local convertMap = {
+            ["LevelLimit"] = tonumber,
+            ["GirlLimit"] = tonumber,
+            ["id"] = tonumber,
+            ["idx"] = tonumber,
+            ["type"] = tonumber,
+            ["count"] = tonumber,
+            ["sort"] = tonumber,
+            ["reward"] = ConfigManager.parseItemWithComma,
+        };
+        cfg = ConfigManager.loadCfg("LimitTower198.txt", attrMap, 0, convertMap);
+        ConfigManager.configs[key] = cfg;
+    end
+    return cfg;
+end
+
+function ConfigManager.getPopADCfg()
+    local key = "PopADCfg";
+    local cfg = ConfigManager.configs[key];
+    if cfg == nil then
+        local attrMap = common:table_combineNumber( { "id","startTime" ,"endTime","PageImg","PageBg","PageBanner","PageTxt","GiftId","JumpId"});
+        local convertMap = {
+            ["id"] = tonumber,
+            ["startTime"] = ConfigManager.stringToTimestamp,
+            ["endTime"] = ConfigManager.stringToTimestamp,
+            ["GiftId"] = tonumber,
+            ["JumpId"] = tonumber,
+        };
+        cfg = ConfigManager.loadCfg("PopupSaleAD.txt", attrMap, 0, convertMap);
+        ConfigManager.configs[key] = cfg;
+    end
+    return cfg;
+end
+-- 皮膚資料
+function ConfigManager.getSkinCfg()
+    local key = "SkinNg";
+    local cfg = ConfigManager.configs[key];
+    if cfg == nil then
+        local attrMap = common:table_combineNumber( { "id", "name", "element", "ownAdd", "ownDec", "skills", 
+                                                       "skinSkill", "replacedSkill", "chibi", "jumpId", "jumpTxt" });
+        local convertMap = {
+            ["id"] = tonumber,
+            ["element"] = tonumber,
+            ["skinSkill"] = tonumber,
+            ["replacedSkill"] = tonumber,
+            ["jumpId"] = tonumber,
+        };
+        cfg = ConfigManager.loadCfg("skin_NG.txt", attrMap, 0, convertMap);
+        ConfigManager.configs[key] = cfg;
+    end
+    return cfg;
+end
+-- 皮膚技能資料
+function ConfigManager.getSkinSkillCfg()
+    local key = "SkinSkillNg";
+    local cfg = ConfigManager.configs[key];
+    if cfg == nil then
+        local attrMap = common:table_combineNumber( { "id", "skinId", "star", "skills" });
+        local convertMap = {
+            ["id"] = tonumber,
+            ["skinId"] = tonumber,
+            ["star"] = tonumber,
+        };
+        cfg = ConfigManager.loadCfg("skinSkill.txt", attrMap, 0, convertMap);
+        ConfigManager.configs[key] = cfg;
+    end
+    return cfg;
+end
+function ConfigManager.getTowerPassMainCfg()
+    local key = "TowerPassMainCfg";
+    local cfg = ConfigManager.configs[key];
+    if cfg == nil then
+        local attrMap = common:table_combineNumber( { "id", "RechargeId", "ActivityId", "groupId","Name" });
+        local convertMap = {
+            ["id"] = tonumber,
+            ["RechargeId"] = tonumber,
+            ["ActivityId"] = tonumber,
+            ["groupId"] = tonumber,
+        };
+        cfg = ConfigManager.loadCfg("BattlePassTowerMain_C.txt", attrMap, 0, convertMap);
+        ConfigManager.configs[key] = cfg;
+    end
+    return cfg;
+end
+function ConfigManager.getTowerPassSubCfg()
+    local key = "TowerPassSubCfg";
+    local cfg = ConfigManager.configs[key];
+    if cfg == nil then
+        local attrMap = common:table_combineNumber( { "id", "RechargeId", "PassStage", "Free","Cost" });
+        local convertMap = {
+            ["id"] = tonumber,
+            ["RechargeId"] = tonumber,
+            ["PassStage"] = tonumber,
+            ["Free"] = ConfigManager.parseItemWithComma,
+            ["Cost"] = ConfigManager.parseItemWithComma,
+        };
+        cfg = ConfigManager.loadCfg("BattlePassTowerSub_C.txt", attrMap, 0, convertMap);
+        ConfigManager.configs[key] = cfg;
+    end
+    return cfg;
+end
+function ConfigManager.getFearTowerMainCfg()
+    local key = "FearTowerMainCfg";
+    local cfg = ConfigManager.configs[key];
+    if cfg == nil then
+        local attrMap = common:table_combineNumber( { "id","Bg","Title"});
+        local convertMap = {
+            ["id"] = tonumber,
+        };
+        cfg = ConfigManager.loadCfg("FearlessTowerMain_C.txt", attrMap, 0, convertMap);
+        ConfigManager.configs[key] = cfg;
+    end
+    return cfg;
+end
+function ConfigManager.getFearTowerSubCfg()
+    local key = "FearTowerSubCfg";
+    local cfg = ConfigManager.configs[key];
+    if cfg == nil then
+        local attrMap = common:table_combineNumber( { "id", "nextId", "Type", "spine" ,"stageBg","battleBg","StageName"});
+        local convertMap = {
+            ["id"] = tonumber,
+            ["nextId"] = tonumber,
+            ["Type"] = tonumber,
+        };
+        cfg = ConfigManager.loadCfg("FearlessTowerSub_C.txt", attrMap, 0, convertMap);
+        ConfigManager.configs[key] = cfg;
+    end
+    return cfg;
+end
+function ConfigManager.getFearTowerRewardCfg()
+    local key = "FearTowerRewardCfg";
+    local cfg = ConfigManager.configs[key];
+    if cfg == nil then
+        local attrMap = common:table_combineNumber( { "id" });
+        local convertMap = {
+            ["id"] = tonumber,
+        };
+        cfg = ConfigManager.loadCfg("FearlessTowerRankAward_C.txt", attrMap, 0, convertMap);
+        ConfigManager.configs[key] = cfg;
+    end
+    return cfg;
+end
+function ConfigManager.getFearTowerShopCfg()
+    local key = "FearTowerShopCfg";
+    local cfg = ConfigManager.configs[key];
+    if cfg == nil then
+        local attrMap = common:table_combineNumber( { "id","count","skillId","healValue","rarity","icon","name","freeTypeFont" });
+        local convertMap = {
+            ["id"] = tonumber,
+            ["count"] = tonumber,
+            ["skillId"] = tonumber,
+            ["healValue"] = tonumber,
+            ["rarity"] = tonumber,
+        };
+
+        cfg = ConfigManager.loadCfg("FearlessTowerMerch_C.txt", attrMap, 0, convertMap);
+        ConfigManager.configs[key] = cfg;
+    end
+    return cfg;
+end
+function ConfigManager.getFearTowerAchivCfg()
+    local key = "FearTowerAchivCfg";
+    local cfg = ConfigManager.configs[key];
+    if cfg == nil then
+        local attrMap = common:table_combineNumber( { "id", "name", "targetCount","sort","reward"});
+        local convertMap = {
+            ["id"] = tonumber,
+            ["targetCount"] = tonumber,
+            ["sort"] = tonumber,
+            ["reward"] = ConfigManager.parseItemWithComma,
+        };
+
+        cfg = ConfigManager.loadCfg("FearlessToweAchv_C.txt", attrMap, 0, convertMap);
         ConfigManager.configs[key] = cfg;
     end
     return cfg;

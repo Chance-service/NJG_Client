@@ -353,6 +353,10 @@ enum code
     //英雄一鍵升級
     ROLE_LEVEL_MAX_C = 6025;
     ROLE_LEVEL_MAX_S = 6026;
+	
+	//英雄數值計算
+    ROLE_ATTRINFO_COUNT_C = 6027;
+    ROLE_ATTRINFO_COUNT_S = 6028;
     
     /* 公告 7*1000+編號  */
     
@@ -620,6 +624,12 @@ enum code
     
     PUZZLE_BATTLE_LOG_C = 11044;
     PUZZLE_BATTLE_LOG_S = 11045;
+	
+	LIMIT_TOWER_BATTLE_LOG_C = 11046;
+	LIMIT_TOWER_BATTLE_LOG_S = 11047;
+	
+	FEAR_LESS_TOWER_BATTLE_LOG_C = 11048;
+	FEAR_LESS_TOWER_BATTLE_LOG_S = 11049;
 
 	/* 任务模块-模块编号12*1000+该模块协议编号 (zhf) */
 
@@ -1207,6 +1217,11 @@ enum code
 	
 	/* 新手引导 模块编号33*1000+该模块协议编号(tianzhiyuan)*/
 	RESET_GUIDE_INFO_C = 33001;// 重置新手引导信息
+
+	/* 拍賣場 模块编号36*1000+该模块协议编号(tianzhiyuan)*/
+	
+	BIDDING_ORDER_C = 36001;// 拍賣命令
+	BIDDING_ORDER_S = 36002;
 
 	/* 活动模块 8开头 + 子活动号（两位数） + 协议号（两位数） */
 
@@ -2214,6 +2229,10 @@ enum code
 	ACTIVITY164_Growth_TW_S = 620006;
 	GROWTH_PASS_BUY_SUCC_S = 620007;
 	
+	/**超級塔樓通行證獎勵活動**/
+	SUPER_TOWER_PASS_C =  620008;
+	SUPER_TOWER_PASS_S =  620009;
+	
 	/** 挖礦活動相關**/
 	ACTIVITY165_MINING_C = 630001;
 	ACTIVITY165_MINING_S = 630002;
@@ -2309,4 +2328,18 @@ enum code
     /*循環關卡復刻活動*/
     ACTIVITY196_CYCLE_STAGE_C = 840001;
     ACTIVITY196_CYCLE_STAGE_S = 840002;
+
+	/*超級PickUP活動*/
+    ACTIVITY197_SUPER_PICKUP_INFO_C = 850001;
+    ACTIVITY197_SUPER_PICKUP_INFO_S = 850002;
+    ACTIVITY197_SUPER_PICKUP_DRAW_C = 850003;
+    ACTIVITY197_SUPER_PICKUP_DRAW_S = 850004;
+	
+	/*屬性限制爬塔活動*/
+    ACTIVITY198_LIMIT_TOWER_C = 860001;
+    ACTIVITY198_LIMIT_TOWER_S = 860002;
+	
+	/*無畏塔塔活動*/
+    ACTIVITY199_FEAR_LESS_TOWER_C = 870001;
+    ACTIVITY199_FEAR_LESS_TOWER_S = 870002;
 }

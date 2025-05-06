@@ -1,0 +1,11 @@
+{
+  "packageUrl": "https://s3.ap-northeast-1.amazonaws.com/file.bigwin-tech.com/dev.ninjagirl/hotUpdate/Version", 
+  "IOSAppStoreURL": "https://www.baidu.com/", 
+  "remoteVersionUrl": "https://s3.ap-northeast-1.amazonaws.com/file.bigwin-tech.com/dev.ninjagirl/hotUpdate/Version", 
+  "versionApp": "1.3.25", 
+  "remoteProjectManifestUrl": "https://s3.ap-northeast-1.amazonaws.com/file.bigwin-tech.com/dev.ninjagirl/hotUpdate/Version", 
+  "AndroidStoreURL": "https://l.h-comic.org/w5hUg4mt", 
+  "versionCode": 1, 
+  "versionResource": "1.3.25",
+  "isNeedGoAppStore": 1
+}

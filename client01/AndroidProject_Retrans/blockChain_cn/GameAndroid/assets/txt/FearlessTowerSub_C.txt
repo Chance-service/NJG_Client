@@ -1,0 +1,91 @@
+id	nextStage	type	spine	image	battleBg	stageName
+1001	1002	0	Spine/CharacterSpine,NG_01000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_1001
+1002	1003	0	Spine/CharacterSpine,NG_02000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_1002
+1003	1004	0	Spine/CharacterSpine,NG_03000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_1003
+1004	1005	1	Spine/CharacterSpine,Enemy09	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_1004
+1005	1006	0	Spine/CharacterSpine,NG_05000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_1005
+1006	1007	0	Spine/CharacterSpine,NG_06000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_1006
+1007	1008	0	Spine/CharacterSpine,NG_07000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_1007
+1008	1009	1	Spine/CharacterSpine,Enemy09	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_1008
+1009	1010	0	Spine/CharacterSpine,NG_09000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_1009
+1010	1011	0	Spine/CharacterSpine,NG_10000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_1010
+1011	1012	0	Spine/CharacterSpine,NG_11000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_1011
+1012	1013	1	Spine/CharacterSpine,Enemy09	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_1012
+1013	1014	0	Spine/CharacterSpine,NG_13000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_1013
+1014	1015	0	Spine/CharacterSpine,NG_14000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_1014
+1015	1016	0	Spine/CharacterSpine,NG_15000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_1015
+1016	1017	0	Spine/CharacterSpine,NG_16000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_1016
+1017	1018	0	Spine/CharacterSpine,NG_17000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_1017
+1018	1019	1	Spine/CharacterSpine,Enemy09	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_1018
+1019	1020	0	Spine/CharacterSpine,NG_19000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_1019
+1020	1021	0	Spine/CharacterSpine,NG_20000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_1020
+1021	1022	0	Spine/CharacterSpine,NG_21000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_1021
+1022	1023	0	Spine/CharacterSpine,NG_22000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_1022
+1023	1024	0	Spine/CharacterSpine,NG_23000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_1023
+1024	1025	1	Spine/CharacterSpine,Enemy09	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_1024
+1025	1026	0	Spine/CharacterSpine,NG_01000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_1025
+1026	1027	0	Spine/CharacterSpine,NG_02000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_1026
+1027	1028	0	Spine/CharacterSpine,NG_03000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_1027
+1028	1029	0	Spine/CharacterSpine,NG_04000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_1028
+1029	1030	1	Spine/CharacterSpine,Enemy09	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_1029
+1030	0	0	Spine/CharacterSpine,NG_06000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_1030
+2001	2002		Spine/CharacterSpine,NG_01000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_2001
+2002	2003		Spine/CharacterSpine,NG_02000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_2002
+2003	2004		Spine/CharacterSpine,NG_03000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_2003
+2004	2005		Spine/CharacterSpine,Enemy09	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_2004
+2005	2006		Spine/CharacterSpine,NG_05000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_2005
+2006	2007		Spine/CharacterSpine,NG_06000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_2006
+2007	2008		Spine/CharacterSpine,NG_07000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_2007
+2008	2009		Spine/CharacterSpine,Enemy09	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_2008
+2009	2010		Spine/CharacterSpine,NG_09000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_2009
+2010	2011		Spine/CharacterSpine,NG_10000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_2010
+2011	2012		Spine/CharacterSpine,NG_11000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_2011
+2012	2013		Spine/CharacterSpine,Enemy09	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_2012
+2013	2014		Spine/CharacterSpine,NG_13000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_2013
+2014	2015		Spine/CharacterSpine,NG_14000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_2014
+2015	2016		Spine/CharacterSpine,NG_15000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_2015
+2016	2017		Spine/CharacterSpine,NG_16000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_2016
+2017	2018		Spine/CharacterSpine,NG_17000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_2017
+2018	2019		Spine/CharacterSpine,Enemy09	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_2018
+2019	2020		Spine/CharacterSpine,NG_19000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_2019
+2020	2021		Spine/CharacterSpine,NG_20000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_2020
+2021	2022		Spine/CharacterSpine,NG_21000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_2021
+2022	2023		Spine/CharacterSpine,NG_22000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_2022
+2023	2024		Spine/CharacterSpine,NG_23000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_2023
+2024	2025		Spine/CharacterSpine,Enemy09	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_2024
+2025	2026		Spine/CharacterSpine,NG_01000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_2025
+2026	2027		Spine/CharacterSpine,NG_02000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_2026
+2027	2028		Spine/CharacterSpine,NG_03000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_2027
+2028	2029		Spine/CharacterSpine,NG_04000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_2028
+2029	2030		Spine/CharacterSpine,Enemy09	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_2029
+2030	0		Spine/CharacterSpine,NG_06000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_2030
+3001	3002		Spine/CharacterSpine,NG_01000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_3001
+3002	3003		Spine/CharacterSpine,NG_02000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_3002
+3003	3004		Spine/CharacterSpine,NG_03000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_3003
+3004	3005		Spine/CharacterSpine,Enemy09	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_3004
+3005	3006		Spine/CharacterSpine,NG_05000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_3005
+3006	3007		Spine/CharacterSpine,NG_06000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_3006
+3007	3008		Spine/CharacterSpine,NG_07000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_3007
+3008	3009		Spine/CharacterSpine,Enemy09	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_3008
+3009	3010		Spine/CharacterSpine,NG_09000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_3009
+3010	3011		Spine/CharacterSpine,NG_10000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_3010
+3011	3012		Spine/CharacterSpine,NG_11000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_3011
+3012	3013		Spine/CharacterSpine,Enemy09	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_3012
+3013	3014		Spine/CharacterSpine,NG_13000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_3013
+3014	3015		Spine/CharacterSpine,NG_14000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_3014
+3015	3016		Spine/CharacterSpine,NG_15000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_3015
+3016	3017		Spine/CharacterSpine,NG_16000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_3016
+3017	3018		Spine/CharacterSpine,NG_17000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_3017
+3018	3019		Spine/CharacterSpine,Enemy09	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_3018
+3019	3020		Spine/CharacterSpine,NG_19000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_3019
+3020	3021		Spine/CharacterSpine,NG_20000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_3020
+3021	3022		Spine/CharacterSpine,NG_21000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_3021
+3022	3023		Spine/CharacterSpine,NG_22000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_3022
+3023	3024		Spine/CharacterSpine,NG_23000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_3023
+3024	3025		Spine/CharacterSpine,Enemy09	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_3024
+3025	3026		Spine/CharacterSpine,NG_01000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_3025
+3026	3027		Spine/CharacterSpine,NG_02000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_3026
+3027	3028		Spine/CharacterSpine,NG_03000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_3027
+3028	3029		Spine/CharacterSpine,NG_04000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_3028
+3029	3030		Spine/CharacterSpine,Enemy09	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_3029
+3030	0		Spine/CharacterSpine,NG_06000	BG/Tower/Tower_1LifeStage_1.png	battle_bg_003	@FearlessTowerStage_3030

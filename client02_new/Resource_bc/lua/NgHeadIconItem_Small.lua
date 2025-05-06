@@ -37,7 +37,7 @@ function NgHeadIconItem_Small:resetData(handler)
         if curRoleInfo then
             local itemId = curRoleInfo.itemId
             local heroCfg = ConfigManager.getNewHeroCfg()[itemId]
-            handler.element = heroCfg.Element
+            handler.element = curRoleInfo.elements
             handler.class = heroCfg.Job
         end
     end
@@ -57,12 +57,13 @@ function NgHeadIconItem_Small:refreshCellData()
             local heroCfg = ConfigManager.getNewHeroCfg()[itemId]
             local quality = (curRoleInfo.starLevel <= 5 and 4) or (curRoleInfo.starLevel >= 11 and 6) or 5
 
-            self.element = heroCfg.Element
+            self.element = curRoleInfo.elements
             self.class = heroCfg.Job
 
             NodeHelper:setStringForLabel(self.container, { mBp = "BP " .. curRoleInfo.fight })
+            local iconId = curRoleInfo.skinId > 0 and string.format("%05d", curRoleInfo.skinId) or string.format("%02d000", itemId)
             NodeHelper:setSpriteImage(self.container, { mFrame = GameConfig.QualityImage[quality],
-                                                        mIcon = "UI/RoleIcon/Icon_" .. string.format("%02d", itemId) .. string.format("%03d", curRoleInfo.skinId) .. ".png",
+                                                        mIcon = "UI/RoleIcon/Icon_" .. iconId .. ".png",
                                                         mElement = GameConfig.MercenaryElementImg[self.element],
                                                         mRairtyTxt = GameConfig.QualityImageTxt[quality],
                                                         mClass = GameConfig.MercenaryClassImg[self.class] })
@@ -70,6 +71,9 @@ function NgHeadIconItem_Small:refreshCellData()
                 NodeHelper:setNodesVisible(self.container, { mChoose = false, mElement = false, mBP = false, mRairtyTxt = false, mClass = false })
             elseif self.pageType == GameConfig.NgHeadIconSmallType.BATTLE_EDITTEAM_PAGE then
                 NodeHelper:setNodesVisible(self.container, { mChoose = self.isChoose or false })
+            end
+            if self.option then
+                NodeHelper:setNodesVisible(self.container,{mLock = self.option.isLock})
             end
         end
     end
@@ -105,7 +109,8 @@ function NgHeadIconItem_Small:refreshItemData(iconItem)
             if iconItem.option.type == 1 then
                 NodeHelper:setSpriteImage(iconItem.container, { mIcon = cfg.Icon })
             else
-                NodeHelper:setSpriteImage(iconItem.container, { mIcon = "UI/RoleIcon/Icon_" .. string.format("%02d", itemId) .. string.format("%03d", skinId) .. ".png" })
+                local iconId = skinId > 0 and string.format("%05d", skinId) or string.format("%02d000", itemId)
+                NodeHelper:setSpriteImage(iconItem.container, { mIcon = "UI/RoleIcon/Icon_" .. iconId .. ".png" })
             end
             NodeHelper:setNodesVisible(iconItem.container, { mChoose = false })
         end

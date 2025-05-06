@@ -5,14 +5,15 @@ require("Battle.NewBattleUtil")
 local aliveIdTable = { }
 -------------------------------------------------------
 --[[
-開場時賦予自身"開花I/開花I/開花I/開花I"(params1)
+開場時賦予自身該符石Buff
 ]]--
 -------------------------------------------------------
 function Skill_3030:castSkill(chaNode, skillType, skillId)
     --紀錄skill data
     local skillCfg = ConfigManager:getSkillCfg()[skillId]
-    chaNode.skillData[skillType][skillId]["COUNT"] = chaNode.skillData[skillType][skillId]["COUNT"] + 1
-    chaNode.skillData[skillType][skillId]["CD"] = tonumber(skillCfg.cd)
+    local skillBaseId = math.floor(skillId / 10)
+    chaNode.runeData[skillType][skillBaseId]["COUNT"] = chaNode.runeData[skillType][skillBaseId]["COUNT"] + 1
+    chaNode.runeData[skillType][skillBaseId]["CD"] = tonumber(skillCfg.cd)
 end
 -- 提前計算技能目標用 不使用時回傳nil
 function Skill_3030:calSkillTarget(chaNode, skillId)
@@ -23,25 +24,24 @@ function Skill_3030:runSkill(chaNode, skillId, resultTable, allPassiveTable, tar
     local skillLevel = skillId % 10
     local params = common:split(skillCfg.values, ",")
 
-    local buffTable = { }
-    local buffTarTable = { }
-    local buffTimeTable = { }
-    local buffCountTable = { }
     --Get Buff
-    table.insert(buffTable, tonumber(params[1]))
-    table.insert(buffTarTable, chaNode)
-    table.insert(buffTimeTable, 999000 * 1000)
-    table.insert(buffCountTable, 0)
-
-    resultTable[NewBattleConst.LogDataType.BUFF] = buffTable
-    resultTable[NewBattleConst.LogDataType.BUFF_TAR] = buffTarTable
-    resultTable[NewBattleConst.LogDataType.BUFF_TIME] = buffTimeTable
-    resultTable[NewBattleConst.LogDataType.BUFF_COUNT] = buffCountTable
+    if resultTable[NewBattleConst.LogDataType.BUFF_TAR] then
+        table.insert(resultTable[NewBattleConst.LogDataType.BUFF], tonumber(params[1]))
+        table.insert(resultTable[NewBattleConst.LogDataType.BUFF_TAR], chaNode)
+        table.insert(resultTable[NewBattleConst.LogDataType.BUFF_TIME], 999000 * 1000)
+        table.insert(resultTable[NewBattleConst.LogDataType.BUFF_COUNT], tonumber(params[2]))
+    else
+        resultTable[NewBattleConst.LogDataType.BUFF] = { tonumber(params[1]) }
+        resultTable[NewBattleConst.LogDataType.BUFF_TAR] = { chaNode }
+        resultTable[NewBattleConst.LogDataType.BUFF_TIME] = { 999000 * 1000 }
+        resultTable[NewBattleConst.LogDataType.BUFF_COUNT] = { tonumber(params[2]) }
+    end
     return resultTable
 end
 
 function Skill_3030:isUsable(chaNode, skillType, skillId, triggerType)
-    if not chaNode.skillData[skillType][skillId]["COUNT"] or chaNode.skillData[skillType][skillId]["COUNT"] > 0 then
+    local skillBaseId = math.floor(skillId / 10)
+    if not chaNode.runeData[skillType][skillBaseId]["COUNT"] or chaNode.runeData[skillType][skillBaseId]["COUNT"] > 0 then
         return false
     end
     return true

@@ -31,16 +31,17 @@ local SKILL_LEVEL_MESSAGE_KEY = {   -- 用skill_num當作key
     [4] = "@HeroSkillUnlock_equip1",
 }
 local SKILL_STAR_LIMIT = {   -- 用skill_num * 10 + skill_level當作key
-    [12] = 6, [13] = 10,
-    [22] = 7, [23] = 11,
-    [32] = 8, [33] = 12,
-    [42] = 6, [43] = 11,
+    [11] = 1,[12] = 6, [13] = 10,
+    [21] = 1,[22] = 7, [23] = 11,
+    [31] = 1,[32] = 8, [33] = 12,
+    [41] = 1,[42] = 6, [43] = 11,
+
 }
 local SKILL_STAR_MESSAGE_KEY = {   -- 用skill_num * 10 + skill_level當作key
-    [12] = "@HeroSkillUpgrade1", [13] = "@HeroSkillUpgrade5",
-    [22] = "@HeroSkillUpgrade2", [23] = "@HeroSkillUpgrade6",
-    [32] = "@HeroSkillUpgrade3", [33] = "@HeroSkillUpgrade7",
-    [42] = "@HeroSkillUnlock_equip2", [43] = "@HeroSkillUnlock_equip3",
+    [11] = "",[12] = "@HeroSkillUpgrade6", [13] = "@HeroSkillUpgrade10",
+    [21] = "",[22] = "@HeroSkillUpgrade7", [23] = "@HeroSkillUpgrade11",
+    [31] = "",[32] = "@HeroSkillUpgrade8", [33] = "@HeroSkillUpgrade12",
+    [41] = "@HeroSkillUnlock_equip1",[42] = "@HeroSkillUnlock_equip2", [43] = "@HeroSkillUnlock_equip3",   
 }
 local opcodes = {
 }
@@ -107,86 +108,85 @@ function HeroSkillPage:resizeBuffItem(container)
 end
 
 function HeroSkillPage:refreshSkillItem(container, level)
-    if container == nil then
-        return
-    end
+    -- 檢查容器是否存在，避免後續報錯
+    if not container then return end
+
+    -- 設置技能等級文字
     NodeHelper:setStringForLabel(container, {
         mSkillLvTxt = common:getLanguageString("@LevelStr", string.format(level))
     })
-    -- 技能說明
+
+    -- 生成技能完整ID並清空技能描述節點
     local skillFullId = tonumber(PAGE_INFO.BASE_SKILL_ID .. level)
-    local freeTypeId = skillFullId
     local skillDesNode = container:getVarNode("mContentNode")
     skillDesNode:removeAllChildren()
-    local htmlStr = (FreeTypeConfig[freeTypeId] and FreeTypeConfig[freeTypeId].content or "")
+    
+    -- 獲取技能HTML內容
+    local htmlStr = FreeTypeConfig[skillFullId] and FreeTypeConfig[skillFullId].content or ""
     local tipStr = nil
-    if PAGE_INFO.SKILL_NUM~=4 then--(第四技能除外)
-        if level == 1 then    -- 1等技能只看角色等級
-            if PAGE_INFO.ROLE_LEVEL < SKILL_LEVEL_LIMIT[PAGE_INFO.SKILL_NUM] then   -- 角色等級小於需求等級
-                htmlStr = string.gsub(htmlStr, PAGE_INFO.UNLOCK_FONT_COLOR, PAGE_INFO.LOCK_FONT_COLOR)
-                tipStr = SKILL_LEVEL_MESSAGE_KEY[PAGE_INFO.SKILL_NUM]
-            end
-        else
-            -- 角色等級小於需求等級或星數小於需求星數
-            -- 條件字串優先顯示星數
-            if PAGE_INFO.ROLE_STAR < SKILL_STAR_LIMIT[PAGE_INFO.SKILL_NUM * 10 + level] then
-                htmlStr = string.gsub(htmlStr, PAGE_INFO.UNLOCK_FONT_COLOR, PAGE_INFO.LOCK_FONT_COLOR)
-                tipStr = SKILL_STAR_MESSAGE_KEY[PAGE_INFO.SKILL_NUM * 10 + level]
-            elseif PAGE_INFO.ROLE_LEVEL < SKILL_LEVEL_LIMIT[PAGE_INFO.SKILL_NUM] then
-                htmlStr = string.gsub(htmlStr, PAGE_INFO.UNLOCK_FONT_COLOR, PAGE_INFO.LOCK_FONT_COLOR)
-                tipStr = SKILL_LEVEL_MESSAGE_KEY[PAGE_INFO.SKILL_NUM]
-            end
+
+    -- 檢查技能解鎖條件
+    if PAGE_INFO.SKILL_NUM ~= 4 then
+        -- 一般技能檢查
+        if level == 1 and PAGE_INFO.ROLE_LEVEL < SKILL_LEVEL_LIMIT[PAGE_INFO.SKILL_NUM] then
+            -- 角色等級不足，設定鎖定樣式和提示文字
+            htmlStr = string.gsub(htmlStr, PAGE_INFO.UNLOCK_FONT_COLOR, PAGE_INFO.LOCK_FONT_COLOR)
+            tipStr = SKILL_LEVEL_MESSAGE_KEY[PAGE_INFO.SKILL_NUM]
+        elseif PAGE_INFO.ROLE_STAR < SKILL_STAR_LIMIT[PAGE_INFO.SKILL_NUM * 10 + level] then
+            -- 星數不足，設定鎖定樣式和提示文字
+            htmlStr = string.gsub(htmlStr, PAGE_INFO.UNLOCK_FONT_COLOR, PAGE_INFO.LOCK_FONT_COLOR)
+            tipStr = SKILL_STAR_MESSAGE_KEY[PAGE_INFO.SKILL_NUM * 10 + level]
+        elseif PAGE_INFO.ROLE_LEVEL < SKILL_LEVEL_LIMIT[PAGE_INFO.SKILL_NUM] then
+            -- 等級不足，設定鎖定樣式和提示文字
+            htmlStr = string.gsub(htmlStr, PAGE_INFO.UNLOCK_FONT_COLOR, PAGE_INFO.LOCK_FONT_COLOR)
+            tipStr = SKILL_LEVEL_MESSAGE_KEY[PAGE_INFO.SKILL_NUM]
         end
-    else--專武技能
+    else
+        -- 專武技能檢查
         local UserMercenaryManager = require("UserMercenaryManager")
-        local roleEquip = PAGE_INFO.ROLEID and UserMercenaryManager:getEquipByPart(PAGE_INFO.ROLEID, 10) or nil --10是項鍊位置
-        if PAGE_INFO.ROLEID and roleEquip == nil then--未穿裝備
-            if level == 1 then
-                htmlStr = string.gsub(htmlStr, PAGE_INFO.UNLOCK_FONT_COLOR, PAGE_INFO.LOCK_FONT_COLOR)
-                tipStr = SKILL_LEVEL_MESSAGE_KEY[PAGE_INFO.SKILL_NUM]
-            else
-                htmlStr = string.gsub(htmlStr, PAGE_INFO.UNLOCK_FONT_COLOR, PAGE_INFO.LOCK_FONT_COLOR)
-                tipStr = SKILL_STAR_MESSAGE_KEY[PAGE_INFO.SKILL_NUM * 10 + level]
-            end
-        elseif not PAGE_INFO.ROLEID then    -- 沒有roleId -> 圖鑑
-            tipStr = nil
+        local roleEquip = PAGE_INFO.ROLEID and UserMercenaryManager:getEquipByPart(PAGE_INFO.ROLEID, 10) or nil
+        local LimitIdx = PAGE_INFO.SKILL_NUM * 10 + level
+        if not roleEquip then
+            -- 未裝備專武，設定鎖定樣式和提示文字
+            htmlStr = string.gsub(htmlStr, PAGE_INFO.UNLOCK_FONT_COLOR, PAGE_INFO.LOCK_FONT_COLOR)
+            tipStr = PAGE_INFO.ROLEID and SKILL_STAR_MESSAGE_KEY[LimitIdx] or ""
         else
+            -- 驗證裝備的星數和對應條件
             local equipId = roleEquip.equipItemId
             local InfoAccesser = require("Util.InfoAccesser")
             local parsedEquip = InfoAccesser:parseAWEquipStr(equipId)
-            local LimitIdx=PAGE_INFO.SKILL_NUM * 10 + level
-            --有穿自己的專武
-            if tonumber(string.sub(equipId,2,3))==PAGE_INFO.ITEMID then
-                if level == 1 then
-                    tipStr = nil
-                elseif parsedEquip.star < SKILL_STAR_LIMIT[LimitIdx] then
+            local AncientWeaponDataMgr = require("AncientWeapon.AncientWeaponDataMgr")
+            if AncientWeaponDataMgr:getIsTargetHeroEquip(equipId, PAGE_INFO.ITEMID) then -- 穿著自己的專武
+                -- 檢查T3專武&專武星數
+                if parsedEquip.star < SKILL_STAR_LIMIT[LimitIdx] or tonumber(string.sub(equipId, 1, 1)) ~= 1 then
                     htmlStr = string.gsub(htmlStr, PAGE_INFO.UNLOCK_FONT_COLOR, PAGE_INFO.LOCK_FONT_COLOR)
                     tipStr = SKILL_STAR_MESSAGE_KEY[LimitIdx]
                 end
-            else--穿別人專武
-                if level == 1 then
-                    htmlStr = string.gsub(htmlStr, PAGE_INFO.UNLOCK_FONT_COLOR, PAGE_INFO.LOCK_FONT_COLOR)
-                    tipStr = SKILL_LEVEL_MESSAGE_KEY[PAGE_INFO.SKILL_NUM]
-                elseif level == 2 and parsedEquip.star<SKILL_STAR_LIMIT[LimitIdx] or level == 3 and parsedEquip.star<SKILL_STAR_LIMIT[LimitIdx] then
-                    htmlStr = string.gsub(htmlStr, PAGE_INFO.UNLOCK_FONT_COLOR, PAGE_INFO.LOCK_FONT_COLOR)
-                    tipStr = SKILL_STAR_MESSAGE_KEY[LimitIdx]
-                end
+            else
+                -- 穿著非對應的專武，設定鎖定樣式和提示文字
+                htmlStr = string.gsub(htmlStr, PAGE_INFO.UNLOCK_FONT_COLOR, PAGE_INFO.LOCK_FONT_COLOR)
+                tipStr = SKILL_STAR_MESSAGE_KEY[LimitIdx]
             end
         end
     end
-    local htmlLabel = CCHTMLLabel:createWithString(htmlStr, CCSizeMake(PAGE_INFO.SCROLLVIEW_VIEWWIDTH - PAGE_INFO.SKILL_CONTENT_SHIFT * 2, 50), "Barlow-SemiBold")
-    local htmlSize = htmlLabel:getContentSize()
+
+    -- 顯示技能描述內容
+    local htmlLabel = CCHTMLLabel:createWithString(htmlStr, 
+        CCSizeMake(PAGE_INFO.SCROLLVIEW_VIEWWIDTH - PAGE_INFO.SKILL_CONTENT_SHIFT * 2, 50), 
+        "Barlow-SemiBold")
     htmlLabel:setPosition(ccp(PAGE_INFO.SKILL_CONTENT_SHIFT, 0))
     htmlLabel:setAnchorPoint(ccp(0, 0))
     skillDesNode:addChild(htmlLabel)
     htmlLabel:setTag(PAGE_INFO.HTML_TAG)
-    if tipStr then
-        NodeHelper:setStringForLabel(container, { mTipTxt = common:getLanguageString(tipStr)})
-    else
-        NodeHelper:setStringForLabel(container, { mTipTxt = common:getLanguageString("")})
-    end
+
+    -- 更新提示文字
+    NodeHelper:setStringForLabel(container, { mTipTxt = common:getLanguageString(tipStr or "") })
+    
+    -- 調整技能項目大小
     return self:resizeSkillItem(container, tipStr)
 end
+
+
 
 function HeroSkillPage:resizeSkillItem(container, tipStr)
     local titleNode = container:getVarNode("mTopNode")
@@ -290,13 +290,13 @@ end
 function HeroSkillPage_setPageRoleInfo(level, star,roleId,itemId)
     PAGE_INFO.ROLE_LEVEL = level
     PAGE_INFO.ROLE_STAR = star
-    PAGE_INFO.ROLEID=roleId
-    PAGE_INFO.ITEMID=itemId
+    PAGE_INFO.ROLEID = roleId
+    PAGE_INFO.ITEMID = itemId
 end
 
 function HeroSkillPage_setPageSkillId(id)
-    PAGE_INFO.BASE_SKILL_ID = string.sub(tostring(id), 1, 4)
-    PAGE_INFO.SKILL_NUM = tonumber(string.sub(tostring(id), 4, 4) + 1)
+    PAGE_INFO.BASE_SKILL_ID = tostring(math.floor(id / 10))
+    PAGE_INFO.SKILL_NUM = math.floor(id / 10) % 10 + 1
     PAGE_INFO.BUFF_LIST = common:split(skillCfg[id].buff, ",")
     PAGE_INFO.FULL_SKILL_ID = tonumber(PAGE_INFO.BASE_SKILL_ID .. ((PAGE_INFO.SKILL_LEVEL == 0) and 1 or PAGE_INFO.SKILL_LEVEL))
     PAGE_INFO.ALL_LEVEL_BUFF_LIST = { }

@@ -1,47 +1,61 @@
 
 NGSceneB_01a_02.png
-size: 709,709
+size: 2048,128
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
+D10
+  rotate: false
+  xy: 1514, 76
+  size: 312, 30
+  orig: 312, 30
+  offset: 0, 0
+  index: -1
+D5
+  rotate: false
+  xy: 526, 44
+  size: 378, 27
+  orig: 378, 27
+  offset: 0, 0
+  index: -1
 a10
   rotate: false
-  xy: 2, 497
+  xy: 526, 9
   size: 299, 33
   orig: 299, 33
   offset: 0, 0
   index: -1
 a5
   rotate: false
-  xy: 2, 532
+  xy: 1149, 72
   size: 363, 34
   orig: 363, 34
   offset: 0, 0
   index: -1
 b10
   rotate: false
-  xy: 2, 568
+  xy: 2, 2
   size: 375, 33
   orig: 375, 33
   offset: 0, 0
   index: -1
 b5
   rotate: false
-  xy: 2, 603
+  xy: 709, 73
   size: 438, 33
   orig: 438, 33
   offset: 0, 0
   index: -1
 c10
   rotate: false
-  xy: 2, 674
+  xy: 2, 73
   size: 705, 33
   orig: 705, 33
   offset: 0, 0
   index: -1
 c5
   rotate: false
-  xy: 2, 638
+  xy: 2, 37
   size: 522, 34
   orig: 522, 34
   offset: 0, 0

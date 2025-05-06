@@ -62,16 +62,16 @@ function PopBannerPage.onEnter(container)
     for i = 1, maxBanner do 
         if i <= countBanner then
             imgMap["mPopBanner_" .. i] = BannerCfg[i].Image .. ".png"
-            if BannerCfg[i].Page == ActivityConfig.RAID or BannerCfg[i].Page == ActivityConfig.WORLD_BOSS then       
-                htmlTimeLabel[BannerCfg[i].Page] = CCHTMLLabel:createWithString((FreeTypeConfig[10097] and FreeTypeConfig[10097].content), CCSizeMake(415, 10))
-                container:getVarLabelTTF("mTimeTxt" .. i):addChild(htmlTimeLabel[BannerCfg[i].Page])
-                htmlTimeLabel[BannerCfg[i].Page]:setAnchorPoint(ccp(0, 0))
-                htmlTimeLabel[BannerCfg[i].Page]:setPositionY(2)
+            if BannerCfg[i].activityId == ActivityConfig.RAID or BannerCfg[i].activityId == ActivityConfig.WORLD_BOSS then       
+                htmlTimeLabel[BannerCfg[i].activityId] = CCHTMLLabel:createWithString((FreeTypeConfig[10097] and FreeTypeConfig[10097].content), CCSizeMake(415, 10))
+                container:getVarLabelTTF("mTimeTxt" .. i):addChild(htmlTimeLabel[BannerCfg[i].activityId])
+                htmlTimeLabel[BannerCfg[i].activityId]:setAnchorPoint(ccp(0, 0))
+                htmlTimeLabel[BannerCfg[i].activityId]:setPositionY(2)
             end
         end
         container:getVarSprite("mPopBanner_" .. i):setVisible(i <= countBanner)
         NodeHelper:setStringForLabel(container, { ["mTimeTxt" .. i] = "" })
-        local actId = BannerCfg[i] and BannerCfg[i].Page
+        local actId = BannerCfg[i] and BannerCfg[i].activityId
         if actId and ActivityConfig[actId] and ActivityConfig[actId].activityType then
             if ActivityConfig[actId].activityType == ActivityConfig.RAID or ActivityConfig[actId].activityType == ActivityConfig.WORLD_BOSS then
                 NodeHelper:setNodesVisible(container, { ["mCountTxt" .. i] = true })
@@ -271,7 +271,7 @@ function PopBannerPage.onReceivePacket(container)
         msg:ParseFromString(msgBuff)
         MultiEliteDataManger:setMapInfo(msg)
         for i = 1, maxBanner do 
-            local actId = BannerCfg[i] and BannerCfg[i].Page
+            local actId = BannerCfg[i] and BannerCfg[i].activityId
             if actId and ActivityConfig[actId] and ActivityConfig[actId].activityType then
                 if ActivityConfig[actId].activityType == ActivityConfig.RAID then
                     NodeHelper:setNodesVisible(container, { ["mCountTxt" .. i] = true })
@@ -285,7 +285,7 @@ function PopBannerPage.onReceivePacket(container)
         WorldBossManager.ReceiveHPWorldBossInfo(msg)
         TimeCalculator:getInstance():createTimeCalcultor(worldbossCountDownKey, WorldBossManager.leftTime)
         for i = 1, maxBanner do 
-            local actId = BannerCfg[i] and BannerCfg[i].Page
+            local actId = BannerCfg[i] and BannerCfg[i].activityId
             if actId and ActivityConfig[actId] and ActivityConfig[actId].activityType then
                 if ActivityConfig[actId].activityType == ActivityConfig.WORLD_BOSS then
                     NodeHelper:setNodesVisible(container, { ["mCountTxt" .. i] = true })
@@ -330,7 +330,7 @@ function PopBannerPage.onTouchBanner(container,eventName )
 end
 
 function PopBannerPage:getMapInfo(container)
-	common:sendEmptyPacket(HP_pb.MULTIELITE_LIST_INFO_C)
+	common:sendEmptyPacket(HP_pb.MULTIELITE_LIST_INFO_C, false)
 end
 function PopBannerPage:getWorldBossInfo(container)
 	common:sendEmptyPacket(HP_pb.FETCH_WORLD_BOSS_INFO_C)

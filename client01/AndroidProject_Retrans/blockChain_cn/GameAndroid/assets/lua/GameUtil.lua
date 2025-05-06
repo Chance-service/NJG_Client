@@ -106,6 +106,34 @@ function GameUtil:doRecharge(goodsId)
     BuyManager.Buy((UserInfo.playerInfo.playerId), buyInfo)
 end
 
+function GameUtil:getSkillTipStr(skillId)
+    local strTb = { }
+    local strTtb = { }
+
+    table.insert(strTb, "")
+    table.insert(strTtb, common:fillHtmlStr("TipName_1", common:getLanguageString("@Skill_Name_" .. math.floor(skillId / 10))))
+    local oriSkillHtml = FreeTypeConfig[skillId] and FreeTypeConfig[skillId].content or " ></font>"
+    -- 移除技能說明FreeTypeFont html部分
+    local skillDesc = ""
+    local tempStr = common:split(oriSkillHtml, " >")
+    tempStr = common:split(tempStr[2], "</font>")
+    skillDesc = tempStr[1]
+    table.insert(strTb, common:fillHtmlStr("TipName_1", skillDesc))
+
+    return table.concat(strTb, '<br/>'), false, strTtb[1]
+end
+
+function GameUtil:showSkillTip(relativeNode, skillId, hideCallBackExt)
+    if GameConfig.isIOSAuditVersion then
+        return
+    end
+
+    local Const_pb = require("Const_pb")
+    local tipStr, isEquip, nameLabel = self:getSkillTipStr(skillId)
+    if tipStr == nil or tipStr == "" or relativeNode == nil then return end
+    GameUtil:showTipStr(relativeNode, tipStr, isEquip, itemCfg, nameLabel, hideCallBackExt)
+end
+
 function GameUtil:getTipStr(itemCfg)
     local resInfo = ResManagerForLua:getResInfoByTypeAndId(itemCfg.type, itemCfg.itemId, itemCfg.count or 1);
     local Const_pb = require("Const_pb");
@@ -241,7 +269,15 @@ function GameUtil:showTip(relativeNode, itemCfg, hideCallBackExt)
         --            return
         --        end
     end
-
+    if itemCfg.type == Const_pb.EQUIP * 10000 then
+        local cfg = ConfigManager.getEquipCfg()[itemCfg.itemId]
+        if cfg.part == Const_pb.NECKLACE then   -- 回憶武器
+            AWPreview = require("AncientWeaponPreview_PopUp")
+            AWPreview:setShowId(itemCfg.itemId)
+            PageManager.pushPage("AncientWeaponPreview_PopUp")
+            return
+        end
+    end
 
     local Const_pb = require("Const_pb");
     local resInfo = ResManagerForLua:getResInfoByTypeAndId(itemCfg.type, itemCfg.itemId, itemCfg.count or 1);
@@ -270,6 +306,15 @@ function GameUtil:showTip2(relativeNode, itemCfg, hideCallBackExt)
 
         --            return
         --        end
+    end
+    if itemCfg.type == Const_pb.EQUIP * 10000 then
+        local cfg = ConfigManager.getEquipCfg()[itemCfg.itemId]
+        if cfg.part == Const_pb.NECKLACE then   -- 回憶武器
+            AWPreview = require("AncientWeaponPreview_PopUp")
+            AWPreview:setShowId(itemCfg.itemId)
+            PageManager.pushPage("AncientWeaponPreview_PopUp")
+            return
+        end
     end
 
 
@@ -797,15 +842,17 @@ function GameUtil:setMainNodeVisible(visible)
     mainButtons:setVisible(visible)
 end
 
-function GameUtil:setPlayMovieVisible(visible)      
-    local mainContainer = tolua.cast(MainFrame:getInstance(), "CCBContainer")
-    local backNode = mainContainer:getCCNodeFromCCB("mNodeBack")
-    backNode:setVisible(visible) 
-    local mainButtons = mainContainer:getCCNodeFromCCB("mMainFrameButtons")
-    mainButtons:setVisible(visible)
-    if visible then
-        MainFrame:getInstance():setBackgroundColor(0, 0, 0, 1)
-    else
-        MainFrame:getInstance():setBackgroundColor(0, 0, 0, 0)
+function GameUtil:shuffleTable(table)      
+    if type(table) ~= "table" then
+        return
     end
+    local tempTable = { }
+    for i = 1, #table do
+        tempTable[i] = table[i]
+    end
+    for i = 1, #tempTable do
+        local rand = math.random(1, #tempTable)
+        tempTable[i], tempTable[rand] = tempTable[rand], tempTable[i]
+    end
+    return tempTable
 end

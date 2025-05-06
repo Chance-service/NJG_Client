@@ -1,110 +1,145 @@
 
 NGSceneB_01a_11.png
-size: 429,429
+size: 2048,128
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
+D33
+  rotate: false
+  xy: 1762, 43
+  size: 231, 27
+  orig: 231, 27
+  offset: 0, 0
+  index: -1
+D34
+  rotate: false
+  xy: 600, 14
+  size: 133, 27
+  orig: 133, 27
+  offset: 0, 0
+  index: -1
+D35
+  rotate: false
+  xy: 393, 14
+  size: 205, 27
+  orig: 205, 27
+  offset: 0, 0
+  index: -1
+D36
+  rotate: false
+  xy: 764, 43
+  size: 252, 27
+  orig: 252, 27
+  offset: 0, 0
+  index: -1
+D37
+  rotate: false
+  xy: 393, 43
+  size: 369, 27
+  orig: 369, 27
+  offset: 0, 0
+  index: -1
 a33
   rotate: false
-  xy: 37, 86
+  xy: 1517, 9
   size: 219, 33
   orig: 219, 33
   offset: 0, 0
   index: -1
 a34
   rotate: false
-  xy: 291, 184
+  xy: 869, 8
   size: 129, 33
   orig: 129, 33
   offset: 0, 0
   index: -1
 a35
   rotate: false
-  xy: 37, 17
+  xy: 1849, 72
   size: 197, 33
   orig: 197, 33
   offset: 0, 0
   index: -1
 a36
   rotate: false
-  xy: 37, 149
+  xy: 1272, 37
   size: 243, 33
   orig: 243, 33
   offset: 0, 0
   index: -1
 a37
-  rotate: true
-  xy: 2, 2
+  rotate: false
+  xy: 811, 72
   size: 355, 33
   orig: 355, 33
   offset: 0, 0
   index: -1
 b33
   rotate: false
-  xy: 37, 324
+  xy: 2, 2
   size: 381, 33
   orig: 381, 33
   offset: 0, 0
   index: -1
 b34
   rotate: false
-  xy: 282, 155
+  xy: 735, 14
   size: 132, 27
   orig: 132, 27
   offset: 0, 0
   index: -1
 b35
   rotate: false
-  xy: 37, 121
+  xy: 1517, 44
   size: 243, 26
   orig: 243, 26
   offset: 0, 0
   index: -1
 b36
   rotate: false
-  xy: 2, 394
+  xy: 2, 72
   size: 417, 33
   orig: 417, 33
   offset: 0, 0
   index: -1
 b37
   rotate: false
-  xy: 37, 254
+  xy: 1168, 72
   size: 343, 33
   orig: 343, 33
   offset: 0, 0
   index: -1
 c33
   rotate: false
-  xy: 37, 219
+  xy: 1513, 72
   size: 334, 33
   orig: 334, 33
   offset: 0, 0
   index: -1
 c34
   rotate: false
-  xy: 37, 52
+  xy: 1738, 9
   size: 214, 32
   orig: 214, 32
   offset: 0, 0
   index: -1
 c35
   rotate: false
-  xy: 37, 184
+  xy: 1018, 37
   size: 252, 33
   orig: 252, 33
   offset: 0, 0
   index: -1
 c36
   rotate: false
-  xy: 37, 289
+  xy: 421, 72
   size: 388, 33
   orig: 388, 33
   offset: 0, 0
   index: -1
 c37
   rotate: false
-  xy: 2, 359
+  xy: 2, 37
   size: 389, 33
   orig: 389, 33
   offset: 0, 0

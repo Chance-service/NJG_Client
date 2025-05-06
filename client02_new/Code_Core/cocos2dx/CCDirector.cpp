@@ -26,7 +26,6 @@ THE SOFTWARE.
 
 // standard includes
 #include <string>
-
 // cocos2d includes
 #include "CCDirector.h"
 #include "ccFPSImages.h"
@@ -65,7 +64,9 @@ THE SOFTWARE.
 #include "CCEGLView.h"
 #include "CCConfiguration.h"
 
-
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+#include <chrono>
+#endif
 
 /**
  Position of the FPS
@@ -251,13 +252,17 @@ void CCDirector::drawScene(void)
 {
     // calculate "global" dt
     calculateDeltaTime();
-
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	auto time1 = std::chrono::high_resolution_clock::now();
+#endif
     //tick before glClear: issue #533
     if (! m_bPaused)
     {
         m_pScheduler->update(m_fDeltaTime);
     }
-
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	auto time2 = std::chrono::high_resolution_clock::now();
+#endif
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     /* to avoid flickr, nextScene MUST be here: after tick and before draw.
@@ -266,40 +271,95 @@ void CCDirector::drawScene(void)
     {
         setNextScene();
     }
-
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	auto time3 = std::chrono::high_resolution_clock::now();
+#endif
     kmGLPushMatrix();
-
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	auto time4 = std::chrono::high_resolution_clock::now();
+#endif
     // draw the scene
     if (m_pRunningScene)
     {
         m_pRunningScene->visit();
     }
-
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	auto time5 = std::chrono::high_resolution_clock::now();
+#endif
     // draw the notifications node
     if (m_pNotificationNode)
     {
         m_pNotificationNode->visit();
     }
-    
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	auto time6 = std::chrono::high_resolution_clock::now();
+#endif
     if (m_bDisplayStats)
     {
         showStats();
     }
-    
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	auto time7 = std::chrono::high_resolution_clock::now();
+#endif
     kmGLPopMatrix();
 
     m_uTotalFrames++;
-
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	auto time8 = std::chrono::high_resolution_clock::now();
+#endif
     // swap buffers
     if (m_pobOpenGLView)
     {
         m_pobOpenGLView->swapBuffers();
     }
-    
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	auto time9 = std::chrono::high_resolution_clock::now();
+#endif
     if (m_bDisplayStats)
     {
         calculateMPF();
     }
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	auto time10 = std::chrono::high_resolution_clock::now();
+#endif
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	std::chrono::duration<double> diff1 = time2 - time1;
+	if ((double)diff1.count() > 0.1f) {
+		std::cout << "CCDirector Diff1: " << diff1.count() << " sec\n";
+	}
+	std::chrono::duration<double> diff2 = time3 - time2;
+	if ((double)diff2.count() > 0.1f) {
+		std::cout << "CCDirector Diff2: " << diff2.count() << " sec\n";
+	}
+	std::chrono::duration<double> diff3 = time4 - time3;
+	if ((double)diff3.count() > 0.1f) {
+		std::cout << "CCDirector Diff3: " << diff3.count() << " sec\n";
+	}
+	std::chrono::duration<double> diff4 = time5 - time4;
+	if ((double)diff4.count() > 0.1f) {
+		std::cout << "CCDirector Diff4: " << diff4.count() << " sec\n";
+	}
+	std::chrono::duration<double> diff5 = time6 - time5;
+	if ((double)diff5.count() > 0.1f) {
+		std::cout << "CCDirector Diff5: " << diff5.count() << " sec\n";
+	}
+	std::chrono::duration<double> diff6 = time7 - time6;
+	if ((double)diff6.count() > 0.1f) {
+		std::cout << "CCDirector Diff6: " << diff6.count() << " sec\n";
+	}
+	std::chrono::duration<double> diff7 = time8 - time7;
+	if ((double)diff7.count() > 0.1f) {
+		std::cout << "CCDirector Diff7: " << diff7.count() << " sec\n";
+	}
+	std::chrono::duration<double> diff8 = time9 - time8;
+	if ((double)diff8.count() > 0.1f) {
+		std::cout << "CCDirector Diff8: " << diff8.count() << " sec\n";
+	}
+	std::chrono::duration<double> diff9 = time10 - time9;
+	if ((double)diff9.count() > 0.1f) {
+		std::cout << "CCDirector Diff9: " << diff9.count() << " sec\n";
+	}
+#endif
 }
 
 void CCDirector::calculateDeltaTime(void)
@@ -491,7 +551,8 @@ void CCDirector::setAlphaBlending(bool bOn)
     }
     else
     {
-        ccGLBlendFunc(GL_ONE, GL_ZERO);
+        //ccGLBlendFunc(GL_ONE, GL_ZERO);
+		glBlendFuncSeparate(GL_ONE, GL_ZERO, GL_ONE, GL_ZERO);
     }
 
     CHECK_GL_ERROR_DEBUG();

@@ -10,6 +10,8 @@ HPRESETGUIDEINFO = protobuf.Descriptor();
 local HPRESETGUIDEINFO_GUIDEINFOBEAN_FIELD = protobuf.FieldDescriptor();
 HPGUIDEINFOSYNC = protobuf.Descriptor();
 local HPGUIDEINFOSYNC_GUIDEINFOBEAN_FIELD = protobuf.FieldDescriptor();
+HPPLAYSTORYSYNC = protobuf.Descriptor();
+local HPPLAYSTORYSYNC_ISDONE_FIELD = protobuf.FieldDescriptor();
 
 GUIDEINFOBEAN_GUIDEID_FIELD.name = "guideId"
 GUIDEINFOBEAN_GUIDEID_FIELD.full_name = ".GuideInfoBean.guideId"
@@ -74,8 +76,26 @@ HPGUIDEINFOSYNC.enum_types = {}
 HPGUIDEINFOSYNC.fields = {HPGUIDEINFOSYNC_GUIDEINFOBEAN_FIELD}
 HPGUIDEINFOSYNC.is_extendable = false
 HPGUIDEINFOSYNC.extensions = {}
+HPPLAYSTORYSYNC_ISDONE_FIELD.name = "isDone"
+HPPLAYSTORYSYNC_ISDONE_FIELD.full_name = ".HPPlayStorySync.isDone"
+HPPLAYSTORYSYNC_ISDONE_FIELD.number = 1
+HPPLAYSTORYSYNC_ISDONE_FIELD.index = 0
+HPPLAYSTORYSYNC_ISDONE_FIELD.label = 2
+HPPLAYSTORYSYNC_ISDONE_FIELD.has_default_value = false
+HPPLAYSTORYSYNC_ISDONE_FIELD.default_value = 0
+HPPLAYSTORYSYNC_ISDONE_FIELD.type = 5
+HPPLAYSTORYSYNC_ISDONE_FIELD.cpp_type = 1
+
+HPPLAYSTORYSYNC.name = "HPPlayStorySync"
+HPPLAYSTORYSYNC.full_name = ".HPPlayStorySync"
+HPPLAYSTORYSYNC.nested_types = {}
+HPPLAYSTORYSYNC.enum_types = {}
+HPPLAYSTORYSYNC.fields = {HPPLAYSTORYSYNC_ISDONE_FIELD}
+HPPLAYSTORYSYNC.is_extendable = false
+HPPLAYSTORYSYNC.extensions = {}
 
 GuideInfoBean = protobuf.Message(GUIDEINFOBEAN)
 HPGuideInfoSync = protobuf.Message(HPGUIDEINFOSYNC)
+HPPlayStorySync = protobuf.Message(HPPLAYSTORYSYNC)
 HPResetGuideInfo = protobuf.Message(HPRESETGUIDEINFO)
 

@@ -11,14 +11,17 @@ local FateDataInfo = {
     --totalExp,     --总经验
     roleId = nil,       --角色ID
     locPos = nil,       --角色穿戴的位置
+    newSkill = nil,
 }
 
 function FateDataInfo.new(dressInfoPb)
-    local o = setmetatable({ id = nil, itemId = nil, skill = nil, attr = nil, roleId = nil, locPos = nil }, { __index=FateDataInfo })
+    local o = setmetatable({ id = nil, itemId = nil, skill = nil, attr = nil, roleId = nil, locPos = nil,newSkill = nil }, { __index=FateDataInfo })
     o.id = dressInfoPb.id
     o.itemId = dressInfoPb.equipId
     o.skill = dressInfoPb.skillId
     o.attr = dressInfoPb.attr
+    o.newSkill = dressInfoPb.refineId
+    o.lock = dressInfoPb.fusionLock or 0
     if dressInfoPb.roleId ~= 0 then
         o.roleId = dressInfoPb.roleId
     end
@@ -50,6 +53,7 @@ function FateDataInfo:update(dressInfoPb)
     self.itemId = dressInfoPb.equipId
     self.skill = dressInfoPb.skillId
     self.attr = dressInfoPb.attr
+    self.lock = dressInfoPb.fusionLock
     --self.totalExp = dressInfoPb.exp
     if dressInfoPb.roleId ~= 0 then
         self.roleId = dressInfoPb.roleId

@@ -1,111 +1,146 @@
 
 NGSceneB_02a_12.png
-size: 499,499
+size: 2048,128
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 A21
   rotate: false
-  xy: 2, 253
+  xy: 1571, 94
   size: 319, 32
   orig: 319, 32
   offset: 0, 0
   index: -1
 A22
   rotate: false
-  xy: 2, 115
+  xy: 1105, 29
   size: 233, 33
   orig: 233, 33
   offset: 0, 0
   index: -1
 A26
   rotate: false
-  xy: 2, 50
+  xy: 1892, 64
   size: 121, 33
   orig: 121, 33
   offset: 0, 0
   index: -1
 A27
   rotate: false
-  xy: 2, 218
+  xy: 1571, 59
   size: 301, 33
   orig: 301, 33
   offset: 0, 0
   index: -1
 A31
   rotate: false
-  xy: 2, 150
+  xy: 844, 36
   size: 259, 31
   orig: 259, 31
   offset: 0, 0
   index: -1
 B21
   rotate: false
-  xy: 2, 287
+  xy: 1248, 92
   size: 321, 34
   orig: 321, 34
   offset: 0, 0
   index: -1
 B22
   rotate: false
-  xy: 2, 183
+  xy: 469, 24
   size: 289, 33
   orig: 289, 33
   offset: 0, 0
   index: -1
 B26
   rotate: false
-  xy: 125, 56
+  xy: 855, 7
   size: 76, 27
   orig: 76, 27
   offset: 0, 0
   index: -1
 B27
   rotate: false
-  xy: 2, 392
+  xy: 2, 21
   size: 433, 35
   orig: 433, 35
   offset: 0, 0
   index: -1
 B31
   rotate: false
-  xy: 2, 85
+  xy: 1340, 34
   size: 190, 28
   orig: 190, 28
   offset: 0, 0
   index: -1
 C21
   rotate: false
-  xy: 2, 429
+  xy: 2, 58
   size: 465, 33
   orig: 465, 33
   offset: 0, 0
   index: -1
 C22
   rotate: false
-  xy: 2, 464
+  xy: 2, 93
   size: 495, 33
   orig: 495, 33
   offset: 0, 0
   index: -1
 C26
   rotate: false
-  xy: 2, 16
+  xy: 760, 2
   size: 93, 32
   orig: 93, 32
   offset: 0, 0
   index: -1
 C27
   rotate: false
-  xy: 2, 357
+  xy: 499, 93
   size: 413, 33
   orig: 413, 33
   offset: 0, 0
   index: -1
 C31
   rotate: false
-  xy: 2, 323
+  xy: 469, 59
   size: 373, 32
   orig: 373, 32
+  offset: 0, 0
+  index: -1
+D21
+  rotate: false
+  xy: 914, 98
+  size: 332, 28
+  orig: 332, 28
+  offset: 0, 0
+  index: -1
+D22
+  rotate: false
+  xy: 1340, 5
+  size: 196, 27
+  orig: 196, 27
+  offset: 0, 0
+  index: -1
+D26
+  rotate: false
+  xy: 1892, 99
+  size: 129, 27
+  orig: 129, 27
+  offset: 0, 0
+  index: -1
+D27
+  rotate: false
+  xy: 914, 69
+  size: 305, 27
+  orig: 305, 27
+  offset: 0, 0
+  index: -1
+D31
+  rotate: false
+  xy: 1221, 64
+  size: 268, 26
+  orig: 268, 26
   offset: 0, 0
   index: -1

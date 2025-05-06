@@ -120,6 +120,7 @@ id	內容
 122	<font color="#b2630e" face = "Barlow-SemiBold" >#v1#</font>
 123	<font color="#6f2f00" face = "Barlow-SemiBold" >The number of challenges available today is </font><font color="#dc1f1f" face = "Barlow-SemiBold" > 0 </font><font color="#6f2f00" face = "Barlow-SemiBold" >.</font><font color="#f9b522" face = "Barlow-SemiBold" >Want to use</font><font color="#6f2f00" face = "Barlow-SemiBold" >School Trip Coupon </font><br/><br/><font color="#6f2f00" face = "Barlow-SemiBold" >(quantity in warehouse:</font><font color="#00fe18" face = "Barlow-SemiBold" > #v1#</font><font color="#6f2f00" face = "Barlow-SemiBold" >)</font>
 124	<font color="#EE7700" face = "Barlow-SemiBold" >#v1#</font><font color="#136811" face = "Barlow-SemiBold" >#v2#</font>
+125	<font face = "Barlow-Regular18" color = "#70716E" >#v1##v2#</font><br/><font face = "Barlow-Regular18" color = "#70716E" >属性调整:#v3#</font>
 150	<font color="#6f2f00" face = "Barlow-SemiBold" >#v1#(#v2#/#v3#)</font>
 151	<font color="#6f2f00" face = "Barlow-SemiBold" >#v1# Special Gear</font>
 152	<font color="#6f2f00" face = "Barlow-SemiBold" >装备战力 #v1#</font>
@@ -435,6 +436,9 @@ id	內容
 10131	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >提升自身暴击值15%</font></p>
 10132	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >提升自身暴击值25%、开战时自身获得【暴风II】15秒</font></p>
 10133	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >提升自身暴击值35%、开战时自身获得【暴风III】20秒</font></p>
+101021	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >每4次普通攻击后，下一次攻击必定产生爆击，八重莹火接下来3次承受伤害下降30%。</font></p>
+101022	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >每3次普通攻击后，下一次攻击必定产生爆击，八重莹火接下来3次承受伤害下降40%。</font></p>
+101023	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >每2次普通攻击后，下一次攻击必定产生爆击，八重莹火接下来3次承受伤害下降50%。</font></p>
 10201	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >随机进行2次单体必中伤害，每次造成100%伤害</font></p>
 10202	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >随机进行3次单体必中伤害，每次造成110%伤害</font></p>
 10203	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >随机进行4次单体必中伤害，每次造成120%伤害</font></p>
@@ -636,7 +640,7 @@ id	內容
 11821	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >开始战斗时，自身获得【回光I】</font></p>
 11822	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >开始战斗时，自身获得【回光II】</font></p>
 11823	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >开始战斗时，自身获得【回光III】，提升血量15%</font></p>
-11831	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >"羽翼纷飞"额外恢复自身20%血量</font></p>
+11831	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >"羽翼纷飞"额外恢复当前血量20%</font></p>
 11832	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >"羽翼纷飞"额外恢复自身30点魔力</font></p>
 11833	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >"羽翼纷飞"额外获得自身当前血量25%护盾</font></p>
 11901	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >随机进行4次单体伤害，每次造成100%伤害，并给予【麻痹I】5秒</font></p>
@@ -771,6 +775,7 @@ id	內容
 51203	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成210%伤害，并有机率给予目标【狂乱】3秒</font></p>
 51204	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成240%伤害，并有机率给予目标【狂乱】3秒</font></p>
 51205	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成270%伤害，并有机率给予目标【狂乱】5秒</font></p>
+500101	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >造成一个200%伤害且必定爆击</font></p>
 100101	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >物理防御力提升15%</font></p>
 100102	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >物理防御力提升30%</font></p>
 100103	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >物理防御力提升45%</font></p>
@@ -858,10 +863,14 @@ id	內容
 102801	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >友方全体物理攻击力提升10%(灵气)</font></p>
 102702	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >友方全体物理攻击力提升20%(灵气)</font></p>
 102802	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >友方全体物理攻击力提升20%(灵气)</font></p>
+102703	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >友方全体物理攻击力提升30%(灵气)</font></p>
+102803	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >友方全体物理攻击力提升30%(灵气)</font></p>
 102901	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >友方全体闪避率提升10%(灵气)</font></p>
 103001	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >友方全体闪避率提升10%(灵气)</font></p>
 102902	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >友方全体闪避率提升20%(灵气)</font></p>
 103002	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >友方全体闪避率提升20%(灵气)</font></p>
+102903	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >友方全体闪避率提升30%(灵气)</font></p>
+103003	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >友方全体闪避率提升30%(灵气)</font></p>
 103101	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >暴击率提升5%</font></p>
 103102	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >暴击率提升10%、攻击力提升5%</font></p>
 103103	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >暴击率提升15%、攻击力提升7%</font></p>
@@ -978,6 +987,7 @@ id	內容
 107802	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >魔法防御力提升20%。效果结束后恢复自身最大血量30%，并驱散自身的负面效果</font></p>
 207901	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >受到恢复效果减少20%</font></p>
 207902	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >受到恢复效果减少40%</font></p>
+207903	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >受到恢复效果减少60%</font></p>
 108001	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >不会受到负面效果影响，并驱散自身的负面效果</font></p>
 108002	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >不会受到负面效果影响，并驱散自身的负面效果，暴击伤害提升20%、閃避率提升15%</font></p>
 208101	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >魔力恢复效果减少30%</font></p>
@@ -999,6 +1009,8 @@ id	內容
 109101	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >友方全体命中率提升10%(灵气)</font></p>
 109002	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >友方全体命中率提升20%(灵气)</font></p>
 109102	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >友方全体命中率提升20%(灵气)</font></p>
+109003	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >友方全体命中率提升30%(灵气)</font></p>
+109103	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >友方全体命中率提升30%(灵气)</font></p>
 209201	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >攻击力减少15%</font></p>
 209202	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >攻击力减少30%</font></p>
 209203	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >攻击力减少45%</font></p>
@@ -1111,11 +1123,11 @@ id	內容
 30083	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#b416d0" >爆击坑性6%</font></p>
 30084	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#ff9320" >爆击坑性8%</font></p>
 30085	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#b416d0" >爆击坑性15%</font></p>
-30091	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#17663c" >爆击率2%</font></p>
-30092	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#120fab" >爆击率3%</font></p>
-30093	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#b416d0" >爆击率5%</font></p>
-30094	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#ff9320" >爆击率6%</font></p>
-30095	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#b416d0" >爆击率8%</font></p>
+30091	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#17663c" >爆击值2%</font></p>
+30092	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#120fab" >爆击值3%</font></p>
+30093	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#b416d0" >爆击值5%</font></p>
+30094	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#ff9320" >爆击值6%</font></p>
+30095	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#b416d0" >爆击值8%</font></p>
 30101	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#17663c" >命中值3%</font></p>
 30102	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#120fab" >命中值5%</font></p>
 30103	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#b416d0" >命中值7%</font></p>
@@ -1313,12 +1325,12 @@ id	內容
 301241	<font face = "Barlow-SemiBold24" color = "#763306" >HP上限+3.5%</font>
 301242	<font face = "Barlow-SemiBold24" color = "#763306" >HP上限+4.5%</font>
 301243	<font face = "Barlow-SemiBold24" color = "#763306" >HP上限+5.5%,物理防御+12%</font>
-117011	<font face = "Barlow-SemiBold24" color = "#763306" >敵軍每移除或淨化1個狂亂，恢復1名友軍等同春野美月100%攻擊力的生命</font>
-117012	<font face = "Barlow-SemiBold24" color = "#763306" >敵軍每移除或淨化1個狂亂，恢復1名友軍等同春野美月140%攻擊力的生命</font>
-117013	<font face = "Barlow-SemiBold24" color = "#763306" >敵軍每移除或淨化2個狂亂，恢復1名友軍等同春野美月140%攻擊力的生命</font>
-301251	<font face = "Barlow-SemiBold24" color = "#763306" >敵軍每移除或淨化1個狂亂，恢復1名友軍等同春野美月100%攻擊力的生命</font>
-301252	<font face = "Barlow-SemiBold24" color = "#763306" >敵軍每移除或淨化1個狂亂，恢復1名友軍等同春野美月140%攻擊力的生命</font>
-301253	<font face = "Barlow-SemiBold24" color = "#763306" >敵軍每移除或淨化2個狂亂，恢復1名友軍等同春野美月140%攻擊力的生命</font>
+117011	<font face = "Barlow-SemiBold24" color = "#763306" >敌军每移除或淨化1个狂乱，恢復2名友军等同春野美月140%攻击力的生命</font>
+117012	<font face = "Barlow-SemiBold24" color = "#763306" >敌军每移除或淨化1个狂乱，恢復2名友军等同春野美月160%攻击力的生命</font>
+117013	<font face = "Barlow-SemiBold24" color = "#763306" >敌军每移除或淨化1个狂乱，恢復2名友军等同春野美月180%攻击力的生命</font>
+301251	<font face = "Barlow-SemiBold24" color = "#763306" >敌军每移除或淨化1个狂乱，恢復2名友军等同春野美月140%攻击力的生命</font>
+301252	<font face = "Barlow-SemiBold24" color = "#763306" >敌军每移除或淨化1个狂乱，恢復2名友军等同春野美月160%攻击力的生命</font>
+301253	<font face = "Barlow-SemiBold24" color = "#763306" >敌军每移除或淨化1个狂乱，恢復2名友军等同春野美月180%攻击力的生命</font>
 301244	<font color="#fbfcfc" face = "Barlow-SemiBold16" >[世界] #v1#：#v2#</font>
 301245	<font color="#f8b754" face = "Barlow-SemiBold16" >[公会] #v1#：#v2#</font>
 301246	<font color="#f644f6" face = "Barlow-SemiBold16" >[私聊] #v1#：#v2#</font>
@@ -1343,6 +1355,68 @@ id	內容
 500045	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >所有敌方单位暴击后获得「业火II」，所有水属性角色获得「禁疗II」。<br/>业火II：每层使暴伤提升80%，最多可累积3层。暴击后移除<br/>禁疗II：受到恢复效果减少20%</font></p>
 500046	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >所有敌方单位暴击后获得「业火II」，所有水属性角色获得「禁疗II」。<br/>业火II：每层使暴伤提升80%，最多可累积3层。暴击后移除<br/>禁疗II：受到恢复效果减少20%</font></p>
 500047	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >所有敌方单位暴击后获得「业火III」，所有水属性角色获得「禁疗III」。<br/>业火III：每层使暴伤提升120%，最多可累积3层。暴击后移除<br/>禁疗III：受到恢复效果减少20%</font></p>
+500111	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >对全体敌人造成140%伤害，并施加「沉默」与「恐惧」，持续4秒。<br/>恐惧：物理攻击力与魔法攻击力下降15%<br/>沉默：不可施放主动技能</font></p>
+500112	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >对全体敌人造成160%伤害，并施加「沉默」与「恐惧」，持续4秒。<br/>恐惧：物理攻击力与魔法攻击力下降15%<br/>沉默：不可施放主动技能</font></p>
+500113	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >对全体敌人造成180%伤害，并施加「沉默」与「恐惧II」，持续4秒。<br/>恐惧II：物理攻击力与魔法攻击力下降15%<br/>沉默：不可施放主动技能</font></p>
+500114	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >对全体敌人造成200%伤害，并施加「沉默」与「恐惧II」，持续4秒。<br/>恐惧II：物理攻击力与魔法攻击力下降30%<br/>沉默：不可施放主动技能</font></p>
+500115	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >对全体敌人造成220%伤害，并施加「沉默」与「恐惧II」，持续4秒。<br/>恐惧II：物理攻击力与魔法攻击力下降30%<br/>沉默：不可施放主动技能</font></p>
+500116	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >对全体敌人造成230%伤害，并施加「沉默」与「恐惧III」，持续4秒。<br/>恐惧II：物理攻击力与魔法攻击力下降30%<br/>沉默：不可施放主动技能</font></p>
+500117	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >对全体敌人造成250%伤害，并施加「沉默」与「恐惧III」，持续4秒。<br/>恐惧III：物理攻击力与魔法攻击力下降45%<br/>沉默：不可施放主动技能</font></p>
+500121	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >移除随机两名敌军身上任意一个增益效果，全体友军获得「虔诚II」，持续8秒，CD16秒。<br/>虔诚II：单位受到伤害减少20%，同时受到或施放恢复效果提升20%<br/>常驻被动：天狗泰坦受到4种类别不同的负面状态时，移除全场所有角色（包括敌我）身上所有状态。</font></p>
+500122	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >移除随机两名敌军身上任意一个增益效果，全体友军获得「虔诚II」，持续8秒，CD16秒。<br/>虔诚II：单位受到伤害减少20%，同时受到或施放恢复效果提升20%<br/>常驻被动：天狗泰坦受到4种类别不同的负面状态时，移除全场所有角色（包括敌我）身上所有状态。</font></p>
+500123	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >移除随机两名敌军身上任意两个增益效果，全体友军获得「虔诚II」，持续8秒，CD14秒。<br/>虔诚II：单位受到伤害减少20%，同时受到或施放恢复效果提升20%<br/>常驻被动：天狗泰坦受到4种类别不同的负面状态时，移除全场所有角色（包括敌我）身上所有状态。</font></p>
+500124	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >移除随机两名敌军身上任意两个增益效果，全体友军获得「虔诚II」，持续8秒，CD14秒。<br/>虔诚II：单位受到伤害减少20%，同时受到或施放恢复效果提升20%<br/>常驻被动：天狗泰坦受到4种类别不同的负面状态时，移除全场所有角色（包括敌我）身上所有状态。</font></p>
+500125	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >移除随机三名敌军身上任意两个增益效果，全体友军获得「虔诚II」，持续8秒，CD12秒。<br/>虔诚II：单位受到伤害减少20%，同时受到或施放恢复效果提升20%<br/>常驻被动：天狗泰坦受到4种类别不同的负面状态时，移除全场所有角色（包括敌我）身上所有状态。</font></p>
+500126	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >移除随机三名敌军身上任意两个增益效果，全体友军获得「虔诚II」，持续8秒，CD12秒。<br/>虔诚II：单位受到伤害减少20%，同时受到或施放恢复效果提升20%<br/>常驻被动：天狗泰坦受到4种类别不同的负面状态时，移除全场所有角色（包括敌我）身上所有状态。</font></p>
+500127	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >移除所有敌军身上任意两个增益效果，全体友军获得「虔诚II」，持续8秒，CD10秒。<br/>虔诚II：单位受到伤害减少20%，同时受到或施放恢复效果提升20%<br/>常驻被动：天狗泰坦受到4种类别不同的负面状态时，移除全场所有角色（包括敌我）身上所有状态。</font></p>
+500131	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >移除所有敌军身上任意两个增益效果，全体友军获得「虔诚II」，持续8秒，CD10秒。</font></p>
+500141	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >所有「护盾」获得量下降20%，所有治疗量上升20%。（敌我双方皆适用）<br/></font></p>
+500142	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >所有「护盾」获得量下降30%，所有治疗量上升25%。（敌我双方皆适用）<br/></font></p>
+500143	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >所有「护盾」获得量下降40%，所有治疗量上升30%。（敌我双方皆适用）<br/></font></p>
+500144	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >所有「护盾」获得量下降50%，所有治疗量上升35%。（敌我双方皆适用）<br/></font></p>
+500145	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >所有「护盾」获得量下降60%，所有治疗量上升40%。（敌我双方皆适用）<br/></font></p>
+500146	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >所有「护盾」获得量下降70%，所有治疗量上升50%。（敌我双方皆适用）<br/></font></p>
+500147	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >所有「护盾」获得量下降80%，所有治疗量上升60%。（敌我双方皆适用）<br/></font></p>
+500151	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >普通攻击必定施加「燃烧II」，持续4秒<br/>燃烧II：施加2层燃烧，每层燃烧做成施法者攻击力10%伤害，最高迭加12层</font></p>
+500161	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >造成140%伤害，对「燃烧」状态敌人额外造成「晕眩」2秒。<br/></font></p>
+500211	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >为阳努斯施加「守护」，持续4秒，并对随机一名目标造成200%伤害，如阳努斯不存活时，改为对全场敌人造成伤害。<br/>守护：受到伤害减少15%</font></p>
+500212	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >为阳努斯施加「守护」，持续4秒，并对随机一名目标造成220%伤害，如阳努斯不存活时，改为对全场敌人造成伤害。<br/>守护：受到伤害减少15%</font></p>
+500213	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >为阳努斯施加「守护II」，持续4秒，并对随机一名目标造成240%伤害，如阳努斯不存活时，改为对全场敌人造成伤害。<br/>守护II：受到伤害减少30%</font></p>
+500214	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >为阳努斯施加「守护II」，持续4秒，并对随机一名目标造成280%伤害，如阳努斯不存活时，改为对全场敌人造成伤害。<br/>守护II：受到伤害减少30%</font></p>
+500215	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >为阳努斯施加「守护II」，持续4秒，并对随机一名目标造成320%伤害，如阳努斯不存活时，改为对全场敌人造成伤害。<br/>守护II：受到伤害减少30%</font></p>
+500216	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >为阳努斯施加「守护III」，持续4秒，并对随机一名目标造成360%伤害，如阳努斯不存活时，改为对全场敌人造成伤害。<br/>守护III：受到伤害减少45%</font></p>
+500217	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >为阳努斯施加「守护III」，持续4秒，并对随机一名目标造成400%伤害，如阳努斯不存活时，改为对全场敌人造成伤害。<br/>守护III：受到伤害减少45%</font></p>
+500221	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >对随机队友施加攻击力100%的护盾，如目标是阳努斯，改为施加攻击力200%的护盾，CD16秒。<br/><br/></font></p>
+500222	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >对随机队友施加攻击力100%的护盾，如目标是阳努斯，改为施加攻击力200%的护盾，CD16秒。<br/><br/></font></p>
+500223	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >对随机队友施加攻击力120%的护盾，如目标是阳努斯，改为施加攻击力240%的护盾，CD14秒。<br/><br/></font></p>
+500224	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >对随机队友施加攻击力120%的护盾，如目标是阳努斯，改为施加攻击力240%的护盾，CD14秒。<br/><br/></font></p>
+500225	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >对随机队友施加攻击力140%的护盾，如目标是阳努斯，改为施加攻击力280%的护盾，CD12秒。<br/><br/></font></p>
+500226	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >对随机队友施加攻击力140%的护盾，如目标是阳努斯，改为施加攻击力280%的护盾，CD12秒。<br/><br/></font></p>
+500227	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >对随机队友施加攻击力160%的护盾，如目标是阳努斯，改为施加攻击力320%的护盾，CD10秒。<br/><br/></font></p>
+500241	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >所有处于「顺风」状态中的角色，物理／魔力攻击力额外提升30%。<br/>顺风：所有魔力恢复效果上升10%，移动力上升15%<br/></font></p>
+500242	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >所有处于「顺风」状态中的角色，物理／魔力攻击力额外提升35%。<br/>顺风：所有魔力恢复效果上升10%，移动力上升15%<br/></font></p>
+500243	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >所有处于「顺风」状态中的角色，物理／魔力攻击力额外提升40%。<br/>顺风：所有魔力恢复效果上升10%，移动力上升15%<br/></font></p>
+500244	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >所有处于「顺风」状态中的角色，物理／魔力攻击力额外提升45%。<br/>顺风：所有魔力恢复效果上升10%，移动力上升15%<br/></font></p>
+500245	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >所有处于「顺风」状态中的角色，物理／魔力攻击力额外提升50%。<br/>顺风：所有魔力恢复效果上升10%，移动力上升15%<br/></font></p>
+500246	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >所有处于「顺风」状态中的角色，物理／魔力攻击力额外提升55%。<br/>顺风：所有魔力恢复效果上升10%，移动力上升15%<br/></font></p>
+500247	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >所有处于「顺风」状态中的角色，物理／魔力攻击力额外提升60%。<br/>顺风：所有魔力恢复效果上升10%，移动力上升15%<br/></font></p>
+500251	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >为阴努斯施加「顺风」，对目标造成100%伤害并施加「燃烧III」，如果阴努斯不存活时，改为对全场敌人造成伤害并施加「燃烧III」，持续8秒。<br/>顺风：所有魔力恢复效果上升10%，移动力上升15%<br/>燃烧III：施加3层燃烧，每层燃烧做成施法者攻击力10%伤害，最高迭加12层<br/></font></p>
+500252	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >为阴努斯施加「顺风」，对目标造成120%伤害并施加「燃烧III」，如果阴努斯不存活时，改为对全场敌人造成伤害并施加「燃烧III」，持续8秒。<br/>顺风：所有魔力恢复效果上升10%，移动力上升15%<br/>燃烧III：施加3层燃烧，每层燃烧做成施法者攻击力10%伤害，最高迭加12层<br/></font></p>
+500253	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >为阴努斯施加「顺风」，对目标造成140%伤害并施加「燃烧III」，如果阴努斯不存活时，改为对全场敌人造成伤害并施加「燃烧III」，持续8秒。<br/>顺风：所有魔力恢复效果上升10%，移动力上升15%<br/>燃烧III：施加3层燃烧，每层燃烧做成施法者攻击力10%伤害，最高迭加12层<br/></font></p>
+500254	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >为阴努斯施加「顺风」，对目标造成160%伤害并施加「燃烧III」，如果阴努斯不存活时，改为对全场敌人造成伤害并施加「燃烧III」，持续8秒。<br/>顺风：所有魔力恢复效果上升10%，移动力上升15%<br/>燃烧III：施加3层燃烧，每层燃烧做成施法者攻击力10%伤害，最高迭加12层<br/></font></p>
+500255	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >为阴努斯施加「顺风」，对目标造成180%伤害并施加「燃烧III」，如果阴努斯不存活时，改为对全场敌人造成伤害并施加「燃烧III」，持续8秒。<br/>顺风：所有魔力恢复效果上升10%，移动力上升15%<br/>燃烧III：施加3层燃烧，每层燃烧做成施法者攻击力10%伤害，最高迭加12层<br/></font></p>
+500256	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >为阴努斯施加「顺风」，对目标造成200%伤害并施加「燃烧III」，如果阴努斯不存活时，改为对全场敌人造成伤害并施加「燃烧III」，持续8秒。<br/>顺风：所有魔力恢复效果上升10%，移动力上升15%<br/>燃烧III：施加3层燃烧，每层燃烧做成施法者攻击力10%伤害，最高迭加12层<br/></font></p>
+500257	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >为阴努斯施加「顺风」，对目标造成220%伤害并施加「燃烧III」，如果阴努斯不存活时，改为对全场敌人造成伤害并施加「燃烧III」，持续8秒。<br/>顺风：所有魔力恢复效果上升10%，移动力上升15%<br/>燃烧III：施加3层燃烧，每层燃烧做成施法者攻击力10%伤害，最高迭加12层<br/></font></p>
+500261	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >对随机敌人施加「恐惧」，如阴努斯在场，改为对全场敌人施加「恐惧」，持续4秒，CD12秒。<br/>恐惧：物理攻击力与魔法攻击力下降15%<br/></font></p>
+500262	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >对随机敌人施加「恐惧」，如阴努斯在场，改为对全场敌人施加「恐惧」，持续4秒，CD12秒。<br/>恐惧：物理攻击力与魔法攻击力下降15%<br/></font></p>
+500263	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >对随机敌人施加「恐惧II」，如阴努斯在场，改为对全场敌人施加「恐惧II」，持续6秒，CD12秒。<br/>恐惧II：物理攻击力与魔法攻击力下降30%<br/></font></p>
+500264	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >对随机敌人施加「恐惧II」，如阴努斯在场，改为对全场敌人施加「恐惧II」，持续6秒，CD12秒。<br/>恐惧II：物理攻击力与魔法攻击力下降30%<br/></font></p>
+500265	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >对随机敌人施加「恐惧III」，如阴努斯在场，改为对全场敌人施加「恐惧III」，持续6秒，CD12秒。<br/>恐惧III：物理攻击力与魔法攻击力下降45%<br/></font></p>
+500266	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >对随机敌人施加「恐惧III」，如阴努斯在场，改为对全场敌人施加「恐惧III」，持续6秒，CD12秒。<br/>恐惧III：物理攻击力与魔法攻击力下降45%<br/></font></p>
+500267	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >对随机敌人施加「恐惧III」，如阴努斯在场，改为对全场敌人施加「恐惧III」，持续8秒，CD10秒。<br/>恐惧III：物理攻击力与魔法攻击力下降45%<br/></font></p>
+600001	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >职业为战士的角色生命值增加100%，获得30%普攻吸血，所有职业的治疗效果下降40%。</font></p>
+600011	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >所有角色开战时均会获得「猛毒」、每当角色暴击时，会使自身的「猛毒」等级上升1，最高为3，职业为补师角色免疫所有「毒」状态。</font></p>
+600021	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >所有角色回避属性上升200%，每次成功回避恢复自身攻击力100%生命值。非玩家角色持有每4下普通攻击获得「必中」状态。</font></p>
 999901	<font color="#4D93D9" face = "Barlow-SemiBold" >#v1#</font><font color="#FFFFFF" face = "Barlow-SemiBold" > 施放</font><font color="#996600" face = "Barlow-SemiBold" > #v2#</font>
 999902	<font color="#FF5050" face = "Barlow-SemiBold" >#v1#</font><font color="#FFFFFF" face = "Barlow-SemiBold" > 施放</font><font color="#996600" face = "Barlow-SemiBold" > #v2#</font>
 999903	<font color="#4D93D9" face = "Barlow-SemiBold" >#v1#</font><font color="#FFFFFF" face = "Barlow-SemiBold" > 對</font><font color="#FF5050" face = "Barlow-SemiBold" > #v2#</font><font color="#FFFFFF" face = "Barlow-SemiBold" > 造成</font><font color="#C00000" face = "Barlow-SemiBold" > #v3#</font><font color="#FFFFFF" face = "Barlow-SemiBold" > 傷害</font>
@@ -1472,12 +1546,27 @@ id	內容
 1240001	<font face = "Barlow-SemiBold24" color = "#763306" >HP上限+3.5%</font>
 1240002	<font face = "Barlow-SemiBold24" color = "#763306" >HP上限+4.5%</font>
 1240003	<font face = "Barlow-SemiBold24" color = "#763306" >HP上限+5.5%,物理防御+12%</font>
-1250001	<font face = "Barlow-SemiBold24" color = "#763306" >敌军每移除或淨化1个狂乱，恢復1名友军等同春野美月100%攻击力的生命</font>
-1250002	<font face = "Barlow-SemiBold24" color = "#763306" >敌军每移除或淨化1个狂乱，恢復1名友军等同春野美月140%攻击力的生命</font>
-1250003	<font face = "Barlow-SemiBold24" color = "#763306" >敌军每移除或淨化2个狂乱，恢復1名友军等同春野美月140%攻击力的生命</font>
-1260001	<font face = "Barlow-SemiBold24" color = "#763306" >普通攻击「燃烧」状态下的敌人有6%机率使自身获得「蛮勇III」，持续12秒</font>
-1260002	<font face = "Barlow-SemiBold24" color = "#763306" >普通攻击「燃烧」状态下的敌人有9%机率使自身获得「蛮勇III」，持续12秒</font>
-1260003	<font face = "Barlow-SemiBold24" color = "#763306" >普通攻击「燃烧」状态下的敌人有12%机率使自身获得「蛮勇III」，持续12秒</font>
+1250001	<font face = "Barlow-SemiBold24" color = "#763306" >敌军每移除或淨化1个狂乱，恢復2名友军等同春野美月140%攻击力的生命</font>
+1250002	<font face = "Barlow-SemiBold24" color = "#763306" >敌军每移除或淨化1个狂乱，恢復2名友军等同春野美月160%攻击力的生命</font>
+1250003	<font face = "Barlow-SemiBold24" color = "#763306" >敌军每移除或淨化1个狂乱，恢復2名友军等同春野美月180%攻击力的生命</font>
+1260001	<font face = "Barlow-SemiBold24" color = "#763306" >普通攻击「燃烧」状态下的敌人使自身获得「蛮勇I」，持续6秒</font>
+1260002	<font face = "Barlow-SemiBold24" color = "#763306" >普通攻击「燃烧」状态下的敌人使自身获得「蛮勇I」，有12%获得获「蛮勇II」，持续6秒</font>
+1260003	<font face = "Barlow-SemiBold24" color = "#763306" >普通攻击「燃烧」状态下的敌人使自身获得「蛮勇I」，有16%获得获「蛮勇II」，有8%获得获「蛮勇III」，持续6秒</font>
+1250004	<font face = "Barlow-SemiBold24" color = "#763306" >坏孩子的回忆</font>
+1250005	<font face = "Barlow-SemiBold24" color = "#763306" >坏孩子的回忆II</font>
+1250006	<font face = "Barlow-SemiBold24" color = "#763306" >坏孩子的回忆III</font>
+1260004	<font face = "Barlow-SemiBold24" color = "#763306" >勇者无惧</font>
+1260005	<font face = "Barlow-SemiBold24" color = "#763306" >勇者无惧II</font>
+1260006	<font face = "Barlow-SemiBold24" color = "#763306" >勇者无惧III</font>
+1270001	<font face = "Barlow-SemiBold24" color = "#763306" >普通攻击「燃烧」状态下的敌人，会做成「爆炎I」，CD12秒。</font>
+1270002	<font face = "Barlow-SemiBold24" color = "#763306" >普通攻击「燃烧」状态下的敌人，会做成「爆炎II」，CD10秒。</font>
+1270003	<font face = "Barlow-SemiBold24" color = "#763306" >普通攻击「燃烧」状态下的敌人，会做成「爆炎III」，CD8秒。</font>
+1270004	<font face = "Barlow-SemiBold24" color = "#763306" >智者的怒火</font>
+1270005	<font face = "Barlow-SemiBold24" color = "#763306" >智者的怒火II</font>
+1270006	<font face = "Barlow-SemiBold24" color = "#763306" >智者的怒火III</font>
+1280001	<font face = "Barlow-SemiBold24" color = "#763306" >法术穿透+5%</font>
+1280002	<font face = "Barlow-SemiBold24" color = "#763306" >法术穿透+10%</font>
+1280003	<font face = "Barlow-SemiBold24" color = "#763306" >法术穿透+15%,HP上限+10%</font>
 2010001	<font face = "Barlow-SemiBold24" color = "#763306" >暴击值+4%</font>
 2010002	<font face = "Barlow-SemiBold24" color = "#763306" >暴击值+6%</font>
 2010003	<font face = "Barlow-SemiBold24" color = "#763306" >暴击值+10%,物理穿透+10%</font>

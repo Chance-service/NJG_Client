@@ -304,18 +304,18 @@ function RunePageBase:onAddAll(container, eventName)
         end
     end
     local tarLevel = 0
-    for i = 1, 20 do 
+    for k,data in pairs (tempInfo) do 
         local count = 0
-        for _,v in pairs (tempInfo[i]) do
+        for _,v in pairs (data) do
             if v.lock == 0 then
                 count = count + 1
             end
         end
         if count >= RUNE_ITEM_NUM then
-            tarLevel = i
-            break
+            tarLevel = k
+            break 
         elseif count > 0 and tarLevel == 0 then
-            tarLevel = i
+            tarLevel = k
         end
     end
     local finalInfo = {}

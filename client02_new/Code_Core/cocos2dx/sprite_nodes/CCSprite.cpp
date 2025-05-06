@@ -596,7 +596,8 @@ void CCSprite::draw(void)
 
     CC_NODE_DRAW_SETUP();
 
-    ccGLBlendFunc( m_sBlendFunc.src, m_sBlendFunc.dst );
+    //ccGLBlendFunc( m_sBlendFunc.src, m_sBlendFunc.dst );
+	glBlendFuncSeparate(m_sBlendFunc.src, m_sBlendFunc.dst, m_sBlendFunc.src, m_sBlendFunc.dst);
 
     if (m_pobTexture != NULL)
     {

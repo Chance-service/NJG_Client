@@ -5,7 +5,7 @@ require("Battle.NewBattleUtil")
 local aliveIdTable = { }
 -------------------------------------------------------
 --[[
-對當前敵方單體造成150%(params1)傷害，此攻擊必定爆擊
+對當前敵方單體造成200%(params1)傷害，此攻擊必定爆擊
 ]]--
 -------------------------------------------------------
 function Skill_50010:castSkill(chaNode, skillType, skillId)
@@ -52,7 +52,7 @@ function Skill_50010:runSkill(chaNode, skillId, resultTable, allPassiveTable, ta
                                                                                  skillCfg.actionName)
         local baseDmg = atk * (1 - reduction) * elementRate * tonumber(params[1]) / hitMaxNum * buffValue * auraValue * markValue
 
-        local isCri = false
+        local isCri = true
         local weakType = (elementRate > 1 and 1) or (elementRate < 1 and -1) or 0
         if NewBattleUtil:calIsHit(chaNode, target) then
             --爆傷

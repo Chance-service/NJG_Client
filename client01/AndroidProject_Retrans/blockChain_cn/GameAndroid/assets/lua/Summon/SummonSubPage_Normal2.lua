@@ -104,10 +104,9 @@ function Inst:onEnter_content ()
     local slf = self
     self.parentPage.tabStorage:setHelpBtn(true)
 
-
+    NodeHelper:setSpriteImage(self.container,{mBanner = "HeroSummon_Label.png"})
     -- 設置 Spine動畫
     if self.subPageCfg.spineBG ~= nil then
-
         local spineFolderAndName = common:split(self.subPageCfg.spineBG, ",")
         self.spineBG = SpineContainer:create(spineFolderAndName[1], spineFolderAndName[2])
         self.spineBG:registerFunctionHandler("SELF_EVENT", function(unknownArg, tag, eventName)
@@ -398,38 +397,38 @@ function Inst:handleResponseInfo (msgInfo, onReceiveDone)
         priceData.price10 = summon10Price_itemInfo.count
     end
 
-    -- 代替道具
-    local voucherCount = InfoAccesser:getUserItemCountByStr(VOUCHER_ITEM_STR)
-    self.summonPriceStr = nil
-    self.summon10PriceStr = nil
-    if voucherCount >= 1 then
-        if msgInfo.freeTimes == nil or msgInfo.freeTimes <= 0 then
-            isPriceDataExist = true
-            local summonPrice_itemInfo = InfoAccesser:getItemInfoByStr(VOUCHER_ITEM_STR)
-            local summonPrice_itemIconCfg = InfoAccesser:getItemIconCfg(summonPrice_itemInfo.type, summonPrice_itemInfo.id, "SummonPrice")
-            priceData.icon = summonPrice_itemInfo.icon
-            priceData.iconScale = summonPrice_itemIconCfg.scale
-            priceData.price1 = 1
-            
-            self.summonPriceStr = InfoAccesser:getItemInfoStr({
-                type = summonPrice_itemInfo.type, 
-                id = summonPrice_itemInfo.id,
-                count = 1,
-            })
-        end
-    end
-
-    if voucherCount >= 10 then
-        isPriceDataExist = true
-        local summonPrice_itemInfo = InfoAccesser:getItemInfoByStr(VOUCHER_ITEM_STR)
-        priceData.icon10 = summonPrice_itemInfo.icon
-        priceData.price10 = 10
-        self.summon10PriceStr = InfoAccesser:getItemInfoStr({
-            type = summonPrice_itemInfo.type, 
-            id = summonPrice_itemInfo.id,
-            count = 10,
-        })
-    end
+    ---- 代替道具
+    --local voucherCount = InfoAccesser:getUserItemCountByStr(VOUCHER_ITEM_STR)
+    --self.summonPriceStr = nil
+    --self.summon10PriceStr = nil
+    --if voucherCount >= 1 then
+    --    if msgInfo.freeTimes == nil or msgInfo.freeTimes <= 0 then
+    --        isPriceDataExist = true
+    --        local summonPrice_itemInfo = InfoAccesser:getItemInfoByStr(VOUCHER_ITEM_STR)
+    --        local summonPrice_itemIconCfg = InfoAccesser:getItemIconCfg(summonPrice_itemInfo.type, summonPrice_itemInfo.id, "SummonPrice")
+    --        priceData.icon = summonPrice_itemInfo.icon
+    --        priceData.iconScale = summonPrice_itemIconCfg.scale
+    --        priceData.price1 = 1
+    --        
+    --        self.summonPriceStr = InfoAccesser:getItemInfoStr({
+    --            type = summonPrice_itemInfo.type, 
+    --            id = summonPrice_itemInfo.id,
+    --            count = 1,
+    --        })
+    --    end
+    --end
+    --
+    --if voucherCount >= 10 then
+    --    isPriceDataExist = true
+    --    local summonPrice_itemInfo = InfoAccesser:getItemInfoByStr(VOUCHER_ITEM_STR)
+    --    priceData.icon10 = summonPrice_itemInfo.icon
+    --    priceData.price10 = 10
+    --    self.summon10PriceStr = InfoAccesser:getItemInfoStr({
+    --        type = summonPrice_itemInfo.type, 
+    --        id = summonPrice_itemInfo.id,
+    --        count = 10,
+    --    })
+    --end
     
     if self.summonPriceStr == nil then
         self.summonPriceStr = self.orin_summonPriceStr

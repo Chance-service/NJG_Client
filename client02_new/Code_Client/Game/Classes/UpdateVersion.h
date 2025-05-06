@@ -55,15 +55,14 @@ public:
     std::string packageUrl;
     std::string versionApp;
     std::string remoteVersionUrl;
-    std::string remoteProjectManifestUrl;
 	std::string IOSAppStoreURL;
 	std::string AndroidStoreURL;
 	std::string AppUpdateUrlH365;
 	std::string AppUpdateUrlR18;
 	std::string AppUpdateUrlKUSO;
 	std::string AppUpdateUrlJSG;
+	std::string AppUpdateUrlAPLUS_CPS1;
 	std::string versionResource;
-	int versionCode;
 	int isNeedGoAppStore;
     
 	bool isLoadSuccess;
@@ -72,15 +71,14 @@ public:
      VersionData():packageUrl(std::string(""))
 		 ,versionApp(std::string(""))
 		 ,remoteVersionUrl(std::string(""))
-		 ,remoteProjectManifestUrl(std::string(""))
 		 ,IOSAppStoreURL(std::string(""))
 		 ,AndroidStoreURL(std::string(""))
 		 ,AppUpdateUrlH365(std::string(""))
 		 ,AppUpdateUrlR18(std::string(""))
 		 ,AppUpdateUrlKUSO(std::string(""))
 		 ,AppUpdateUrlJSG(std::string(""))
+		 ,AppUpdateUrlAPLUS_CPS1(std::string(""))
 		 ,versionResource(std::string(""))
-		 ,versionCode(1)
 		 ,isLoadSuccess(false)
 		 ,isNeedGoAppStore(0)
 	 {}
@@ -96,7 +94,7 @@ public:
     std::string savePath;
     std::string stroge;
 	std::string crc;
-	float time;
+	double time;
 };
 
 class ProjectAssetData
@@ -110,6 +108,7 @@ public:
     }
 public:
 	bool isLoadSuccess;
+	double time;
     std::map<std::string, assetData *> assetDataMap;
 };
 
@@ -144,7 +143,6 @@ private:
 
 private:
 	CompareStat versionAppCompareStat;
-	CompareStat versionCodeStat;
 	CompareStat versionResourceStat;
     
 public:

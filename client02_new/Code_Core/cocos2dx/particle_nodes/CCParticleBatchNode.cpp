@@ -412,7 +412,8 @@ void CCParticleBatchNode::draw(void)
 
     CC_NODE_DRAW_SETUP();
 
-    ccGLBlendFunc( m_tBlendFunc.src, m_tBlendFunc.dst );
+    //ccGLBlendFunc( m_tBlendFunc.src, m_tBlendFunc.dst );
+	glBlendFuncSeparate(m_tBlendFunc.src, m_tBlendFunc.dst, m_tBlendFunc.src, m_tBlendFunc.dst);
 
     m_pTextureAtlas->drawQuads();
 

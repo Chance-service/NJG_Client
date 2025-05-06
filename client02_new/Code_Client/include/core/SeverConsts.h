@@ -100,6 +100,9 @@ public:
 		EP_LSJ,
 		EP_MURA,
 		EP_KUSO,
+		EP_TEMP1,
+		EP_TEMP2,
+		EP_APLUS,
 	};
 	
 	struct SEVER_ATTRIBUTE
@@ -232,6 +235,7 @@ public://not used for client
 	bool IsLSJ(){ return(ePlatform == SeverConsts::EP_LSJ); }
 	bool IsMURA(){ return(ePlatform == SeverConsts::EP_MURA); }
 	bool IsKUSO(){ return(ePlatform == SeverConsts::EP_KUSO); }
+	bool IsAPLUS(){ return(ePlatform == SeverConsts::EP_APLUS); }
 	bool IsDebug() { return _IsDebug; }
 private:
 

@@ -140,6 +140,14 @@ function GuideManager.openOtherGuideFun(triggerType, isEnterMainScene)
         return
     end
 
+    if triggerType == GuideManager.guideType.ANCIENT_WEAPON then
+        if UserInfo.serverId == 1 or UserInfo.serverId == 2 then    -- 舊server玩家特殊處理
+            GuideManager.currGuide[GuideManager.guideType.ANCIENT_WEAPON] = 0
+            GuideManager:setStepPacket(GuideManager.guideType.ANCIENT_WEAPON, 0)
+            return
+        end
+    end
+
     -- 測試用
     --if triggerType == GuideManager.guideType.ANCIENT_WEAPON then
     --    GuideManager.currGuide[triggerType] = 140051

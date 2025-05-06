@@ -72,7 +72,7 @@ void libPlatform::gamePause()
 
 const std::string libPlatform::getPlatformInfo()
 {
-    return libOS::getInstance()->getPlatformInfo() + libOS::getInstance()->getConnector() + getClientChannel();
+	return libOS::getInstance()->getPlatformInfo() + libOS::getInstance()->getConnector() + getClientChannel() + getClientCps();
 }
 
 const std::string& libPlatform::sessionID()

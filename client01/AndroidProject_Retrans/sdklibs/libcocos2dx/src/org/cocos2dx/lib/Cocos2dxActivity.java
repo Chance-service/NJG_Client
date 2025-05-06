@@ -37,6 +37,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -131,8 +132,8 @@ public abstract class Cocos2dxActivity extends Activity implements
 		 * UI线程即主线程
 		 * */
 		this.mHandler = new Cocos2dxHandler(this);
-		
-		
+
+
 	}
 	
 	@Override
@@ -369,7 +370,9 @@ public abstract class Cocos2dxActivity extends Activity implements
 	@Override
 	public void runOnGLThread(final Runnable pRunnable)
 	{
-		this.mGLSurfaceView.queueEvent(pRunnable);
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.CUPCAKE) {
+			this.mGLSurfaceView.queueEvent(pRunnable);
+		}
 	}
 	
 	
@@ -594,7 +597,10 @@ public abstract class Cocos2dxActivity extends Activity implements
 	public boolean getIsDebug()
 	{
 		try {
-			ApplicationInfo info = sContext.getApplicationInfo();
+			ApplicationInfo info = null;
+			if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.DONUT) {
+				info = sContext.getApplicationInfo();
+			}
 			return (info.flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
 		} catch (Exception e) {
 
@@ -650,7 +656,7 @@ public abstract class Cocos2dxActivity extends Activity implements
         this.mGLSurfaceView.setCocos2dxEditText((Cocos2dxEditText)editText);
         /*
          * */
-        
+
 	}
 	
 	protected void setOnTempShortPause(boolean pause)

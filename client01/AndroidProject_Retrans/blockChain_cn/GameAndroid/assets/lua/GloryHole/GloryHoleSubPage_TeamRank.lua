@@ -137,7 +137,7 @@ function GloryHoleRankBase:BuildItem(container)
                 ItemNode:setScale(0.8)
                 ItemNode:registerFunctionHandler(ItemCCB.onFunction)
                 ItemNode.Reward= Data[j]
-                NodeHelper:setNodesVisible(ItemNode,{selectedNode=false,mStarNode=false,nameBelowNode=false})
+                NodeHelper:setNodesVisible(ItemNode,{selectedNode=false,mStarNode=false,nameBelowNode=false, mPoint = false})
                 local resInfo = ResManagerForLua:getResInfoByTypeAndId(Data[j].type, Data[j].itemId, Data[j].count)
                 local normalImage = NodeHelper:getImageByQuality(resInfo.quality)
                 local iconBg = NodeHelper:getImageBgByQuality(resInfo.quality)

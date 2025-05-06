@@ -361,7 +361,8 @@ void CCParticleSystemQuad::draw()
     CC_NODE_DRAW_SETUP();
 
     ccGLBindTexture2D( m_pTexture->getName() );
-    ccGLBlendFunc( m_tBlendFunc.src, m_tBlendFunc.dst );
+    //ccGLBlendFunc( m_tBlendFunc.src, m_tBlendFunc.dst );
+	glBlendFuncSeparate(m_tBlendFunc.src, m_tBlendFunc.dst, m_tBlendFunc.src, m_tBlendFunc.dst);
 
     CCAssert( m_uParticleIdx == m_uParticleCount, "Abnormal error in particle quad");
 

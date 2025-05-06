@@ -139,7 +139,8 @@ function HolyGrailPageBase:onEnter(container)
     self:initAttrWindow(container)
     self:initSpine(container)
     self.subPageCfg = LeaderDataMgr:getSubPageCfg(self.subPageName)
-
+    require("TransScenePopUp")
+    TransScenePopUp_closePage()
     --if self.subPageCfg.saveData and self.subPageCfg.saveData[1] then
     --    self:onRefreshPage(self.container, self.subPageCfg.saveData[1])
     --else

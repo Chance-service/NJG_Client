@@ -45,6 +45,6 @@ IsShowSpineWithLogin = 1
 #連線錯誤處理
 ReconnectMaxTimes = 5
 #公告網址
-AnnouncementURL = https://njg-cdn-1.xxqzzx.cn/announcement/
+AnnouncementURL = https://njg-cdn-1.xxqzzx.cn/announcement
 #是否是審核版本(1=true 0=false)
 IsCloseR18 = 0

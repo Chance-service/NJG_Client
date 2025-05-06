@@ -1,44 +1,44 @@
 id	名字(name)	难度(difficulty)	推荐战力(power)	monsterId	奖励图标	地图图片路径（icon)	關卡字體	關卡地圖背景	活動類型	奖励物品（reward）	freetpye	怪物头像品质	二次奖励	limitStage
-1	@MM_1_1	1	10	1	Item/G_3_13.png	UI/Coliseum_img1.png	Coliseum_Label1.png	battle_bg_017	1	30000_7001_71250	2101	3	0	18
-2	@MM_1_2	2	100000	1	Item/G_3_13.png	UI/Coliseum_img1.png	Coliseum_Label1.png	battle_bg_017	1	30000_7001_71250	2101	3	0	29
-3	@MM_1_3	3	150000	1	Item/G_3_13.png	UI/Coliseum_img1.png	Coliseum_Label1.png	battle_bg_017	1	30000_7001_83830	2101	3	0	51
-4	@MM_1_4	4	180000	1	Item/G_3_13.png	UI/Coliseum_img1.png	Coliseum_Label1.png	battle_bg_017	1	30000_7001_98620	2101	3	0	65
-5	@MM_1_5	5	200000	1	Item/G_3_13.png	UI/Coliseum_img1.png	Coliseum_Label1.png	battle_bg_017	1	30000_7001_116030	2101	3	0	78
-6	@MM_1_6	6	225000	1	Item/G_3_13.png	UI/Coliseum_img1.png	Coliseum_Label1.png	battle_bg_017	1	30000_7001_136500	2101	3	0	86
-7	@MM_1_7	7	250000	1	Item/G_3_13.png	UI/Coliseum_img1.png	Coliseum_Label1.png	battle_bg_017	1	30000_7001_160590	2101	3	0	110
-8	@MM_1_8	8	300000	1	Item/G_3_13.png	UI/Coliseum_img1.png	Coliseum_Label1.png	battle_bg_017	1	30000_7001_188940	2101	3	0	145
-9	@MM_1_9	9	350000	1	Item/G_3_13.png	UI/Coliseum_img1.png	Coliseum_Label1.png	battle_bg_017	1	30000_7001_222280	2101	4	0	175
-10	@MM_1_10	10	450000	1	Item/G_3_13.png	UI/Coliseum_img1.png	Coliseum_Label1.png	battle_bg_017	1	30000_7001_261500	2101	4	0	205
-11	@MM_1_11	11	550000	1	Item/G_3_13.png	UI/Coliseum_img1.png	Coliseum_Label1.png	battle_bg_017	1	30000_7001_290560	2101	5	0	235
-12	@MM_1_12	12	750000	1	Item/G_3_13.png	UI/Coliseum_img1.png	Coliseum_Label1.png	battle_bg_017	1	30000_7001_322850	2101	5	0	265
-13	@MM_1_13	13	850000	1	Item/G_3_13.png	UI/Coliseum_img1.png	Coliseum_Label1.png	battle_bg_017	1	30000_7001_358720	2101	5	0	295
-14	@MM_1_14	14	1000000	1	Item/G_3_13.png	UI/Coliseum_img1.png	Coliseum_Label1.png	battle_bg_017	1	30000_7001_398580	2101	5	0	325
-15	@MM_1_15	15	1350000	1	Item/G_3_13.png	UI/Coliseum_img1.png	Coliseum_Label1.png	battle_bg_017	1	30000_7001_442860	2101	5	0	355
-16	@MM_1_16	16	1500000	1	Item/G_3_13.png	UI/Coliseum_img1.png	Coliseum_Label1.png	battle_bg_017	1	30000_7001_492070	2101	5	0	385
-17	@MM_1_17	17	1750000	1	Item/G_3_13.png	UI/Coliseum_img1.png	Coliseum_Label1.png	battle_bg_017	1	30000_7001_546750	2101	5	0	415
-18	@MM_1_18	18	2000000	1	Item/G_3_13.png	UI/Coliseum_img1.png	Coliseum_Label1.png	battle_bg_017	1	30000_7001_607500	2101	5	0	445
-19	@MM_1_19	19	2250000	1	Item/G_3_13.png	UI/Coliseum_img1.png	Coliseum_Label1.png	battle_bg_017	1	30000_7001_675000	2101	5	0	475
-20	@MM_1_20	20	999999999	1	Item/G_3_13.png	UI/Coliseum_img1.png	Coliseum_Label1.png	battle_bg_017	1	30000_7001_750000	2101	5	0	505
-21	@MM_2_1	1	10	1	Item/G_3_13.png	UI/Coliseum_img2.png	Coliseum_Label2.png	battle_bg_014	2	10000_1002_80750	2101	5	0	18
-22	@MM_2_2	2	100000	1	Item/G_3_13.png	UI/Coliseum_img2.png	Coliseum_Label2.png	battle_bg_014	2	10000_1002_80750	2101	5	0	29
-23	@MM_2_3	3	150000	1	Item/G_3_13.png	UI/Coliseum_img2.png	Coliseum_Label2.png	battle_bg_014	2	10000_1002_95010	2101	5	0	51
-24	@MM_2_4	4	180000	1	Item/G_3_13.png	UI/Coliseum_img2.png	Coliseum_Label2.png	battle_bg_014	2	10000_1002_111770	2101	5	0	65
-25	@MM_2_5	5	200000	1	Item/G_3_13.png	UI/Coliseum_img2.png	Coliseum_Label2.png	battle_bg_014	2	10000_1002_131500	2101	5	0	78
-26	@MM_2_6	6	225000	1	Item/G_3_13.png	UI/Coliseum_img2.png	Coliseum_Label2.png	battle_bg_014	2	10000_1002_154710	2101	5	0	86
-27	@MM_2_7	7	250000	1	Item/G_3_13.png	UI/Coliseum_img2.png	Coliseum_Label2.png	battle_bg_014	2	10000_1002_182010	2101	5	0	110
-28	@MM_2_8	8	300000	1	Item/G_3_13.png	UI/Coliseum_img2.png	Coliseum_Label2.png	battle_bg_014	2	10000_1002_214130			0	145
-29	@MM_2_9	9	350000	1	Item/G_3_13.png	UI/Coliseum_img2.png	Coliseum_Label2.png	battle_bg_014	2	10000_1002_251920			0	183
-30	@MM_2_10	10	450000	1	Item/G_3_13.png	UI/Coliseum_img2.png	Coliseum_Label2.png	battle_bg_014	2	10000_1002_296370			0	205
-31	@MM_2_11	11	550000	1	Item/G_3_13.png	UI/Coliseum_img2.png	Coliseum_Label2.png	battle_bg_014	2	10000_1002_329300			0	222
-32	@MM_2_12	12	750000	1	Item/G_3_13.png	UI/Coliseum_img2.png	Coliseum_Label2.png	battle_bg_014	2	10000_1002_365890			0	252
-33	@MM_2_13	13	850000	1	Item/G_3_13.png	UI/Coliseum_img2.png	Coliseum_Label2.png	battle_bg_014	2	10000_1002_406550			0	282
-34	@MM_2_14	14	1000000	1	Item/G_3_13.png	UI/Coliseum_img2.png	Coliseum_Label2.png	battle_bg_014	2	10000_1002_451720			0	312
-35	@MM_2_15	15	1350000	1	Item/G_3_13.png	UI/Coliseum_img2.png	Coliseum_Label2.png	battle_bg_014	2	10000_1002_501910			0	342
-36	@MM_2_16	16	1500000	1	Item/G_3_13.png	UI/Coliseum_img2.png	Coliseum_Label2.png	battle_bg_014	2	10000_1002_557680			0	372
-37	@MM_2_17	17	1750000	1	Item/G_3_13.png	UI/Coliseum_img2.png	Coliseum_Label2.png	battle_bg_014	2	10000_1002_619650			0	402
-38	@MM_2_18	18	2000000	1	Item/G_3_13.png	UI/Coliseum_img2.png	Coliseum_Label2.png	battle_bg_014	2	10000_1002_688500			0	432
-39	@MM_2_19	19	2250000	1	Item/G_3_13.png	UI/Coliseum_img2.png	Coliseum_Label2.png	battle_bg_014	2	10000_1002_765000			0	462
-40	@MM_2_20	20	999999999	1	Item/G_3_13.png	UI/Coliseum_img2.png	Coliseum_Label2.png	battle_bg_014	2	10000_1002_850000			0	492
+1	@MM_1_1	1	10	1	Item/G_3_13.png	UI/Coliseum_img1.png	Coliseum_Label1.png	battle_bg_017	1	30000_7001_71250,30000_3501_3	2101	3	0	18
+2	@MM_1_2	2	100000	1	Item/G_3_13.png	UI/Coliseum_img1.png	Coliseum_Label1.png	battle_bg_017	1	30000_7001_71250,30000_3501_3	2101	3	0	29
+3	@MM_1_3	3	150000	1	Item/G_3_13.png	UI/Coliseum_img1.png	Coliseum_Label1.png	battle_bg_017	1	30000_7001_83830,30000_3501_3	2101	3	0	51
+4	@MM_1_4	4	180000	1	Item/G_3_13.png	UI/Coliseum_img1.png	Coliseum_Label1.png	battle_bg_017	1	30000_7001_98620,30000_3501_3	2101	3	0	65
+5	@MM_1_5	5	200000	1	Item/G_3_13.png	UI/Coliseum_img1.png	Coliseum_Label1.png	battle_bg_017	1	30000_7001_116030,30000_3501_4	2101	3	0	78
+6	@MM_1_6	6	225000	1	Item/G_3_13.png	UI/Coliseum_img1.png	Coliseum_Label1.png	battle_bg_017	1	30000_7001_136500,30000_3501_4	2101	3	0	86
+7	@MM_1_7	7	250000	1	Item/G_3_13.png	UI/Coliseum_img1.png	Coliseum_Label1.png	battle_bg_017	1	30000_7001_160590,30000_3501_6	2101	3	0	110
+8	@MM_1_8	8	300000	1	Item/G_3_13.png	UI/Coliseum_img1.png	Coliseum_Label1.png	battle_bg_017	1	30000_7001_188940,30000_3501_6	2101	3	0	145
+9	@MM_1_9	9	350000	1	Item/G_3_13.png	UI/Coliseum_img1.png	Coliseum_Label1.png	battle_bg_017	1	30000_7001_222280,30000_3501_8	2101	4	0	175
+10	@MM_1_10	10	450000	1	Item/G_3_13.png	UI/Coliseum_img1.png	Coliseum_Label1.png	battle_bg_017	1	30000_7001_261500,30000_3501_8	2101	4	0	205
+11	@MM_1_11	11	550000	1	Item/G_3_13.png	UI/Coliseum_img1.png	Coliseum_Label1.png	battle_bg_017	1	30000_7001_290560,30000_3501_10	2101	5	0	235
+12	@MM_1_12	12	750000	1	Item/G_3_13.png	UI/Coliseum_img1.png	Coliseum_Label1.png	battle_bg_017	1	30000_7001_322850,30000_3501_10	2101	5	0	265
+13	@MM_1_13	13	850000	1	Item/G_3_13.png	UI/Coliseum_img1.png	Coliseum_Label1.png	battle_bg_017	1	30000_7001_358720,30000_3501_12	2101	5	0	295
+14	@MM_1_14	14	1000000	1	Item/G_3_13.png	UI/Coliseum_img1.png	Coliseum_Label1.png	battle_bg_017	1	30000_7001_398580,30000_3501_12	2101	5	0	325
+15	@MM_1_15	15	1350000	1	Item/G_3_13.png	UI/Coliseum_img1.png	Coliseum_Label1.png	battle_bg_017	1	30000_7001_442860,30000_3501_15	2101	5	0	355
+16	@MM_1_16	16	1500000	1	Item/G_3_13.png	UI/Coliseum_img1.png	Coliseum_Label1.png	battle_bg_017	1	30000_7001_492070,30000_3501_18	2101	5	0	385
+17	@MM_1_17	17	1750000	1	Item/G_3_13.png	UI/Coliseum_img1.png	Coliseum_Label1.png	battle_bg_017	1	30000_7001_546750,30000_3501_18	2101	5	0	415
+18	@MM_1_18	18	2000000	1	Item/G_3_13.png	UI/Coliseum_img1.png	Coliseum_Label1.png	battle_bg_017	1	30000_7001_607500,30000_3501_20	2101	5	0	445
+19	@MM_1_19	19	2250000	1	Item/G_3_13.png	UI/Coliseum_img1.png	Coliseum_Label1.png	battle_bg_017	1	30000_7001_675000,30000_3501_24	2101	5	0	475
+20	@MM_1_20	20	999999999	1	Item/G_3_13.png	UI/Coliseum_img1.png	Coliseum_Label1.png	battle_bg_017	1	30000_7001_750000,30000_3501_24	2101	5	0	505
+21	@MM_2_1	1	10	1	Item/G_3_13.png	UI/Coliseum_img2.png	Coliseum_Label2.png	battle_bg_014	2	10000_1002_80750,30000_3001_3	2101	5	0	18
+22	@MM_2_2	2	100000	1	Item/G_3_13.png	UI/Coliseum_img2.png	Coliseum_Label2.png	battle_bg_014	2	10000_1002_80750,30000_3001_3	2101	5	0	29
+23	@MM_2_3	3	150000	1	Item/G_3_13.png	UI/Coliseum_img2.png	Coliseum_Label2.png	battle_bg_014	2	10000_1002_95010,30000_3001_3	2101	5	0	51
+24	@MM_2_4	4	180000	1	Item/G_3_13.png	UI/Coliseum_img2.png	Coliseum_Label2.png	battle_bg_014	2	10000_1002_111770,30000_3001_4	2101	5	0	65
+25	@MM_2_5	5	200000	1	Item/G_3_13.png	UI/Coliseum_img2.png	Coliseum_Label2.png	battle_bg_014	2	10000_1002_131500,30000_3001_4	2101	5	0	78
+26	@MM_2_6	6	225000	1	Item/G_3_13.png	UI/Coliseum_img2.png	Coliseum_Label2.png	battle_bg_014	2	10000_1002_154710,30000_3001_5	2101	5	0	86
+27	@MM_2_7	7	250000	1	Item/G_3_13.png	UI/Coliseum_img2.png	Coliseum_Label2.png	battle_bg_014	2	10000_1002_182010,30000_3001_5	2101	5	0	110
+28	@MM_2_8	8	300000	1	Item/G_3_13.png	UI/Coliseum_img2.png	Coliseum_Label2.png	battle_bg_014	2	10000_1002_214130,30000_3001_5			0	145
+29	@MM_2_9	9	350000	1	Item/G_3_13.png	UI/Coliseum_img2.png	Coliseum_Label2.png	battle_bg_014	2	10000_1002_251920,30000_3001_7			0	183
+30	@MM_2_10	10	450000	1	Item/G_3_13.png	UI/Coliseum_img2.png	Coliseum_Label2.png	battle_bg_014	2	10000_1002_296370,30000_3001_7			0	205
+31	@MM_2_11	11	550000	1	Item/G_3_13.png	UI/Coliseum_img2.png	Coliseum_Label2.png	battle_bg_014	2	10000_1002_329300,30000_3001_8			0	222
+32	@MM_2_12	12	750000	1	Item/G_3_13.png	UI/Coliseum_img2.png	Coliseum_Label2.png	battle_bg_014	2	10000_1002_365890,30000_3001_8			0	252
+33	@MM_2_13	13	850000	1	Item/G_3_13.png	UI/Coliseum_img2.png	Coliseum_Label2.png	battle_bg_014	2	10000_1002_406550,30000_3001_12			0	282
+34	@MM_2_14	14	1000000	1	Item/G_3_13.png	UI/Coliseum_img2.png	Coliseum_Label2.png	battle_bg_014	2	10000_1002_451720,30000_3001_12			0	312
+35	@MM_2_15	15	1350000	1	Item/G_3_13.png	UI/Coliseum_img2.png	Coliseum_Label2.png	battle_bg_014	2	10000_1002_501910,30000_3001_14			0	342
+36	@MM_2_16	16	1500000	1	Item/G_3_13.png	UI/Coliseum_img2.png	Coliseum_Label2.png	battle_bg_014	2	10000_1002_557680,30000_3001_18			0	372
+37	@MM_2_17	17	1750000	1	Item/G_3_13.png	UI/Coliseum_img2.png	Coliseum_Label2.png	battle_bg_014	2	10000_1002_619650,30000_3001_20			0	402
+38	@MM_2_18	18	2000000	1	Item/G_3_13.png	UI/Coliseum_img2.png	Coliseum_Label2.png	battle_bg_014	2	10000_1002_688500,30000_3001_22			0	432
+39	@MM_2_19	19	2250000	1	Item/G_3_13.png	UI/Coliseum_img2.png	Coliseum_Label2.png	battle_bg_014	2	10000_1002_765000,30000_3001_24			0	462
+40	@MM_2_20	20	999999999	1	Item/G_3_13.png	UI/Coliseum_img2.png	Coliseum_Label2.png	battle_bg_014	2	10000_1002_850000,30000_3001_24			0	492
 41	@MM_3_1	1	10	1		UI/Coliseum_img3.png	Coliseum_Label3.png	battle_bg_016	3	30000_7181_50			0	18
 42	@MM_3_2	2	100000	1		UI/Coliseum_img3.png	Coliseum_Label3.png	battle_bg_016	3	30000_7181_50			0	29
 43	@MM_3_3	3	150000	1		UI/Coliseum_img3.png	Coliseum_Label3.png	battle_bg_016	3	30000_7181_60			0	51

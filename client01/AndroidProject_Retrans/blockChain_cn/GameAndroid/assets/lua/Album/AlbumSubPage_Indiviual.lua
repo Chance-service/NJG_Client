@@ -211,6 +211,12 @@ function AlbumIndivualItem:onHead(container,_id)
         SetPopupPage(PopUpCCB, cfg)
         PopUpCCB.cfg = cfg
         PopUpCCB:registerFunctionHandler(PopUpCCBFun)
+        -- 新手教學
+        local GuideManager = require("Guide.GuideManager")
+        GuideManager.PageContainerRef["AlbumIndvidualPopup"] = PopUpCCB
+        if GuideManager.isInGuide then
+            GuideManager.forceNextNewbieGuide()
+        end
     else
         if self.id == #AlbumIndivualPage:getRoleTable() then
             NgBattleResultManager.showAlbum = true
@@ -356,7 +362,7 @@ function AlbumIndivualPage:getReward(IndexId, PhotoId, BtnIdx)
     if BtnIdx == 2 and not hasPassedItem then
         PageManager.showConfirm(common:getLanguageString("@Activate"), common:getLanguageString("@BuySecertPassed"), function(isSure)
             if isSure then BuyItem(700) end
-        end,true,getPrice(700),nil,nil,nil,nil,nil,nil,nil,true)
+        end,true,AlbumIndivualPage_getPrice(700),nil,nil,nil,nil,nil,nil,nil,true)
         return
     end
 
@@ -366,7 +372,7 @@ function AlbumIndivualPage:getReward(IndexId, PhotoId, BtnIdx)
     common:sendPacket(HP_pb.SECRET_MESSAGE_ACTION_C, msg, true)
 end
 
-function getPrice(id)
+function AlbumIndivualPage_getPrice(id)
     if #RechargeCfg==0 then
         return 99999
     end
@@ -387,6 +393,11 @@ function AlbumIndivualPage_refresh()
      AlbumIndivualPage:refresh()
      if mainContainer then
         mainContainer:getVarNode("mPopUpNode"):removeAllChildren()
+     end
+     -- 新手教學
+     local GuideManager = require("Guide.GuideManager")
+     if GuideManager.isInGuide then
+         GuideManager.forceNextNewbieGuide()
      end
      require("SecretMessage.SecertAVGPage")
      SecertAVG_setMainId(AlbumCfg[NowClickPhoto].StroyId,AlbumCfg[NowClickPhoto].reward)

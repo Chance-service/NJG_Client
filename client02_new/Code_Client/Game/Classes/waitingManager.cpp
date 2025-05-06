@@ -78,7 +78,7 @@ void waitingManager::startWaiting(int send_opcode, int opcode_to_hide, float sho
 		mWaitCodeRelation.insert(std::make_pair(send_opcode,opcode_to_hide));
 	}
 
-	CCLOG("waitingManager::startWaiting!sendOpcode:%d waitOpcode:%d count:%d time:%f:",send_opcode,opcode_to_hide,mReasons[opcode_to_hide],mStillWaitingTime);
+	CCLog("waitingManager::startWaiting!sendOpcode:%d waitOpcode:%d count:%d time:%f:",send_opcode,opcode_to_hide,mReasons[opcode_to_hide],mStillWaitingTime);
 }
 
 //处理是否存在等待的消息包有超时的进行处理
@@ -89,7 +89,7 @@ void waitingManager::update( float dt )
 		mStillWaitingTime-=dt;
 		if(mStillWaitingTime<=0)
 		{
-			CCLOG("waitingManager update Timeout");
+			CCLog("waitingManager update Timeout");
 			PacketManager::Get()->removePacketHandler(this);
 			registerErrReportHandler();
 
@@ -140,7 +140,7 @@ void waitingManager::_decreaseReason( int opcode )
 	if(it != mReasons.end())
 	{
 		it->second--;
-		CCLOG("waitingManager::decreaseReason! opcode:%d count:%d",opcode,it->second);
+		CCLog("waitingManager::decreaseReason! opcode:%d count:%d", opcode, it->second);
 		if(it->second<=0)
 		{
 			mReasons.erase(it);
@@ -148,7 +148,7 @@ void waitingManager::_decreaseReason( int opcode )
 		}
 	}
 	else
-		CCLOG("waitingManager::decreaseReason! opcode:%d is not find",opcode);
+		CCLog("waitingManager::decreaseReason! opcode:%d is not find", opcode);
 	if(mReasons.empty())
 	{
 		//libOS::getInstance()->setWaiting(false);
@@ -197,7 +197,7 @@ void waitingManager::onReceivePacket( const int opcode, const ::google::protobuf
 		
 		const HPErrorCode * errMsgRet = dynamic_cast<const HPErrorCode*>(packet);
 		unsigned int _decreaseOpcode=getWaitingOpcode(errMsgRet->hpcode());
-		CCLOG("waitingManager::onReceivePacket ! opcode:%d _decreaseReason_opcode:%d",opcode,_decreaseOpcode);
+		CCLog("waitingManager::onReceivePacket ! opcode:%d _decreaseReason_opcode:%d", opcode, _decreaseOpcode);
 		_decreaseReason(_decreaseOpcode);
 		
 	}

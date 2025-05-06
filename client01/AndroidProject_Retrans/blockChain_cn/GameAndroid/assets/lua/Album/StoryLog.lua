@@ -143,7 +143,7 @@ function StoryLogPage:onEnter(container)
     container.mScrollView = container:getVarScrollView("mContent")
     NodeHelper:setNodesVisible(mainContainer,{mElementNode=false})
     -- scrollview??A??
-    NodeHelper:autoAdjustResizeScrollview(container.mScrollView)
+    --NodeHelper:autoAdjustResizeScrollview(container.mScrollView)
     -- ?]?w?L?o???s
     local filterBg = container:getVarScale9Sprite("mFilterBg")
     NodeHelper:setNodesVisible(container, {mClassNode = false})

@@ -31,6 +31,9 @@ local RechargeDiamondItem = {}
 local RechargeSubPage_Diamond = {}
 local requesting = false
 
+-- 購買資料請求中
+local requestingLastShop = false
+
 local TmpReward = {}
 
 function RechargeSubPage_Diamond:createPage(_parentPage)
@@ -64,6 +67,7 @@ function RechargeSubPage_Diamond:onEnter(Parentcontainer)
     parentPage:registerMessage(MSG_RECHARGE_SUCCESS)
 
     requesting = false
+    requestingLastShop = false
     self:ItemInfoRequest()
     
     self:setVIPLevelInfo(InfoAccesser:getVIPLevelInfo())
@@ -124,6 +128,7 @@ function RechargeSubPage_Diamond:onReceivePacket(packet)
         self:refresh(self.container)
     end
     if opcode == HP_pb.LAST_SHOP_ITEM_S then
+        requestingLastShop = false
         local Recharge_pb = require("Recharge_pb")
         local msg = Recharge_pb.LastGoodsItem()
         msg:ParseFromString(msgBuff)
@@ -150,6 +155,7 @@ function RechargeSubPage_Diamond:refresh(container)
         end,
         {
             originScrollViewSize = CCSizeMake(700, 700),
+            startOffset = ccp(0, math.min(700, math.max(0, size * 350 - 700))),
         });
 end
 function RechargeSubPage_Diamond:receiveShopList(list)
@@ -265,7 +271,7 @@ function RechargeDiamondItem.newLineItem(inst, index)
         end
         -- 顯示/隱藏
         NodeHelper:setNodesVisible(itemNode, {
-            bonusNode = (isBonusExist or isFirstBuy)
+            bonusNode = false--(isBonusExist or isFirstBuy)
         })
     end
     
@@ -294,7 +300,7 @@ function RechargeDiamondItem.onRecharge(inst, eventName, container)
     --TmpReward[1] = {type = 10000,itemId = 1001,count = itemCount }
     --local VIPcount =  ConfigManager.getDiamondVIPCfg()[index].count
     --TmpReward[2] = {type = 10000,itemId = 1026, count = VIPcount }
-    BuyItem(index)
+    BuyItem(tonumber(itemInfo.productId))
 end
 function BuyItem(id)
     local itemInfo = nil
@@ -329,6 +335,9 @@ end
 function RechargeSubPage_Diamond:onReceiveMessage(message)
 	local typeId = message:getTypeId()
 	if typeId == MSG_RECHARGE_SUCCESS then
+        if requestingLastShop then
+            return
+        end
         CCLuaLog(">>>>>>onReceiveMessage RechargeSubPage_Diamond")
 
         self:ItemInfoRequest()

@@ -15,11 +15,13 @@ local option = {
     },
     opcode = opcodes
 }
+local skinCfg = ConfigManager.getSkinCfg()
 local RarityUpPage = { }
 local oldAttr = { }
 local newAttr = { }
 local skillShowTable = { }
-local pageItameId = 0
+local pageItemId = 0
+local pageSkinId = 0
 local award = nil
 ----------------------------------------------------------
 function RarityUpPage:onEnter(container)
@@ -50,7 +52,7 @@ function RarityUpPage:onRefreshPage(container)
     NgHeadIconItem_setPageType(GameConfig.NgHeadIconType.RARITY_UP_PAGE)
     for i = 1, 2 do
         local parentNode = container:getVarNode("mHeadNode" .. i)
-        NgHeadIconItem:createByItemId(pageItameId, parentNode, GameConfig.NgHeadIconType.RARITY_UP_PAGE, 
+        NgHeadIconItem:createByItemId(pageItemId, parentNode, GameConfig.NgHeadIconType.RARITY_UP_PAGE, 
                                       { fight = (i == 1) and oldAttr[2] or newAttr[2], starLevel = (i == 1) and oldAttr[7] or newAttr[7] })
     end
     -- 屬性變化
@@ -76,7 +78,8 @@ function RarityUpPage:onClose(container)
     oldAttr = { }
     newAttr = { }
     skillShowTable = { }
-    pageItameId = 0
+    pageItemId = 0
+    pageSkinId = 0
     -- 跳獎勵視窗
     self:showAward()
     award = nil
@@ -109,8 +112,13 @@ function RarityUpPage:showAward()
 end
 
 function RarityUpPage:initSkillShowTable()
-    local heroCfg = ConfigManager.getNewHeroCfg()[pageItameId]
-    local skills = common:split(heroCfg.Skills, ",")
+    local heroCfg = ConfigManager.getNewHeroCfg()[pageItemId]
+    local skills
+    if pageSkinId == 0 then
+        skills = common:split(heroCfg.Skills, ",")
+    else
+        skills = common:split(skinCfg[pageSkinId].skills, ",")
+    end
     for i = 6, GameConfig.MAX_HERO_STAR do
         local tarSkillId = ((i == 6 or i == 10) and skills[1]) or ((i == 7 or i == 11) and skills[2]) or 
                            ((i == 8 or i == 12) and skills[3]) or nil
@@ -130,7 +138,8 @@ function RarityUpPage_setOldAttr(curRoleInfo, maxLevel)
     oldAttr[5] = PBHelper:getAttrById(curRoleInfo.attribute.attribute, SHOW_ATTR[5])
     oldAttr[6] = PBHelper:getAttrById(curRoleInfo.attribute.attribute, SHOW_ATTR[6])
     oldAttr[7] = curRoleInfo.starLevel
-    pageItameId = curRoleInfo.itemId
+    pageItemId = curRoleInfo.itemId
+    pageSkinId = curRoleInfo.skinId
 end
 
 function RarityUpPage_setNewAttr(curRoleInfo, maxLevel, _award)

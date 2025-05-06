@@ -41,6 +41,7 @@ end
 function NgBattleCharacterBase:update(dt, isMine, idx)
     local chaNode = isMine and NgBattleDataManager.battleMineCharacter[idx] or NgBattleDataManager.battleEnemyCharacter[idx]
     if chaNode.nowState ~= CONST.CHARACTER_STATE.DYING and chaNode.nowState ~= CONST.CHARACTER_STATE.DEATH then    --角色未死亡
+        CHAR_UTIL:savePos(chaNode)
         -- 測試戰鬥
         if (NgBattleDataManager.battleType == CONST.SCENE_TYPE.TEST_BATTLE) then
             if isMine and NgBattleDataManager.testFriendUpdate then
@@ -49,19 +50,35 @@ function NgBattleCharacterBase:update(dt, isMine, idx)
                 self:castCdPassiveSkill(chaNode)
             end
         else
+            local time1 = os.clock()
             self:castCdPassiveSkill(chaNode)
+            local time2 = os.clock()
+            if (time2 - time1) > 0.03 then
+                CCLuaLog(">>>>>>>>> NgBattleCharacterBase Update Time PASSIVE : " .. (time2 - time1) .. ", isMine : " .. (isMine and "True" or "False") .. ", idx : " .. idx)
+            end
         end
         if chaNode.nowState == CONST.CHARACTER_STATE.INIT then    --初始化中 > 移動至定位
+            local time1 = os.clock()
             self:onInit(dt, chaNode)
+            local time2 = os.clock()
+            if (time2 - time1) > 0.03 then
+                CCLuaLog(">>>>>>>>> NgBattleCharacterBase Update Time INIT : " .. (time2 - time1) .. ", isMine : " .. (isMine and "True" or "False") .. ", idx : " .. idx)
+            end
         elseif chaNode.nowState == CONST.CHARACTER_STATE.WAIT then    --待機狀態 > 尋找敵人
+            local time1 = os.clock()
             if chaNode.target then  --有目標
                 CHAR_UTIL:setState(chaNode, CONST.CHARACTER_STATE.MOVE)
                 self:setMoveAction(chaNode)
             else
                 self:searchTarget(chaNode)
             end
+            local time2 = os.clock()
+            if (time2 - time1) > 0.03 then
+                CCLuaLog(">>>>>>>>> NgBattleCharacterBase Update Time WAIT : " .. (time2 - time1) .. ", isMine : " .. (isMine and "True" or "False") .. ", idx : " .. idx)
+            end
         elseif chaNode.nowState == CONST.CHARACTER_STATE.MOVE then    --移動狀態 > 往目標前進/檢查敵人狀態
             -- 測試戰鬥
+            local time1 = os.clock()
             if (NgBattleDataManager.battleType == CONST.SCENE_TYPE.TEST_BATTLE) then
                 if isMine and (not NgBattleDataManager.testFriendUpdate) then
                     if not chaNode.heroNode.heroSpine:isPlayingAnimation(CONST.ANI_ACT.WAIT, 1) and
@@ -78,8 +95,13 @@ function NgBattleCharacterBase:update(dt, isMine, idx)
                 end
             end
             self:onMove(dt, chaNode)
+            local time2 = os.clock()
+            if (time2 - time1) > 0.03 then
+                CCLuaLog(">>>>>>>>> NgBattleCharacterBase Update Time MOVE : " .. (time2 - time1) .. ", isMine : " .. (isMine and "True" or "False") .. ", idx : " .. idx)
+            end
         elseif chaNode.nowState == CONST.CHARACTER_STATE.ATTACK then    --攻擊狀態 > 對目標攻擊/檢查敵人狀態
             -- 測試戰鬥
+            local time1 = os.clock()
             if (NgBattleDataManager.battleType == CONST.SCENE_TYPE.TEST_BATTLE) then
                 if isMine and (not NgBattleDataManager.testFriendUpdate) then
                     if not chaNode.heroNode.heroSpine:isPlayingAnimation(CONST.ANI_ACT.WAIT, 1) and
@@ -96,13 +118,27 @@ function NgBattleCharacterBase:update(dt, isMine, idx)
                 end
             end
             self:onAttack(chaNode)
+            local time2 = os.clock()
+            if (time2 - time1) > 0.03 then
+                CCLuaLog(">>>>>>>>> NgBattleCharacterBase Update Time ATTACK : " .. (time2 - time1) .. ", isMine : " .. (isMine and "True" or "False") .. ", idx : " .. idx)
+            end
         elseif chaNode.nowState == CONST.CHARACTER_STATE.HURT then    --受擊狀態
+            local time1 = os.clock()
             self:onHurt(chaNode)
+            local time2 = os.clock()
+            if (time2 - time1) > 0.03 then
+                CCLuaLog(">>>>>>>>> NgBattleCharacterBase Update Time HURT : " .. (time2 - time1) .. ", isMine : " .. (isMine and "True" or "False") .. ", idx : " .. idx)
+            end
         elseif chaNode.nowState == CONST.CHARACTER_STATE.REBIRTH then --重生中
+            local time1 = os.clock()
             chaNode.rebirthTimer = chaNode.rebirthTimer + dt
             if chaNode.rebirthTimer >= CONST.REBIRTH_TIME then
                 chaNode.rebirthTimer = 0
                 self:onReBirth(chaNode, idx)
+            end
+            local time2 = os.clock()
+            if (time2 - time1) > 0.03 then
+                CCLuaLog(">>>>>>>>> NgBattleCharacterBase Update Time REBIRTH : " .. (time2 - time1) .. ", isMine : " .. (isMine and "True" or "False") .. ", idx : " .. idx)
             end
         end
     end
@@ -175,7 +211,7 @@ function NgBattleCharacterBase:checkPassiveTrigger(dt, chaNode)
         local allTargetTable = { }
         if NewBattleUtil:castPassiveSkill(chaNode, v, resultTable, allPassiveTable, CONST.PASSIVE_TRIGGER_TYPE.HP) then
             LOG_UTIL:setPreLog(chaNode, resultTable)
-            CHAR_UTIL:calculateAllTable(chaNode, resultTable, isSkipCal, actionResultTable, allTargetTable, v, allPassiveTable)   -- 全部傷害/治療/buff...處理
+            CHAR_UTIL:calculateAllTable(chaNode, resultTable, isSkipCal, actionResultTable, allTargetTable, v * 10, allPassiveTable)   -- 全部傷害/治療/buff...處理
         end
     end
     for k, v in pairs(CONST.PASSIVE_TYPE_ID[CONST.PASSIVE_TRIGGER_TYPE.MP]) do -- MP觸發
@@ -185,7 +221,7 @@ function NgBattleCharacterBase:checkPassiveTrigger(dt, chaNode)
         local allTargetTable = { }
         if NewBattleUtil:castPassiveSkill(chaNode, v, resultTable, allPassiveTable, CONST.PASSIVE_TRIGGER_TYPE.MP) then
             LOG_UTIL:setPreLog(chaNode, resultTable)
-            CHAR_UTIL:calculateAllTable(chaNode, resultTable, isSkipCal, actionResultTable, allTargetTable, v, allPassiveTable)   -- 全部傷害/治療/buff...處理
+            CHAR_UTIL:calculateAllTable(chaNode, resultTable, isSkipCal, actionResultTable, allTargetTable, v * 10, allPassiveTable)   -- 全部傷害/治療/buff...處理
         end
     end
 end
@@ -229,7 +265,7 @@ function NgBattleCharacterBase:onInit(dt, chaNode)
                    * buffValue * auraValue * markValue * NgBattleDataManager.battleSpeed--* math.min(dt * 0.06, 3)
         local dy = 3--[[chaNode.battleData[CONST.BATTLE_DATA.RUN_SPD]] * ((chaNode.otherData[CONST.OTHER_DATA.INIT_POS_Y] - CHAR_UTIL:getPos(chaNode).y) / dis) 
                    * buffValue * auraValue * markValue * NgBattleDataManager.battleSpeed--* math.min(dt * 0.06, 3)
-        CHAR_UTIL:moveToTargetPos(chaNode, chaNode.heroNode.chaCCB:getPositionX() + dx, chaNode.heroNode.chaCCB:getPositionY() + dy)
+        CHAR_UTIL:moveToTargetPos(chaNode, CHAR_UTIL:getPos(chaNode).x + dx, CHAR_UTIL:getPos(chaNode).y + dy)
         dis = NewBattleUtil:calTargetDis(ccp(CHAR_UTIL:getPos(chaNode).x, CHAR_UTIL:getPos(chaNode).y), 
               ccp(chaNode.otherData[CONST.OTHER_DATA.INIT_POS_X], chaNode.otherData[CONST.OTHER_DATA.INIT_POS_Y]))
         if dis <= 10 then    --到定點
@@ -245,7 +281,6 @@ function NgBattleCharacterBase:searchTarget(chaNode)
     elseif BuffManager:isInTaunt(chaNode.buffData) then    -- 在嘲諷狀態
         BuffManager:setTauntTarget(chaNode, chaNode.tarArray[NewBattleConst.TARGET_TYPE.TAUNT_TARGET])
     else
-        local friendList = NgBattleDataManager_getFriendList(chaNode)
         local enemyList = NgBattleDataManager_getEnemyList(chaNode)
 
         local minDis = nil
@@ -259,17 +294,7 @@ function NgBattleCharacterBase:searchTarget(chaNode)
                     local disX = math.abs(CHAR_UTIL:getPos(chaNode).x - CHAR_UTIL:getPos(enemy).x) / 1.7
                     local disY = math.abs(CHAR_UTIL:getPos(chaNode).y - CHAR_UTIL:getPos(enemy).y)
                     local dis = disX + disY
-                    --local dis = NewBattleUtil:calTargetDis(ccp(CHAR_UTIL:getPos(chaNode).x, CHAR_UTIL:getPos(chaNode).y), 
-                    --                                       ccp(CHAR_UTIL:getPos(enemy).x, CHAR_UTIL:getPos(enemy).y))
-                    --for j = 1, math.max(CONST.HERO_COUNT, CONST.ENEMY_COUNT) do
-                    --    local friend = friendList[j]
-                    --    if friend and friend.target == enemy and friend ~= chaNode then
-                    --        dis = dis + 300
-                    --    end
-                    --end
-                    --if enemy.target == chaNode then
-                    --    dis = dis - 300
-                    --end
+
                     if not BuffManager:isInStealth(enemy.buffData) then   -- 不在隱身狀態
                         if (not minDis or minDis > dis) and (chaNode ~= enemyList[enemyIdx]) then
                             minDis = dis
@@ -310,6 +335,7 @@ end
 function NgBattleCharacterBase:onMove(dt, chaNode)
     if chaNode.target and CHAR_UTIL:getState(chaNode.target) ~= CONST.CHARACTER_STATE.DYING and CHAR_UTIL:getState(chaNode.target) ~= CONST.CHARACTER_STATE.DEATH 
         and CHAR_UTIL:getState(chaNode.target) ~= CONST.CHARACTER_STATE.REBIRTH then
+        local time1 = os.clock()
         if BuffManager:isInCrowdControl(chaNode.buffData) then   -- 在控場狀態
             return
         end
@@ -319,36 +345,66 @@ function NgBattleCharacterBase:onMove(dt, chaNode)
         if not CHAR_UTIL:isInMoveAni(chaNode) then    -- 不在移動動作
             CHAR_UTIL:setSpineAnimation(chaNode, CONST.ANI_ACT.RUN, true)
         end
+        local time2 = os.clock()
         --設定面相
         CHAR_UTIL:setChaDir(chaNode, chaNode.target)
+        local time3 = os.clock()
         --位移
         local chaOffsetX = chaNode.otherData[CONST.OTHER_DATA.CFG].CenterOffsetX
         local chaOffsetY = chaNode.otherData[CONST.OTHER_DATA.CFG].CenterOffsetY
         local tarOffsetX = chaNode.target.otherData[CONST.OTHER_DATA.CFG].CenterOffsetX
         local tarOffsetY = chaNode.target.otherData[CONST.OTHER_DATA.CFG].CenterOffsetY
-        local dis = NewBattleUtil:calTargetDis(ccp(CHAR_UTIL:getPos(chaNode).x + chaOffsetX, CHAR_UTIL:getPos(chaNode).y + chaOffsetY),    -- 兩隻角色距離
-                                               ccp(CHAR_UTIL:getPos(chaNode.target).x - tarOffsetX, CHAR_UTIL:getPos(chaNode.target).y))
+        local dis = 0
         if CHAR_UTIL:getPos(chaNode).x > CHAR_UTIL:getPos(chaNode.target).x then
             dis = NewBattleUtil:calTargetDis(ccp(CHAR_UTIL:getPos(chaNode).x - chaOffsetX, CHAR_UTIL:getPos(chaNode).y + chaOffsetY),    -- 兩隻角色距離
                                              ccp(CHAR_UTIL:getPos(chaNode.target).x + tarOffsetX, CHAR_UTIL:getPos(chaNode.target).y))
+        else
+            dis = NewBattleUtil:calTargetDis(ccp(CHAR_UTIL:getPos(chaNode).x + chaOffsetX, CHAR_UTIL:getPos(chaNode).y + chaOffsetY),    -- 兩隻角色距離
+                                               ccp(CHAR_UTIL:getPos(chaNode.target).x - tarOffsetX, CHAR_UTIL:getPos(chaNode.target).y))
         end
-
+        local time4 = os.clock()
+        if (time2 - time1) > 0.02 then
+            CCLuaLog(">>>>>>>>> NgBattleCharacterBase onMove Time 1 : " .. (time2 - time1))
+        end
+        if (time3 - time2) > 0.02 then
+            CCLuaLog(">>>>>>>>> NgBattleCharacterBase onMove Time 2 : " .. (time3 - time2))
+        end
+        if (time4 - time3) > 0.02 then
+            CCLuaLog(">>>>>>>>> NgBattleCharacterBase onMove Time 3 : " .. (time4 - time3))
+        end
         if CHAR_UTIL:isTargetInAttackRange(chaNode) and CHAR_UTIL:isInBattleField(chaNode) then    --攻擊距離內&自己在場內
-            CHAR_UTIL:moveToTargetPos(chaNode, chaNode.heroNode.chaCCB:getPositionX(), chaNode.heroNode.chaCCB:getPositionY())
+            CHAR_UTIL:moveToTargetPos(chaNode, CHAR_UTIL:getPos(chaNode).x, CHAR_UTIL:getPos(chaNode).y)
             self:startAttack(chaNode)
             return
         end
+        local time5 = os.clock()
         local buffValue, auraValue, markValue = BuffManager:checkMoveSpeedBuffValue(chaNode.buffData)   -- 移動速度buff
         local dx = chaNode.battleData[CONST.BATTLE_DATA.MOVE_SPD] * (((CHAR_UTIL:getPos(chaNode.target).x - CHAR_UTIL:getPos(chaNode).x) --[[- (chaOffsetX + tarOffsetX)]]) / dis) * 
                    buffValue * auraValue * markValue --[[* dt * 0.06]] * NgBattleDataManager.battleSpeed
         local dy = chaNode.battleData[CONST.BATTLE_DATA.MOVE_SPD] * (((CHAR_UTIL:getPos(chaNode.target).y) - (CHAR_UTIL:getPos(chaNode).y)) / dis) * 
                    buffValue * auraValue * markValue --[[* dt * 0.06]] * NgBattleDataManager.battleSpeed
         
-        CHAR_UTIL:moveToTargetPos(chaNode, chaNode.heroNode.chaCCB:getPositionX() + dx, chaNode.heroNode.chaCCB:getPositionY() + dy)
+        CHAR_UTIL:moveToTargetPos(chaNode, CHAR_UTIL:getPos(chaNode).x + dx, CHAR_UTIL:getPos(chaNode).y + dy)
+        local time6 = os.clock()
+        local time7
         if CHAR_UTIL:isTargetInAttackRange(chaNode) and CHAR_UTIL:isInBattleField(chaNode) then    --攻擊距離內&自己在場內
             self:startAttack(chaNode)
+            time7 = os.clock()
         else    -- 每次移動後重新鎖敵
             self:searchTarget(chaNode)
+            time7 = os.clock()
+        end
+        if (time5 - time4) > 0.02 then
+            CCLuaLog(">>>>>>>>> NgBattleCharacterBase onMove Time 4 : " .. (time5 - time4))
+        end
+        if (time6 - time5) > 0.02 then
+            CCLuaLog(">>>>>>>>> NgBattleCharacterBase onMove Time 5 : " .. (time6 - time5))
+        end
+        if (time7 - time6) > 0.02 then
+            CCLuaLog(">>>>>>>>> NgBattleCharacterBase onMove Time 6 : " .. (time7 - time6))
+        end
+        if (time7 - time1) > 0.02 then
+            CCLuaLog(">>>>>>>>> NgBattleCharacterBase onMove Totle Time 1 : " .. (time7 - time1))
         end
     else    --沒有目標/目標已死亡
         CHAR_UTIL:setSpineAnimation(chaNode, CONST.ANI_ACT.WAIT, true)
@@ -674,6 +730,13 @@ function NgBattleCharacterBase:beAttack(chaNode, target, dmg, isCri, isSkipCalHp
             for k, v in pairs(CONST.PASSIVE_TYPE_ID[CONST.PASSIVE_TRIGGER_TYPE.BE_HIT]) do -- 被普攻/技能命中
                 NewBattleUtil:castPassiveSkill(target, v, resultTable, allPassiveTable, CONST.PASSIVE_TRIGGER_TYPE.BE_HIT, { chaNode })
             end
+            for k, v in pairs(CONST.PASSIVE_TYPE_ID[CONST.PASSIVE_TRIGGER_TYPE.AURA_BE_HIT]) do -- (靈氣)被普攻/技能命中
+                NewBattleUtil:calAuraSkillEffect(target, CONST.PASSIVE_TRIGGER_TYPE.AURA_BE_HIT)
+            end
+        else
+            for k, v in pairs(CONST.PASSIVE_TYPE_ID[CONST.PASSIVE_TRIGGER_TYPE.AURA_DODGE]) do -- 閃避觸發
+                NewBattleUtil:calAuraSkillEffect(target, CONST.PASSIVE_TRIGGER_TYPE.AURA_DODGE)
+            end
         end
         -- 受擊震動(TEST)
         --target.heroNode.chaCCB:runAnimation("Hurt")
@@ -860,6 +923,9 @@ function NgBattleCharacterBase:onHit(chaNode, skillId, resultTable, allPassiveTa
             for k, v in pairs(CONST.PASSIVE_TYPE_ID[CONST.PASSIVE_TRIGGER_TYPE.ATK_HIT]) do -- 普攻命中
                 NewBattleUtil:castPassiveSkill(chaNode, v, resultTable, allPassiveTable, CONST.PASSIVE_TRIGGER_TYPE.ATK_HIT, { target })
             end
+            for k, v in pairs(CONST.PASSIVE_TYPE_ID[CONST.PASSIVE_TRIGGER_TYPE.AURA_FRIEND_ATK]) do -- 普攻命中時
+                NewBattleUtil:calAuraSkillEffect(chaNode, CONST.PASSIVE_TRIGGER_TYPE.AURA_FRIEND_ATK)
+            end
             CHAR_UTIL:clearSkillTimer(chaNode.skillData, CONST.ADD_BUFF_COUNT_EVENT.NORMAL_ATTACK)      -- 清空特定skill計時
             BuffManager:clearBuffTimer(chaNode, chaNode.buffData, CONST.ADD_BUFF_COUNT_EVENT.NORMAL_ATTACK)      -- 清空特定buff計時
             BuffManager:addBuffCount(chaNode, chaNode.buffData, CONST.ADD_BUFF_COUNT_EVENT.NORMAL_ATTACK)        -- 增加buff層數
@@ -874,6 +940,9 @@ function NgBattleCharacterBase:onHit(chaNode, skillId, resultTable, allPassiveTa
                 for i = 1, #aliveIdTable do
                     NewBattleUtil:castPassiveSkill(list[aliveIdTable[i]], v, resultTable, allPassiveTable, CONST.PASSIVE_TRIGGER_TYPE.FRIEND_CRI_HIT, { list[aliveIdTable[i]] })
                 end
+            end
+            for k, v in pairs(CONST.PASSIVE_TYPE_ID[CONST.PASSIVE_TRIGGER_TYPE.AURA_CRI_HIT]) do-- 普攻/技能暴擊命中(光環)
+                NewBattleUtil:calAuraSkillEffect(chaNode, CONST.PASSIVE_TRIGGER_TYPE.AURA_CRI_HIT)
             end
         end
         for k, v in pairs(CONST.PASSIVE_TYPE_ID[CONST.PASSIVE_TRIGGER_TYPE.HIT]) do -- 普攻/技能命中
@@ -910,6 +979,12 @@ function NgBattleCharacterBase:onMiss(chaNode, skillId, resultTable, allPassiveT
         local buffRatio = BuffManager:checkMpGainRatio(buff, nil, not skillId and CONST.ANI_ACT.ATTACK)
         mp = math.max(math.floor(mp * buffRatio + 0.5), 1)
         CHAR_UTIL:setMp(chaNode, math.min(chaNode.battleData[CONST.BATTLE_DATA.MP] + mp, chaNode.battleData[CONST.BATTLE_DATA.MAX_MP]))
+
+        if not skillId then
+            for k, v in pairs(CONST.PASSIVE_TYPE_ID[CONST.PASSIVE_TRIGGER_TYPE.AURA_FRIEND_ATK]) do -- 普攻Miss時
+                NewBattleUtil:calAuraSkillEffect(chaNode, CONST.PASSIVE_TRIGGER_TYPE.AURA_FRIEND_ATK)
+            end
+        end
 
         if isGainMp then
             if skillId then
@@ -992,7 +1067,7 @@ function NgBattleCharacterBase:beDot(chaNode, target, dmg, buffId, isSkipPre, is
                 local resultTable, allPassiveTable, actionResultTable, allTargetTable = { }, { }, { }, { }
                 if NewBattleUtil:castPassiveSkill(list[aliveIdTable[i]], v, resultTable, allPassiveTable, CONST.PASSIVE_TRIGGER_TYPE.ENEMY_DEAD, { target }) then
                     LOG_UTIL:setPreLog(list[aliveIdTable[i]], resultTable)
-                    CHAR_UTIL:calculateAllTable(list[aliveIdTable[i]], resultTable, isSkipCal, actionResultTable, allTargetTable, v, allPassiveTable)   -- 全部傷害/治療/buff...處理
+                    CHAR_UTIL:calculateAllTable(list[aliveIdTable[i]], resultTable, isSkipCal, actionResultTable, allTargetTable, v * 10, allPassiveTable)   -- 全部傷害/治療/buff...處理
                 end
             end
         end
@@ -1003,7 +1078,7 @@ function NgBattleCharacterBase:beDot(chaNode, target, dmg, buffId, isSkipPre, is
                 local resultTable, allPassiveTable, actionResultTable, allTargetTable = { }, { }, { }, { }
                 if NewBattleUtil:castPassiveSkill(flist[aliveIdTable[i]], v, resultTable, allPassiveTable, CONST.PASSIVE_TRIGGER_TYPE.FRIEND_DEAD, { target }) then
                     LOG_UTIL:setPreLog(flist[aliveIdTable[i]], resultTable)
-                    CHAR_UTIL:calculateAllTable(flist[aliveIdTable[i]], resultTable, isSkipCal, actionResultTable, allTargetTable, v, allPassiveTable)   -- 全部傷害/治療/buff...處理
+                    CHAR_UTIL:calculateAllTable(flist[aliveIdTable[i]], resultTable, isSkipCal, actionResultTable, allTargetTable, v * 10, allPassiveTable)   -- 全部傷害/治療/buff...處理
                 end
             end
         end
@@ -1011,7 +1086,7 @@ function NgBattleCharacterBase:beDot(chaNode, target, dmg, buffId, isSkipPre, is
             local resultTable, allPassiveTable, actionResultTable, allTargetTable = { }, { }, { }, { }
             if NewBattleUtil:castPassiveSkill(chaNode, v, resultTable, allPassiveTable, CONST.PASSIVE_TRIGGER_TYPE.KILL_ENEMY, { target }) then
                 LOG_UTIL:setPreLog(target, resultTable)
-                CHAR_UTIL:calculateAllTable(chaNode, resultTable, isSkipCal, actionResultTable, allTargetTable, v, allPassiveTable)   -- 全部傷害/治療/buff...處理
+                CHAR_UTIL:calculateAllTable(chaNode, resultTable, isSkipCal, actionResultTable, allTargetTable, v * 10, allPassiveTable)   -- 全部傷害/治療/buff...處理
             end
         end
         -- TODO 清空BUFF&DEBUFF?
@@ -1104,7 +1179,7 @@ function NgBattleCharacterBase:beHot(target, dmg, buffId, isSkipPre, isSkipAdd)
         CHAR_UTIL:setHp(target, math.min(target.battleData[CONST.BATTLE_DATA.HP] + dmg, target.battleData[CONST.BATTLE_DATA.MAX_HP]))
     end
     local sceneHelper = require("Battle.NgFightSceneHelper")
-    sceneHelper:addBattleResult(CONST.DETAIL_DATA_TYPE.HEALTH, target.buffData[buffId][CONST.BUFF_DATA.CASTER].idx, trueHeal, buffId, false, dmg)   -- 不計算溢補
+    sceneHelper:addBattleResult(CONST.DETAIL_DATA_TYPE.HEALTH, target.buffData[buffId][CONST.BUFF_DATA.CASTER].idx, dmg, buffId, false, dmg)   -- 計算溢補
 
     if buffId then
         LOG_UTIL:addTestLog(LOG_UTIL.TestLogType.BUFF_HEALTH, target.buffData[buffId][CONST.BUFF_DATA.CASTER], target, buffId, false, false, dmg)
@@ -1182,7 +1257,7 @@ function NgBattleCharacterBase:beHealth(chaNode, target, dmg, isCri, isSkipCal, 
         trueHeal = math.min(dmg, target.battleData[CONST.BATTLE_DATA.MAX_HP] - target.battleData[CONST.BATTLE_DATA.HP])
         CHAR_UTIL:setHp(target, math.min(target.battleData[CONST.BATTLE_DATA.HP] + dmg, target.battleData[CONST.BATTLE_DATA.MAX_HP]))
     end
-    sceneHelper:addBattleResult(CONST.DETAIL_DATA_TYPE.HEALTH, chaNode.idx, trueHeal, skillId, isCri, dmg)   -- 不計算溢補
+    sceneHelper:addBattleResult(CONST.DETAIL_DATA_TYPE.HEALTH, chaNode.idx, dmg, skillId, isCri, dmg)   -- 計算溢補
 
     return dmg
 end
@@ -1242,7 +1317,8 @@ function NgBattleCharacterBase:beDrainMana(chaNode, target, dmg, isSkipCal, skil
     CHAR_UTIL:setMp(target, math.max(0, math.min(target.battleData[CONST.BATTLE_DATA.MP] + dmg, target.battleData[CONST.BATTLE_DATA.MAX_MP])), true) -- onHit時已記錄MP
 
     if dmg > 0 then
-        if tonumber(skillId) < 10000 then
+        local buffConfig = ConfigManager:getNewBuffCfg()
+        if skillId < 10000 then
             skillId = skillId * 10
         end
         LOG_UTIL:addTestLog(LOG_UTIL.TestLogType.SKILL_ADD_MP, target, nil, skillId, false, false, math.abs(dmg))
@@ -1288,7 +1364,7 @@ function NgBattleCharacterBase:setOnAnimationFunction(chaNode)
                     local actionResultTable = { }
                     if NewBattleUtil:castPassiveSkill(elist[aliveIdTable[i]], v, resultTable, allPassiveTable, CONST.PASSIVE_TRIGGER_TYPE.ENEMY_CAST_ACTIVE_SKILL, { chaNode }) then
                         LOG_UTIL:setPreLog(elist[aliveIdTable[i]], resultTable)
-                        CHAR_UTIL:calculateAllTable(elist[aliveIdTable[i]], resultTable, isSkipCal, actionResultTable, allTargetTable, v, allPassiveTable)   -- 全部傷害/治療/buff...處理
+                        CHAR_UTIL:calculateAllTable(elist[aliveIdTable[i]], resultTable, isSkipCal, actionResultTable, allTargetTable, v * 10, allPassiveTable)   -- 全部傷害/治療/buff...處理
                     end
                 end
             end
@@ -1650,7 +1726,7 @@ function NgBattleCharacterBase:castStartBattleSkill(chaNode)
         local allTargetTable = { }
         if NewBattleUtil:castPassiveSkill(chaNode, v, resultTable, allPassiveTable, CONST.PASSIVE_TRIGGER_TYPE.START_BATTLE) then
             LOG_UTIL:setPreLog(chaNode, resultTable)
-            CHAR_UTIL:calculateAllTable(chaNode, resultTable, isSkipCal, actionResultTable, allTargetTable, v, allPassiveTable)   -- 全部傷害/治療/buff...處理
+            CHAR_UTIL:calculateAllTable(chaNode, resultTable, isSkipCal, actionResultTable, allTargetTable, v * 10, allPassiveTable)   -- 全部傷害/治療/buff...處理
         end
     end
     for k, v in pairs(CONST.RUNE_PASSIVE_TYPE_ID[CONST.PASSIVE_TRIGGER_TYPE.START_BATTLE]) do -- 開場觸發
@@ -1660,8 +1736,11 @@ function NgBattleCharacterBase:castStartBattleSkill(chaNode)
         local allTargetTable = { }
         if NewBattleUtil:castRunePassiveSkill(chaNode, v, resultTable, allPassiveTable, CONST.PASSIVE_TRIGGER_TYPE.START_BATTLE) then
             LOG_UTIL:setPreLog(chaNode, resultTable)
-            CHAR_UTIL:calculateAllTable(chaNode, resultTable, isSkipCal, actionResultTable, allTargetTable, v, allPassiveTable)   -- 全部傷害/治療/buff...處理
+            CHAR_UTIL:calculateAllTable(chaNode, resultTable, isSkipCal, actionResultTable, allTargetTable, v * 10, allPassiveTable)   -- 全部傷害/治療/buff...處理
         end
+    end
+    for k, v in pairs(CONST.PASSIVE_TYPE_ID[CONST.PASSIVE_TRIGGER_TYPE.AURA_START_BATTLE]) do -- 開場觸發
+        NewBattleUtil:calAuraSkillEffect(chaNode, CONST.PASSIVE_TRIGGER_TYPE.AURA_START_BATTLE)
     end
 end
 function NgBattleCharacterBase:castCdPassiveSkill(chaNode)
@@ -1678,7 +1757,7 @@ function NgBattleCharacterBase:castCdPassiveSkill(chaNode)
             local allTargetTable = { }
             if NewBattleUtil:castPassiveSkill(chaNode, v, resultTable, allPassiveTable, CONST.PASSIVE_TRIGGER_TYPE.CD) then
                 LOG_UTIL:setPreLog(chaNode, resultTable)
-                CHAR_UTIL:calculateAllTable(chaNode, resultTable, isSkipCal, actionResultTable, allTargetTable, v, allPassiveTable)   -- 全部傷害/治療/buff...處理
+                CHAR_UTIL:calculateAllTable(chaNode, resultTable, isSkipCal, actionResultTable, allTargetTable, v * 10, allPassiveTable)   -- 全部傷害/治療/buff...處理
             end
         end
     end

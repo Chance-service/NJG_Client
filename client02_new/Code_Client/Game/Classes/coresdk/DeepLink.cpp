@@ -1,4 +1,8 @@
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #include "DeepLink.h"
+#else
+#include "coresdk/DeepLink.h"
+#endif
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 #include "coresdk/DeepLinkAndroidBridge.h"

@@ -157,7 +157,7 @@ function RewardContent:onRefreshContent(ccbRoot)
             ItemNode:setScale(0.8)
             ItemNode:registerFunctionHandler(ItemCCB.onFunction)
             ItemNode.Reward= self.Reward[i]
-            NodeHelper:setNodesVisible(ItemNode,{selectedNode=false,mStarNode=false,nameBelowNode=false})
+            NodeHelper:setNodesVisible(ItemNode,{selectedNode=false,mStarNode=false,nameBelowNode=false, mPoint = false})
             local resInfo = ResManagerForLua:getResInfoByTypeAndId(self.Reward[i].type, self.Reward[i].itemId, self.Reward[i].count)
             local normalImage = NodeHelper:getImageByQuality(resInfo.quality)
             local iconBg = NodeHelper:getImageBgByQuality(resInfo.quality)

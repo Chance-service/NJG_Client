@@ -39,6 +39,11 @@ android {
             jniLibs.srcDirs = ['platformlibs/KUSO']
             res.srcDirs = ['KUSO/res']
         }
+        APLUS_CPS1 {
+            java.srcDirs = ['platformSrc/APLUS', 'platformSrc/APLUS_CPS1']
+            jniLibs.srcDirs = ['platformlibs/APLUS']
+            res.srcDirs = ['APLUS/res']
+        }
 //        MURA {
 //            java.srcDirs = ['platformSrc/MURA']
 //            jniLibs.srcDirs = ['platformlibs/MURA']
@@ -125,7 +130,7 @@ android {
                 compileOnly fileTree(dir:'libs', include: ['*.aar'])
                 implementation   project(':sdklibs:libcocos2dx')
                 implementation 'com.google.android.material:material:1.5.0-alpha02' // targetSdk为33以下
-                implementation 'wang.harlon.quickjs:wrapper-android:0.18.8'
+                implementation 'wang.harlon.quickjs:wrapper-android:1.0.0'
                 implementation 'io.ktor:ktor-serialization-kotlinx-json:2.3.0'
 
                 implementation 'io.ktor:ktor-client-android:2.3.0'
@@ -156,6 +161,38 @@ android {
 //                    // 當遇到版本衝突時直接構建失敗
 //                    configurations.resolutionStrategy.failOnVersionConflict()
 //            }
+        }
+        APLUS_CPS1 {
+            dimension "app_type"
+            dependencies {
+                compileOnly  fileTree(dir: 'platformlibs/KUSO', include: ['*.aar']) // 跟kuso使用同sdk
+                compileOnly fileTree(dir:'libs', include: ['*.aar'])
+                implementation   project(':sdklibs:libcocos2dx')
+                implementation 'com.google.android.material:material:1.5.0-alpha02' // targetSdk为33以下
+                implementation 'wang.harlon.quickjs:wrapper-android:1.0.0'
+                implementation 'io.ktor:ktor-serialization-kotlinx-json:2.3.0'
+
+                implementation 'io.ktor:ktor-client-android:2.3.0'
+                implementation 'io.ktor:ktor-client-content-negotiation:2.3.0'
+                implementation 'io.ktor:ktor-utils:2.3.0'
+
+                implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
+                implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
+
+
+                constraints {
+                    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.0") {
+                        because("kotlin-stdlib-jdk7 is now a part of kotlin-stdlib")
+                    }
+                    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.0") {
+                        because("kotlin-stdlib-jdk8 is now a part of kotlin-stdlib")
+                    }
+                }
+
+            }
+            defaultConfig {
+                minSdkVersion 21
+            }
         }
 //        MURA {
 //            dimension "app_type"

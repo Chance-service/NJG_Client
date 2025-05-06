@@ -165,7 +165,7 @@ function ShopSubPage_Daily.new()
         print("set self.refreshAutoNextTime to "..os.date("%X", nextTime))
 
         -- 設置 自動刷新 下次時間
-        self.controlPage:setRefreshAutoNextTime(nextTime)
+        self.controlPage:setRefreshAutoNextTime(nextTime - os.time())
     end
 
     return Inst

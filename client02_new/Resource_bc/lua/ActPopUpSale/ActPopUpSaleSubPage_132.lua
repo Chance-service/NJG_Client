@@ -100,7 +100,7 @@ function ActPopUpSaleSubPage_132:initUi(container)
 	end
 
 	itemInfo.price=ActPopUpSalePage_getPrice(itemInfo.id)
-
+     NodeHelper:setNodesVisible(container,{leftCountText = false})
 	self.rewardItems = itemInfo.reward
 
 	-- 初始化 獲得列表
@@ -495,7 +495,7 @@ end
 
 function ActPopUpSaleSubPage_132_getIsShowMainSceneIcon()
 	if _serverData == nil then
-		print("serverData is null 132")
+		--print("serverData is null 132")
 		_showData = { isShowIcon = false, id = 1, isFree = false, isShowRedPoint = false }
 		return _showData
 	end

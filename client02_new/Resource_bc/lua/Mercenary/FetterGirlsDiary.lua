@@ -152,8 +152,8 @@ local mEditInputType = 0
 
 function libPlatformListener:onPlayMovieEnd(listener)
     if not listener then return end
-    GameUtil:setPlayMovieVisible(true)
-    GamePrecedure:getInstance():closeMovie()
+    MainFrame:getInstance():removeMovieByPage(thisPageName);
+    --GamePrecedure:getInstance():closeMovie(thisPageName)
     local Container = tolua.cast(MainFrame:getInstance(), "CCBContainer")
     local backNode = Container:getCCNodeFromCCB("mNodeMid")
     backNode:setVisible(true)
@@ -261,6 +261,10 @@ function FetterGirlsDiary:onClose(container)
         if nowSpines[i] then
             nowSpines[i] = nil
         end
+    end
+    if FetterGirlsDiary.libPlatformListener then
+        FetterGirlsDiary.libPlatformListener:delete()
+        FetterGirlsDiary.libPlatformListener = nil
     end
 end
 
@@ -1473,9 +1477,8 @@ function FetterGirlsDiary:createAction(container, para, action, bgAction, chActi
 			 if para.spine ~=""  then
                 --libPlatformListener = {}
                 --NodeHelper:setNodesVisible(diaryContainer,{mTouch = false})       
-                LibPlatformScriptListener:new(libPlatformListener)
-                GamePrecedure:getInstance():playMovie(para.spine, 0, 0)
-                GameUtil:setPlayMovieVisible(false)
+                FetterGirlsDiary.libPlatformListener = LibPlatformScriptListener:new(libPlatformListener)
+                GamePrecedure:getInstance():playMovie(thisPageName, para.spine, 0, 0)
                  local mainContainer = tolua.cast(MainFrame:getInstance(), "CCBContainer")
                  local backNode = mainContainer:getCCNodeFromCCB("mNodeMid")
                  backNode:setVisible(false)

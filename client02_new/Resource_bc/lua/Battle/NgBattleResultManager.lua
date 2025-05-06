@@ -85,7 +85,7 @@ function NgBattleResultManager_playNextResult(isLose)
     if not GuideManager.isInGuide then
         for i = 1, #ActivityInfo.PopUpSaleIds do
             local actId = ActivityInfo.PopUpSaleIds[i]
-            if ActivityConfig[actId].isShowBattle then
+            if ActivityConfig[actId].isShowBattle and ActivityInfo:getActivityIsOpenById(actId)  then
                 local actFun = _G["ActPopUpSaleSubPage_" .. actId .. "_sendInfoRequest"]
                 if actFun then
                     actFun()

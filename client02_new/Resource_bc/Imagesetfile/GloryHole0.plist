@@ -15,7 +15,7 @@
                 <key>spriteSourceSize</key>
                 <string>{139,136}</string>
                 <key>textureRect</key>
-                <string>{{1128,754},{139,136}}</string>
+                <string>{{1781,1645},{139,136}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -30,37 +30,22 @@
                 <key>spriteSourceSize</key>
                 <string>{139,136}</string>
                 <key>textureRect</key>
-                <string>{{1128,892},{139,136}}</string>
+                <string>{{1781,1783},{139,136}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>GloryHole_btn07_01.png</key>
+            <key>GloryHole_btn05_G.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
                 <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{127,129}</string>
+                <string>{248,81}</string>
                 <key>spriteSourceSize</key>
-                <string>{127,129}</string>
+                <string>{248,81}</string>
                 <key>textureRect</key>
-                <string>{{1122,1763},{127,129}}</string>
-                <key>textureRotated</key>
-                <false/>
-            </dict>
-            <key>GloryHole_btn07_02.png</key>
-            <dict>
-                <key>aliases</key>
-                <array/>
-                <key>spriteOffset</key>
-                <string>{0,0}</string>
-                <key>spriteSize</key>
-                <string>{127,129}</string>
-                <key>spriteSourceSize</key>
-                <string>{127,129}</string>
-                <key>textureRect</key>
-                <string>{{723,1546},{127,129}}</string>
+                <string>{{1765,1200},{248,81}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -79,33 +64,18 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>GloryHole_img_01.png</key>
+            <key>GloryHole_img_03.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
                 <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{397,119}</string>
+                <string>{213,182}</string>
                 <key>spriteSourceSize</key>
-                <string>{397,119}</string>
+                <string>{213,182}</string>
                 <key>textureRect</key>
-                <string>{{723,1763},{397,119}}</string>
-                <key>textureRotated</key>
-                <false/>
-            </dict>
-            <key>GloryHole_img_06.png</key>
-            <dict>
-                <key>aliases</key>
-                <array/>
-                <key>spriteOffset</key>
-                <string>{0,0}</string>
-                <key>spriteSize</key>
-                <string>{180,54}</string>
-                <key>spriteSourceSize</key>
-                <string>{180,54}</string>
-                <key>textureRect</key>
-                <string>{{1043,1200},{180,54}}</string>
+                <string>{{1781,1283},{213,182}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -120,7 +90,7 @@
                 <key>spriteSourceSize</key>
                 <string>{720,609}</string>
                 <key>textureRect</key>
-                <string>{{1,1283},{720,609}}</string>
+                <string>{{724,1283},{720,609}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -135,7 +105,7 @@
                 <key>spriteSourceSize</key>
                 <string>{103,31}</string>
                 <key>textureRect</key>
-                <string>{{1128,1160},{103,31}}</string>
+                <string>{{1922,1859},{103,31}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -150,52 +120,67 @@
                 <key>spriteSourceSize</key>
                 <string>{720,609}</string>
                 <key>textureRect</key>
-                <string>{{1283,1373},{720,609}}</string>
+                <string>{{1,1385},{720,609}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>GloryHole_img_20.png</key>
+            <key>GloryHole_img_14.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
                 <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{608,147}</string>
+                <string>{177,106}</string>
                 <key>spriteSourceSize</key>
-                <string>{608,147}</string>
+                <string>{177,106}</string>
                 <key>textureRect</key>
-                <string>{{1,1894},{608,147}}</string>
+                <string>{{1850,1088},{177,106}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>GloryHole_img_23.png</key>
+            <key>GloryHole_img_16.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
                 <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{145,128}</string>
+                <string>{107,105}</string>
                 <key>spriteSourceSize</key>
-                <string>{145,128}</string>
+                <string>{107,105}</string>
                 <key>textureRect</key>
-                <string>{{1128,1030},{145,128}}</string>
+                <string>{{1922,1752},{107,105}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>GloryHole_item02.png</key>
+            <key>GloryHole_img_22.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{-1,-1}</string>
+                <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{57,90}</string>
+                <string>{256,116}</string>
                 <key>spriteSourceSize</key>
-                <string>{101,100}</string>
+                <string>{256,116}</string>
                 <key>textureRect</key>
-                <string>{{1128,613},{57,90}}</string>
+                <string>{{1781,1921},{256,116}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>GloryHole_img_9.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{173,44}</string>
+                <key>spriteSourceSize</key>
+                <string>{173,44}</string>
+                <key>textureRect</key>
+                <string>{{468,1996},{173,44}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -210,7 +195,7 @@
                 <key>spriteSourceSize</key>
                 <string>{318,1280}</string>
                 <key>textureRect</key>
-                <string>{{723,1},{318,1280}}</string>
+                <string>{{1445,1},{318,1280}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -225,7 +210,7 @@
                 <key>spriteSourceSize</key>
                 <string>{27,455}</string>
                 <key>textureRect</key>
-                <string>{{2005,459},{27,455}}</string>
+                <string>{{1962,1},{27,455}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -240,7 +225,7 @@
                 <key>spriteSourceSize</key>
                 <string>{27,182}</string>
                 <key>textureRect</key>
-                <string>{{1245,1},{27,182}}</string>
+                <string>{{1926,598},{27,182}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -255,7 +240,7 @@
                 <key>spriteSourceSize</key>
                 <string>{44,473}</string>
                 <key>textureRect</key>
-                <string>{{1199,1},{44,473}}</string>
+                <string>{{1850,613},{44,473}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -270,7 +255,7 @@
                 <key>spriteSourceSize</key>
                 <string>{44,16}</string>
                 <key>textureRect</key>
-                <string>{{611,2027},{44,16}}</string>
+                <string>{{1395,1894},{44,16}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -285,7 +270,7 @@
                 <key>spriteSourceSize</key>
                 <string>{83,585}</string>
                 <key>textureRect</key>
-                <string>{{1043,613},{83,585}}</string>
+                <string>{{1765,613},{83,585}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -300,7 +285,7 @@
                 <key>spriteSourceSize</key>
                 <string>{154,610}</string>
                 <key>textureRect</key>
-                <string>{{1043,1},{154,610}}</string>
+                <string>{{1765,1},{154,610}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -315,7 +300,7 @@
                 <key>spriteSourceSize</key>
                 <string>{10,460}</string>
                 <key>textureRect</key>
-                <string>{{2005,1373},{10,460}}</string>
+                <string>{{1921,1},{10,460}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -330,7 +315,7 @@
                 <key>spriteSourceSize</key>
                 <string>{77,171}</string>
                 <key>textureRect</key>
-                <string>{{1199,476},{77,171}}</string>
+                <string>{{1955,598},{77,171}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -345,7 +330,7 @@
                 <key>spriteSourceSize</key>
                 <string>{50,39}</string>
                 <key>textureRect</key>
-                <string>{{1935,1283},{50,39}}</string>
+                <string>{{643,1996},{50,39}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -360,37 +345,52 @@
                 <key>spriteSourceSize</key>
                 <string>{120,172}</string>
                 <key>textureRect</key>
-                <string>{{723,1372},{120,172}}</string>
+                <string>{{1926,782},{120,172}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Gloryhole_Bar_Img_A.png</key>
+            <key>Gloryhole_Bar_Img_C.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
                 <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{92,103}</string>
+                <string>{79,104}</string>
                 <key>spriteSourceSize</key>
-                <string>{92,103}</string>
+                <string>{79,104}</string>
                 <key>textureRect</key>
-                <string>{{1187,649},{92,103}}</string>
+                <string>{{1959,1467},{79,104}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Gloryhole_Bar_Touch02.png</key>
+            <key>Gloryhole_Bar_Touch03.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
                 <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{396,397}</string>
+                <string>{176,176}</string>
                 <key>spriteSourceSize</key>
-                <string>{396,397}</string>
+                <string>{176,176}</string>
                 <key>textureRect</key>
-                <string>{{855,1364},{396,397}}</string>
+                <string>{{1781,1467},{176,176}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>Gloryhole_Bar_mask.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{465,48}</string>
+                <key>spriteSourceSize</key>
+                <string>{465,48}</string>
+                <key>textureRect</key>
+                <string>{{1,1996},{465,48}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -405,7 +405,7 @@
                 <key>spriteSourceSize</key>
                 <string>{27,455}</string>
                 <key>textureRect</key>
-                <string>{{2005,916},{27,455}}</string>
+                <string>{{1991,1},{27,455}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -420,7 +420,7 @@
                 <key>spriteSourceSize</key>
                 <string>{27,456}</string>
                 <key>textureRect</key>
-                <string>{{2005,1},{27,456}}</string>
+                <string>{{1933,1},{27,456}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -435,22 +435,7 @@
                 <key>spriteSourceSize</key>
                 <string>{28,455}</string>
                 <key>textureRect</key>
-                <string>{{1253,1362},{28,455}}</string>
-                <key>textureRotated</key>
-                <false/>
-            </dict>
-            <key>Gloryhole_Combo.png</key>
-            <dict>
-                <key>aliases</key>
-                <array/>
-                <key>spriteOffset</key>
-                <string>{0,0}</string>
-                <key>spriteSize</key>
-                <string>{127,69}</string>
-                <key>spriteSourceSize</key>
-                <string>{127,69}</string>
-                <key>textureRect</key>
-                <string>{{723,1677},{127,69}}</string>
+                <string>{{1896,613},{28,455}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -465,7 +450,7 @@
                 <key>spriteSourceSize</key>
                 <string>{720,1280}</string>
                 <key>textureRect</key>
-                <string>{{1283,1},{720,1280}}</string>
+                <string>{{723,1},{720,1280}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -480,22 +465,67 @@
                 <key>spriteSourceSize</key>
                 <string>{670,131}</string>
                 <key>textureRect</key>
-                <string>{{611,1894},{670,131}}</string>
+                <string>{{723,1894},{670,131}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Gloryhole_Title.png</key>
+            <key>Gloryhole_Ranking_img10.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
                 <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{550,56}</string>
+                <string>{333,744}</string>
                 <key>spriteSourceSize</key>
-                <string>{550,56}</string>
+                <string>{333,744}</string>
                 <key>textureRect</key>
-                <string>{{723,1283},{550,56}}</string>
+                <string>{{1446,1283},{333,744}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>Gloryhole_Ranking_img12.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{113,105}</string>
+                <key>spriteSourceSize</key>
+                <string>{113,105}</string>
+                <key>textureRect</key>
+                <string>{{1922,1645},{113,105}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>Gloryhole_Ranking_img13.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{113,106}</string>
+                <key>spriteSourceSize</key>
+                <string>{113,106}</string>
+                <key>textureRect</key>
+                <string>{{1926,956},{113,106}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>Gloryhole_Ranking_img6.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{721,100}</string>
+                <key>spriteSourceSize</key>
+                <string>{721,100}</string>
+                <key>textureRect</key>
+                <string>{{1,1283},{721,100}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -510,37 +540,7 @@
                 <key>spriteSourceSize</key>
                 <string>{328,77}</string>
                 <key>textureRect</key>
-                <string>{{657,2027},{3,3}}</string>
-                <key>textureRotated</key>
-                <false/>
-            </dict>
-            <key>Gloryhole_mission_img2.png</key>
-            <dict>
-                <key>aliases</key>
-                <array/>
-                <key>spriteOffset</key>
-                <string>{0,0}</string>
-                <key>spriteSize</key>
-                <string>{328,77}</string>
-                <key>spriteSourceSize</key>
-                <string>{328,77}</string>
-                <key>textureRect</key>
-                <string>{{1275,1283},{328,77}}</string>
-                <key>textureRotated</key>
-                <false/>
-            </dict>
-            <key>Gloryhole_mission_img3.png</key>
-            <dict>
-                <key>aliases</key>
-                <array/>
-                <key>spriteOffset</key>
-                <string>{0,0}</string>
-                <key>spriteSize</key>
-                <string>{328,77}</string>
-                <key>spriteSourceSize</key>
-                <string>{328,77}</string>
-                <key>textureRect</key>
-                <string>{{1605,1283},{328,77}}</string>
+                <string>{{1395,1912},{3,3}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -555,37 +555,22 @@
                 <key>spriteSourceSize</key>
                 <string>{121,21}</string>
                 <key>textureRect</key>
-                <string>{{855,1341},{121,21}}</string>
+                <string>{{1921,575},{121,21}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Gloryhole_mission_img6.png</key>
+            <key>NG_PIC0.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
                 <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{130,29}</string>
+                <string>{116,110}</string>
                 <key>spriteSourceSize</key>
-                <string>{130,29}</string>
+                <string>{116,110}</string>
                 <key>textureRect</key>
-                <string>{{723,1341},{130,29}}</string>
-                <key>textureRotated</key>
-                <false/>
-            </dict>
-            <key>Ranking_Inner_img6.png</key>
-            <dict>
-                <key>aliases</key>
-                <array/>
-                <key>spriteOffset</key>
-                <string>{0,0}</string>
-                <key>spriteSize</key>
-                <string>{721,60}</string>
-                <key>spriteSourceSize</key>
-                <string>{721,60}</string>
-                <key>textureRect</key>
-                <string>{{1283,1984},{721,60}}</string>
+                <string>{{1921,463},{116,110}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -601,9 +586,9 @@
             <key>realTextureFileName</key>
             <string>GloryHole0.png</string>
             <key>size</key>
-            <string>{2033,2045}</string>
+            <string>{2047,2045}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:041b8cc3bc291388054a9570ab07cb08:d7a689915ac8fd74f36e31e3fda0761b:f82c56f79c88abdb0031da738d65b93a$</string>
+            <string>$TexturePacker:SmartUpdate:009f335d9420b51eace414a0997710db:c04d683516eae8e363e19df0e5d578ea:f82c56f79c88abdb0031da738d65b93a$</string>
             <key>textureFileName</key>
             <string>GloryHole0.png</string>
         </dict>

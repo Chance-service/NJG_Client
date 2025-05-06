@@ -443,8 +443,8 @@ function CommMarqueeBanner:new ()
     function Inst:enterBanner ()
         print("enterBanner : "..tostring(self.curBannerIdx))
         local bannerData = self.bannerDatas[self.curBannerIdx]
-        if bannerData.onEnter ~= nil then 
-            bannerData.onEnter()
+        if bannerData.onEnter ~= nil then   
+            bannerData.onEnter(bannerData.PageName,bannerData.url)
         end
     end
 
@@ -503,6 +503,8 @@ function CommMarqueeBanner:new ()
                 counter = info.counter,
                 onEnter = info.onEnter,
                 bg = info.bg,
+                PageName = info.PageName or nil,
+                url = info.url or nil
             }
             self.bannerDatas[idx] = data
         end

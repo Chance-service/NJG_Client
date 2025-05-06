@@ -134,11 +134,10 @@ public:
 
 			unsigned char* codeBuffer = CCFileUtils::sharedFileUtils()->getFileData(cocos2d::CCFileUtils::sharedFileUtils()->fullPathForFilename(_filename.c_str()).c_str(),
 				"rb", &codeBufferSize, false);
-			CCLog("GetMD5 : %s", _filename.c_str());
 			FILE* file = fopen(_filename.c_str(), "rb");
 			char m_databuf[16384];
 			std::string md5 = GameMaths::calMd5(file, m_databuf, sizeof(m_databuf));
-			CCLog("GetMD5 md5 : %s", md5.c_str());
+			CCLog("GetMD5 file : %s, md5 : %s", _filename.c_str(), md5.c_str());
 			if (codeBuffer)
 				delete[] codeBuffer;
 			_DataMutex.unlock();
@@ -331,9 +330,8 @@ void CurlDownload::update( float dt )
 		}
 		else if (DownLoadTask::Get()->getCheckMD5())
 		{
-			CCLog("CheckMD5 ");
 			std::string md5 = DownLoadTask::Get()->getMD5();
-			if (DownLoadTask::Get()->getDataMD5() == DownLoadTask::Get()->getMD5())
+			if ((DownLoadTask::Get()->getDataMD5() == DownLoadTask::Get()->getMD5()) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32))
 				sendOK = true;
 			else
 			{

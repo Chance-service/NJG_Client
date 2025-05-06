@@ -5,7 +5,8 @@ LOCAL_MODULE := protobuf_static
 LOCAL_CPP_EXTENSION := .cc
 LOCAL_MODULE_FILENAME := libprotobuf
 
-LOCAL_SRC_FILES :=   ../src/google/protobuf/io/coded_stream.cc         \
+LOCAL_SRC_FILES :=   ../src/google/protobuf/io/coded_stream.cc        \
+  ../src/google/protobuf/stubs/atomicops_internals_x86_gcc.cc         \
   ../src/google/protobuf/stubs/common.cc                              \
   ../src/google/protobuf/stubs/once.cc                                \
   ../src/google/protobuf/stubs/stringprintf.cc                        \

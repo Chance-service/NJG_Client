@@ -654,4 +654,20 @@ function InfoAccesser:getExistAncientWeaponByPieceId (itemId)
     return false
 end
 
+--[[ 取得 該專武id是否可合成 ]]
+function InfoAccesser:getAncientPieceCanFusion(itemId)
+    if InfoAccesser:getExistAncientWeaponByPieceId(itemId) then
+        return false
+    end
+    if not ConfigManager.getItemCfg()[itemId] then
+        return false
+    end
+    local consumeStr = ConfigManager.getItemCfg()[itemId].containItem
+    local consumeNum = tonumber(common:split(consumeStr, "_")[1]) or 0
+    if consumeNum == 0 or InfoAccesser:getUserItemCount(3, itemId) < consumeNum then
+        return false
+    end
+    return true
+end
+
 return InfoAccesser

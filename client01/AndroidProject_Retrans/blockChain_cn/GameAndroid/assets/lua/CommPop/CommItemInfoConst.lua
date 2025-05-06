@@ -35,6 +35,8 @@ CommItemInfoConst.Preset = {
 
     SELL = 31,
     SELL_STEP2 = 32,
+    --AFK寶箱
+    AFK_Treasure = 33
 }
 
 --[[ 預設 UI顯示 ]]
@@ -268,8 +270,14 @@ CommItemInfoConst.PresetSetting = {
         },
         functions = {
             onOneBtnClick = function (page)
-                page:setPreset(CommItemInfoConst.Preset.OPEN_AMOUNT_STEP2)
-                page:setAmount(1)
+                local itemType = page.itemInfo.type
+                if itemType == 39 or itemType == 40 or itemType == 41 then
+                    page:setPreset(CommItemInfoConst.Preset.AFK_Treasure)
+                    page:setAmount(1)
+                else
+                    page:setPreset(CommItemInfoConst.Preset.OPEN_AMOUNT_STEP2)
+                    page:setAmount(1)
+                end
             end
         },
     },
@@ -283,7 +291,26 @@ CommItemInfoConst.PresetSetting = {
         texts = {
             titleTxt = "@Mid-autumnPropChoiceTitle",
             oneBtnTxt = "@Use",
-            -- oneBtnTxt = "@CommItemInfoPage.openAmount.btn2",
+        },
+        functions = CommItemInfoConst:_mergeFuncs(
+            CommItemInfoConst:_generateItemAmountAndConfirmFuncs({
+                onConfirm_fn = function(page, amount)
+                    page:useItem(amount)
+                end
+            }),
+            {}
+        ),
+    },
+        [CommItemInfoConst.Preset.AFK_Treasure] = {
+        itemTypes = {},
+
+        visibles = {
+            itemAmountNode = true,
+            oneBtnNode = true, 
+        },
+        texts = {
+            titleTxt = "@Mid-autumnPropChoiceTitle",
+            oneBtnTxt = "@Use",
         },
         functions = CommItemInfoConst:_mergeFuncs(
             CommItemInfoConst:_generateItemAmountAndConfirmFuncs({

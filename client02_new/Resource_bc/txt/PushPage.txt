@@ -33,4 +33,6 @@ ItemID	page名字	是否有Push动画	Push动画是否在Enter之前	是否有Po
 32	SingleBoss.SingleBossPopResult	1	0	1	0	0	單人強敵結算
 33	SingleBoss.SingleBossPopPage	1	0	1	0	0	單人強敵共用彈窗
 34	CommonRewardPageNew	1	0	1	0	0	掛機獎勵視窗
-35	Event001RewardPopUp	1	0	1	0	0	活動獎勵預覽
+35	AncientWeaponPreview_PopUp	1	0	1	0	0	專武預覽
+36	Shop.SkinShopPopUp	1	0	1	0	0	皮膚商店資訊視窗
+37	Shop.SkinShopJumpPopUp	1	0	1	0	0	皮膚商店跳轉視窗

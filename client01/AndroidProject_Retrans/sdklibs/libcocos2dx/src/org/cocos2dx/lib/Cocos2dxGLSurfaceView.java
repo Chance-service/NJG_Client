@@ -23,10 +23,7 @@ THE SOFTWARE.
  ****************************************************************************/
 package org.cocos2dx.lib;
 
-import javax.microedition.khronos.egl.EGL10;
-import javax.microedition.khronos.egl.EGLConfig;
-import javax.microedition.khronos.egl.EGLDisplay;
-
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.PixelFormat;
@@ -39,6 +36,7 @@ import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.inputmethod.InputMethodManager;
 
+@SuppressLint("NewApi")
 public class Cocos2dxGLSurfaceView extends GLSurfaceView {
 	// ===========================================================
 	// Constants
@@ -66,10 +64,9 @@ public class Cocos2dxGLSurfaceView extends GLSurfaceView {
 	private int  m_desiredGBits = 8;
 	private int m_desiredBBits = 8;
 	private int m_desiredABits = 8;
-	private int m_desireBitdepth=24;
-	private int m_pixelFormatVal=0;
-	
-	public static long m_touchTime=0;
+	private int m_desireBitdepth = 24;
+	private int m_pixelFormatVal = 0;
+	public static long m_touchTime = 0;
 	
 	// ===========================================================
 	// Constructors
@@ -80,67 +77,6 @@ public class Cocos2dxGLSurfaceView extends GLSurfaceView {
 	public Cocos2dxGLSurfaceView(final Context context, int pixelFormatVal) {
 		super(context);
 		m_pixelFormatVal = pixelFormatVal;
-		
-		
-	// 	super.setEGLConfigChooser(5, 6, 5, 0, 16, 8); // add this fix android  Stencil buffer is not enabled
-	//	super.setEGLConfigChooser(0 , 0, 0, 0, 16, 8);
-
-		
-		//public void setEGLConfigChooser (int redSize, int greenSize, int blueSize, int alphaSize, int depthSize, int stencilSize)
-		
-//		super.setEGLConfigChooser(new EGLConfigChooser() {
-//			
-//			@Override
-//			public EGLConfig chooseConfig(EGL10 egl, EGLDisplay display) {
-//				 EGLConfig[]  cfgs = new  EGLConfig[255];
-//				 int [] num_config = new int[1];
-//				 
-//				 
-//				if(egl.eglGetConfigs(display, cfgs, 255, num_config))
-//				{
-//					if(num_config[0] > 0)
-//					{
-//						EGLConfig preferCfg = null;
-//						int max = 0;
-//						int []value = new int[1];
-//						GLConfigSubet s = new GLConfigSubet();
-//						for(int i=0;i<num_config[0];i++)
-//						{
-//							EGLConfig cfg = cfgs[i];
-//					
-//							
-//							egl.eglGetConfigAttrib(display, cfg, EGL10.EGL_RED_SIZE, value);
-//							s.redSize = value[0];
-//							egl.eglGetConfigAttrib(display, cfg, EGL10.EGL_GREEN_SIZE, value);
-//							s.greenSize = value[0];
-//							egl.eglGetConfigAttrib(display, cfg, EGL10.EGL_BLUE_SIZE, value);
-//							s.blueSize = value[0];
-//							egl.eglGetConfigAttrib(display, cfg, EGL10.EGL_DEPTH_SIZE, value);
-//							s.depthSize = value[0];
-//							egl.eglGetConfigAttrib(display, cfg, EGL10.EGL_ALPHA_SIZE, value);
-//							s.alphaSize = value[0];
-//							egl.eglGetConfigAttrib(display, cfg, EGL10.EGL_STENCIL_SIZE, value);
-//							s.stencilSize = value[0];
-//							
-//							Log.i("EGLConfigChooser", s.dump());
-//							
-//							if(max < s.sum() || preferCfg==null )
-//							{
-//								Log.i("UPDATE EGLConfig TO",  s.dump());
-//								
-//								max = s.sum();
-//								preferCfg = cfg;
-//							}
-//							
-//							
-//						}
-//						return preferCfg;
-//					}
-//				}
-//				return null;
-//				
-//			}
-//		});
 		
 		this.initView();
 	}
@@ -249,8 +185,7 @@ public class Cocos2dxGLSurfaceView extends GLSurfaceView {
 		        m_desireBitdepth = 8;
 		        getHolder().setFormat(PixelFormat.RGB_332);
 		    }
-		//    m_desireBitdepth = info.bitsPerPixel;
-		    Log.i(TAG, "use format r "+m_desiredRBits + " g "+m_desiredGBits + " b "+ m_desiredABits + " a " + m_desiredABits);
+		    Log.i(TAG, "use format r " + m_desiredRBits + " g " + m_desiredGBits + " b " + m_desiredABits + " a " + m_desiredABits);
 		} else {
 		    m_desiredRBits = 8;
 		    m_desiredGBits = 8;
@@ -260,11 +195,10 @@ public class Cocos2dxGLSurfaceView extends GLSurfaceView {
 		    Log.i(TAG, "use default format 8888, and change holder format to RGB_888" );
 			getHolder().setFormat(PixelFormat.RGBA_8888);
 		}
-		
-		
-	
-		this.setEGLConfigChooser( m_desiredRBits,m_desiredGBits,m_desiredBBits,m_desiredABits,m_desireBitdepth,8);
-		
+
+		this.setEGLConfigChooser(m_desiredRBits, m_desiredGBits, m_desiredBBits, m_desiredABits, m_desireBitdepth, 8);
+		//getHolder().setFormat(PixelFormat.TRANSLUCENT);
+		this.setZOrderOnTop(true);
 		this.setRenderer(this.mCocos2dxRenderer);
 	}
 

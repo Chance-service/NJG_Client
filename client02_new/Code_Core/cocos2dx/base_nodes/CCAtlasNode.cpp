@@ -142,7 +142,8 @@ void CCAtlasNode::draw(void)
 {
     CC_NODE_DRAW_SETUP();
 
-    ccGLBlendFunc( m_tBlendFunc.src, m_tBlendFunc.dst );
+    //ccGLBlendFunc( m_tBlendFunc.src, m_tBlendFunc.dst );
+	glBlendFuncSeparate(m_tBlendFunc.src, m_tBlendFunc.dst, m_tBlendFunc.src, m_tBlendFunc.dst);
 
     GLfloat colors[4] = {_displayedColor.r / 255.0f, _displayedColor.g / 255.0f, _displayedColor.b / 255.0f, _displayedOpacity / 255.0f};
     getShaderProgram()->setUniformLocationWith4fv(m_nUniformColor, colors, 1);

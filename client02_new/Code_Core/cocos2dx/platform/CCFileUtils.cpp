@@ -647,7 +647,8 @@ std::string CCFileUtils::fullPathForFilename(const char* pszFileName)
     std::map<std::string, std::string>::iterator cacheIter = m_fullPathCache.find(pszFileName);
     if (cacheIter != m_fullPathCache.end())
     {
-		if (strcmp(pszFileName, "Lang/Language.lang") == 0  || strcmp(pszFileName, "version.manifest") == 0)
+		//if (strcmp(pszFileName, "Lang/Language.lang") == 0  || strcmp(pszFileName, "version.manifest") == 0)
+		if (strFileName.find("Lang/Language") != string::npos || strcmp(pszFileName, "version.manifest") == 0)
 		{
 			m_fullPathCache.erase(cacheIter);
 		}

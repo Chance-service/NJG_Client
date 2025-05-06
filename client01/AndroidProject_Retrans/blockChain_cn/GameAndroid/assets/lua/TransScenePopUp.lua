@@ -44,12 +44,16 @@ function TransScenePopUp:onExit(container)
     PageManager.popPage(thisPageName)
 end
 
-function TransScenePopUp_closePage()
+function TransScenePopUp_closePage(delayTime)
     if TransSceneData.transSpine then
         local spineNode = tolua.cast(TransSceneData.transSpine, "CCNode")
         spineNode:stopAllActions()
         local action = CCArray:create()
-        action:addObject(CCDelayTime:create(1 / 60))
+        if not delayTime then
+            action:addObject(CCDelayTime:create(1 / 60))
+        else
+            action:addObject(CCDelayTime:create(delayTime))
+        end
         action:addObject(CCCallFunc:create(function()
             TransSceneData.playingAniName = "animation2"
             TransSceneData.transSpine:runAnimation(1, "animation2", 0)

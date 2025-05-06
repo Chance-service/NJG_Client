@@ -7,7 +7,7 @@ require("Battle.NewSkill.SkillUtil")
 local aliveIdTable = { }
 -------------------------------------------------------
 --[[ NEW
-對當前目標造成250%/300%/350%(params1)傷害，對該目標賦予"暈眩"(params2)2/3/4秒(params3)
+對當前目標造成250%/300%/350%(params1)傷害，對該目標賦予"暈眩"(params2)4/6/8秒(params3)
 ]]--
 --[[ OLD
 對當前目標造成300%/350%/400%(params1)傷害，並賦予自身"冰心I/冰心I/冰心II"(params2)10秒(params3)

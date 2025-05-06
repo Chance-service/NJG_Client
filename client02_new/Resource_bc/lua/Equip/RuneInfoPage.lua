@@ -319,11 +319,14 @@ function SkillContent:onRefreshContent(content)
         SkillContent.LowerNode[self.id] = container
         SkillContent:setLockState(container, self.Lock, self.id, self.Pos, self.isRefine)
     else
-        NodeHelper:setNodesVisible(container, { mLock = true })
         self:setHtmlString(container, self.id)
         SkillContent:setLockState(container, self.Lock, self.id)
         NodeHelper:setNodesVisible(container, { mRefine = (runecfg.unlocksp == 1 and not self.Lock) })
-        if self.Refine then NodeHelper:setNodesVisible(container, { mLock = false, mRefine = false }) end
+        if self.isRefine then
+             NodeHelper:setNodesVisible(container, { mRefine = false, mLock = false })
+        else
+            NodeHelper:setNodesVisible(container, { mLock = true })
+        end
     end
 end
 

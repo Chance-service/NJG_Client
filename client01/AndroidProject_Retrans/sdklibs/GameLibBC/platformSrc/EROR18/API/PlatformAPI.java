@@ -61,7 +61,7 @@ public class PlatformAPI extends SDKService {
 	    	channel = "quanta";
 	    } else
 	    {
-			tabDBId = "hv4udrq9iv8oubgu";
+			tabDBId = "08seaj07xvubjqph";
 	    	channel = "EROR18";
 	    }
 

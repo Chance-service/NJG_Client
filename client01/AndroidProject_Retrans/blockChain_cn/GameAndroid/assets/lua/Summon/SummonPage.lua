@@ -1,10 +1,4 @@
---[[ 
-    name: SummonPage
-    desc: 召喚頁面
-    author: youzi
-    update: 2023/10/02 16:10
-    description: 
---]]
+
 
 --[[ 字典 ]] -- (若有將該.lang檔轉寫入Language.lang中可移除此處與該.lang檔)
 -- __lang_loaded = __lang_loaded or {}
@@ -26,7 +20,20 @@ local HANDLER_MAP = nil
 --[[ 協定 ]]
 local OPCODES = nil
 
-local page = CommTabStoragePage:generateCommPage(PAGE_NAME, HANDLER_MAP, OPCODES, SummonDataMgr.SubPageCfgs)
+local page = CommTabStoragePage:generateCommPage(PAGE_NAME, HANDLER_MAP, OPCODES, function ()
+    local cfgs = {}
+    SummonDataMgr:setSubPageConfigs()
+    for _, val in ipairs(SummonDataMgr.SubPageCfgs) do
+        -- 若為活動且活動未開啟則跳過
+        if not (val.activityID and not ActivityInfo:getActivityIsOpenById(val.activityID)) then
+            cfgs[#cfgs+1] = val
+        end
+    end
+
+
+    return cfgs
+end)
+
 
 local base_onExit = page.onExit
 page.onExit = function (container)

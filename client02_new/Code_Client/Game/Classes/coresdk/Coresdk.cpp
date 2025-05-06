@@ -1,7 +1,13 @@
 #include "Coresdk.h"
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #include "util.h"
 #include "webapi.h"
 #include "../coresdk/DeepLink.h"
+#else
+#include "coresdk/util.h"
+#include "coresdk/webapi.h"
+#include "coresdk/DeepLink.h"
+#endif
 
 USING_NS_CC;
 namespace coresdk {

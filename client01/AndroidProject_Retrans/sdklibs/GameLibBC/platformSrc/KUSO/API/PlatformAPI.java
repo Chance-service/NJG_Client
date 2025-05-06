@@ -26,17 +26,19 @@ public class PlatformAPI extends SDKService {
 	}
 
 	private final static String appId = "APPncbR1hdPgUIjSKt";//"APPDZnofBIY5b64jHC";
+	private final static String subId = "NG24";
 	public static String kusotoken = "";
 	private static boolean dologout = false;
 
 	@Override
 	public void onCreateSDK(){
-			// 設定 KUSO SDK 遊戲資訊.
-			PlayCenter.shared.setup(home_activity, appId, APP_DBG);
+		// 設定 KUSO SDK 遊戲資訊.
+		PlayCenterConfig config = new PlayCenterConfig(appId, APP_DBG, subId);
+		PlayCenter.shared.setup(home_activity, config);
 
-			aTag = "TEST_KUSO";
-			showlog("onCreate KUSO");
-			isCreate = true ;
+		aTag = "TEST_KUSO";
+		showlog("onCreate KUSO");
+		isCreate = true ;
 
 	}
 

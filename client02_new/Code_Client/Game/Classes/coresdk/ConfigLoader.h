@@ -2,7 +2,11 @@
 #define  _CORESDK_CONFIG_LOADER_H_
 
 #include "cocos2d.h"
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #include "Config.h"
+#else
+#include "coresdk/Config.h"
+#endif
 
 namespace coresdk {
 	class ConfigLoader : public cocos2d::CCObject

@@ -3,6 +3,7 @@ local thisPageName = "Lobby2Page"
 require("Util.RedPointManager")
 local LockManager = require("Util.LockManager")
 local RankRewardData=require("Ranking.ProfessionRankingRewardData")
+local GuideManager = require("Guide.GuideManager")
 
 local opcodes =
     {
@@ -15,7 +16,7 @@ local option = {
         onHollyGrail="onHollyGrail",
         onArena="onArena",
         onEvent="onEvent",
-        onGuild="onGuild",
+        onTower="onTower",
         onWorldBoss="onWorldBoss",
         onGoldMine="onGoldMine",
         onRank="onRank"
@@ -24,12 +25,16 @@ local option = {
     opcode = opcodes,
 };
 local Lobby2Page = {}
+local mainContainer = nil
+
+needNewTowerData = true
 
 function Lobby2Page:onEnter(ParentContainer)
     local container = ScriptContentBase:create(option.ccbiFile)
     self.container = ParentContainer
     self:registerPacket(self.container)
     self:InfoReq()
+    mainContainer = container
     local mainFrame = tolua.cast(MainFrame:getInstance(), "CCBScriptContainer")
     local PageJumpMange = require("PageJumpMange")
     if PageJumpMange._IsPageJump then
@@ -66,6 +71,7 @@ function Lobby2Page:onExecute(container)
 end
 function Lobby2Page:onExit(container)
     container:removeMessage(MSG_REFRESH_REDPOINT)
+    needNewTowerData = true
 end
 function Lobby2Page:onReceiveMessage(container)
     local message = container:getMessage()
@@ -82,10 +88,41 @@ function Lobby2Page:refreshRedPoint(container)
     NodeHelper:setNodesVisible(container, { mHolyGrailPoint = RedPointManager_getShowRedPoint(RedPointManager.PAGE_IDS.LOBBY2_GRAIL_ENTRY) })
     
 end
+-- 判斷「塔」頁面是否關閉
+local function isTowerAccessible(showMsg)
+    -- 1. 檢查鎖定
+    local lock = LockManager_getShowLockByPageName(GameConfig.LOCK_PAGE_KEY.TOWER)
+    if lock then
+        if showMsg then
+            MessageBoxPage:Msg_Box(LockManager_getLockStringByPageName(GameConfig.LOCK_PAGE_KEY.TOWER))
+        end
+        return false
+    end
+
+    -- 2. 檢查活動
+    local activityIds = {
+        Const_pb.ACTIVITY194_SeasonTower,
+        Const_pb.ACTIVITY198_LIMIT_TOWER,
+        Const_pb.ACTIVITY199_FearLess_TOWER,
+    }
+    for _, actId in ipairs(activityIds) do
+        if ActivityInfo:getActivityIsOpenById(actId) then
+            -- 任一活動開啟，就可進入
+            return true
+        end
+    end
+
+    -- 3. 如果都沒開，就提示（如果需要）並回 false
+    if showMsg then
+        MessageBoxPage:Msg_Box(common:getLanguageString("@ActivityNotOpen"))
+    end
+    return false
+end
+
 -- 刷新各建築物上鎖圖示
 function Lobby2Page:refreshLockImg(container)
     NodeHelper:setNodesVisible(container, { 
-        mGuildLock = LockManager_getShowLockByPageName(GameConfig.LOCK_PAGE_KEY.GUILD),
+        mGuildLock = not isTowerAccessible(),
         mMineLock = LockManager_getShowLockByPageName(GameConfig.LOCK_PAGE_KEY.GOLD_MINE),
         mEventLock = LockManager_getShowLockByPageName(GameConfig.LOCK_PAGE_KEY.EVENT),
         mWorldBossLock = LockManager_getShowLockByPageName(GameConfig.LOCK_PAGE_KEY.WORLD_BOSS),
@@ -95,47 +132,97 @@ function Lobby2Page:refreshLockImg(container)
         mRankingLock = LockManager_getShowLockByPageName(GameConfig.LOCK_PAGE_KEY.RANKING),
     })
 end
+function Lobby2Page:PlayAni_DelayEnter(ani, time, page)
+    local container = self.container
+    local initialY = nil -- 用於記錄按鈕的初始Y座標
+
+    -- 設定按鈕移動效果
+    local function moveButtons(isVisible)
+        local mainContainer = tolua.cast(MainFrame:getInstance(), "CCBContainer")
+        local mainButtons = mainContainer:getCCNodeFromCCB("mMainFrameButtons")
+
+        -- 如果尚未記錄初始位置，則進行記錄
+        if not initialY then
+            initialY = mainButtons:getPositionY()
+        end
+
+        local visibleSize = CCEGLView:sharedOpenGLView():getFrameSize()
+        local contentHeight = 159
+        local targetY = isVisible and initialY or initialY - contentHeight
+        local moveAction = CCMoveTo:create(0.2, ccp(0, targetY)) -- 移動動作
+        mainButtons:runAction(moveAction)
+    end
+
+    -- 動作序列
+    local array = CCArray:create()
+    array:addObject(CCCallFunc:create(function()
+        if not GuideManager.isInGuide then
+            moveButtons(false) -- 按鈕移動到負-Y座標
+            container:runAnimation(ani)
+        end
+
+    end))
+    array:addObject(CCDelayTime:create(0.1))
+    array:addObject(CCCallFunc:create(function()
+        PageManager.pushPage("TransScenePopUp")
+    end))
+    array:addObject(CCDelayTime:create(time))
+    array:addObject(CCCallFunc:create(function()
+        if page then
+            PageManager.pushPage(page) -- 切換頁面
+        end
+    end))
+    array:addObject(CCDelayTime:create(1)) -- 延遲1秒
+    array:addObject(CCCallFunc:create(function()
+        moveButtons(true) -- 按鈕移回初始位置
+        container:runAnimation("Default Timeline")
+    end))
+
+    -- 執行序列
+    container:runAction(CCSequence:create(array))
+end
+
 
 function Lobby2Page:onHollyGrail(container)
     if LockManager_getShowLockByPageName(GameConfig.LOCK_PAGE_KEY.HOLY_GRAIL) then
         MessageBoxPage:Msg_Box(LockManager_getLockStringByPageName(GameConfig.LOCK_PAGE_KEY.HOLY_GRAIL))
     else
-        PageManager.pushPage("Leader.LeaderPage")
+        self:PlayAni_DelayEnter("Exit03",0.6,"Leader.LeaderPage")
     end
 end
 function Lobby2Page:onBounty()
     if LockManager_getShowLockByPageName(GameConfig.LOCK_PAGE_KEY.DUNGEON) then
         MessageBoxPage:Msg_Box(LockManager_getLockStringByPageName(GameConfig.LOCK_PAGE_KEY.DUNGEON))
     else
-        PageManager.pushPage("Dungeon.DungeonPage")
+        self:PlayAni_DelayEnter("Exit01",0.6,"Dungeon.DungeonPage")
     end
 end
 function Lobby2Page:onArena()
     if LockManager_getShowLockByPageName(GameConfig.LOCK_PAGE_KEY.ARENA) then
         MessageBoxPage:Msg_Box(LockManager_getLockStringByPageName(GameConfig.LOCK_PAGE_KEY.ARENA))
     else
-        PageManager.pushPage("ArenaPage")
+        self:PlayAni_DelayEnter("Exit02",0.6,"ArenaPage")
+       -- PageManager.pushPage("ArenaPage")
     end
 end
 function Lobby2Page:onEvent()
     if LockManager_getShowLockByPageName(GameConfig.LOCK_PAGE_KEY.EVENT) then
         MessageBoxPage:Msg_Box(LockManager_getLockStringByPageName(GameConfig.LOCK_PAGE_KEY.EVENT))
     else
-        PageManager.pushPage("Dungeon2.Dungeon2Page")
+        self:PlayAni_DelayEnter("Exit04",0.6,"Dungeon2.Dungeon2Page")
     end
 end
-function Lobby2Page:onGuild()
-    if LockManager_getShowLockByPageName(GameConfig.LOCK_PAGE_KEY.GUILD) then
-        MessageBoxPage:Msg_Box(LockManager_getLockStringByPageName(GameConfig.LOCK_PAGE_KEY.GUILD))
-    else
-        MessageBoxPage:Msg_Box(common:getLanguageString("@WaitingOpen"))
-    end
+function Lobby2Page:onTower()
+    if not isTowerAccessible(true) then  
+        return
+    end   
+    self:PlayAni_DelayEnter("Exit07",0.6,"Tower.TowerMenu")
 end
 function Lobby2Page:onWorldBoss()
     if LockManager_getShowLockByPageName(GameConfig.LOCK_PAGE_KEY.WORLD_BOSS) then
         MessageBoxPage:Msg_Box(LockManager_getLockStringByPageName(GameConfig.LOCK_PAGE_KEY.WORLD_BOSS))
     else
-        PageManager.pushPage("WorldBossFinalpage")
+        self:PlayAni_DelayEnter("Exit05",0.6,"WorldBossFinalpage")
     end
 end
 function Lobby2Page:onGoldMine()
@@ -143,6 +230,7 @@ function Lobby2Page:onGoldMine()
         MessageBoxPage:Msg_Box(LockManager_getLockStringByPageName(GameConfig.LOCK_PAGE_KEY.GOLD_MINE))
     else
         --MessageBoxPage:Msg_Box(common:getLanguageString("@WaitingOpen"))
+        --self:PlayAni_DelayEnter("Exit06",0.6,"PageName")
     end
 end
 function Lobby2Page:onRank()
@@ -193,6 +281,35 @@ function Lobby2Page:InfoReq()
     end
     if not LockManager_getShowLockByPageName(GameConfig.LOCK_PAGE_KEY.EVENT) then
         common:sendEmptyPacket(HP_pb.DUNGEON_LIST_INFO_C, false)
+    end
+    --Tower
+    if ActivityInfo:getActivityIsOpenById(194) and needNewTowerData then
+        local Activity6_pb = require("Activity6_pb")
+        local msg = Activity6_pb.SeasonTowerReq()
+        msg.action = 0
+        common:sendPacket(HP_pb.ACTIVITY194_SEASON_TOWER_C, msg, true)
+    end
+    --LimitTower
+    if ActivityInfo:getActivityIsOpenById(198) and needNewTowerData then
+        local Activity6_pb = require("Activity6_pb")
+        local msg = Activity6_pb.LimitTowerReq()
+        msg.action = 0
+        common:sendPacket(HP_pb.ACTIVITY198_LIMIT_TOWER_C, msg, true)
+    end
+    --FearTower
+    if ActivityInfo:getActivityIsOpenById(199) and needNewTowerData then
+        local Activity6_pb = require("Activity6_pb")
+        local msg = Activity6_pb.FearLessTowerReq()
+        msg.action = 0
+        msg.towerId = 0
+        common:sendPacket(HP_pb.ACTIVITY199_FEAR_LESS_TOWER_C, msg, true)
+    end
+    if ActivityInfo:getActivityIsOpenById(199) then
+        local Activity6_pb = require("Activity6_pb")
+        local msg = Activity6_pb.FearLessTowerReq()
+        msg.action = 1
+        msg.towerId = 0
+        common:sendPacket(HP_pb.ACTIVITY199_FEAR_LESS_TOWER_C, msg, true)
     end
 end
 

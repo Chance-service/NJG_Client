@@ -118,6 +118,8 @@ Inst.currentTabIdx = 0
 
 Inst.cellDatas = {}
 
+Inst.Items = {}
+
 -- #### ##    ## ######## ######## ########  ########    ###     ######  ######## 
 --  ##  ###   ##    ##    ##       ##     ## ##         ## ##   ##    ## ##       
 --  ##  ####  ##    ##    ##       ##     ## ##        ##   ##  ##       ##       
@@ -173,6 +175,13 @@ function Inst:onReceiveMessage(container)
                 self.awDetailPage:onReceiveMessage(container)
             end
         end
+    elseif typeId == MSG_REFRESH_REDPOINT then
+        NodeHelper:setNodesVisible(container, { mTabPoint3 = false--[[RedPointManager_getShowRedPoint(RedPointManager.PAGE_IDS.PACKAGE_AW_TAB, 0)]] })
+        if self.currentTabIdx == TabType.SHARD then
+            for i = 1, #Inst.Items do
+                Inst.Items[i].item.onFunction_fn("luaRefreshItemView", Inst.Items[i])
+            end
+        end
     end
 end
 
@@ -204,6 +213,7 @@ function Inst:onEnter (container)
 
     -- 註冊 協定
     self:registerPacket(OPCODES)
+    container:registerMessage(MSG_REFRESH_REDPOINT)
 
     if IS_MOCK then
 
@@ -220,6 +230,8 @@ function Inst:onEnter (container)
     else
         self:selectTab(1)
     end
+
+    NodeHelper:setNodesVisible(container, { mTabPoint3 = false--[[RedPointManager_getShowRedPoint(RedPointManager.PAGE_IDS.PACKAGE_AW_TAB, 0)]] })
 end
 
 --[[ 當 頁面 執行 ]]
@@ -243,6 +255,7 @@ function Inst:onExit(container)
     if GuideManager.isInGuide then
         PageManager.pushPage("NewbieGuideForcedPage")
     end
+    container:removeMessage(MSG_REFRESH_REDPOINT)
 end
 
 function Inst:onCloseAreaClick()
@@ -391,7 +404,7 @@ end
 --[[ 組建 項目列表 ]]
 function Inst:rebuildItems ()
     local slf = self
-
+    if not self.container then return end
     if self.scrollview ~= nil then
         NodeHelper:clearScrollView(self.container)
     else
@@ -400,6 +413,7 @@ function Inst:rebuildItems ()
 
     NodeHelper:initScrollView(self.container, "mContent", #self.cellDatas)
 
+    Inst.Items = { }
     --[[ 滾動視圖 左上至右下 ]]
     NodeHelperUZ:buildScrollViewGrid_LT2RB(
         self.container,
@@ -411,6 +425,8 @@ function Inst:rebuildItems ()
             local itemContainer = item:requestUI()
             itemContainer:setScale(CommItem.Scales.regular)
             itemContainer.item = item
+            item.isInventory = true
+            table.insert(Inst.Items, itemContainer)
             return itemContainer
         end,
 

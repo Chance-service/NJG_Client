@@ -575,7 +575,7 @@ CCSpriteFrame* CCSpriteFrameCache::spriteFrameByName(const char *pszName)
 	string name = "Icon_Hcoin";
 	int findPos = path.find(name);
 	if (findPos != std::string::npos){
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 		if (SeverConsts::Get()->IsH365()) {
 			pszName = "Icon_Hcoin.png";
 		}
@@ -585,11 +585,11 @@ CCSpriteFrame* CCSpriteFrameCache::spriteFrameByName(const char *pszName)
 		else if (SeverConsts::Get()->IsKUSO()) {
 			pszName = "Icon_Hcoin_kuso.png";
 		}
-#elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-        pszName = "Icon_Hcoin_kuso.png";
+		else if (SeverConsts::Get()->IsAPLUS()) {
+			pszName = "Icon_Hcoin_aplus.png";
+		}
 #endif
-        
-	}
+	}	
     CCSpriteFrame* frame = (CCSpriteFrame*)m_pSpriteFrames->objectForKey(pszName);
 	
 #ifdef TEXTURE_CHECKING

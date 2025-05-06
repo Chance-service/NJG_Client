@@ -32,9 +32,9 @@ local HANDLER_MAP = {
 }
 
 local STAR_IMG = {
-    SR = "common_star_4.png",
-    SSR = "common_star_2.png",
-    UR = "common_star_3.png",
+    SR = "AWS_star_2.png",
+    SSR = "AWS_star_3.png",
+    UR = "AWS_star_4.png",
 }
 local UNLOCK_STARLEVEL = {
     0, 6, 11
@@ -311,7 +311,7 @@ function Inst:loadEquipSkills (userEquip)
         skillEffect.level = idx
         skillEffect.skillDesc = roleEquipCfg["desc"..tostring(idx)]
         if idx ~= 1 then
-            skillEffect.unlockDesc = common:getLanguageString("@HeroSkillUpgrade" .. (UNLOCK_STARLEVEL[idx] - 5))
+            skillEffect.unlockDesc = common:getLanguageString("@HeroSkillUpgrade" .. (UNLOCK_STARLEVEL[idx]))
         else
             skillEffect.unlockDesc = ""
         end
@@ -403,6 +403,36 @@ function Inst:loadUserEquip (userEquipId)
         equipNameTxt = common:getLanguageString(firstStarCfg.name)
     }
     
+    local RankPic = {
+                [1] = {Frame = "AWS_Img01_T3.png",Bg ="BG/UI/AWS_bg_T3.png" ,Icon = "AWS_Tag_T3.png" },
+                [2] = {Frame = "AWS_Img01_T2.png",Bg ="BG/UI/AWS_bg_T2.png" ,Icon = "AWS_Tag_T2.png" },
+                [3] = {Frame = "AWS_Img01_T1.png",Bg ="BG/UI/AWS_bg_T1.png" ,Icon = "AWS_Tag_T3.png" }
+              }
+    local nowRank = tonumber( string.sub(self._currentEquipID,1,1))
+    local spriteImg = {}
+    if nowRank < 4 then
+        --Bg
+        spriteImg["bgImg"] = RankPic[nowRank].Bg
+        --Icon
+        spriteImg["mRank"] = RankPic[nowRank].Icon
+        --Frame
+        NodeHelper:setScale9SpriteImage2(self.container,{ mFrame = RankPic[nowRank].Frame})
+    else
+        --Bg
+        spriteImg["bgImg"] = "AWS_bg_T"..nowRank..".png"
+        --Icon
+        spriteImg["mRank"] = "AWS_Tag_T"..nowRank..".png"
+        --Frame
+        NodeHelper:setScale9SpriteImage2(self.container,{ mFrame = "AWS_Img01_T"..nowRank..".png"})
+    end
+    local function SetScale9Size (name,x,y) 
+        local sprite=tolua.cast(self.container:getVarNode(name), "CCScale9Sprite")
+        if sprite then
+            sprite:setContentSize(CCSizeMake(x,y))
+        end
+    end
+    SetScale9Size("mFrame",647,800)
+    NodeHelper:setSpriteImage(self.container,spriteImg)
     -- 顯示星數
     NodeHelperUZ:showRareStar(self.container, parsedEquip.star)
 

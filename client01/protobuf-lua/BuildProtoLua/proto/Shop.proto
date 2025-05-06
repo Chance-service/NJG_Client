@@ -18,7 +18,8 @@ message ShopItemInfoInit
 	required int32 discont = 7; // 购买折扣
 	optional int32 totalcount = 8; // 初始數量
 	optional string priceStr = 9; // 消耗物品數量或貨幣數量
-    optional int32 vip = 10; // 商品VIP限制
+	optional int32 vip = 10; // 商品VIP限制
+	optional int64 endTime = 11; // 商品結束販賣時間
 }
 
 // 商店显示数据
@@ -119,6 +120,29 @@ message SixNineCoinTakeRequest {
 // 返回69COIN領取商品
 message SixNineTakeResponse {
     required int32 result = 1; // 回傳結果 1成功0失敗
+}
+
+// 請求ECoin數量
+message ECoinRequest {
+    required string token =1;
+}
+
+// 取得ECoin返回
+message ECoinResponse {
+    required int32 coins = 1; // ECoin
+}
+
+// 請求ECoin購買
+message ECoinBuyRequest {
+    required string token =1;
+    required int32 pid = 2; // 購買商品編號
+}
+
+// ECoin購買返回
+message ECoinBuyResponse {
+    required int32 result = 1; // 回傳結果 1成功0失敗
+    required string refno = 2; // 訂單號
+    optional int32 costmoney =3;// 花費
 }
 
 

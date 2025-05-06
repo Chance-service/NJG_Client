@@ -34,7 +34,7 @@ public class GameContextState extends BaseState {
 	    }
 		imageView_logo.setScaleType(ImageView.ScaleType.FIT_CENTER);
 		Cocos2dxGLSurfaceView glView = (Cocos2dxGLSurfaceView)findViewById(R.id.GameApp_Cocos2dxGLSurfaceView);
-		glView.setZOrderMediaOverlay(true);
+		//glView.setZOrderMediaOverlay(true);
 		Cocos2dxEditText editText = (Cocos2dxEditText)findViewById(R.id.GameApp_Cocos2dxEditText);
 		((GameActivity)getActivity()).initAndroidContext(glView, editText);
 

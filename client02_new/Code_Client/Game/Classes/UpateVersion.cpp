@@ -1,4 +1,4 @@
-
+﻿
 #include "stdafx.h"
 
 #include "UpdateVersion.h"
@@ -53,7 +53,6 @@ UpdateVersion::UpdateVersion(void) : mScene(NULL)
     ,currentFileLoadSize(0)
     ,versionStat(NONE)
 	,versionAppCompareStat(EQUAL)
-	,versionCodeStat(EQUAL)
 	,versionResourceStat(EQUAL)
 {}
 
@@ -455,7 +454,6 @@ void UpdateVersion::getVersionData(VersionData* versionData, unsigned char* cont
     
     versionData->packageUrl = value["packageUrl"].asString();
     versionData->versionApp = value["versionApp"].asString();
-    versionData->remoteProjectManifestUrl = value["remoteProjectManifestUrl"].asString();
     versionData->remoteVersionUrl = value["remoteVersionUrl"].asString();
 	versionData->IOSAppStoreURL = value["IOSAppStoreURL"].asString();
 	versionData->AndroidStoreURL = value["AndroidStoreURL"].asString();
@@ -463,18 +461,14 @@ void UpdateVersion::getVersionData(VersionData* versionData, unsigned char* cont
 	versionData->AppUpdateUrlR18 = value["AppUpdateUrlR18"].asString();
 	versionData->AppUpdateUrlKUSO = value["AppUpdateUrlKUSO"].asString();
 	versionData->AppUpdateUrlJSG = value["AppUpdateUrlJSG"].asString();
+	versionData->AppUpdateUrlAPLUS_CPS1 = value["AppUpdateUrlAPLUS_CPS1"].asString();
 	versionData->versionResource = value["versionResource"].asString();
-	versionData->versionCode = value["versionCode"].asInt();
 	versionData->isLoadSuccess = true;
 }
 
 void UpdateVersion::compareVersion()
 {
-	if (serverVersionData && serverVersionData->isLoadSuccess)
-	{
-		//SeverConsts::Get()->setVersion(serverVersionData->versionApp);
-	}
-
+	cocos2d::CCLog("UpdateVersion compareVersion()");
 	if (m_updateVersionTips)
 	{
 	    setTips(m_updateVersionTips->checkVersionTxT);
@@ -492,9 +486,7 @@ void UpdateVersion::compareVersion()
 		return;
 	}
 
-    versionAppCompareStat = compareVersion(localVersionData->versionApp, serverVersionData->versionApp);
-	versionResourceStat = compareVersion(localVersionData->versionResource, serverVersionData->versionResource);
-	versionCodeStat = (localVersionData->versionCode < serverVersionData->versionCode) ? LESS : EQUAL;
+	versionAppCompareStat = compareVersion(localVersionData->versionApp, serverVersionData->versionApp);
 	
 	/*
 	 local compare server
@@ -512,25 +504,14 @@ void UpdateVersion::compareVersion()
 	*/
 
 	int result = 0; // result = 0  not update, result = 1 resourse update, result = 2 appStore update 
-	if (versionAppCompareStat == EQUAL && versionCodeStat == EQUAL && versionResourceStat == EQUAL)
-	{
+	if (versionAppCompareStat == LESS) {
+		result = 2;
+	}
+	else if (versionAppCompareStat == HIGH) {
 		result = 0;
 	}
-	else if (versionAppCompareStat == EQUAL && versionCodeStat == EQUAL && versionResourceStat == LESS)
-	{
+	else {
 		result = 1;
-	}
-	else if (versionAppCompareStat == EQUAL && versionCodeStat == LESS)
-	{
-		result = 2;
-	}
-	else if (versionAppCompareStat == LESS && versionCodeStat == EQUAL)
-	{
-		result = 1;
-	}
-	else if (versionAppCompareStat == LESS && versionCodeStat == LESS)
-	{
-		result = 2;
 	}
 
     if (result == 0)
@@ -578,6 +559,15 @@ void UpdateVersion::appStoreUpdate()
 	}
 	else if (SeverConsts::Get()->IsJSG()) {
 		libOS::getInstance()->openURL(serverVersionData->AppUpdateUrlJSG);
+	}
+	else if (SeverConsts::Get()->IsAPLUS()) {
+		std::string cps = libPlatformManager::getPlatform()->getClientCps();
+		if (cps == "#1") {
+			libOS::getInstance()->openURL(serverVersionData->AppUpdateUrlAPLUS_CPS1);
+		}
+		else {
+			libOS::getInstance()->openURL(serverVersionData->AppUpdateUrlAPLUS_CPS1);
+		}
 	}
 	else {
 		cocos2d::CCLog("UpdateVersion appStoreUpdate Default");
@@ -645,7 +635,7 @@ void UpdateVersion::getServerProjectAssets()
         return;
     }
     
-    std::string url = localVersionData->remoteProjectManifestUrl;
+	std::string url = localVersionData->packageUrl;
     
     auto request = new CCHttpRequest();
     request->setUrl(url.c_str());
@@ -907,7 +897,7 @@ void UpdateVersion::resetVersion()
     CurlDownload::Get()->downloadFile(localVersionData->remoteVersionUrl, saveVersionPath);
     
     std::string saveProjectAssetPath = writeRootPath + versionPath + "/" + projectManifestName;
-    CurlDownload::Get()->downloadFile(localVersionData->remoteProjectManifestUrl, saveProjectAssetPath);
+	CurlDownload::Get()->downloadFile(localVersionData->packageUrl, saveProjectAssetPath);
 }
 
 void UpdateVersion::downloaded(const std::string &url, const std::string& filename)
@@ -924,7 +914,7 @@ void UpdateVersion::downloaded(const std::string &url, const std::string& filena
 
 void UpdateVersion::downloadFailed(const std::string& url, const std::string &filename)
 {
-	CCLOG("hotUpdate downloadFailed  url: %s : filename : %s ", url.c_str(), filename.c_str());
+	CCLOG("hotUpdate downloadFailed  url: %s    : filename : %s ", url.c_str(), filename.c_str());
 	for (auto it = needUpdateAsset.begin(); it != needUpdateAsset.end(); ++it) {
 		if (url.compare((*it)->url) == 0)
 		{

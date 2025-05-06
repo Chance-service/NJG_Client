@@ -15,6 +15,7 @@ NgBattleDataManager.battleState = 0             -- 戰鬥狀態(初始化, 進場中, 戰鬥
 NgBattleDataManager.battleType = 0              -- 戰鬥類型(掛機, 挑戰BOSS, PVP, 世界BOSS...)
 NgBattleDataManager.battleMapId = 0             -- 地圖ID
 NgBattleDataManager.defenderRank = 0            -- PVP挑戰rank
+NgBattleDataManager.limitType = 1               -- 限制塔類型
 -------------------------------------------------
 NgBattleDataManager.battleIsPause = false       -- 是否暫停
 NgBattleDataManager.battleId = 0                -- 戰鬥ID
@@ -45,9 +46,14 @@ NgBattleDataManager.groupInfo = nil             -- 玩家編隊資料
 NgBattleDataManager.arenaName = ""              -- 競技場敵人名稱
 NgBattleDataManager.arenaIcon = ""              -- 競技場敵人頭像
 
-NgBattleDataManager.dungeonId = 1              -- 地下城地圖id
+NgBattleDataManager.SingleBossScore = 0         -- 單人強敵分數
+NgBattleDataManager.SingleBossBarPos = 0        -- 單人強敵進度條位置
+NgBattleDataManager.SingleBossBarIdx = 0        -- 單人強敵血條顯示怪物idx
+
+NgBattleDataManager.dungeonId = 1               -- 地下城地圖id
 NgBattleDataManager.PlayerLevel = 1             -- 戰前等級
-NgBattleDataManager.TowerId = 1                 --Act191 id
+NgBattleDataManager.TowerId = 1                 -- Act191 id
+NgBattleDataManager.SingleBossId = 1            -- 單人強敵id
 NgBattleDataManager.asyncLoadTasks = { }        -- 非同步讀取任務
 
 NgBattleDataManager.audioData = { }             -- 音效檔案紀錄
@@ -94,6 +100,9 @@ function NgBattleDataManager_clearBattleData()
     NgBattleDataManager.battleDetailDataTest = { } 
 
     NgBattleDataManager.audioIds = { } 
+
+    NgBattleDataManager.SingleBossScore = 0
+    NgBattleDataManager.SingleBossBarPos = 0
 end
 
 -- 取得友方角色陣列
@@ -232,24 +241,29 @@ end
 function NgBattleDataManager_setDungeonId(id)
     NgBattleDataManager.dungeonId = id
 end
+-- 地下城地圖id
+function NgBattleDataManager_setSingleBossId(id)
+    NgBattleDataManager.SingleBossId = id
+end
+
 -- 戰前等級
 function NgBattleDataManager_setPlayerLevel(level)
     NgBattleDataManager.PlayerLevel = level
 end
 -- Debug功能
 function NgBattleDataManager_getTestOpenFx()
-    return (not libOS:getInstance():getIsDebug() or not NgBattleDataManager.testCloseFx)
+    return (not libOS:getInstance():getIsDebug() or not NgBattleDataManager.testCloseFx)-- and (CC_TARGET_PLATFORM_LUA ~= common.platform.CC_PLATFORM_WIN32)
 end
 function NgBattleDataManager_getTestOpenBuff()
-    return (not libOS:getInstance():getIsDebug() or not NgBattleDataManager.testCloseBuff)
+    return (not libOS:getInstance():getIsDebug() or not NgBattleDataManager.testCloseBuff)-- and (CC_TARGET_PLATFORM_LUA ~= common.platform.CC_PLATFORM_WIN32)
 end
 function NgBattleDataManager_getTestOpenHit()
-    return (not libOS:getInstance():getIsDebug() or not NgBattleDataManager.testCloseHit)
+    return (not libOS:getInstance():getIsDebug() or not NgBattleDataManager.testCloseHit)-- and (CC_TARGET_PLATFORM_LUA ~= common.platform.CC_PLATFORM_WIN32)
 end
 function NgBattleDataManager_getTestOpenSound()
     --return (not libOS:getInstance():getIsDebug() or not NgBattleDataManager.testCloseSound)
     return false
 end
 function NgBattleDataManager_getTestOpenNum()
-    return (not libOS:getInstance():getIsDebug() or not NgBattleDataManager.testCloseNum)
+    return (not libOS:getInstance():getIsDebug() or not NgBattleDataManager.testCloseNum)-- and (CC_TARGET_PLATFORM_LUA ~= common.platform.CC_PLATFORM_WIN32)
 end

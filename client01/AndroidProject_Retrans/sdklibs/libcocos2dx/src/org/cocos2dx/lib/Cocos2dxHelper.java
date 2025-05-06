@@ -413,14 +413,15 @@ public class Cocos2dxHelper
 		try
 		{
 			final byte[] bytesUTF8 = pResult.getBytes("UTF8");
-			
 			Cocos2dxHelper.sCocos2dxHelperListener.runOnGLThread(new Runnable()
 			{
-				
+
 				@Override
 				public void run()
 				{
+					Log.w(TAG, "__________setEditTextDialogResult1");
 					Cocos2dxHelper.nativeSetEditTextDialogResult(bytesUTF8);
+					Log.w(TAG, "__________setEditTextDialogResult2");
 				}
 			});
 		}
@@ -723,6 +724,11 @@ public class Cocos2dxHelper
 	{
 		return Cocos2dxHelper.sCocos2dxHelperListener.getClientChannel();
 	}
+
+	public static String getClientCps()
+	{
+		return Cocos2dxHelper.sCocos2dxHelperListener.getClientCps();
+	}
 		
 	public static int getPlatformId()
 	{
@@ -850,6 +856,7 @@ public class Cocos2dxHelper
 		public void notifyEnterGame();
 		
 		public String getClientChannel();
+		public String getClientCps();
 			
 		public int getPlatformId();
 		

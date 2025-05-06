@@ -4,21 +4,6 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>GloryHole_img_26.png</key>
-            <dict>
-                <key>aliases</key>
-                <array/>
-                <key>spriteOffset</key>
-                <string>{0,0}</string>
-                <key>spriteSize</key>
-                <string>{720,859}</string>
-                <key>spriteSourceSize</key>
-                <string>{720,859}</string>
-                <key>textureRect</key>
-                <string>{{1,1},{720,859}}</string>
-                <key>textureRotated</key>
-                <false/>
-            </dict>
             <key>Gloryhole_bg04.png</key>
             <dict>
                 <key>aliases</key>
@@ -30,7 +15,7 @@
                 <key>spriteSourceSize</key>
                 <string>{704,1024}</string>
                 <key>textureRect</key>
-                <string>{{1,862},{688,958}}</string>
+                <string>{{1,1},{688,958}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -46,9 +31,9 @@
             <key>realTextureFileName</key>
             <string>GloryHole4.png</string>
             <key>size</key>
-            <string>{722,1821}</string>
+            <string>{690,960}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:041b8cc3bc291388054a9570ab07cb08:d7a689915ac8fd74f36e31e3fda0761b:f82c56f79c88abdb0031da738d65b93a$</string>
+            <string>$TexturePacker:SmartUpdate:009f335d9420b51eace414a0997710db:c04d683516eae8e363e19df0e5d578ea:f82c56f79c88abdb0031da738d65b93a$</string>
             <key>textureFileName</key>
             <string>GloryHole4.png</string>
         </dict>

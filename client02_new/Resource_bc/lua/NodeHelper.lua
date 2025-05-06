@@ -1289,6 +1289,14 @@ function NodeHelper:buildVerticalScrollView(scrollView, container, size, ccbiFil
     return items
 end
 
+function NodeHelper:reSizeScrollviewWithOffset(scrollView,offsetY)
+     local vissibleSize = CCEGLView:sharedOpenGLView():getFrameSize()
+     local width, height = vissibleSize.width, vissibleSize.height
+     local posY = scrollView:getPositionY()
+     height = height * 720 / width
+     local newHeight = height - posY - offsetY
+     scrollView:setViewSize(CCSizeMake(720,newHeight))
+end
 -- function NodeHelper:setCCHTMLLabel( node, _CCSize,_ccp , str )
 
 -- local label = CCHTMLLabel:createWithString(str,_CCSize , "Helvetica")

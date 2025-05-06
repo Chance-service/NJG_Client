@@ -100,6 +100,7 @@ LOCAL_SRC_FILES += ../../Classes/TestHTMLPopup.cpp
 LOCAL_SRC_FILES += ../../Classes/TimeCalculator.cpp
 LOCAL_SRC_FILES += ../../Classes/UpateVersion.cpp
 LOCAL_SRC_FILES += ../../Classes/waitingManager.cpp
+LOCAL_SRC_FILES += ../../Classes/WebRequest.cpp
 LOCAL_SRC_FILES += ../../Classes/Adjust/Adjust2dx.cpp
 LOCAL_SRC_FILES += ../../Classes/Adjust/AdjustAdRevenue2dx.cpp
 LOCAL_SRC_FILES += ../../Classes/Adjust/AdjustAppStorePurchase2dx.cpp

@@ -54,12 +54,12 @@ function StoryLogPageBase:onEnter(container)
     NodeHelper:setNodesVisible(mainContainer,{mElementNode=false})
     container.mScrollView = container:getVarScrollView("mContent")
     -- scrollview自適應
-    NodeHelper:autoAdjustResizeScrollview(container.mScrollView)
-    local oldSize = container.mScrollView:getViewSize()
-    oldSize.width = oldSize.width + 50
-    container.mScrollView:setViewSize(oldSize)
-    local X=container.mScrollView:getPositionX()
-    container.mScrollView:setPositionX(X-10)
+    --NodeHelper:autoAdjustResizeScrollview(container.mScrollView)
+    --local oldSize = container.mScrollView:getViewSize()
+    --oldSize.width = oldSize.width + 50
+    --container.mScrollView:setViewSize(oldSize)
+    --local X=container.mScrollView:getPositionX()
+    --container.mScrollView:setPositionX(X-10)
    self:initScrollView(container)
 end
 -- ScrollView初始化

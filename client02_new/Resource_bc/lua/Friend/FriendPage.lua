@@ -96,7 +96,7 @@ local mercenaryHeadContent = {
 
 function mercenaryHeadContent:refreshItem(container, info)
     local roleIcon = ConfigManager.getRoleIconCfg()
-    local trueIcon = GameConfig.headIconNew or info.headIcon
+    local trueIcon = info.headIcon or GameConfig.headIconNew
 
     if not roleIcon[trueIcon] then
         local icon = common:getPlayeIcon(UserInfo.roleInfo.prof, trueIcon)

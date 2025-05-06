@@ -342,7 +342,7 @@ function Inst:loadEquipSkills (userEquip)
         skillEffect.level = idx
         skillEffect.skillDesc = roleEquipCfg["desc"..tostring(idx)]
         if idx ~= 1 then
-            skillEffect.unlockDesc = common:getLanguageString("@HeroSkillUpgrade" .. (UNLOCK_STARLEVEL[idx] - 5))
+            skillEffect.unlockDesc = common:getLanguageString("@HeroSkillUpgrade" .. (UNLOCK_STARLEVEL[idx]))
         else
             skillEffect.unlockDesc = ""
         end

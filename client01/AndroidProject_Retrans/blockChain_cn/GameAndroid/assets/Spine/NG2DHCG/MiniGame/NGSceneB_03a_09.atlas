@@ -1,48 +1,62 @@
 
 NGSceneB_03a_09.png
-size: 516,516
+size: 2048,64
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 A18
-  rotate: true
-  xy: 31, 160
+  rotate: false
+  xy: 1641, 2
   size: 214, 32
   orig: 214, 32
   offset: 0, 0
   index: -1
 A19
   rotate: false
-  xy: 2, 444
+  xy: 824, 29
   size: 300, 33
   orig: 300, 33
   offset: 0, 0
   index: -1
 B18
-  rotate: true
-  xy: 2, 144
+  rotate: false
+  xy: 1409, 2
   size: 230, 27
   orig: 230, 27
   offset: 0, 0
   index: -1
 B19
   rotate: false
-  xy: 2, 479
+  xy: 2, 27
   size: 512, 35
   orig: 512, 35
   offset: 0, 0
   index: -1
 C18
   rotate: false
-  xy: 2, 376
+  xy: 1409, 31
   size: 229, 31
   orig: 229, 31
   offset: 0, 0
   index: -1
 C19
   rotate: false
-  xy: 2, 409
+  xy: 1126, 29
   size: 281, 33
   orig: 281, 33
+  offset: 0, 0
+  index: -1
+D18
+  rotate: false
+  xy: 1640, 36
+  size: 230, 26
+  orig: 230, 26
+  offset: 0, 0
+  index: -1
+D19
+  rotate: false
+  xy: 516, 34
+  size: 306, 28
+  orig: 306, 28
   offset: 0, 0
   index: -1

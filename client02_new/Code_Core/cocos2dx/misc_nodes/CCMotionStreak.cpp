@@ -333,7 +333,8 @@ void CCMotionStreak::draw()
     CC_NODE_DRAW_SETUP();
 
     ccGLEnableVertexAttribs(kCCVertexAttribFlag_PosColorTex );
-    ccGLBlendFunc( m_tBlendFunc.src, m_tBlendFunc.dst );
+    //ccGLBlendFunc( m_tBlendFunc.src, m_tBlendFunc.dst );
+	glBlendFuncSeparate(m_tBlendFunc.src, m_tBlendFunc.dst, m_tBlendFunc.src, m_tBlendFunc.dst);
 
     ccGLBindTexture2D( m_pTexture->getName() );
 

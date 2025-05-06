@@ -391,7 +391,7 @@ PageJumpMange._JumpCfg = {
     [51] =
     {
         _Id = 51;-- CycleTower
-        _ToPage = "MainFrame_onMainPageBtn(true,true)",
+        _ToPage = "MainFrame_onMainPageBtn(true,false)",
         _SecondFunc = "onActivity",
         _ThirdFunc = "onBattle",
     },
@@ -407,7 +407,31 @@ PageJumpMange._JumpCfg = {
         _Id = 53;-- Season_Tower 
         _ToPage = "MainFrame_onEquipmentPageBtn(true)",
         _SecondFunc = "onTower",
+        _ThirdFunc = "onType1",
         _act = Const_pb.ACTIVITY194_SeasonTower
+    },
+     [54] =
+    {
+        _Id = 54;-- Puzzle 
+        _ToPage = "MainFrame_onMainPageBtn(true,true)",
+        _SecondFunc = "onPuzzle",
+        _act = Const_pb.ACTIVITY195_PuzzleBattle
+    },
+     [55] =
+    {
+        _Id = 55;-- Season_Tower 
+        _ToPage = "MainFrame_onEquipmentPageBtn(true)",
+        _SecondFunc = "onTower",
+        _ThirdFunc = "onType1",
+        _act = Const_pb.ACTIVITY198_LIMIT_TOWER
+    },
+    [56] =
+    {
+        _Id = 55;-- Season_Tower 
+        _ToPage = "MainFrame_onEquipmentPageBtn(true)",
+        _SecondFunc = "onTower",
+        _ThirdFunc = "onType4",
+        _act = Const_pb.ACTIVITY199_FearLess_TOWER
     },
 }
 

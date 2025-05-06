@@ -250,11 +250,11 @@ local function getFightAttr()
             curText[4] = key
         elseif values[1] == 6 then
             curText[1] = common:getLanguageString("@Specialattr_" .. key)
-            local valStr = PBHelper:getAttrById(_curRoleInfo.attribute.attribute, key)
-            valStr = getGodlyAttrString(key, valStr, "%.1f%%")
-            if valStr == 0 then
-            valStr = "0.0%"
-            end
+            local valStr = PBHelper:getAttrById(_curRoleInfo.attribute.attribute, key) .. "%"
+            --valStr = getGodlyAttrString(key, valStr, "%.1f%%")
+            --if valStr == 0 then
+            --valStr = "0.0%"
+            --end
             curText[2] = valStr
             curText[3] = nil
             curText[4] = key

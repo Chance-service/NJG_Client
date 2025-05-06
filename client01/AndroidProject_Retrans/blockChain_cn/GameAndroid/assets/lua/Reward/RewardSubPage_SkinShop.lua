@@ -134,8 +134,8 @@ function sortData(info)
         if info.roleNumberList[i] > 0 then
             local index = SkinShop:getMercenaryIndex(info.roleNumberList[i])
             if index > 0 then
-                local data = table.remove(_mercenaryInfos.roleInfos, index)
-                table.insert(t, data)
+                --local data = table.remove(_mercenaryInfos.roleInfos, index)
+                --table.insert(t, data)
             end
         end
     end
@@ -157,7 +157,7 @@ function SkinShop:getMercenaryIndex(roleId)
 end
 function SkinShop:buildHeroScrollView(container)
     Skins = {}
-    local cfg = ConfigManager.getSkinCfg()
+    local cfg = ConfigManager.getSkinShopCfg()
     for i = 1, #cfg do
         if cfg[i].isShow == 1 then
             table.insert(Skins, cfg[i])

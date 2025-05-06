@@ -246,24 +246,26 @@ void CCEditBoxImplAndroid::onEnter(void)
 
 static void editBoxCallbackFunc(const char* pText, void* ctx, bool cancel)
 {
-    CCEditBoxImplAndroid* thiz = (CCEditBoxImplAndroid*)ctx;
-    thiz->setText(pText);
-	
-    if (thiz->getDelegate() != NULL)
-    {
-        thiz->getDelegate()->editBoxTextChanged(thiz->getCCEditBox(), thiz->getText());
-        thiz->getDelegate()->editBoxEditingDidEnd(thiz->getCCEditBox());
-        thiz->getDelegate()->editBoxReturn(thiz->getCCEditBox());
-    }
-    
-    CCEditBox* pEditBox = thiz->getCCEditBox();
-    if (NULL != pEditBox && 0 != pEditBox->getScriptEditBoxHandler())
-    {
-        cocos2d::CCScriptEngineProtocol* pEngine = cocos2d::CCScriptEngineManager::sharedManager()->getScriptEngine();
-        pEngine->executeEvent(pEditBox->getScriptEditBoxHandler(), "changed",pEditBox);
-        pEngine->executeEvent(pEditBox->getScriptEditBoxHandler(), "ended",pEditBox);
-        pEngine->executeEvent(pEditBox->getScriptEditBoxHandler(), "return",pEditBox);
-    }
+	if (ctx) {
+		CCEditBoxImplAndroid* thiz = (CCEditBoxImplAndroid*)ctx;
+		thiz->setText(pText);
+
+		if (thiz->getDelegate() != NULL)
+		{
+			thiz->getDelegate()->editBoxTextChanged(thiz->getCCEditBox(), thiz->getText());
+			thiz->getDelegate()->editBoxEditingDidEnd(thiz->getCCEditBox());
+			thiz->getDelegate()->editBoxReturn(thiz->getCCEditBox());
+		}
+
+		CCEditBox* pEditBox = thiz->getCCEditBox();
+		if (NULL != pEditBox && 0 != pEditBox->getScriptEditBoxHandler())
+		{
+			cocos2d::CCScriptEngineProtocol* pEngine = cocos2d::CCScriptEngineManager::sharedManager()->getScriptEngine();
+			pEngine->executeEvent(pEditBox->getScriptEditBoxHandler(), "changed",pEditBox);
+			pEngine->executeEvent(pEditBox->getScriptEditBoxHandler(), "ended",pEditBox);
+			pEngine->executeEvent(pEditBox->getScriptEditBoxHandler(), "return",pEditBox);
+		}
+	}
 }
 
 void CCEditBoxImplAndroid::openKeyboard()

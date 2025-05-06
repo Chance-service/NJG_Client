@@ -105,6 +105,9 @@ Inst.showHelpBtn = false
 --[[ 當 進入 ]]
 Inst.onceEntry_fn = function () end
 
+--全域ID
+HELP_ActId = 0
+
 -- #### ##    ## ######## ######## ########  ########    ###     ######  ######## 
 --  ##  ###   ##    ##    ##       ##     ## ##         ## ##   ##    ## ##       
 --  ##  ####  ##    ##    ##       ##     ## ##        ##   ##  ##       ##       
@@ -232,7 +235,8 @@ function Inst:onEnter (container)
             icon_normal = subPageCfg.iconImg_normal,
             icon_selected = subPageCfg.iconImg_selected,
             icon_lock = (subPageCfg.LOCK_KEY and LockManager_getShowLockByPageName(subPageCfg.LOCK_KEY) or false),
-            redpoint = subPageCfg.isRedOn and subPageCfg.isRedOn or function() return false end
+            redpoint = subPageCfg.isRedOn and subPageCfg.isRedOn or function() return false end,
+            closePlus = subPageCfg._closePlusBtn
         }
         if tabInfo.icon_selected ~= nil then
             tabInfo.iconType = "image"
@@ -253,7 +257,9 @@ function Inst:onEnter (container)
             Help=subPageCfg.Help,
             subPage = nil,
             container = nil,
-            LOCK_KEY = subPageCfg.LOCK_KEY
+            LOCK_KEY = subPageCfg.LOCK_KEY,
+            callFun = subPageCfg.callFun or nil,
+            configData = subPageCfg.configData
         })
 
     end
@@ -286,7 +292,14 @@ function Inst:onEnter (container)
                 return false
             end
         end
-        
+        if nextSubPageData.callFun then
+            nextSubPageData.callFun()
+        end
+        if nextSubPageData.Help then
+            self:setShowHelpBtn(true)
+        else
+            self:setShowHelpBtn(false)
+        end
         -- 標題
         slf.tabStorage:setTitle(common:getLanguageString(nextSubPageData.title))
         if nextSubPageData.TopisVisible~=nil then
@@ -356,7 +369,19 @@ function Inst:onEnter (container)
     -- 設置 當 點選說明
     self.tabStorage.onHelpBtn_fn = function (idx)
         local data = slf.subPageDatas[idx]
-        slf:onHelpBtn(data.Help);
+        if string.sub (data.scriptPath,1,6) == "Summon" then
+            local actId = data.subPage.subPageCfg.activityID
+            local subId = data.subPage.subPageCfg.subId or 0
+            if actId == 158 then
+                slf:onHelpBtn(data.Help)
+                return
+            end
+            local HelpPage = require "Summon.SummonHelpPage"
+            HELP_ActId = actId.."_"..subId
+            PageManager.pushPage("SummonHelpPage")
+        else
+            slf:onHelpBtn(data.Help);
+        end
     end
 
     -- 加入UI
@@ -372,11 +397,11 @@ function Inst:onEnter (container)
     end
 
     -- 開關說明按鈕
-    --if self.showHelpBtn then
-    --    NodeHelper:setNodesVisible(tabStorageContainer, { mHelpNode = true })
-    --else
-    --    NodeHelper:setNodesVisible(tabStorageContainer, { mHelpNode = false })
-    --end
+    if self.showHelpBtn then
+        NodeHelper:setNodesVisible(tabStorageContainer, { mHelpNode = true })
+    else
+        NodeHelper:setNodesVisible(tabStorageContainer, { mHelpNode = false })
+    end
 
     -- 呼叫 當進入
     if self.onceEntry_fn ~= nil then
@@ -402,6 +427,10 @@ function Inst:onExit(container)
         local state=SecretMessagePage_getState()      
 
         self.currentSubPageData.subPage:onExit(self.currentSubPageData.container, self)
+
+        local pickUpPage = require "Summon.SummonSubPage_PickUp"
+        pickUpPage:ClearCount()
+
         ----特殊處理
         if self.currentSubPageData.subPageName=="Message"  then     
             if state==GameConfig.SECRET_PAGE_TYPE.CHAT_PAGE then
@@ -627,29 +656,50 @@ function Inst:CfgSync (cfg)
     if cfg.isClose then
         return nil
     end
+    if cfg.configData then
+        if not ActivityInfo:getActivityIsOpenById(cfg.configData[1].ActivityId) then
+            return nil
+        end
+    end
     if not cfg.activityID and not cfg.SummonReward then
         return cfg
     end
     local id = cfg.activityID
-    if id==167 then
+    if id == Const_pb.ACTIVITY167_Consume_Summom then
         local FreeSummonPage=require("Reward.RewardSubPage_FreeSummon")
         if FreeSummonPage:AllSigned() then
             return nil
         end
-    elseif id==175 then
+    elseif id == Const_pb.ACTIVITY175_Glory_Hole then
         local GloryHoleDataBase = require("GloryHole.GloryHolePageData")
         local TeamId = GloryHoleDataBase:getData().teamId
         if TeamId==0 then return nil end
-    elseif id == 179 then
+    elseif id == Const_pb.ACTIVITY179_Step_Gift then
         local StepBundle =  require ("IAP.IAPSubPage_StepBundle")
         if StepBundle:isBuyAll() then return nil end
-    elseif id == 180 then
+    elseif id == Const_pb.ACTIVITY180_Free_Summom then
         local FreeSummonPage2=require("Reward.RewardSubPage_FreeSummon2")
         if FreeSummonPage2:AllSigned() then
             return nil
         end
+    elseif id == Const_pb.ACTIVITY187_MaxJump then
+        if not cfg.gift_Type then return cfg end
+        require("Act187_DataBase")
+        local giftTable = Act187_DataBase_GetData(cfg.gift_Type)
+        if not next(giftTable) then
+            return nil
+        end
+    elseif id == Const_pb.ACTIVITY198_LIMIT_TOWER then
+        local TowerMenu = require "Tower.TowerMenu"
+        local _type = TowerMenu:getClickType()
+        local canChallenge = TowerMenu:canChallenge_Limit(cfg.limitType)
+        if _type == 2 and cfg.limitType > 10 or not canChallenge then 
+            return nil
+        elseif _type == 3 and cfg.limitType < 10 or not canChallenge then
+            return nil
+        end
     end
-    local SummonRewardId = cfg.SummonReward
+   local SummonRewardId = cfg.SummonReward
    if SummonRewardId == 1901 then
         local CostSummon1=require("Reward.RewardSubPage_CostSummon1")
         if CostSummon1:AllSigned() then

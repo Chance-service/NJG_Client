@@ -6,6 +6,7 @@ local CONST = require("Battle.NewBattleConst")
 local LOG_UTIL = require("Battle.NgBattleLogUtil")
 require("Battle.NewBattleUtil")
 local UserMercenaryManager = require("UserMercenaryManager")
+local buffConfig = ConfigManager:getNewBuffCfg()
 require("Battle.NgBattleDataManager")
 
 BattleLogDpsPage = BattleLogDpsPage or { }
@@ -318,10 +319,12 @@ function BattleLogDpsPage:refreshUI(container)
             if roleType == CONST.CHARACTER_TYPE.HERO then
                 if sortCharLog[i].idx < 10 then
                     local roleInfo = UserMercenaryManager:getUserMercenaryByItemId(itemId)
-                    NodeHelper:setSpriteImage(container, { ["mCharIcon" .. i] = "UI/RoleIcon/Icon_" .. string.format("%02d", itemId) .. string.format("%03d", roleInfo.skinId) .. ".png" })
+                    local iconId = roleInfo.skinId > 0 and string.format("%05d", roleInfo.skinId) or string.format("%02d000", itemId)
+                    NodeHelper:setSpriteImage(container, { ["mCharIcon" .. i] = "UI/RoleIcon/Icon_" .. iconId .. ".png" })
                 else
-                    local skinId = eData.otherData[CONST.OTHER_DATA.SPINE_SKIN]
-                    NodeHelper:setSpriteImage(container, { ["mCharIcon" .. i] = "UI/RoleIcon/Icon_" .. string.format("%02d", itemId) .. string.format("%03d", skinId) .. ".png" })
+                    local skinId = sortCharLog[i].log.attacker.otherData[CONST.OTHER_DATA.SPINE_SKIN]
+                    local iconId = skinId > 0 and string.format("%05d", skinId) or string.format("%02d000", itemId)
+                    NodeHelper:setSpriteImage(container, { ["mCharIcon" .. i] = "UI/RoleIcon/Icon_" .. iconId .. ".png" })
                 end
             elseif roleType == CONST.CHARACTER_TYPE.MONSTER or roleType == CONST.CHARACTER_TYPE.WORLDBOSS then
                 local cfg = ConfigManager.getNewMonsterCfg()[itemId]
@@ -339,7 +342,7 @@ function BattleLogDpsPage:refreshUI(container)
                 barLayer:setStartColor(BattleLogDpsPage.DMG_ATTACK_BAR_COLOR.startColor)
                 barLayer:setEndColor(BattleLogDpsPage.DMG_ATTACK_BAR_COLOR.endColor)
                 NodeHelper:setStringForLabel(container, { ["mDmgName" .. i] = "普攻" })
-            elseif sortDmgLog[i].skillId > 100000 and sortDmgLog[i].skillId < 300000 then  -- buff
+            elseif buffConfig[sortDmgLog[i].skillId] then  -- buff
                 barLayer:setStartColor(BattleLogDpsPage.DMG_BUFF_BAR_COLOR.startColor)
                 barLayer:setEndColor(BattleLogDpsPage.DMG_BUFF_BAR_COLOR.endColor)
                 NodeHelper:setStringForLabel(container, { ["mDmgName" .. i] = common:getLanguageString("@Buff_" .. sortDmgLog[i].skillId) })

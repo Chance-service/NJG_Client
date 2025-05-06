@@ -1,3 +1,0 @@
-<MonitorCfg>
-  <Monitor monitorName="测试监控1" svnAddr="https://10.0.4.200/svn/develop/Android_IOS_WP_SDK/Android/AndroidProj" svnUsr="cuixueyun" svnPwd="vVxICpyeqC" batchAddr="D:/Aggregation_SDK_Tools/test.bat" workCopy="D:/Aggregation_SDK_Tools" />
-</MonitorCfg>

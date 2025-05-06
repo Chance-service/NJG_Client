@@ -5,6 +5,7 @@ local LOG_UTIL = require("Battle.NgBattleLogUtil")
 local BuffManager = require("Battle.NewBuff.BuffManager")
 local SkillManager = require("Battle.NewSkill.SkillManager")
 require("Battle.NewBattleUtil")
+require("Battle.NgBattleEffectManager")
 local ALFManager = require("Util.AsyncLoadFileManager")
 
 -------------------------------------------------------
@@ -344,12 +345,8 @@ function NgBattleCharacterUtil:setHp(chaNode, hp, isInit)
             local actionResultTable = { }
             local allTargetTable = { }
             if NewBattleUtil:castPassiveSkill(chaNode, v, resultTable, allPassiveTable, CONST.PASSIVE_TRIGGER_TYPE.CHANGE_HP) then
-                local sceneHelper = require("Battle.NgFightSceneHelper")
-                local skillGroupId = sceneHelper:getNewSkillGroupId()
-                LOG_UTIL:addLog(CONST.LogActionType.CAST_SKILL, chaNode, nil, v, skillGroupId, actionResultTable, allPassiveTable)
                 LOG_UTIL:setPreLog(chaNode, resultTable)
-                self:calculateAllTable(chaNode, resultTable, isSkipCal, actionResultTable, allTargetTable, v, allPassiveTable)   -- 全部傷害/治療/buff...處理
-                LOG_UTIL:addLog(CONST.LogActionType.SKILL, chaNode, allTargetTable, v, skillGroupId, actionResultTable, allPassiveTable)
+                self:calculateAllTable(chaNode, resultTable, isSkipCal, actionResultTable, allTargetTable, v * 10, allPassiveTable)   -- 全部傷害/治療/buff...處理
             end
         end
     end
@@ -388,8 +385,13 @@ end
 --增加護盾值(技能用)
 function NgBattleCharacterUtil:addShield(chaNode, target, shieldNum)
     if target then
-        self:setShield(target, target.battleData[CONST.BATTLE_DATA.SHIELD] + shieldNum)   --增加護盾
-        LOG_UTIL:addTestLog(LOG_UTIL.TestLogType.ADD_SHIELD, chaNode, target, 0, false, false, shieldNum)
+        local ratio = NewBattleUtil:calAuraSkillRatio(target, CONST.PASSIVE_TRIGGER_TYPE.AURA_SHIELD)  -- 護盾光環
+        local buffRatio = BuffManager:calAuraBuffRatio(target, CONST.PASSIVE_TRIGGER_TYPE.AURA_SHIELD)
+        local shieldResult = NewBattleUtil:calRoundValue(shieldNum * ratio * buffRatio, 1)
+        self:setShield(target, target.battleData[CONST.BATTLE_DATA.SHIELD] + shieldResult)   --增加護盾
+        LOG_UTIL:addTestLog(LOG_UTIL.TestLogType.ADD_SHIELD, chaNode, target, 0, false, false, shieldResult)
+        local sceneHelper = require("Battle.NgFightSceneHelper")
+        sceneHelper:addBattleResult(CONST.DETAIL_DATA_TYPE.HEALTH, chaNode.idx, shieldNum, 0, false, shieldNum) -- 護盾值合併到治療量
     end
 end
 --重置技能CD(技能用)
@@ -423,14 +425,17 @@ function NgBattleCharacterUtil:setSpineAnimation(chaNode, ani, loop)
     chaNode.otherData[CONST.OTHER_DATA.PLAYING_ANI_NAME] = ani
     chaNode.heroNode.heroSpine:runAnimation(1, ani, loopIndex)
     if chaNode.heroNode.heroBackFx then
+        NgBattleEffectManager_changeFxSkin(chaNode, chaNode.heroNode.heroBackFx, chaNode.otherData[CONST.OTHER_DATA.SPINE_NAME_BACK_FX], ani)
         chaNode.heroNode.heroBackFx:setToSetupPose()
         chaNode.heroNode.heroBackFx:runAnimation(1, ani, loopIndex)
     end
     if chaNode.heroNode.heroFrontFx then
+        NgBattleEffectManager_changeFxSkin(chaNode, chaNode.heroNode.heroFrontFx, chaNode.otherData[CONST.OTHER_DATA.SPINE_NAME_FRONT_FX], ani)
         chaNode.heroNode.heroFrontFx:setToSetupPose()
         chaNode.heroNode.heroFrontFx:runAnimation(1, ani, loopIndex)
     end
     if chaNode.heroNode.heroFloorFx then
+        NgBattleEffectManager_changeFxSkin(chaNode, chaNode.heroNode.heroFloorFx, chaNode.otherData[CONST.OTHER_DATA.SPINE_NAME_FLOOR_FX], ani)
         chaNode.heroNode.heroFloorFx:setToSetupPose()
         chaNode.heroNode.heroFloorFx:runAnimation(1, ani, loopIndex)
     end
@@ -503,10 +508,11 @@ function NgBattleCharacterUtil:setSpineScaleX(chaNode, scaleX)
 end
 -- 移動至目標位置
 function NgBattleCharacterUtil:moveToTargetPos(chaNode, posX, posY)
-    local oriX = chaNode.heroNode.chaCCB:getPositionX()
-    local oriY = chaNode.heroNode.chaCCB:getPositionY()
+    local oriX = self:getPos(chaNode).x
+    local oriY = self:getPos(chaNode).y
     chaNode.heroNode.chaCCB:setPositionX(posX)
     chaNode.heroNode.chaCCB:setPositionY(posY)
+    self:savePos(chaNode)
     if self:getPos(chaNode).x < 0 and oriX >= 0 then    -- 超出戰場範圍
         chaNode.heroNode.chaCCB:setPositionX(0)
     end
@@ -521,7 +527,7 @@ function NgBattleCharacterUtil:moveToTargetPos(chaNode, posX, posY)
     end
     chaNode.floorNode:setPosition(ccpAdd(ccp(chaNode.heroNode.chaCCB:getPosition()), ccp(chaNode.heroNode.chaCCB:getVarNode("mHitFrontNode"):getPosition())))     --地板特效點位
     --設定Z Order
-    chaNode.heroNode.chaCCB:setZOrder(CONST.Z_ORDER_MASK - chaNode.heroNode.chaCCB:getPositionY())
+    chaNode.heroNode.chaCCB:setZOrder(CONST.Z_ORDER_MASK - self:getPos(chaNode).y)
     chaNode.floorNode:setZOrder(chaNode.otherData[CONST.OTHER_DATA.Z_ORDER] - CONST.FLOOR_Z_ORDER_MASK)    --地板特效點位
 end
 -- 調整角色面向
@@ -588,10 +594,18 @@ end
 function NgBattleCharacterUtil:getState(chaNode)
     return chaNode.nowState
 end
+-- 暫存座標
+function NgBattleCharacterUtil:savePos(chaNode)
+    chaNode.heroNode.posX, chaNode.heroNode.posY = chaNode.heroNode.chaCCB:getPosition()
+end
 -- 取得座標
 function NgBattleCharacterUtil:getPos(chaNode)
-    local posX, posY = chaNode.heroNode.chaCCB:getPosition()
-    return { x = posX, y = posY }
+    if chaNode.heroNode.posX and chaNode.heroNode.posY then
+        return { x = chaNode.heroNode.posX, y = chaNode.heroNode.posY }
+    else
+        local posX, posY = chaNode.heroNode.chaCCB:getPosition()
+        return { x = posX, y = posY }
+    end
 end
 
 -- 初始化攻擊參數
@@ -679,6 +693,8 @@ end
 function NgBattleCharacterUtil:isTargetInAttackRange(chaNode)
     local inRange = false
     local atkRange = chaNode.battleData[CONST.BATTLE_DATA.RANGE]                -- 我方角色攻擊距離
+    local atkRangeBuff = BuffManager:checkAtkRangeValue(chaNode.buffData)
+    atkRange = atkRange + atkRangeBuff
     local chaW = chaNode.otherData[CONST.OTHER_DATA.CFG].CenterOffsetX          -- 我方角色橢圓x方向半軸長
     local chaH = chaNode.otherData[CONST.OTHER_DATA.CFG].CenterOffsetY          -- 我方角色橢圓y方向半軸長
     local chaX, chaY = self:getPos(chaNode).x, self:getPos(chaNode).y + chaH          -- 我方角色中心座標
@@ -774,10 +790,10 @@ end
 
 -- 建立普攻結果table
 function NgBattleCharacterUtil:createAttackResultTable(chaNode, params)
-    --計算基礎傷害, 是否剋屬
-    local dmg, weakType = NewBattleUtil:calBaseDamage(chaNode, chaNode.target)
-    chaNode.ATTACK_PARAMS["base_dmg"] = dmg
-    chaNode.ATTACK_PARAMS["weak_type"] = weakType or 0
+    ----計算基礎傷害, 是否剋屬
+    --local dmg, weakType = NewBattleUtil:calBaseDamage(chaNode, chaNode.target)
+    --chaNode.ATTACK_PARAMS["base_dmg"] = dmg
+    --chaNode.ATTACK_PARAMS["weak_type"] = weakType or 0
     --計算每hit傷害, 每hit是否爆擊
     local hit_num = math.max(params and params["hit_num"] or chaNode.ATTACK_PARAMS["hit_num"], 1)
     --最終結果table
@@ -799,7 +815,7 @@ function NgBattleCharacterUtil:calculateDmgTable(chaNode, resultTable, isSkipCal
     local isCriTable = resultTable[NewBattleConst.LogDataType.DMG_CRI]
     local weakTypeTable = resultTable[NewBattleConst.LogDataType.DMG_WEAK]
 
-    if not targetTable then
+    if not targetTable or #targetTable <= 0 then
         return
     end
     -- 技能武器音效 (同一hit中只播一次)
@@ -855,7 +871,7 @@ function NgBattleCharacterUtil:calculateHealTable(chaNode, resultTable, isSkipCa
     healTable = resultTable[NewBattleConst.LogDataType.HEAL]
     healIsCriTable = resultTable[NewBattleConst.LogDataType.HEAL_CRI]
 
-    if not healTargetTable then
+    if not healTargetTable or #healTargetTable <= 0 then
         return
     end
     for i = 1, #healTargetTable do  --治療處理
@@ -863,13 +879,17 @@ function NgBattleCharacterUtil:calculateHealTable(chaNode, resultTable, isSkipCa
            self:getState(healTargetTable[i]) ~= CONST.CHARACTER_STATE.DEATH and
            self:getState(healTargetTable[i]) ~= CONST.CHARACTER_STATE.REBIRTH then
             --接受治療
+            local ratio = NewBattleUtil:calAuraSkillRatio(healTargetTable[i], CONST.PASSIVE_TRIGGER_TYPE.AURA_HEALTH) *
+                          NewBattleUtil:calAuraSkillRatio(healTargetTable[i], CONST.PASSIVE_TRIGGER_TYPE.AURA_ENENY_HEALTH)   -- (受到)治療量光環
             if healTargetTable[i].beHealth then
-                healTargetTable[i].beHealth(chaNode, healTargetTable[i], healTable[i], healIsCriTable[i], isSkipCal, skillId, resultTable, allPassiveTable)
+                local auraHealth = NewBattleUtil:calRoundValue(healTable[i] * ratio, 1)
+                healTargetTable[i].beHealth(chaNode, healTargetTable[i], auraHealth, healIsCriTable[i], isSkipCal, skillId, resultTable, allPassiveTable)
                 if skillId then
-                    if skillId < 10000 then skillId = skillId * 10 end
-                    LOG_UTIL:addTestLog(LOG_UTIL.TestLogType.SKILL_HEALTH, chaNode, healTargetTable[i], skillId, false, healIsCriTable[i], healTable[i])
+                    local buffConfig = ConfigManager:getNewBuffCfg()
+                    if (skillId < 10000) then skillId = skillId * 10 end
+                    LOG_UTIL:addTestLog(LOG_UTIL.TestLogType.SKILL_HEALTH, chaNode, healTargetTable[i], skillId, false, healIsCriTable[i], auraHealth)
                 else
-                    LOG_UTIL:addTestLog(LOG_UTIL.TestLogType.LEECH_HEALTH, chaNode, healTargetTable[i], 0, false, healIsCriTable[i], healTable[i])
+                    LOG_UTIL:addTestLog(LOG_UTIL.TestLogType.LEECH_HEALTH, chaNode, healTargetTable[i], 0, false, healIsCriTable[i], auraHealth)
                 end
             end
             if not NewBattleUtil:insertLogTarget(allTargetTable, healTargetTable[i]) then
@@ -891,7 +911,7 @@ function NgBattleCharacterUtil:calculateBuffTable(chaNode, resultTable, isSkipCa
     buffTimeTable = resultTable[NewBattleConst.LogDataType.BUFF_TIME]
     buffCountTable = resultTable[NewBattleConst.LogDataType.BUFF_COUNT]
 
-    if not buffTargetTable then
+    if not buffTargetTable or #buffTargetTable <= 0 then
         return
     end
     for i = 1, #buffTargetTable do  --buff處理
@@ -922,7 +942,7 @@ function NgBattleCharacterUtil:calculateSpGainMpTable(chaNode, resultTable, isSk
     spGainMpTable = resultTable[NewBattleConst.LogDataType.SP_GAIN_MP_TAR]
     mpTable = resultTable[NewBattleConst.LogDataType.SP_GAIN_MP]
 
-    if not spGainMpTable then
+    if not spGainMpTable or #spGainMpTable <= 0 then
         return
     end
     for i = 1, #spGainMpTable do  --特定技能獲得MP
@@ -963,6 +983,10 @@ function NgBattleCharacterUtil:calculateSpFunctionTable(chaNode, resultTable, is
             local fun = self[spFunctionTable[i]]
             local params = spParamsTable[i]
             fun(self, params[1], params[2], params[3], params[4], params[5])
+        elseif spClassNameTable[i] == NewBattleConst.FunClassType.NEW_BATTLE_UTIL then
+            local fun = NewBattleUtil[spFunctionTable[i]]
+            local params = spParamsTable[i]
+            fun(NewBattleUtil, params[1], params[2], params[3], params[4], params[5])
         end
         if not NewBattleUtil:insertLogTarget(allTargetTable, spTargetTable[i]) then
             --不在傷害或治療或BUFF的target中
@@ -1066,7 +1090,7 @@ function NgBattleCharacterUtil:resetMonsterInfo(chaNode)
             local skillLevel = skillId % 10
             table.insert(chaNode.skillData[skillType], skillId, 
                          { ["COUNT"] = 0, ["CD"] = 0, ["ACTION"] = skillCfg[tonumber(skills[i])].actionName,
-                           ["TIMER"] = 0, ["LEVEL"] = skillLevel,  })
+                           ["TIMER"] = 0, ["LEVEL"] = skillLevel, ["COUNTER"] = 0 })
         end
     end
     --
@@ -1113,8 +1137,8 @@ function NgBattleCharacterUtil:playAwardAction(chaNode)
             end))
             array:addObject(CCDelayTime:create(34 / 30))
             local offsetX, offsetY = unpack(common:split(NewBattleConst.AfkDropOffset[i], ","))
-            local posX = 20 - parentNode:getPositionX() - chaNode.heroNode.chaCCB:getPositionX() + tonumber(offsetX) * fixScale * -1
-            local posY = -100 - parentNode:getPositionY() - chaNode.heroNode.chaCCB:getPositionY() + tonumber(offsetY) * -1
+            local posX = 20 - parentNode:getPositionX() - self:getPos(chaNode).x + tonumber(offsetX) * fixScale * -1
+            local posY = -100 - parentNode:getPositionY() - self:getPos(chaNode).y + tonumber(offsetY) * -1
             if timeOffset[i] == 0 then
                 array:addObject(CCCallFunc:create(function()
                     NgBattlePageInfo_playTreasureAni("animation01")

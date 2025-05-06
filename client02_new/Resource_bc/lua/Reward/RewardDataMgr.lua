@@ -54,7 +54,7 @@ Inst.SubPageCfgs = {
     --},
         {
         --是否關閉
-        isClose=false,
+        isClose=true,
         -- 子頁面名稱 : 付費召喚
         subPageName = "Cost Summons",
 
@@ -94,7 +94,7 @@ Inst.SubPageCfgs = {
     },
     {
         --是否關閉
-        isClose=false,
+        isClose=true,
         -- 子頁面名稱 : 付費召喚
         subPageName = "Cost Summons",
 

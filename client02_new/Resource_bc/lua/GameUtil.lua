@@ -269,7 +269,15 @@ function GameUtil:showTip(relativeNode, itemCfg, hideCallBackExt)
         --            return
         --        end
     end
-
+    if itemCfg.type == Const_pb.EQUIP * 10000 then
+        local cfg = ConfigManager.getEquipCfg()[itemCfg.itemId]
+        if cfg.part == Const_pb.NECKLACE then   -- 回憶武器
+            AWPreview = require("AncientWeaponPreview_PopUp")
+            AWPreview:setShowId(itemCfg.itemId)
+            PageManager.pushPage("AncientWeaponPreview_PopUp")
+            return
+        end
+    end
 
     local Const_pb = require("Const_pb");
     local resInfo = ResManagerForLua:getResInfoByTypeAndId(itemCfg.type, itemCfg.itemId, itemCfg.count or 1);
@@ -298,6 +306,15 @@ function GameUtil:showTip2(relativeNode, itemCfg, hideCallBackExt)
 
         --            return
         --        end
+    end
+    if itemCfg.type == Const_pb.EQUIP * 10000 then
+        local cfg = ConfigManager.getEquipCfg()[itemCfg.itemId]
+        if cfg.part == Const_pb.NECKLACE then   -- 回憶武器
+            AWPreview = require("AncientWeaponPreview_PopUp")
+            AWPreview:setShowId(itemCfg.itemId)
+            PageManager.pushPage("AncientWeaponPreview_PopUp")
+            return
+        end
     end
 
 
@@ -823,19 +840,6 @@ function GameUtil:setMainNodeVisible(visible)
     backNode:setVisible(visible) 
     local mainButtons = mainContainer:getCCNodeFromCCB("mMainFrameButtons")
     mainButtons:setVisible(visible)
-end
-
-function GameUtil:setPlayMovieVisible(visible)      
-    local mainContainer = tolua.cast(MainFrame:getInstance(), "CCBContainer")
-    local backNode = mainContainer:getCCNodeFromCCB("mNodeBack")
-    backNode:setVisible(visible) 
-    local mainButtons = mainContainer:getCCNodeFromCCB("mMainFrameButtons")
-    mainButtons:setVisible(visible)
-    if visible then
-        MainFrame:getInstance():setBackgroundColor(0, 0, 0, 1)
-    else
-        MainFrame:getInstance():setBackgroundColor(0, 0, 0, 0)
-    end
 end
 
 function GameUtil:shuffleTable(table)      

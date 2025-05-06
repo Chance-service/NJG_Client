@@ -1,14 +1,17 @@
 local HP_pb = require("HP_pb")
 local MysticalDress_pb = require("Badge_pb")
+local InfoAccesser = require("Util.InfoAccesser")
 local thisPageName = "HeroResetPage"
 local PAGE_INFO = {
     COST_LEVEL_LIMIT = 100,
+    COST_DAIMOND = 200,
     PAGE_ROLE_LEVE = 0,
     PAGE_ROLE_ID = 0,
     PAGE_ITEM_ID = 0,
     SCROLLVIEW_VIEWWIDTH = 0,
     SCROLLVIEW_VIEWHEIGHT = 0,
     MAX_PART = 10,
+    TICKET_ID = 6013,
 }
 local opcodes = {
     ROLE_LEVEL_RESET_C = HP_pb.ROLE_LEVEL_RESET_C,
@@ -43,7 +46,7 @@ function HeroResetPage:refreshItem(container, itemType, itemId, num)
     NodeHelper:setSpriteImage(container, { mFrameShade1 = NodeHelper:getImageBgByQuality(resInfo.quality) })
     NodeHelper:setSpriteImage(container, { mPic1 = resInfo.icon })
     NodeHelper:setNormalImages(container, { mHand1 = GameConfig.QualityImage[resInfo.quality] })
-    NodeHelper:setStringForLabel(container, { mNumber1_1 = num })
+    NodeHelper:setStringForLabel(container, { mNumber1_1 = GameUtil:formatNumber(num) })
     NodeHelper:setNodesVisible(container, { mName1 = false, mShader = false, mEquipLv = false, mNumber1 = false, mStarNode = false })
     return 136, 136
 end
@@ -58,8 +61,20 @@ end
 -- 更新UI顯示
 function HeroResetPage:refreshUI(container)
     NodeHelper:setStringForTTFLabel(container, { mTipTxt = common:getLanguageString("@ResetInfo", common:getLanguageString("@HeroName_" .. PAGE_INFO.PAGE_ITEM_ID)) })
-    NodeHelper:setNodesVisible(container, { mBtn = (PAGE_INFO.PAGE_ROLE_LEVE > PAGE_INFO.COST_LEVEL_LIMIT),
-                                            mBtnFree = (PAGE_INFO.PAGE_ROLE_LEVE <= PAGE_INFO.COST_LEVEL_LIMIT) })
+    if (PAGE_INFO.PAGE_ROLE_LEVE > PAGE_INFO.COST_LEVEL_LIMIT) then
+        if InfoAccesser:getUserItemCount(Const_pb.TOOL, PAGE_INFO.TICKET_ID) > 0 then
+            NodeHelper:setSpriteImage(container, { mCostImg = "I_" .. PAGE_INFO.TICKET_ID .. ".png" })
+            NodeHelper:setStringForLabel(container, { mCostTxt = 1 })
+        else
+            NodeHelper:setSpriteImage(container, { mCostImg = "2.png" })
+            NodeHelper:setStringForLabel(container, { mCostTxt = PAGE_INFO.COST_DAIMOND })
+        end
+        NodeHelper:setNodesVisible(container, { mBtn = true,
+                                                mBtnFree = false })
+    else
+        NodeHelper:setNodesVisible(container, { mBtn = false,
+                                                mBtnFree = true })
+    end
 end
 -- 計算返還道具
 function HeroResetPage:calculateResetItem(container)
@@ -171,6 +186,8 @@ function HeroResetPage:onReset(container)
         local HP_pb = require("HP_pb")
         local msg = RoleOpr_pb.HPHeroLevelResetReq()
         msg.id = PAGE_INFO.PAGE_ROLE_ID
+        msg.useItem = (InfoAccesser:getUserItemCount(Const_pb.TOOL, PAGE_INFO.TICKET_ID) > 0) and 
+                      (PAGE_INFO.PAGE_ROLE_LEVE > PAGE_INFO.COST_LEVEL_LIMIT)
         common:sendPacket(opcodes.ROLE_LEVEL_RESET_C, msg, false)
     end
 end
