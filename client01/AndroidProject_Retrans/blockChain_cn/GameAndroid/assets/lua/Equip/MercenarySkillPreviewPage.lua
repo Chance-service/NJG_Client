@@ -6,7 +6,6 @@ local EquipScriptData = require("EquipScriptData")
 local thisPageName = "MercenarySkillPreviewPage"
 local NodeHelper = require("NodeHelper");
 local MercenarySkillPreviewPage = { }
-local SkillManager = require("Skill.SkillManager")
 local option = {
     ccbiFile = "MercenarySkillPopUp.ccbi",
     handlerMap =

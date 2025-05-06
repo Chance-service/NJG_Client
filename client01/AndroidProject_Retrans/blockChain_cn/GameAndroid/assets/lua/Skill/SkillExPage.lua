@@ -4,7 +4,6 @@
 registerScriptPage("ReplaceSkillPage");
 local hp = require('HP_pb')
 local skillPb = require("Skill_pb")
-local SkillManager = require("Skill.SkillManager")
 local NewbieGuideManager = require("Guide.NewbieGuideManager")
 local UserInfo = require("PlayerInfo.UserInfo");
 local thisPageName = "SkillPage";

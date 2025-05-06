@@ -4,7 +4,6 @@ local UserInfo = require("PlayerInfo.UserInfo")
 local RoleOpr_pb = require("RoleOpr_pb")
 local UserMercenaryManager = require("UserMercenaryManager")
 local MercenaryTouchSoundManager = require("MercenaryTouchSoundManager")
-local SkillManager = require("Skill.SkillManager")
 local FashionPageBase = {
 }
 

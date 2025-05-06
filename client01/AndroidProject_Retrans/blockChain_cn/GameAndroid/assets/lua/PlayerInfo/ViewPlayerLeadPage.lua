@@ -121,7 +121,6 @@ function ViewPlayerLeadPage:showRoleSpine(container)
 end
 
 function ViewPlayerLeadPage:showSkillInfo(container)
-    local SkillManager = require("Skill.SkillManager")
     local skillCfg = ConfigManager.getSkillEnhanceCfg();
     local skillOpenCfg = ConfigManager.getSkillOpenCfg()
     local showSkills = ViewPlayerInfo:getSKillInfo()

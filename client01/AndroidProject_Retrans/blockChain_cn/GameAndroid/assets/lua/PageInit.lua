@@ -29,7 +29,6 @@ PageInit.pageRequire = {
 	"GameConfig",
 	"Equip.EquipOprHelper",
 	"Chat.ChatManager",
-	"Skill.SkillManager",
 	"NodeHelper",
 	"ConfigManager",
 	"PageManager",

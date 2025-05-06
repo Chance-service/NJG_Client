@@ -309,7 +309,6 @@ local function getSpecialAttr()
             -- 物理暴击伤害 和 法术暴击伤害累加15000   15000为基础暴击伤害
             local specalLevel = 0
             if _curRoleInfo.prof == Const_pb.MAGIC and attrId == Const_pb.BUFF_MAGE and _curRoleInfo.type == Const_pb.MAIN_ROLE then
-                local SkillManager = require("Skill.SkillManager")
                 local SEManager = require("Skill.SEManager")
                 local StaticSkillCfg = SEManager:getSEStaticSkillByProfession(_curRoleInfo.prof)
                 specalLevel = _curRoleInfo.skillSpecializeLevel or 0

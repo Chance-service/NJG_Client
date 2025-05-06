@@ -11,7 +11,6 @@ local Const_pb = require("Const_pb")
 local PBHelper = require("PBHelper")
 local RoleOpr_pb = require "RoleOpr_pb"
 local UserMercenaryManager = require("UserMercenaryManager")
-local SkillManager = require("Skill.SkillManager")
 local ItemManager = require("Item.ItemManager")
 local FormationManager = require("FormationManager")
 local MercenaryTouchSoundManager = require("MercenaryTouchSoundManager")

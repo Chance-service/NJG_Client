@@ -20,7 +20,6 @@ local GameConfig = require("GameConfig");
 local EquipOprHelper = require("Equip.EquipOprHelper");
 
 local ChatManager = require("Chat.ChatManager");
-local SkillManager = require("Skill.SkillManager")
 local PackageLogicForLua = { }
 local UserInfo = require("PlayerInfo.UserInfo");
 local ConfigManager = require("ConfigManager")
@@ -2159,8 +2158,6 @@ PackageLogicForLua.HPRoleRingSync = PacketScriptHandler:new(HP_pb.ROLE_RING_INFO
 
 function PackageLogicForLua.onReceiveSkillSync(eventName, handler)
     if eventName == "luaReceivePacket" then
-        local SkillManager = require("Skill.SkillManager")
-        SkillManager:classifyOpenSkillDataFromC()
     end
 end
 PackageLogicForLua.HPSkillSyncHandler = PacketScriptHandler:new(HP_pb.SKILL_INFO_SYNC_S, PackageLogicForLua.onReceiveSkillSync);

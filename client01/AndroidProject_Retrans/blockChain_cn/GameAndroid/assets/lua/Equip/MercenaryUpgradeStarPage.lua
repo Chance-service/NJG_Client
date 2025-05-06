@@ -9,7 +9,6 @@ local NodeHelper = require("NodeHelper")
 local MercenaryUpgradeStarPage = {}
 local UserMercenaryManager = require("UserMercenaryManager")
 local UserItemManager = require("Item.UserItemManager")
-local SkillManager = require("Skill.SkillManager")
 local EquipScriptData = require("EquipScriptData")
 local UserInfo = require("PlayerInfo.UserInfo")
 local MercenaryUpgradeStagePage = require("MercenaryUpgradeStagePage")

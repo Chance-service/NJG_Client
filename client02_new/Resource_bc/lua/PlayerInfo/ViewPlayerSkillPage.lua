@@ -31,7 +31,6 @@ function ViewPlayerSkillPageBase:onEnter(container)
 end
 
 function ViewPlayerSkillPageBase:showSkillInfo(container)
-    local SkillManager = require("Skill.SkillManager")
     local skillCfg = ConfigManager.getSkillEnhanceCfg();
     local skillOpenCfg = ConfigManager.getSkillOpenCfg()
     local showSkills = ViewPlayerInfo:getSKillInfo()--SkillManager:getArenaSkillList()

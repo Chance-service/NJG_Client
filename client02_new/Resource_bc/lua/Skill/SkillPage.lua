@@ -170,7 +170,6 @@ function SkillPageBase:clearAllItem(container)
 end
 
 function SkillPageBase:buildItem(container)
-    local SkillManager = require("Skill.SkillManager")
 	local iCount = 0
 	local iMaxNode = container.m_pScrollViewFacade:getMaxDynamicControledItemViewsNum()
 	local fOneItemHeight = 0
@@ -315,7 +314,6 @@ end
 
 function SkillPageEmptyContent.refreshItemView(container)
     local index = container:getItemDate().mID
-    local SkillManager = require("Skill.SkillManager")
     local fightList = SkillManager:getFightSkillList()
     local arenaList = SkillManager:getArenaSkillList()
     local defenceList = SkillManager:getDefenseSkillList()
@@ -345,7 +343,6 @@ function SkillPageNormalContent.onFunction(eventName,container)
 end
 
 function SkillPageNormalContent.onMobile(container)
-    local SkillManager = require("Skill.SkillManager")
     local skillPb = require("Skill_pb")
     local hp = require('HP_pb')
 	local index = container:getItemDate().mID

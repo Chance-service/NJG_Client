@@ -96,7 +96,6 @@ function SEManager:getSEStaticSkillByProfession(profession)
 end
 
 function SEManager:getSkillCfgInfoByItemId(id,level)
-    local SkillManager =  require("Skill.SkillManager")
     local level = level and level or SkillManager:getSkillLevelByItemId(id)
     if id~=0 then
         level = level~=0 and level or 1
@@ -108,7 +107,6 @@ function SEManager:getSkillCfgInfoByItemId(id,level)
 end
 
 function SEManager:getOriginalLevelByItemId(id)
-    local SkillManager =  require("Skill.SkillManager")
     local level = SkillManager:getSkillLevelByItemId(id)
     local tempLevel = self:getTempLevel( id )
     level = level - tempLevel
@@ -119,12 +117,10 @@ function SEManager:getOriginalLevelByItemId(id)
 end
 
 function SEManager:getSkillLevelInfoByItemId(id)
-    local SkillManager =  require("Skill.SkillManager")
     return SkillManager:getSkillLevelByItemId(id)
 end
 
 function SEManager:getSkillExpByItemId(id)
-    local SkillManager =  require("Skill.SkillManager")
     return SkillManager:getSkillExpByItemId(id)
 end
 

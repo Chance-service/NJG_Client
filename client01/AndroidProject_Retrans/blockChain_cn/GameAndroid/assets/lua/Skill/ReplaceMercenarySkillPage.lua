@@ -5,7 +5,6 @@ local thisCurIndex = 1
 local hp = require('HP_pb')
 local UserInfo = require("PlayerInfo.UserInfo");
 local skillPb = require("Skill_pb")
-local SkillManager = require("Skill.SkillManager")
 local option = {
 	ccbiFile = "ReplaceSkillPopUp.ccbi",
 	handlerMap = {

@@ -5,7 +5,6 @@ local thisPageName = "ReplaceSkillPage"
 local UserInfo = require("PlayerInfo.UserInfo");
 local hp = require('HP_pb')
 local skillPb = require("Skill_pb")
-local SkillManager = require("Skill.SkillManager")
 local GuideManager = require("Guide.GuideManager")
 local option = {
     ccbiFile = "ReplaceSkillPopUp.ccbi",

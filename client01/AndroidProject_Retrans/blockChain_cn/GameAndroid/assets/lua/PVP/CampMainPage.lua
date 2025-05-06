@@ -112,7 +112,6 @@ end
 ----------------------------------------------------------------
 
 function CampMainPageBase:refreshSkillPage(container)
-	local SkillManager = require("Skill.SkillManager")
 	local skillList = {}
 	skillList  = SkillManager:getArenaSkillList()
 	local arenaSkillSize = #skillList
