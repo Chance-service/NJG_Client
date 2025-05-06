@@ -1,5 +1,5 @@
 local json    = require('json')
-local socket  = require("socket.socket2")
+local socket  = require("socket.socket")
 local http    = require("socket.http")
 local ltn12   = require("ltn12")
 
