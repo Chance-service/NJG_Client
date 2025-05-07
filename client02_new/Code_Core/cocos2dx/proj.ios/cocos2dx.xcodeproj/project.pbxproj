@@ -4136,6 +4136,7 @@
 					"\"$(SRCROOT)/../../scripting/lua/lua\"",
 					"\"$(SRCROOT)/../../scripting/lua/cocos2dx_support\"",
 					"\"$(SRCROOT)/../../scripting/lua/tolua\"",
+					"\"$(SRCROOT)/../../LibOS/include\"",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4182,6 +4183,7 @@
 					"\"$(SRCROOT)/../../scripting/lua/lua\"",
 					"\"$(SRCROOT)/../../scripting/lua/cocos2dx_support\"",
 					"\"$(SRCROOT)/../../scripting/lua/tolua\"",
+					"\"$(SRCROOT)/../../LibOS/include\"",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
