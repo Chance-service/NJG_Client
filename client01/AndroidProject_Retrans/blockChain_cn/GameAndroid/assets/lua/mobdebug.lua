@@ -73,7 +73,7 @@ local iscasepreserving = os and os.getenv and (os.getenv('WINDIR')
 -- reliable hook calls at any later point in time."
 if jit and jit.off then jit.off() end
 
-local socket = require "socket"
+local socket = require "socket.socket"
 local debug = require "debug"
 local coro_debugger
 local coro_debugee
@@ -1358,7 +1358,7 @@ local function listen(host, port)
   host = host or "*"
   port = port or mobdebug.port
 
-  local socket = require "socket"
+  local socket = require "socket.socket"
 
   print("Lua Remote Debugger")
   print("Run the program you wish to debug")

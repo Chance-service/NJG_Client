@@ -1,7 +1,7 @@
 local json    = require('json')
 local socket  = require("socket.socket")
 local http    = require("socket.http")
-local ltn12   = require("ltn12")
+local ltn12   = require("socket.ltn12")
 
 local AnnounceDownLoad = {
     firstEnterGame = false,

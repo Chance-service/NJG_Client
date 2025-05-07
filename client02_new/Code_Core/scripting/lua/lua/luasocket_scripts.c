@@ -319,7 +319,7 @@ static const char *lua_m_mime =
 "-- Declare module and import dependencies\n"
 "-----------------------------------------------------------------------------\n"
 "local base = _G\n"
-"local ltn12 = require(\"ltn12\")\n"
+"local ltn12 = require(\"socket.ltn12\")\n"
 "local mime = require(\"mime.core\")\n"
 "local io = require(\"io\")\n"
 "local string = require(\"string\")\n"
@@ -415,10 +415,10 @@ static const char *lua_m_socket_ftp =
 "local table = require(\"table\")\n"
 "local string = require(\"string\")\n"
 "local math = require(\"math\")\n"
-"local socket = require(\"socket.socket2\")\n"
+"local socket = require(\"socket.socket\")\n"
 "local url = require(\"socket.url\")\n"
 "local tp = require(\"socket.tp\")\n"
-"local ltn12 = require(\"ltn12\")\n"
+"local ltn12 = require(\"socket.ltn12\")\n"
 "socket.ftp = {}\n"
 "local _M = socket.ftp\n"
 "-----------------------------------------------------------------------------\n"
@@ -696,7 +696,7 @@ static const char *lua_m_socket_headers =
 "-- LuaSocket toolkit.\n"
 "-- Author: Diego Nehab\n"
 "-----------------------------------------------------------------------------\n"
-"local socket = require(\"socket.socket2\")\n"
+"local socket = require(\"socket.socket\")\n"
 "socket.headers = {}\n"
 "local _M = socket.headers\n"
 "\n"
@@ -808,10 +808,10 @@ static const char *lua_m_socket_http =
 "-----------------------------------------------------------------------------\n"
 "-- Declare module and import dependencies\n"
 "-------------------------------------------------------------------------------\n"
-"local socket = require(\"socket.socket2\")\n"
+"local socket = require(\"socket.socket\")\n"
 "local url = require(\"socket.url\")\n"
-"local ltn12 = require(\"socket.ltn122\")\n"
-"local mime = require(\"socket.mime2\")\n"
+"local ltn12 = require(\"socket.ltn12\")\n"
+"local mime = require(\"socket.mime\")\n"
 "local string = require(\"string\")\n"
 "local headers = require(\"socket.headers\")\n"
 "local base = _G\n"
@@ -1267,11 +1267,11 @@ static const char *lua_m_socket_smtp =
 "local string = require(\"string\")\n"
 "local math = require(\"math\")\n"
 "local os = require(\"os\")\n"
-"local socket = require(\"socket.socket2\")\n"
+"local socket = require(\"socket.socket\")\n"
 "local tp = require(\"socket.tp\")\n"
-"local ltn12 = require(\"socket.ltn122\")\n"
+"local ltn12 = require(\"socket.ltn12\")\n"
 "local headers = require(\"socket.headers\")\n"
-"local mime = require(\"socket.mime2\")\n"
+"local mime = require(\"socket.mime\")\n"
 "\n"
 "socket.smtp = {}\n"
 "local _M = socket.smtp\n"
@@ -1524,7 +1524,7 @@ static const char *lua_m_socket_tp =
 "-----------------------------------------------------------------------------\n"
 "local base = _G\n"
 "local string = require(\"string\")\n"
-"local socket = require(\"socket.socket2\")\n"
+"local socket = require(\"socket.socket\")\n"
 "local ltn12 = require(\"socket.ltn12\")\n"
 "\n"
 "socket.tp = {}\n"
@@ -1655,7 +1655,7 @@ static const char *lua_m_socket_url =
 "local string = require(\"string\")\n"
 "local base = _G\n"
 "local table = require(\"table\")\n"
-"local socket = require(\"socket.socket2\")\n"
+"local socket = require(\"socket.socket\")\n"
 "\n"
 "socket.url = {}\n"
 "local _M = socket.url\n"
@@ -2168,8 +2168,8 @@ int luaopen_lua_m_socket(lua_State *L) {
 
 
 static luaL_Reg luasocket_scripts_modules[] = {
-    {"ltn12", luaopen_lua_m_ltn12},
-    {"mime", luaopen_lua_m_mime},
+    {"socket.ltn12", luaopen_lua_m_ltn12},
+    {"socket.mime", luaopen_lua_m_mime},
     {"socket.ftp", luaopen_lua_m_socket_ftp},
     {"socket.headers", luaopen_lua_m_socket_headers},
     {"socket.http", luaopen_lua_m_socket_http},
@@ -2177,7 +2177,7 @@ static luaL_Reg luasocket_scripts_modules[] = {
     {"socket.smtp", luaopen_lua_m_socket_smtp},
     {"socket.tp", luaopen_lua_m_socket_tp},
     {"socket.url", luaopen_lua_m_socket_url},
-    {"socket", luaopen_lua_m_socket},
+    {"socket.socket", luaopen_lua_m_socket},
     {NULL, NULL}
 };
 

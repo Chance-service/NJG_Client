@@ -14,7 +14,7 @@ local math = require("math")
 local socket = require("socket.socket")
 local url = require("socket.url")
 local tp = require("socket.tp")
-local ltn12 = require("ltn12")
+local ltn12 = require("socket.ltn12")
 socket.ftp = {}
 local _M = socket.ftp
 -----------------------------------------------------------------------------

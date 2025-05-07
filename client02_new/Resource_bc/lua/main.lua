@@ -825,7 +825,7 @@ function __G__TRACKBACK__(msg)
 --			httpPost = httpPost.. "&" .. k.."="..v
 --		end
 --	end
---	local socket = require "socket"
+--	local socket = require "socket.socket"
 --	local http=require("socket.http")
 --	http.TIMEOUT = 5
 --	local res, code, response_headers = http.request("https://1jdata.tigerto.com/game_errorinfo",httpPost)

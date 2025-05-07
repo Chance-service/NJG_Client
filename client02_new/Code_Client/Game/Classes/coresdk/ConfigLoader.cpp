@@ -8,7 +8,7 @@ USING_NS_CC;
 #else
 #include "rapidjson/rapidjson.h"
 #include "rapidjson/document.h"
-#include "WebRequest.h"
+#include "coresdk/WebRequest.h"
 #endif
 
 namespace coresdk {

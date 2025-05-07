@@ -12,7 +12,7 @@
 #else
 #include "coresdk/Config.h"
 #include "coresdk/ConfigLoader.h"
-#include "WebRequest.h"
+#include "coresdk/WebRequest.h"
 #include "coresdk/Result.h"
 #include "coresdk/APIUtil.h"
 #include "coresdk/Enum.h"
