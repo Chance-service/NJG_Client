@@ -81,6 +81,11 @@ void lib91::login()
 	libPlatformManager::getPlatform()->_boardcastLoginResult(true, "");
 }
 
+void lib91::setupSDK(int platformId)
+{
+
+}
+
 const std::string& lib91::getToken()
 {	
 	return token;

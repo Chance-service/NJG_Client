@@ -102,6 +102,11 @@ void lib91::initWithConfigure(const SDK_CONFIG_STU& configure)//init(bool privat
 	_boardcastUpdateCheckDone(true,"");
 }
 
+void lib91::setupSDK(int platformId)
+{
+
+}
+
 void lib91::updateApp(std::string& storeUrl)
 {
 
