@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 48;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -184,44 +184,11 @@
 		4E45216D2D5F1AE100F26188 /* KUSOPlaySDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4E45216A2D5F1AE000F26188 /* KUSOPlaySDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4E45216E2D5F1AE100F26188 /* TapDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E45216B2D5F1AE000F26188 /* TapDB.framework */; };
 		4E45216F2D5F1AE100F26188 /* TapDB.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4E45216B2D5F1AE000F26188 /* TapDB.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		4E59C33D2D602B96006518A5 /* Video in Resources */ = {isa = PBXBuildFile; fileRef = 4E59C33C2D602B6B006518A5 /* Video */; };
-		4E59C34A2D602C58006518A5 /* Announce in Resources */ = {isa = PBXBuildFile; fileRef = 4E59C3492D602C45006518A5 /* Announce */; };
-		4E59C35C2D602F10006518A5 /* map in Resources */ = {isa = PBXBuildFile; fileRef = 4E59C3562D602E1B006518A5 /* map */; };
-		4E59C35D2D602F10006518A5 /* audio in Resources */ = {isa = PBXBuildFile; fileRef = 4E59C34D2D602D7F006518A5 /* audio */; };
-		4E59C35E2D602F10006518A5 /* txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E59C3532D602DE1006518A5 /* txt */; };
-		4E59C35F2D602F10006518A5 /* shader in Resources */ = {isa = PBXBuildFile; fileRef = 4E59C35A2D602EC9006518A5 /* shader */; };
-		4E59C3602D602F10006518A5 /* Lang in Resources */ = {isa = PBXBuildFile; fileRef = 4E59C3592D602EC5006518A5 /* Lang */; };
-		4E59C3612D602F10006518A5 /* HalfBody in Resources */ = {isa = PBXBuildFile; fileRef = 4E59C3512D602DC5006518A5 /* HalfBody */; };
-		4E59C3622D602F10006518A5 /* UI in Resources */ = {isa = PBXBuildFile; fileRef = 4E59C34C2D602CF8006518A5 /* UI */; };
-		4E59C3632D602F10006518A5 /* lua in Resources */ = {isa = PBXBuildFile; fileRef = 4E59C3552D602E19006518A5 /* lua */; };
-		4E59C3642D602F10006518A5 /* monster in Resources */ = {isa = PBXBuildFile; fileRef = 4E59C34E2D602D82006518A5 /* monster */; };
-		4E59C3652D602F10006518A5 /* LoadingUI_JP in Resources */ = {isa = PBXBuildFile; fileRef = 4E59C3572D602E1F006518A5 /* LoadingUI_JP */; };
-		4E59C3662D602F10006518A5 /* skill in Resources */ = {isa = PBXBuildFile; fileRef = 4E59C3522D602DCD006518A5 /* skill */; };
-		4E59C3672D602F10006518A5 /* i18n in Resources */ = {isa = PBXBuildFile; fileRef = 4E59C3542D602DE2006518A5 /* i18n */; };
-		4E59C3682D602F10006518A5 /* BG in Resources */ = {isa = PBXBuildFile; fileRef = 4E59C34F2D602DBD006518A5 /* BG */; };
-		4E59C3692D602F10006518A5 /* Imagesetfile in Resources */ = {isa = PBXBuildFile; fileRef = 4E59C3502D602DC2006518A5 /* Imagesetfile */; };
-		4E59C36A2D602F10006518A5 /* Spine in Resources */ = {isa = PBXBuildFile; fileRef = 4E59C3582D602EA8006518A5 /* Spine */; };
-		4E59C36B2D602F10006518A5 /* version in Resources */ = {isa = PBXBuildFile; fileRef = 4E59C35B2D602ECA006518A5 /* version */; };
-		4E59C36C2D602F10006518A5 /* ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 4E59C34B2D602C8C006518A5 /* ccbi */; };
 		4E59C3712D603608006518A5 /* libpthread.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7F507D2D5F9F1900DD4AA4 /* libpthread.tbd */; };
 		4E59C3722D603615006518A5 /* libpthread.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7F507D2D5F9F1900DD4AA4 /* libpthread.tbd */; };
 		4E59C3732D603620006518A5 /* libpthread.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7F507D2D5F9F1900DD4AA4 /* libpthread.tbd */; };
 		4E59C3762D620816006518A5 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E59C3752D620816006518A5 /* AVKit.framework */; };
 		4E7F0A532D5FABCD00DD4AA4 /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C1E005829C2B22F002E789C /* libfreetype.a */; };
-		4E7F32952D5FAE8400DD4AA4 /* Announce.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F2FFC2D5FAE8200DD4AA4 /* Announce.txt */; };
-		4E7F34942D5FAE8400DD4AA4 /* version.manifest in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F303B2D5FAE8200DD4AA4 /* version.manifest */; };
-		4E7F38632D5FAE8400DD4AA4 /* Barlow-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F2FFF2D5FAE8200DD4AA4 /* Barlow-Bold.ttf */; };
-		4E7F38BD2D5FAE8400DD4AA4 /* Barlow-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F30002D5FAE8200DD4AA4 /* Barlow-Regular.ttf */; };
-		4E7F3C052D5FAE8400DD4AA4 /* version_ios.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F303E2D5FAE8200DD4AA4 /* version_ios.cfg */; };
-		4E7F3FD02D5FAE8400DD4AA4 /* UpdateVersionTipsTW.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F30362D5FAE8200DD4AA4 /* UpdateVersionTipsTW.cfg */; };
-		4E7F41822D5FAE8400DD4AA4 /* platform.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F30272D5FAE8200DD4AA4 /* platform.cfg */; };
-		4E7F43A82D5FAE8400DD4AA4 /* Feedback.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F30092D5FAE8200DD4AA4 /* Feedback.txt */; };
-		4E7F43FD2D5FAE8400DD4AA4 /* A_platformd_YouGu.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F2FFB2D5FAE8200DD4AA4 /* A_platformd_YouGu.txt */; };
-		4E7F449F2D5FAE8400DD4AA4 /* RecourceFilePath.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F302C2D5FAE8200DD4AA4 /* RecourceFilePath.txt */; };
-		4E7F47062D5FAE8400DD4AA4 /* announcement.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F2FFD2D5FAE8200DD4AA4 /* announcement.txt */; };
-		4E7F48CC2D5FAE8400DD4AA4 /* projectLocal.manifest in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F30282D5FAE8200DD4AA4 /* projectLocal.manifest */; };
-		4E7F4C142D5FAE8400DD4AA4 /* Tips.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F30342D5FAE8200DD4AA4 /* Tips.txt */; };
-		4E7F4D432D5FAE8400DD4AA4 /* Barlow-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F30012D5FAE8200DD4AA4 /* Barlow-SemiBold.ttf */; };
 		4E7F4F302D5F2B2D00DD4AA4 /* TapDB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E7F4F2F2D5F2B2D00DD4AA4 /* TapDB.cpp */; };
 		4E7F4F312D5F2B2D00DD4AA4 /* TapDB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E7F4F2F2D5F2B2D00DD4AA4 /* TapDB.cpp */; };
 		4E7F4F322D5F2B2D00DD4AA4 /* TapDB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E7F4F2F2D5F2B2D00DD4AA4 /* TapDB.cpp */; };
@@ -307,64 +274,6 @@
 		4E7F507E2D5F9F2700DD4AA4 /* libpthread.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7F507D2D5F9F1900DD4AA4 /* libpthread.tbd */; };
 		4E7F50832D5FA37300DD4AA4 /* libcocos2dx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7F4FFA2D5F96D100DD4AA4 /* libcocos2dx.a */; };
 		4E7F50842D5FA3C000DD4AA4 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7F50772D5F9CBB00DD4AA4 /* libcrypto.a */; };
-		4E7F52F82D5FAE8400DD4AA4 /* UserDefault.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F30382D5FAE8200DD4AA4 /* UserDefault.xml */; };
-		4E7F538B2D5FAE8400DD4AA4 /* versionApp.manifest in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F30402D5FAE8200DD4AA4 /* versionApp.manifest */; };
-		4E7F53E72D5FAE8400DD4AA4 /* servers.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F30312D5FAE8200DD4AA4 /* servers.cfg */; };
-		4E7F54292D5FAE8400DD4AA4 /* UpdateVersionTips.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F30352D5FAE8200DD4AA4 /* UpdateVersionTips.cfg */; };
-		4E7F57EB2D5FAE8600DD4AA4 /* Announce.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F2FFC2D5FAE8200DD4AA4 /* Announce.txt */; };
-		4E7F59EA2D5FAE8600DD4AA4 /* version.manifest in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F303B2D5FAE8200DD4AA4 /* version.manifest */; };
-		4E7F5DB92D5FAE8600DD4AA4 /* Barlow-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F2FFF2D5FAE8200DD4AA4 /* Barlow-Bold.ttf */; };
-		4E7F5E132D5FAE8600DD4AA4 /* Barlow-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F30002D5FAE8200DD4AA4 /* Barlow-Regular.ttf */; };
-		4E7F615B2D5FAE8600DD4AA4 /* version_ios.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F303E2D5FAE8200DD4AA4 /* version_ios.cfg */; };
-		4E7F65262D5FAE8600DD4AA4 /* UpdateVersionTipsTW.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F30362D5FAE8200DD4AA4 /* UpdateVersionTipsTW.cfg */; };
-		4E7F66D82D5FAE8600DD4AA4 /* platform.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F30272D5FAE8200DD4AA4 /* platform.cfg */; };
-		4E7F68FE2D5FAE8600DD4AA4 /* Feedback.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F30092D5FAE8200DD4AA4 /* Feedback.txt */; };
-		4E7F69532D5FAE8600DD4AA4 /* A_platformd_YouGu.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F2FFB2D5FAE8200DD4AA4 /* A_platformd_YouGu.txt */; };
-		4E7F69F52D5FAE8600DD4AA4 /* RecourceFilePath.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F302C2D5FAE8200DD4AA4 /* RecourceFilePath.txt */; };
-		4E7F6C5C2D5FAE8600DD4AA4 /* announcement.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F2FFD2D5FAE8200DD4AA4 /* announcement.txt */; };
-		4E7F6E222D5FAE8600DD4AA4 /* projectLocal.manifest in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F30282D5FAE8200DD4AA4 /* projectLocal.manifest */; };
-		4E7F716A2D5FAE8600DD4AA4 /* Tips.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F30342D5FAE8200DD4AA4 /* Tips.txt */; };
-		4E7F72992D5FAE8600DD4AA4 /* Barlow-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F30012D5FAE8200DD4AA4 /* Barlow-SemiBold.ttf */; };
-		4E7F784E2D5FAE8600DD4AA4 /* UserDefault.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F30382D5FAE8200DD4AA4 /* UserDefault.xml */; };
-		4E7F78E12D5FAE8600DD4AA4 /* versionApp.manifest in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F30402D5FAE8200DD4AA4 /* versionApp.manifest */; };
-		4E7F793D2D5FAE8600DD4AA4 /* servers.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F30312D5FAE8200DD4AA4 /* servers.cfg */; };
-		4E7F797F2D5FAE8600DD4AA4 /* UpdateVersionTips.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F30352D5FAE8200DD4AA4 /* UpdateVersionTips.cfg */; };
-		4E7F7D4B2D5FAE8A00DD4AA4 /* Announce.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F2FFC2D5FAE8200DD4AA4 /* Announce.txt */; };
-		4E7F7F4A2D5FAE8A00DD4AA4 /* version.manifest in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F303B2D5FAE8200DD4AA4 /* version.manifest */; };
-		4E7F83192D5FAE8A00DD4AA4 /* Barlow-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F2FFF2D5FAE8200DD4AA4 /* Barlow-Bold.ttf */; };
-		4E7F83732D5FAE8A00DD4AA4 /* Barlow-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F30002D5FAE8200DD4AA4 /* Barlow-Regular.ttf */; };
-		4E7F86BB2D5FAE8A00DD4AA4 /* version_ios.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F303E2D5FAE8200DD4AA4 /* version_ios.cfg */; };
-		4E7F8A862D5FAE8A00DD4AA4 /* UpdateVersionTipsTW.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F30362D5FAE8200DD4AA4 /* UpdateVersionTipsTW.cfg */; };
-		4E7F8C382D5FAE8A00DD4AA4 /* platform.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F30272D5FAE8200DD4AA4 /* platform.cfg */; };
-		4E7F8E5E2D5FAE8A00DD4AA4 /* Feedback.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F30092D5FAE8200DD4AA4 /* Feedback.txt */; };
-		4E7F8EB32D5FAE8A00DD4AA4 /* A_platformd_YouGu.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F2FFB2D5FAE8200DD4AA4 /* A_platformd_YouGu.txt */; };
-		4E7F8F552D5FAE8A00DD4AA4 /* RecourceFilePath.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F302C2D5FAE8200DD4AA4 /* RecourceFilePath.txt */; };
-		4E7F91BC2D5FAE8A00DD4AA4 /* announcement.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F2FFD2D5FAE8200DD4AA4 /* announcement.txt */; };
-		4E7F93822D5FAE8A00DD4AA4 /* projectLocal.manifest in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F30282D5FAE8200DD4AA4 /* projectLocal.manifest */; };
-		4E7F96CA2D5FAE8A00DD4AA4 /* Tips.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F30342D5FAE8200DD4AA4 /* Tips.txt */; };
-		4E7F97F92D5FAE8A00DD4AA4 /* Barlow-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F30012D5FAE8200DD4AA4 /* Barlow-SemiBold.ttf */; };
-		4E7F9DAE2D5FAE8A00DD4AA4 /* UserDefault.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F30382D5FAE8200DD4AA4 /* UserDefault.xml */; };
-		4E7F9E412D5FAE8A00DD4AA4 /* versionApp.manifest in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F30402D5FAE8200DD4AA4 /* versionApp.manifest */; };
-		4E7F9E9D2D5FAE8A00DD4AA4 /* servers.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F30312D5FAE8200DD4AA4 /* servers.cfg */; };
-		4E7F9EDF2D5FAE8A00DD4AA4 /* UpdateVersionTips.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F30352D5FAE8200DD4AA4 /* UpdateVersionTips.cfg */; };
-		4E7FA2A72D5FAE8C00DD4AA4 /* Announce.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F2FFC2D5FAE8200DD4AA4 /* Announce.txt */; };
-		4E7FA4A62D5FAE8C00DD4AA4 /* version.manifest in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F303B2D5FAE8200DD4AA4 /* version.manifest */; };
-		4E7FA8752D5FAE8C00DD4AA4 /* Barlow-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F2FFF2D5FAE8200DD4AA4 /* Barlow-Bold.ttf */; };
-		4E7FA8CF2D5FAE8C00DD4AA4 /* Barlow-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F30002D5FAE8200DD4AA4 /* Barlow-Regular.ttf */; };
-		4E7FAC172D5FAE8C00DD4AA4 /* version_ios.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F303E2D5FAE8200DD4AA4 /* version_ios.cfg */; };
-		4E7FAFE22D5FAE8C00DD4AA4 /* UpdateVersionTipsTW.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F30362D5FAE8200DD4AA4 /* UpdateVersionTipsTW.cfg */; };
-		4E7FB1942D5FAE8C00DD4AA4 /* platform.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F30272D5FAE8200DD4AA4 /* platform.cfg */; };
-		4E7FB3BA2D5FAE8C00DD4AA4 /* Feedback.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F30092D5FAE8200DD4AA4 /* Feedback.txt */; };
-		4E7FB40F2D5FAE8C00DD4AA4 /* A_platformd_YouGu.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F2FFB2D5FAE8200DD4AA4 /* A_platformd_YouGu.txt */; };
-		4E7FB4B12D5FAE8C00DD4AA4 /* RecourceFilePath.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F302C2D5FAE8200DD4AA4 /* RecourceFilePath.txt */; };
-		4E7FB7182D5FAE8C00DD4AA4 /* announcement.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F2FFD2D5FAE8200DD4AA4 /* announcement.txt */; };
-		4E7FB8DE2D5FAE8C00DD4AA4 /* projectLocal.manifest in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F30282D5FAE8200DD4AA4 /* projectLocal.manifest */; };
-		4E7FBC262D5FAE8C00DD4AA4 /* Tips.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F30342D5FAE8200DD4AA4 /* Tips.txt */; };
-		4E7FBD552D5FAE8C00DD4AA4 /* Barlow-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F30012D5FAE8200DD4AA4 /* Barlow-SemiBold.ttf */; };
-		4E7FC30A2D5FAE8D00DD4AA4 /* UserDefault.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F30382D5FAE8200DD4AA4 /* UserDefault.xml */; };
-		4E7FC39D2D5FAE8D00DD4AA4 /* versionApp.manifest in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F30402D5FAE8200DD4AA4 /* versionApp.manifest */; };
-		4E7FC3F92D5FAE8D00DD4AA4 /* servers.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F30312D5FAE8200DD4AA4 /* servers.cfg */; };
-		4E7FC43B2D5FAE8D00DD4AA4 /* UpdateVersionTips.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F30352D5FAE8200DD4AA4 /* UpdateVersionTips.cfg */; };
 		760161651E6D6C2C005A436D /* GameRyukNew-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 760161641E6D6C2C005A436D /* GameRyukNew-Info.plist */; };
 		76D32B861E691E74001E95AD /* ChangeUserPage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 76D32B841E691E74001E95AD /* ChangeUserPage.cpp */; };
 		974A0DB61E655BD1000CE656 /* CurlDownloadForScript.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 974A0DB41E655BC7000CE656 /* CurlDownloadForScript.cpp */; };
@@ -1009,47 +918,10 @@
 		49BB4F54AB4832F37362595C /* NoticeBox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NoticeBox.h; path = ../../Game/Classes/NoticeBox.h; sourceTree = SOURCE_ROOT; };
 		4AD74B3991D9EE923EAD8528 /* RadialBlurSprite.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = RadialBlurSprite.cpp; path = ../../Game/Classes/RadialBlurSprite.cpp; sourceTree = SOURCE_ROOT; };
 		4D9741FB8B473B68880AF15A /* CCBContainer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = CCBContainer.cpp; path = ../../Game/Classes/CCBContainer.cpp; sourceTree = SOURCE_ROOT; };
-		4E4521492D5F191600F26188 /* NinjaGirl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NinjaGirl.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E4521492D5F191600F26188 /* NinjaGirl69.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NinjaGirl69.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E45216A2D5F1AE000F26188 /* KUSOPlaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KUSOPlaySDK.framework; path = ../../../Code_iOS/lib91/SDK/91SDK/framework5/framework/KUSOPlaySDK.framework; sourceTree = "<group>"; };
 		4E45216B2D5F1AE000F26188 /* TapDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TapDB.framework; path = ../../../Code_iOS/lib91/SDK/91SDK/framework5/framework/TapDB.framework; sourceTree = "<group>"; };
-		4E59C33C2D602B6B006518A5 /* Video */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Video; sourceTree = "<group>"; };
-		4E59C3492D602C45006518A5 /* Announce */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Announce; sourceTree = "<group>"; };
-		4E59C34B2D602C8C006518A5 /* ccbi */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ccbi; sourceTree = "<group>"; };
-		4E59C34C2D602CF8006518A5 /* UI */ = {isa = PBXFileReference; lastKnownFileType = folder; path = UI; sourceTree = "<group>"; };
-		4E59C34D2D602D7F006518A5 /* audio */ = {isa = PBXFileReference; lastKnownFileType = folder; path = audio; sourceTree = "<group>"; };
-		4E59C34E2D602D82006518A5 /* monster */ = {isa = PBXFileReference; lastKnownFileType = folder; path = monster; sourceTree = "<group>"; };
-		4E59C34F2D602DBD006518A5 /* BG */ = {isa = PBXFileReference; lastKnownFileType = folder; path = BG; sourceTree = "<group>"; };
-		4E59C3502D602DC2006518A5 /* Imagesetfile */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Imagesetfile; sourceTree = "<group>"; };
-		4E59C3512D602DC5006518A5 /* HalfBody */ = {isa = PBXFileReference; lastKnownFileType = folder; path = HalfBody; sourceTree = "<group>"; };
-		4E59C3522D602DCD006518A5 /* skill */ = {isa = PBXFileReference; lastKnownFileType = folder; path = skill; sourceTree = "<group>"; };
-		4E59C3532D602DE1006518A5 /* txt */ = {isa = PBXFileReference; lastKnownFileType = folder; path = txt; sourceTree = "<group>"; };
-		4E59C3542D602DE2006518A5 /* i18n */ = {isa = PBXFileReference; lastKnownFileType = folder; path = i18n; sourceTree = "<group>"; };
-		4E59C3552D602E19006518A5 /* lua */ = {isa = PBXFileReference; lastKnownFileType = folder; path = lua; sourceTree = "<group>"; };
-		4E59C3562D602E1B006518A5 /* map */ = {isa = PBXFileReference; lastKnownFileType = folder; path = map; sourceTree = "<group>"; };
-		4E59C3572D602E1F006518A5 /* LoadingUI_JP */ = {isa = PBXFileReference; lastKnownFileType = folder; path = LoadingUI_JP; sourceTree = "<group>"; };
-		4E59C3582D602EA8006518A5 /* Spine */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Spine; sourceTree = "<group>"; };
-		4E59C3592D602EC5006518A5 /* Lang */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Lang; sourceTree = "<group>"; };
-		4E59C35A2D602EC9006518A5 /* shader */ = {isa = PBXFileReference; lastKnownFileType = folder; path = shader; sourceTree = "<group>"; };
-		4E59C35B2D602ECA006518A5 /* version */ = {isa = PBXFileReference; lastKnownFileType = folder; path = version; sourceTree = "<group>"; };
 		4E59C3752D620816006518A5 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
-		4E7F2FFB2D5FAE8200DD4AA4 /* A_platformd_YouGu.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = A_platformd_YouGu.txt; sourceTree = "<group>"; };
-		4E7F2FFC2D5FAE8200DD4AA4 /* Announce.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Announce.txt; sourceTree = "<group>"; };
-		4E7F2FFD2D5FAE8200DD4AA4 /* announcement.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = announcement.txt; sourceTree = "<group>"; };
-		4E7F2FFF2D5FAE8200DD4AA4 /* Barlow-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Barlow-Bold.ttf"; sourceTree = "<group>"; };
-		4E7F30002D5FAE8200DD4AA4 /* Barlow-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Barlow-Regular.ttf"; sourceTree = "<group>"; };
-		4E7F30012D5FAE8200DD4AA4 /* Barlow-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Barlow-SemiBold.ttf"; sourceTree = "<group>"; };
-		4E7F30092D5FAE8200DD4AA4 /* Feedback.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Feedback.txt; sourceTree = "<group>"; };
-		4E7F30272D5FAE8200DD4AA4 /* platform.cfg */ = {isa = PBXFileReference; lastKnownFileType = text; path = platform.cfg; sourceTree = "<group>"; };
-		4E7F30282D5FAE8200DD4AA4 /* projectLocal.manifest */ = {isa = PBXFileReference; lastKnownFileType = text; path = projectLocal.manifest; sourceTree = "<group>"; };
-		4E7F302C2D5FAE8200DD4AA4 /* RecourceFilePath.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = RecourceFilePath.txt; sourceTree = "<group>"; };
-		4E7F30312D5FAE8200DD4AA4 /* servers.cfg */ = {isa = PBXFileReference; lastKnownFileType = text; path = servers.cfg; sourceTree = "<group>"; };
-		4E7F30342D5FAE8200DD4AA4 /* Tips.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Tips.txt; sourceTree = "<group>"; };
-		4E7F30352D5FAE8200DD4AA4 /* UpdateVersionTips.cfg */ = {isa = PBXFileReference; lastKnownFileType = text; path = UpdateVersionTips.cfg; sourceTree = "<group>"; };
-		4E7F30362D5FAE8200DD4AA4 /* UpdateVersionTipsTW.cfg */ = {isa = PBXFileReference; lastKnownFileType = text; path = UpdateVersionTipsTW.cfg; sourceTree = "<group>"; };
-		4E7F30382D5FAE8200DD4AA4 /* UserDefault.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = UserDefault.xml; sourceTree = "<group>"; };
-		4E7F303B2D5FAE8200DD4AA4 /* version.manifest */ = {isa = PBXFileReference; lastKnownFileType = text; path = version.manifest; sourceTree = "<group>"; };
-		4E7F303E2D5FAE8200DD4AA4 /* version_ios.cfg */ = {isa = PBXFileReference; lastKnownFileType = text; path = version_ios.cfg; sourceTree = "<group>"; };
-		4E7F30402D5FAE8200DD4AA4 /* versionApp.manifest */ = {isa = PBXFileReference; lastKnownFileType = text; path = versionApp.manifest; sourceTree = "<group>"; };
 		4E7F4F2E2D5F2B2D00DD4AA4 /* TapDB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TapDB.h; sourceTree = "<group>"; };
 		4E7F4F2F2D5F2B2D00DD4AA4 /* TapDB.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TapDB.cpp; sourceTree = "<group>"; };
 		4E7F4F822D5F8F4500DD4AA4 /* liblib91.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = liblib91.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1532,6 +1404,10 @@
 		FC9B43A4BDE9DD257CBB6CF4 /* ScriptContentBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ScriptContentBase.h; path = ../../Game/Classes/ScriptContentBase.h; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		4E6C18612DCA032C00E76FB4 /* assets */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); name = assets; path = /Users/misomacair02/Desktop/Projects/NinjaGirl/NJG_Client/client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets; sourceTree = "<absolute>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
 		4E4520E92D5F191600F26188 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
@@ -1807,51 +1683,6 @@
 			);
 			path = BuglyAgent;
 			sourceTree = "<group>";
-		};
-		4E7F30422D5FAE8200DD4AA4 /* Resource_bc */ = {
-			isa = PBXGroup;
-			children = (
-				4E59C3492D602C45006518A5 /* Announce */,
-				4E59C34D2D602D7F006518A5 /* audio */,
-				4E59C34F2D602DBD006518A5 /* BG */,
-				4E59C34B2D602C8C006518A5 /* ccbi */,
-				4E59C3512D602DC5006518A5 /* HalfBody */,
-				4E59C3542D602DE2006518A5 /* i18n */,
-				4E59C3502D602DC2006518A5 /* Imagesetfile */,
-				4E59C3592D602EC5006518A5 /* Lang */,
-				4E59C3572D602E1F006518A5 /* LoadingUI_JP */,
-				4E59C3552D602E19006518A5 /* lua */,
-				4E59C3562D602E1B006518A5 /* map */,
-				4E59C34E2D602D82006518A5 /* monster */,
-				4E59C35A2D602EC9006518A5 /* shader */,
-				4E59C3522D602DCD006518A5 /* skill */,
-				4E59C3582D602EA8006518A5 /* Spine */,
-				4E59C3532D602DE1006518A5 /* txt */,
-				4E59C34C2D602CF8006518A5 /* UI */,
-				4E59C35B2D602ECA006518A5 /* version */,
-				4E59C33C2D602B6B006518A5 /* Video */,
-				4E7F2FFB2D5FAE8200DD4AA4 /* A_platformd_YouGu.txt */,
-				4E7F2FFC2D5FAE8200DD4AA4 /* Announce.txt */,
-				4E7F2FFD2D5FAE8200DD4AA4 /* announcement.txt */,
-				4E7F2FFF2D5FAE8200DD4AA4 /* Barlow-Bold.ttf */,
-				4E7F30002D5FAE8200DD4AA4 /* Barlow-Regular.ttf */,
-				4E7F30012D5FAE8200DD4AA4 /* Barlow-SemiBold.ttf */,
-				4E7F30092D5FAE8200DD4AA4 /* Feedback.txt */,
-				4E7F30272D5FAE8200DD4AA4 /* platform.cfg */,
-				4E7F30282D5FAE8200DD4AA4 /* projectLocal.manifest */,
-				4E7F302C2D5FAE8200DD4AA4 /* RecourceFilePath.txt */,
-				4E7F30312D5FAE8200DD4AA4 /* servers.cfg */,
-				4E7F30342D5FAE8200DD4AA4 /* Tips.txt */,
-				4E7F30352D5FAE8200DD4AA4 /* UpdateVersionTips.cfg */,
-				4E7F30362D5FAE8200DD4AA4 /* UpdateVersionTipsTW.cfg */,
-				4E7F30382D5FAE8200DD4AA4 /* UserDefault.xml */,
-				4E7F303B2D5FAE8200DD4AA4 /* version.manifest */,
-				4E7F303E2D5FAE8200DD4AA4 /* version_ios.cfg */,
-				4E7F30402D5FAE8200DD4AA4 /* versionApp.manifest */,
-			);
-			name = Resource_bc;
-			path = /Users/misomacair02/Desktop/Projects/NinjaGirl/NJG_Client/client02_new/Resource_bc;
-			sourceTree = "<absolute>";
 		};
 		4E7F4F8E2D5F901300DD4AA4 /* ios */ = {
 			isa = PBXGroup;
@@ -2374,7 +2205,7 @@
 				979ED80C1DF123BA003CCCC8 /* HouseOfHeroes.app */,
 				D708BB4120C12774008FF589 /* GameGuaJiYouGu.app */,
 				D76DCE16212C171A00678EF8 /* GameGuaJiYouGuYiJie.app */,
-				4E4521492D5F191600F26188 /* NinjaGirl.app */,
+				4E4521492D5F191600F26188 /* NinjaGirl69.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2464,7 +2295,7 @@
 		CFFC4BD716D230D3001F65C9 /* Game */ = {
 			isa = PBXGroup;
 			children = (
-				4E7F30422D5FAE8200DD4AA4 /* Resource_bc */,
+				4E6C18612DCA032C00E76FB4 /* assets */,
 				CFFC4BF016D230D3001F65C9 /* ios */,
 				CFFC4E7116D230DC001F65C9 /* Supporting Files */,
 				F8DA482383E5951EDE6BFFD8 /* Classes */,
@@ -2690,9 +2521,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4E45205D2D5F191600F26188 /* NinjaGirl */ = {
+		4E45205D2D5F191600F26188 /* NinjaGirl69 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4E4521462D5F191600F26188 /* Build configuration list for PBXNativeTarget "NinjaGirl" */;
+			buildConfigurationList = 4E4521462D5F191600F26188 /* Build configuration list for PBXNativeTarget "NinjaGirl69" */;
 			buildPhases = (
 				4E4520672D5F191600F26188 /* Sources */,
 				4E4520E92D5F191600F26188 /* Frameworks */,
@@ -2703,9 +2534,12 @@
 			);
 			dependencies = (
 			);
-			name = NinjaGirl;
+			fileSystemSynchronizedGroups = (
+				4E6C18612DCA032C00E76FB4 /* assets */,
+			);
+			name = NinjaGirl69;
 			productName = Game;
-			productReference = 4E4521492D5F191600F26188 /* NinjaGirl.app */;
+			productReference = 4E4521492D5F191600F26188 /* NinjaGirl69.app */;
 			productType = "com.apple.product-type.application";
 		};
 		979ED7121DF123BA003CCCC8 /* HouseOfHeroes */ = {
@@ -2719,6 +2553,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				4E6C18612DCA032C00E76FB4 /* assets */,
 			);
 			name = HouseOfHeroes;
 			productName = Game;
@@ -2737,6 +2574,9 @@
 			);
 			dependencies = (
 			);
+			fileSystemSynchronizedGroups = (
+				4E6C18612DCA032C00E76FB4 /* assets */,
+			);
 			name = GameGuaJiYouGu;
 			productName = Game;
 			productReference = D708BB4120C12774008FF589 /* GameGuaJiYouGu.app */;
@@ -2754,6 +2594,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				4E6C18612DCA032C00E76FB4 /* assets */,
 			);
 			name = GameGuaJiYouGuYiJie;
 			productName = Game;
@@ -2830,7 +2673,7 @@
 				979ED7121DF123BA003CCCC8 /* HouseOfHeroes */,
 				D708BA5B20C12774008FF589 /* GameGuaJiYouGu */,
 				D76DCD25212C171A00678EF8 /* GameGuaJiYouGuYiJie */,
-				4E45205D2D5F191600F26188 /* NinjaGirl */,
+				4E45205D2D5F191600F26188 /* NinjaGirl69 */,
 			);
 		};
 /* End PBXProject section */
@@ -2841,43 +2684,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E4521342D5F191600F26188 /* Images.xcassets in Resources */,
-				4E7F7D4B2D5FAE8A00DD4AA4 /* Announce.txt in Resources */,
-				4E7F7F4A2D5FAE8A00DD4AA4 /* version.manifest in Resources */,
-				4E7F83192D5FAE8A00DD4AA4 /* Barlow-Bold.ttf in Resources */,
-				4E59C35C2D602F10006518A5 /* map in Resources */,
-				4E59C35D2D602F10006518A5 /* audio in Resources */,
-				4E59C35E2D602F10006518A5 /* txt in Resources */,
-				4E59C35F2D602F10006518A5 /* shader in Resources */,
-				4E59C3602D602F10006518A5 /* Lang in Resources */,
-				4E59C3612D602F10006518A5 /* HalfBody in Resources */,
-				4E59C3622D602F10006518A5 /* UI in Resources */,
-				4E59C3632D602F10006518A5 /* lua in Resources */,
-				4E59C3642D602F10006518A5 /* monster in Resources */,
-				4E59C3652D602F10006518A5 /* LoadingUI_JP in Resources */,
-				4E59C3662D602F10006518A5 /* skill in Resources */,
-				4E59C3672D602F10006518A5 /* i18n in Resources */,
-				4E59C3682D602F10006518A5 /* BG in Resources */,
-				4E59C3692D602F10006518A5 /* Imagesetfile in Resources */,
-				4E59C36A2D602F10006518A5 /* Spine in Resources */,
-				4E59C36B2D602F10006518A5 /* version in Resources */,
-				4E59C36C2D602F10006518A5 /* ccbi in Resources */,
-				4E7F83732D5FAE8A00DD4AA4 /* Barlow-Regular.ttf in Resources */,
-				4E7F86BB2D5FAE8A00DD4AA4 /* version_ios.cfg in Resources */,
-				4E7F8A862D5FAE8A00DD4AA4 /* UpdateVersionTipsTW.cfg in Resources */,
-				4E7F8C382D5FAE8A00DD4AA4 /* platform.cfg in Resources */,
-				4E7F8E5E2D5FAE8A00DD4AA4 /* Feedback.txt in Resources */,
-				4E7F8EB32D5FAE8A00DD4AA4 /* A_platformd_YouGu.txt in Resources */,
-				4E7F8F552D5FAE8A00DD4AA4 /* RecourceFilePath.txt in Resources */,
-				4E7F91BC2D5FAE8A00DD4AA4 /* announcement.txt in Resources */,
-				4E7F93822D5FAE8A00DD4AA4 /* projectLocal.manifest in Resources */,
-				4E7F96CA2D5FAE8A00DD4AA4 /* Tips.txt in Resources */,
-				4E7F97F92D5FAE8A00DD4AA4 /* Barlow-SemiBold.ttf in Resources */,
-				4E7F9DAE2D5FAE8A00DD4AA4 /* UserDefault.xml in Resources */,
-				4E7F9E412D5FAE8A00DD4AA4 /* versionApp.manifest in Resources */,
-				4E7F9E9D2D5FAE8A00DD4AA4 /* servers.cfg in Resources */,
-				4E59C33D2D602B96006518A5 /* Video in Resources */,
-				4E59C34A2D602C58006518A5 /* Announce in Resources */,
-				4E7F9EDF2D5FAE8A00DD4AA4 /* UpdateVersionTips.cfg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2886,24 +2692,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				760161651E6D6C2C005A436D /* GameRyukNew-Info.plist in Resources */,
-				4E7F57EB2D5FAE8600DD4AA4 /* Announce.txt in Resources */,
-				4E7F59EA2D5FAE8600DD4AA4 /* version.manifest in Resources */,
-				4E7F5DB92D5FAE8600DD4AA4 /* Barlow-Bold.ttf in Resources */,
-				4E7F5E132D5FAE8600DD4AA4 /* Barlow-Regular.ttf in Resources */,
-				4E7F615B2D5FAE8600DD4AA4 /* version_ios.cfg in Resources */,
-				4E7F65262D5FAE8600DD4AA4 /* UpdateVersionTipsTW.cfg in Resources */,
-				4E7F66D82D5FAE8600DD4AA4 /* platform.cfg in Resources */,
-				4E7F68FE2D5FAE8600DD4AA4 /* Feedback.txt in Resources */,
-				4E7F69532D5FAE8600DD4AA4 /* A_platformd_YouGu.txt in Resources */,
-				4E7F69F52D5FAE8600DD4AA4 /* RecourceFilePath.txt in Resources */,
-				4E7F6C5C2D5FAE8600DD4AA4 /* announcement.txt in Resources */,
-				4E7F6E222D5FAE8600DD4AA4 /* projectLocal.manifest in Resources */,
-				4E7F716A2D5FAE8600DD4AA4 /* Tips.txt in Resources */,
-				4E7F72992D5FAE8600DD4AA4 /* Barlow-SemiBold.ttf in Resources */,
-				4E7F784E2D5FAE8600DD4AA4 /* UserDefault.xml in Resources */,
-				4E7F78E12D5FAE8600DD4AA4 /* versionApp.manifest in Resources */,
-				4E7F793D2D5FAE8600DD4AA4 /* servers.cfg in Resources */,
-				4E7F797F2D5FAE8600DD4AA4 /* UpdateVersionTips.cfg in Resources */,
 				979ED8061DF123BA003CCCC8 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2913,24 +2701,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D7F5E1C120FF2D7100385923 /* Images.xcassets in Resources */,
-				4E7FA2A72D5FAE8C00DD4AA4 /* Announce.txt in Resources */,
-				4E7FA4A62D5FAE8C00DD4AA4 /* version.manifest in Resources */,
-				4E7FA8752D5FAE8C00DD4AA4 /* Barlow-Bold.ttf in Resources */,
-				4E7FA8CF2D5FAE8C00DD4AA4 /* Barlow-Regular.ttf in Resources */,
-				4E7FAC172D5FAE8C00DD4AA4 /* version_ios.cfg in Resources */,
-				4E7FAFE22D5FAE8C00DD4AA4 /* UpdateVersionTipsTW.cfg in Resources */,
-				4E7FB1942D5FAE8C00DD4AA4 /* platform.cfg in Resources */,
-				4E7FB3BA2D5FAE8C00DD4AA4 /* Feedback.txt in Resources */,
-				4E7FB40F2D5FAE8C00DD4AA4 /* A_platformd_YouGu.txt in Resources */,
-				4E7FB4B12D5FAE8C00DD4AA4 /* RecourceFilePath.txt in Resources */,
-				4E7FB7182D5FAE8C00DD4AA4 /* announcement.txt in Resources */,
-				4E7FB8DE2D5FAE8C00DD4AA4 /* projectLocal.manifest in Resources */,
-				4E7FBC262D5FAE8C00DD4AA4 /* Tips.txt in Resources */,
-				4E7FBD552D5FAE8C00DD4AA4 /* Barlow-SemiBold.ttf in Resources */,
-				4E7FC30A2D5FAE8D00DD4AA4 /* UserDefault.xml in Resources */,
-				4E7FC39D2D5FAE8D00DD4AA4 /* versionApp.manifest in Resources */,
-				4E7FC3F92D5FAE8D00DD4AA4 /* servers.cfg in Resources */,
-				4E7FC43B2D5FAE8D00DD4AA4 /* UpdateVersionTips.cfg in Resources */,
 				D708BB1C20C12774008FF589 /* GameRyukNew-Info.plist in Resources */,
 				D708BB4620C12B84008FF589 /* Images.xcassets in Resources */,
 				D708BB3B20C12774008FF589 /* Images.xcassets in Resources */,
@@ -2947,24 +2717,6 @@
 				D76DCDEC212C171A00678EF8 /* GameRyukNew-Info.plist in Resources */,
 				D76DCDF6212C171A00678EF8 /* Images.xcassets in Resources */,
 				D76DCE0F212C171A00678EF8 /* Images.xcassets in Resources */,
-				4E7F32952D5FAE8400DD4AA4 /* Announce.txt in Resources */,
-				4E7F34942D5FAE8400DD4AA4 /* version.manifest in Resources */,
-				4E7F38632D5FAE8400DD4AA4 /* Barlow-Bold.ttf in Resources */,
-				4E7F38BD2D5FAE8400DD4AA4 /* Barlow-Regular.ttf in Resources */,
-				4E7F3C052D5FAE8400DD4AA4 /* version_ios.cfg in Resources */,
-				4E7F3FD02D5FAE8400DD4AA4 /* UpdateVersionTipsTW.cfg in Resources */,
-				4E7F41822D5FAE8400DD4AA4 /* platform.cfg in Resources */,
-				4E7F43A82D5FAE8400DD4AA4 /* Feedback.txt in Resources */,
-				4E7F43FD2D5FAE8400DD4AA4 /* A_platformd_YouGu.txt in Resources */,
-				4E7F449F2D5FAE8400DD4AA4 /* RecourceFilePath.txt in Resources */,
-				4E7F47062D5FAE8400DD4AA4 /* announcement.txt in Resources */,
-				4E7F48CC2D5FAE8400DD4AA4 /* projectLocal.manifest in Resources */,
-				4E7F4C142D5FAE8400DD4AA4 /* Tips.txt in Resources */,
-				4E7F4D432D5FAE8400DD4AA4 /* Barlow-SemiBold.ttf in Resources */,
-				4E7F52F82D5FAE8400DD4AA4 /* UserDefault.xml in Resources */,
-				4E7F538B2D5FAE8400DD4AA4 /* versionApp.manifest in Resources */,
-				4E7F53E72D5FAE8400DD4AA4 /* servers.cfg in Resources */,
-				4E7F54292D5FAE8400DD4AA4 /* UpdateVersionTips.cfg in Resources */,
 				D76DCE10212C171A00678EF8 /* GameGuaJiYouGu-Info.plist in Resources */,
 				D76DCE1B212C181A00678EF8 /* Images.xcassets in Resources */,
 			);
@@ -3681,7 +3433,11 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "Ninja Girl";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.arcade-games";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
-				LD_RUNPATH_SEARCH_PATHS = "$(LD_RUNPATH_SEARCH_PATHS_$(IS_MACCATALYST)) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(LD_RUNPATH_SEARCH_PATHS_$(IS_MACCATALYST))",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../../build/Debug-iphoneos\"",
 					"$(PROJECT_DIR)",
@@ -3788,7 +3544,11 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "Ninja Girl";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.arcade-games";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
-				LD_RUNPATH_SEARCH_PATHS = "$(LD_RUNPATH_SEARCH_PATHS_$(IS_MACCATALYST)) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(LD_RUNPATH_SEARCH_PATHS_$(IS_MACCATALYST))",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
 					"\"$(SRCROOT)/../../build/Release-iphoneos\"",
@@ -4346,7 +4106,10 @@
 				);
 				INFOPLIST_FILE = "GameGuaJiYouGuYiJie-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../../build/Debug-iphoneos\"",
 					"$(PROJECT_DIR)",
@@ -4441,7 +4204,10 @@
 				);
 				INFOPLIST_FILE = "GameGuaJiYouGuYiJie-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
 					"\"$(SRCROOT)/../../build/Release-iphoneos\"",
@@ -4470,7 +4236,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4E4521462D5F191600F26188 /* Build configuration list for PBXNativeTarget "NinjaGirl" */ = {
+		4E4521462D5F191600F26188 /* Build configuration list for PBXNativeTarget "NinjaGirl69" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4E4521472D5F191600F26188 /* Debug */,
