@@ -1,4 +1,4 @@
-﻿#include "stdafx.h"
+#include "stdafx.h"
 
 #include "LoadingFrame.h"
 #include "AppDelegate.h"
@@ -2430,7 +2430,7 @@ void LoadingFrame::downloaded(const std::string &url, const std::string& filenam
 		if (versionStat  == CHECK_VERSION)
 		{
 			unsigned long filesize;
-			unsigned	char* pBuffer = CCFileUtils::sharedFileUtils()->getFileData(cocos2d::CCFileUtils::sharedFileUtils()->fullPathForFilename(filename.c_str()).c_str(), "rt", &filesize, 0, false);
+			unsigned	char* pBuffer = CCFileUtils::sharedFileUtils()->getFileData(cocos2d::CCFileUtils::sharedFileUtils()->fullPathForFilename(filename.c_str()).c_str(), "rt", &filesize, false, 0);
 			getVersionData(serverVersionData, pBuffer);
 			cocos2d::CCLog("LoadingFrame::compareVersion");
 			compareVersion();
