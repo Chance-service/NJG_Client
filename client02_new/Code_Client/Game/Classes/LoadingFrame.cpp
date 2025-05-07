@@ -1,4 +1,4 @@
-﻿#include "stdafx.h"
+#include "stdafx.h"
 
 #include "LoadingFrame.h"
 #include "AppDelegate.h"
@@ -2403,7 +2403,7 @@ void LoadingFrame::downloaded(const std::string &url, const std::string& filenam
 			alreadyDownloadData.push_back(url);
 			// 下載完先解壓縮
 			bool value = AssetsManagerEx::getInstance()->uncompress((*it)->savePath, (*it)->stroge);
-			CCLog("downloaded uncompress: %s", ((*it)->name).c_str());
+			//CCLog("downloaded uncompress: %s", ((*it)->name).c_str());
 			// delete file
 			remove((*it)->savePath.c_str());
 			// 解壓縮後更新projectManifest 避免重新下載
@@ -2430,7 +2430,7 @@ void LoadingFrame::downloaded(const std::string &url, const std::string& filenam
 		if (versionStat  == CHECK_VERSION)
 		{
 			unsigned long filesize;
-			unsigned	char* pBuffer = CCFileUtils::sharedFileUtils()->getFileData(cocos2d::CCFileUtils::sharedFileUtils()->fullPathForFilename(filename.c_str()).c_str(), "rt", &filesize, 0, false);
+			unsigned	char* pBuffer = CCFileUtils::sharedFileUtils()->getFileData(cocos2d::CCFileUtils::sharedFileUtils()->fullPathForFilename(filename.c_str()).c_str(), "rt", &filesize, false, 0);
 			getVersionData(serverVersionData, pBuffer);
 			cocos2d::CCLog("LoadingFrame::compareVersion");
 			compareVersion();

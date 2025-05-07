@@ -39,7 +39,7 @@ THE SOFTWARE.
 #include "cocoa/CCDictionary.h"
 #include "CCDirector.h"
 #include "CCScheduler.h"
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #include "../core/include/SeverConsts.h"
 #endif
 #include <vector>
