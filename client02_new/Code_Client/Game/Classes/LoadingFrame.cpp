@@ -2403,7 +2403,7 @@ void LoadingFrame::downloaded(const std::string &url, const std::string& filenam
 			alreadyDownloadData.push_back(url);
 			// 下載完先解壓縮
 			bool value = AssetsManagerEx::getInstance()->uncompress((*it)->savePath, (*it)->stroge);
-			CCLog("downloaded uncompress: %s", ((*it)->name).c_str());
+			//CCLog("downloaded uncompress: %s", ((*it)->name).c_str());
 			// delete file
 			remove((*it)->savePath.c_str());
 			// 解壓縮後更新projectManifest 避免重新下載
