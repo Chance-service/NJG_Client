@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 70;
+	objectVersion = 48;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -274,6 +274,38 @@
 		4E7F507E2D5F9F2700DD4AA4 /* libpthread.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7F507D2D5F9F1900DD4AA4 /* libpthread.tbd */; };
 		4E7F50832D5FA37300DD4AA4 /* libcocos2dx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7F4FFA2D5F96D100DD4AA4 /* libcocos2dx.a */; };
 		4E7F50842D5FA3C000DD4AA4 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7F50772D5F9CBB00DD4AA4 /* libcrypto.a */; };
+		4ECEA0BA2DCB556F0027FDA9 /* projectLocal.manifest in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA09A2DCB555D0027FDA9 /* projectLocal.manifest */; };
+		4ECEA0BB2DCB556F0027FDA9 /* RecourceFilePath.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA09B2DCB555D0027FDA9 /* RecourceFilePath.txt */; };
+		4ECEA0BC2DCB556F0027FDA9 /* BG in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA09C2DCB555D0027FDA9 /* BG */; };
+		4ECEA0BD2DCB556F0027FDA9 /* map in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA09D2DCB555E0027FDA9 /* map */; };
+		4ECEA0BE2DCB556F0027FDA9 /* Barlow-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA09E2DCB555E0027FDA9 /* Barlow-SemiBold.ttf */; };
+		4ECEA0BF2DCB556F0027FDA9 /* Lang in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA09F2DCB555F0027FDA9 /* Lang */; };
+		4ECEA0C02DCB556F0027FDA9 /* ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0A02DCB555F0027FDA9 /* ccbi */; };
+		4ECEA0C12DCB556F0027FDA9 /* skill in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0A12DCB55600027FDA9 /* skill */; };
+		4ECEA0C22DCB556F0027FDA9 /* shader in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0A22DCB55600027FDA9 /* shader */; };
+		4ECEA0C32DCB556F0027FDA9 /* UpdateVersionTipsTW.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0A32DCB55610027FDA9 /* UpdateVersionTipsTW.cfg */; };
+		4ECEA0C42DCB556F0027FDA9 /* Barlow-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0A42DCB55610027FDA9 /* Barlow-Bold.ttf */; };
+		4ECEA0C52DCB556F0027FDA9 /* monster in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0A52DCB55620027FDA9 /* monster */; };
+		4ECEA0C62DCB556F0027FDA9 /* txt in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0A62DCB55620027FDA9 /* txt */; };
+		4ECEA0C72DCB556F0027FDA9 /* Barlow-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0A72DCB55630027FDA9 /* Barlow-Regular.ttf */; };
+		4ECEA0C82DCB556F0027FDA9 /* Tips.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0A82DCB55630027FDA9 /* Tips.txt */; };
+		4ECEA0C92DCB556F0027FDA9 /* UpdateVersionTips.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0A92DCB55640027FDA9 /* UpdateVersionTips.cfg */; };
+		4ECEA0CA2DCB556F0027FDA9 /* platform.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0AA2DCB55640027FDA9 /* platform.cfg */; };
+		4ECEA0CB2DCB556F0027FDA9 /* UI in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0AB2DCB55650027FDA9 /* UI */; };
+		4ECEA0CC2DCB556F0027FDA9 /* lua in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0AC2DCB55650027FDA9 /* lua */; };
+		4ECEA0CD2DCB556F0027FDA9 /* version_android_local.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0AD2DCB55660027FDA9 /* version_android_local.cfg */; };
+		4ECEA0CE2DCB556F0027FDA9 /* audio in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0AE2DCB55670027FDA9 /* audio */; };
+		4ECEA0CF2DCB556F0027FDA9 /* versionApp.manifest in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0AF2DCB55680027FDA9 /* versionApp.manifest */; };
+		4ECEA0D02DCB556F0027FDA9 /* version.manifest in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0B02DCB55690027FDA9 /* version.manifest */; };
+		4ECEA0D12DCB556F0027FDA9 /* Spine in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0B12DCB55690027FDA9 /* Spine */; };
+		4ECEA0D22DCB556F0027FDA9 /* version_ios.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0B22DCB556A0027FDA9 /* version_ios.cfg */; };
+		4ECEA0D32DCB556F0027FDA9 /* i18n in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0B32DCB556A0027FDA9 /* i18n */; };
+		4ECEA0D42DCB556F0027FDA9 /* Video in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0B42DCB556B0027FDA9 /* Video */; };
+		4ECEA0D52DCB556F0027FDA9 /* version_android.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0B52DCB556C0027FDA9 /* version_android.cfg */; };
+		4ECEA0D62DCB556F0027FDA9 /* HalfBody in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0B62DCB556C0027FDA9 /* HalfBody */; };
+		4ECEA0D72DCB556F0027FDA9 /* ecchigamer_domain_v1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0B72DCB556D0027FDA9 /* ecchigamer_domain_v1.txt */; };
+		4ECEA0D82DCB556F0027FDA9 /* Imagesetfile in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0B82DCB556D0027FDA9 /* Imagesetfile */; };
+		4ECEA0D92DCB556F0027FDA9 /* LoadingUI_JP in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0B92DCB556E0027FDA9 /* LoadingUI_JP */; };
 		760161651E6D6C2C005A436D /* GameRyukNew-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 760161641E6D6C2C005A436D /* GameRyukNew-Info.plist */; };
 		76D32B861E691E74001E95AD /* ChangeUserPage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 76D32B841E691E74001E95AD /* ChangeUserPage.cpp */; };
 		974A0DB61E655BD1000CE656 /* CurlDownloadForScript.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 974A0DB41E655BC7000CE656 /* CurlDownloadForScript.cpp */; };
@@ -987,6 +1019,38 @@
 		4E7F507A2D5F9D3C00DD4AA4 /* libShareSDKToFCUUID.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libShareSDKToFCUUID.a; path = "../../../../../../NG_Client/Code_Client/build/Debug-iphoneos/libShareSDKToFCUUID.a"; sourceTree = "<group>"; };
 		4E7F507B2D5F9DFD00DD4AA4 /* libShareSDKToFCUUID.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libShareSDKToFCUUID.a; path = "../../build/Debug-iphoneos/libShareSDKToFCUUID.a"; sourceTree = "<group>"; };
 		4E7F507D2D5F9F1900DD4AA4 /* libpthread.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libpthread.tbd; path = usr/lib/libpthread.tbd; sourceTree = SDKROOT; };
+		4ECEA09A2DCB555D0027FDA9 /* projectLocal.manifest */ = {isa = PBXFileReference; lastKnownFileType = text; name = projectLocal.manifest; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/projectLocal.manifest; sourceTree = "<group>"; };
+		4ECEA09B2DCB555D0027FDA9 /* RecourceFilePath.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = RecourceFilePath.txt; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/RecourceFilePath.txt; sourceTree = "<group>"; };
+		4ECEA09C2DCB555D0027FDA9 /* BG */ = {isa = PBXFileReference; lastKnownFileType = folder; name = BG; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/BG; sourceTree = "<group>"; };
+		4ECEA09D2DCB555E0027FDA9 /* map */ = {isa = PBXFileReference; lastKnownFileType = folder; name = map; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/map; sourceTree = "<group>"; };
+		4ECEA09E2DCB555E0027FDA9 /* Barlow-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Barlow-SemiBold.ttf"; path = "../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/Barlow-SemiBold.ttf"; sourceTree = "<group>"; };
+		4ECEA09F2DCB555F0027FDA9 /* Lang */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Lang; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/Lang; sourceTree = "<group>"; };
+		4ECEA0A02DCB555F0027FDA9 /* ccbi */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ccbi; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/ccbi; sourceTree = "<group>"; };
+		4ECEA0A12DCB55600027FDA9 /* skill */ = {isa = PBXFileReference; lastKnownFileType = folder; name = skill; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/skill; sourceTree = "<group>"; };
+		4ECEA0A22DCB55600027FDA9 /* shader */ = {isa = PBXFileReference; lastKnownFileType = folder; name = shader; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/shader; sourceTree = "<group>"; };
+		4ECEA0A32DCB55610027FDA9 /* UpdateVersionTipsTW.cfg */ = {isa = PBXFileReference; lastKnownFileType = text; name = UpdateVersionTipsTW.cfg; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/UpdateVersionTipsTW.cfg; sourceTree = "<group>"; };
+		4ECEA0A42DCB55610027FDA9 /* Barlow-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Barlow-Bold.ttf"; path = "../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/Barlow-Bold.ttf"; sourceTree = "<group>"; };
+		4ECEA0A52DCB55620027FDA9 /* monster */ = {isa = PBXFileReference; lastKnownFileType = folder; name = monster; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/monster; sourceTree = "<group>"; };
+		4ECEA0A62DCB55620027FDA9 /* txt */ = {isa = PBXFileReference; lastKnownFileType = folder; name = txt; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/txt; sourceTree = "<group>"; };
+		4ECEA0A72DCB55630027FDA9 /* Barlow-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Barlow-Regular.ttf"; path = "../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/Barlow-Regular.ttf"; sourceTree = "<group>"; };
+		4ECEA0A82DCB55630027FDA9 /* Tips.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = Tips.txt; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/Tips.txt; sourceTree = "<group>"; };
+		4ECEA0A92DCB55640027FDA9 /* UpdateVersionTips.cfg */ = {isa = PBXFileReference; lastKnownFileType = text; name = UpdateVersionTips.cfg; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/UpdateVersionTips.cfg; sourceTree = "<group>"; };
+		4ECEA0AA2DCB55640027FDA9 /* platform.cfg */ = {isa = PBXFileReference; lastKnownFileType = text; name = platform.cfg; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/platform.cfg; sourceTree = "<group>"; };
+		4ECEA0AB2DCB55650027FDA9 /* UI */ = {isa = PBXFileReference; lastKnownFileType = folder; name = UI; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/UI; sourceTree = "<group>"; };
+		4ECEA0AC2DCB55650027FDA9 /* lua */ = {isa = PBXFileReference; lastKnownFileType = folder; name = lua; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/lua; sourceTree = "<group>"; };
+		4ECEA0AD2DCB55660027FDA9 /* version_android_local.cfg */ = {isa = PBXFileReference; lastKnownFileType = text; name = version_android_local.cfg; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/version_android_local.cfg; sourceTree = "<group>"; };
+		4ECEA0AE2DCB55670027FDA9 /* audio */ = {isa = PBXFileReference; lastKnownFileType = folder; name = audio; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/audio; sourceTree = "<group>"; };
+		4ECEA0AF2DCB55680027FDA9 /* versionApp.manifest */ = {isa = PBXFileReference; lastKnownFileType = text; name = versionApp.manifest; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/versionApp.manifest; sourceTree = "<group>"; };
+		4ECEA0B02DCB55690027FDA9 /* version.manifest */ = {isa = PBXFileReference; lastKnownFileType = text; name = version.manifest; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/version.manifest; sourceTree = "<group>"; };
+		4ECEA0B12DCB55690027FDA9 /* Spine */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Spine; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/Spine; sourceTree = "<group>"; };
+		4ECEA0B22DCB556A0027FDA9 /* version_ios.cfg */ = {isa = PBXFileReference; lastKnownFileType = text; name = version_ios.cfg; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/version_ios.cfg; sourceTree = "<group>"; };
+		4ECEA0B32DCB556A0027FDA9 /* i18n */ = {isa = PBXFileReference; lastKnownFileType = folder; name = i18n; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/i18n; sourceTree = "<group>"; };
+		4ECEA0B42DCB556B0027FDA9 /* Video */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Video; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/Video; sourceTree = "<group>"; };
+		4ECEA0B52DCB556C0027FDA9 /* version_android.cfg */ = {isa = PBXFileReference; lastKnownFileType = text; name = version_android.cfg; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/version_android.cfg; sourceTree = "<group>"; };
+		4ECEA0B62DCB556C0027FDA9 /* HalfBody */ = {isa = PBXFileReference; lastKnownFileType = folder; name = HalfBody; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/HalfBody; sourceTree = "<group>"; };
+		4ECEA0B72DCB556D0027FDA9 /* ecchigamer_domain_v1.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = ecchigamer_domain_v1.txt; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/ecchigamer_domain_v1.txt; sourceTree = "<group>"; };
+		4ECEA0B82DCB556D0027FDA9 /* Imagesetfile */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Imagesetfile; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/Imagesetfile; sourceTree = "<group>"; };
+		4ECEA0B92DCB556E0027FDA9 /* LoadingUI_JP */ = {isa = PBXFileReference; lastKnownFileType = folder; name = LoadingUI_JP; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/LoadingUI_JP; sourceTree = "<group>"; };
 		4ED4423EA6EF2659EA2F0A4C /* Login.pb.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Login.pb.cc; path = ../../Game/Protobuf/Login.pb.cc; sourceTree = SOURCE_ROOT; };
 		4FAF47B9B95FE889FEDFFEDC /* CDKeyMsgPage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CDKeyMsgPage.h; path = ../../Game/Classes/CDKeyMsgPage.h; sourceTree = SOURCE_ROOT; };
 		4FB74376A31076ED2F7FD398 /* ContentBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ContentBase.h; path = ../../Game/Classes/ContentBase.h; sourceTree = SOURCE_ROOT; };
@@ -1404,10 +1468,6 @@
 		FC9B43A4BDE9DD257CBB6CF4 /* ScriptContentBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ScriptContentBase.h; path = ../../Game/Classes/ScriptContentBase.h; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		4E6C18612DCA032C00E76FB4 /* assets */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); name = assets; path = /Users/misomacair02/Desktop/Projects/NinjaGirl/NJG_Client/client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets; sourceTree = "<absolute>"; };
-/* End PBXFileSystemSynchronizedRootGroup section */
-
 /* Begin PBXFrameworksBuildPhase section */
 		4E4520E92D5F191600F26188 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
@@ -1758,6 +1818,45 @@
 				4E7F4FE42D5F905E00DD4AA4 /* writer.h */,
 			);
 			path = rapidjson;
+			sourceTree = "<group>";
+		};
+		4ECEA0DA2DCB558F0027FDA9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4ECEA0AE2DCB55670027FDA9 /* audio */,
+				4ECEA0A42DCB55610027FDA9 /* Barlow-Bold.ttf */,
+				4ECEA0A72DCB55630027FDA9 /* Barlow-Regular.ttf */,
+				4ECEA09E2DCB555E0027FDA9 /* Barlow-SemiBold.ttf */,
+				4ECEA09C2DCB555D0027FDA9 /* BG */,
+				4ECEA0A02DCB555F0027FDA9 /* ccbi */,
+				4ECEA0B72DCB556D0027FDA9 /* ecchigamer_domain_v1.txt */,
+				4ECEA0B62DCB556C0027FDA9 /* HalfBody */,
+				4ECEA0B32DCB556A0027FDA9 /* i18n */,
+				4ECEA0B82DCB556D0027FDA9 /* Imagesetfile */,
+				4ECEA09F2DCB555F0027FDA9 /* Lang */,
+				4ECEA0B92DCB556E0027FDA9 /* LoadingUI_JP */,
+				4ECEA0AC2DCB55650027FDA9 /* lua */,
+				4ECEA09D2DCB555E0027FDA9 /* map */,
+				4ECEA0A52DCB55620027FDA9 /* monster */,
+				4ECEA0AA2DCB55640027FDA9 /* platform.cfg */,
+				4ECEA09A2DCB555D0027FDA9 /* projectLocal.manifest */,
+				4ECEA09B2DCB555D0027FDA9 /* RecourceFilePath.txt */,
+				4ECEA0A22DCB55600027FDA9 /* shader */,
+				4ECEA0A12DCB55600027FDA9 /* skill */,
+				4ECEA0B12DCB55690027FDA9 /* Spine */,
+				4ECEA0A82DCB55630027FDA9 /* Tips.txt */,
+				4ECEA0A62DCB55620027FDA9 /* txt */,
+				4ECEA0AB2DCB55650027FDA9 /* UI */,
+				4ECEA0A92DCB55640027FDA9 /* UpdateVersionTips.cfg */,
+				4ECEA0A32DCB55610027FDA9 /* UpdateVersionTipsTW.cfg */,
+				4ECEA0B02DCB55690027FDA9 /* version.manifest */,
+				4ECEA0B52DCB556C0027FDA9 /* version_android.cfg */,
+				4ECEA0AD2DCB55660027FDA9 /* version_android_local.cfg */,
+				4ECEA0B22DCB556A0027FDA9 /* version_ios.cfg */,
+				4ECEA0AF2DCB55680027FDA9 /* versionApp.manifest */,
+				4ECEA0B42DCB556B0027FDA9 /* Video */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		5558A889178C282600BEC444 /* libs */ = {
@@ -2182,6 +2281,7 @@
 		CFFC4BB816D230D2001F65C9 = {
 			isa = PBXGroup;
 			children = (
+				4ECEA0DA2DCB558F0027FDA9 /* Resources */,
 				4499CF902244EA5000B9175C /* bugly */,
 				D7F5E1B920FF2B0800385923 /* LongXiao */,
 				76CD46BB1CF427A80066D8F0 /* Images */,
@@ -2295,7 +2395,6 @@
 		CFFC4BD716D230D3001F65C9 /* Game */ = {
 			isa = PBXGroup;
 			children = (
-				4E6C18612DCA032C00E76FB4 /* assets */,
 				CFFC4BF016D230D3001F65C9 /* ios */,
 				CFFC4E7116D230DC001F65C9 /* Supporting Files */,
 				F8DA482383E5951EDE6BFFD8 /* Classes */,
@@ -2534,9 +2633,6 @@
 			);
 			dependencies = (
 			);
-			fileSystemSynchronizedGroups = (
-				4E6C18612DCA032C00E76FB4 /* assets */,
-			);
 			name = NinjaGirl69;
 			productName = Game;
 			productReference = 4E4521492D5F191600F26188 /* NinjaGirl69.app */;
@@ -2553,9 +2649,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				4E6C18612DCA032C00E76FB4 /* assets */,
 			);
 			name = HouseOfHeroes;
 			productName = Game;
@@ -2574,9 +2667,6 @@
 			);
 			dependencies = (
 			);
-			fileSystemSynchronizedGroups = (
-				4E6C18612DCA032C00E76FB4 /* assets */,
-			);
 			name = GameGuaJiYouGu;
 			productName = Game;
 			productReference = D708BB4120C12774008FF589 /* GameGuaJiYouGu.app */;
@@ -2594,9 +2684,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				4E6C18612DCA032C00E76FB4 /* assets */,
 			);
 			name = GameGuaJiYouGuYiJie;
 			productName = Game;
@@ -2683,6 +2770,38 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4ECEA0BA2DCB556F0027FDA9 /* projectLocal.manifest in Resources */,
+				4ECEA0BB2DCB556F0027FDA9 /* RecourceFilePath.txt in Resources */,
+				4ECEA0BC2DCB556F0027FDA9 /* BG in Resources */,
+				4ECEA0BD2DCB556F0027FDA9 /* map in Resources */,
+				4ECEA0BE2DCB556F0027FDA9 /* Barlow-SemiBold.ttf in Resources */,
+				4ECEA0BF2DCB556F0027FDA9 /* Lang in Resources */,
+				4ECEA0C02DCB556F0027FDA9 /* ccbi in Resources */,
+				4ECEA0C12DCB556F0027FDA9 /* skill in Resources */,
+				4ECEA0C22DCB556F0027FDA9 /* shader in Resources */,
+				4ECEA0C32DCB556F0027FDA9 /* UpdateVersionTipsTW.cfg in Resources */,
+				4ECEA0C42DCB556F0027FDA9 /* Barlow-Bold.ttf in Resources */,
+				4ECEA0C52DCB556F0027FDA9 /* monster in Resources */,
+				4ECEA0C62DCB556F0027FDA9 /* txt in Resources */,
+				4ECEA0C72DCB556F0027FDA9 /* Barlow-Regular.ttf in Resources */,
+				4ECEA0C82DCB556F0027FDA9 /* Tips.txt in Resources */,
+				4ECEA0C92DCB556F0027FDA9 /* UpdateVersionTips.cfg in Resources */,
+				4ECEA0CA2DCB556F0027FDA9 /* platform.cfg in Resources */,
+				4ECEA0CB2DCB556F0027FDA9 /* UI in Resources */,
+				4ECEA0CC2DCB556F0027FDA9 /* lua in Resources */,
+				4ECEA0CD2DCB556F0027FDA9 /* version_android_local.cfg in Resources */,
+				4ECEA0CE2DCB556F0027FDA9 /* audio in Resources */,
+				4ECEA0CF2DCB556F0027FDA9 /* versionApp.manifest in Resources */,
+				4ECEA0D02DCB556F0027FDA9 /* version.manifest in Resources */,
+				4ECEA0D12DCB556F0027FDA9 /* Spine in Resources */,
+				4ECEA0D22DCB556F0027FDA9 /* version_ios.cfg in Resources */,
+				4ECEA0D32DCB556F0027FDA9 /* i18n in Resources */,
+				4ECEA0D42DCB556F0027FDA9 /* Video in Resources */,
+				4ECEA0D52DCB556F0027FDA9 /* version_android.cfg in Resources */,
+				4ECEA0D62DCB556F0027FDA9 /* HalfBody in Resources */,
+				4ECEA0D72DCB556F0027FDA9 /* ecchigamer_domain_v1.txt in Resources */,
+				4ECEA0D82DCB556F0027FDA9 /* Imagesetfile in Resources */,
+				4ECEA0D92DCB556F0027FDA9 /* LoadingUI_JP in Resources */,
 				4E4521342D5F191600F26188 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3433,11 +3552,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "Ninja Girl";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.arcade-games";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(LD_RUNPATH_SEARCH_PATHS_$(IS_MACCATALYST))",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(LD_RUNPATH_SEARCH_PATHS_$(IS_MACCATALYST)) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../../build/Debug-iphoneos\"",
 					"$(PROJECT_DIR)",
@@ -3544,11 +3659,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "Ninja Girl";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.arcade-games";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(LD_RUNPATH_SEARCH_PATHS_$(IS_MACCATALYST))",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(LD_RUNPATH_SEARCH_PATHS_$(IS_MACCATALYST)) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
 					"\"$(SRCROOT)/../../build/Release-iphoneos\"",
@@ -4106,10 +4217,7 @@
 				);
 				INFOPLIST_FILE = "GameGuaJiYouGuYiJie-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../../build/Debug-iphoneos\"",
 					"$(PROJECT_DIR)",
@@ -4204,10 +4312,7 @@
 				);
 				INFOPLIST_FILE = "GameGuaJiYouGuYiJie-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
 					"\"$(SRCROOT)/../../build/Release-iphoneos\"",
