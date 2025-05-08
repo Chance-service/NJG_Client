@@ -3762,6 +3762,9 @@ function PackageLogicForLua.TowerData_Fear(eventName, handler)
                 TowerDataBase_SetInfo(msg,199,_type,k)
             end
         end
+        if msg.action == 1 then
+            require("TowerOneLife.TowerOneLifeSubPage_MainScene"):setRank()
+        end
        end
     end
 end

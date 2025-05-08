@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="chance.ninja.girl"
+    package="chance.release.ninja.girl"
     android:installLocation="preferExternal"
-    android:versionCode="10404"
-    android:versionName="1.4.4"
+    android:versionCode="11"
+    android:versionName="1.1.12.1"
     xmlns:tools="http://schemas.android.com/tools"
      >
 
@@ -90,7 +90,7 @@
 					<action android:name="android.intent.action.VIEW"/>
 					<category android:name="android.intent.category.DEFAULT" />
 					<category android:name="android.intent.category.BROWSABLE" />
-                    <data android:host="chance" android:scheme="chance.ninja.girl"/>
+                    <data android:host="chance" android:scheme="chance.release.ninja.girl"/>
             </intent-filter>
         </activity>
 

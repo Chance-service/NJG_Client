@@ -9,3 +9,4 @@ id	banner	是否有跳轉	describe
 10	EventNews_banner010.png	3	69的FB
 11	EventNews_banner011.png	3	忍娘24的DC
 12	EventNews_banner012.png	3	r18的DC
+13	EventNews_banner013.png	3	r18的客服連結
