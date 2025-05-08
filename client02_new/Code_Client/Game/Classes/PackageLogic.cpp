@@ -19,7 +19,9 @@
 #include "SeverConsts.h"
 #include "GamePacketManager.h"
 #include "waitingManager.h"
-//#include "comHuTuo.h"
+#if (CC_TARGET_PLATFORM != CC_PLATFORM_IOS) 
+#include "comHuTuo.h"
+#endif
 #include <algorithm>    // std::sort
 #include "MessageHintPage.h"
 
@@ -468,9 +470,12 @@ DEFINE_CREATE_REGISTER_HANDLER(HPAssembleFinishHander,ASSEMBLE_FINISH_S)
 		if (VaribleManager::Get()->getSetting("PushSvrID") == "1")
 			putSvr = true;
 			// Trans serverId to java layout
-			//comHuTuo::updateServerInfo(GamePrecedure::Get()->getServerID(),
-			//rInfo.name(), pInfo.playerid(), rInfo.level(),
-			//pInfo.viplevel(), pInfo.coin(), pInfo.gold(), putSvr);
+#if (CC_TARGET_PLATFORM != CC_PLATFORM_IOS) 
+			// 沒有設定資料會儲值失敗
+			comHuTuo::updateServerInfo(GamePrecedure::Get()->getServerID(),
+			rInfo.name(), pInfo.playerid(), rInfo.level(),
+			pInfo.viplevel(), pInfo.coin(), pInfo.gold(), putSvr);
+#endif
 	}
 	//
 }
