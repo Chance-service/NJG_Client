@@ -180,7 +180,7 @@ void lib91::setupSDK(int platformId)
         NSLog(@"KUSO: Setup");
         PlayCenterConfig *config = [[[PlayCenterConfig alloc]
                                      initWithAppId:@"APPncbR1hdPgUIjSKt"
-                                     isSandbox:YES
+                                     isSandbox:FALSE
                                      subId:@"NG24"
                                     ] autorelease];
         [PlayCenter.shared
