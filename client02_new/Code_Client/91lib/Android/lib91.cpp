@@ -98,7 +98,7 @@ void lib91::initWithConfigure(const SDK_CONFIG_STU& configure)//init(bool privat
 {
 	lib91_mLogined = false;
 	//
-	//Æ½Ì¨Ö§³ÖµÄÓÎÏ·°æ±¾¸üÐÂÒÑ¾­ÔÚÇ°Ãæ¼ì²éÁË£¬¿ÉÒÔÍ¬²½µÈÆä½á¹û»ØÀ´ÔÙ·¢ÆðÄÚ¸üÐÂ¼ì²â£¬»òÒì²½
+	//Æ½Ì¨Ö§ï¿½Öµï¿½ï¿½ï¿½Ï·ï¿½æ±¾ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½Ë£ï¿½ï¿½ï¿½ï¿½ï¿½Í¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ù·ï¿½ï¿½ï¿½ï¿½Ú¸ï¿½ï¿½Â¼ï¿½â£¬ï¿½ï¿½ï¿½ì²½
 	_boardcastUpdateCheckDone(true,"");
 }
 
@@ -131,6 +131,8 @@ void lib91::login()
 	//
 }
 
+void lib91::doKUSOLogin(){}
+
 void lib91::logout()
 {
 	callPlatformLogoutJNI();
@@ -155,6 +157,9 @@ bool lib91::getLogined()
 	return lib91_mLogined;
 }
 
+bool lib91::getIsH365(){}
+bool lib91::getIsGuest(){}
+
 const std::string& lib91::loginUin()
 {
 	loginName = getPlatformLoginUinJNI();
@@ -175,25 +180,25 @@ const std::string& lib91::nickName()
 
 void lib91::switchUsers()
 {
-	//²»Ìá¹©ÇÐ»»Æ½Ì¨ÕËºÅ
-	//²»Ìá¹©Ó¦ÓÃÄÚ×¢Ïú
-	//Æ½Ì¨ÕËºÅ¹ÜÀíÒ³ÃæµÄ×¢Ïú£º
-	//1¡¢ÓÃ»§»¹Î´Ð¯ÕËºÅ½øÈëÓÎÏ·£¬ÔÊÐí×¢ÏúÖØ·µÆ½Ì¨ÕËºÅµÇÂ¼½çÃæ
-	//2¡¢ÓÃ»§ÒÑ½øÈëÓÎÏ·£¬´ËÊ±×¢ÏúÖ±½ÓÍË³öÓÎÏ·£¬ÒªÇóÓÃ»§ÊÖ¶¯ÖØÆô
+	//ï¿½ï¿½ï¿½á¹©ï¿½Ð»ï¿½Æ½Ì¨ï¿½Ëºï¿½
+	//ï¿½ï¿½ï¿½á¹©Ó¦ï¿½ï¿½ï¿½ï¿½×¢ï¿½ï¿½
+	//Æ½Ì¨ï¿½ËºÅ¹ï¿½ï¿½ï¿½Ò³ï¿½ï¿½ï¿½×¢ï¿½ï¿½ï¿½ï¿½
+	//1ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½Î´Ð¯ï¿½ËºÅ½ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×¢ï¿½ï¿½ï¿½Ø·ï¿½Æ½Ì¨ï¿½ËºÅµï¿½Â¼ï¿½ï¿½ï¿½ï¿½
+	//2ï¿½ï¿½ï¿½Ã»ï¿½ï¿½Ñ½ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ï¿½Ê±×¢ï¿½ï¿½Ö±ï¿½ï¿½ï¿½Ë³ï¿½ï¿½ï¿½Ï·ï¿½ï¿½Òªï¿½ï¿½ï¿½Ã»ï¿½ï¿½Ö¶ï¿½ï¿½ï¿½ï¿½ï¿½
 	/*loginName="";
 	sessionId="";
 	userNickName="";
 	lib91_mLogined = false;
 	*/
-	//ÒÑµÇÂ¼Çé¿öÏÂµ÷³öÕËºÅ¹ÜÀí½çÃæ£¬Î´µÇÂ¼Çé¿öÏÂµ÷³öµÇÂ¼½çÃæ
+	//ï¿½Ñµï¿½Â¼ï¿½ï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½ï¿½ËºÅ¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½æ£¬Î´ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½
 	callPlatformAccountManageJNI();
 }
 
 
 void lib91::buyGoods( BUYINFO& info)
 {
-	//BUYINFOµÄproductCountÊÇ×Ü¼Û£ºµ¥¼Û*¸öÊý
-	//Õâ¸öÊýÖµ»¹ÓÐ³ýÒÔ91¶¹¶Ò»»ÎÒÃÇ×êÊ¯µÄ±ÈÀý1:10
+	//BUYINFOï¿½ï¿½productCountï¿½ï¿½ï¿½Ü¼Û£ï¿½ï¿½ï¿½ï¿½ï¿½*ï¿½ï¿½ï¿½ï¿½
+	//ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½Ð³ï¿½ï¿½ï¿½91ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¯ï¿½Ä±ï¿½ï¿½ï¿½1:10
 	int iCount = 1;//info.productCount / (int)info.productPrice / 10;
 	callPlatformPayRechargeJNI(info.productType, info.name.c_str(),info.cooOrderSerial.c_str(), info.productId.c_str(),
 		info.productName.c_str(), info.productPrice, info.productOrignalPrice, 
@@ -242,6 +247,15 @@ const unsigned int lib91::getPlatformId()
 	return getPlatformIdJNI();
 }
 
+void lib91::setLoginName(const std::string content)
+{
+}
+
+void lib91::setIsGuest(const int guest)
+{
+}
+
+
 void lib91::notifyEnterGame()
 {
 	notifyEnterGameJNI();
@@ -268,9 +282,9 @@ void lib91::notifyGameSvrBindTryUserToOkUserResult( int result )
 }
 
 /************************************************************/
-/*º«¹úkakaoºÃÓÑ½Ó¿Ú*/
+/*ï¿½ï¿½ï¿½ï¿½kakaoï¿½ï¿½ï¿½Ñ½Ó¿ï¿½*/
 
-//»ñµÃÑûÇë´ÎÊý
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void lib91::OnKrGetInviteCount()
 {
 	OnKrGetInviteCountJNI();

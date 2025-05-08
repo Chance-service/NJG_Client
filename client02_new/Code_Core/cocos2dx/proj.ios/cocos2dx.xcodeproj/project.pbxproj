@@ -1243,6 +1243,7 @@
 		46A393F516E5D01B00210B16 /* CCUserDefaultAndroid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCUserDefaultAndroid.cpp; sourceTree = "<group>"; };
 		4E7F507F2D5FA09200DD4AA4 /* SkeletonBinary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SkeletonBinary.h; sourceTree = "<group>"; };
 		4E7F50802D5FA09200DD4AA4 /* SkeletonBinary.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = SkeletonBinary.c; sourceTree = "<group>"; };
+		4ECEFDB72DCB16730027FDA9 /* liblibOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = liblibOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EF8998416E207E70040A527 /* CCParallaxNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCParallaxNode.cpp; sourceTree = "<group>"; };
 		4EF8998516E207E70040A527 /* CCParallaxNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCParallaxNode.h; sourceTree = "<group>"; };
 		4EF8998616E207E70040A527 /* CCTileMapAtlas.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCTileMapAtlas.cpp; sourceTree = "<group>"; };
@@ -1690,6 +1691,7 @@
 		1551A341158F2AB200E66CFE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4ECEFDB72DCB16730027FDA9 /* liblibOS.a */,
 				0C1E005A29C2B50E002E789C /* libfreetype.a */,
 				1551A342158F2AB200E66CFE /* Foundation.framework */,
 			);
@@ -4134,6 +4136,7 @@
 					"\"$(SRCROOT)/../../scripting/lua/lua\"",
 					"\"$(SRCROOT)/../../scripting/lua/cocos2dx_support\"",
 					"\"$(SRCROOT)/../../scripting/lua/tolua\"",
+					"\"$(SRCROOT)/../../LibOS/include\"",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4180,6 +4183,7 @@
 					"\"$(SRCROOT)/../../scripting/lua/lua\"",
 					"\"$(SRCROOT)/../../scripting/lua/cocos2dx_support\"",
 					"\"$(SRCROOT)/../../scripting/lua/tolua\"",
+					"\"$(SRCROOT)/../../LibOS/include\"",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

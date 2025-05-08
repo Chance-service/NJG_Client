@@ -19,8 +19,6 @@ public:
 	virtual bool getLogined();
 
     virtual bool getIsH365();
-    
-    virtual int getHoneyP();
 
     virtual int getIsGuest();
     
@@ -68,10 +66,10 @@ public:
 	virtual const std::string& nickName();
 
 	virtual const std::string getClientChannel();
-
-	virtual const unsigned int getPlatformId();
+    virtual const std::string getClientCps();
 
     virtual std::string getPlatformMoneyName();
+    virtual const unsigned int getPlatformId();
 
 	virtual void setLoginName(const std::string content);
     virtual std::string getLoginName();
@@ -85,6 +83,26 @@ public:
     
     virtual void notifyGameSvrBindTryUserToOkUserResult(int result);
     virtual std::string sendMessageG2P(const std::string& tag, const std::string& msg);
+
+    virtual void OnKrGetInviteCount();
+	virtual void OnKrgetInviteLists();
+	virtual void OnKrgetFriendLists();
+	virtual void OnKrsendInvite(const std::string& strUserId, const std::string& strServerId);
+	virtual void OnKrgetGiftLists();
+	virtual void OnKrReceiveGift(const std::string& strGiftId, const std::string& strServerId);
+	virtual void OnKrGetGiftCount();
+	virtual void OnKrSendGift(const std::string& strUserName, const std::string& strServerId);
+	virtual void OnKrGiftBlock(bool bVisible);
+	virtual void OnKrGetKakaoId();
+	virtual void OnKrLoginGames();
+	virtual void OnKrIsShowFucForIOS();
+
+    virtual void setLanguageName(const std::string& lang);
+	virtual void setPlatformName(int platform);
+	virtual void setPayH365(const std::string& url);
+	virtual void setPayR18(int mid, int serverid, const std::string& url);
+    virtual int getHoneyP();
+    virtual void setHoneyP(int aMoney);
 };
 
 

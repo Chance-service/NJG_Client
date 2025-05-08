@@ -132,18 +132,19 @@ public:
 	/** IMPORTANT: get the only ID for game. MUST be unique! */
 	virtual const std::string& loginUin() = 0;
     
-  virtual const std::string& getToken() = 0;
+    virtual const std::string& getToken() = 0;
     
-  virtual void showPlatformProfile() = 0;
+    virtual void showPlatformProfile() = 0;
 
 	virtual const std::string getClientChannel() = 0;
+    virtual const std::string getClientCps() = 0;
     
-  virtual const std::string getChannelID(){return "";}
+    virtual const std::string getChannelID(){return "";}
 
 	virtual std::string getPlatformMoneyName() = 0;
-  virtual const unsigned int getPlatformId() = 0;
+    virtual const unsigned int getPlatformId() = 0;
 
-  virtual void updateApp(std::string &storeUrl);
+    virtual void updateApp(std::string &storeUrl);
 
 	/** logout platform*/
 	virtual void logout();
