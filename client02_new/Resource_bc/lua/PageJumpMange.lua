@@ -391,7 +391,7 @@ PageJumpMange._JumpCfg = {
     [51] =
     {
         _Id = 51;-- CycleTower
-        _ToPage = "MainFrame_onMainPageBtn(true,false)",
+        _ToPage = "MainFrame_onMainPageBtn(true,true)",
         _SecondFunc = "onActivity",
         _ThirdFunc = "onBattle",
     },

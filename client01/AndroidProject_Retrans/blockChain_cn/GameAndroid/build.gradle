@@ -89,7 +89,7 @@ android {
     flavorDimensions "app_type"
     productFlavors {
         H365 {
-            applicationId = "chance.debug.ninja.girl.h365.cn"
+            applicationId = "chance.release.ninja.girl"
             dimension "app_type"
             dependencies {
                 implementation fileTree(dir: '../../sdklibs/GameLibBC/platformlibs/H365', include: ['*.aar'])
@@ -97,7 +97,7 @@ android {
             }
         }
         EROR18 {
-            applicationId = "chance.debug.ninja.girl.r18.cn"
+            applicationId = "chance.release.ninja.girl.r18"
             dimension "app_type"
             dependencies {
                 implementation fileTree(dir: '../../sdklibs/GameLibBC/platformlibs/EROR18', include: ['*.aar'])
@@ -105,7 +105,7 @@ android {
             }
         }
         JSG {
-            applicationId = "chance.debug.ninja.girl.jsg.cn"
+            applicationId = "chance.release.ninja.girl.jsg"
             dimension "app_type"
             dependencies {
                 implementation fileTree(dir: '../../sdklibs/GameLibBC/platformlibs/JSG', include: ['*.aar','*.jar'])
@@ -116,7 +116,7 @@ android {
 //            dimension "app_type"
 //        }
         KUSO {
-            applicationId = "chance.debug.ninja.girl.kuso.cn"
+            applicationId = "chance.release.ninja.girl.kuso"
             dimension "app_type"
             dependencies {
                 implementation fileTree(dir: '../../sdklibs/GameLibBC/platformlibs/KUSO', include: ['*.aar'])
@@ -141,7 +141,7 @@ android {
         }
 
         APLUS_CPS1 {
-            applicationId = "chance.debug.ninja.girl.kuso.cn"
+            applicationId = "chance.release.ninja.girl.kuso"
             dimension "app_type"
             dependencies {
                 implementation fileTree(dir: '../../sdklibs/GameLibBC/platformlibs/APLUS', include: ['*.aar'])
