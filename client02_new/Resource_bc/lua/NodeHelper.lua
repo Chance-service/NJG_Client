@@ -1039,7 +1039,7 @@ function NodeHelper:createTouchLayerByScrollView(container, onTouchBegin, onTouc
     end
 end
 
-function NodeHelper:buildCellScrollView(scrollview, size, ccbiFile, tableHandler)
+function NodeHelper:buildCellScrollView(scrollview, size, ccbiFile, tableHandler,_custom)
     if size == 0 or ccbiFile == nil or ccbiFile == "" or tableHandler == nil then return end
     -- local scrollview = container.scrollview
     if scrollview == nil then return end
@@ -1048,7 +1048,7 @@ function NodeHelper:buildCellScrollView(scrollview, size, ccbiFile, tableHandler
     for i = 1, size, 1 do
         cell = CCBFileCell:create()
         cell:setCCBFile(ccbiFile)
-        local handler = common:new({ id = i }, tableHandler)
+        local handler = common:new({ id = i,custom = _custom }, tableHandler)
         cell:registerFunctionHandler(handler)
         scrollview:addCell(cell)
         -- local pos = ccp(0,cell:getContentSize().height*(size-i))

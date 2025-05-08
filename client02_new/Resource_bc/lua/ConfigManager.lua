@@ -3369,23 +3369,24 @@ function ConfigManager.getSuitAtrrCfg()
     end
     return cfg;
 end
-function ConfigManager.getSkinShopCfg()
-    local key = "SkinShopCfg";
+function ConfigManager.getSkinCfg()
+    local key = "SkinCfg";
     local cfg = ConfigManager.configs[key];
     if cfg == nil then
-        local attrMap = common:table_combineNumber( { "id", "type",  "item", "price", "discount", "HeroId", "SkinId", "Sort" });
+        local attrMap = common:table_combineNumber( { "id", "Item",  "Cost", "count","discount","HeroId","SkinId","isShow","Sort","SkinName", "Spine" });
         local convertMap = {
             ["id"] = tonumber,
-            ["type"] = tonumber,
-            ["item"] = ConfigManager.parseItemWithComma,
-            ["price"]=ConfigManager.parseItemWithComma,
+            ["Item"] = ConfigManager.parseItemWithComma,
+            ["Cost"]=ConfigManager.parseItemWithComma,
+            ["count"] = tonumber,
             ["discount"] = tonumber,
             ["HeroId"] = tonumber,
             ["SkinId"] = tonumber,
+            ["isShow"] = tonumber,
             ["Sort"] = tonumber,
             
         };
-        cfg = ConfigManager.loadCfg("SkinShop_C.txt", attrMap, nil, convertMap);
+        cfg = ConfigManager.loadCfg("SkinShop.txt", attrMap, nil, convertMap);
         ConfigManager.configs[key] = cfg;
     end
     return cfg;
@@ -5638,7 +5639,8 @@ function ConfigManager:getBannerCfg()
             'openDay',
             'startTime',
             'endTime',
-            'url'
+            'url',
+            'offPlateform'
         } )
         local convertMap = {
             ['ID'] = tonumber,
@@ -6783,14 +6785,10 @@ function ConfigManager.getSkinCfg()
     local key = "SkinNg";
     local cfg = ConfigManager.configs[key];
     if cfg == nil then
-        local attrMap = common:table_combineNumber( { "id", "name", "element", "ownAdd", "ownDec", "skills", 
-                                                       "skinSkill", "replacedSkill", "chibi", "jumpId", "jumpTxt" });
+        local attrMap = common:table_combineNumber( { "id", "name", "element", "skills", "chibi" });
         local convertMap = {
             ["id"] = tonumber,
             ["element"] = tonumber,
-            ["skinSkill"] = tonumber,
-            ["replacedSkill"] = tonumber,
-            ["jumpId"] = tonumber,
         };
         cfg = ConfigManager.loadCfg("skin_NG.txt", attrMap, 0, convertMap);
         ConfigManager.configs[key] = cfg;
@@ -6878,9 +6876,12 @@ function ConfigManager.getFearTowerRewardCfg()
     local key = "FearTowerRewardCfg";
     local cfg = ConfigManager.configs[key];
     if cfg == nil then
-        local attrMap = common:table_combineNumber( { "id" });
+        local attrMap = common:table_combineNumber( { "id" ,"towerId","minRank","reward"});
         local convertMap = {
             ["id"] = tonumber,
+            ["towerId"] = tonumber,
+            ["minRank"] = tonumber,
+            ["reward"] = ConfigManager.parseItemWithComma,
         };
         cfg = ConfigManager.loadCfg("FearlessTowerRankAward_C.txt", attrMap, 0, convertMap);
         ConfigManager.configs[key] = cfg;
@@ -6891,9 +6892,10 @@ function ConfigManager.getFearTowerShopCfg()
     local key = "FearTowerShopCfg";
     local cfg = ConfigManager.configs[key];
     if cfg == nil then
-        local attrMap = common:table_combineNumber( { "id","count","skillId","healValue","rarity","icon","name","freeTypeFont" });
+        local attrMap = common:table_combineNumber( { "id","count","priceItem","skillId","healValue","rarity","icon","name","content" });
         local convertMap = {
             ["id"] = tonumber,
+            ["priceItem"] = ConfigManager.parseItemWithComma,
             ["count"] = tonumber,
             ["skillId"] = tonumber,
             ["healValue"] = tonumber,

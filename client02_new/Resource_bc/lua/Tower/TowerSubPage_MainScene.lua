@@ -144,6 +144,8 @@ function TowerBase:onEnter(container)
     
     selfContainer = container
     container:getVarNode("mBg"):setScale(NodeHelper:getScaleProportion())
+    NodeHelper:setSpriteImage(container,{mBg = "BG/Tower/Tower_bg.png"})
+    NodeHelper:setStringForLabel(container,{mTitle = common:getLanguageString("@SeasonTowerRanktitle")})
     container.mScrollview = container:getVarScrollView("mContent")
     container.mScrollview:setBounceable(true)
     

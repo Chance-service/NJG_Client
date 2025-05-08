@@ -942,7 +942,7 @@ function MainScenePageInfo.onEnter(container)
     MissionManager.getRedPointStatus()
     FriendManager.requestFriendApplyList()
 
-    --MainScenePageInfo.showRoleSpineExtend(container)
+    MainScenePageInfo.showRoleSpineExtend(container)
 
     MainFrame_createTimeCalculator()
 
@@ -1035,7 +1035,6 @@ function MainScenePageInfo.onEnter(container)
     ConfigManager.getNewMonsterCfg() -- 提前載入monster表 減少第一次戰鬥頁面讀取時間
 
     if isEnterGameLoadingEnd then
-        MainScenePageInfo.showRoleSpineExtend(container)
         container:runAnimation("AdventureOpen2")
     end
 
@@ -1764,12 +1763,9 @@ function MainScenePageInfo.showRoleSpineExtend(container)
         local skinId = 0
         local fileName = "NG2D_" .. string.format("%02d", math.floor(mainHero / 1000))
         if mainHero % 1000 > 0 then
-            skinId = mainHero
-            --fileName = "NG2D_" .. string.format("%02d", math.floor(mainHero / 1000)) .. string.format("%03d", skinId)
-            MainScenePageInfo.playMovie(container, skinId)
-            return
+            skinId = mainHero % 1000
+            fileName = "NG2D_" .. string.format("%02d", math.floor(mainHero / 1000)) .. string.format("%03d", skinId)
         end
-        --MainScenePageInfo.closeMovie(container)
 
         local spine = SpineContainer:create("NG2D", fileName)
         local spineNode = tolua.cast(spine, "CCNode")
@@ -1965,7 +1961,6 @@ function MainScenePageInfo.onExit(container)
         CCDirector:sharedDirector():getScheduler():unscheduleScriptEntry(MainScenePageInfo.ActCountDown)
         MainScenePageInfo.ActCountDown=nil                   
     end
-    MainScenePageInfo.closeMovie(container)
 end
 
 function MainScenePageInfo.onUnLoad(container)
@@ -2219,7 +2214,6 @@ function MainScene_openGameLoadingEnd()
         MainScenePageInfo.container:stopAllActions()
         MainScenePageInfo.container:runAnimation("AdventureOpen2")
     end
-    MainScenePageInfo.showRoleSpineExtend(MainScenePageInfo.container)
     isEnterGameLoadingEnd = true
     MainScene_checkGuide()
 end
@@ -2309,24 +2303,6 @@ function MainScenePageInfo.setActivityTime(Time)
             NodeHelper:setNodesVisible(container,{mActivityNode = false})
         end
     end
-end
-
--- 播放mp4
-function MainScenePageInfo.playMovie(container, skinId)
-    -- 播放影片
-    local fileName = "Hero/Hero" .. string.format("%05d", skinId)
-    local isFileExist =  CCFileUtils:sharedFileUtils():isFileExist("Video/" .. fileName .. ".mp4")
-    if isFileExist then
-        --MainScenePageInfo.libPlatformListener = LibPlatformScriptListener:new(libPlatformListener)
-        GamePrecedure:getInstance():playMovie(thisPageName, fileName, 1, 0)
-        NodeHelper:setNodesVisible(container, { mSpine = false })
-    end
-end
--- 關閉影片
-function MainScenePageInfo.closeMovie(container)
-    CCLuaLog("MainScenePageInfo:closeMovie")
-    NodeHelper:setNodesVisible(container, { mSpine = true })
-    GamePrecedure:getInstance():closeMovie(thisPageName)
 end
 
 return MainScenePageInfo

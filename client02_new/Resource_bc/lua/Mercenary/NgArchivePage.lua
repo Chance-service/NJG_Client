@@ -211,12 +211,7 @@ end
 -- 設定立繪spine
 function NgArchivePage:showTachieSpine(container, _spineName, _skinId) 
     local skinId = _skinId or COSTUME_DATA.NOW_SKIN
-    local spineName
-    if skinId > 0 then
-        spineName = "NG2D_" .. string.format("%05d", COSTUME_DATA.NOW_SKIN)
-    else
-        spineName = "NG2D_" .. string.format("%02d", itemId)
-    end
+    local spineName = "NG2D_" .. string.format("%02d", itemId) .. (skinId ~= 0 and string.format("%03d", skinId) or "")
     if nowSpineName == spineName and not _spineName then
         return
     end
