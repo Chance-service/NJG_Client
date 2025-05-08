@@ -22,13 +22,13 @@ local function initBaseInfo(data, id, giftType, _idx)
     pInfo.curFloor  = baseInfo.currFloor or baseInfo[idx] and baseInfo[idx].currFloor
     pInfo.nowMorale = baseInfo.nowMorale or baseInfo[idx] and baseInfo[idx].nowMorale
     pInfo.maxMorale = baseInfo.maxMorale or baseInfo[idx] and baseInfo[idx].maxMorale
-    pInfo.endTime   = baseInfo.endTime or baseInfo[idx] and baseInfo[idx].endTime
+    pInfo.endTime   = baseInfo.endTime or data.endTime
     if baseInfo.chooseFloor then
         pInfo.canChooseFloor = baseInfo.chooseFloor
     end
 
     -- ³B²z takeId¡BcommodityList »P buffList
-    local keys = {"takeId", "commodityList", "buffList"}
+    local keys = {"takeId", "commodityList", "SkillList","brought"}
     for _, key in ipairs(keys) do
         local cfg = baseInfo[key] or baseInfo[idx] and baseInfo[idx][key]
         if cfg then
@@ -60,7 +60,7 @@ local function initTowerRankData(data, id, giftType, idx)
     local selfItem = rankingInfo.selfRankItem
     if selfItem then
         rInfo.selfRank     = selfItem.rank
-        rInfo.selfFloor    = selfItem.MaxFloor
+        rInfo.selfFloor    = selfItem.MaxFloor or selfItem.passFloor % 1000
         rInfo.selfName     = selfItem.name
         rInfo.selfHead     = selfItem.headIcon
         rInfo.selfSkin     = selfItem.skin
@@ -74,7 +74,7 @@ local function initTowerRankData(data, id, giftType, idx)
             if type(key) == "number" then
                 rInfo.otherItem[key] = {
                     rank     = otherItem.rank,
-                    MaxFloor = otherItem.MaxFloor or otherItem.passFloor,
+                    MaxFloor = otherItem.MaxFloor or otherItem.passFloor % 1000,
                     name     = otherItem.name,
                     headIcon = otherItem.headIcon,
                     skin     = otherItem.skin,
@@ -89,7 +89,7 @@ end
 function TowerDataBase_SetInfo(data, id, _giftType, idx)
     if not data or not data.action then return end
     local giftType = _giftType or 1
-    if data.action == 0 then
+    if data.action ~= 1 then
         initBaseInfo(data, id, giftType, idx)
     end
     if data.action == 1 then
@@ -147,7 +147,7 @@ function TowerDataBase:getFearCfg(_id,_giftType)
     end)
 
     if _id then       
-        return cfgList[_id]
+        return cfgList[_id] 
     else
         return filteredList
     end

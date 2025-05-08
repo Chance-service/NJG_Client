@@ -1,6 +1,7 @@
 Imagesetfile/ActivityIconAni0.plist
 Imagesetfile/Album0.plist
 Imagesetfile/Album1.plist
+Imagesetfile/Album2.plist
 Imagesetfile/AWS0.plist
 Imagesetfile/AWS1.plist
 Imagesetfile/BadgeIcon0.plist
