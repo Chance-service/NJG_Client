@@ -3,11 +3,6 @@
 #include "lib91.h"
 #include "libOS.h"
 #include "SeverConsts.h"
-//#include "lib91Obj.h"
-//#include <comHuTuoSDK.h>
-//#import <NdComPlatform/NdComPlatform.h>
-//#import <NdComPlatform/NdComPlatformAPIResponse.h>
-//#import <NdComPlatform/NdCPNotifications.h>
 
 #import <KUSOPlaySDK/KUSOPlaySDK.h>
 #import <TapDB/TapDB.h>
@@ -444,8 +439,15 @@ const std::string& lib91::nickName()
 #pragma mark ----------------------------- platform data -----------------------------------
 const std::string lib91::getClientChannel()
 {
-    return "android_kuso";
+    return "ios_kuso";
 }
+
+const std::string lib91::getClientCps()
+{
+    return "#0";
+}
+
+
 
 std::string lib91::getPlatformMoneyName()
 {
@@ -490,9 +492,8 @@ bool lib91::getIsH365()
     return false;
 }
 
-int lib91::getHoneyP()
+void lib91::updateApp(std::string& storeUrl)
 {
-    return 0;
 }
 
 int lib91::getIsGuest()
@@ -500,9 +501,6 @@ int lib91::getIsGuest()
     return isGuest;
 }
 
-void lib91::updateApp(std::string& storeUrl)
-{
-}
 
 const unsigned int lib91::getPlatformId()
 {
@@ -631,3 +629,28 @@ std::string lib91::sendMessageG2P(const std::string& tag, const std::string& msg
     return "";
 }
 
+void lib91::OnKrGetInviteCount(){}
+void lib91::OnKrgetInviteLists(){}
+void lib91::OnKrgetFriendLists(){}
+void lib91::OnKrsendInvite(const std::string& strUserId, const std::string& strServerId){}
+void lib91::OnKrgetGiftLists(){}
+void lib91::OnKrReceiveGift(const std::string& strGiftId, const std::string& strServerId){}
+void lib91::OnKrGetGiftCount(){}
+void lib91::OnKrSendGift(const std::string& strUserName, const std::string& strServerId){}
+void lib91::OnKrGiftBlock(bool bVisible){}
+void lib91::OnKrGetKakaoId(){}
+void lib91::OnKrLoginGames(){}
+void lib91::OnKrIsShowFucForIOS(){}
+
+void lib91::setLanguageName(const std::string& lang){}
+void lib91::setPlatformName(int platform){}
+void lib91::setPayH365(const std::string& url){}
+void lib91::setPayR18(int mid, int serverid, const std::string& url){}
+    
+int lib91::getHoneyP()
+{
+    return 0;
+}
+void lib91::setHoneyP(int aMoney)
+{
+}
