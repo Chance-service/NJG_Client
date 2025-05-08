@@ -81,6 +81,8 @@ void lib91::login()
 	libPlatformManager::getPlatform()->_boardcastLoginResult(true, "");
 }
 
+void lib91::doKUSOLogin(){}
+
 void lib91::setupSDK(int platformId)
 {
 
@@ -230,9 +232,9 @@ std::string lib91::sendMessageG2P(const std::string& tag, const std::string& msg
 }
 
 /************************************************************/
-/*º«¹úkakaoºÃÓÑ½Ó¿Ú*/
+/*ï¿½ï¿½ï¿½ï¿½kakaoï¿½ï¿½ï¿½Ñ½Ó¿ï¿½*/
 
-//»ñµÃÑûÇë´ÎÊý
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void lib91::OnKrGetInviteCount()
 {
 

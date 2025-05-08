@@ -16,8 +16,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4E45205D2D5F191600F26188"
-               BuildableName = "NinjaGirl.app"
-               BlueprintName = "NinjaGirl"
+               BuildableName = "NinjaGirl69.app"
+               BlueprintName = "NinjaGirl69"
                ReferencedContainer = "container:Game.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,8 +45,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4E45205D2D5F191600F26188"
-            BuildableName = "NinjaGirl.app"
-            BlueprintName = "NinjaGirl"
+            BuildableName = "NinjaGirl69.app"
+            BlueprintName = "NinjaGirl69"
             ReferencedContainer = "container:Game.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -62,8 +62,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4E45205D2D5F191600F26188"
-            BuildableName = "NinjaGirl.app"
-            BlueprintName = "NinjaGirl"
+            BuildableName = "NinjaGirl69.app"
+            BlueprintName = "NinjaGirl69"
             ReferencedContainer = "container:Game.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

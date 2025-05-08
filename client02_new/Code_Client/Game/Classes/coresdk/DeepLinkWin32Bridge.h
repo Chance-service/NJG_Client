@@ -2,7 +2,7 @@
 #define  _CORESDK_DEEPLINK_WIN32_BRIDGE_H_
 
 #include "cocos2d.h"
-#include "coresdk/DeepLink.h"
+#include "DeepLink.h"
 
 namespace coresdk {
 	namespace DeepLinkWin32Bridge {
