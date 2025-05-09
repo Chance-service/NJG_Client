@@ -181,7 +181,6 @@ void lib91::setupSDK(int platformId)
         PlayCenterConfig *config = [[[PlayCenterConfig alloc]
                                      initWithAppId:@"APPncbR1hdPgUIjSKt"
                                      isSandbox:YES
-                                     currency:Currency.cny
                                      subId:@"NG24"
                                     ] autorelease];
         [PlayCenter.shared
@@ -332,8 +331,8 @@ void lib91::buyGoods(BUYINFO& info)
     NSLog(@"KUSO: itemString: %@", itemsString);
     [PlayCenter.shared
      payOrderAmount:info.productPrice
-     currency:Currency.cny
-     gatewayCode:GatewayCode.all
+     currency:CurrencyEnum.enum_.CNY
+     gatewayCode:GatewayCodeEnum.enum_.ALL
      callbackUrl:cbu
      description:desc
      nonce:orderSerial
