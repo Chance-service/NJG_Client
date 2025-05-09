@@ -3549,7 +3549,7 @@
 					"\"$(SRCROOT)/../../../Code_Core/cocos2dx/platform/third_party/ios/libfreetype2/freetype\"/**",
 				);
 				INFOPLIST_FILE = "NinjaGirl-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Ninja Girl";
+				INFOPLIST_KEY_CFBundleDisplayName = "Ninja Girl Release";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.arcade-games";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = "$(LD_RUNPATH_SEARCH_PATHS_$(IS_MACCATALYST)) @executable_path/Frameworks @loader_path/Frameworks";
@@ -3567,7 +3567,7 @@
 					"-ObjC",
 					"-lsqlite3.0",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ios.ninja.girl.kuso.cn;
+				PRODUCT_BUNDLE_IDENTIFIER = ninja.girl.kuso.cn.r;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "6987a272-2e42-4377-a502-a6ffdfbcb24a";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -3656,7 +3656,7 @@
 					"\"$(SRCROOT)/../../../Code_Core/cocos2dx/platform/third_party/ios/libfreetype2/freetype\"/**",
 				);
 				INFOPLIST_FILE = "NinjaGirl-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Ninja Girl";
+				INFOPLIST_KEY_CFBundleDisplayName = "Ninja Girl Release";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.arcade-games";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = "$(LD_RUNPATH_SEARCH_PATHS_$(IS_MACCATALYST)) @executable_path/Frameworks @loader_path/Frameworks";
@@ -3674,7 +3674,7 @@
 					"-ObjC",
 					"-lsqlite3.0",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ios.ninja.girl.kuso.cn;
+				PRODUCT_BUNDLE_IDENTIFIER = ninja.girl.kuso.cn.r;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "978e775b-9f2f-4a14-a9e8-17cd9ff07c9e";
 				"PROVISIONING_PROFILE[sdk=*]" = "";
