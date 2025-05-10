@@ -1866,7 +1866,7 @@ void GamePrecedure::playMovie(std::string pageName, std::string fileName, int is
 #endif
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 	fileName = "Video/" + fileName;
-    libOS::getInstance()->playMovie(fileName.c_str());
+    libOS::getInstance()->playMovie(fileName.c_str(), isLoop);
 #endif
 	MainFrame::getInstance()->addMovie(pageName, fileName, isLoop, autoScale);
 }
