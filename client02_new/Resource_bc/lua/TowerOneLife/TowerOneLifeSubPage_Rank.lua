@@ -1,12 +1,10 @@
 local NodeHelper = require("NodeHelper")
-local thisPageName = 'TowerRankPage'
-
+local thisPageName = 'TowerOneLife.TowerOneLifeSubPage_Rank'
+local TowerDataBase = require "Tower.TowerPageData"
 
 local selfContainer
 local TowerRankBase = {}
-local parentPage = nil
-
-local ItemCCB = {}
+local nowType = 1
 
 local RankRewardPopCCB = nil
 
@@ -26,34 +24,11 @@ local option = {
         onDailyReward="onDailyReward",
         onDailyHelp = "onHelp",
         onClose="onClose",
-        onRankingReward = "onRankingReward"
+        onRankingReward = "onRankingReward",
+        onReturn = "onReturn"
     },
 }
 
-function TowerRankBase:createPage(_parentPage)
-    
-    local slf = self
-    
-    parentPage = _parentPage
-    
-    local container = ScriptContentBase:create(option.ccbiFile)
-    
-    container:registerFunctionHandler(function(eventName, container)
-        local funcName = option.handlerMap[eventName]
-        local func = slf[funcName]
-        if func then
-            func(slf, container,eventName)
-        end
-    end)
-    
-    return container
-end
-function TowerRankBase:new(o)
-    o = o or {}
-    setmetatable(o, self)
-    self.__index = self
-    return o
-end
 function TowerRankBase:onRankingReward(container)
    local parentNode = container:getVarNode("mPopUpNode")
    if parentNode then 
@@ -75,13 +50,15 @@ function RankRewardPopFunction(eventName,container)
 end
 function TowerRankBase:setRewardPopCCB(container)
     local scrollview = container:getVarScrollView("mContent")
-    local cfg =  ConfigManager.getTowerRank()
+    local cfg =  ConfigManager.getFearTowerRewardCfg()
     for k,value in pairs (cfg) do
-        local cell = CCBFileCell:create()
-        cell:setCCBFile(RankRewardContent.ccbiFile)
-        local panel = common:new({data = value}, RankRewardContent)
-        cell:registerFunctionHandler(panel)
-        scrollview:addCell(cell)
+        if value.towerId == nowType then
+            local cell = CCBFileCell:create()
+            cell:setCCBFile(RankRewardContent.ccbiFile)
+            local panel = common:new({data = value}, RankRewardContent)
+            cell:registerFunctionHandler(panel)
+            scrollview:addCell(cell)
+        end
     end
     scrollview:orderCCBFileCells()
     scrollview:setTouchEnabled(true)
@@ -89,7 +66,7 @@ function TowerRankBase:setRewardPopCCB(container)
 end
 function RankRewardContent:onRefreshContent(content)
     local container = content:getCCBFileNode()
-    local RewardCfg =  ConfigManager.getTowerRank()
+    local RewardCfg =  ConfigManager.getFearTowerRewardCfg()
     local stringTable = {}
     if self.data.id>1 and RewardCfg[self.data.id].minRank-RewardCfg[self.data.id-1].minRank >1 then
         stringTable["mTitleTxt"] = RewardCfg[self.data.id-1].minRank+1 .."-".. RewardCfg[self.data.id].minRank
@@ -102,7 +79,7 @@ function RankRewardContent:onRefreshContent(content)
     for i = 1 ,4 do
          local parentNode=container:getVarNode("mPosition"..i)
          parentNode:removeAllChildren()
-          if Items[i] then
+          if Items and Items[i] then
             local ItemNode = ScriptContentBase:create("CommItem")
             ItemNode:setScale(0.8)
             ItemNode.Reward= Items[i]
@@ -122,43 +99,28 @@ function RankRewardContent:onRefreshContent(content)
         end
     end
 end
-
+function TowerRankBase:onReturn(container)
+    PageManager.popPage(thisPageName)
+end
 function TowerRankBase:onEnter(container)
-    --parentPage:registerPacket(opcodes)
-    parentPage:registerMessage(MSG_MAINFRAME_REFRESH)
     selfContainer=container
     NodeHelper:setNodesVisible(container,{mTeam=false,mDaily=true})
-    --local StringTable={}
-    --StringTable["mDailyTopTxt"]=common:getLanguageString("@UrLotteryRank")
-    --StringTable["mDailyTitle"]=common:getLanguageString("@GloryHoleranking02")
-    --StringTable["mPurpleTxt"]=common:getLanguageString("@PVPAutoTxt")
-    --NodeHelper:setStringForLabel(container,StringTable)
+  
     --Bg
     container:getVarNode("mBg"):setScale(NodeHelper:getScaleProportion())
-
-    local Activity6_pb = require("Activity6_pb")
-    local msg = Activity6_pb.SeasonTowerReq()
-    msg.action = 1
-    common:sendPacket(HP_pb.ACTIVITY194_SEASON_TOWER_C, msg, true)
-
+    NodeHelper:setSpriteImage(container,{mBg = "BG/Tower/Tower_bg05.png"})
+    NodeHelper:setStringForLabel(container,{mTitle = common:getLanguageString("@FearlessTower_RankTitle")})
     container.mScrollView=container:getVarScrollView("mContent")
-    TowerRankBase:ReSizeScrollview(container.mScrollView)
+    NodeHelper:autoAdjustResizeScrollview(container.mScrollView)
+    TowerRankBase:refresh(container)
 end
-function TowerRankBase:ReSizeScrollview(scrollView)
-    local logicSize = ccp(GameConfig.ScreenSize.width, GameConfig.ScreenSize.height)
-    local realSize = CCEGLView:sharedOpenGLView():getDesignResolutionSize()
-    local offY = realSize.height - logicSize.y
-    local oldSize = scrollView:getViewSize()
-    oldSize.height = oldSize.height + offY
-    scrollView:setViewSize(oldSize)
-end
-function TowerRank_refresh()
-    TowerRankBase:refresh(selfContainer)
+function TowerRankBase:setType(_type)
+    nowType = _type
 end
 function TowerRankBase:refresh(container)
-    if container==nil then return end
-    local TowerDataBase = require "Tower.TowerPageData"
-    TowerRankInfo=TowerDataBase:getRank(194)
+    if container==nil then return end    
+    TowerRankInfo=TowerDataBase:getRank(199,nowType)
+
     if container and container.mScrollView then
         TowerRankBase:initScrollView(container)
     end
@@ -179,10 +141,7 @@ function TowerRankBase:refresh(container)
     end
     StringTable["mPlayerScore"]=SelfTable.selfFloor
     StringTable["mPlayerName"]=SelfTable.selfName
-    local Stage = 0
-    local TakedId = require("Tower.TowerPageData"):getData(194).takeId
-    Stage = #TakedId
-    StringTable["mSelfTxt"]= common:getLanguageString("@SeasonTowerXstage",Stage) .." ".. os.date("%Y/%m/%d %H:%M:%S", math.floor(SelfTable.selfDoneTime/1000))
+    StringTable["mSelfTxt"]= common:getLanguageString("@SeasonTowerXstage",SelfTable.selfFloor) .." ".. os.date("%Y/%m/%d %H:%M:%S", math.floor(SelfTable.selfDoneTime/1000))
     if SelfTable.selfFloor == 0 then
         StringTable["mSelfTxt"] = "-"
         VisableTable["mRankSprite"] = false
@@ -261,7 +220,7 @@ function RankingContent:onRefreshContent(ccbRoot)
 end
 function TowerRankBase:setTime(txt)
    if selfContainer and txt then
-        NodeHelper:setStringForLabel(selfContainer,{mCountDown = common:getLanguageString("@SeasonTowerEndTime",txt)})
+        NodeHelper:setStringForLabel(selfContainer,{mCountDown = common:getLanguageString("@FearlessTower_RankResetTime")..txt})
    end
 end
 
@@ -269,7 +228,7 @@ end
 function TowerRankBase:onHelp(container)
     PageManager.showHelp(GameConfig.HelpKey.HELP_GLORY_HOLE_RANKING)
 end
+
 local CommonPage = require('CommonPage')
 TowerRankPage = CommonPage.newSub(TowerRankBase, thisPageName, option)
-
 return TowerRankPage

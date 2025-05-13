@@ -282,6 +282,7 @@ public:
 
 
 	void compareVersion();
+	void transform();
 	CompareStat compareVersion(std::string localVersion, std::string serverVersion);
 	std::vector<std::string> splitVersion(std::string content, std::string seperator);
 

@@ -147,6 +147,225 @@ local BtnItem={
 }
 local btnItemsLeft = { }
 local btnItemsRight = { }
+
+
+local UIHandlers = {
+  -- 页面生命周期事件
+  luaInit = function(_, container)
+    MainScenePageInfo.onInit(container)
+  end,
+  luaLoad = function(_, container)
+    MainScenePageInfo.onLoad(container)
+  end,
+  luaEnter = function(_, container)
+    MainScenePageInfo.onEnter(container)
+  end,
+  luaExecute = function(_, container)
+    MainScenePageInfo.onExecute(container)
+  end,
+  luaExit = function(_, container)
+    MainScenePageInfo.onExit(container)
+  end,
+  luaUnLoad = function(_, container)
+    MainScenePageInfo.onUnLoad(container)
+  end,
+  luaReceivePacket = function(_, container)
+    MainScenePageInfo.onReceivePacket(container)
+  end,
+  luaGameMessage = function(_, container)
+    MainScenePageInfo.onGameMessage(container)
+  end,
+
+  onPersonalConfidence = function()
+    PageManager.pushPage("PlayerInfoPage")
+  end,
+  onViewExp = function(_, container)
+    local ExpNode = container:getVarNode("mExp")
+    local cfg = ConfigManager.getRoleLevelExpCfg()
+    local lvlLimit = ConfigManager.getLevelLimitCfg()[GameConfig.LevelLimitCfgKey.roleLevelLimit].level
+    local nextLevel = math.min(UserInfo.roleInfo.level, lvlLimit)
+    local nextExp = cfg[nextLevel] and cfg[nextLevel]["exp"] or UserInfo.roleInfo.exp
+    local txt = GameUtil:formatNumber(UserInfo.roleInfo.exp)
+              .. "/"
+              .. GameUtil:formatNumber(nextExp)
+    NodeHelper:setStringForLabel(container, { mExp = txt })
+    ExpNode:setVisible(not ExpNode:isVisible())
+  end,
+  onRecharge = function()
+    require("IAP.IAPPage"):setEntrySubPage("Diamond")
+    PageManager.pushPage("IAP.IAPPage")
+  end,
+  onChat = function()
+    MainFrame_onChatBtn()
+  end,
+  onAlert = function(_, container)
+    local closeR18 = VaribleManager:getInstance():getSetting("IsCloseR18")
+    if tonumber(closeR18 == 1) then
+      MessageBoxPage:Msg_Box(common:getLanguageString("@ComingSoon"))
+    else
+      PageManager.pushPage("AnnouncementPopPageNew")
+    end
+  end,
+  onMail = function()
+    PageManager.pushPage("MailPage")
+  end,
+  onBag = function()
+    PageManager.pushPage("Inventory.InventoryPage")
+  end,
+  onSevenDay = function()
+    require("NewPlayerBasePage")
+    NewPlayerBasePage_setPageType(ACTIVITY_TYPE.NEWPLAYER_LEVEL9)
+    PageManager.pushPage("NewPlayerBasePage")
+  end,
+  onNewPlayer = function()
+    PageManager.pushPage("LivenessPage")
+  end,
+  onTouchHero = function(_, container)
+    MainScenePageInfo.onTouchHero(container)
+  end,
+  onActivity = function(_, container)
+    local key = "ACT191_" .. UserInfo.playerInfo.playerId
+    local TimeTxt = CCUserDefault:sharedUserDefault():getStringForKey(key)
+    local page = require("Event001Page")
+    if TimeTxt == "" or page:getStageInfo().startTime ~= tonumber(TimeTxt) then
+      PageManager.pushPage("Event001VideoBlack")
+    else
+      PageManager.pushPage("Event001Page")
+    end
+  end,
+  BackSingleBoss = function()
+    PageManager.pushPage("SingleBoss.SingleBossPage")
+  end,
+  BackPuzzle = function()
+    PageManager.pushPage("PuzzlePage")
+  end,
+  onTest = function()
+    PageManager.pushPage("TestPage")
+  end,
+
+  -- 按钮点击事件
+  onPoP = function()
+    local active = false
+    for _, id in ipairs(ActivityInfo.PopUpSaleIds) do
+      local cfg = ActivityConfig[id]
+      if cfg.isShowFn and cfg.isShowFn() then
+        active = true; break
+      end
+    end
+    if active then
+      PageManager.pushPage("ActPopUpSale.ActPopUpSalePage")
+    else
+      MessageBoxPage:Msg_Box(common:getLanguageString("@ERRORCODE_80104"))
+    end
+  end,
+  onIAP = function()
+    local IAP = require("IAP.IAPDataMgr")
+    for _, cfg in ipairs(IAP.SubPageCfgs) do
+      local aid = cfg.activityID
+      if (not aid or ActivityInfo:getActivityIsOpenById(aid))
+         and (not cfg.LOCK_KEY or not LockManager_getShowLockByPageName(cfg.LOCK_KEY))
+      then
+        require("IAP.IAPPage"):setEntrySubPage(cfg.subPageName)
+        break
+      end
+    end
+    PageManager.pushPage("IAP.IAPPage")
+  end,
+  onReward = function()
+    local Free = require("Reward.RewardSubPage_FreeSummon")
+    if Free:hasData() then
+      PageManager.pushPage("Reward.RewardPage")
+    else
+      MessageBoxPage:Msg_Box(common:getLanguageString("@RequestingData"))
+    end
+  end,
+  onShop = function()
+    PageManager.pushPage("ShopControlPage")
+  end,
+  onStar = function()
+    PageManager.pushPage("WishingWell.WishingWellPage")
+  end,
+  onQuest = function()
+    require("Mission.MissionMainPage")
+    MissionMainPage_setIsBattleView(false)
+    PageManager.pushPage("MissionMainPage")
+    require("Mission.MissionMainPage"):onAgencyBtn(MainScenePageInfo.container)
+  end,
+  onFriend = function()
+    PageManager.pushPage("FriendPage")
+  end,
+  onForge = function()
+    MainFrame_onForge()
+  end,
+  onBounty = function()
+    PageManager.pushPage("MercenaryExpeditionPage")
+  end,
+  onSecert = function()
+    local closeR18 = VaribleManager:getInstance():getSetting("IsCloseR18")
+    if tonumber(closeR18) == 1 then
+      MessageBoxPage:Msg_Box(common:getLanguageString("@ComingSoon")); 
+      return
+    end
+    require("SecretMessage.SecretMessagePage")
+    SecretMessagePage_setPageType(GameConfig.SECRET_PAGE_TYPE.MAIN_PAGE)
+    PageManager.pushPage("SecretMessage.SecretPage")
+  end,
+  onGlory = function()
+    local t = MainScenePageInfo:getActTime(175)
+    local today = tostring(os.date("*t").wday)
+    local open = (type(t) == "string" and common:table_contains(common:split(t, ","), today))
+              or (type(t) == "number" and t > 0)
+    if not open then
+      MessageBoxPage:Msg_Box(common:getLanguageString("@ActivityCloseTex"))
+      MainScenePageInfo:BuildBtnScrollview(MainScenePageInfo.container, btn.Pos, BtnScrollviewState[btn.Pos])
+      return
+    end
+    local closeR18 = VaribleManager:getInstance():getSetting("IsCloseR18")
+    if tonumber(closeR18) == 1 then
+      MessageBoxPage:Msg_Box(common:getLanguageString("@ComingSoon")); return
+    end
+    TransScenePopUp_setCallbackFun(function()
+      local msg = require("Activity5_pb").GloryHoleReq()
+      msg.action = 0
+      common:sendPacket(HP_pb.ACTIVITY175_GLORY_HOLE_C, msg, true)
+    end)
+    UserInfo.sync()
+    PageManager.pushPage("TransScenePopUp")
+  end,
+  on7Day = function()
+    require("NewPlayerBasePage")
+    NewPlayerBasePage_setPageType(ACTIVITY_TYPE.NEWPLAYER_LEVEL9)
+    PageManager.pushPage("NewPlayerBasePage")
+  end,
+  onSingleBoss = function()
+    local sb = require("SingleBoss.SingleBossDataMgr")
+    local data = sb:getPageData()
+    data.dataDirtyBase = true
+    PageManager.pushPage("SingleBoss.SingleBossPage")
+  end,
+  onPuzzle = function()
+    TransScenePopUp_setCallbackFun(function()
+      PageManager.pushPage("PuzzlePage")
+    end)
+    UserInfo.sync()
+    PageManager.pushPage("TransScenePopUp")
+  end,
+  onActGift = function()
+    PageManager.pushPage("IAP_Act.IAP_ActPage")
+  end,
+  onLogin = function()
+    PageManager.pushPage("LoginRewardPage")
+  end,
+  onLeftScorllview = function()     
+      MainScenePageInfo:onScrollBtn("onLeftScorllview")
+  end,
+  onRightScorllview = function()     
+      MainScenePageInfo:onScrollBtn("onRightScorllview")
+  end,
+  onStory = function()
+     PageManager.pushPage("Story.StoryPage")
+  end,
+}
 ------------
 
 function libPlatformListener:P2G_GET_BIND_STATE(listener)
@@ -247,159 +466,32 @@ function MainFrame_RefreshExpBar()
         end
     end
 end
-
-function MainScenePageInfo.onFunction(eventName, container)
-    if eventName ~= "luaExecute" then
-    end
-    if eventName == "luaInit" then
-        MainScenePageInfo.onInit(container)
-    elseif eventName == "luaLoad" then
-        MainScenePageInfo.onLoad(container)
-    elseif eventName == "luaEnter" then
-        MainScenePageInfo.onEnter(container)
-    elseif eventName == "luaExecute" then
-        MainScenePageInfo.onExecute(container)
-    elseif eventName == "luaExit" then
-        MainScenePageInfo.onExit(container)
-    elseif eventName == "luaUnLoad" then
-        MainScenePageInfo.onUnLoad(container)
-    elseif eventName == "luaReceivePacket" then
-        MainScenePageInfo.onReceivePacket(container)
-    elseif eventName == "luaGameMessage" then
-        MainScenePageInfo.onGameMessage(container)
-    elseif eventName == "onPersonalConfidence" then -- 玩家資訊
-        PageManager.pushPage("PlayerInfoPage")
-    elseif eventName == "onViewExp" then    -- 玩家經驗數值顯示
-        local ExpNode = container:getVarNode("mExp")
-        local roleExpCfg = ConfigManager.getRoleLevelExpCfg()
-        local nextLevel = math.min(UserInfo.roleInfo.level, ConfigManager.getLevelLimitCfg()[GameConfig.LevelLimitCfgKey.roleLevelLimit].level)
-        local nextLevelExp = roleExpCfg[nextLevel] and roleExpCfg[nextLevel]["exp"] or UserInfo.roleInfo.exp
-        local mExpTxt = GameUtil:formatNumber(UserInfo.roleInfo.exp) .. "/" .. GameUtil:formatNumber(nextLevelExp)
-        NodeHelper:setStringForLabel(container, { mExp = mExpTxt })
-        if ExpNode:isVisible() == true then
-            ExpNode:setVisible(false)
-        else
-            ExpNode:setVisible(true)
+local function unschedulePos(pos)
+    for _, v in pairs(ActivityCountDown) do
+        if v.Pos == pos and v.Fn then
+            CCDirector:sharedDirector():getScheduler():unscheduleScriptEntry(v.Fn)
+            v.Fn = nil
         end
-    elseif eventName == "onBuyGold" then    -- 點金
-        --PageManager.pushPage("MoneyCollectionPage")
-    elseif eventName == "onRecharge" then   -- 鑽石儲值
-        require("IAP.IAPPage"):setEntrySubPage("Diamond")
-        PageManager.pushPage("IAP.IAPPage")
-    elseif eventName == "onChat" then
-        MainFrame_onChatBtn()
-    elseif eventName == "onAlert" then    -- TODO 公告
-        local closeR18 = VaribleManager:getInstance():getSetting("IsCloseR18")
-        if tonumber(closeR18) == 1 then
-            MessageBoxPage:Msg_Box(common:getLanguageString("@ComingSoon"))
-            return
-        else
-            PageManager.pushPage("AnnouncementPopPageNew")
-        end
-        --PageManager.pushPage("MonopolyGamePage")
-    elseif eventName == "onMail" then   -- 信箱
-        PageManager.pushPage("MailPage")
-    elseif eventName == "onBag" then    -- 背包
-        PageManager.pushPage("Inventory.InventoryPage")
-    elseif eventName == "onFirstPurchase" then  -- 首充
-        MainScenePageInfo.onJumpFirstRecharge(container)
-    elseif eventName == "onSevenDay" then   -- 7日祭
-        require("NewPlayerBasePage")
-        NewPlayerBasePage_setPageType(ACTIVITY_TYPE.NEWPLAYER_LEVEL9)
-        PageManager.pushPage("NewPlayerBasePage")
-    elseif eventName == "onNewPlayer" then  -- 8天登入
-        PageManager.pushPage("LivenessPage")
-    elseif eventName == "onGloryHole" then  -- 壁尻
-        local closeR18 = VaribleManager:getInstance():getSetting("IsCloseR18")
-        if tonumber(closeR18) == 1 then
-            MessageBoxPage:Msg_Box(common:getLanguageString("@ComingSoon"))
-            return
-        end
-        if LockManager_getShowLockByPageName(GameConfig.LOCK_PAGE_KEY.GLORY_HOLE) then
-            MessageBoxPage:Msg_Box(LockManager_getLockStringByPageName(GameConfig.LOCK_PAGE_KEY.GLORY_HOLE))
-        else
-            local bannerCfgs = ConfigManager:getBannerCfg()
-            for key,data in pairs (bannerCfgs) do
-                if data.activityId == 175 then
-                    if os.time()<data.startTime or os.time()>data.endTime then
-                        --NodeHelper:setNodesVisible(container,{mGloryHole=false})
-                        return
-                    end
-                end
-            end
-            local Activity5_pb = require("Activity5_pb")
-            local msg=Activity5_pb.GloryHoleReq()
-            msg.action=0
-            common:sendPacket(HP_pb.ACTIVITY175_GLORY_HOLE_C, msg, true)
-        end
-    elseif eventName == "onSecert" then -- 秘密信條
-        local closeR18 = VaribleManager:getInstance():getSetting("IsCloseR18")
-        if tonumber(closeR18) == 1 then
-            MessageBoxPage:Msg_Box(common:getLanguageString("@ComingSoon"))
-            return
-        end
-        if LockManager_getShowLockByPageName(GameConfig.LOCK_PAGE_KEY.SECRET_MESSAGE) then
-            MessageBoxPage:Msg_Box(LockManager_getLockStringByPageName(GameConfig.LOCK_PAGE_KEY.SECRET_MESSAGE))
-        else
-            require("SecretMessage.SecretMessagePage")
-            SecretMessagePage_setPageType(GameConfig.SECRET_PAGE_TYPE.MAIN_PAGE)
-            PageManager.pushPage("SecretMessage.SecretPage")
-        end
-    elseif eventName == "onTouchHero" then  -- 播放忍娘語音
-        MainScenePageInfo.onTouchHero(container)
-    elseif eventName=="onLeftScorllview" then   -- 收起/展開左側Icon
-        local btn=container:getVarNode("mLeftBtn")
-        if BtnScrollviewState.Left then
-            BtnScrollviewState.Left=false
-            MainScenePageInfo:BuildBtnScrollview(container,"Left",BtnScrollviewState.Left)
-            btn:setScale(1)
-        else
-            BtnScrollviewState.Left=true
-            --BuildBtnScrollview
-            MainScenePageInfo:BuildBtnScrollview(container,"Left",BtnScrollviewState.Left)
-            btn:setScale(-1)
-        end
-        local Back = tolua.cast(MainScenePageInfo.container:getVarNode("mLeftBack"), "CCScale9Sprite")
-        local Height=Back:getContentSize().height
-        btn:setPositionY(-Height)
-    elseif eventName=="onRightScorllview" then   -- 收起/展開右側Icon
-        local btn=container:getVarNode("mRightBtn")
-        if BtnScrollviewState.Right then
-            BtnScrollviewState.Right=false
-            MainScenePageInfo:BuildBtnScrollview(container,"Right",BtnScrollviewState.Right)
-            btn:setScale(1)
-        else
-            BtnScrollviewState.Right=true
-             for key,value in pairs (ActivityCountDown) do
-                if value.Pos=="Right" and value.Fn then
-                    CCDirector:sharedDirector():getScheduler():unscheduleScriptEntry(value.Fn)
-                    value.Fn=nil                       
-                end
-            end
-             --BuildBtnScrollview
-            MainScenePageInfo:BuildBtnScrollview(container,"Right",BtnScrollviewState.Right)
-            btn:setScale(-1)
-        end
-        local Back = tolua.cast(MainScenePageInfo.container:getVarNode("mRightBack"), "CCScale9Sprite")
-        local Height=Back:getContentSize().height
-        btn:setPositionY(-Height)
-    elseif eventName == "onActivity" then
-        local TimeTxt = CCUserDefault:sharedUserDefault():getStringForKey("ACT191_"..UserInfo.playerInfo.playerId)
-        local event001Page = require "Event001Page"
-        if TimeTxt == "" or event001Page:getStageInfo().startTime ~= tonumber(TimeTxt) then
-            PageManager.pushPage("Event001VideoBlack")
-        else
-            PageManager.pushPage("Event001Page")
-        end
-    elseif eventName == "onSingleBoss" then
-        local SingleBossDataMgr = require("SingleBoss.SingleBossDataMgr")
-        PageManager.pushPage("SingleBoss.SingleBossPage")
-    elseif eventName == "onPuzzle" then     
-        PageManager.pushPage("PuzzlePage")         
-    elseif eventName == "onTest" then  
-        PageManager.pushPage("TestPage")
     end
 end
+function MainScenePageInfo:onScrollBtn(eventName)
+    local container = MainScenePageInfo.container
+    local pos = (eventName == "onLeftScorllview") and "Left" or "Right"
+    BtnScrollviewState[pos] = not BtnScrollviewState[pos]
+    if BtnScrollviewState[pos] then unschedulePos(pos) end
+    MainScenePageInfo:BuildBtnScrollview(container, pos, BtnScrollviewState[pos])
+    local btn = container:getVarNode("m"..pos.."Btn")
+    btn:setScale(BtnScrollviewState[pos] and -1 or 1)
+    local back = tolua.cast(container:getVarNode("m"..pos.."Back"), "CCScale9Sprite")
+    btn:setPositionY(-back:getContentSize().height)
+end
+function MainScenePageInfo.onFunction(eventName, container)
+  local fn = UIHandlers[eventName]
+  if fn then
+    return fn(eventName, container)
+  end
+end
+
 
 function MainScenePageInfo.onJumpFirstRecharge(container)
     PageManager.pushPage("FirstChargePageNew")
@@ -855,6 +947,15 @@ function MainScenePageInfo.RequestData()
             BuyManager:SendtogetHoneyP() -- getHoneyp
         end
     end
+
+    if (Golb_Platform_Info.is_erolabs) then --Erolabs
+        local IsGuest = libPlatformManager:getPlatform():getIsGuest() 
+        if (IsGuest == 0) then
+            CCLuaLog("MainScene SendtogetECoin")
+            local BuyManager = require("BuyManager")
+            BuyManager:SendtogetECoin() -- getECoin
+        end
+    end
 end
 function MainScenePageInfo.onEnter(container)
     MainFrame_setGuideMask(true)    -- 避免新帳號教學開始前看到大廳畫面
@@ -919,6 +1020,10 @@ function MainScenePageInfo.onEnter(container)
     --充值回饋資料要求
     local DailyBundlePage = require ("Activity.DailyBundlePage")
     DailyBundlePage:getVipPointRequest()
+    --累計登入資料要求
+    local msg = Activity6_pb.EightDayLoginAwardReq()
+    msg.action = 0
+    common:sendPacket(HP_pb.ACTIVITY200_EIGHT_DAY_LOGIN_C, msg, false)
 
     MainScenePageInfo.setNoticeNodes(container)
 
@@ -1094,269 +1199,203 @@ function MainScenePageInfo.onEnter(container)
         TransScenePopUp_closePage()
     end
 end
-function MainScenePageInfo:BuildBtnScrollview(container,Pos,isShort)
-    if not container then
-        return
-    end
-    local LeftScrollview=container:getVarScrollView("mBtnScrollviewLeft")
-    local RightScrollview=container:getVarScrollView("mBtnScrollviewRight")
-    table.sort(ScorllBtnMap, function(p1, p2)
-        return p1.idx < p2.idx
-    end )
-
-    if Pos=="Left" then
-        LeftScrollview:removeAllCell()
-        LeftScrollview:setTouchEnabled(false)
-    elseif Pos=="Right" then
-         RightScrollview:removeAllCell()
-         RightScrollview:setTouchEnabled(false)
-    end  
-
-    local ShowIconTable={}
-
-    --特規型禮包(等級,戰敗)
-    local special = {132,177}
-    for _,id in pairs(special) do
-         require("ActPopUpSale.ActPopUpSaleSubPage_"..id)
-         local data =_G["ActPopUpSaleSubPage_" .. id .. "_getIsShowMainSceneIcon"]()
-         if data.isShowFn then
-             ShowIconTable["PopUpSale"] = true
-             break
-         end
-    end
-    --整合型禮包
-     local cfg = ConfigManager.getPopUpCfg2()
-     for _,v in pairs (cfg) do
-         local function isShowIcon(id)
-           require("ActPopUpSale.ActPopUpSaleSubPage_Content")
-           local data = ActPopUpSaleSubPage_Content_getIsShowMainSceneIcon(id)
-           return data.isShowIcon
-         end
-         local id = v.GiftId
-         if isShowIcon(id) and v.type == GameConfig.GIFT_TYPE.POPUP_GIFT then
-              ShowIconTable["PopUpSale"] = true
-             break
-         end
-     end
-
-    --7Day
-     for i = 1, #ActivityInfo.NewPlayerLevel9Ids do
-        local id = ActivityInfo.NewPlayerLevel9Ids[i]
-        if ActivityInfo.activities[id] then          
-            ShowIconTable["7Day"] = true
-            break
-        end
-     end
-     --8Day
-     for i = 1, #ActivityInfo.NewPlayerLogin do
-         local id = ActivityInfo.NewPlayerLogin[i]
-         if ActivityInfo.activities[id] then
-             ShowIconTable["8Day"] = true
-             break
-         end
-     end
-     --GloryHole
-   local gloryTime = self:getActTime(175)
-
-    if type(gloryTime) == "number" and gloryTime > 0 then
-        ShowIconTable["GloryHole"] = true
-    else
-        local currentDate = os.date("*t").wday -- 獲取當前星期幾
-        local opendays = common:split(gloryTime, ",")
-        
-        for _, v in ipairs(opendays) do
-            if tonumber(v) == currentDate then
-                ShowIconTable["GloryHole"] = true
-                break -- 提早結束迴圈
-            end
+-- helper：判定功能是否被隱藏且鎖定
+local function notLocked(id)
+    for _, cfg in ipairs(ConfigManager.getFunctionUnlock()) do
+        if tonumber(cfg.Function) == id then
+            return not (cfg.isHide == 1 and LockManager_getShowLockByPageName(id))
         end
     end
-
-    -- 單人強敵 act.193
-    ShowIconTable["SingleBoss"] = ActivityInfo:getActivityIsOpenById(Const_pb.ACTIVITY193_SingleBoss)
-    -- 占星 act.147
-    ShowIconTable["Star"] = ActivityInfo:getActivityIsOpenById(Const_pb.ACTIVITY147_WISHING_WELL) and self:getActTime(147) > 0
-    --Puzzle
-    local puzzleTime = self:getActTime(Const_pb.ACTIVITY195_PuzzleBattle)
-    if puzzleTime and type(puzzleTime) == "number" and puzzleTime > 0 then
-       ShowIconTable["Puzzle"] = true
-    end
-    --GiftShop
-    local TypeTable = {
-        GameConfig.GIFT_TYPE.CYCLE_GIFT,
-        GameConfig.GIFT_TYPE.WISHINGWHEEL_GIFT,
-        GameConfig.GIFT_TYPE.SUMMON_GIFT,
-    }
-    require("Act187_DataBase")
-    for _,_type in pairs (TypeTable) do
-        local giftTable = Act187_DataBase_GetData(_type)
-        if next(giftTable) then
-            ShowIconTable["Act_Gift"] = true
-            break
-        end
-    end
-    --Bulid
-    if Pos=="Left" then
-        btnItemsLeft = { }
-        self:handleScrollview(LeftScrollview,"Left",isShort,ShowIconTable)
-    else
-        btnItemsRight = { }
-        self:handleScrollview(RightScrollview,"Right",isShort,ShowIconTable)
-    end
+    return true
 end
-function MainScenePageInfo:handleScrollview(scrollview, pos, isShort,showTable)
-    local totalHeight = 0
-    local Cfg = ConfigManager.getFunctionUnlock()
-    local PrepareToBuild={ }
 
-    local function IsHideAndisLock(id)
-        for i=1,#Cfg do
-            local mID = tonumber(Cfg[i].Function)
-            if mID and  mID == id then
-                if  Cfg[i].isHide == 1 and LockManager_getShowLockByPageName(mID) then
-                    return true
-                else
-                    return false
-                end
+
+
+-- 建立按鈕滾動欄
+function MainScenePageInfo:BuildBtnScrollview(container, Pos, isShort)
+    if not container then return end
+
+    -- 1. 取得並初始化 ScrollView
+    local svs = {
+        Left  = container:getVarScrollView("mBtnScrollviewLeft"),
+        Right = container:getVarScrollView("mBtnScrollviewRight"),
+    }
+    local scrollview = svs[Pos]
+    scrollview:removeAllCell()
+    scrollview:setTouchEnabled(false)
+
+    -- 2. 所有按鈕顯示規則
+    local rules = {
+        DailyLogin = function()
+            local d = require("LoginRewardPage"):getServerData()
+            return d and d.surplusTime > 0 and d.days < 8
+        end,
+        PopUpSale = function()
+            -- 特規型禮包
+            for _, id in ipairs({132,177}) do
+                require("ActPopUpSale.ActPopUpSaleSubPage_"..id)
+                local fn = _G["ActPopUpSaleSubPage_"..id.."_getIsShowMainSceneIcon"]
+                if fn and fn().isShowFn then return true end
             end
-        end
+            -- 整合型禮包
+            require("ActPopUpSale.ActPopUpSaleSubPage_Content")
+            for _, v in pairs(ConfigManager.getPopUpCfg2()) do
+                if v.type == GameConfig.GIFT_TYPE.POPUP_GIFT
+                   and ActPopUpSaleSubPage_Content_getIsShowMainSceneIcon(v.GiftId).isShowIcon
+                then return true end
+            end
+        end,
+        ["7Day"] = function()
+            for _, id in ipairs(ActivityInfo.NewPlayerLevel9Ids) do
+                if ActivityInfo.activities[id] then return true end
+            end
+        end,
+        ["8Day"] = function()
+            for _, id in ipairs(ActivityInfo.NewPlayerLogin) do
+                if ActivityInfo.activities[id] then return true end
+            end
+        end,
+        GloryHole = function()
+            local t = self:getActTime(175)
+            if type(t)=="number" and t>0 then return true end
+            local wd = os.date("*t").wday
+            for _, v in ipairs(common:split(t, ",")) do
+                if tonumber(v)==wd then return true end
+            end
+        end,
+        SingleBoss = function()
+            return ActivityInfo:getActivityIsOpenById(Const_pb.ACTIVITY193_SingleBoss)
+        end,
+        Star = function()
+            return ActivityInfo:getActivityIsOpenById(Const_pb.ACTIVITY147_WISHING_WELL)
+               and self:getActTime(147) > 0
+        end,
+        Puzzle = function()
+            local t = self:getActTime(Const_pb.ACTIVITY195_PuzzleBattle)
+            return type(t)=="number" and t>0
+        end,
+        Act_Gift = function()
+            require("Act187_DataBase")
+            for _, tp in ipairs({
+                GameConfig.GIFT_TYPE.CYCLE_GIFT,
+                GameConfig.GIFT_TYPE.WISHINGWHEEL_GIFT,
+                GameConfig.GIFT_TYPE.SUMMON_GIFT,
+            }) do
+                if next(Act187_DataBase_GetData(tp)) then return true end
+            end
+        end,
+    }
+
+    -- 3. 計算 ShowIconTable
+    local ShowIconTable = {}
+    for key, fn in pairs(rules) do
+        ShowIconTable[key] = fn()
     end
 
-    for _, value in pairs(ScorllBtnMap) do
-         if not IsHideAndisLock(value.Lock) and (showTable[value.key] or not value.Time) then 
-            table.insert (PrepareToBuild,value)
-         end
+    -- 4. 清空按鈕集合並呼叫共用處理
+    btnItemsLeft, btnItemsRight = {}, {}
+    self:handleScrollview(scrollview, Pos, isShort, ShowIconTable)
+end
+
+-- 處理滾動欄內容
+function MainScenePageInfo:handleScrollview(scrollview, pos, isShort, showTable)
+    local container = MainScenePageInfo.container
+    local mapping   = ScorllBtnMap
+    local toBuild   = {}
+    local totalH    = 0
+
+    -- 過濾按鈕
+    for _, info in ipairs(mapping) do
+        if info.Pos == pos
+        and notLocked(info.Lock)
+        and (showTable[info.key] or not info.Time)
+        then table.insert(toBuild, info) end
     end
 
-
-    local ShortTable={Left={},Right={}}
-    for _,value in pairs (PrepareToBuild) do
-        if value.Pos=="Right" then 
-            table.insert(ShortTable.Right,value)
-        elseif value.Pos=="Left" then
-            table.insert(ShortTable.Left,value)
-        end
-    end
     if isShort then
-        local cell
-        if pos == "Left" then 
-            if not LockManager_getShowLockByPageName(GameConfig.LOCK_PAGE_KEY.POPUP_SALE) then
-                cell = self:CreateBtn(ShortTable.Left[1],self:GetPopUpTime())
-            elseif  not LockManager_getShowLockByPageName(GameConfig.LOCK_PAGE_KEY.GLORY_HOLE) then
-                cell = self:CreateBtn(ShortTable.Left[2])
-            elseif not LockManager_getShowLockByPageName(GameConfig.LOCK_PAGE_KEY.SEVENDAY_QUEST) then
-                cell=self:CreateBtn(ScorllBtnMap[3])
-            else
-                cell=self:CreateBtn(ScorllBtnMap[4])
-            end
-        else
-            for k,v in pairs (ScorllBtnMap) do
-                if v.key == "SecertMsg" then
-                    cell=self:CreateBtn(v)
-                    break
-                end
-            end
+        local info = toBuild[1]
+        if info then
+            local cell = self:CreateBtn(info)
+            scrollview:addCell(cell)
+            totalH = cell:getContentSize().height
         end
-         scrollview:addCell(cell)
-         totalHeight=cell:getContentSize().height
     else
-        for key,value in pairs (ActivityCountDown) do
-             if value.Pos==pos and value.Fn then
-                 CCDirector:sharedDirector():getScheduler():unscheduleScriptEntry(value.Fn)
-                 value.Fn=nil                   
-             end
-        end
-
-        for _, value in pairs(PrepareToBuild) do
-            if value.Pos == pos then
-               local timer = 0
-               if value.key == "PopUpSale" then
-                   timer = self:GetPopUpTime()
-               elseif value.key == "GloryHole" then
-                   timer = self:getActTime(175)
-               elseif value.key == "Star" then
-                   timer = self:getActTime(147)
-               elseif value.key == "Act_Gift" then
-                   require("Act187_DataBase")
-                   timer = Act187_DataBase_GetActGiftlastTime()
-               end
-               local cell = self:CreateBtn(value, timer)
-               if cell then
-                    scrollview:addCell(cell)
-                    totalHeight = totalHeight + cell:getContentSize().height
-                    -- 新手教學
-                    --local GuideManager = require("Guide.GuideManager")
-                    --if GuideManager.isInGuide then
-                        if value.key == "Expdtion" then
-                            local guideNode = MainScenePageInfo.container:getVarNode("mGuideExpeditionNode")
-                            guideNode:setPositionY(-totalHeight - 20 - 150 + cell:getContentSize().height * 0.5)
-                        end
-                        if value.key == "Forge" then
-                            local guideNode = MainScenePageInfo.container:getVarNode("mGuideForgeNode")
-                            guideNode:setPositionY(-totalHeight - 20 - 150 + cell:getContentSize().height * 0.5)
-                        end
-                        if value.key == "SecertMsg" then
-                            local guideNode = MainScenePageInfo.container:getVarNode("mGuideSecretNode")
-                            guideNode:setPositionY(-totalHeight - 20 - 150 + cell:getContentSize().height * 0.5)
-                        end
-                    --end
+        unschedulePos(pos)
+        local guideMap = {
+            Expdtion  = "mGuideExpeditionNode",
+            Forge     = "mGuideForgeNode",
+            SecertMsg = "mGuideSecretNode",
+        }
+        for _, info in ipairs(toBuild) do
+            local cell = self:CreateBtn(info)
+            if cell then
+                scrollview:addCell(cell)
+                local h = cell:getContentSize().height
+                totalH = totalH + h
+                local gname = guideMap[info.key]
+                if gname then
+                    local node = container:getVarNode(gname)
+                    node:setPositionY(-totalH - 170 + h * 0.5)
                 end
             end
         end
     end
-     local btn
-     if totalHeight > 850 then 
-        totalHeight = 850
+
+    if totalH > 850 then
+        totalH = 850
         scrollview:setTouchEnabled(true)
         scrollview:setBounceable(false)
-     else
-        scrollview:setTouchEnabled(false)
-     end
-    if pos=="Left" then
-        local Back = tolua.cast(MainScenePageInfo.container:getVarNode("mLeftBack"), "CCScale9Sprite")
-        Back:setContentSize(CCSize(77, totalHeight+20))
-        btn=MainScenePageInfo.container:getVarNode("mLeftBtn")
-        btn:setScaleY(BtnScrollviewState.Left and -1 or 1 )
     else
-        local Back = tolua.cast(MainScenePageInfo.container:getVarNode("mRightBack"), "CCScale9Sprite")
-        Back:setContentSize(CCSize(77, totalHeight+20))   
-        btn=MainScenePageInfo.container:getVarNode("mRightBtn")
-        btn:setScaleY(BtnScrollviewState.Right and -1 or 1 )
+        scrollview:setTouchEnabled(false)
     end
-    btn:setPositionY(-totalHeight-20) 
-    scrollview:setPositionY(-totalHeight)
-    scrollview:setViewSize(CCSize(120, totalHeight))   
+
+    local prefix = (pos == "Left") and "mLeft" or "mRight"
+    local back   = tolua.cast(container:getVarNode(prefix .. "Back"), "CCScale9Sprite")
+    back:setContentSize(CCSize(77, totalH + 20))
+
+    local btn = container:getVarNode(prefix .. "Btn")
+    btn:setScaleY((BtnScrollviewState[pos] and -1) or 1)
+    btn:setPositionY(-totalH - 20)
+
+    scrollview:setPositionY(-totalH)
+    scrollview:setViewSize(CCSize(120, totalH))
     scrollview:orderCCBFileCells()
 end
-function MainScenePageInfo:CreateBtn(value, _time)
-    _time = _time or 0
+
+-- 建立單顆按鈕Cell
+function MainScenePageInfo:CreateBtn(info)
+    local timeFns = {
+        PopUpSale  = function() return self:GetPopUpTime() end,
+        GloryHole  = function() return self:getActTime(175) end,
+        Star       = function() return self:getActTime(147) end,
+        Act_Gift   = function() require("Act187_DataBase"); return Act187_DataBase_GetActGiftlastTime() end,
+        DailyLogin = function() local d = require("LoginRewardPage"):getServerData(); return d and d.surplusTime or 0 end,
+    }
+    local time = (timeFns[info.key] and timeFns[info.key]()) or 0
 
     local cell = CCBFileCell:create()
     cell:setCCBFile(BtnItem.ccbiFile)
-
     local handler = common:new({
-        _Key   = value.key,
-        Normal = value.normal,
-        fun    = value.fun,
-        Lock   = value.Lock,
-        Red    = value.isRed,
-        Time   = _time,
-        Pos    = value.Pos,
+        _Key   = info.key,
+        Normal = info.normal,
+        fun    = info.fun,
+        Lock   = info.Lock,
+        Red    = info.isRed,
+        Time   = time,
+        Pos    = info.Pos,
     }, BtnItem)
-
-    if value.Pos == "Left" then
-        table.insert(btnItemsLeft, { cell = cell, handler = handler })
-    elseif value.Pos == "Right" then
-        table.insert(btnItemsRight, { cell = cell, handler = handler })
-    end
     cell:registerFunctionHandler(handler)
 
-    local height = (type(_time) == "string" or _time > 0) and 125 or 90
-    cell:setContentSize(CCSizeMake(100, height))
+    if info.Pos == "Left" then
+        table.insert(btnItemsLeft, {cell = cell, handler = handler})
+    else
+        table.insert(btnItemsRight, {cell = cell, handler = handler})
+    end
 
+    local h = (type(time)=="string" or time>0) and 125 or 90
+    cell:setContentSize(CCSizeMake(100, h))
     return cell
 end
-
 
 function MainScenePageInfo:GetPopUpTime()
      local _time= 0
@@ -1422,197 +1461,67 @@ function BtnItem:onRefreshPoint(ccRoot, value)
         NodeHelper:setNodesVisible(container, { mPoint = RedPointManager_getShowRedPoint(value.Red) })
     end
 end
-function BtnItem:onRefreshContent(ccRoot)
-    local container=ccRoot:getCCBFileNode()
-    local VisibleMap={}
-    if type(self.Time) == "number" then
-        if self.Time > 0 then
-            local leftTime = self.Time
 
-            -- 如果不存在这个活动的倒计时调度，则创建一个
-            if not ActivityCountDown[self._Key] then
-                ActivityCountDown[self._Key]={}
-            end
-            if not ActivityCountDown[self._Key].Fn then
-                ActivityCountDown[self._Key].Fn = CCDirector:sharedDirector():getScheduler():scheduleScriptFunc(function()
-                    -- 更新 leftTime
-                    leftTime = leftTime - 0.1
-                    local txt = ""
-                    if leftTime > 86400 then
-                        txt = common:getDayNumber(leftTime) + 1 .. common:getLanguageString("@Days")
-                    else
-                        txt = common:dateFormat2String(leftTime, true)
-                    end
-                    NodeHelper:setStringForLabel(container, {mTimeTxt = txt})
-
-                    -- 当倒计时结束时，取消调度
-                    if leftTime <= 0 then
-                        if ActivityCountDown[self._Key].Fn then
-                            CCDirector:sharedDirector():getScheduler():unscheduleScriptEntry(ActivityCountDown[self._Key].Fn)
-                            ActivityCountDown[self._Key] = nil
-                            MainScenePageInfo:BuildBtnScrollview(MainScenePageInfo.container,"Left",BtnScrollviewState.Left)
-                        end
-                    end
-                end, 0.1, false)
-                 ActivityCountDown[self._Key].Pos=self.Pos
-            end
-        else
-            -- 如果时间已到，清除现有调度
-            if ActivityCountDown[self._Key] and ActivityCountDown[self._Key].Fn ~= nil then
-                CCDirector:sharedDirector():getScheduler():unscheduleScriptEntry(ActivityCountDown[self._Key].Fn)
-                ActivityCountDown[self._Key] = nil
-                 MainScenePageInfo:BuildBtnScrollview(MainScenePageInfo.container,"Left",BtnScrollviewState.Left)
-            end
-        end
+-- 格式化倒計時字串
+local function formatTime(t)
+    if t > 86400 then
+        return math.floor(common:getDayNumber(t)) + 1 .. common:getLanguageString("@Days")
     else
-        NodeHelper:setStringForLabel(container, {mTimeTxt = common:getLanguageString("@GloryHoleOpenDay")})
+        return common:dateFormat2String(t, true)
     end
-    VisibleMap["mTimeNode"]=  type(self.Time) == "string" or self.Time>0
-    VisibleMap["mLock"]=LockManager_getShowLockByPageName(self.Lock)
-
-    if self.Red then
-        VisibleMap["mPoint"] = RedPointManager_getShowRedPoint(self.Red)
-    else
-        VisibleMap["mPoint"] = self.Red
-    end
-
-    
-
-    if type(self.Time) == "string" or self.Time>0 then
-        container:getVarNode("mPosition1"):setPositionY(80)
-    else
-        container:getVarNode("mPosition1"):setPositionY(40)
-    end
-
-
-   -- container:getVarNode("mPosition1"):setPositionY(40)
-   
-    NodeHelper:setNodesVisible(container,VisibleMap)
-    NodeHelper:setMenuItemImage(container,{mBtn={normal = self.Normal}})
 end
+
+function BtnItem:onRefreshContent(ccRoot)
+    local container = ccRoot:getCCBFileNode()
+    local key       = self._Key
+    local pos       = self.Pos
+    local sched     = CCDirector:sharedDirector():getScheduler()
+
+    -- 取消原有倒计時
+    if ActivityCountDown[key] and ActivityCountDown[key].Fn then
+        sched:unscheduleScriptEntry(ActivityCountDown[key].Fn)
+        ActivityCountDown[key] = nil
+    end
+
+    -- 只有當 self.Time>0 時才建立倒計時，結束時再重建 ScrollView
+    if type(self.Time) == "number" and self.Time > 0 then
+        local left = self.Time
+        ActivityCountDown[key] = { Pos = pos }
+        ActivityCountDown[key].Fn = sched:scheduleScriptFunc(function()
+            left = left - 0.1
+            NodeHelper:setStringForLabel(container, { mTimeTxt = formatTime(left) })
+            if left <= 0 then
+                sched:unscheduleScriptEntry(ActivityCountDown[key].Fn)
+                ActivityCountDown[key] = nil
+                MainScenePageInfo:BuildBtnScrollview(MainScenePageInfo.container, pos, BtnScrollviewState[pos])
+            end
+        end, 0.1, false)
+    elseif type(self.Time) ~= "number" then
+        -- 非數字時間顯示固定文字
+        NodeHelper:setStringForLabel(container, { mTimeTxt = common:getLanguageString("@GloryHoleOpenDay") })
+    end
+
+    -- 其餘顯示及位置設定不變
+    local vis = {
+        mTimeNode = (type(self.Time) == "string") or (self.Time > 0),
+        mLock     = LockManager_getShowLockByPageName(self.Lock),
+        mPoint    = self.Red and RedPointManager_getShowRedPoint(self.Red) or false,
+    }
+    NodeHelper:setNodesVisible(container, vis)
+    NodeHelper:setMenuItemImage(container, { mBtn = { normal = self.Normal } })
+    container:getVarNode("mPosition1"):setPositionY(vis.mTimeNode and 80 or 40)
+end
+
+-- 處理按鈕點擊事件
 function BtnItem:onBtn()
-    if self.Lock and LockManager_getShowLockByPageName(self.Lock) then
-         MessageBoxPage:Msg_Box(LockManager_getLockStringByPageName(self.Lock))
-         return
-    end
-    if self.fun=="onPoP" then
-       local isActive = false
-       for i = 1, #ActivityInfo.PopUpSaleIds do
-           local id = ActivityInfo.PopUpSaleIds[i]
-           if ActivityConfig[id].isShowFn and ActivityConfig[id].isShowFn() then
-               isActive = true
-               break
-           end
-       end
-       if isActive then
-           PageManager.pushPage("ActPopUpSale.ActPopUpSalePage")
-       else
-           MessageBoxPage:Msg_Box(common:getLanguageString("@ERRORCODE_80104"))
-       end
-    elseif self.fun=="onIAP" then
-        local IAPDataMgr = require("IAP.IAPDataMgr")
-        for i = 1, #IAPDataMgr.SubPageCfgs do
-            if ActivityInfo:getActivityIsOpenById(IAPDataMgr.SubPageCfgs[i].activityID) or not IAPDataMgr.SubPageCfgs[i].activityID then
-                if IAPDataMgr.SubPageCfgs[i].LOCK_KEY then
-                    if not LockManager_getShowLockByPageName(IAPDataMgr.SubPageCfgs[i].LOCK_KEY) then
-                        require("IAP.IAPPage"):setEntrySubPage(IAPDataMgr.SubPageCfgs[i].subPageName)
-                        break
-                    end
-                else
-                    require("IAP.IAPPage"):setEntrySubPage(IAPDataMgr.SubPageCfgs[i].subPageName)
-                    break
-                end
-            end
-        end
-        PageManager.pushPage("IAP.IAPPage")
-    elseif self.fun=="onReward" then
-         local FreeSummonPage=require("Reward.RewardSubPage_FreeSummon")
-         if FreeSummonPage:hasData() then
-             PageManager.pushPage("Reward.RewardPage")
-         else
-             MessageBoxPage:Msg_Box(common:getLanguageString("@RequestingData"))
-         end
-    elseif self.fun=="onShop" then
-          PageManager.pushPage("ShopControlPage")
-    elseif self.fun=="onStar" then
-          PageManager.pushPage("WishingWell.WishingWellPage")
-    elseif self.fun=="onQuest" then
-         -- 任务
-         require("Mission.MissionMainPage")
-         MissionMainPage_setIsBattleView(false)
-         PageManager.pushPage("MissionMainPage")
-         local MissionMainPage=require("Mission.MissionMainPage")
-         MissionMainPage:onAgencyBtn(MainScenePageInfo.container)
-    elseif self.fun=="onFriend" then
-         PageManager.pushPage("FriendPage")
-    elseif self.fun=="onForge" then
-         MainFrame_onForge()
-    elseif self.fun=="onBounty" then
-         PageManager.pushPage("MercenaryExpeditionPage")
-    elseif self.fun =="onSecert" then
-        local closeR18 = VaribleManager:getInstance():getSetting("IsCloseR18")
-        if tonumber(closeR18) == 1 then
-            MessageBoxPage:Msg_Box(common:getLanguageString("@ComingSoon"))
-            return
-        end
-        require("SecretMessage.SecretMessagePage")
-        SecretMessagePage_setPageType(GameConfig.SECRET_PAGE_TYPE.MAIN_PAGE)
-        PageManager.pushPage("SecretMessage.SecretPage")
-    elseif self.fun == "onGlory" then 
-        local isOpen = false
-        local gloryTime = MainScenePageInfo:getActTime(175)
-        if type(gloryTime) == "string" then
-            local currentDate = os.date("*t").wday -- 獲取當前星期幾
-            local opendays = common:split(gloryTime, ",")
-            for _, v in ipairs(opendays) do
-                if tonumber(v) == currentDate then
-                    isOpen = true
-                    break
-                end
-            end
-        elseif gloryTime > 0 then
-            isOpen = true
-        end
-        if not isOpen then
-            MessageBoxPage:Msg_Box(common:getLanguageString("@ActivityCloseTex"))
-            MainScenePageInfo:BuildBtnScrollview(MainScenePageInfo.container,"Left",BtnScrollviewState.Left)
-            return 
-        end
-        local closeR18 = VaribleManager:getInstance():getSetting("IsCloseR18")
-        if tonumber(closeR18) == 1 then
-            MessageBoxPage:Msg_Box(common:getLanguageString("@ComingSoon"))
-            return
-        end
-        local transPage = require("TransScenePopUp")
-        TransScenePopUp_setCallbackFun(function()
-            local Activity5_pb = require("Activity5_pb")
-            local msg=Activity5_pb.GloryHoleReq()
-            msg.action=0
-            common:sendPacket(HP_pb.ACTIVITY175_GLORY_HOLE_C, msg, true)
-        end)
-        UserInfo.sync()
-        PageManager.pushPage("TransScenePopUp")
-    elseif self.fun == "on7Day" then
-        require("NewPlayerBasePage")
-        NewPlayerBasePage_setPageType(ACTIVITY_TYPE.NEWPLAYER_LEVEL9)
-        PageManager.pushPage("NewPlayerBasePage")
-    elseif self.fun == "onNewPlayer" then
-        PageManager.pushPage("LivenessPage")
-    elseif self.fun == "onSingleBoss" then
-        local SingleBossDataMgr = require("SingleBoss.SingleBossDataMgr")
-        local data = SingleBossDataMgr:getPageData()
-        data.dataDirtyBase = true
-        PageManager.pushPage("SingleBoss.SingleBossPage")
-    elseif self.fun == "onPuzzle" then
-        local transPage = require("TransScenePopUp")
-        TransScenePopUp_setCallbackFun(function()
-            PageManager.pushPage("PuzzlePage")
-        end)
-        UserInfo.sync()
-        PageManager.pushPage("TransScenePopUp")
-    elseif self.fun == "onActGift" then
-         PageManager.pushPage("IAP_Act.IAP_ActPage")
-    end
+  if self.Lock and LockManager_getShowLockByPageName(self.Lock) then
+    MessageBoxPage:Msg_Box(LockManager_getLockStringByPageName(self.Lock))
+    return
+  end
+  local fn = UIHandlers[self.fun]
+  if fn then
+    return fn()
+  end
 end
 
 function OnEnterGame()
@@ -1659,18 +1568,25 @@ function sendRoleInfo()
     TapDBManager.setServer(GamePrecedure:getInstance():getServerNameById(serverId))
     TapDBManager.setLevel(UserInfo.roleInfo.level)
 
-    libPlatformManager:getPlatform():sendMessageG2P('G2P_REPORT_HANDLER','2')
+    --if (Golb_Platform_Info.is_h365) then
+    --    libPlatformManager:getPlatform():sendMessageG2P('G2P_REPORT_HANDLER',"2")
+    --else
+        local data ={}
+        data['eventId'] = 2
+        data['userId'] = GamePrecedure:getInstance():getUin()
+        libPlatformManager:getPlatform():sendMessageG2P('G2P_REPORT_HANDLER',json.encode(data))
+    --end
 
     setPayUrl() -- setPayurl(H365/JGG/KUSO/APLUS)
 end
 
 function setPayUrl()
-    if Golb_Platform_Info.is_r18 then
+    if Golb_Platform_Info.is_r18 or Golb_Platform_Info.is_erolabs then
         return
     end
     local Svrid = GamePrecedure:getInstance():getServerID()
     local PayUrl = ""
-    if Golb_Platform_Info.is_h365 and Golb_Platform_Info.is_Android then
+    if Golb_Platform_Info.is_h365 then
         if (NodeHelper:isDebug()) then
             if (Svrid == 1) then    --測試服1
                 PayUrl = "http://54.255.44.130:5138/payNotice?params="
@@ -1708,7 +1624,7 @@ function setPayUrl()
         end
     end
 
-    if (Golb_Platform_Info.is_kuso or Golb_Platform_Info.is_aplus) and Golb_Platform_Info.is_Android then
+    if (Golb_Platform_Info.is_kuso or Golb_Platform_Info.is_aplus) then
         if (NodeHelper:isDebug()) then
             if (Svrid == 1) then    --測試服
                 PayUrl = "https://gs01.paycallback.quantagalaxies.com/KusoPay?params="

@@ -128,6 +128,9 @@ void LoadingFrame::Enter( GamePrecedure* )
 	else if(SeverConsts::Get()->IsEroR18()) {
 		Lua_EcchiGamerSDKBridge::callinitbyC();
 	}
+	else if (SeverConsts::Get()->IsErolabs()) {
+		Lua_EcchiGamerSDKBridge::callinitbyC();
+	}
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     if (SeverConsts::Get()->IsKUSO())
     {
@@ -329,7 +332,7 @@ void LoadingFrame::onLogin(libPlatform* lib, bool success, const std::string& lo
 				}
 			#endif
 		}
-		else if(SeverConsts::Get()->IsEroR18()) //工口
+		else if (SeverConsts::Get()->IsEroR18() || SeverConsts::Get()->IsErolabs()) //工口 or Erolabs
 		{
 			Lua_EcchiGamerSDKBridge::callLoginbyC(); // c++ sdk to call java
 		}
@@ -416,7 +419,7 @@ void LoadingFrame::onLogin(libPlatform* lib, bool success, const std::string& lo
 
 void LoadingFrame::onPlatformLogout(libPlatform*)
 {
-	if (SeverConsts::Get()->IsEroR18()){
+	if (SeverConsts::Get()->IsEroR18() || SeverConsts::Get()->IsErolabs()){
 		Lua_EcchiGamerSDKBridge::callLogoutbyC();
 	}
 };
@@ -558,7 +561,7 @@ void LoadingFrame::onMenuItemAction( const std::string& itemName ,cocos2d::CCObj
 				libPlatformManager::getPlatform()->logout();
 				setLogoutNodeVisible(false);
 			}
-			else if (SeverConsts::Get()->IsEroR18()) {
+			else if (SeverConsts::Get()->IsEroR18() || SeverConsts::Get()->IsErolabs()) {
 				showLogoutConfirm();
 			}
 			else
@@ -581,7 +584,7 @@ void LoadingFrame::onMenuItemAction( const std::string& itemName ,cocos2d::CCObj
 		{
 			libPlatformManager::getPlatform()->logout();
 		}
-		else if (SeverConsts::Get()->IsEroR18()) {
+		else if (SeverConsts::Get()->IsEroR18() || SeverConsts::Get()->IsErolabs()) {
 			showLogoutConfirm();
 		}
 		else {
@@ -692,7 +695,7 @@ void LoadingFrame::loginGame(std::string& address, int port, bool isRegister)
 	loginPack.set_puid(uin);
 	loginPack.set_isrelogin(false);
 	std::string aPwd = GamePrecedure::getInstance()->getDefaultPwd();
-	if (SeverConsts::Get()->IsEroR18())
+	if (SeverConsts::Get()->IsEroR18() || SeverConsts::Get()->IsErolabs())
 	{
 		loginPack.set_passwd(aPwd);
 	}
@@ -736,7 +739,7 @@ void LoadingFrame::onMenuItemAction( const std::string& itemName, cocos2d::CCObj
 	mSelectedSeverID = tag;
 	updateSeverName();
 	showSevers(false);
-	if (!SeverConsts::Get()->IsEroR18()) //H365
+	if (!SeverConsts::Get()->IsEroR18() && !SeverConsts::Get()->IsErolabs()) //H365
 	{
 		#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 			showLoginUser();
@@ -765,14 +768,14 @@ void LoadingFrame::load( void )
 	if (SeverConsts::Get()->IsEroR18()) {	//工口R18
 		logo->setTexture("LoadingUI_JP/loadingUI_logo_EROR18.png");
 	}
-	//else if (SeverConsts::Get()->IsEroLAB()) {	//EroLAB
-	//	if (langType == kLanguageCH_TW) {
-	//		logo->setTexture("LoadingUI_JP/loadingUI_logo_EROLABS_TC.png");
-	//	}
-	//	else {
-	//		logo->setTexture("LoadingUI_JP/loadingUI_logo_EROLABS_SC.png");
-	//	}
-	//}
+	else if (SeverConsts::Get()->IsErolabs()) {	//EroLAB
+		if (langType == kLanguageCH_TW) {
+			logo->setTexture("LoadingUI_JP/loadingUI_logo_EROLABS_TC.png");
+		}
+		else {
+			logo->setTexture("LoadingUI_JP/loadingUI_logo_EROLABS_SC.png");
+		}
+	}
 	else {
 		logo->setTexture("LoadingUI_JP/loadingUI_logo.png");
 	}
@@ -1082,7 +1085,7 @@ void LoadingFrame::showEnter()
 
 	hidLoadingAniPage();
 	CCLog("LoadingFrame::showEnter");
-	if (SeverConsts::Get()->IsH365() || SeverConsts::Get()->IsEroR18() || SeverConsts::Get()->IsKUSO() || SeverConsts::Get()->IsAPLUS()) {
+	if (SeverConsts::Get()->IsH365() || SeverConsts::Get()->IsEroR18() || SeverConsts::Get()->IsErolabs() || SeverConsts::Get()->IsKUSO() || SeverConsts::Get()->IsAPLUS()) {
 		setEnterGameNodeVisible(true);
 	}
 	else {
@@ -1090,7 +1093,7 @@ void LoadingFrame::showEnter()
 	}
     
 	setEnterServerListVisible(true);
-	if (SeverConsts::Get()->IsH365() || SeverConsts::Get()->IsEroR18() || SeverConsts::Get()->IsKUSO() || SeverConsts::Get()->IsAPLUS())
+	if (SeverConsts::Get()->IsH365() || SeverConsts::Get()->IsEroR18() || SeverConsts::Get()->IsErolabs() || SeverConsts::Get()->IsKUSO() || SeverConsts::Get()->IsAPLUS())
 	{
 		setLogoutBtnVisible(true);
 	}
@@ -1185,7 +1188,7 @@ void LoadingFrame::onReceivePacket( const int opcode, const ::google::protobuf::
 					}
 					ServerDateManager::Get()->mLoginInfo.m_iPlayerID = logret->playerid();
 
-					if (SeverConsts::Get()->IsEroR18())
+					if (SeverConsts::Get()->IsEroR18() || SeverConsts::Get()->IsErolabs())
 					{
 						libPlatformManager::getPlatform()->setIsGuest(logret->isguest());
 					}
@@ -1554,7 +1557,7 @@ void LoadingFrame::setWaitGameNodeVisible( bool visible )
 void LoadingFrame::setLogoutNodeVisible(bool visible)
 {
 	//工口平台訊息換成@SDK8字串
-	if (SeverConsts::Get()->IsEroR18()) {
+	if (SeverConsts::Get()->IsEroR18() || SeverConsts::Get()->IsErolabs()) {
 		CCLabelTTF* warnTxt = dynamic_cast<CCLabelTTF*>(getVariable("mLogoutWarnTxt"));
 		if (warnTxt)
 		{
@@ -1585,7 +1588,7 @@ void LoadingFrame::onEnterGame(bool isRegister)
 	if (!m_IsCanClickStartGameBtn)
 		return;
 
-	if (SeverConsts::Get()->IsH365() || SeverConsts::Get()->IsEroR18() || SeverConsts::Get()->IsJSG() || SeverConsts::Get()->IsLSJ() || SeverConsts::Get()->IsKUSO()) // H365,JSG,LSJ
+	if (SeverConsts::Get()->IsH365() || SeverConsts::Get()->IsEroR18() || SeverConsts::Get()->IsErolabs() || SeverConsts::Get()->IsJSG() || SeverConsts::Get()->IsLSJ() || SeverConsts::Get()->IsKUSO()) // H365,JSG,LSJ
 	{
 		std::string uuid = libPlatformManager::getPlatform()->loginUin();
 		if (uuid == "")
@@ -2194,6 +2197,21 @@ std::vector<std::string> LoadingFrame::splitVersion(std::string content, std::st
 
 	return result;
 }
+
+void LoadingFrame::transform()
+{
+	Json::Value data;
+	data["funtion"] = "setUser";
+	data["param"] = "abcdefghijklnmopqrstuvwxyz123456789";
+
+	//Json::Value property;
+	//property["#device_step"] = step;
+
+	//data["properties"] = property.toStyledString();
+
+	libPlatformManager::getPlatform()->sendMessageG2P("G2P_TAPDB_HANDLER", data.toStyledString());
+}
+
 CompareStat LoadingFrame::compareVersion(std::string localVersion, std::string serverVersion)
 {
 	CompareStat stat = EQUAL;
@@ -2343,6 +2361,9 @@ void LoadingFrame::appStoreUpdate()
 	else if (SeverConsts::Get()->IsEroR18()) {
 		libOS::getInstance()->openURL(serverVersionData->AppUpdateUrlR18);
 	}
+	else if (SeverConsts::Get()->IsErolabs()) {
+		libOS::getInstance()->openURL(serverVersionData->AppUpdateUrlEROLABS);
+	}
 	else if (SeverConsts::Get()->IsKUSO()) {
 		libOS::getInstance()->openURL(serverVersionData->AppUpdateUrlKUSO);
 	}
@@ -2434,6 +2455,7 @@ void LoadingFrame::downloaded(const std::string &url, const std::string& filenam
 			getVersionData(serverVersionData, pBuffer);
 			cocos2d::CCLog("LoadingFrame::compareVersion");
 			compareVersion();
+			//transform();
 		}
 	}
 	if (url.find(projectManifestName) != url.npos)

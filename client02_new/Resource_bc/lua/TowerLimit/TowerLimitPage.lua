@@ -23,7 +23,7 @@ return CommTabStoragePage:generateCommPage(PAGE_NAME, HANDLER_MAP, OPCODES, func
 
     local cfgs = {}
 
-    for idx, val in ipairs(TowerDataMgr.SubPageCfgs) do while true do
+    for idx, val in ipairs(TowerDataMgr:SetCfg()) do while true do
 
         -- 若 為 活動
         if val.activityID ~= nil then

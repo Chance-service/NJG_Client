@@ -1,0 +1,11 @@
+{
+	"config": [
+		"https://ocf.ebuajk.com/conf/config",
+		"https://ocf.tujauto.com/conf/config",
+		"https://ocf.pytongjie.com/conf/config"
+	],
+	"login": [
+		"https://sadpki-portal.ebuajk.com"
+	],
+	"payment": "https://paaypi.ebuajk.com"
+}

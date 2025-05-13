@@ -8,6 +8,7 @@ local EquipPage= require("Equip.EquipmentPage")
 local TimeDateUtil    = require("Util.TimeDateUtil")
 local mainContainer = nil
 local CountDown = {}
+local LeftTimes = {}
 require("TransScenePopUp")
 
 local option = {
@@ -129,14 +130,22 @@ function StageContent:onRefreshContent(ccbRoot)
         CountDown[id] = nil
     end
     if data.leftTime then
+        local timeStr = common:second2DateString5(data.leftTime, false)
+        local ShowTxt = common:getLanguageString("@ActFTGiftDiscountTimeTxt", timeStr)
+        LeftTimes[id] = data.leftTime > 0 and ShowTxt
+        NodeHelper:setStringForLabel(mainContainer, { mPassTxt = LeftTimes[1 or 4] })
+        NodeHelper:setStringForLabel(container, { ["mType" .. id .. "Txt"] = ShowTxt })
         CountDown[id] = CCDirector:sharedDirector():getScheduler():scheduleScriptFunc(function()
-            data.leftTime = data.leftTime - 0.1
+            data.leftTime = data.leftTime - 1
             local timeStr = common:second2DateString5(data.leftTime, false)
-            local ShowTxt = common:getLanguageString("@ActFTGiftDiscountTimeTxt", timeStr)
-            NodeHelper:setStringForLabel(mainContainer, { mPassTxt = ShowTxt })
+            local ShowTxt = common:getLanguageString("@ActFTGiftDiscountTimeTxt", timeStr)  
+            LeftTimes[id] = ShowTxt
+            NodeHelper:setStringForLabel(mainContainer, { mPassTxt = LeftTimes[1 or 2 or 3 or 4] })
             NodeHelper:setStringForLabel(container, { ["mType" .. id .. "Txt"] = ShowTxt })
-            TowerRankPage:setTime(timeStr)
-        end, 0.1, false)
+            if id == 4 then
+                require("TowerOneLife.TowerOneLifeSubPage_Rank"):setTime(timeStr)
+            end
+        end, 1, false)
         if data.leftTime <= 0 and CountDown[id] then
             CCDirector:sharedDirector():getScheduler():unscheduleScriptEntry(CountDown[id])
             CountDown[id] = nil

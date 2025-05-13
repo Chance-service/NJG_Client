@@ -94,12 +94,13 @@ Golb_Platform_Info = {
 	is_yougu_platform = true,
 	is_longXiao_platform = false,
 	is_Android = false, --android
-	is_amz = false,
+    is_Ios = false, --ios
 	is_google = false,
 	is_h365 = false, --android_h365
 	is_r18 = false, --android_hutuo
 	is_jgg = false, --android_jgg
     is_kuso = false, --android_kuso
+    is_erolabs = false, -- android_erolabs
     is_aplus = false, --android_aplus
 }
 local platformName = GamePrecedure:getInstance():getPlatformName()
@@ -133,50 +134,36 @@ elseif string.find(platformName, "ryuk") then
 	Golb_Platform_Info.is_gNetop_platform = true
 end
 
-if string.find(platformName, "android_r18") then  --工口
+if string.find(platformName, "android_") then
     Golb_Platform_Info.is_Android = true
-    Golb_Platform_Info.is_google = true
+end
+
+if string.find(platformName, "ios_") then
+    Golb_Platform_Info.is_Ios = true
+end
+
+if string.find(platformName, "_r18") then  --工口
     Golb_Platform_Info.is_r18 = true
 end
 
-if string.find(platformName, "android_h365") then  --h365
-    Golb_Platform_Info.is_Android = true
-    Golb_Platform_Info.is_google = true
+if string.find(platformName, "_h365") then  --h365
     Golb_Platform_Info.is_h365 = true
 end
 
-if string.find(platformName, "android_jgg") then  --jgg
-    Golb_Platform_Info.is_Android = true
-    Golb_Platform_Info.is_google = true
+if string.find(platformName, "_jgg") then  --jgg
     Golb_Platform_Info.is_jgg = true
 end
 
-if string.find(platformName, "android_kuso") then  --kuso
-    Golb_Platform_Info.is_Android = true
-    Golb_Platform_Info.is_google = true
+if string.find(platformName, "_kuso") then  --kuso
     Golb_Platform_Info.is_kuso = true
 end
 
-if string.find(platformName, "android_aplus") then  --aplus
-    Golb_Platform_Info.is_Android = true
-    Golb_Platform_Info.is_google = true
+if string.find(platformName, "_erolabs") then  --erolabs
+    Golb_Platform_Info.is_erolabs = true
+end
+
+if string.find(platformName, "_aplus") then  --aplus
     Golb_Platform_Info.is_aplus = true
-end
-
-if string.find(platformName, "ios_r18") then  --工口
-    Golb_Platform_Info.is_r18 = true
-end
-
-if string.find(platformName, "ios_h365") then  --h365
-    Golb_Platform_Info.is_h365 = true
-end
-
-if string.find(platformName, "aws_r18") then      --亚马逊
-    Golb_Platform_Info.is_Android = true
-end
-
-if string.find(platformName, "aws_r18") then
-    Golb_Platform_Info.is_amz = true
 end
 
 Golb_Platform_Info.is_gNetop_platform = true

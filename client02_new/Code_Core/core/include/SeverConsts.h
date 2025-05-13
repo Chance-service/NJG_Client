@@ -100,7 +100,7 @@ public:
 		EP_LSJ,
 		EP_MURA,
 		EP_KUSO,
-		EP_EROLAB,
+		EP_EROLABS,
 		EP_TEMP2,
 		EP_APLUS,
 	};
@@ -235,6 +235,7 @@ public://not used for client
 	bool IsLSJ(){ return(ePlatform == SeverConsts::EP_LSJ); }
 	bool IsMURA(){ return(ePlatform == SeverConsts::EP_MURA); }
 	bool IsKUSO(){ return(ePlatform == SeverConsts::EP_KUSO); }
+	bool IsErolabs(){ return(ePlatform == SeverConsts::EP_EROLABS); }
 	bool IsAPLUS(){ return(ePlatform == SeverConsts::EP_APLUS); }
 	bool IsDebug() { return _IsDebug; }
 private:

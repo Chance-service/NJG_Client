@@ -6,9 +6,11 @@ namespace ecchigamer
 	namespace Config
     {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-        static inline const char* GAME_ID = "128";
+        static inline const char* EroR18_GAME_ID = "128";
+		static inline const char* Erolabs_GAME_ID = "116";
 #else
-		const char* GAME_ID = "128";
+		const char* EroR18_GAME_ID = "128";
+		const char* Erolabs_GAME_ID = "116";
 #endif
 	}
 };

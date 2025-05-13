@@ -9,3 +9,8 @@ id	banner	是否有跳轉	describe
 10	EventNews_banner010.png	3	69的FB
 11	EventNews_banner011.png	3	忍娘24的DC
 12	EventNews_banner012.png	3	r18的DC
+13	EventNews_banner013.png	3	r18的客服連結
+14	EventNews_banner014.png	3	EROLABS的客服聯繫
+15	EventNews_banner015.png	3	EROLABS的DC
+16	EventNews_banner016.png	3	EROLABS的討論區
+17	EventNews_banner017.png	3	EROLABS的ECoin

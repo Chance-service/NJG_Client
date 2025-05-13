@@ -1,136 +1,147 @@
-----------------------------------------------------------------------------------
---[[
+--[[ 
     name: 大廳 跑馬燈橫幅
-    desc: 
     author: youzi
-    description:
-        
+    description: 顯示大廳活動橫幅，支援多平台與活動檢查邏輯
 --]]
-----------------------------------------------------------------------------------
-
---  ######   #######  ##    ##  ######  ######## 
--- ##    ## ##     ## ###   ## ##    ##    ##    
--- ##       ##     ## ####  ## ##          ##    
--- ##       ##     ## ## ## ##  ######     ##    
--- ##       ##     ## ##  ####       ##    ##    
--- ##    ## ##     ## ##   ### ##    ##    ##    
---  ######   #######  ##    ##  ######     ##    
 
 require("Util.LockManager")
+local CommMarqueeBanner = require("CommComp.CommMarqueeBanner")
+local NodeHelper = require("NodeHelper")
+local TimeDateUtil = require("Util.TimeDateUtil")
+require("Activity.ActivityInfo")
+
 local BANNER_WIDTH = 680
 
+-- 平台識別
+local function getCurrentPlatformID()
+    if Golb_Platform_Info.is_h365 then return 1 end
+    if Golb_Platform_Info.is_r18 then return 2 end
+    if Golb_Platform_Info.is_kuso then return 6 end
+    if Golb_Platform_Info.is_erolabs then return 7 end
+    if Golb_Platform_Info.is_aplus then return 9 end
+    return 1
+end
 
+-- 檢查平台是否允許顯示
+local function isPlatformAllowed(offList, platformID)
+    for _, p in ipairs(common:split(offList or "", ",")) do
+        if tonumber(p) == platformID then return false end
+    end
+    return true
+end
+
+-- 檢查活動是否啟用與特例
+local function isActivityOpen(cfg)
+    local now = os.time()
+    local open = (cfg.startTime and now >= cfg.startTime and now <= cfg.endTime)
+              or (cfg.endTime and cfg.endTime == 0)
+
+    if cfg.activityId == 159 then
+        open = open and not require("Activity.DailyBundleData"):isGetAll()
+    elseif cfg.activityId == 179 then
+        open = open and not require("IAP.IAPSubPage_StepBundle"):isBuyAll()
+    end
+
+    return open
+end
+--跳過
+local function shouldSkipBanner(cfg, platformID)
+    if cfg.group ~= 0 then return true end
+    if not isActivityOpen(cfg) then return true end
+    if not isPlatformAllowed(cfg.offPlateform, platformID) then return true end
+    if not Activity2BannerSetting[cfg.activityId] then return true end
+    return false
+end
+
+-- 活動進入設定
 local Activity2BannerSetting = {
-    -- 146 : 召喚招募 > 一般召喚
     [Const_pb.ACTIVITY146_CHOSEN_ONE] = {
-        getEndTime = function () 
-            -- 常駐
-            return nil
-        end,
-        onEnter = function ()
+        getEndTime = function() return nil end,
+        onEnter = function()
             if LockManager_getShowLockByPageName(GameConfig.LOCK_PAGE_KEY.SUMMON) then
                 MessageBoxPage:Msg_Box(LockManager_getLockStringByPageName(GameConfig.LOCK_PAGE_KEY.SUMMON))
             else
                 require("Summon.SummonPage"):setEntrySubPage(1)
                 PageManager.pushPage("Summon.SummonPage")
             end
-        end,
+        end
     },
-
-    -- 161 : 水晶商城 > 超值補給
     [Const_pb.ACTIVITY161_SUPPORT_CALENDER] = {
-        getEndTime = function ()
-            
-        end,
-        onEnter = function ()
+        getEndTime = function() return nil end,
+        onEnter = function()
             if LockManager_getShowLockByPageName(GameConfig.LOCK_PAGE_KEY.CALENDAR) then
                 MessageBoxPage:Msg_Box(LockManager_getLockStringByPageName(GameConfig.LOCK_PAGE_KEY.CALENDAR))
             else
                 require("IAP.IAPPage"):setEntrySubPage("Calendar")
                 PageManager.pushPage("IAP.IAPPage")
             end
-        end,
+        end
     },
-
-    -- 162 : 水晶商城 > 成長
     [Const_pb.ACTIVITY163_GROWTH_CH] = {
-        onEnter = function ()
+        onEnter = function()
             if LockManager_getShowLockByPageName(GameConfig.LOCK_PAGE_KEY.GROWTH_BUNDLE) then
                 MessageBoxPage:Msg_Box(LockManager_getLockStringByPageName(GameConfig.LOCK_PAGE_KEY.GROWTH_BUNDLE))
             else
                 require("IAP.IAPPage"):setEntrySubPage("LevelFound")
                 PageManager.pushPage("IAP.IAPPage")
             end
-        end,
+        end
     },
-   
-    -- 159 : 每日返利
     [159] = {
-        onEnter = function ()
+        onEnter = function()
             if LockManager_getShowLockByPageName(GameConfig.LOCK_PAGE_KEY.DAILY_RECHARGE) then
                 MessageBoxPage:Msg_Box(LockManager_getLockStringByPageName(GameConfig.LOCK_PAGE_KEY.DAILY_RECHARGE))
             else
                 PageManager.pushPage("DailyBundlePage")
             end
-        end,
+        end
     },
-    -- 160 : 首儲
     [160] = {
-        onEnter = function ()
+        onEnter = function()
             if LockManager_getShowLockByPageName(GameConfig.LOCK_PAGE_KEY.FIRST_RECHARGE) then
                 MessageBoxPage:Msg_Box(LockManager_getLockStringByPageName(GameConfig.LOCK_PAGE_KEY.FIRST_RECHARGE))
             else
-                local MainScenePage=require("MainScenePage")
-                MainScenePage.onJumpFirstRecharge()
+                require("MainScenePage").onJumpFirstRecharge()
             end
-        end,
+        end
     },
-    -- 179 : 階段
     [179] = {
-        onEnter = function ()
+        onEnter = function()
             if LockManager_getShowLockByPageName(GameConfig.LOCK_PAGE_KEY.STEPBUNDLE) then
                 MessageBoxPage:Msg_Box(LockManager_getLockStringByPageName(GameConfig.LOCK_PAGE_KEY.STEPBUNDLE))
-            else 
-                local StepBundle =  require ("IAP.IAPSubPage_StepBundle")
+            else
+                local StepBundle = require("IAP.IAPSubPage_StepBundle")
                 if StepBundle:isBuyAll() then
                     MessageBoxPage:Msg_Box(common:getLanguageString("@ERRORCODE_10000"))
-                    return
+                else
+                    require("IAP.IAPPage"):setEntrySubPage("StepBundle")
+                    PageManager.pushPage("IAP.IAPPage")
                 end
-                require("IAP.IAPPage"):setEntrySubPage("StepBundle")
-                PageManager.pushPage("IAP.IAPPage")
             end
-        end,
+        end
     },
     -- 999 : 水晶商城 > 月卡
     [999] = {
-        onEnter = function ()
+        onEnter = function()
             if LockManager_getShowLockByPageName(GameConfig.LOCK_PAGE_KEY.MONTHLY_CARD) then
                 MessageBoxPage:Msg_Box(LockManager_getLockStringByPageName(GameConfig.LOCK_PAGE_KEY.MONTHLY_CARD))
             else
                 require("IAP.IAPPage"):setEntrySubPage("MonthCard")
                 PageManager.pushPage("IAP.IAPPage")
             end
-        end,
+        end
     },
-     [147] = {
-        onEnter = function ()
+    [147] = {
+        onEnter = function()
             if LockManager_getShowLockByPageName(GameConfig.LOCK_PAGE_KEY.WISHING_WELL) then
                 MessageBoxPage:Msg_Box(LockManager_getLockStringByPageName(GameConfig.LOCK_PAGE_KEY.WISHING_WELL))
             else
                 PageManager.pushPage("WishingWell.WishingWellPage")
             end
-        end,
+        end
     },
-     [172] = {
-        onEnter = function ()
-           MainFrame_onBackpackPageBtn("PickUp")
-        end,
-    },
-    [173] = {
-        onEnter = function ()
-            MainFrame_onBackpackPageBtn("PickUp2")
-        end,
-    },
+    [172] = { onEnter = function() MainFrame_onBackpackPageBtn("PickUp") end },
+    [173] = { onEnter = function() MainFrame_onBackpackPageBtn("PickUp2") end },
     -- 循環活動191
     [Const_pb.ACTIVITY191_CycleStage] = {
         onEnter = function (_page)
@@ -164,20 +175,20 @@ local Activity2BannerSetting = {
         end,
     },
     [197] = {
-        onEnter = function (_page)
-             if type(_page) == "string" then
-                require("Summon.SummonPage"):setEntrySubPage(_page)
-             end
-             MainFrame_onBackpackPageBtn()
-        end,
+        onEnter = function(page)
+            if type(page) == "string" then
+                require("Summon.SummonPage"):setEntrySubPage(page)
+            end
+            MainFrame_onBackpackPageBtn()
+        end
     },
     [998] = {
-        onEnter =  function(pageName,txt)
-             if not txt then
-                 MessageBoxPage:Msg_Box("URL EMPTY")
-                 return
-             end
-             common:openURL(txt)
+        onEnter = function(_, url)
+            if not url then
+                MessageBoxPage:Msg_Box("URL EMPTY")
+            else
+                common:openURL(url)
+            end
         end
     },
     -- 997 : 商店 > 皮膚商店
@@ -192,143 +203,89 @@ local Activity2BannerSetting = {
             end
         end,
     },
-    [9999] = {
-         onEnter =  function()
-            return
-        end
-    },
+    [9999] = { onEnter = function() end }
 }
 
-
--- ##     ##    ###    ########  ####    ###    ########  ##       ######## 
--- ##     ##   ## ##   ##     ##  ##    ## ##   ##     ## ##       ##       
--- ##     ##  ##   ##  ##     ##  ##   ##   ##  ##     ## ##       ##       
--- ##     ## ##     ## ########   ##  ##     ## ########  ##       ######   
---  ##   ##  ######### ##   ##    ##  ######### ##     ## ##       ##       
---   ## ##   ##     ## ##    ##   ##  ##     ## ##     ## ##       ##       
---    ###    ##     ## ##     ## #### ##     ## ########  ######## ######## 
-
-
--- 模塊工具
-local CommMarqueeBanner = require("CommComp.CommMarqueeBanner")
-local NodeHelper = require("NodeHelper")
-local TimeDateUtil = require("Util.TimeDateUtil")
-require("Activity.ActivityInfo")
-
--- 主體
+-- 主模組
 local LobbyMarqueeBanner = {}
 local LobbyMarqueeBannerContent = {}
 
-function LobbyMarqueeBanner:new ()
+function LobbyMarqueeBanner:new()
     local Inst = {}
 
     Inst._isInited = false
-
     Inst.commMarqueeBanner = nil
 
-    -- #### ##    ## ######## ######## ########  ########    ###     ######  ######## 
-    --  ##  ###   ##    ##    ##       ##     ## ##         ## ##   ##    ## ##       
-    --  ##  ####  ##    ##    ##       ##     ## ##        ##   ##  ##       ##       
-    --  ##  ## ## ##    ##    ######   ########  ######   ##     ## ##       ######   
-    --  ##  ##  ####    ##    ##       ##   ##   ##       ######### ##       ##       
-    --  ##  ##   ###    ##    ##       ##    ##  ##       ##     ## ##    ## ##       
-    -- #### ##    ##    ##    ######## ##     ## ##       ##     ##  ######  ######## 
-
-
-    -- ########  ##     ## ########  ##       ####  ######  
-    -- ##     ## ##     ## ##     ## ##        ##  ##    ## 
-    -- ##     ## ##     ## ##     ## ##        ##  ##       
-    -- ########  ##     ## ########  ##        ##  ##       
-    -- ##        ##     ## ##     ## ##        ##  ##       
-    -- ##        ##     ## ##     ## ##        ##  ##    ## 
-    -- ##         #######  ########  ######## ####  ######  
-
-    --[[ 初始化 ]]
-    function Inst:init (data) 
+    function Inst:init()
         if self._isInited then return self end
 
-        local slf = self
-
-        local bannerCfgs = ConfigManager:getBannerCfg()
-        local cfg={}
-        for k,v in pairs (bannerCfgs) do
-            if v.group==0 then
-                table.insert(cfg,v)
-            end
+        local cfgList = {}
+        for _, v in pairs(ConfigManager:getBannerCfg()) do
+            if v.group == 0 then table.insert(cfgList, v) end
         end
+
         self.commMarqueeBanner = CommMarqueeBanner:new():init({
             contentScript = LobbyMarqueeBannerContent,
-            objPoolSize = math.min(#cfg * 2, 2),
-            displayCount = 2,--#cfg*2,
+            objPoolSize = math.min(#cfgList * 2, 2),
+            displayCount = 2
         })
 
         self:updateBanners()
+        ActivityInfo.onUpdate:on(function() self:updateBanners() end)
 
-        -- 註冊當事件更新時
-        ActivityInfo.onUpdate:on(function (ctrlr)
-            slf:updateBanners()
-        end)
-        
         self._isInited = true
-
         return self
     end
 
     function Inst:updateBanners()
-    
         local bannerInfos = {}
-        
         local bannerCfgs = ConfigManager:getBannerCfg()
-        for idx, cfg in ipairs(bannerCfgs) do while true do
-            -- 若 沒有開啟 則 忽略
-           local isOpen = (cfg.startTime and os.time() >= cfg.startTime and os.time() <= cfg.endTime) or (cfg.endTime and cfg.endTime == 0)
-           if cfg.activityId  == 159 then
-                local DailyBundleData = require ("Activity.DailyBundleData")
-                if DailyBundleData:isGetAll() then isOpen =false end
-           elseif cfg.activityId == 179 then
-                local StepBundle =  require ("IAP.IAPSubPage_StepBundle")
-                if StepBundle:isBuyAll() then isOpen =false end
-           --待新增
-           end
-           if cfg.group == 0 and isOpen then
-               local bannerInfo = {}
-               local bannerSetting = Activity2BannerSetting[cfg.activityId]
-               if bannerSetting == nil then break end -- continue
-               
-               bannerInfo.pos = #bannerInfos * BANNER_WIDTH
-               bannerInfo.bg = cfg.Image .. ".png"
-               bannerInfo.url = cfg.url
-               if cfg.activityId == 197 then
-                    bannerInfo.PageName = "PickUp"..cfg.Page
-               end
-               
-               local endTime
-               if bannerSetting.getEndTime ~= nil then
-                   endTime = bannerSetting.getEndTime()
-               end
-               if endTime ~= nil then
-                   bannerInfo.counter = {
-                       endTime = endTime,
-                       offset = bannerSetting.counterOffset,
-                   }
-               end
-               bannerInfo.onEnter = bannerSetting.onEnter
-               bannerInfos[#bannerInfos + 1] = bannerInfo
-           end
-           break
+        local platformID = getCurrentPlatformID()
+
+        for _, cfg in ipairs(bannerCfgs) do
+            local shouldSkip = false
+
+            if cfg.group ~= 0 then shouldSkip = true end
+            if not isActivityOpen(cfg) then shouldSkip = true end
+            if not isPlatformAllowed(cfg.offPlateform, platformID) then shouldSkip = true end
+
+            local setting = Activity2BannerSetting[cfg.activityId]
+            if not setting then shouldSkip = true end
+
+            if not shouldSkip then
+                local info = {
+                    pos = #bannerInfos * BANNER_WIDTH,
+                    bg = (cfg.Image or "") .. ".png",
+                    url = cfg.url,
+                    onEnter = setting.onEnter
+                }
+
+                if cfg.activityId == 197 then
+                    info.PageName = "PickUp" .. (cfg.Page or "")
+                end
+
+                if setting.getEndTime then
+                    local endTime = setting.getEndTime()
+                    if endTime then
+                        info.counter = {
+                            endTime = endTime,
+                            offset = setting.counterOffset,
+                        }
+                    end
+                end
+
+                table.insert(bannerInfos, info)
+            end
         end
-    end
-    
+
         self.commMarqueeBanner:setBannerInfos(bannerInfos, #bannerInfos * BANNER_WIDTH)
     end
 
-    --[[ 取得 UI ]]
-    function Inst:getContainer ()
+    function Inst:getContainer()
         return self.commMarqueeBanner.container
     end
 
-    --[[ 離開 ]]
-    function Inst:exit () 
+    function Inst:exit()
         if self.commMarqueeBanner then
             self.commMarqueeBanner:clear()
         end
@@ -337,90 +294,55 @@ function LobbyMarqueeBanner:new ()
     return Inst
 end
 
-function LobbyMarqueeBanner:jumpActivityById(id)
-    local bannerSetting = Activity2BannerSetting[id]
-    if bannerSetting == nil then return end
-    bannerSetting.onEnter()
-end
+-- 內容腳本
+function LobbyMarqueeBannerContent:new()
+    local inst = {
+        container = nil,
+        counterEndTime = nil,
+        timeNode = nil
+    }
 
----------------------------------------------------------------------------------
-
-
-function LobbyMarqueeBannerContent:new ()
-    local inst = {}
-
-    inst.container = nil
-
-    inst.counterEndTime = nil
-    
-    inst.timeNode = nil
-
-    --[[ 初始化 ]]
-    function inst:init () 
+    function inst:init()
         self.container = ScriptContentBase:create("CommMarqueeBannerContent.ccbi")
         self.timeNode = self.container:getVarNode("timeNode")
         return self
     end
 
-    --[[ 每幀更新 ]]
-    function inst:execute (dt)
-        if self.counterEndTime == nil then return end
-        local leftTime = self.counterEndTime - os.time()
-        local date = TimeDateUtil:utcTime2Date(leftTime)
-        date.day = date.day - 1
-        local str = string.format("%02dD:%02dH:%02dM", date.day, date.hour, date.min)
-        NodeHelper:setStringForLabel(self.container, {
-            timeTxt = str
-        })
+    function inst:execute()
+        if not self.counterEndTime then return end
+        local left = self.counterEndTime - os.time()
+        local d = TimeDateUtil:utcTime2Date(left)
+        d.day = d.day - 1
+        local str = string.format("%02dD:%02dH:%02dM", d.day, d.hour, d.min)
+        NodeHelper:setStringForLabel(self.container, { timeTxt = str })
     end
 
-    --[[ 取得 UI ]]
-    function inst:getContainer ()
+    function inst:getContainer()
         return self.container
     end
 
-    --[[ 設置 資料 ]]
-    function inst:setData (data)
-        if data == nil then data = {} end
-        
+    function inst:setData(data)
+        data = data or {}
         self:setCounter(data.counter)
-
-        local node2Img = {}
-
-        if data.bg ~= nil then
-            node2Img.bgImg = data.bg
-        else
-            node2Img.bgImg = "Image_Empty.png"
-        end
-
-        NodeHelper:setSpriteImage(self.container, node2Img)
+        NodeHelper:setSpriteImage(self.container, {
+            bgImg = data.bg or "Image_Empty.png"
+        })
     end
 
-    --[[ 設置 倒數計時 ]]
-    function inst:setCounter (counterData)
-        
-        local isShow = true
-
-        if counterData == nil then
-
-            isShow = false
-
+    function inst:setCounter(counter)
+        local show = true
+        if not counter then
+            show = false
         else
-            
-            if counterData.endTime ~= nil then
-                self.counterEndTime = counterData.endTime
+            if counter.endTime then
+                self.counterEndTime = counter.endTime
             end
-
-            if counterData.offset ~= nil then
-                self.timeNode:setPosition(ccp(counterData.offset.x, counterData.offset.y))
+            if counter.offset then
+                self.timeNode:setPosition(ccp(counter.offset.x, counter.offset.y))
             end
         end
-
-        if self.counterEndTime == nil then
-            isShow = false
-        end
-        
-        self.timeNode:setVisible(isShow)
+        if not self.counterEndTime then show = false end
+        self.timeNode:setVisible(show)
     end
 
     return inst

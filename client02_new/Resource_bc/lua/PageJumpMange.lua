@@ -399,7 +399,7 @@ PageJumpMange._JumpCfg = {
     {
         _Id = 52;-- SingleBoss
         _ToPage = "MainFrame_onMainPageBtn(true,true)",
-        _SecondFunc = "onSingleBoss",
+        _SecondFunc = "BackSingleBoss",
         _act = Const_pb.ACTIVITY193_SingleBoss
     },
     [53] =
@@ -414,7 +414,7 @@ PageJumpMange._JumpCfg = {
     {
         _Id = 54;-- Puzzle 
         _ToPage = "MainFrame_onMainPageBtn(true,true)",
-        _SecondFunc = "onPuzzle",
+        _SecondFunc = "BackPuzzle",
         _act = Const_pb.ACTIVITY195_PuzzleBattle
     },
      [55] =

@@ -415,7 +415,7 @@ end
 
 --[[ 當 頁面 執行 ]]
 function Inst:onExecute (container)
-    if self.currentSubPageData ~= nil then
+    if self.currentSubPageData ~= nil and  self.currentSubPageData.subPage['onExecute'] then
         self.currentSubPageData.subPage:onExecute(self.currentSubPageData.container, self)
     end
 end

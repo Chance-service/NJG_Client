@@ -115,6 +115,7 @@ static bool IsJSG = false;
 static bool IsLSJ = false;
 static bool IsMURA = false;
 static bool IsKUSO = false;
+static bool IsErolabs = false;
 static bool IsAPLUS = false;
 static std::string PayUrl = "";
 static int HoneyP = 0;
@@ -422,6 +423,7 @@ void libAndroid::setPlatformName(int platform)
 	IsLSJ = (platform == 4);
 	IsMURA = (platform == 5);
 	IsKUSO = (platform == 6);
+	IsErolabs = (platform == 7);
 	IsAPLUS = (platform == 9);
 //	setPlatformNameJNI(platform);
 	//H365API::setH365CheckJNI(IsH365);

@@ -171,7 +171,7 @@ void LoginUserPage::onMenuItemAction(const std::string& itemName, cocos2d::CCObj
 				}
 				else
 				{
-					if (!SeverConsts::Get()->IsEroR18()) // H365, JGG
+					if (!SeverConsts::Get()->IsEroR18() && !SeverConsts::Get()->IsErolabs()) // H365, JGG
 					{
 						if ((!mStrCode.empty()))
 						{
@@ -223,7 +223,7 @@ void LoginUserPage::onMenuItemAction(const std::string& itemName, cocos2d::CCObj
 			LoadingFrame* pLoadingFrame = GamePrecedure::Get()->getLoadingFrame();
 			if (pLoadingFrame)
 			{
-				if (!SeverConsts::Get()->IsEroR18()) //H365, JGG
+				if (!SeverConsts::Get()->IsEroR18() && !SeverConsts::Get()->IsErolabs()) //H365, JGG
 				{
 					if (mStrReg_ID == "")
 					{

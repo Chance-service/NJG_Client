@@ -237,6 +237,18 @@ function PackageLogicForLua.onReceivePlayerStates(eventName, handler)
                     common:sendPacket(HP_pb.SHOP_HONEYP_C, msg, false)
                 end
             end
+
+            -- EROLABS刷新ECoin
+            if (Golb_Platform_Info.is_erolabs) then
+                local playtoken =  CCUserDefault:sharedUserDefault():getStringForKey("ecchigamer.token")
+                local IsGuest = libPlatformManager:getPlatform():getIsGuest() 
+                if (playtoken ~= "") and (IsGuest == 0) then
+                    CCLuaLog("onReceivePlayerStates SendtogetECoin")
+                    local msg = Shop_pb.ECoinRequest()
+                    msg.token = playtoken
+                    common:sendPacket(HP_pb.SHOP_ECOIN_C, msg, false)
+                end
+            end
         else
             CCLuaLog("@onReceivePlayerStates -- error in data");
         end
@@ -3609,6 +3621,51 @@ function PackageLogicForLua.RankRewardInfo(eventName, handler)
     end
 end
 PackageLogicForLua.HPRankRewardInfo = PacketScriptHandler:new(HP_pb.ACTIVITY153_S, PackageLogicForLua.RankRewardInfo)
+
+function PackageLogicForLua.getECoin(eventName, handler)
+    if eventName == "luaReceivePacket" then
+        local msg = Shop_pb.ECoinResponse()
+        local msgbuff = handler:getRecPacketBuffer()
+        msg:ParseFromString(msgbuff)
+        local ECoin = msg.coins
+        libPlatformManager:getPlatform():setHoneyP(ECoin)
+        CCLuaLog("getECoin : " .. ECoin)
+    end
+end
+PackageLogicForLua.HPgetECoin = PacketScriptHandler:new(HP_pb.SHOP_ECOIN_S, PackageLogicForLua.getECoin)
+
+function PackageLogicForLua.erolabsBuyResult(eventName, handler)
+    if eventName == "luaReceivePacket" then
+        local msg = Shop_pb.ECoinBuyResponse()
+        local msgbuff = handler:getRecPacketBuffer()
+        msg:ParseFromString(msgbuff)
+        local reslut = msg.result
+        local refno = msg.refno
+        CCLuaLog("erolabsBuyResult result : " .. reslut .. ", orderId : " .. refno)
+        local BuyManager = require("BuyManager")
+        CCLuaLog("PackageLogicForLua SendtogetECoin")
+        BuyManager:SendtogetECoin()
+        local msg2 = MsgRechargeSuccess:new()
+	    MessageManager:getInstance():sendMessageForScript(msg2)
+        if reslut == 0 then
+            MessageBoxPage:Msg_Box_Lan("@BuyFailed")
+        else
+            if Golb_Platform_Info.is_erolabs then
+                -- AdjustManager:onTrackRevenueEvent("z8ak7i", msg.costmoney or 0)
+            end
+        end
+    end
+end
+PackageLogicForLua.HPerolabsBuyResult = PacketScriptHandler:new(HP_pb.SHOP_ECOIN_BUY_S, PackageLogicForLua.erolabsBuyResult)
+
+function PackageLogicForLua.erolabsBoundSuccess(eventName, handler)
+    if eventName == "luaReceivePacket" then
+        local BuyManager = require("BuyManager")
+        BuyManager:onReceiveBoundAccount()
+    end
+end
+PackageLogicForLua.HPerolabsBoundSuccess = PacketScriptHandler:new(HP_pb.ACCOUNT_BOUND_REWARD_S, PackageLogicForLua.erolabsBoundSuccess)
+
 function PackageLogicForLua.getHoneyP(eventName, handler)
     if eventName == "luaReceivePacket" then
         local msg = Shop_pb.HoneyPResponse()
@@ -3762,6 +3819,9 @@ function PackageLogicForLua.TowerData_Fear(eventName, handler)
                 TowerDataBase_SetInfo(msg,199,_type,k)
             end
         end
+        if msg.action == 1 then
+            require("TowerOneLife.TowerOneLifeSubPage_MainScene"):setRank()
+        end
        end
     end
 end
@@ -3790,6 +3850,17 @@ function PackageLogicForLua.PickUpData(eventName, handler)
     end
 end
 PackageLogicForLua.PickUpData = PacketScriptHandler:new(HP_pb.ACTIVITY197_SUPER_PICKUP_INFO_S, PackageLogicForLua.PickUpData)
+
+function PackageLogicForLua.LoginReward(eventName, handler)
+    if eventName == "luaReceivePacket" then
+       local Activity6_pb = require("Activity6_pb")
+       local msgBuff = handler:getRecPacketBuffer()
+       local msg = Activity6_pb.EightDayLoginAwardRep()
+       msg:ParseFromString(msgBuff)
+       require("LoginRewardPage"):setServerData(msg)
+    end
+end
+PackageLogicForLua.HPLoginReward = PacketScriptHandler:new(HP_pb.ACTIVITY200_EIGHT_DAY_LOGIN_S, PackageLogicForLua.LoginReward)
 
 
 -----------JGG get order handler------------
@@ -3976,6 +4047,7 @@ function validateAndRegisterAllHandler()
     PackageLogicForLua.HPTowerData_Limit:registerFunctionHandler(PackageLogicForLua.TowerData_Limit)
     PackageLogicForLua.HPTowerData_Fear:registerFunctionHandler(PackageLogicForLua.TowerData_Fear)
     PackageLogicForLua.PickUpData:registerFunctionHandler(PackageLogicForLua.PickUpData)
+    PackageLogicForLua.HPLoginReward:registerFunctionHandler(PackageLogicForLua.LoginReward)
     --JGG order
  --   PackageLogicForLua.HPJggGetOrder = PacketScriptHandler:new(HP_pb.SHOP_JGG_ORDER_S, PackageLogicForLua.onJggGetOrder)
 

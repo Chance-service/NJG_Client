@@ -806,6 +806,13 @@ function common:table_merge(...)
     return tb
 end
 
+function common:table_contains(tab, val)
+    for _, v in ipairs(tab) do
+        if v == val then return true end
+    end
+    return false
+end
+
 function common:table_map(tb, func)
     table.foreach(tb, function(k, v) tb[k] = func(v) end)
 end

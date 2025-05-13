@@ -95,7 +95,7 @@ function MercenaryExpeditionPage_getSimpleInfo()
     PacketManager:getInstance():sendPakcet(HP_pb.MERCENERY_EXPEDITION_INFO_C, pb, #pb, false)
 end
 function MercenaryExpeditionPage:refreshPage(container)
-    local strTimes = common:getLanguageString('@Mercenarytime',TaskInfo.allTimes-TaskInfo.curTimes,TaskInfo.allTimes)
+    local strTimes = common:getLanguageString('@Mercenarytime',TaskInfo.curTimes,TaskInfo.allTimes)
     -- local strTimes = common:getLanguageString('@TodayMercenaryExpeditionNum', TaskInfo.curTimes, TaskInfo.allTimes);
     local strMap =
         {

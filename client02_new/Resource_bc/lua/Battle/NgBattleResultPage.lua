@@ -129,7 +129,15 @@ function NgBattleResultPage:onEnter(container)
         local roleInfo = UserMercenaryManager:getUserMercenaryByItemId(mvpID)
         local spineMvp = nil -- 抓MVP角色
         if roleInfo.skinId > 0 then
-            spineMvp = SpineContainer:create("NG2D", "NG2D_" .. string.format("%05d", roleInfo.skinId))
+            --spineName = "NG2D_" .. string.format("%05d", roleInfo.skinId)
+            --local isFileExist =  CCFileUtils:sharedFileUtils():isFileExist("Spine/NG2D/" .. spineName .. ".skel")
+            --if not isFileExist then
+                -- 沒有皮膚立繪spine -> 播mp4
+                self:playMovie(container, roleInfo.skinId)
+            --    return
+            --else
+            --    spineMvp = SpineContainer:create("NG2D", spineName)
+            --end
         else
             spineMvp = SpineContainer:create("NG2D", "NG2D_" .. string.format("%02d", mvpID))
         end
@@ -386,6 +394,7 @@ end
 
 function NgBattleResultPage:onExit(container)
     self:resetData()
+    self:closeMovie(container)
 end
 
 function NgBattleResultPage:onWinBtn(container)
@@ -512,6 +521,25 @@ end
 
 function NgBattleResultPage:setAward(awardInfo)
     rewardItemInfo = awardInfo
+end
+
+-- 播放mp4
+function NgBattleResultPage:playMovie(container, skinId)
+    -- 播放影片
+    if skinId ~= 0 then
+        local fileName = "Hero/Hero" .. string.format("%05d", skinId)
+        local isFileExist =  CCFileUtils:sharedFileUtils():isFileExist("Video/" .. fileName .. ".mp4")
+        if isFileExist then
+            GamePrecedure:getInstance():playMovie(thisPageName, fileName, 1, 0)
+            NodeHelper:setNodesVisible(container, { mSpine = false })
+        end
+    end
+end
+-- 關閉影片
+function NgBattleResultPage:closeMovie(container)
+    CCLuaLog("NgBattleResultPage:closeMovie")
+    NodeHelper:setNodesVisible(container, { mSpine = true })
+    GamePrecedure:getInstance():closeMovie(thisPageName)
 end
 
 return NgBattleResultPage

@@ -14,6 +14,7 @@
 #include "coresdk/util.h"
 #include "coresdk/Enum.h"
 #endif
+#include "SeverConsts.h"
 
 namespace ecchigamer {
 	namespace EcchiGamerSDK {
@@ -27,11 +28,23 @@ namespace ecchigamer {
 
 		void initialize(coresdk::Platform platform, coresdk::Coresdk::OnInitializeCallback callback) {
 			coresdk::Coresdk::prefKeyToken = "ecchigamer.token";
-			coresdk::ConfigLoader::configFilename = "ecchigamer_domain_v1.txt";
+			
 			std::string applicationIdentifier = coresdk::util::get_package_name();
 
+			std::string GAME_ID = "";
+			
+			if (SeverConsts::Get()->IsEroR18()){
+				GAME_ID = ecchigamer::Config::EroR18_GAME_ID;
+				coresdk::ConfigLoader::configFilename = "ecchigamer_domain_v1.txt";
+			}
+			else {
+				GAME_ID = ecchigamer::Config::Erolabs_GAME_ID;
+				coresdk::ConfigLoader::configFilename = "erolabs_domain_v1.txt";
+			}
+
+
 			coresdk::Coresdk::initialize(
-				ecchigamer::Config::GAME_ID, 
+				GAME_ID,
 				applicationIdentifier, 
 				platform, 
 				callback);

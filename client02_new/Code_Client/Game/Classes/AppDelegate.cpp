@@ -263,7 +263,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 	SeverConsts::Get()->initSearchPath();
 	GamePrecedure::Get()->registerPlatform();
 	SeverConsts::Get()->CheckPlatform();
-	if (SeverConsts::Get()->IsEroR18()) // eror18 is true
+	if (SeverConsts::Get()->IsEroR18() || SeverConsts::Get()->IsErolabs()) // eror18 is true
 	{
 		//eroR18
 		Lua_EcchiGamerSDKBridge::register_function();
