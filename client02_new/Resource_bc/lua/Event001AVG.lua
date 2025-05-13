@@ -650,7 +650,7 @@ function Event001AVG:setAllLogContent(container)
 			end
 			--logVoice
 			--local voiceName = "Voice" .. string.format("%02d", areaNum) .. string.format("%02d", stageNum) .. storyIdx .. string.format("%02d", i) .. ".mp3"
-			--local isFileExist = NodeHelper:isFileExist("/audio/" .. voiceName)
+			--local isFileExist = NodeHelper:isFileExist("audio/" .. voiceName)
 			--FetterLogContent.logVoice[i] = isFileExist
 	  end
 end
@@ -781,7 +781,7 @@ function Event001AVG:PlayEffectTable(container, soundTxt)
     for _, soundFile in ipairs(EffectTable) do
         local delayTime, filename = getDurationAndNameFromFilename(soundFile)
 
-        if filename ~= "" and NodeHelper:isFileExist("/audio/" .. filename) then
+        if filename ~= "" and NodeHelper:isFileExist("audio/" .. filename) then
             -- 計算相對於序列起始點的延遲
             local relativeDelay = delayTime - previousTime
             previousTime = delayTime  -- 更新基準時間
@@ -1826,7 +1826,7 @@ function Event001AVG:playVoice(container)
 	end
 	local voiceName = "FetterLog" .. areaNum .. string.format("%02d", stageNum) .. storyIdx .. string.format("%02d", nowLine) .. ".mp3"
 
-	local isFileExist = NodeHelper:isFileExist("/audio/" .. voiceName)
+	local isFileExist = NodeHelper:isFileExist("audio/" .. voiceName)
 	if isFileExist then
 		local wait = fetterControlCfg[self:getNowControlId(container)].voiceWait
 		local actionArr = CCArray:create()
@@ -1854,7 +1854,7 @@ end
 function Event001AVG:playTargetVoice(container, targetLine)
 	self:stopVoice(container)
 	local voiceName = "FetterLog" .. areaNum .. string.format("%02d", stageNum) .. storyIdx .. string.format("%02d", targetLine) .. ".mp3"
-	local isFileExist = NodeHelper:isFileExist("/audio/" .. voiceName)
+	local isFileExist = NodeHelper:isFileExist("audio/" .. voiceName)
 	if isFileExist then
 		isWaitingVoice = false
 		if CC_TARGET_PLATFORM_LUA == common.platform.CC_PLATFORM_WIN32 then

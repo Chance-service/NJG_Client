@@ -6791,7 +6791,6 @@ function ConfigManager.getSkinCfg()
             ["element"] = tonumber,
             ["skinSkill"] = tonumber,
             ["replacedSkill"] = tonumber,
-            ["jumpId"] = tonumber,
         };
         cfg = ConfigManager.loadCfg("skin_NG.txt", attrMap, 0, convertMap);
         ConfigManager.configs[key] = cfg;

@@ -240,7 +240,8 @@ function SkinShopPopUp:onBtn(container)
             return
         end
         local LobbyMarqueeBanner = require("LobbyMarqueeBanner")
-        LobbyMarqueeBanner:jumpActivityById(skinCfg.jumpId)
+        local ids = common:split(skinCfg.jumpId, ",")
+        LobbyMarqueeBanner:jumpActivityById(tonumber(ids[1]))
     end
 end
 

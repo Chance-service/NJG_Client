@@ -531,14 +531,14 @@ function NgBattleResultPage:playMovie(container, skinId)
         local isFileExist =  CCFileUtils:sharedFileUtils():isFileExist("Video/" .. fileName .. ".mp4")
         if isFileExist then
             GamePrecedure:getInstance():playMovie(thisPageName, fileName, 1, 0)
-            NodeHelper:setNodesVisible(container, { mSpine = false })
+            NodeHelper:setNodesVisible(container, { mSpine = false, mMask = false })
         end
     end
 end
 -- 關閉影片
 function NgBattleResultPage:closeMovie(container)
     CCLuaLog("NgBattleResultPage:closeMovie")
-    NodeHelper:setNodesVisible(container, { mSpine = true })
+    NodeHelper:setNodesVisible(container, { mSpine = true, mMask = true })
     GamePrecedure:getInstance():closeMovie(thisPageName)
 end
 

@@ -55,10 +55,12 @@ function SkinShopJumpPopUp:refreshScrollView(container)
     local skinCfg = ConfigManager.getSkinCfg()[PAGE_INFO.SKIN_ID]
     local mScrollView = container:getVarScrollView("mContent")
     mScrollView:removeAllCell()
-    for i = 1, 1 do -- 目前只會有一個
+    local ids = common:split(skinCfg.jumpId, ",")
+    local txts = common:split(skinCfg.jumpTxt, ",")
+    for i = 1, #ids do
         local cell = CCBFileCell:create()
         cell:setCCBFile(SkinShopJumpItem.ccbiFile)
-        local handler = common:new( { id = i, jumpTxt = skinCfg.jumpTxt, jumpId = skinCfg.jumpId }, SkinShopJumpItem)
+        local handler = common:new( { id = i, jumpTxt = txts[i], jumpId = tonumber(ids[i]) }, SkinShopJumpItem)
         cell:registerFunctionHandler(handler)
         mScrollView:addCell(cell)
     end

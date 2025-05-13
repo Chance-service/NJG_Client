@@ -257,7 +257,7 @@ function AlbumStoryDisplayBase_Vertical_Story:initSetting(container)
     --for _,value in pairs (EffTable) do
     --    --SoundManager:getInstance():stopAllEffect()
     --    local newOtherEffName=value.name
-    --   if newOtherEffName --[[and NodeHelper:isFileExist("/audio/" .. newOtherEffName)]] then
+    --   if newOtherEffName --[[and NodeHelper:isFileExist("audio/" .. newOtherEffName)]] then
     --        local array = CCArray:create()
     --        array:addObject(CCDelayTime:create(value.delay))
     --        array:addObject(CCCallFunc:create(function()
@@ -293,7 +293,7 @@ function AlbumStoryDisplayBase_Vertical_Story:onFunction(tag, eventName)
       --if SpineData[SpineIdx] and SpineData[SpineIdx].type == 1 then
       --    for _,value in pairs (EffTable) do
       --        local newOtherEffName=value.name or nil
-      --        if newOtherEffName --[[and NodeHelper:isFileExist("/audio/" .. newOtherEffName)]] then
+      --        if newOtherEffName --[[and NodeHelper:isFileExist("audio/" .. newOtherEffName)]] then
       --            local array = CCArray:create()
       --            array:addObject(CCDelayTime:create(value.delay or 0))
       --            array:addObject(CCCallFunc:create(function()
@@ -375,7 +375,7 @@ function AlbumStoryDisplayBase_Vertical_Story:playVoice(container)
             delay=v.delay or 0
         end
     end
-    local isFileExist = --[[NodeHelper:isFileExist("/audio/" .. voicename) and]] voicename~=""
+    local isFileExist = --[[NodeHelper:isFileExist("audio/" .. voicename) and]] voicename~=""
     if isFileExist then
         local actionArr = CCArray:create()
         actionArr:addObject(CCDelayTime:create(delay))

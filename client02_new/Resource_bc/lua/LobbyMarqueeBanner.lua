@@ -294,6 +294,11 @@ function LobbyMarqueeBanner:new()
     return Inst
 end
 
+function LobbyMarqueeBanner:jumpActivityById(id)
+    local setting = Activity2BannerSetting[id]
+    setting.onEnter()
+end
+
 -- 內容腳本
 function LobbyMarqueeBannerContent:new()
     local inst = {
