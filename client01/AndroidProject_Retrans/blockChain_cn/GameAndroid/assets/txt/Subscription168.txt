@@ -1,2 +1,5 @@
-id	buyReward	dayReward
-201	10000_1001_300,30000_3001_8,30000_3801_4	30000_3001_16,30000_3801_4
+id	buyReward	dayReward	BG	subtext
+202	10000_1001_300,30000_7210_15	30000_7210_5	Subscription_Bundle_05.png	@SubscruptTips01
+203	10000_1001_300,30000_6004_15	30000_6004_5	Subscription_Bundle_06.png	@SubscruptTips02
+204	10000_1001_300,10000_1027_3	10000_1027_1	Subscription_Bundle_07.png	@SubscruptTips03
+205	10000_1001_300,10000_1028_3	10000_1028_1	Subscription_Bundle_08.png	@SubscruptTips04

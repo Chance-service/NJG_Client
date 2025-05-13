@@ -14,6 +14,15 @@ id	StartTime	EndTime	PopPage	PopPageBackGround	PopTitle	PopText	GiftId	JumpDesti
 13	2025-04-26_00:00:00	2025-04-27_23:59:59	LobbyPopout_img2.png	LobbyPopout_img3.png	LobbyPopout_label.png	@PopSaleAD	3241	12
 14	2025-04-28_00:00:00	2025-04-30_23:59:59	LobbyPopout_img2.png	LobbyPopout_img3.png	LobbyPopout_label.png	@PopSaleAD	3021	12
 15	2025-05-01_00:00:00	2025-05-03_23:59:59	LobbyPopout_img2.png	LobbyPopout_img3.png	LobbyPopout_label.png	@PopSaleAD	3091	12
-16	2025-05-04_00:00:00	2025-05-06_23:59:59	LobbyPopout_img2.png	LobbyPopout_img3.png	LobbyPopout_label.png	@PopSaleAD	3161	12
-17	2025-05-07_00:00:00	2025-05-09_23:59:59	LobbyPopout_img2.png	LobbyPopout_img3.png	LobbyPopout_label.png	@PopSaleAD	3051	12
-18	2025-05-10_00:00:00	2025-05-12_23:59:59	LobbyPopout_img2.png	LobbyPopout_img3.png	LobbyPopout_label.png	@PopSaleAD	3171	12
+16	2025-05-01_00:00:00	2025-05-03_23:59:59	LobbyPopout_img2.png	LobbyPopout_img3.png	LobbyPopout_label.png	@PopSaleAD	3161	12
+17	2025-05-04_00:00:00	2025-05-06_23:59:59	LobbyPopout_img2.png	LobbyPopout_img3.png	LobbyPopout_label.png	@PopSaleAD	3051	12
+18	2025-05-07_00:00:00	2025-05-09_23:59:59	LobbyPopout_img2.png	LobbyPopout_img3.png	LobbyPopout_label.png	@PopSaleAD	3171	12
+19	2025-05-10_00:00:00	2025-05-12_23:59:59	LobbyPopout_img2.png	LobbyPopout_img3.png	LobbyPopout_label.png	@PopSaleAD	3091	12
+20	2025-05-13_00:00:00	2025-05-15_23:59:59	LobbyPopout_img2.png	LobbyPopout_img3.png	LobbyPopout_label.png	@PopSaleAD	3121	12
+21	2025-05-16_00:00:00	2025-05-18_23:59:59	LobbyPopout_img2.png	LobbyPopout_img3.png	LobbyPopout_label.png	@PopSaleAD	3230	12
+22	2025-05-19_00:00:00	2025-05-21_23:59:59	LobbyPopout_img2.png	LobbyPopout_img3.png	LobbyPopout_label.png	@PopSaleAD	3131	12
+23	2025-05-22_00:00:00	2025-05-24_23:59:59	LobbyPopout_img2.png	LobbyPopout_img3.png	LobbyPopout_label.png	@PopSaleAD	3190	12
+24	2025-05-25_00:00:00	2025-05-27_23:59:59	LobbyPopout_img2.png	LobbyPopout_img3.png	LobbyPopout_label.png	@PopSaleAD	3010	12
+25	2025-05-28_00:00:00	2025-05-30_23:59:59	LobbyPopout_img2.png	LobbyPopout_img3.png	LobbyPopout_label.png	@PopSaleAD	3081	12
+26	2025-05-31_00:00:00	2025-06-02_23:59:59	LobbyPopout_img2.png	LobbyPopout_img3.png	LobbyPopout_label.png	@PopSaleAD	3061	12
+								

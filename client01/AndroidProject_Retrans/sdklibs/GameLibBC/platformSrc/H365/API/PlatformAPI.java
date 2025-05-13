@@ -146,13 +146,21 @@ public class PlatformAPI extends SDKService {
 	}
 
 	@Override
-	public void Report_Handler(int eventId){
-		if (eventId == 1) {
-			h365sdk.getDataAnalystManager().completedRegistrationEvent();
-		}
+	public void Report_Handler(String msg){
 
-		if (eventId == 2){
-			h365sdk.getDataAnalystManager().loginEvent();
+		JSONObject msgJsonObj;
+		try {
+			msgJsonObj = new JSONObject(msg);
+			int eventId = msgJsonObj.getInt("eventId");
+			if (eventId == 1) {
+				h365sdk.getDataAnalystManager().completedRegistrationEvent();
+			}
+
+			if (eventId == 2){
+				h365sdk.getDataAnalystManager().loginEvent();
+			}
+		}catch(Exception e){
+			showlog("JsonError: " + e.getMessage());
 		}
 	}
 

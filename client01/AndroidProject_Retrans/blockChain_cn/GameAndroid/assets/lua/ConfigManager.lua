@@ -479,7 +479,7 @@ function ConfigManager.getSubscription()
     local key = "Subscription";
     local cfg = ConfigManager.configs[key];
     if cfg == nil then
-        local attrMap = common:table_combineNumber( { "id", "OnBuy", "DailyGift"});
+        local attrMap = common:table_combineNumber( { "id", "OnBuy", "DailyGift","BG","Title"});
         local convertMap = {
             ["id"] = tonumber,
             ["DailyGift"]= ConfigManager.parseItemWithComma,
@@ -5638,7 +5638,8 @@ function ConfigManager:getBannerCfg()
             'openDay',
             'startTime',
             'endTime',
-            'url'
+            'url',
+            'offPlateform'
         } )
         local convertMap = {
             ['ID'] = tonumber,
@@ -6878,9 +6879,12 @@ function ConfigManager.getFearTowerRewardCfg()
     local key = "FearTowerRewardCfg";
     local cfg = ConfigManager.configs[key];
     if cfg == nil then
-        local attrMap = common:table_combineNumber( { "id" });
+        local attrMap = common:table_combineNumber( { "id" ,"towerId","minRank","reward"});
         local convertMap = {
             ["id"] = tonumber,
+            ["towerId"] = tonumber,
+            ["minRank"] = tonumber,
+            ["reward"] = ConfigManager.parseItemWithComma,
         };
         cfg = ConfigManager.loadCfg("FearlessTowerRankAward_C.txt", attrMap, 0, convertMap);
         ConfigManager.configs[key] = cfg;
@@ -6891,9 +6895,10 @@ function ConfigManager.getFearTowerShopCfg()
     local key = "FearTowerShopCfg";
     local cfg = ConfigManager.configs[key];
     if cfg == nil then
-        local attrMap = common:table_combineNumber( { "id","count","skillId","healValue","rarity","icon","name","freeTypeFont" });
+        local attrMap = common:table_combineNumber( { "id","count","priceItem","skillId","healValue","rarity","icon","name","content" });
         local convertMap = {
             ["id"] = tonumber,
+            ["priceItem"] = ConfigManager.parseItemWithComma,
             ["count"] = tonumber,
             ["skillId"] = tonumber,
             ["healValue"] = tonumber,
@@ -6918,6 +6923,21 @@ function ConfigManager.getFearTowerAchivCfg()
         };
 
         cfg = ConfigManager.loadCfg("FearlessToweAchv_C.txt", attrMap, 0, convertMap);
+        ConfigManager.configs[key] = cfg;
+    end
+    return cfg;
+end
+function ConfigManager.getLoginReward()
+    local key = "LoginRewardCfg";
+    local cfg = ConfigManager.configs[key];
+    if cfg == nil then
+        local attrMap = common:table_combineNumber( { "id", "LobbyBtnImg", "Spine","Title","reward"});
+        local convertMap = {
+            ["id"] = tonumber,
+            ["reward"] = ConfigManager.parseItemWithComma,
+        };
+
+        cfg = ConfigManager.loadCfg("loginReward.txt", attrMap, 0, convertMap);
         ConfigManager.configs[key] = cfg;
     end
     return cfg;

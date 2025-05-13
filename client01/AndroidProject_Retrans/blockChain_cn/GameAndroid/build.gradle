@@ -61,6 +61,9 @@ android {
         KUSO {
             res.srcDirs = ['KUSO/res']
         }
+        EROLABS {
+            res.srcDirs = ['EROLABS/res']
+        }
         APLUS_CPS1 {
             res.srcDirs = ['APLUS/res']
         }
@@ -127,6 +130,16 @@ android {
                 exclude 'META-INF/kotlinx_coroutines_core.version'
             }
         }
+
+        EROLABS {
+            applicationId = "chance.debug.ninja.girl.erolabs.cn"
+            dimension "app_type"
+            dependencies {
+                implementation fileTree(dir: '../../sdklibs/GameLibBC/platformlibs/EROLABS', include: ['*.aar','*.jar'])
+                implementation fileTree(dir: '../../sdklibs/GameLibBC/libs', include: ['*.aar'])
+            }
+        }
+
         APLUS_CPS1 {
             applicationId = "chance.debug.ninja.girl.kuso.cn"
             dimension "app_type"

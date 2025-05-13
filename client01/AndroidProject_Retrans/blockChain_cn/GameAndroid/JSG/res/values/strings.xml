@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <resources>
- 	 <string name="app_name" translatable="false">忍娘24內部JSG</string>
+ 	 <string name="app_name" translatable="false">忍娘24</string>
 	 <string name="app_id" translatable="false">620376484839054</string>
   	 <string name="bindconfirm" translatable="false">Bound Google Play account detected. Do you want to switch? Yes: Switch to bound account. No: Use temporary login account.</string>
   	 <string name="bindyes" translatable="false">Yes</string>

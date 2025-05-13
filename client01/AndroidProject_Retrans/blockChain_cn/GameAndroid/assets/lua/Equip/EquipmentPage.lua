@@ -955,7 +955,7 @@ function EquipPageBase:onBuyGold(container)
 end
 
 function EquipPageBase:refreshAllPoint(container)
-    NodeHelper:setNodesVisible(container, { mHeroRedPoint = RedPointManager_getShowRedPoint(RedPointManager.PAGE_IDS.HERO_CHAR_TAB) })
+    NodeHelper:setNodesVisible(container, { mHeroRedPoint = false--[[RedPointManager_getShowRedPoint(RedPointManager.PAGE_IDS.HERO_CHAR_TAB)]] })   -- 暫時移除
     NodeHelper:setNodesVisible(container, { mGalleryRedPoint = RedPointManager_getShowRedPoint(RedPointManager.PAGE_IDS.HERO_ILLUST_TAB) })
     NodeHelper:setNodesVisible(container, { mCollectionRedPoint = RedPointManager_getShowRedPoint(RedPointManager.PAGE_IDS.HERO_FETTER_TAB) })
     for _type = 1, #GalleryCardItems do

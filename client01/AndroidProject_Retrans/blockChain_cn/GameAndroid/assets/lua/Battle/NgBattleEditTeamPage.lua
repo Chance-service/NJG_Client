@@ -349,6 +349,8 @@ function NgBattleEditTeamPage:onEnter(container)
         self:setPuzzleLimitData(container)
     elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.LIMIT_TOWER then
         self:setLimitTowerData(container)
+    elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.FEAR_TOWER then
+       self:setFearTowerData(container)
     end
     self:refreshPage(container)
     self:initEnemy(container)
@@ -630,7 +632,8 @@ function NgBattleEditTeamPage:buildDefaultTeam(container)
         end
     end
 
-    if NgBattleDataManager.battleType == CONST.SCENE_TYPE.LIMIT_TOWER then
+    if NgBattleDataManager.battleType == CONST.SCENE_TYPE.LIMIT_TOWER or 
+        NgBattleDataManager.battleType == CONST.SCENE_TYPE.FEAR_TOWER then
         for pos,id in pairs (nowTeamRoleIds) do
              defaultTeamInfo.roleIds[pos] = id
         end
@@ -822,7 +825,8 @@ function NgBattleEditTeamPage:onConfirm(container)
         return
     end
     if NgBattleDataManager.battleType ~= CONST.SCENE_TYPE.PUZZLE and
-       NgBattleDataManager.battleType ~= CONST.SCENE_TYPE.LIMIT_TOWER  then
+       NgBattleDataManager.battleType ~= CONST.SCENE_TYPE.LIMIT_TOWER and
+       NgBattleDataManager.battleType ~= CONST.SCENE_TYPE.FEAR_TOWER  then
         self:saveDefaultTeamInfo(saveInfo)
         NgBattleDataManager_setServerGroupInfo(saveInfo)
     end
@@ -833,7 +837,15 @@ function NgBattleEditTeamPage:onConfirm(container)
         for pos,Id in pairs(nowTeamRoleIds) do
             groupStr = groupStr..Id.."_"..pos..","
         end
-        CCUserDefault:sharedUserDefault():setStringForKey(TowerTeamKey,groupStr)  
+        CCUserDefault:sharedUserDefault():setStringForKey(TowerTeamKey,groupStr)
+    elseif NgBattleDataManager.battleType == CONST.SCENE_TYPE.FEAR_TOWER then
+        local nowType = NgBattleDataManager.limitType
+        local TowerTeamKey = "FEAR_TOWER_TEAM_" .. UserInfo.playerInfo.playerId
+        local groupStr = ""
+        for pos,Id in pairs(nowTeamRoleIds) do
+            groupStr = groupStr..Id.."_"..pos..","
+        end
+        CCUserDefault:sharedUserDefault():setStringForKey(TowerTeamKey,groupStr)
     end
 
     NgBattlePageInfo_sendTeamInfoToServer(teamInfo)
@@ -1264,7 +1276,26 @@ function NgBattleEditTeamPage:setPuzzleLimitData(container)
     sprite:setContentSize(CCSizeMake(50 + limitCount * 50, 70))
     NodeHelper:setNodesVisible(container, { mLimitBg = limitCount > 0 })
 end
+function NgBattleEditTeamPage:setFearTowerData(container)
+    for i = 1, MAX_TEAM_NUM do
+        nowTeamRoleIds[i] = 0
+    end
 
+    -- 取得儲存的隊伍配置
+    local playerId = UserInfo.playerInfo.playerId
+    local teamKey = "FEAR_TOWER_TEAM_".. playerId
+    local savedTeam = CCUserDefault:sharedUserDefault():getStringForKey(teamKey) or ""
+
+    if savedTeam ~= "" then
+        for _, info in ipairs(common:split(savedTeam, ",")) do
+            local t = common:split(info, "_")
+            local roleId, pos = tonumber(t[1]), tonumber(t[2])
+            if roleId and pos then
+                nowTeamRoleIds[pos] = roleId
+            end
+        end
+    end
+end
 function NgBattleEditTeamPage:setLimitTowerData(container)
     -- 重置隊伍
     for i = 1, MAX_TEAM_NUM do

@@ -64,6 +64,9 @@ public abstract class SDKService implements ISDKService {
     public void initAdjustSDK(Context context){
     }
 
+    public void initHyenaSDK(){
+    }
+
     @Override
     public void init(GameActivity activity) {
         home_activity = activity;
@@ -73,6 +76,7 @@ public abstract class SDKService implements ISDKService {
         onCreateSDK();
         initTabDB();
         initAdjustSDK(home_activity);
+        initHyenaSDK();
     }
 
     private static boolean isApkDebugable(Context context) {
@@ -143,7 +147,7 @@ public abstract class SDKService implements ISDKService {
     /**
      * 回傳平台報告(1.註冊 2.登入遊戲)
      */
-    public void Report_Handler(int eventId){
+    public void Report_Handler(String msg){
 
     }
 

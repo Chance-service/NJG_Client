@@ -284,7 +284,7 @@ function MainFrame_refreshAllRedPoint()
         mMainScenePagePoint = RedPointManager_getShowRedPoint(RedPointManager.PAGE_IDS.LOBBY_MAIN_BTN),
         mLobby2PagePoint = RedPointManager_getShowRedPoint(RedPointManager.PAGE_IDS.LOBBY2_MAIN_BTN),
         mBattlePagePoint = RedPointManager_getShowRedPoint(RedPointManager.PAGE_IDS.BATTLE_MAIN_BTN),
-        mLeaderPagePoint = RedPointManager_getShowRedPoint(RedPointManager.PAGE_IDS.HERO_MAIN_BTN),
+        mLeaderPagePoint = false, --RedPointManager_getShowRedPoint(RedPointManager.PAGE_IDS.HERO_MAIN_BTN), 暫時先移除
         mBackpackPagePoint = RedPointManager_getShowRedPoint(RedPointManager.PAGE_IDS.SUMMON_MAIN_BTN),
     })
 end

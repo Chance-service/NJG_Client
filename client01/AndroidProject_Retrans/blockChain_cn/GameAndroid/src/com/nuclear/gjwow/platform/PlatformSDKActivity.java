@@ -274,8 +274,7 @@ public class PlatformSDKActivity extends GameActivity {
 
 		public String G2P_REPORT_HANDLER(String msg)
 		{
-			int eventId = Integer.valueOf(msg);
-			SDKFactory.getInstance().getSDKHandler().Report_Handler(eventId);
+			SDKFactory.getInstance().getSDKHandler().Report_Handler(msg);
 			return null;
 		}
 
@@ -944,6 +943,9 @@ public class PlatformSDKActivity extends GameActivity {
 			case KUSO:
 				Log.d(TAG,"ClientChannel is android_kuso");
 				return "android_kuso";
+			case EROLABS:
+				Log.d(TAG,"ClientChannel is android_erolabs");
+				return "android_erolabs";
 			case APLUS:
 				Log.d(TAG,"ClientChannel is android_aplus");
 				return "android_aplus";

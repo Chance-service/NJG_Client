@@ -1417,6 +1417,7 @@ id	繁中
 600001	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >職業為戰士的角色生命值增加100%，獲得30%普攻吸血，所有職業的治療效果下降40%。</font></p>
 600011	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >所有角色開戰時均會獲得「猛毒」、每當角色暴擊時，會使自身的「猛毒」等級上升1，最高為3，職業為補師角色免疫所有「毒」狀態。</font></p>
 600021	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >所有角色迴避屬性上升200%，每次成功迴避恢復自身攻擊力100%生命值。非玩家角色持有每4下普通攻擊獲得「必中」狀態。</font></p>
+600031	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >所有職業為法師角色開戰時<br/>獲得「順風III」，<br/>所有職業為戰士角色開戰時<br/>獲得「蠻勇III」，<br/>所有職業為坦克角色開戰時<br/>獲得「脆弱III」，<br/>所有職業為補師角色開戰時<br/>獲得「逆風III」，持續99秒。<br/>順風III：所有魔力恢復效果上升30%，移動力上升45%。<br/>蠻勇III：物理攻擊力提升15%。<br/>脆弱III：物理防禦減少60%<br/>逆風III：所有魔力恢復效果下降30%，移動力下降45%。</font></p>
 999901	<font color="#4D93D9" face = "Barlow-SemiBold" >#v1#</font><font color="#FFFFFF" face = "Barlow-SemiBold" > 施放</font><font color="#996600" face = "Barlow-SemiBold" > #v2#</font>
 999902	<font color="#FF5050" face = "Barlow-SemiBold" >#v1#</font><font color="#FFFFFF" face = "Barlow-SemiBold" > 施放</font><font color="#996600" face = "Barlow-SemiBold" > #v2#</font>
 999903	<font color="#4D93D9" face = "Barlow-SemiBold" >#v1#</font><font color="#FFFFFF" face = "Barlow-SemiBold" > 對</font><font color="#FF5050" face = "Barlow-SemiBold" > #v2#</font><font color="#FFFFFF" face = "Barlow-SemiBold" > 造成</font><font color="#C00000" face = "Barlow-SemiBold" > #v3#</font><font color="#FFFFFF" face = "Barlow-SemiBold" > 傷害</font>
@@ -1558,9 +1559,9 @@ id	繁中
 1260004	<font face = "Barlow-SemiBold24" color = "#763306" >勇者無懼</font>
 1260005	<font face = "Barlow-SemiBold24" color = "#763306" >勇者無懼II</font>
 1260006	<font face = "Barlow-SemiBold24" color = "#763306" >勇者無懼III</font>
-1270001	<font face = "Barlow-SemiBold24" color = "#763306" >普通攻擊「燃燒」狀態下的敵人，會做成「爆炎I」，CD12秒。</font>
-1270002	<font face = "Barlow-SemiBold24" color = "#763306" >普通攻擊「燃燒」狀態下的敵人，會做成「爆炎II」，CD10秒。</font>
-1270003	<font face = "Barlow-SemiBold24" color = "#763306" >普通攻擊「燃燒」狀態下的敵人，會做成「爆炎III」，CD8秒。</font>
+1270001	<font face = "Barlow-SemiBold24" color = "#763306" >普通攻擊命中「燃燒」狀態的敵人時，移除所有燃燒層數，並對其造成每層燃燒 × 施法者魔法攻擊力20%的無視防禦傷害。冷卻時間12秒</font>
+1270002	<font face = "Barlow-SemiBold24" color = "#763306" >普通攻擊命中「燃燒」狀態的敵人時，移除所有燃燒層數，並對其造成每層燃燒 × 施法者魔法攻擊力40%的無視防禦傷害。冷卻時間10秒</font>
+1270003	<font face = "Barlow-SemiBold24" color = "#763306" >普通攻擊命中「燃燒」狀態的敵人時，移除所有燃燒層數，並對其造成每層燃燒 × 施法者魔法攻擊力60%的無視防禦傷害。冷卻時間8秒</font>
 1270004	<font face = "Barlow-SemiBold24" color = "#763306" >智者的怒火</font>
 1270005	<font face = "Barlow-SemiBold24" color = "#763306" >智者的怒火II</font>
 1270006	<font face = "Barlow-SemiBold24" color = "#763306" >智者的怒火III</font>

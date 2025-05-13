@@ -164,6 +164,8 @@ function RechargeBonusPage:getSortedTable(Config)
                     insert = true
                 elseif v.platform == 6 and Golb_Platform_Info.is_kuso then
                     insert = true
+                elseif v.platform == 7 and Golb_Platform_Info.is_erolabs then
+                    insert = true
                 elseif v.platform == 9 and Golb_Platform_Info.is_aplus then
                     insert = true
                 elseif CC_TARGET_PLATFORM_LUA == common.platform.CC_PLATFORM_WIN32 then

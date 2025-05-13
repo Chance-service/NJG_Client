@@ -2,7 +2,7 @@
   "packageUrl": "https://d1qh9gzgwld337.cloudfront.net/hotUpdate",
   "IOSAppStoreURL": "https://www.baidu.com/",
   "remoteVersionUrl": "https://d1qh9gzgwld337.cloudfront.net/version",
-  "versionApp": "1.4.4.1",
+  "versionApp": "1.4.5.1",
   "remoteProjectManifestUrl": "https://d1qh9gzgwld337.cloudfront.net/hotUpdate",
   "AndroidStoreURL": "http://220.130.219.201:9999/#tab-9",
   "AppUpdateUrlH365": "http://220.130.219.201:9999/#tab-9",
@@ -12,6 +12,6 @@
   "AppUpdateUrlAPLUS": "http://220.130.219.201:9999/#tab-9",
   "AppUpdateUrlEROLABS": "http://220.130.219.201:9999/#tab-9",
   "versionCode": 1,
-  "versionResource": "1.4.4",
+  "versionResource": "1.4.5",
   "isNeedGoAppStore": 1
 }
