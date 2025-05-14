@@ -132,7 +132,7 @@ android {
         }
 
         EROLABS {
-            applicationId = "chance.debug.ninja.girl.erolabs.cn"
+            applicationId = "chance.release.ninja.girl.erolabs"
             dimension "app_type"
             dependencies {
                 implementation fileTree(dir: '../../sdklibs/GameLibBC/platformlibs/EROLABS', include: ['*.aar','*.jar'])

@@ -100,6 +100,7 @@ Golb_Platform_Info = {
 	is_r18 = false, --android_hutuo
 	is_jgg = false, --android_jgg
     is_kuso = false, --android_kuso
+    is_erolabs = false, -- android_erolabs
     is_aplus = false, --android_aplus
 }
 local platformName = GamePrecedure:getInstance():getPlatformName()
@@ -155,6 +156,10 @@ end
 
 if string.find(platformName, "_kuso") then  --kuso
     Golb_Platform_Info.is_kuso = true
+end
+
+if string.find(platformName, "_erolabs") then  --erolabs
+    Golb_Platform_Info.is_erolabs = true
 end
 
 if string.find(platformName, "_aplus") then  --aplus

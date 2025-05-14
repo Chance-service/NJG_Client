@@ -855,6 +855,15 @@ function MainScenePageInfo.RequestData()
             BuyManager:SendtogetHoneyP() -- getHoneyp
         end
     end
+
+    if (Golb_Platform_Info.is_erolabs) then --Erolabs
+        local IsGuest = libPlatformManager:getPlatform():getIsGuest() 
+        if (IsGuest == 0) then
+            CCLuaLog("MainScene SendtogetECoin")
+            local BuyManager = require("BuyManager")
+            BuyManager:SendtogetECoin() -- getECoin
+        end
+    end
 end
 function MainScenePageInfo.onEnter(container)
     MainFrame_setGuideMask(true)    -- 避免新帳號教學開始前看到大廳畫面
@@ -1658,13 +1667,20 @@ function sendRoleInfo()
     TapDBManager.setServer(GamePrecedure:getInstance():getServerNameById(serverId))
     TapDBManager.setLevel(UserInfo.roleInfo.level)
 
-    libPlatformManager:getPlatform():sendMessageG2P('G2P_REPORT_HANDLER','2')
+    --if (Golb_Platform_Info.is_h365) then
+    --    libPlatformManager:getPlatform():sendMessageG2P('G2P_REPORT_HANDLER',"2")
+    --else
+        local data ={}
+        data['eventId'] = 2
+        data['userId'] = GamePrecedure:getInstance():getUin()
+        libPlatformManager:getPlatform():sendMessageG2P('G2P_REPORT_HANDLER',json.encode(data))
+    --end
 
     setPayUrl() -- setPayurl(H365/JGG/KUSO/APLUS)
 end
 
 function setPayUrl()
-    if Golb_Platform_Info.is_r18 then
+    if Golb_Platform_Info.is_r18 or Golb_Platform_Info.is_erolabs then
         return
     end
     local Svrid = GamePrecedure:getInstance():getServerID()

@@ -2,7 +2,7 @@
   "packageUrl": "https://njg-cdn-1.xxqzzx.cn",
   "IOSAppStoreURL": "https://www.baidu.com/",
   "remoteVersionUrl": "https://njg-cdn-1.xxqzzx.cn",
-  "versionApp": "1.1.12.1",
+  "versionApp": "1.1.12.2",
   "remoteProjectManifestUrl": "https://njg-cdn-1.xxqzzx.cn",
   "AndroidStoreURL": "https://gstch.sng.link/Doeon/qhsz",
   "AppUpdateUrlH365": "https://365fun.sng.link/Dclxh/5hf6",
@@ -10,6 +10,7 @@
   "AppUpdateUrlKUSO": "https://dl.69game.site/1001/",
   "AppUpdateUrlJSG": "https://gstch.sng.link/Doeon/qhsz",
   "AppUpdateUrlAPLUS": "https://dl.69game.site/1001-cps/",
+  "AppUpdateUrlEROLABS": "https://l.hyenadata.com/s/1ehAjD",
   "versionCode": 1,
   "versionResource": "1.1.12",
   "isNeedGoAppStore": 1

@@ -7,6 +7,7 @@ local NodeHelper  = require("NodeHelper")
 local PageManager = require("PageManager")
 local common      = require("common")
 local Player_pb   = require("Player_pb")
+local json = require('json')
 
 local ChooseRolePageInfo = { }
 
@@ -139,7 +140,13 @@ function ChooseRolePageInfo.onReceivePacket()
             if Golb_Platform_Info.is_r18 then
                 AdjustManager:onTrackEvent("ix2k8k")
             end
-            libPlatformManager:getPlatform():sendMessageG2P('G2P_REPORT_HANDLER','1')
+            --if (Golb_Platform_Info.is_h365) then
+            --    libPlatformManager:getPlatform():sendMessageG2P('G2P_REPORT_HANDLER',"1")
+            --else
+                local data ={}
+                data['eventId'] = 1
+                libPlatformManager:getPlatform():sendMessageG2P('G2P_REPORT_HANDLER',json.encode(data))
+            --end
         end
     end
 end

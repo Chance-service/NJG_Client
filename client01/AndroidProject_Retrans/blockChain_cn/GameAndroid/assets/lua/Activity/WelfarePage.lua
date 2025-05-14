@@ -132,6 +132,10 @@ function WelfarePage:onEnter(container)
     if (Golb_Platform_Info.is_r18) then --R18
         BuyManager:SendtogetHoneyP() -- getHoneyp
     end
+
+    if (Golb_Platform_Info.is_erolabs) then --Erolabs
+        BuyManager:SendtogetECoin() -- getECoin
+    end
 end
 function WelfarePage:changeToActivityPageById(container, activityId)
     local childContainer = mWelfareContainerRef[activityId]

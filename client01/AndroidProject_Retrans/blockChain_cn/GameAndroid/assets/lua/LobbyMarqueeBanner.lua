@@ -17,6 +17,7 @@ local function getCurrentPlatformID()
     if Golb_Platform_Info.is_h365 then return 1 end
     if Golb_Platform_Info.is_r18 then return 2 end
     if Golb_Platform_Info.is_kuso then return 6 end
+    if Golb_Platform_Info.is_erolabs then return 7 end
     if Golb_Platform_Info.is_aplus then return 9 end
     return 1
 end

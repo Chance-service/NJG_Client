@@ -28,6 +28,7 @@ Imagesetfile/i18n_cn_Banner1.plist
 Imagesetfile/i18n_cn_Banner2.plist
 Imagesetfile/i18n_cn_Banner3.plist
 Imagesetfile/i18n_cn_Button0.plist
+Imagesetfile/i18n_cn_Button1.plist
 Imagesetfile/i18n_cn_Event0.plist
 Imagesetfile/i18n_cn_Icon0.plist
 Imagesetfile/i18n_tw_Banner0.plist
@@ -35,6 +36,7 @@ Imagesetfile/i18n_tw_Banner1.plist
 Imagesetfile/i18n_tw_Banner2.plist
 Imagesetfile/i18n_tw_Banner3.plist
 Imagesetfile/i18n_tw_Button0.plist
+Imagesetfile/i18n_tw_Button1.plist
 Imagesetfile/i18n_tw_Event0.plist
 Imagesetfile/i18n_tw_Icon0.plist
 Imagesetfile/ItemIcon0.plist

@@ -113,11 +113,11 @@ function PlayerInfoPageBase:showPlayerInfo(container)
     UserInfo.sync()
     local vipTexture = "PlayerInfo_VIP" .. UserInfo.playerInfo.vipLevel .. ".png"
 
-    NodeHelper:setNodesVisible(container, { mBoundAccountNode = (Golb_Platform_Info.is_r18) or (Golb_Platform_Info.is_kuso) or (Golb_Platform_Info.is_aplus) })
+    NodeHelper:setNodesVisible(container, { mBoundAccountNode = (Golb_Platform_Info.is_r18) or (Golb_Platform_Info.is_erolabs) or (Golb_Platform_Info.is_kuso) or (Golb_Platform_Info.is_aplus) })
     bindState = libPlatformManager:getPlatform():getIsGuest()  -- 0 = 舊帳號登入, 1 = 遊客登入
     NodeHelper:setMenuItemEnabled(container, "mBindBtn", (bindState ~= 0) or (Golb_Platform_Info.is_kuso) or (Golb_Platform_Info.is_aplus)) --綁定開關
     NodeHelper:setNodeIsGray(container, { mAccount = (bindState == 0) })
-    if (Golb_Platform_Info.is_r18) then
+    if (Golb_Platform_Info.is_r18) or (Golb_Platform_Info.is_erolabs) then
         NodeHelper:setMenuItemImage(container, { mBindBtn = { normal = "Btn_AccountBinding_N.png", press = "Btn_AccountBinding_S.png" } })
     elseif (Golb_Platform_Info.is_kuso) then
         NodeHelper:setMenuItemImage(container, { mBindBtn = { normal = "Btn_PersonalConfidence69_N.png", press = "Btn_PersonalConfidence69_S.png" } })
@@ -177,6 +177,8 @@ function PlayerInfoPageBase:onServiceAnnounce(container)
         PageManager.showHelp(GameConfig.HelpKey.HELP_AGREEMENT_KUSO)
     elseif Golb_Platform_Info.is_aplus then
         PageManager.showHelp(GameConfig.HelpKey.HELP_AGREEMENT_KUSO)    -- 跟69共用
+    elseif Golb_Platform_Info.is_erolabs then
+        PageManager.showHelp(GameConfig.HelpKey.HELP_AGREEMENT_EROLABS)
     else
         PageManager.showHelp(GameConfig.HelpKey.HELP_AGREEMENT)
     end
@@ -271,7 +273,7 @@ end
 
 function PlayerInfoPageBase:onBoundAccount(container)
     if bindState ~= 0 then
-        if Golb_Platform_Info.is_r18 then
+        if (Golb_Platform_Info.is_r18) or (Golb_Platform_Info.is_erolabs) then
             CCLuaLog("onClickBind")
             local openBindGameCallback = function (BindGameResult)
                 CCLuaLog("BindGameResult1")

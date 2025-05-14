@@ -1866,7 +1866,7 @@ void GamePrecedure::playMovie(std::string pageName, std::string fileName, int is
 #endif
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 	fileName = "Video/" + fileName;
-    libOS::getInstance()->playMovie(fileName.c_str());
+    libOS::getInstance()->playMovie(fileName.c_str(), isLoop);
 #endif
 	MainFrame::getInstance()->addMovie(pageName, fileName, isLoop, autoScale);
 }
@@ -1876,6 +1876,9 @@ void GamePrecedure::closeMovie(std::string pageName)
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 	callPlatformCloseMovieJNI();
 #endif
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    libOS::getInstance()->stopMovie();
+#endif
 	MainFrame::getInstance()->removeMovieByPage(pageName);
 }
 
@@ -1884,11 +1887,17 @@ void GamePrecedure::pauseMovie(std::string pageName)
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 	callPlatformPauseMovieJNI();
 #endif
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    libOS::getInstance()->pauseMovie();
+#endif
 }
 
 void GamePrecedure::resumeMovie(std::string pageName)
 {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 	callPlatformResumeMovieJNI();
+#endif
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    libOS::getInstance()->resumeMovie();
 #endif
 }

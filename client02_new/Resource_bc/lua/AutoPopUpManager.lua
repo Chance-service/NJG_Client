@@ -51,23 +51,11 @@ function AutoPopupManager_checkAutoPopup()
     if currPage > 0 then
         return -- 有其他頁面
     end
-    if  LockManager_getShowLockByPageName(GameConfig.LOCK_PAGE_KEY.STEPBUNDLE) then
-        return
-    end
-
-    local todayDate = AutoPopupManager:getCurrentDateString()
-
     local ADPopString = CCUserDefault:sharedUserDefault():getStringForKey("POPAD_" .. UserInfo.playerInfo.playerId)
+    local todayDate = AutoPopupManager:getCurrentDateString()
     if ADPopString ~= todayDate then
         PageManager.pushPage("PopADPage")
         CCUserDefault:sharedUserDefault():setStringForKey("POPAD_" .. UserInfo.playerInfo.playerId,todayDate)
-        return
-    end
-    --累計登入
-    local LoginPopString = CCUserDefault:sharedUserDefault():getStringForKey("POPLOGIN_" .. UserInfo.playerInfo.playerId)
-    if LoginPopString ~= todayDate and require("LoginRewardPage"):getServerData().days < 8 then
-        PageManager.pushPage("LoginRewardPage")
-        CCUserDefault:sharedUserDefault():setStringForKey("POPLOGIN_" .. UserInfo.playerInfo.playerId,todayDate)
         return
     end
     -- 彈跳禮包
@@ -92,6 +80,7 @@ function AutoPopupManager_checkAutoPopup()
     for i = 1, #PopUpDatas do
         PopUpDatas[i].saveDate = PopUpDatas[i].saveDate or CCUserDefault:sharedUserDefault():getStringForKey(POP_UP_SAVE_KEY .. i .. "_" .. UserInfo.playerInfo.playerId)
         local saveDate = PopUpDatas[i].saveDate
+        local todayDate = AutoPopupManager:getCurrentDateString()
         local pageData = POP_PAGE[PopUpDatas[i].id]
         if pageData then
             local activityOpen = false

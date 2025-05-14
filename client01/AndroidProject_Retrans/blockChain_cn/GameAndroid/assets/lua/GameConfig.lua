@@ -538,6 +538,7 @@ GameConfig = {
         HELP_AGREEMENT = "HelpServiceAnnounce",
         HELP_AGREEMENT_R18 = "HelpServiceAnnounceECCHI ",
         HELP_AGREEMENT_KUSO = "HelpServiceAnnounce24",
+        HELP_AGREEMENT_EROLABS = "HelpServiceAnnounceEROLABS",
         -------- 大廳 --------
         -- 工坊
         HELP_SMELT = "HelpSmelt",
@@ -926,6 +927,8 @@ GameConfig = {
         Relationship_2_1_Close = 997,
         Relationship_Open = 992,
         Relationship_Close = 993,
+        -- NG
+        SkinShopDesc = 125,
     },
     Color = {
         Lack = {246, 54, 69},
