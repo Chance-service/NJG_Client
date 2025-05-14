@@ -47,6 +47,6 @@ public interface ISDKService {
     /**
      * 回傳平台報告(註冊)
      */
-    public void Report_Handler(int eventId);
+    public void Report_Handler(String msg);
 
 }

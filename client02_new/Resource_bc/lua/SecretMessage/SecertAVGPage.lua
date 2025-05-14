@@ -456,7 +456,7 @@ function SecertAVG:setAllLogContent(container)
             end
             --logVoice
             --local voiceName = "Voice" .. MainId.. string.format("%02d", i) .. ".mp3"
-            --local isFileExist = NodeHelper:isFileExist("/audio/" .. voiceName)
+            --local isFileExist = NodeHelper:isFileExist("audio/" .. voiceName)
             --FetterLogContent.logVoice[i] = isFileExist
       end
 end
@@ -522,7 +522,7 @@ function SecertAVG:onTouch(container, eventName)
             SecertAVG:playVoice(container)
             --播放其他音效
             local newOtherEffName = nowControlCfg.eff
-            isFileExist = newOtherEffName and NodeHelper:isFileExist("/audio/" .. newOtherEffName)
+            isFileExist = newOtherEffName and NodeHelper:isFileExist("audio/" .. newOtherEffName)
             if newOtherEffName ~= nowOtherEffName then
                 if nowOtherEffId ~= 0 then
                     --SimpleAudioEngine:sharedEngine():stopEffect(nowOtherEffId)
@@ -684,7 +684,7 @@ function SecertAVG:initSetting(container)
             nowOtherEffId = 0
         end
         if newOtherEffName ~= "" then
-            local isFileExist = newOtherEffName and NodeHelper:isFileExist("/audio/" .. newOtherEffName)
+            local isFileExist = newOtherEffName and NodeHelper:isFileExist("audio/" .. newOtherEffName)
             if isFileExist then
                 nowOtherEffId = SoundManager:getInstance():playEffectByName(newOtherEffName, false)
             end
@@ -1519,7 +1519,7 @@ function SecertAVG:playVoice(container)
     end
     local voiceName = "FetterLog" .. areaNum .. string.format("%02d", stageNum) .. storyIdx .. string.format("%02d", nowLine) .. ".mp3"
 
-    local isFileExist = NodeHelper:isFileExist("/audio/" .. voiceName)
+    local isFileExist = NodeHelper:isFileExist("audio/" .. voiceName)
     if isFileExist then
         local wait = fetterControlCfg[self:getNowControlId(container)].voiceWait
         local actionArr = CCArray:create()
@@ -1547,7 +1547,7 @@ end
 function SecertAVG:playTargetVoice(container, targetLine)
     self:stopVoice(container)
     local voiceName = "FetterLog" .. areaNum .. string.format("%02d", stageNum) .. storyIdx .. string.format("%02d", targetLine) .. ".mp3"
-    local isFileExist = NodeHelper:isFileExist("/audio/" .. voiceName)
+    local isFileExist = NodeHelper:isFileExist("audio/" .. voiceName)
     if isFileExist then
         isWaitingVoice = false
         if CC_TARGET_PLATFORM_LUA == common.platform.CC_PLATFORM_WIN32 then

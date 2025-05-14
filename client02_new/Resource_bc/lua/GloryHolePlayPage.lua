@@ -367,7 +367,7 @@ function GloryHole_PlayBase:PlayEffectTable(container, MoveTable)
     for _, soundFile in ipairs(EffectTable) do
         local delayTime, filename = getDurationAndNameFromFilename(soundFile)
 
-        if filename ~= "" and NodeHelper:isFileExist("/audio/" .. filename) then
+        if filename ~= "" and NodeHelper:isFileExist("audio/" .. filename) then
             -- 計算相對於序列起始點的延遲
             local relativeDelay = delayTime - previousTime
             previousTime = delayTime  -- 更新基準時間
@@ -609,7 +609,7 @@ function GloryHole_PlayBase:PreloadEffect(MoveTable)
     for _, soundFile in ipairs(EffectTable) do
         local filename = getFilename(soundFile)
 
-        if filename ~= "" and NodeHelper:isFileExist("/audio/" .. filename) then
+        if filename ~= "" and NodeHelper:isFileExist("audio/" .. filename) then
             -- 預載音效進入內存
             print("預載音檔: " .. filename)
             SimpleAudioEngine:sharedEngine():preloadEffect(filename)

@@ -20,8 +20,8 @@ Fid	名称	品质	描述	对应Icon图片路径
 1024	@UserProperty_Name_1024	2	@UserProperty_Desc_1024	Imagesetfile/HelpFight/hp_recoverbox_small.png
 1025	@UserProperty_Name_1025	5	@UserProperty_Desc_1025	Item/25.png
 1026	@UserProperty_Name_1026	5	@UserProperty_Desc_1026	Item/26.png
-1027	@UserProperty_Name_1027	5	@UserProperty_Desc_1027	Item/26.png
-1028	@UserProperty_Name_1028	5	@UserProperty_Desc_1028	Item/26.png
+1027	@UserProperty_Name_1027	5	@UserProperty_Desc_1027	Item/27.png
+1028	@UserProperty_Name_1028	5	@UserProperty_Desc_1028	Item/28.png
 2001	@UserProperty_Name_2001	2	@UserProperty_Desc_2001	Item/18.png
 2002	@UserProperty_Name_2002	5	@UserProperty_Desc_2002	UI/MainScene/Font/u_Num01.png
 2003	@UserProperty_Name_2003	5	@UserProperty_Desc_2003	UI/MainScene/Font/u_Num02.png

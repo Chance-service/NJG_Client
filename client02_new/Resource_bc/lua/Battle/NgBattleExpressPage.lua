@@ -26,6 +26,7 @@ local FREETYPE_STR_ID = 4004
 local nowFreeTime = 0
 local nowBuyTime = 0
 local canBuyTime = 0
+local nowFastTime = 0
 local vipLevel = 0
 local buyCost = { }
 local pageShowType = PAGE_TYPE.FREE
@@ -50,6 +51,7 @@ end
 function NgBattleExpressPage:initData(container)
     local vipCfg = ConfigManager.getVipCfg()
     nowBuyTime = UserInfo.stateInfo.fastFightBuyTimes
+    nowFastTime = UserInfo.stateInfo.fastFightTimes
     vipLevel = tonumber(UserInfo.playerInfo.vipLevel)
     canBuyTime = vipCfg[vipLevel]["fastFightTime"] - nowBuyTime
     buyCost = common:split(GameConfig.buyFastFightPrice, ",")
@@ -61,7 +63,7 @@ function NgBattleExpressPage:initData(container)
             break
         end
     end
-    nowFreeTime = totalFreeTime - nowBuyTime
+    nowFreeTime = math.max(totalFreeTime - nowBuyTime,0) + nowFastTime
 end
 
 function NgBattleExpressPage:initUI(container)
@@ -76,7 +78,7 @@ function NgBattleExpressPage:initUI(container)
 end
 function NgBattleExpressPage:refreshUI(container)
     local buyCostIndex = math.min(nowBuyTime + 1, #buyCost)
-    if canBuyTime > 0 and buyCost[buyCostIndex] and tonumber(buyCost[buyCostIndex]) == 0 then -- 還有免費次數
+    if nowFreeTime > 0 or canBuyTime > 0 and buyCost[buyCostIndex] and tonumber(buyCost[buyCostIndex]) == 0 then -- 還有免費次數
         pageShowType = PAGE_TYPE.FREE
         NodeHelper:setStringForLabel(container, { mTipTxt = common:getLanguageString("@ExBattleTip1", nowFreeTime) })
     elseif canBuyTime > 0 and buyCost[buyCostIndex] and tonumber(buyCost[buyCostIndex]) > 0 then -- 還有購買次數
@@ -90,42 +92,33 @@ function NgBattleExpressPage:refreshUI(container)
 end
 
 function NgBattleExpressPage:onExpress(container)
+
     local buyCostIndex = math.min(nowBuyTime + 1, #buyCost)
-    if pageShowType == PAGE_TYPE.FREE or pageShowType == PAGE_TYPE.BUY then
-        local cfg = ConfigManager.getUserPropertyCfg()[COST_ITEM_ID]
-        local str = common:getLanguageString("@ExBattleTip2", buyCost[buyCostIndex])
-        PageManager.showNotice(common:getLanguageString("@buy"), str, function(isOk)
-            if not isOk then
-                return
-            end
-            if UserInfo.playerInfo.gold < tonumber(buyCost[buyCostIndex]) then
-                -- 鑽石不足
-                MessageBoxPage:Msg_Box_Lan("@GoldNotEnough")
-                return
-            end
-            local msg = Battle_pb.HPBuyFastFightTimes()
-		    if msg ~= nil then
-		    	msg.times = 1
-                common:sendPacket(HP_pb.BUY_FAST_FIGHT_TIMES_C, msg, true)
-		    end
-        end, true, true)
+    if nowFastTime > 0 then
+        buyCostIndex = 1
     end
-    --if nowFreeTime > 0 then
-    --    local msg = Battle_pb.HPFastBattle()
-    --    if msg ~= nil then
-    --        msg.mapId = UserInfo.stateInfo.curBattleMap
-    --        msg.isNoob = false
-    --        common:sendPacket(HP_pb.BATTLE_FAST_FIGHT_C, msg, true)
-    --        --UserInfo.stateInfo.fastFightTimes = msg.fastFightTimes - 1
-    --        --nowFreeTime = UserInfo.stateInfo.fastFightTimes
-    --    end
-    --elseif nowFreeTime <= 0 and canBuyTime > 0 then     -- 購買次數
-    --  local msg = Battle_pb.HPBuyFastFightTimes()
-	--	if msg ~= nil then
-	--		msg.times = 1
-    --        common:sendPacket(HP_pb.BUY_FAST_FIGHT_TIMES_C, msg, true)
-	--	end
-    --end
+    local cfg = ConfigManager.getUserPropertyCfg()[COST_ITEM_ID]
+    local str = common:getLanguageString("@ExBattleTip2", buyCost[buyCostIndex])
+    PageManager.showNotice(common:getLanguageString("@buy"), str, function(isOk)
+        if not isOk then
+            return
+        end
+        if nowFastTime > 0 then
+            common:sendEmptyPacket(HP_pb.BATTLE_FAST_FIGHT_C, true)
+            return   
+        end
+        if UserInfo.playerInfo.gold < tonumber(buyCost[buyCostIndex]) then
+            -- 鑽石不足
+            MessageBoxPage:Msg_Box_Lan("@GoldNotEnough")
+            return
+        end
+        local msg = Battle_pb.HPBuyFastFightTimes()
+	    if msg ~= nil then
+	    	msg.times = 1
+               common:sendPacket(HP_pb.BUY_FAST_FIGHT_TIMES_C, msg, true)
+	    end
+    end, true, true)
+    
 end
 
 function NgBattleExpressPage:onClose(container)
@@ -201,14 +194,15 @@ function NgBattleExpressPage:onReceivePacket(container)
 
         UserInfo.stateInfo.fastFightTimes = msg.fastFightTimes
         UserInfo.stateInfo.fastFightBuyTimes = msg.fastFightBuyTimes
-        self:initData(container)
-        self:refreshUI(container)
     end
+     self:initData(container)
+     self:refreshUI(container)
 end
 -- 計算紅點
 function NgBattleExpressPage_calIsShowRedPoint()
     local vipCfg = ConfigManager.getVipCfg()
     local nowBuyTime = UserInfo.stateInfo.fastFightBuyTimes
+    local nowFastTime = UserInfo.stateInfo.fastFightTimes
     local vipLevel = tonumber(UserInfo.playerInfo.vipLevel)
     local canBuyTime = vipCfg[vipLevel]["fastFightTime"] - nowBuyTime
     local buyCost = common:split(GameConfig.buyFastFightPrice, ",")
@@ -220,7 +214,7 @@ function NgBattleExpressPage_calIsShowRedPoint()
             break
         end
     end
-    local nowFreeTime = totalFreeTime - nowBuyTime
+    local nowFreeTime = math.max(totalFreeTime - nowBuyTime,0) + nowFastTime
     return nowFreeTime > 0
 end
 -- 刷新紅點

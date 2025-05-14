@@ -554,6 +554,9 @@ void UpdateVersion::appStoreUpdate()
 	else if (SeverConsts::Get()->IsEroR18()) {
 		libOS::getInstance()->openURL(serverVersionData->AppUpdateUrlR18);
 	}
+	else if (SeverConsts::Get()->IsErolabs()) {
+		libOS::getInstance()->openURL(serverVersionData->AppUpdateUrlEROLABS);
+	}
 	else if (SeverConsts::Get()->IsKUSO()) {
 		libOS::getInstance()->openURL(serverVersionData->AppUpdateUrlKUSO);
 	}

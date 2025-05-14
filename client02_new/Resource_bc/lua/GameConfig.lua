@@ -538,6 +538,7 @@ GameConfig = {
         HELP_AGREEMENT = "HelpServiceAnnounce",
         HELP_AGREEMENT_R18 = "HelpServiceAnnounceECCHI ",
         HELP_AGREEMENT_KUSO = "HelpServiceAnnounce24",
+        HELP_AGREEMENT_EROLABS = "HelpServiceAnnounceEROLABS",
         -------- 大廳 --------
         -- 工坊
         HELP_SMELT = "HelpSmelt",

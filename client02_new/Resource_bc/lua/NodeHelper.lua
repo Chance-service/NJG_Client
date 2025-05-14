@@ -2582,6 +2582,7 @@ function NodeHelper:utf8tochars(input)
 end
 
 function NodeHelper:isFileExist(filePath)
+    -- filePath最前面是"/"時 ios不會使用fullpath檢查
     if filePath == nil then return false end
     local writablePath = CCFileUtils:sharedFileUtils():getWritablePath()
     local isFileExist = false

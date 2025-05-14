@@ -585,6 +585,9 @@ CCSpriteFrame* CCSpriteFrameCache::spriteFrameByName(const char *pszName)
 		else if (SeverConsts::Get()->IsKUSO()) {
 			pszName = "Icon_Hcoin_kuso.png";
 		}
+		else if (SeverConsts::Get()->IsErolabs()) {
+			pszName = "Icon_Hcoin_erolabs.png";
+		}
 		else if (SeverConsts::Get()->IsAPLUS()) {
 			pszName = "Icon_Hcoin_aplus.png";
 		}

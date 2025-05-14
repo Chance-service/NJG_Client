@@ -60,6 +60,7 @@ public:
 	std::string AppUpdateUrlH365;
 	std::string AppUpdateUrlR18;
 	std::string AppUpdateUrlKUSO;
+	std::string AppUpdateUrlEROLABS;
 	std::string AppUpdateUrlJSG;
 	std::string AppUpdateUrlAPLUS_CPS1;
 	std::string versionResource;
@@ -76,6 +77,7 @@ public:
 		 ,AppUpdateUrlH365(std::string(""))
 		 ,AppUpdateUrlR18(std::string(""))
 		 ,AppUpdateUrlKUSO(std::string(""))
+		 ,AppUpdateUrlEROLABS(std::string(""))
 		 ,AppUpdateUrlJSG(std::string(""))
 		 ,AppUpdateUrlAPLUS_CPS1(std::string(""))
 		 ,versionResource(std::string(""))

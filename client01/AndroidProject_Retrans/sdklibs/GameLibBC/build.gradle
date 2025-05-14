@@ -39,6 +39,11 @@ android {
             jniLibs.srcDirs = ['platformlibs/KUSO']
             res.srcDirs = ['KUSO/res']
         }
+        EROLABS{
+            java.srcDirs = ['platformSrc/EROLABS']
+            jniLibs.srcDirs = ['platformlibs/EROLABS']
+            res.srcDirs = ['EROLABS/res']
+        }
         APLUS_CPS1 {
             java.srcDirs = ['platformSrc/APLUS', 'platformSrc/APLUS_CPS1']
             jniLibs.srcDirs = ['platformlibs/APLUS']
@@ -161,6 +166,19 @@ android {
 //                    // 當遇到版本衝突時直接構建失敗
 //                    configurations.resolutionStrategy.failOnVersionConflict()
 //            }
+        }
+
+        EROLABS {
+            dimension "app_type"
+            dependencies {
+                compileOnly fileTree(dir: 'platformlibs/EROLABS', include: ['*.jar','*.aar'])
+                compileOnly fileTree(dir: 'libs', include: ['*.aar'])
+                implementation project(':sdklibs:libcocos2dx')
+
+            }
+            defaultConfig {
+                minSdkVersion 21
+            }
         }
         APLUS_CPS1 {
             dimension "app_type"

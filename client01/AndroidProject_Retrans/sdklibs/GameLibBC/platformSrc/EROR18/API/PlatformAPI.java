@@ -139,7 +139,7 @@ public class PlatformAPI extends SDKService {
 	}
 
 	@Override
-	public void Report_Handler(int eventId){
+	public void Report_Handler(String msg){
 /* 		if (eventId == 1) {
 			h365sdk.getDataAnalystManager().completedRegistrationEvent();
 		}

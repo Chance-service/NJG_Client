@@ -86,7 +86,7 @@ void LoginPacket::_sendPacket()
 	if(!platformInfo.empty())
 		loginPack.set_platform(platformInfo);
 	std::string aPwd = GamePrecedure::getInstance()->getDefaultPwd();
-	if (SeverConsts::Get()->IsEroR18())
+	if (SeverConsts::Get()->IsEroR18() || SeverConsts::Get()->IsErolabs())
 	{
 		loginPack.set_registed(false);
 		loginPack.set_passwd(aPwd);

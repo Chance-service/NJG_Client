@@ -33,6 +33,7 @@ static bool IsJSG = false;
 static bool IsLSJ = false;
 static bool IsMURA = false;
 static bool IsKUSO = false;
+static bool IsErolabs = false;
 static bool IsAPLUS = false;
 static std::string PayUrl = "";
 static int HoneyP = 0;
@@ -232,9 +233,9 @@ std::string lib91::sendMessageG2P(const std::string& tag, const std::string& msg
 }
 
 /************************************************************/
-/*ï¿½ï¿½ï¿½ï¿½kakaoï¿½ï¿½ï¿½Ñ½Ó¿ï¿½*/
+/*º«¹úkakaoºÃÓÑ½Ó¿Ú*/
 
-//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+//»ñµÃÑûÇë´ÎÊý
 void lib91::OnKrGetInviteCount()
 {
 
@@ -304,6 +305,7 @@ void lib91::setPlatformName(int platform)
 	IsLSJ = (platform == 4);
 	IsMURA = (platform == 5);
 	IsKUSO = (platform == 6);
+	IsErolabs = (platform == 7);
 	IsAPLUS = (platform == 9);
 }
 

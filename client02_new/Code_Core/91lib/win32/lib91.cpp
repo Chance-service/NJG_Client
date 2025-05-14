@@ -232,9 +232,9 @@ std::string lib91::sendMessageG2P(const std::string& tag, const std::string& msg
 }
 
 /************************************************************/
-/*ï¿½ï¿½ï¿½ï¿½kakaoï¿½ï¿½ï¿½Ñ½Ó¿ï¿½*/
+/*º«¹úkakaoºÃÓÑ½Ó¿Ú*/
 
-//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+//»ñµÃÑûÇë´ÎÊý
 void lib91::OnKrGetInviteCount()
 {
 

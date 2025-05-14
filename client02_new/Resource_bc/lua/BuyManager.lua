@@ -6,7 +6,7 @@ local NewID = ""
 function BuyManager.Buy(playerId, buyInfo)
      if (Golb_Platform_Info.is_h365) or (Golb_Platform_Info.is_jgg) or (Golb_Platform_Info.is_kuso) or (Golb_Platform_Info.is_aplus) then --H365, jgg ,kuso
         libPlatformManager:getPlatform():buyGoods(buyInfo)
-     elseif (Golb_Platform_Info.is_r18) then --R18
+     elseif (Golb_Platform_Info.is_r18) or (Golb_Platform_Info.is_erolabs) then --R18 , erolabs
         local title = Language:getInstance():getString("@SDK3")
         local message = ""
         local yesStr = ""
@@ -40,11 +40,14 @@ function BuyManager.Buy(playerId, buyInfo)
         end
         local IsGuest = libPlatformManager:getPlatform():getIsGuest() 
         if (IsGuest == 0) then
-            local honeyp = libPlatformManager:getPlatform():getHoneyP()
-            CCLuaLog("HoneyP : " .. honeyp)
-            if (honeyp < buyInfo.productPrice) then -- Honeyp not enough
-
-				message = Language:getInstance():getString("@SDK4")
+            local coin = libPlatformManager:getPlatform():getHoneyP()
+            CCLuaLog("HoneyP or ECoin : " .. coin)
+            if (coin < buyInfo.productPrice) then -- coin not enough
+                if (Golb_Platform_Info.is_r18) then
+				    message = Language:getInstance():getString("@SDK4")
+                elseif (Golb_Platform_Info.is_erolabs) then
+                    message = Language:getInstance():getString("@SDK13")
+                end
 				yesStr = Language:getInstance():getString("@SDK5")
 
                 local openPayment = function(bool)
@@ -63,15 +66,26 @@ function BuyManager.Buy(playerId, buyInfo)
                         local playtoken =  CCUserDefault:sharedUserDefault():getStringForKey("ecchigamer.token")
                         if (playtoken ~= "")
                         then
-                            local msg = Shop_pb.HoneyPBuyRequest()
-                            msg.token = playtoken
-                            msg.pid = tonumber(buyInfo.productId)
-                            common:sendPacket(HP_pb.SHOP_HONEYP_BUY_C, msg, true);
+                            if (Golb_Platform_Info.is_r18) then
+                                local msg = Shop_pb.HoneyPBuyRequest()
+                                msg.token = playtoken
+                                msg.pid = tonumber(buyInfo.productId)
+                                common:sendPacket(HP_pb.SHOP_HONEYP_BUY_C, msg, true);
+                            elseif (Golb_Platform_Info.is_erolabs) then
+                                local msg = Shop_pb.ECoinBuyRequest()
+                                msg.token = playtoken
+                                msg.pid = tonumber(buyInfo.productId)
+                                common:sendPacket(HP_pb.SHOP_ECOIN_BUY_C, msg, true);
+                            end
                         end
                     --
                     end
                 end
-                message = common:fill(Language:getInstance():getString("@SDK6"), tostring(honeyp))
+                if (Golb_Platform_Info.is_r18) then
+				    message = common:fill(Language:getInstance():getString("@SDK6"), tostring(coin))
+                elseif (Golb_Platform_Info.is_erolabs) then
+                    message = common:fill(Language:getInstance():getString("@SDK14"), tostring(coin))
+                end
 				NowBuyInfo = buyInfo
 				PageManager.showConfirm(title, message, buyShopItem, true)
 			end
@@ -83,7 +97,11 @@ function BuyManager.Buy(playerId, buyInfo)
                     --
                 end
             end
-			message = Language:getInstance():getString("@SDK9")
+            if (Golb_Platform_Info.is_r18) then
+				message = Language:getInstance():getString("@SDK9")
+            elseif (Golb_Platform_Info.is_erolabs) then
+                message = Language:getInstance():getString("@SDK15")
+            end
 			yesStr = Language:getInstance():getString("@SDK10")
 
 			PageManager.showConfirm(title, message, GotoBindCheck, true, yesStr)
@@ -102,11 +120,22 @@ function BuyManager:SendtogetHoneyP()
     end
 end
 
-function BuyManager:onReceiveBuyPacket(opcode, msgBuff) --R18 USE
+function BuyManager:SendtogetECoin()
+    local playtoken =  CCUserDefault:sharedUserDefault():getStringForKey("ecchigamer.token")
+    CCLuaLog("SendtogetECoin1 token : " .. playtoken)
+    if (playtoken ~= "") then
+        local msg = Shop_pb.ECoinRequest()
+        msg.token = playtoken
+        common:sendPacket(HP_pb.SHOP_ECOIN_C, msg, true);-- getECoin
+        CCLuaLog("SendtogetECoin2")
+    end
+end
+
+function BuyManager:onReceiveBuyPacket(opcode, msgBuff) --R18 or EROLABS USE
     CLuaLog("BuyManager:onReceiveBuyPacket : " .. opcode)
 end
 
-function BuyManager:onReceiveBoundAccount() --R18 USE
+function BuyManager:onReceiveBoundAccount() --R18 or EROLABS USE
     CCLuaLog("----------Bind Success--------------")
     MessageBoxPage:Msg_Box_Lan("@SDK12")
     CCUserDefault:sharedUserDefault():setStringForKey("ecchigamer.token", EcchiGamerSDK.getToken())
@@ -121,7 +150,17 @@ function BuyManager:onReceiveBoundAccount() --R18 USE
     TapDBManager.setName(tostring(UserInfo.roleInfo.name))
     TapDBManager.setServer(GamePrecedure:getInstance():getServerNameById(serverId))
     TapDBManager.setLevel(UserInfo.roleInfo.level)
-    
+
+
+    --if (Golb_Platform_Info.is_h365) then
+    --    libPlatformManager:getPlatform():sendMessageG2P('G2P_REPORT_HANDLER',"2")
+    --else
+        local data ={}
+        data['eventId'] = 2
+        data['userId'] = GamePrecedure:getInstance():getUin()
+        libPlatformManager:getPlatform():sendMessageG2P('G2P_REPORT_HANDLER',json.encode(data))
+    --end
+
     CCLuaLog("----------Bind End--------------")
 end
 

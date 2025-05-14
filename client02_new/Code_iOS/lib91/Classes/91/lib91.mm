@@ -181,7 +181,6 @@ void lib91::setupSDK(int platformId)
         PlayCenterConfig *config = [[[PlayCenterConfig alloc]
                                      initWithAppId:@"APPncbR1hdPgUIjSKt"
                                      isSandbox:FALSE
-                                     currency:Currency.cny
                                      subId:@"NG24"
                                     ] autorelease];
         [PlayCenter.shared
