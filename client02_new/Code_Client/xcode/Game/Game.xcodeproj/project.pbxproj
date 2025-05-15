@@ -274,6 +274,233 @@
 		4E7F507E2D5F9F2700DD4AA4 /* libpthread.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7F507D2D5F9F1900DD4AA4 /* libpthread.tbd */; };
 		4E7F50832D5FA37300DD4AA4 /* libcocos2dx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7F4FFA2D5F96D100DD4AA4 /* libcocos2dx.a */; };
 		4E7F50842D5FA3C000DD4AA4 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7F50772D5F9CBB00DD4AA4 /* libcrypto.a */; };
+		4EA070F52DD45AD7000B5677 /* AppController.mm in Sources */ = {isa = PBXBuildFile; fileRef = CFFC4BF216D230D3001F65C9 /* AppController.mm */; };
+		4EA070F62DD45AD7000B5677 /* RootViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = CFFC4BF516D230D3001F65C9 /* RootViewController.mm */; };
+		4EA070F72DD45AD7000B5677 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFC4BF716D230D3001F65C9 /* main.m */; };
+		4EA070F82DD45AD7000B5677 /* descriptor.cc in Sources */ = {isa = PBXBuildFile; fileRef = AF7EF31518114F1500954076 /* descriptor.cc */; };
+		4EA070F92DD45AD7000B5677 /* LoginBCPage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C1C573629B9CBCA003B7826 /* LoginBCPage.cpp */; };
+		4EA070FA2DD45AD7000B5677 /* descriptor.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = AF7EF31718114F1500954076 /* descriptor.pb.cc */; };
+		4EA070FB2DD45AD7000B5677 /* descriptor_database.cc in Sources */ = {isa = PBXBuildFile; fileRef = AF7EF31A18114F1500954076 /* descriptor_database.cc */; };
+		4EA070FC2DD45AD7000B5677 /* dynamic_message.cc in Sources */ = {isa = PBXBuildFile; fileRef = AF7EF31E18114F1500954076 /* dynamic_message.cc */; };
+		4EA070FD2DD45AD7000B5677 /* extension_set.cc in Sources */ = {isa = PBXBuildFile; fileRef = AF7EF32118114F1500954076 /* extension_set.cc */; };
+		4EA070FE2DD45AD7000B5677 /* extension_set_heavy.cc in Sources */ = {isa = PBXBuildFile; fileRef = AF7EF32318114F1500954076 /* extension_set_heavy.cc */; };
+		4EA070FF2DD45AD7000B5677 /* generated_message_reflection.cc in Sources */ = {isa = PBXBuildFile; fileRef = AF7EF32618114F1500954076 /* generated_message_reflection.cc */; };
+		4EA071002DD45AD7000B5677 /* generated_message_util.cc in Sources */ = {isa = PBXBuildFile; fileRef = AF7EF32918114F1500954076 /* generated_message_util.cc */; };
+		4EA071012DD45AD7000B5677 /* coded_stream.cc in Sources */ = {isa = PBXBuildFile; fileRef = AF7EF32C18114F1500954076 /* coded_stream.cc */; };
+		4EA071022DD45AD7000B5677 /* gzip_stream.cc in Sources */ = {isa = PBXBuildFile; fileRef = AF7EF33018114F1500954076 /* gzip_stream.cc */; };
+		4EA071032DD45AD7000B5677 /* printer.cc in Sources */ = {isa = PBXBuildFile; fileRef = AF7EF33418114F1500954076 /* printer.cc */; };
+		4EA071042DD45AD7000B5677 /* MessageHintPage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 31E985B91D4095A6000F29F9 /* MessageHintPage.cpp */; };
+		4EA071052DD45AD7000B5677 /* tokenizer.cc in Sources */ = {isa = PBXBuildFile; fileRef = AF7EF33718114F1500954076 /* tokenizer.cc */; };
+		4EA071062DD45AD7000B5677 /* zero_copy_stream.cc in Sources */ = {isa = PBXBuildFile; fileRef = AF7EF33A18114F1500954076 /* zero_copy_stream.cc */; };
+		4EA071072DD45AD7000B5677 /* zero_copy_stream_impl.cc in Sources */ = {isa = PBXBuildFile; fileRef = AF7EF33C18114F1500954076 /* zero_copy_stream_impl.cc */; };
+		4EA071082DD45AD7000B5677 /* zero_copy_stream_impl_lite.cc in Sources */ = {isa = PBXBuildFile; fileRef = AF7EF33E18114F1500954076 /* zero_copy_stream_impl_lite.cc */; };
+		4EA071092DD45AD7000B5677 /* message.cc in Sources */ = {isa = PBXBuildFile; fileRef = AF7EF34218114F1500954076 /* message.cc */; };
+		4EA0710A2DD45AD7000B5677 /* message_lite.cc in Sources */ = {isa = PBXBuildFile; fileRef = AF7EF34418114F1500954076 /* message_lite.cc */; };
+		4EA0710B2DD45AD7000B5677 /* RyukPlatformListener.mm in Sources */ = {isa = PBXBuildFile; fileRef = 76CD46BF1CF42C270066D8F0 /* RyukPlatformListener.mm */; };
+		4EA0710C2DD45AD7000B5677 /* reflection_ops.cc in Sources */ = {isa = PBXBuildFile; fileRef = AF7EF34818114F1500954076 /* reflection_ops.cc */; };
+		4EA0710D2DD45AD7000B5677 /* repeated_field.cc in Sources */ = {isa = PBXBuildFile; fileRef = AF7EF34B18114F1500954076 /* repeated_field.cc */; };
+		4EA0710E2DD45AD7000B5677 /* service.cc in Sources */ = {isa = PBXBuildFile; fileRef = AF7EF34F18114F1500954076 /* service.cc */; };
+		4EA0710F2DD45AD7000B5677 /* atomicops_internals_x86_gcc.cc in Sources */ = {isa = PBXBuildFile; fileRef = AF7EF35718114F1500954076 /* atomicops_internals_x86_gcc.cc */; };
+		4EA071102DD45AD7000B5677 /* atomicops_internals_x86_msvc.cc in Sources */ = {isa = PBXBuildFile; fileRef = AF7EF35918114F1500954076 /* atomicops_internals_x86_msvc.cc */; };
+		4EA071112DD45AD7000B5677 /* common.cc in Sources */ = {isa = PBXBuildFile; fileRef = AF7EF35B18114F1500954076 /* common.cc */; };
+		4EA071122DD45AD7000B5677 /* once.cc in Sources */ = {isa = PBXBuildFile; fileRef = AF7EF36018114F1500954076 /* once.cc */; };
+		4EA071132DD45AD7000B5677 /* Lua_EcchiGamerSDKBridge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E7F4FEF2D5F928700DD4AA4 /* Lua_EcchiGamerSDKBridge.cpp */; };
+		4EA071142DD45AD7000B5677 /* LangSettingPage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E7F4FED2D5F928700DD4AA4 /* LangSettingPage.cpp */; };
+		4EA071152DD45AD7000B5677 /* stringprintf.cc in Sources */ = {isa = PBXBuildFile; fileRef = AF7EF36518114F1500954076 /* stringprintf.cc */; };
+		4EA071162DD45AD7000B5677 /* structurally_valid.cc in Sources */ = {isa = PBXBuildFile; fileRef = AF7EF36818114F1500954076 /* structurally_valid.cc */; };
+		4EA071172DD45AD7000B5677 /* strutil.cc in Sources */ = {isa = PBXBuildFile; fileRef = AF7EF36A18114F1500954076 /* strutil.cc */; };
+		4EA071182DD45AD7000B5677 /* substitute.cc in Sources */ = {isa = PBXBuildFile; fileRef = AF7EF36D18114F1500954076 /* substitute.cc */; };
+		4EA071192DD45AD7000B5677 /* text_format.cc in Sources */ = {isa = PBXBuildFile; fileRef = AF7EF38318114F1500954076 /* text_format.cc */; };
+		4EA0711A2DD45AD7000B5677 /* unknown_field_set.cc in Sources */ = {isa = PBXBuildFile; fileRef = AF7EF39418114F1500954076 /* unknown_field_set.cc */; };
+		4EA0711B2DD45AD7000B5677 /* TapDB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E7F4F2F2D5F2B2D00DD4AA4 /* TapDB.cpp */; };
+		4EA0711C2DD45AD7000B5677 /* wire_format.cc in Sources */ = {isa = PBXBuildFile; fileRef = AF7EF39718114F1500954076 /* wire_format.cc */; };
+		4EA0711D2DD45AD7000B5677 /* wire_format_lite.cc in Sources */ = {isa = PBXBuildFile; fileRef = AF7EF39918114F1500954076 /* wire_format_lite.cc */; };
+		4EA0711E2DD45AD7000B5677 /* CharacterConsts.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DEF424F98BEC0E5456E0DF7 /* CharacterConsts.cpp */; };
+		4EA0711F2DD45AD7000B5677 /* AboutPage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BBFC47E5A6BC9538821BA042 /* AboutPage.cpp */; };
+		4EA071202DD45AD7000B5677 /* APIUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E7F4F902D5F901300DD4AA4 /* APIUtil.cpp */; };
+		4EA071212DD45AD7000B5677 /* DeepLink.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E7F4F972D5F901300DD4AA4 /* DeepLink.cpp */; };
+		4EA071222DD45AD7000B5677 /* webapi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E7F4FA32D5F901300DD4AA4 /* webapi.cpp */; };
+		4EA071232DD45AD7000B5677 /* DeepLinkIosBridge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E7F4F9B2D5F901300DD4AA4 /* DeepLinkIosBridge.cpp */; };
+		4EA071242DD45AD7000B5677 /* ConfigLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E7F4F932D5F901300DD4AA4 /* ConfigLoader.cpp */; };
+		4EA071252DD45AD7000B5677 /* WebRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E7F4FA52D5F901300DD4AA4 /* WebRequest.cpp */; };
+		4EA071262DD45AD7000B5677 /* DeepLinkAndroidBridge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E7F4F992D5F901300DD4AA4 /* DeepLinkAndroidBridge.cpp */; };
+		4EA071272DD45AD7000B5677 /* OpenWebViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4E7F4F8B2D5F901300DD4AA4 /* OpenWebViewController.mm */; };
+		4EA071282DD45AD7000B5677 /* util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E7F4FA12D5F901300DD4AA4 /* util.cpp */; };
+		4EA071292DD45AD7000B5677 /* Util.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4E7F4F8D2D5F901300DD4AA4 /* Util.mm */; };
+		4EA0712A2DD45AD7000B5677 /* Coresdk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E7F4F952D5F901300DD4AA4 /* Coresdk.cpp */; };
+		4EA0712B2DD45AD7000B5677 /* DeepLinkWin32Bridge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E7F4F9D2D5F901300DD4AA4 /* DeepLinkWin32Bridge.cpp */; };
+		4EA0712C2DD45AD7000B5677 /* GamePackets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 99844DE7A96C82D3103DF182 /* GamePackets.cpp */; };
+		4EA0712D2DD45AD7000B5677 /* LoginUserPage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C1C573029B9CBC8003B7826 /* LoginUserPage.cpp */; };
+		4EA0712E2DD45AD7000B5677 /* CCRichLabelTTF.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 43C24167B10A870C0069A4DB /* CCRichLabelTTF.cpp */; };
+		4EA0712F2DD45AD7000B5677 /* CurlDownloadForScript.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 974A0DB41E655BC7000CE656 /* CurlDownloadForScript.cpp */; };
+		4EA071302DD45AD7000B5677 /* ArmatureContainer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C54B4FFAB7CAB440DA5182CD /* ArmatureContainer.cpp */; };
+		4EA071312DD45AD7000B5677 /* LoginPacket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 092F4EFBB0B0A54847B95304 /* LoginPacket.cpp */; };
+		4EA071322DD45AD7000B5677 /* TestHTMLPopup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73C94D818256FCD38FA9A6B3 /* TestHTMLPopup.cpp */; };
+		4EA071332DD45AD7000B5677 /* CoverSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5F1A4732AD5610177152BB87 /* CoverSprite.cpp */; };
+		4EA071342DD45AD7000B5677 /* CCBContainer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D9741FB8B473B68880AF15A /* CCBContainer.cpp */; };
+		4EA071352DD45AD7000B5677 /* GamePrecedure.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49A842088BFFB24458522796 /* GamePrecedure.cpp */; };
+		4EA071362DD45AD7000B5677 /* CCTagedRichTTF.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5D549D8ADEA000DFF59F700 /* CCTagedRichTTF.cpp */; };
+		4EA071372DD45AD7000B5677 /* ChangeUserPage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 76D32B841E691E74001E95AD /* ChangeUserPage.cpp */; };
+		4EA071382DD45AD7000B5677 /* PackageLogic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A19453899C1AD92E34ABC74 /* PackageLogic.cpp */; };
+		4EA071392DD45AD7000B5677 /* waitingManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81CC4DA89D4E32ED59C1568E /* waitingManager.cpp */; };
+		4EA0713A2DD45AD7000B5677 /* ConfirmPage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1DEF49BEA6BD71AB694EE987 /* ConfirmPage.cpp */; };
+		4EA0713B2DD45AD7000B5677 /* ServerDateManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D2354A619AE7591094581ABA /* ServerDateManager.cpp */; };
+		4EA0713C2DD45AD7000B5677 /* Lua_HttpsBridge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C1C573A29B9CBCC003B7826 /* Lua_HttpsBridge.cpp */; };
+		4EA0713D2DD45AD7000B5677 /* FeedBackPage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7642FB661CF9326000534092 /* FeedBackPage.cpp */; };
+		4EA0713E2DD45AD7000B5677 /* pb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 249D4AC7B465C2865E7C3ADB /* pb.cpp */; };
+		4EA0713F2DD45AD7000B5677 /* CCBManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 190C4902A0330CE3F2C52334 /* CCBManager.cpp */; };
+		4EA071402DD45AD7000B5677 /* GamePacketManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8C534D199BAE88F85F92BD26 /* GamePacketManager.cpp */; };
+		4EA071412DD45AD7000B5677 /* BulletinManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB0D4F83B539063EC03CC8E9 /* BulletinManager.cpp */; };
+		4EA071422DD45AD7000B5677 /* GamePlatformInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BD5B47E78B1383A9FCC873AC /* GamePlatformInfo.cpp */; };
+		4EA071432DD45AD7000B5677 /* CParticleFlow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D12F4D4C802DC8C6EC080A90 /* CParticleFlow.cpp */; };
+		4EA071442DD45AD7000B5677 /* ScriptMathToLua.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F65241BE9599420DA814C30E /* ScriptMathToLua.cpp */; };
+		4EA071452DD45AD7000B5677 /* DeviceCfgMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C161431997CE10B0C2C7DCC8 /* DeviceCfgMgr.cpp */; };
+		4EA071462DD45AD7000B5677 /* GameMessages.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C58F4715A5781BF76E671998 /* GameMessages.cpp */; };
+		4EA071472DD45AD7000B5677 /* SpineContainer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37AB4CE2B99676C4AB11D4A0 /* SpineContainer.cpp */; };
+		4EA071482DD45AD7000B5677 /* ActiveCodePage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3471473497CFDA3ECD31DCBC /* ActiveCodePage.cpp */; };
+		4EA071492DD45AD7000B5677 /* BlackBoard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E27B4E0C8F3FB02F8BFEAAF2 /* BlackBoard.cpp */; };
+		4EA0714A2DD45AD7000B5677 /* AnnouncementNewPage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D844A8E9BDD1A99A9C76337 /* AnnouncementNewPage.cpp */; };
+		4EA0714B2DD45AD7000B5677 /* LogReport.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB92ADDA226480020012FCA7 /* LogReport.cpp */; };
+		4EA0714C2DD45AD7000B5677 /* RadialBlurSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4AD74B3991D9EE923EAD8528 /* RadialBlurSprite.cpp */; };
+		4EA0714D2DD45AD7000B5677 /* BCWebRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E7F4F852D5F8FB400DD4AA4 /* BCWebRequest.cpp */; };
+		4EA0714E2DD45AD7000B5677 /* GameConsts.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F9084CF38ECDB1F33A04A639 /* GameConsts.cpp */; };
+		4EA0714F2DD45AD7000B5677 /* AsyncSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9D0F4B369537ADF1C2FB526C /* AsyncSprite.cpp */; };
+		4EA071502DD45AD7000B5677 /* H365API.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E7F4FE72D5F907E00DD4AA4 /* H365API.cpp */; };
+		4EA071512DD45AD7000B5677 /* DataTableManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6BD542B98BB51B86250C9B0D /* DataTableManager.cpp */; };
+		4EA071522DD45AD7000B5677 /* AnimMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C0A54E7E8A8FDCDB8A1CD635 /* AnimMgr.cpp */; };
+		4EA071532DD45AD7000B5677 /* RestrictedWord.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 705F4FD592A4FC7B7649B541 /* RestrictedWord.cpp */; };
+		4EA071542DD45AD7000B5677 /* GraySprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 732D450C9BC60497CD60F778 /* GraySprite.cpp */; };
+		4EA071552DD45AD7000B5677 /* SpriteShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 559C4FA4B67012DF3FB26E40 /* SpriteShader.cpp */; };
+		4EA071562DD45AD7000B5677 /* LightSweepSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CC184459A57ACEAA41A4420B /* LightSweepSprite.cpp */; };
+		4EA071572DD45AD7000B5677 /* ScriptContentBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 525345B4BF78709170122A83 /* ScriptContentBase.cpp */; };
+		4EA071582DD45AD7000B5677 /* UpateVersion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D7240E3920ECBC420022A8C8 /* UpateVersion.cpp */; };
+		4EA071592DD45AD7000B5677 /* StrokeSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 608642E89FA42616CF0FA4AE /* StrokeSprite.cpp */; };
+		4EA0715A2DD45AD7000B5677 /* NumberChangeAction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 31E84A4AADB1C779EAC3BC99 /* NumberChangeAction.cpp */; };
+		4EA0715B2DD45AD7000B5677 /* StrokeSample.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0AE24FDC8AB036C6E6FA43EA /* StrokeSample.cpp */; };
+		4EA0715C2DD45AD7000B5677 /* AnnouncePage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 708E41C9925EA9D42743BEF0 /* AnnouncePage.cpp */; };
+		4EA0715D2DD45AD7000B5677 /* LibPlatformForScript.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D9B74D9E87936D6EEEB17048 /* LibPlatformForScript.cpp */; };
+		4EA0715E2DD45AD7000B5677 /* BasePage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3464F5BAC5DCFF54C386FE9 /* BasePage.cpp */; };
+		4EA0715F2DD45AD7000B5677 /* BlurSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0994455B6FBF54F9C2E0758 /* BlurSprite.cpp */; };
+		4EA071602DD45AD7000B5677 /* CCBScriptContainer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF7146B08FDA4280075A5A08 /* CCBScriptContainer.cpp */; };
+		4EA071612DD45AD7000B5677 /* MessageManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5DD34ADFAA37D7567AEAFDA1 /* MessageManager.cpp */; };
+		4EA071622DD45AD7000B5677 /* CCBLuaContainer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8D8C4B96804956AF76423544 /* CCBLuaContainer.cpp */; };
+		4EA071632DD45AD7000B5677 /* MessageBoxPage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E6F34983AB8FDFCD9F30C872 /* MessageBoxPage.cpp */; };
+		4EA071642DD45AD7000B5677 /* AnnouncementPage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0B4443CE9B1178D2F96BEF55 /* AnnouncementPage.cpp */; };
+		4EA071652DD45AD7000B5677 /* strbuf.c in Sources */ = {isa = PBXBuildFile; fileRef = DD9F4FBFA5EF7429C1414C42 /* strbuf.c */; };
+		4EA071662DD45AD7000B5677 /* LoadingAniPage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2B1E436EB484B5FB99D9007F /* LoadingAniPage.cpp */; };
+		4EA071672DD45AD7000B5677 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 22D447C6A950E7BEFD03F93F /* AppDelegate.cpp */; };
+		4EA071682DD45AD7000B5677 /* Gamelua.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71594FF5A34B0C42FEB75902 /* Gamelua.cpp */; };
+		4EA071692DD45AD7000B5677 /* TimeCalculator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A6A4E229CD9D2D01611DE0B /* TimeCalculator.cpp */; };
+		4EA0716A2DD45AD7000B5677 /* CDKeyMsgPage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 110C46F0BC6585E3C7777E84 /* CDKeyMsgPage.cpp */; };
+		4EA0716B2DD45AD7000B5677 /* NoticeBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FA74249AE5F4DA7508CF3DD /* NoticeBox.cpp */; };
+		4EA0716C2DD45AD7000B5677 /* LogoFrame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ACFB4EDABF013932F5EB1D5C /* LogoFrame.cpp */; };
+		4EA0716D2DD45AD7000B5677 /* fpconv.c in Sources */ = {isa = PBXBuildFile; fileRef = 18164171963B09BC7D2970F6 /* fpconv.c */; };
+		4EA0716E2DD45AD7000B5677 /* AdjustManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E7F50202D5F979800DD4AA4 /* AdjustManager.cpp */; };
+		4EA0716F2DD45AD7000B5677 /* CShiftToAction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6AE549D7B242CFDC59FE55FF /* CShiftToAction.cpp */; };
+		4EA071702DD45AD7000B5677 /* buyingCheck.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C1C573229B9CBC9003B7826 /* buyingCheck.cpp */; };
+		4EA071712DD45AD7000B5677 /* LoadingFrame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6D34392878018A375E7A055 /* LoadingFrame.cpp */; };
+		4EA071722DD45AD7000B5677 /* SoundManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 67E24B86A196E6E51385109C /* SoundManager.cpp */; };
+		4EA071732DD45AD7000B5677 /* lua_cjson.c in Sources */ = {isa = PBXBuildFile; fileRef = A7464E74BD5CF329AC1F14AE /* lua_cjson.c */; };
+		4EA071742DD45AD7000B5677 /* Popup1stPayTipPage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C1C573329B9CBC9003B7826 /* Popup1stPayTipPage.cpp */; };
+		4EA071752DD45AD7000B5677 /* HttpImg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EBD04ADD9EE9C4EA6D45DCB7 /* HttpImg.cpp */; };
+		4EA071762DD45AD7000B5677 /* ResManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8332455489C18C654238AFDD /* ResManager.cpp */; };
+		4EA071772DD45AD7000B5677 /* GameNotification.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 02EF46C89848375D0E810973 /* GameNotification.cpp */; };
+		4EA071782DD45AD7000B5677 /* MainFrame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 28E548209AA16E5C5B68FD76 /* MainFrame.cpp */; };
+		4EA071792DD45AD7000B5677 /* SysProtocol.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = EA354A2A8442220EEEE3FF00 /* SysProtocol.pb.cc */; };
+		4EA0717A2DD45AD7000B5677 /* Equip.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = 50F34501B93F4043592FCEA2 /* Equip.pb.cc */; };
+		4EA0717B2DD45AD7000B5677 /* Skill.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = A34D4C9A8BF0344C9C157EF3 /* Skill.pb.cc */; };
+		4EA0717C2DD45AD7000B5677 /* Login.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = 4ED4423EA6EF2659EA2F0A4C /* Login.pb.cc */; };
+		4EA0717D2DD45AD7000B5677 /* Consume.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = 66C34073A8A08719F0DDBD9B /* Consume.pb.cc */; };
+		4EA0717E2DD45AD7000B5677 /* Attribute.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = 862941088A2A4C1987C0176D /* Attribute.pb.cc */; };
+		4EA0717F2DD45AD7000B5677 /* Const.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = B5674A76B1D731809ACCA234 /* Const.pb.cc */; };
+		4EA071802DD45AD7000B5677 /* Item.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = 5ED74599A0FDE08915A32F9B /* Item.pb.cc */; };
+		4EA071812DD45AD7000B5677 /* HP.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = 29AE487EADEE60C75A79AD70 /* HP.pb.cc */; };
+		4EA071822DD45AD7000B5677 /* Reward.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = 5A434619A9FCCF1613B0F4D8 /* Reward.pb.cc */; };
+		4EA071832DD45AD7000B5677 /* Player.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = BE2746988EB835914CBFFFD7 /* Player.pb.cc */; };
+		4EA071842DD45AD7000B5677 /* Status.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = E8BD449480BE6BC675945C6F /* Status.pb.cc */; };
+		4EA071862DD45AD7000B5677 /* libpthread.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7F507D2D5F9F1900DD4AA4 /* libpthread.tbd */; };
+		4EA071872DD45AD7000B5677 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4499CFB42244EBF300B9175C /* libc++.tbd */; };
+		4EA071882DD45AD7000B5677 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E59C3752D620816006518A5 /* AVKit.framework */; };
+		4EA071892DD45AD7000B5677 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7A2759F17ED4A0600E4F17F /* SystemConfiguration.framework */; };
+		4EA0718A2DD45AD7000B5677 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF2D8F2A17B3B1C20050FB70 /* Security.framework */; };
+		4EA0718B2DD45AD7000B5677 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7A275A117ED4A1700E4F17F /* CoreTelephony.framework */; };
+		4EA0718C2DD45AD7000B5677 /* Bugly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4499CF912244EA5000B9175C /* Bugly.framework */; };
+		4EA0718E2DD45AD7000B5677 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7F50772D5F9CBB00DD4AA4 /* libcrypto.a */; };
+		4EA0718F2DD45AD7000B5677 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF412E9A1835F201004812DB /* AdSupport.framework */; };
+		4EA071902DD45AD7000B5677 /* libShareSDKToDifPlatform.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 97960F131FBC57F700BDCC0F /* libShareSDKToDifPlatform.a */; };
+		4EA071912DD45AD7000B5677 /* libcore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7F506A2D5F9AD500DD4AA4 /* libcore.a */; };
+		4EA071922DD45AD7000B5677 /* libShareSDKToGameCenter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 97960F141FBC57F700BDCC0F /* libShareSDKToGameCenter.a */; };
+		4EA071932DD45AD7000B5677 /* libcocos2dx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7F4FFA2D5F96D100DD4AA4 /* libcocos2dx.a */; };
+		4EA071942DD45AD7000B5677 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B27B53FB1ACE9A9F007FF34E /* GLKit.framework */; };
+		4EA071952DD45AD7000B5677 /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 223662911A514CB20076CE37 /* EventKitUI.framework */; };
+		4EA071962DD45AD7000B5677 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7F4FF82D5F96C400DD4AA4 /* WebKit.framework */; };
+		4EA071972DD45AD7000B5677 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2236629D1A514D4F0076CE37 /* CoreData.framework */; };
+		4EA071982DD45AD7000B5677 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFFC4BCF16D230D3001F65C9 /* AVFoundation.framework */; };
+		4EA071992DD45AD7000B5677 /* libwebp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7F50732D5F9B4A00DD4AA4 /* libwebp.a */; };
+		4EA0719A2DD45AD7000B5677 /* libJsonCpp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7F506C2D5F9AFA00DD4AA4 /* libJsonCpp.a */; };
+		4EA0719B2DD45AD7000B5677 /* libShareSDKToFCUUID.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7F507B2D5F9DFD00DD4AA4 /* libShareSDKToFCUUID.a */; };
+		4EA0719C2DD45AD7000B5677 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFFC4BCD16D230D3001F65C9 /* AudioToolbox.framework */; };
+		4EA0719D2DD45AD7000B5677 /* libcurl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7F50752D5F9C6600DD4AA4 /* libcurl.a */; };
+		4EA0719E2DD45AD7000B5677 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF5B9F6117E438E200B2480E /* MobileCoreServices.framework */; };
+		4EA0719F2DD45AD7000B5677 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 555DEBAB1727D58E0075EC55 /* MessageUI.framework */; };
+		4EA071A02DD45AD7000B5677 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22149899183C5B1A0023D1E7 /* CoreLocation.framework */; };
+		4EA071A12DD45AD7000B5677 /* liblibOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7F50702D5F9B2100DD4AA4 /* liblibOS.a */; };
+		4EA071A22DD45AD7000B5677 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 223662991A514D1A0076CE37 /* EventKit.framework */; };
+		4EA071A32DD45AD7000B5677 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 221498A3183C5B480023D1E7 /* MediaPlayer.framework */; };
+		4EA071A42DD45AD7000B5677 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7F50722D5F9B4A00DD4AA4 /* libssl.a */; };
+		4EA071A52DD45AD7000B5677 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 223662971A514D070076CE37 /* CoreMotion.framework */; };
+		4EA071A62DD45AD7000B5677 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 223662951A514CFE0076CE37 /* Social.framework */; };
+		4EA071A72DD45AD7000B5677 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFFC4BC716D230D3001F65C9 /* QuartzCore.framework */; };
+		4EA071A82DD45AD7000B5677 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 223662931A514CBD0076CE37 /* iAd.framework */; };
+		4EA071AA2DD45AD7000B5677 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2236628F1A514CA40076CE37 /* CoreMedia.framework */; };
+		4EA071AB2DD45AD7000B5677 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF5B9F6317E438F000B2480E /* CFNetwork.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		4EA071AC2DD45AD7000B5677 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2214989D183C5B300023D1E7 /* AssetsLibrary.framework */; };
+		4EA071AD2DD45AD7000B5677 /* libliblua.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7F506E2D5F9B0C00DD4AA4 /* libliblua.a */; };
+		4EA071AE2DD45AD7000B5677 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFFC4BC916D230D3001F65C9 /* OpenGLES.framework */; };
+		4EA071AF2DD45AD7000B5677 /* TapDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E45216B2D5F1AE000F26188 /* TapDB.framework */; };
+		4EA071B02DD45AD7000B5677 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7A275A317ED4A2500E4F17F /* AddressBook.framework */; };
+		4EA071B12DD45AD7000B5677 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFFC4BD316D230D3001F65C9 /* Foundation.framework */; };
+		4EA071B22DD45AD7000B5677 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C1E008129C2CBF5002E789C /* GameKit.framework */; };
+		4EA071B32DD45AD7000B5677 /* libBuglyAgent.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4499CF952244EA5000B9175C /* libBuglyAgent.a */; };
+		4EA071B42DD45AD7000B5677 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFFC4BCB16D230D3001F65C9 /* OpenAL.framework */; };
+		4EA071B52DD45AD7000B5677 /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C1E005829C2B22F002E789C /* libfreetype.a */; };
+		4EA071B62DD45AD7000B5677 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFFC4BD116D230D3001F65C9 /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		4EA071B72DD45AD7000B5677 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFFC4BD516D230D3001F65C9 /* CoreGraphics.framework */; };
+		4EA071B92DD45AD7000B5677 /* projectLocal.manifest in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA09A2DCB555D0027FDA9 /* projectLocal.manifest */; };
+		4EA071BA2DD45AD7000B5677 /* RecourceFilePath.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA09B2DCB555D0027FDA9 /* RecourceFilePath.txt */; };
+		4EA071BB2DD45AD7000B5677 /* BG in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA09C2DCB555D0027FDA9 /* BG */; };
+		4EA071BC2DD45AD7000B5677 /* map in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA09D2DCB555E0027FDA9 /* map */; };
+		4EA071BD2DD45AD7000B5677 /* Barlow-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA09E2DCB555E0027FDA9 /* Barlow-SemiBold.ttf */; };
+		4EA071BE2DD45AD7000B5677 /* Lang in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA09F2DCB555F0027FDA9 /* Lang */; };
+		4EA071BF2DD45AD7000B5677 /* ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0A02DCB555F0027FDA9 /* ccbi */; };
+		4EA071C02DD45AD7000B5677 /* skill in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0A12DCB55600027FDA9 /* skill */; };
+		4EA071C12DD45AD7000B5677 /* shader in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0A22DCB55600027FDA9 /* shader */; };
+		4EA071C22DD45AD7000B5677 /* UpdateVersionTipsTW.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0A32DCB55610027FDA9 /* UpdateVersionTipsTW.cfg */; };
+		4EA071C32DD45AD7000B5677 /* Barlow-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0A42DCB55610027FDA9 /* Barlow-Bold.ttf */; };
+		4EA071C42DD45AD7000B5677 /* monster in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0A52DCB55620027FDA9 /* monster */; };
+		4EA071C52DD45AD7000B5677 /* txt in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0A62DCB55620027FDA9 /* txt */; };
+		4EA071C62DD45AD7000B5677 /* Barlow-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0A72DCB55630027FDA9 /* Barlow-Regular.ttf */; };
+		4EA071C72DD45AD7000B5677 /* Tips.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0A82DCB55630027FDA9 /* Tips.txt */; };
+		4EA071C82DD45AD7000B5677 /* UpdateVersionTips.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0A92DCB55640027FDA9 /* UpdateVersionTips.cfg */; };
+		4EA071C92DD45AD7000B5677 /* platform.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0AA2DCB55640027FDA9 /* platform.cfg */; };
+		4EA071CA2DD45AD7000B5677 /* UI in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0AB2DCB55650027FDA9 /* UI */; };
+		4EA071CB2DD45AD7000B5677 /* lua in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0AC2DCB55650027FDA9 /* lua */; };
+		4EA071CC2DD45AD7000B5677 /* version_android_local.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0AD2DCB55660027FDA9 /* version_android_local.cfg */; };
+		4EA071CD2DD45AD7000B5677 /* audio in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0AE2DCB55670027FDA9 /* audio */; };
+		4EA071CE2DD45AD7000B5677 /* versionApp.manifest in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0AF2DCB55680027FDA9 /* versionApp.manifest */; };
+		4EA071CF2DD45AD7000B5677 /* version.manifest in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0B02DCB55690027FDA9 /* version.manifest */; };
+		4EA071D02DD45AD7000B5677 /* Spine in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0B12DCB55690027FDA9 /* Spine */; };
+		4EA071D12DD45AD7000B5677 /* version_ios.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0B22DCB556A0027FDA9 /* version_ios.cfg */; };
+		4EA071D22DD45AD7000B5677 /* i18n in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0B32DCB556A0027FDA9 /* i18n */; };
+		4EA071D32DD45AD7000B5677 /* Video in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0B42DCB556B0027FDA9 /* Video */; };
+		4EA071D42DD45AD7000B5677 /* version_android.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0B52DCB556C0027FDA9 /* version_android.cfg */; };
+		4EA071D52DD45AD7000B5677 /* HalfBody in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0B62DCB556C0027FDA9 /* HalfBody */; };
+		4EA071D62DD45AD7000B5677 /* ecchigamer_domain_v1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0B72DCB556D0027FDA9 /* ecchigamer_domain_v1.txt */; };
+		4EA071D72DD45AD7000B5677 /* Imagesetfile in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0B82DCB556D0027FDA9 /* Imagesetfile */; };
+		4EA071D82DD45AD7000B5677 /* LoadingUI_JP in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0B92DCB556E0027FDA9 /* LoadingUI_JP */; };
+		4EA071D92DD45AD7000B5677 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7605EAD31D0578E4004432D4 /* Images.xcassets */; };
+		4EA071DB2DD45AD7000B5677 /* TapDB.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4E45216B2D5F1AE000F26188 /* TapDB.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4EA071FF2DD46109000B5677 /* liblibErolabs.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EA071FE2DD46109000B5677 /* liblibErolabs.a */; };
 		4ECEA0BA2DCB556F0027FDA9 /* projectLocal.manifest in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA09A2DCB555D0027FDA9 /* projectLocal.manifest */; };
 		4ECEA0BB2DCB556F0027FDA9 /* RecourceFilePath.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA09B2DCB555D0027FDA9 /* RecourceFilePath.txt */; };
 		4ECEA0BC2DCB556F0027FDA9 /* BG in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA09C2DCB555D0027FDA9 /* BG */; };
@@ -792,6 +1019,17 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4EA071DA2DD45AD7000B5677 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				4EA071DB2DD45AD7000B5677 /* TapDB.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D76DCE43212C3A1F00678EF8 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1019,6 +1257,9 @@
 		4E7F507A2D5F9D3C00DD4AA4 /* libShareSDKToFCUUID.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libShareSDKToFCUUID.a; path = "../../../../../../NG_Client/Code_Client/build/Debug-iphoneos/libShareSDKToFCUUID.a"; sourceTree = "<group>"; };
 		4E7F507B2D5F9DFD00DD4AA4 /* libShareSDKToFCUUID.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libShareSDKToFCUUID.a; path = "../../build/Debug-iphoneos/libShareSDKToFCUUID.a"; sourceTree = "<group>"; };
 		4E7F507D2D5F9F1900DD4AA4 /* libpthread.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libpthread.tbd; path = usr/lib/libpthread.tbd; sourceTree = SDKROOT; };
+		4EA071E02DD45AD7000B5677 /* NinjaGirlErolab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NinjaGirlErolab.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4EA071E12DD45ADC000B5677 /* NinjaGirlErolabs-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "NinjaGirlErolabs-Info.plist"; path = "/Users/misomacair02/Desktop/Projects/NinjaGirl/NJG_Client/client02_new/Code_Client/xcode/Game/NinjaGirlErolabs-Info.plist"; sourceTree = "<absolute>"; };
+		4EA071FE2DD46109000B5677 /* liblibErolabs.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = liblibErolabs.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4ECEA09A2DCB555D0027FDA9 /* projectLocal.manifest */ = {isa = PBXFileReference; lastKnownFileType = text; name = projectLocal.manifest; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/projectLocal.manifest; sourceTree = "<group>"; };
 		4ECEA09B2DCB555D0027FDA9 /* RecourceFilePath.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = RecourceFilePath.txt; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/RecourceFilePath.txt; sourceTree = "<group>"; };
 		4ECEA09C2DCB555D0027FDA9 /* BG */ = {isa = PBXFileReference; lastKnownFileType = folder; name = BG; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/BG; sourceTree = "<group>"; };
@@ -1526,6 +1767,62 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4EA071852DD45AD7000B5677 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4EA071862DD45AD7000B5677 /* libpthread.tbd in Frameworks */,
+				4EA071872DD45AD7000B5677 /* libc++.tbd in Frameworks */,
+				4EA071882DD45AD7000B5677 /* AVKit.framework in Frameworks */,
+				4EA071892DD45AD7000B5677 /* SystemConfiguration.framework in Frameworks */,
+				4EA0718A2DD45AD7000B5677 /* Security.framework in Frameworks */,
+				4EA0718B2DD45AD7000B5677 /* CoreTelephony.framework in Frameworks */,
+				4EA0718C2DD45AD7000B5677 /* Bugly.framework in Frameworks */,
+				4EA0718E2DD45AD7000B5677 /* libcrypto.a in Frameworks */,
+				4EA0718F2DD45AD7000B5677 /* AdSupport.framework in Frameworks */,
+				4EA071902DD45AD7000B5677 /* libShareSDKToDifPlatform.a in Frameworks */,
+				4EA071912DD45AD7000B5677 /* libcore.a in Frameworks */,
+				4EA071922DD45AD7000B5677 /* libShareSDKToGameCenter.a in Frameworks */,
+				4EA071932DD45AD7000B5677 /* libcocos2dx.a in Frameworks */,
+				4EA071942DD45AD7000B5677 /* GLKit.framework in Frameworks */,
+				4EA071952DD45AD7000B5677 /* EventKitUI.framework in Frameworks */,
+				4EA071962DD45AD7000B5677 /* WebKit.framework in Frameworks */,
+				4EA071972DD45AD7000B5677 /* CoreData.framework in Frameworks */,
+				4EA071982DD45AD7000B5677 /* AVFoundation.framework in Frameworks */,
+				4EA071992DD45AD7000B5677 /* libwebp.a in Frameworks */,
+				4EA0719A2DD45AD7000B5677 /* libJsonCpp.a in Frameworks */,
+				4EA0719B2DD45AD7000B5677 /* libShareSDKToFCUUID.a in Frameworks */,
+				4EA0719C2DD45AD7000B5677 /* AudioToolbox.framework in Frameworks */,
+				4EA0719D2DD45AD7000B5677 /* libcurl.a in Frameworks */,
+				4EA0719E2DD45AD7000B5677 /* MobileCoreServices.framework in Frameworks */,
+				4EA0719F2DD45AD7000B5677 /* MessageUI.framework in Frameworks */,
+				4EA071A02DD45AD7000B5677 /* CoreLocation.framework in Frameworks */,
+				4EA071A12DD45AD7000B5677 /* liblibOS.a in Frameworks */,
+				4EA071FF2DD46109000B5677 /* liblibErolabs.a in Frameworks */,
+				4EA071A22DD45AD7000B5677 /* EventKit.framework in Frameworks */,
+				4EA071A32DD45AD7000B5677 /* MediaPlayer.framework in Frameworks */,
+				4EA071A42DD45AD7000B5677 /* libssl.a in Frameworks */,
+				4EA071A52DD45AD7000B5677 /* CoreMotion.framework in Frameworks */,
+				4EA071A62DD45AD7000B5677 /* Social.framework in Frameworks */,
+				4EA071A72DD45AD7000B5677 /* QuartzCore.framework in Frameworks */,
+				4EA071A82DD45AD7000B5677 /* iAd.framework in Frameworks */,
+				4EA071AA2DD45AD7000B5677 /* CoreMedia.framework in Frameworks */,
+				4EA071AB2DD45AD7000B5677 /* CFNetwork.framework in Frameworks */,
+				4EA071AC2DD45AD7000B5677 /* AssetsLibrary.framework in Frameworks */,
+				4EA071AD2DD45AD7000B5677 /* libliblua.a in Frameworks */,
+				4EA071AE2DD45AD7000B5677 /* OpenGLES.framework in Frameworks */,
+				4EA071AF2DD45AD7000B5677 /* TapDB.framework in Frameworks */,
+				4EA071B02DD45AD7000B5677 /* AddressBook.framework in Frameworks */,
+				4EA071B12DD45AD7000B5677 /* Foundation.framework in Frameworks */,
+				4EA071B22DD45AD7000B5677 /* GameKit.framework in Frameworks */,
+				4EA071B32DD45AD7000B5677 /* libBuglyAgent.a in Frameworks */,
+				4EA071B42DD45AD7000B5677 /* OpenAL.framework in Frameworks */,
+				4EA071B52DD45AD7000B5677 /* libfreetype.a in Frameworks */,
+				4EA071B62DD45AD7000B5677 /* UIKit.framework in Frameworks */,
+				4EA071B72DD45AD7000B5677 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		979ED78F1DF123BA003CCCC8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1707,6 +2004,7 @@
 				5558AE9C178C427500BEC444 /* Game91-Info.plist */,
 				CF8ED8EA17DD865300E9E836 /* GameAppStore.plist */,
 				2200404A17F2CB90001B19A8 /* GameYouai-Info.plist */,
+				4EA071E12DD45ADC000B5677 /* NinjaGirlErolabs-Info.plist */,
 			);
 			name = plists;
 			sourceTree = "<group>";
@@ -2306,6 +2604,7 @@
 				D708BB4120C12774008FF589 /* GameGuaJiYouGu.app */,
 				D76DCE16212C171A00678EF8 /* GameGuaJiYouGuYiJie.app */,
 				4E4521492D5F191600F26188 /* NinjaGirl69.app */,
+				4EA071E02DD45AD7000B5677 /* NinjaGirlErolab.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2313,6 +2612,7 @@
 		CFFC4BC616D230D3001F65C9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4EA071FE2DD46109000B5677 /* liblibErolabs.a */,
 				4E59C3752D620816006518A5 /* AVKit.framework */,
 				4E7F507D2D5F9F1900DD4AA4 /* libpthread.tbd */,
 				4E7F507A2D5F9D3C00DD4AA4 /* libShareSDKToFCUUID.a */,
@@ -2638,6 +2938,24 @@
 			productReference = 4E4521492D5F191600F26188 /* NinjaGirl69.app */;
 			productType = "com.apple.product-type.application";
 		};
+		4EA070F32DD45AD7000B5677 /* NinjaGirlErolab */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4EA071DD2DD45AD7000B5677 /* Build configuration list for PBXNativeTarget "NinjaGirlErolab" */;
+			buildPhases = (
+				4EA070F42DD45AD7000B5677 /* Sources */,
+				4EA071852DD45AD7000B5677 /* Frameworks */,
+				4EA071B82DD45AD7000B5677 /* Resources */,
+				4EA071DA2DD45AD7000B5677 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NinjaGirlErolab;
+			productName = Game;
+			productReference = 4EA071E02DD45AD7000B5677 /* NinjaGirlErolab.app */;
+			productType = "com.apple.product-type.application";
+		};
 		979ED7121DF123BA003CCCC8 /* HouseOfHeroes */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 979ED8091DF123BA003CCCC8 /* Build configuration list for PBXNativeTarget "HouseOfHeroes" */;
@@ -2701,6 +3019,9 @@
 					4E45205D2D5F191600F26188 = {
 						ProvisioningStyle = Automatic;
 					};
+					4EA070F32DD45AD7000B5677 = {
+						ProvisioningStyle = Automatic;
+					};
 					979ED7121DF123BA003CCCC8 = {
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -2761,6 +3082,7 @@
 				D708BA5B20C12774008FF589 /* GameGuaJiYouGu */,
 				D76DCD25212C171A00678EF8 /* GameGuaJiYouGuYiJie */,
 				4E45205D2D5F191600F26188 /* NinjaGirl69 */,
+				4EA070F32DD45AD7000B5677 /* NinjaGirlErolab */,
 			);
 		};
 /* End PBXProject section */
@@ -2803,6 +3125,46 @@
 				4ECEA0D82DCB556F0027FDA9 /* Imagesetfile in Resources */,
 				4ECEA0D92DCB556F0027FDA9 /* LoadingUI_JP in Resources */,
 				4E4521342D5F191600F26188 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4EA071B82DD45AD7000B5677 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4EA071B92DD45AD7000B5677 /* projectLocal.manifest in Resources */,
+				4EA071BA2DD45AD7000B5677 /* RecourceFilePath.txt in Resources */,
+				4EA071BB2DD45AD7000B5677 /* BG in Resources */,
+				4EA071BC2DD45AD7000B5677 /* map in Resources */,
+				4EA071BD2DD45AD7000B5677 /* Barlow-SemiBold.ttf in Resources */,
+				4EA071BE2DD45AD7000B5677 /* Lang in Resources */,
+				4EA071BF2DD45AD7000B5677 /* ccbi in Resources */,
+				4EA071C02DD45AD7000B5677 /* skill in Resources */,
+				4EA071C12DD45AD7000B5677 /* shader in Resources */,
+				4EA071C22DD45AD7000B5677 /* UpdateVersionTipsTW.cfg in Resources */,
+				4EA071C32DD45AD7000B5677 /* Barlow-Bold.ttf in Resources */,
+				4EA071C42DD45AD7000B5677 /* monster in Resources */,
+				4EA071C52DD45AD7000B5677 /* txt in Resources */,
+				4EA071C62DD45AD7000B5677 /* Barlow-Regular.ttf in Resources */,
+				4EA071C72DD45AD7000B5677 /* Tips.txt in Resources */,
+				4EA071C82DD45AD7000B5677 /* UpdateVersionTips.cfg in Resources */,
+				4EA071C92DD45AD7000B5677 /* platform.cfg in Resources */,
+				4EA071CA2DD45AD7000B5677 /* UI in Resources */,
+				4EA071CB2DD45AD7000B5677 /* lua in Resources */,
+				4EA071CC2DD45AD7000B5677 /* version_android_local.cfg in Resources */,
+				4EA071CD2DD45AD7000B5677 /* audio in Resources */,
+				4EA071CE2DD45AD7000B5677 /* versionApp.manifest in Resources */,
+				4EA071CF2DD45AD7000B5677 /* version.manifest in Resources */,
+				4EA071D02DD45AD7000B5677 /* Spine in Resources */,
+				4EA071D12DD45AD7000B5677 /* version_ios.cfg in Resources */,
+				4EA071D22DD45AD7000B5677 /* i18n in Resources */,
+				4EA071D32DD45AD7000B5677 /* Video in Resources */,
+				4EA071D42DD45AD7000B5677 /* version_android.cfg in Resources */,
+				4EA071D52DD45AD7000B5677 /* HalfBody in Resources */,
+				4EA071D62DD45AD7000B5677 /* ecchigamer_domain_v1.txt in Resources */,
+				4EA071D72DD45AD7000B5677 /* Imagesetfile in Resources */,
+				4EA071D82DD45AD7000B5677 /* LoadingUI_JP in Resources */,
+				4EA071D92DD45AD7000B5677 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2992,6 +3354,157 @@
 				4E4520E62D5F191600F26188 /* Reward.pb.cc in Sources */,
 				4E4520E72D5F191600F26188 /* Player.pb.cc in Sources */,
 				4E4520E82D5F191600F26188 /* Status.pb.cc in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4EA070F42DD45AD7000B5677 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4EA070F52DD45AD7000B5677 /* AppController.mm in Sources */,
+				4EA070F62DD45AD7000B5677 /* RootViewController.mm in Sources */,
+				4EA070F72DD45AD7000B5677 /* main.m in Sources */,
+				4EA070F82DD45AD7000B5677 /* descriptor.cc in Sources */,
+				4EA070F92DD45AD7000B5677 /* LoginBCPage.cpp in Sources */,
+				4EA070FA2DD45AD7000B5677 /* descriptor.pb.cc in Sources */,
+				4EA070FB2DD45AD7000B5677 /* descriptor_database.cc in Sources */,
+				4EA070FC2DD45AD7000B5677 /* dynamic_message.cc in Sources */,
+				4EA070FD2DD45AD7000B5677 /* extension_set.cc in Sources */,
+				4EA070FE2DD45AD7000B5677 /* extension_set_heavy.cc in Sources */,
+				4EA070FF2DD45AD7000B5677 /* generated_message_reflection.cc in Sources */,
+				4EA071002DD45AD7000B5677 /* generated_message_util.cc in Sources */,
+				4EA071012DD45AD7000B5677 /* coded_stream.cc in Sources */,
+				4EA071022DD45AD7000B5677 /* gzip_stream.cc in Sources */,
+				4EA071032DD45AD7000B5677 /* printer.cc in Sources */,
+				4EA071042DD45AD7000B5677 /* MessageHintPage.cpp in Sources */,
+				4EA071052DD45AD7000B5677 /* tokenizer.cc in Sources */,
+				4EA071062DD45AD7000B5677 /* zero_copy_stream.cc in Sources */,
+				4EA071072DD45AD7000B5677 /* zero_copy_stream_impl.cc in Sources */,
+				4EA071082DD45AD7000B5677 /* zero_copy_stream_impl_lite.cc in Sources */,
+				4EA071092DD45AD7000B5677 /* message.cc in Sources */,
+				4EA0710A2DD45AD7000B5677 /* message_lite.cc in Sources */,
+				4EA0710B2DD45AD7000B5677 /* RyukPlatformListener.mm in Sources */,
+				4EA0710C2DD45AD7000B5677 /* reflection_ops.cc in Sources */,
+				4EA0710D2DD45AD7000B5677 /* repeated_field.cc in Sources */,
+				4EA0710E2DD45AD7000B5677 /* service.cc in Sources */,
+				4EA0710F2DD45AD7000B5677 /* atomicops_internals_x86_gcc.cc in Sources */,
+				4EA071102DD45AD7000B5677 /* atomicops_internals_x86_msvc.cc in Sources */,
+				4EA071112DD45AD7000B5677 /* common.cc in Sources */,
+				4EA071122DD45AD7000B5677 /* once.cc in Sources */,
+				4EA071132DD45AD7000B5677 /* Lua_EcchiGamerSDKBridge.cpp in Sources */,
+				4EA071142DD45AD7000B5677 /* LangSettingPage.cpp in Sources */,
+				4EA071152DD45AD7000B5677 /* stringprintf.cc in Sources */,
+				4EA071162DD45AD7000B5677 /* structurally_valid.cc in Sources */,
+				4EA071172DD45AD7000B5677 /* strutil.cc in Sources */,
+				4EA071182DD45AD7000B5677 /* substitute.cc in Sources */,
+				4EA071192DD45AD7000B5677 /* text_format.cc in Sources */,
+				4EA0711A2DD45AD7000B5677 /* unknown_field_set.cc in Sources */,
+				4EA0711B2DD45AD7000B5677 /* TapDB.cpp in Sources */,
+				4EA0711C2DD45AD7000B5677 /* wire_format.cc in Sources */,
+				4EA0711D2DD45AD7000B5677 /* wire_format_lite.cc in Sources */,
+				4EA0711E2DD45AD7000B5677 /* CharacterConsts.cpp in Sources */,
+				4EA0711F2DD45AD7000B5677 /* AboutPage.cpp in Sources */,
+				4EA071202DD45AD7000B5677 /* APIUtil.cpp in Sources */,
+				4EA071212DD45AD7000B5677 /* DeepLink.cpp in Sources */,
+				4EA071222DD45AD7000B5677 /* webapi.cpp in Sources */,
+				4EA071232DD45AD7000B5677 /* DeepLinkIosBridge.cpp in Sources */,
+				4EA071242DD45AD7000B5677 /* ConfigLoader.cpp in Sources */,
+				4EA071252DD45AD7000B5677 /* WebRequest.cpp in Sources */,
+				4EA071262DD45AD7000B5677 /* DeepLinkAndroidBridge.cpp in Sources */,
+				4EA071272DD45AD7000B5677 /* OpenWebViewController.mm in Sources */,
+				4EA071282DD45AD7000B5677 /* util.cpp in Sources */,
+				4EA071292DD45AD7000B5677 /* Util.mm in Sources */,
+				4EA0712A2DD45AD7000B5677 /* Coresdk.cpp in Sources */,
+				4EA0712B2DD45AD7000B5677 /* DeepLinkWin32Bridge.cpp in Sources */,
+				4EA0712C2DD45AD7000B5677 /* GamePackets.cpp in Sources */,
+				4EA0712D2DD45AD7000B5677 /* LoginUserPage.cpp in Sources */,
+				4EA0712E2DD45AD7000B5677 /* CCRichLabelTTF.cpp in Sources */,
+				4EA0712F2DD45AD7000B5677 /* CurlDownloadForScript.cpp in Sources */,
+				4EA071302DD45AD7000B5677 /* ArmatureContainer.cpp in Sources */,
+				4EA071312DD45AD7000B5677 /* LoginPacket.cpp in Sources */,
+				4EA071322DD45AD7000B5677 /* TestHTMLPopup.cpp in Sources */,
+				4EA071332DD45AD7000B5677 /* CoverSprite.cpp in Sources */,
+				4EA071342DD45AD7000B5677 /* CCBContainer.cpp in Sources */,
+				4EA071352DD45AD7000B5677 /* GamePrecedure.cpp in Sources */,
+				4EA071362DD45AD7000B5677 /* CCTagedRichTTF.cpp in Sources */,
+				4EA071372DD45AD7000B5677 /* ChangeUserPage.cpp in Sources */,
+				4EA071382DD45AD7000B5677 /* PackageLogic.cpp in Sources */,
+				4EA071392DD45AD7000B5677 /* waitingManager.cpp in Sources */,
+				4EA0713A2DD45AD7000B5677 /* ConfirmPage.cpp in Sources */,
+				4EA0713B2DD45AD7000B5677 /* ServerDateManager.cpp in Sources */,
+				4EA0713C2DD45AD7000B5677 /* Lua_HttpsBridge.cpp in Sources */,
+				4EA0713D2DD45AD7000B5677 /* FeedBackPage.cpp in Sources */,
+				4EA0713E2DD45AD7000B5677 /* pb.cpp in Sources */,
+				4EA0713F2DD45AD7000B5677 /* CCBManager.cpp in Sources */,
+				4EA071402DD45AD7000B5677 /* GamePacketManager.cpp in Sources */,
+				4EA071412DD45AD7000B5677 /* BulletinManager.cpp in Sources */,
+				4EA071422DD45AD7000B5677 /* GamePlatformInfo.cpp in Sources */,
+				4EA071432DD45AD7000B5677 /* CParticleFlow.cpp in Sources */,
+				4EA071442DD45AD7000B5677 /* ScriptMathToLua.cpp in Sources */,
+				4EA071452DD45AD7000B5677 /* DeviceCfgMgr.cpp in Sources */,
+				4EA071462DD45AD7000B5677 /* GameMessages.cpp in Sources */,
+				4EA071472DD45AD7000B5677 /* SpineContainer.cpp in Sources */,
+				4EA071482DD45AD7000B5677 /* ActiveCodePage.cpp in Sources */,
+				4EA071492DD45AD7000B5677 /* BlackBoard.cpp in Sources */,
+				4EA0714A2DD45AD7000B5677 /* AnnouncementNewPage.cpp in Sources */,
+				4EA0714B2DD45AD7000B5677 /* LogReport.cpp in Sources */,
+				4EA0714C2DD45AD7000B5677 /* RadialBlurSprite.cpp in Sources */,
+				4EA0714D2DD45AD7000B5677 /* BCWebRequest.cpp in Sources */,
+				4EA0714E2DD45AD7000B5677 /* GameConsts.cpp in Sources */,
+				4EA0714F2DD45AD7000B5677 /* AsyncSprite.cpp in Sources */,
+				4EA071502DD45AD7000B5677 /* H365API.cpp in Sources */,
+				4EA071512DD45AD7000B5677 /* DataTableManager.cpp in Sources */,
+				4EA071522DD45AD7000B5677 /* AnimMgr.cpp in Sources */,
+				4EA071532DD45AD7000B5677 /* RestrictedWord.cpp in Sources */,
+				4EA071542DD45AD7000B5677 /* GraySprite.cpp in Sources */,
+				4EA071552DD45AD7000B5677 /* SpriteShader.cpp in Sources */,
+				4EA071562DD45AD7000B5677 /* LightSweepSprite.cpp in Sources */,
+				4EA071572DD45AD7000B5677 /* ScriptContentBase.cpp in Sources */,
+				4EA071582DD45AD7000B5677 /* UpateVersion.cpp in Sources */,
+				4EA071592DD45AD7000B5677 /* StrokeSprite.cpp in Sources */,
+				4EA0715A2DD45AD7000B5677 /* NumberChangeAction.cpp in Sources */,
+				4EA0715B2DD45AD7000B5677 /* StrokeSample.cpp in Sources */,
+				4EA0715C2DD45AD7000B5677 /* AnnouncePage.cpp in Sources */,
+				4EA0715D2DD45AD7000B5677 /* LibPlatformForScript.cpp in Sources */,
+				4EA0715E2DD45AD7000B5677 /* BasePage.cpp in Sources */,
+				4EA0715F2DD45AD7000B5677 /* BlurSprite.cpp in Sources */,
+				4EA071602DD45AD7000B5677 /* CCBScriptContainer.cpp in Sources */,
+				4EA071612DD45AD7000B5677 /* MessageManager.cpp in Sources */,
+				4EA071622DD45AD7000B5677 /* CCBLuaContainer.cpp in Sources */,
+				4EA071632DD45AD7000B5677 /* MessageBoxPage.cpp in Sources */,
+				4EA071642DD45AD7000B5677 /* AnnouncementPage.cpp in Sources */,
+				4EA071652DD45AD7000B5677 /* strbuf.c in Sources */,
+				4EA071662DD45AD7000B5677 /* LoadingAniPage.cpp in Sources */,
+				4EA071672DD45AD7000B5677 /* AppDelegate.cpp in Sources */,
+				4EA071682DD45AD7000B5677 /* Gamelua.cpp in Sources */,
+				4EA071692DD45AD7000B5677 /* TimeCalculator.cpp in Sources */,
+				4EA0716A2DD45AD7000B5677 /* CDKeyMsgPage.cpp in Sources */,
+				4EA0716B2DD45AD7000B5677 /* NoticeBox.cpp in Sources */,
+				4EA0716C2DD45AD7000B5677 /* LogoFrame.cpp in Sources */,
+				4EA0716D2DD45AD7000B5677 /* fpconv.c in Sources */,
+				4EA0716E2DD45AD7000B5677 /* AdjustManager.cpp in Sources */,
+				4EA0716F2DD45AD7000B5677 /* CShiftToAction.cpp in Sources */,
+				4EA071702DD45AD7000B5677 /* buyingCheck.cpp in Sources */,
+				4EA071712DD45AD7000B5677 /* LoadingFrame.cpp in Sources */,
+				4EA071722DD45AD7000B5677 /* SoundManager.cpp in Sources */,
+				4EA071732DD45AD7000B5677 /* lua_cjson.c in Sources */,
+				4EA071742DD45AD7000B5677 /* Popup1stPayTipPage.cpp in Sources */,
+				4EA071752DD45AD7000B5677 /* HttpImg.cpp in Sources */,
+				4EA071762DD45AD7000B5677 /* ResManager.cpp in Sources */,
+				4EA071772DD45AD7000B5677 /* GameNotification.cpp in Sources */,
+				4EA071782DD45AD7000B5677 /* MainFrame.cpp in Sources */,
+				4EA071792DD45AD7000B5677 /* SysProtocol.pb.cc in Sources */,
+				4EA0717A2DD45AD7000B5677 /* Equip.pb.cc in Sources */,
+				4EA0717B2DD45AD7000B5677 /* Skill.pb.cc in Sources */,
+				4EA0717C2DD45AD7000B5677 /* Login.pb.cc in Sources */,
+				4EA0717D2DD45AD7000B5677 /* Consume.pb.cc in Sources */,
+				4EA0717E2DD45AD7000B5677 /* Attribute.pb.cc in Sources */,
+				4EA0717F2DD45AD7000B5677 /* Const.pb.cc in Sources */,
+				4EA071802DD45AD7000B5677 /* Item.pb.cc in Sources */,
+				4EA071812DD45AD7000B5677 /* HP.pb.cc in Sources */,
+				4EA071822DD45AD7000B5677 /* Reward.pb.cc in Sources */,
+				4EA071832DD45AD7000B5677 /* Player.pb.cc in Sources */,
+				4EA071842DD45AD7000B5677 /* Status.pb.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3691,6 +4204,223 @@
 			};
 			name = Release;
 		};
+		4EA071DE2DD45AD7000B5677 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = "$(ARCHS_STANDARD)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = TigerAppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = TigerLaunchImage;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++23";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CXX0X_EXTENSIONS = NO;
+				CLANG_WARN_OBJC_EXPLICIT_OWNERSHIP_TYPE = NO;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMPRESS_PNG_FILES = NO;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 13;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = 7HTW8682XX;
+				ENABLE_BITCODE = NO;
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../../build/Debug-iphoneos\"",
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../Code_iOS/lib91/SDK/FacebookSDK\"",
+					"$(PROJECT_DIR)/bugly",
+					"\"$(SRCROOT)/../../../Code_iOS/lib91/SDK/91SDK/framework5/framework\"",
+				);
+				GCC_C_LANGUAGE_STANDARD = c17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Game/Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"COCOS2D_DEBUG=1",
+					USE_FILE32API,
+					CC_TARGET_OS_IPHONE,
+					"CC_ENABLE_CHIPMUNK_INTEGRATION=1",
+					"HAVE_PTHREAD=1",
+				);
+				"GCC_THUMB_SUPPORT[sdk=*]" = "";
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../../include/cocos2dx/kazmath/include\"",
+					"\"$(SRCROOT)/../../include/cocos2dx\"",
+					"\"$(SDKROOT)/usr/include/libxml2\"",
+					"\"$(SRCROOT)/../../include/cocos2dx/include\"",
+					"\"$(SRCROOT)/../../include/cocos2dx/platform/third_party/ios\"",
+					"\"$(SRCROOT)/../../include/cocos2dx/platform/ios\"",
+					"\"$(SRCROOT)/../../include/CocosDenshion/include\"",
+					"\"$(SRCROOT)/../../include/extensions\"",
+					"\"$(SRCROOT)/../../include/jsoncpp\"",
+					"\"$(SRCROOT)/../../include/protobuf\"",
+					"\"$(SRCROOT)/../../include/protobuf/src\"",
+					"\"$(SRCROOT)/../../Game/Platform\"",
+					"\"$(SRCROOT)/../../include/lua/lua\"",
+					"\"$(SRCROOT)/../../include/lua/tolua\"",
+					"\"$(SRCROOT)/../../include/lua/cocos2dx_support\"",
+					"\"$(SRCROOT)/../../include/libOS/include\"",
+					"\"$(SRCROOT)/../../include/lua/tolua\"",
+					"\"$(SRCROOT)/../../include/core\"",
+					"\"$(SRCROOT)/../../include/CocosDenshion\"",
+					"\"$(SRCROOT)/../../../Code_iOS/comHuTuoSDK/comHuTuoSDK\"",
+					"\"SRCROOT)/../../include/cocos2dx/platform\"",
+					"\"$(SRCROOT)/../../../Code_iOS/ShareSDKToDifPlatform/GameCenterSDK\"",
+					"\"$(SRCROOT)/../../../Code_iOS/lib91/include\"",
+					"\"$(SRCROOT)/../../../Code_iOS/lib91/Classes/RyukNew\"",
+					"\"$(SRCROOT)/../../../Code_iOS/lib91/Classes/VoiceChat\"",
+					"\"$(SRCROOT)/../../../Code_iOS/ShareSDKToDifPlatform/ShareSDKToDifPlatform\"",
+					"\"$(SRCROOT)/../../91lib/include\"",
+					"\"$(SRCROOT)/../../../Code_iOS/ShareSDKToDifPlatform/FCUUID\"",
+					"\"$(SRCROOT)/../../include/TalkingData/include\"",
+					"\"$(SRCROOT)/../../../Code_Core/cocos2dx/platform/third_party/ios/libfreetype2/freetype\"/**",
+				);
+				INFOPLIST_FILE = "NinjaGirl69 copy2-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Ninja Girl";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.arcade-games";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				LD_RUNPATH_SEARCH_PATHS = "$(LD_RUNPATH_SEARCH_PATHS_$(IS_MACCATALYST)) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../../build/Debug-iphoneos\"",
+					"$(PROJECT_DIR)",
+					"\"$(SRCROOT)/../../LibOS\"",
+					"$(PROJECT_DIR)/bugly/BuglyAgent",
+				);
+				MARKETING_VERSION = 1.0.0;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = (
+					"-lxml2",
+					"-lz",
+					"-ObjC",
+					"-lsqlite3.0",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ios.ninja.girl.kuso.cn;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "6987a272-2e42-4377-a502-a6ffdfbcb24a";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				STRIP_PNG_TEXT = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 armv7";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		4EA071DF2DD45AD7000B5677 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				APPLICATION_EXTENSION_API_ONLY = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = TigerAppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = TigerLaunchImage;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++23";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_CXX0X_EXTENSIONS = NO;
+				CLANG_WARN_OBJC_EXPLICIT_OWNERSHIP_TYPE = NO;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMPRESS_PNG_FILES = NO;
+				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 13;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = 7HTW8682XX;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../build/Release-iphoneos\"",
+					"\"$(SRCROOT)/../../../Code_iOS/lib91/SDK/FacebookSDK\"",
+					"$(PROJECT_DIR)/bugly",
+					"\"$(SRCROOT)/../../../Code_iOS/lib91/SDK/91SDK/framework5/framework\"",
+				);
+				GCC_C_LANGUAGE_STANDARD = c17;
+				GCC_OPTIMIZATION_LEVEL = 1;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Game/Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"CC_ENABLE_CHIPMUNK_INTEGRATION=1",
+					USE_FILE32API,
+					CC_TARGET_OS_IPHONE,
+					"HAVE_PTHREAD=1",
+				);
+				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../../include/cocos2dx/kazmath/include\"",
+					"\"$(SRCROOT)/../../include/cocos2dx\"",
+					"\"$(SDKROOT)/usr/include/libxml2\"",
+					"\"$(SRCROOT)/../../include/cocos2dx/include\"",
+					"\"$(SRCROOT)/../../include/cocos2dx/platform/third_party/ios\"",
+					"\"$(SRCROOT)/../../include/cocos2dx/platform/ios\"",
+					"\"$(SRCROOT)/../../include/CocosDenshion/include\"",
+					"\"$(SRCROOT)/../../include/extensions\"",
+					"\"$(SRCROOT)/../../include/jsoncpp\"",
+					"\"$(SRCROOT)/../../include/protobuf\"",
+					"\"$(SRCROOT)/../../include/protobuf/src\"",
+					"\"$(SRCROOT)/../../Game/Platform\"",
+					"\"$(SRCROOT)/../../include/lua/lua\"",
+					"\"$(SRCROOT)/../../include/lua/tolua\"",
+					"\"$(SRCROOT)/../../include/lua/cocos2dx_support\"",
+					"\"$(SRCROOT)/../../include/libOS/include\"",
+					"\"$(SRCROOT)/../../include/lua/tolua\"",
+					"\"$(SRCROOT)/../../include/core\"",
+					"\"$(SRCROOT)/../../include/CocosDenshion\"",
+					"\"$(SRCROOT)/../../../Code_iOS/comHuTuoSDK/comHuTuoSDK\"",
+					"\"SRCROOT)/../../include/cocos2dx/platform\"",
+					"\"$(SRCROOT)/../../../Code_iOS/ShareSDKToDifPlatform/GameCenterSDK\"",
+					"\"$(SRCROOT)/../../../Code_iOS/lib91/include\"",
+					"\"$(SRCROOT)/../../../Code_iOS/lib91/Classes/RyukNew\"",
+					"\"$(SRCROOT)/../../../Code_iOS/lib91/Classes/VoiceChat\"",
+					"\"$(SRCROOT)/../../../Code_iOS/ShareSDKToDifPlatform/ShareSDKToDifPlatform\"",
+					"\"$(SRCROOT)/../../91lib/include\"",
+					"\"$(SRCROOT)/../../../Code_iOS/ShareSDKToDifPlatform/FCUUID\"",
+					"\"$(SRCROOT)/../../include/TalkingData/include\"",
+					"\"$(SRCROOT)/../../../Code_Core/cocos2dx/platform/third_party/ios/libfreetype2/freetype\"/**",
+				);
+				INFOPLIST_FILE = "NinjaGirl69 copy2-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Ninja Girl";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.arcade-games";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				LD_RUNPATH_SEARCH_PATHS = "$(LD_RUNPATH_SEARCH_PATHS_$(IS_MACCATALYST)) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)",
+					"\"$(SRCROOT)/../../build/Release-iphoneos\"",
+					"\"$(SRCROOT)/../../LibOS\"",
+					"$(PROJECT_DIR)/bugly/BuglyAgent",
+				);
+				MARKETING_VERSION = 1.0.0;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-lxml2",
+					"-lz",
+					"-ObjC",
+					"-lsqlite3.0",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ios.ninja.girl.kuso.cn;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "978e775b-9f2f-4a14-a9e8-17cd9ff07c9e";
+				"PROVISIONING_PROFILE[sdk=*]" = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				STRIP_PNG_TEXT = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "armv7 arm64";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 		979ED80A1DF123BA003CCCC8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -4346,6 +5076,15 @@
 			buildConfigurations = (
 				4E4521472D5F191600F26188 /* Debug */,
 				4E4521482D5F191600F26188 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4EA071DD2DD45AD7000B5677 /* Build configuration list for PBXNativeTarget "NinjaGirlErolab" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4EA071DE2DD45AD7000B5677 /* Debug */,
+				4EA071DF2DD45AD7000B5677 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

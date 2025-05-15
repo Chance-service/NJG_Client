@@ -1,8 +1,10 @@
-#pragma once
+//#pragma once
+#ifndef __lib91__libErolabs__
+#define __lib91__libErolabs__
 
 #include "libPlatform.h"
 
-class lib91 : public libPlatform
+class libErolabs : public libPlatform
 {
     BUYINFO mBuyInfo;
     //bool libIos_mLogined = false;
@@ -105,4 +107,4 @@ public:
     virtual void setHoneyP(int aMoney);
 };
 
-
+#endif

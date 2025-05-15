@@ -1,13 +1,12 @@
 #import <UIKit/UIKit.h>
 
-#include "lib91.h"
+#include "libErolabs.h"
 #include "libOS.h"
 #include "SeverConsts.h"
 
-#import <KUSOPlaySDK/KUSOPlaySDK.h>
+//#import <KUSOPlaySDK/KUSOPlaySDK.h>
 #import <TapDB/TapDB.h>
 
-//lib91Obj* s_lib91Ojb = 0;
 SDK_CONFIG_STU sdkConfigure;
 static bool isGuest = 0;
 static std::string loginName = "";
@@ -67,7 +66,7 @@ static bool enableTapDBLog = true;
     return tmp;
 }
 @end
-
+/*
 @interface KUSOLoginListener : NSObject <PlayCenterLoginListener>
 @property (nonatomic, copy) void (^onLoginSuccessBlock)
 (
@@ -131,61 +130,30 @@ static bool enableTapDBLog = true;
 }
 
 @end
-
-void lib91::initWithConfigure(const SDK_CONFIG_STU& configure)
+*/
+void libErolabs::initWithConfigure(const SDK_CONFIG_STU& configure)
 {
     sdkConfigure = configure;
     //libIos_mLogined = false;
     _boardcastUpdateCheckDone(true, "");
-    
-    //init com4lovesSDK
-    /*NSString *yaappID = [NSString stringWithCString:(const char*)sdkConfigure.com4lovesconfig.appid.c_str() encoding:NSASCIIStringEncoding];
-    NSString *yaSDKAppID = [NSString stringWithCString:(const char*)sdkConfigure.com4lovesconfig.sdkappid.c_str() encoding:NSASCIIStringEncoding];
-    NSString *yaSDKAppKey = [NSString stringWithCString:(const char*)sdkConfigure.com4lovesconfig.sdkappkey.c_str() encoding:NSASCIIStringEncoding];
-    NSString *yachannelID = [NSString stringWithCString:(const char*)sdkConfigure.com4lovesconfig.channelid.c_str() encoding:NSASCIIStringEncoding];
-    NSString *yaplatformID = [NSString stringWithCString:(const char*)sdkConfigure.com4lovesconfig.platformid.c_str() encoding:NSASCIIStringEncoding];
-    [comHuTuoSDK  setSDKAppID:yaSDKAppID SDKAPPKey:yaSDKAppKey ChannelID:yachannelID PlatformID:yaplatformID];
-    [comHuTuoSDK  setAppId:yaappID];
-    
-    //DataEyeInit
- //   [[NSNotificationCenter defaultCenter] postNotificationName:YAPlatformStateInitDone object:@"ios_91"];
-    //注册监听函数
-    s_lib91Ojb = [lib91Obj new];
-    [s_lib91Ojb SNSInitResult:0];
-    s_lib91Ojb.isReLogin = configure.platformconfig.bRelogin;
-    //读取平台参数
-    NSString *appKey = [NSString stringWithCString:(const char*)sdkConfigure.platformconfig.appkey.c_str() encoding:NSASCIIStringEncoding];
-    NSString *appID = [NSString stringWithCString:(const char*)sdkConfigure.platformconfig.appid.c_str() encoding:NSASCIIStringEncoding];
-    
-    //初始化平台
-    NdInitConfigure *cfg = [[NdInitConfigure alloc] init];
-    cfg.appid       = [appID intValue];
-    cfg.appKey      = appKey;
-    cfg.versionCheckLevel = ND_VERSION_CHECK_LEVEL_STRICT;
-    cfg.orientation = UIInterfaceOrientationPortrait ;
-    [[NdComPlatform defaultPlatform] NdShowToolBar:NdToolBarAtTopRight];
-    [[NdComPlatform defaultPlatform] NdInit:cfg];
-    this->setToolBarVisible(YES);
-    [[NdComPlatform defaultPlatform] NdSetScreenOrientation:UIInterfaceOrientationPortrait];
-    [[NdComPlatform defaultPlatform] NdSetAutoRotation:NO];
-    [cfg release];*/
 }
 
-void lib91::setupSDK(int platformId)
+void libErolabs::setupSDK(int platformId)
 {
     // Setup kuso sdk
-    if ((SeverConsts::E_PLATFORM)platformId == SeverConsts::EP_KUSO)
+    if ((SeverConsts::E_PLATFORM)platformId == SeverConsts::EP_EROLABS)
     {
         UIViewController* controller = [UIApplication sharedApplication].keyWindow.rootViewController;
-        NSLog(@"KUSO: Setup");
-        PlayCenterConfig *config = [[[PlayCenterConfig alloc]
-                                     initWithAppId:@"APPncbR1hdPgUIjSKt"
-                                     isSandbox:YES
-                                     subId:@"NG24"
-                                    ] autorelease];
-        [PlayCenter.shared
-         setupViewController:controller
-         config:config];
+        NSLog(@"Erolabs: Setup");
+        // TODO:
+        //PlayCenterConfig *config = [[[PlayCenterConfig alloc]
+        //                             initWithAppId:@"APPncbR1hdPgUIjSKt"
+        //                             isSandbox:YES
+        //                             subId:@"NG24"
+        //                            ] autorelease];
+        //[PlayCenter.shared
+        // setupViewController:controller
+        // config:config];
     }
     // Init tapDB
     NSLog(@"TapDB: Setup");
@@ -196,12 +164,14 @@ void lib91::setupSDK(int platformId)
 #pragma mark
 #pragma mark ------------------------------- login with ----------------------------------
 
-bool lib91::getLogined()
+bool libErolabs::getLogined()
 {
-    return PlayCenter.shared.isLoggedIn;
+    // TODO:
+    return true;
+    //return PlayCenter.shared.isLoggedIn;
 }
 
-void lib91::login()
+void libErolabs::login()
 {
     if(!this->getLogined())
 	{
@@ -210,8 +180,10 @@ void lib91::login()
     
 }
 
-void lib91::logout()
+void libErolabs::logout()
 {
+    // TODO:
+    /*
     KUSOLogoutListener *listener = [[KUSOLogoutListener alloc] init];
     listener.onLogoutSuccessBlock = ^(BOOL success)
     {
@@ -223,11 +195,12 @@ void lib91::logout()
     };
     
     [PlayCenter.shared logoutListener:listener];
+     */
 }
 
-void lib91::doSDKLogin()
+void libErolabs::doSDKLogin()
 {
-    NSLog(@"KUSO: Try Login");
+    NSLog(@"Erolabs: Try Login");
     UIViewController* controller = [UIApplication sharedApplication].keyWindow.rootViewController;
     CGRect frame = controller.view.frame;
     //float oldY = frame.origin.y;
@@ -235,6 +208,7 @@ void lib91::doSDKLogin()
     frame.origin.y = -10;
     controller.view.frame = frame;
     //NSLog(@"KUSO: Adjust view y: %f", oldY);
+    /*
     KUSOLoginListener *listener = [[KUSOLoginListener alloc] init];
     listener.onLoginSuccessBlock = ^(BOOL success, NSString * _Nullable userId, NSString * _Nullable t, PlayCenterError * _Nullable error)
     {
@@ -256,9 +230,10 @@ void lib91::doSDKLogin()
     };
     
     [PlayCenter.shared loginListener:listener];
+     */
 }
 
-void lib91::switchUsers()
+void libErolabs::switchUsers()
 {
     //if(!this->getLogined())
 	//{
@@ -268,12 +243,12 @@ void lib91::switchUsers()
     //    [[NdComPlatform defaultPlatform] NdEnterPlatform:0];
 }
 
-void lib91::setLoginName(const std::string content)
+void libErolabs::setLoginName(const std::string content)
 {
     loginName = content;
 }
 
-std::string lib91::getLoginName()
+std::string libErolabs::getLoginName()
 {
     return loginName;
 }
@@ -281,7 +256,7 @@ std::string lib91::getLoginName()
 #pragma mark
 #pragma mark ------------------------------- pay with ----------------------------------
 
-void lib91::buyGoods(BUYINFO& info)
+void libErolabs::buyGoods(BUYINFO& info)
 {
     if(info.cooOrderSerial=="")
     {
@@ -289,6 +264,8 @@ void lib91::buyGoods(BUYINFO& info)
     }
     NSString *orderSerial = info.cooOrderSerial.empty() ? @"" : [NSString stringWithUTF8String:info.cooOrderSerial.c_str()];
     
+    // TODO:
+    /*
     KUSOPayListener *listener = [[KUSOPayListener alloc] init];
     listener.onPaymentReadyBlock = ^(BOOL success, NSString * _Nullable url, NSString * _Nullable orderId, PlayCenterError * _Nullable error)
     {
@@ -309,6 +286,7 @@ void lib91::buyGoods(BUYINFO& info)
             NSLog(@"%s", [error.message UTF8String]);
         }
     };
+     
     
     NSMutableDictionary *items = [NSMutableDictionary dictionary];
     [items setObject:[NSString stringWithUTF8String:loginName.c_str()]  forKey:@"puid"];
@@ -320,7 +298,7 @@ void lib91::buyGoods(BUYINFO& info)
     [items setObject:@(serverId) forKey:@"serverId"];
     [items setObject:@"false" forKey:@"test"];
     
-    NSLog(@"KUSO: buy goods");
+    NSLog(@"buy goods");
     NSError *error;
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:items options:0 error:&error];
     NSString* itemsString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
@@ -338,84 +316,41 @@ void lib91::buyGoods(BUYINFO& info)
      nonce:orderSerial
      items:itemsString
      listener:listener];
+    */
     
-    /*if(info.cooOrderSerial=="")
-    {
-        info.cooOrderSerial = libOS::getInstance()->generateSerial();
-    }
-    mBuyInfo = info;
-    NdBuyInfo* buyinfo = [NdBuyInfo new];
-    buyinfo.cooOrderSerial = [NSString stringWithUTF8String:info.cooOrderSerial.c_str()];
-    buyinfo.productId = [NSString stringWithUTF8String:info.productId.c_str()];
-    buyinfo.productName = [NSString stringWithUTF8String:info.productName.c_str()];
-    buyinfo.productPrice = info.productPrice;
-    buyinfo.productOrignalPrice = info.productOrignalPrice;
-    if(info.productOrignalPrice == 0)
-        buyinfo.productOrignalPrice = info.productPrice;
-    buyinfo.productCount = 1;//info.productCount;
-    buyinfo.payDescription = [NSString stringWithUTF8String:info.description.c_str()];
-    int res = [[NdComPlatform defaultPlatform] NdUniPayAsyn:buyinfo];
-    if(res<0)
-    {
-        std::string log("购买信息发送失败");
-        _boardcastBuyinfoSent(false, info,log);
-    }
-    [buyinfo release];*/
-//    else
-//    {
-//        //DataEye pay Statistics
-//        NSString *price = [NSString stringWithFormat:@"%f",info.productPrice];
-//        NSString *orderID = [NSString stringWithUTF8String:info.cooOrderSerial.c_str()];
-//        [[NSNotificationCenter defaultCenter] postNotificationName:YAPlatformStateBuyBegin object:[NSDictionary dictionaryWithObjectsAndKeys:orderID,@"orderID",price,@"price",@"ios_91",@"payType",nil]];
-//    }
+    
 }
 
 #pragma mark
 #pragma mark ----------------------------- platfrom tool -------------------------------------
 
-void lib91::openBBS()
+void libErolabs::openBBS()
 {
-    //[[NdComPlatform defaultPlatform] NdEnterAppBBS:0];
+
 }
 
-void lib91::userFeedBack()
+void libErolabs::userFeedBack()
 {
-    //[[NdComPlatform defaultPlatform] NdUserFeedBack];
+
 }
-void lib91::gamePause()
+void libErolabs::gamePause()
 {
-    //[[NdComPlatform defaultPlatform] NdPause];
+
 }
 
-void lib91::setToolBarVisible(bool isShow)
+void libErolabs::setToolBarVisible(bool isShow)
 {
-    if(isShow)
-    {
-        //[[NdComPlatform defaultPlatform] NdShowToolBar:NdToolBarAtTopRight];
-    }
-    else
-    {
-        //[[NdComPlatform defaultPlatform] NdHideToolBar];
-    }
+
 }
 
 #pragma mark
 #pragma mark ----------------------------- login user data ----------------------------------
 
-const std::string& lib91::loginUin()
+const std::string& libErolabs::loginUin()
 {
-    /*static std::string retStr = "";
-    NSString* retNS = [[NdComPlatform defaultPlatform] loginUin];
-    if(retNS != nil)
-    {
-        retStr = [retNS UTF8String];
-        if(retStr != "")
-            retStr = sdkConfigure.platformconfig.uidPrefix + retStr;
-    }
-    return retStr;*/
     return loginName;
 }
-const std::string& lib91::sessionID()
+const std::string& libErolabs::sessionID()
 {
 	//NSString* retNS = [[NdComPlatform defaultPlatform] sessionId];
     //static std::string retStr;
@@ -424,7 +359,7 @@ const std::string& lib91::sessionID()
     static std::string ret = "";
     return ret;
 }
-const std::string& lib91::nickName()
+const std::string& libErolabs::nickName()
 {
     //NSString* retNS = [[NdComPlatform defaultPlatform] nickName];
     //static std::string retStr;
@@ -436,84 +371,84 @@ const std::string& lib91::nickName()
 
 #pragma mark
 #pragma mark ----------------------------- platform data -----------------------------------
-const std::string lib91::getClientChannel()
+const std::string libErolabs::getClientChannel()
 {
-    return "ios_kuso";
+    return "ios_erolabs";
 }
 
-const std::string lib91::getClientCps()
+const std::string libErolabs::getClientCps()
 {
     return "#0";
 }
 
 
 
-std::string lib91::getPlatformMoneyName()
+std::string libErolabs::getPlatformMoneyName()
 {
     return sdkConfigure.platformconfig.moneyName;
 }
 
 #pragma mark
 #pragma mark ----------------------------- platform -----------------------------------
-void lib91::notifyEnterGame()
+void libErolabs::notifyEnterGame()
 {
     //s_lib91Ojb.isInGame = YES;
 }
 
-bool lib91::getIsTryUser()
+bool libErolabs::getIsTryUser()
 {
     return false;
 }
 
-void lib91::callPlatformBindUser()
+void libErolabs::callPlatformBindUser()
 {
     
 }
 
-void lib91::notifyGameSvrBindTryUserToOkUserResult(int result)
+void libErolabs::notifyGameSvrBindTryUserToOkUserResult(int result)
 {
     
 }
 
-const std::string& lib91::getToken()
+const std::string& libErolabs::getToken()
 {
     return token;
 }
 
-void lib91::showPlatformProfile()
+void libErolabs::showPlatformProfile()
 {
-    [PlayCenter.shared profile];
+    // TODO: 
+    //[PlayCenter.shared profile];
 }
 
 
-bool lib91::getIsH365()
+bool libErolabs::getIsH365()
 {
     return false;
 }
 
-void lib91::updateApp(std::string& storeUrl)
+void libErolabs::updateApp(std::string& storeUrl)
 {
 }
 
-int lib91::getIsGuest()
+int libErolabs::getIsGuest()
 {
     return isGuest;
 }
 
 
-const unsigned int lib91::getPlatformId()
+const unsigned int libErolabs::getPlatformId()
 {
-    // Match E_PLATFORM enum
-    // 6 = KUSO
-    return 6u;
+
+    return SeverConsts::EP_EROLABS;
 }
 
-void lib91::setIsGuest(const int guest)
+void libErolabs::setIsGuest(const int guest)
 {
     isGuest = guest;
 }
 
-std::string lib91::sendMessageG2P(const std::string& tag, const std::string& msg)
+std::string libErolabs::sendMessageG2P(const std::string& tag, const std::string& msg)
 {
     //NSLog(@"sendMessageG2P: %s %s", tag.c_str(), msg.c_str());
     if(tag == "G2P_TAPDB_HANDLER")
@@ -628,28 +563,28 @@ std::string lib91::sendMessageG2P(const std::string& tag, const std::string& msg
     return "";
 }
 
-void lib91::OnKrGetInviteCount(){}
-void lib91::OnKrgetInviteLists(){}
-void lib91::OnKrgetFriendLists(){}
-void lib91::OnKrsendInvite(const std::string& strUserId, const std::string& strServerId){}
-void lib91::OnKrgetGiftLists(){}
-void lib91::OnKrReceiveGift(const std::string& strGiftId, const std::string& strServerId){}
-void lib91::OnKrGetGiftCount(){}
-void lib91::OnKrSendGift(const std::string& strUserName, const std::string& strServerId){}
-void lib91::OnKrGiftBlock(bool bVisible){}
-void lib91::OnKrGetKakaoId(){}
-void lib91::OnKrLoginGames(){}
-void lib91::OnKrIsShowFucForIOS(){}
+void libErolabs::OnKrGetInviteCount(){}
+void libErolabs::OnKrgetInviteLists(){}
+void libErolabs::OnKrgetFriendLists(){}
+void libErolabs::OnKrsendInvite(const std::string& strUserId, const std::string& strServerId){}
+void libErolabs::OnKrgetGiftLists(){}
+void libErolabs::OnKrReceiveGift(const std::string& strGiftId, const std::string& strServerId){}
+void libErolabs::OnKrGetGiftCount(){}
+void libErolabs::OnKrSendGift(const std::string& strUserName, const std::string& strServerId){}
+void libErolabs::OnKrGiftBlock(bool bVisible){}
+void libErolabs::OnKrGetKakaoId(){}
+void libErolabs::OnKrLoginGames(){}
+void libErolabs::OnKrIsShowFucForIOS(){}
 
-void lib91::setLanguageName(const std::string& lang){}
-void lib91::setPlatformName(int platform){}
-void lib91::setPayH365(const std::string& url){}
-void lib91::setPayR18(int mid, int serverid, const std::string& url){}
+void libErolabs::setLanguageName(const std::string& lang){}
+void libErolabs::setPlatformName(int platform){}
+void libErolabs::setPayH365(const std::string& url){}
+void libErolabs::setPayR18(int mid, int serverid, const std::string& url){}
     
-int lib91::getHoneyP()
+int libErolabs::getHoneyP()
 {
     return 0;
 }
-void lib91::setHoneyP(int aMoney)
+void libErolabs::setHoneyP(int aMoney)
 {
 }
