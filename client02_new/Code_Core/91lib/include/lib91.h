@@ -65,6 +65,7 @@ public:
 
 	virtual const std::string getClientChannel();
 	virtual const std::string getClientCps();
+	virtual const std::string getBuildType();
 
     virtual std::string getPlatformMoneyName();
 

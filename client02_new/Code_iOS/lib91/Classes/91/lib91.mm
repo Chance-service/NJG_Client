@@ -446,6 +446,11 @@ const std::string lib91::getClientCps()
     return "#0";
 }
 
+const std::string lib91::getBuildType()
+{
+    return "release";
+}
+
 
 
 std::string lib91::getPlatformMoneyName()

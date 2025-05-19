@@ -1504,11 +1504,17 @@ void MainFrame::settingMoviePushPageVisible(std::string pageName, int moviePlayT
 {
 	PageList::iterator iter = mPageList.begin();
 	bool getTarget = false;
+	if (pageName == "MainScenePage" || pageName == "EquipmentPage" ||
+		pageName == "NgBattlePage" || pageName == "Lobby2Page") {
+		getTarget = true;
+		CCLog("MovieLog -- Target is back movie");
+	}
 	for (; iter != mPageList.end(); ++iter)
 	{
 		if ((*iter)->mName == pageName)
 		{
 			getTarget = true;
+			CCLog("MovieLog -- Target get");
 		}
 		if ((*iter)->mName == "TransScenePopUp") {	// 轉場UI永遠在最上層 -> 不關閉
 			(*iter)->mBasePage->setVisible(true);

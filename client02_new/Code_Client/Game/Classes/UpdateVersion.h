@@ -196,7 +196,7 @@ public:
     
     void downloadFailed(const std::string& url, const std::string& filename);
     
-    void onAlreadyDownSize(unsigned long size);
+	void onAlreadyDownSize(unsigned long size, const std::string& url, const std::string& filename);
     
 private:
     

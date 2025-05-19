@@ -59,13 +59,19 @@ namespace Lua_EcchiGamerSDKBridge {
 		if (isCompleted)	//SDK初始化成功
 		{
 			CCLog("Completed");
-			ecchigamer::EcchiGamerSDK::openLogin(onOpenLoginCallback_ByC);
+			//ecchigamer::EcchiGamerSDK::openLogin(onOpenLoginCallback_ByC);
 		}
 	}
 
 	void onPostAccountBindCallback_ByC(coresdk::ProfileResult result)
 	{
-		
+		if (result.isSuccess) {
+			CCLog("Bind Success");
+		}
+		else {
+			string errorCode = result.data.result;
+			CCLog("ErrorCode: %s", errorCode.c_str());
+		}
 	}
 
 	void onInitializeCallback(bool result) {

@@ -237,6 +237,11 @@ const std::string lib91::getClientCps()
 	return getClientCpsJNI();
 }
 
+const std::string lib91::getBuildType()
+{
+	return getBuildTypeJNI();
+}
+
 std::string lib91::getPlatformMoneyName()
 {
 	return "";
@@ -345,4 +350,16 @@ void lib91::setLanguageName( const std::string& lang )
 void lib91::OnKrIsShowFucForIOS()
 {
 
+}
+
+static int HoneyP = 0;
+
+void  lib91::setHoneyP(int aMoney)
+{
+	HoneyP = aMoney;
+}
+
+int  lib91::getHoneyP()
+{
+	return HoneyP;
 }

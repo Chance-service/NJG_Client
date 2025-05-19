@@ -87,6 +87,7 @@ extern std::string getDeviceInfoJNI();
 extern std::string getDeviceIDJNI();
 extern std::string getClientChannelJNI();
 extern std::string getClientCpsJNI();
+extern std::string getBuildTypeJNI();
 extern int getPlatformIdJNI();
 extern void notifyEnterGameJNI();
 

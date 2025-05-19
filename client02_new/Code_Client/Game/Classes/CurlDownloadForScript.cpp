@@ -41,7 +41,7 @@ void CurlDownloadScriptListener::downloadFailed(const std::string& url, const st
 	RUN_SCRIPT_FUN("onDownLoadFailed");
 }
 
-void CurlDownloadScriptListener::onAlreadyDownSize(unsigned long size)
+void CurlDownloadScriptListener::onAlreadyDownSize(unsigned long size, const std::string& url, const std::string& filename)
 {
 	mLoadSize = size;
 	RUN_SCRIPT_FUN("onAlreadyDownSize");

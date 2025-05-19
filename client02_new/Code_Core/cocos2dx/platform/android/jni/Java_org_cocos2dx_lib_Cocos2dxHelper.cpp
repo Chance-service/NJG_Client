@@ -933,6 +933,20 @@ std::string getClientCpsJNI()
 	return "#0";
 }
 
+std::string getBuildTypeJNI()
+{
+	JniMethodInfo t;
+
+	if (JniHelper::getStaticMethodInfo(t, CLASS_NAME, "getBuildType", "()Ljava/lang/String;")) {
+		jstring str = (jstring)t.env->CallStaticObjectMethod(t.classID, t.methodID);
+		t.env->DeleteLocalRef(t.classID);
+
+		return JniHelper::jstring2string(str);
+	}
+
+	return "release";
+}
+
  void showAnnouncement(const char* pAnnounceUrl)
  {
 	 JniMethodInfo t;

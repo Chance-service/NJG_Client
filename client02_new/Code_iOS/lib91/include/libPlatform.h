@@ -139,6 +139,7 @@ public:
 	virtual const std::string getClientChannel() = 0;
     virtual const std::string getClientCps() = 0;
     
+	virtual const std::string getBuildType() = 0;
     virtual const std::string getChannelID(){return "";}
 
 	virtual std::string getPlatformMoneyName() = 0;

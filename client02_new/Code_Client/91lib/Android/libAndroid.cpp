@@ -299,6 +299,11 @@ const std::string libAndroid::getClientCps()
 	return getClientCpsJNI();
 }
 
+const std::string libAndroid::getBuildType()
+{
+	return getBuildTypeJNI();
+}
+
 std::string libAndroid::getPlatformMoneyName()
 {
 	return "";

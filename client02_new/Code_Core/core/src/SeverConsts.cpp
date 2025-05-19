@@ -78,7 +78,7 @@ bool SeverConsts::_parseConfigFile( const std::string& configfile )
 			time_t t;
 			time(&t);
 			CCString* _time = CCString::createWithFormat("%ld", t);
-			mSeverFile = data["sever"].asString() + "/" + "Server" + "/" + channel + "/" + serverListCfg + "?" + "time=" + _time->m_sString;
+			mSeverFile = data["sever"].asString() + "/" + "Server" + "/" + channel + "/" + serverListCfg;// + "?" + "time=" + _time->m_sString;
 			cocos2d::CCLog("*********SERVER FILE: %s", mSeverFile.c_str());
 		}
 		else
@@ -630,7 +630,7 @@ std::string SeverConsts::onReceiveCommonMessage( const std::string& tag, const s
 	return "";
 }
 
-void SeverConsts::onAlreadyDownSize( unsigned long size )
+void SeverConsts::onAlreadyDownSize(unsigned long size, const std::string& url, const std::string& filename)
 {
 }
 

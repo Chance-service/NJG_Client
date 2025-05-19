@@ -33,6 +33,7 @@ static bool IsJSG = false;
 static bool IsLSJ = false;
 static bool IsMURA = false;
 static bool IsKUSO = false;
+static bool IsErolabs = false;
 static bool IsAPLUS = false;
 static std::string PayUrl = "";
 static int HoneyP = 0;
@@ -192,6 +193,11 @@ const std::string lib91::getClientCps()
 	return "#0";
 }
 
+const std::string lib91::getBuildType()
+{
+	return "release";
+}
+
 std::string lib91::getPlatformMoneyName()
 {
 	return "91dou";
@@ -304,6 +310,7 @@ void lib91::setPlatformName(int platform)
 	IsLSJ = (platform == 4);
 	IsMURA = (platform == 5);
 	IsKUSO = (platform == 6);
+	IsErolabs = (platform == 7);
 	IsAPLUS = (platform == 9);
 }
 

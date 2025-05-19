@@ -237,6 +237,11 @@ const std::string lib91::getClientCps()
 	return getClientCpsJNI();
 }
 
+const std::string lib91::getBuildType()
+{
+	return getBuildTypeJNI();
+}
+
 std::string lib91::getPlatformMoneyName()
 {
 	return "";
@@ -254,6 +259,7 @@ void lib91::setLoginName(const std::string content)
 void lib91::setIsGuest(const int guest)
 {
 }
+
 
 void lib91::notifyEnterGame()
 {

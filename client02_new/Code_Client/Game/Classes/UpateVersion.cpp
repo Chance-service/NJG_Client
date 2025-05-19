@@ -928,7 +928,7 @@ void UpdateVersion::downloadFailed(const std::string& url, const std::string &fi
     //CurlDownload::Get()->reInit();
 }
 
-void UpdateVersion::onAlreadyDownSize(unsigned long size)
+void UpdateVersion::onAlreadyDownSize(unsigned long size, const std::string& url, const std::string& filename)
 {
 	//CCLOG("hotUpdate onAlreadyDownSize  size: %d", (int)size);
     currentFileLoadSize = float(size);

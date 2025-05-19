@@ -391,29 +391,6 @@ void LoadingFrame::onLogin(libPlatform* lib, bool success, const std::string& lo
 				mIsFirstLoginNotServerIDInfo = false;
 			}
 		}
-		
-		if (SeverConsts::Get()->IsH365() || SeverConsts::Get()->IsJSG() || SeverConsts::Get()->IsLSJ() || SeverConsts::Get()->IsKUSO() || SeverConsts::Get()->IsAPLUS()) // H365/JSG/LSJ/69/a+
-		{
-#if(CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
-			showSevers(true);
-#endif
-		}
-		//else if (SeverConsts::Get()->IsEroR18())	//工口
-		//{
-		//	if (mSelectedSeverID > 0) {	// 有選過server
-		//		//std::string token = CCUserDefault::sharedUserDefault()->getStringForKey("ecchigamer.token", "");
-		//		//if (uin.length() > 35 && uin.find("-") != uin.npos && token != "") {	//有工口帳號紀錄
-		//			setEnterGameNodeVisible(true);
-		//		//}
-		//		//else {
-		//		//	showLoginUser(uin, pass, defultType);
-		//		//}
-		//	}
-		//	else {
-		//		showSevers(true);
-		//	}
-		//
-		//}
     }
 }
 
@@ -683,13 +660,15 @@ void LoadingFrame::loginGame(std::string& address, int port, bool isRegister)
 		BlackBoard::Get()->isSamSungi9100Audio = true;				
 	}
 #endif
+	if (uin.empty()) {
+		libOS::getInstance()->showMessagebox(Language::Get()->getString("@LoginIDFail"), Err_ConnectFailed);
+		return;
+	}
 	GamePrecedure::Get()->setUin(uin);
-
-	if(uin.empty()) 
-		uin="none";
-	if(deviceID.empty()) 
+	
+	if (deviceID.empty()) 
 		deviceID="device id is empty";
-	if(!platformInfo.empty())
+	if (!platformInfo.empty())
 		loginPack.set_platform(platformInfo);
 
 	loginPack.set_puid(uin);
@@ -1218,9 +1197,11 @@ void LoadingFrame::onReceivePacket( const int opcode, const ::google::protobuf::
 			SeverConsts::SEVERLIST::const_iterator it = SeverConsts::Get()->getSeverList().find(mSelectedSeverID);
 			if (ServerDateManager::Get()->mLoginInfo.m_iRoleItemID == 0)
 			{
-				//非訪客的工口登入新帳號需呼叫綁定帳號
-				if (logret->isguest() == 2) {
-					Lua_EcchiGamerSDKBridge::callPostAccountBindbyC(StringConverter::toString(logret->playerid()));
+				//非訪客的工口/Erolabs登入新帳號需呼叫綁定帳號
+				if (logret->isguest() == 0) {
+					if (SeverConsts::Get()->IsEroR18() || SeverConsts::Get()->IsErolabs()) {
+						Lua_EcchiGamerSDKBridge::callPostAccountBindbyC(StringConverter::toString(logret->playerid()));
+					}
 				}
 				GamePrecedure::Get()->setHasMainRole(false);
 			}
@@ -1626,7 +1607,7 @@ void LoadingFrame::onEnterGame(bool isRegister)
 			CCString* _time = CCString::createWithFormat("%d", t);
 			std::string writeRootPath = cocos2d::CCFileUtils::sharedFileUtils()->getWritablePath();
 			std::string saveVersionPath = writeRootPath + versionPath + "/" + versionManifestNameTmp;
-			std::string downloadVerUrl = localVersionData->remoteVersionUrl + "/" + versionManifestName + "?" + "time=" + _time->m_sString;
+			std::string downloadVerUrl = localVersionData->remoteVersionUrl + "/" + versionManifestName;// +"?" + "time=" + _time->m_sString;
 			versionStat = CHECK_VERSION;
 			getLocalVersionCfg();
 			CurlDownload::Get()->downloadFile(downloadVerUrl, saveVersionPath);
@@ -1714,7 +1695,7 @@ void LoadingFrame::checkVersion()
 
 	CCString* _time = CCString::createWithFormat("%d", t);
 	std::string saveVersionPath = writeRootPath + versionPath + "/" + versionManifestNameTmp;
-	std::string downloadVerUrl = localVersionData->remoteVersionUrl + "/" + versionManifestName + "?" + "time=" + _time->m_sString;
+	std::string downloadVerUrl = localVersionData->remoteVersionUrl + "/" + versionManifestName;// + "?" + "time=" + _time->m_sString;
 	CurlDownload::Get()->downloadFile(downloadVerUrl, saveVersionPath);
 }
 
@@ -1725,7 +1706,7 @@ void LoadingFrame::getServerVersionCfg()
 	time_t t = time(0);
 	//64bit 不识别 
 	_retTimestamp = "?time=" + CCString::createWithFormat("%d", t)->m_sString;
-	std::string url = localVersionData->remoteVersionUrl + "/" + versionManifestName + _retTimestamp;
+	std::string url = localVersionData->remoteVersionUrl + "/" + versionManifestName;// + _retTimestamp;
 
 	auto request = new CCHttpRequest();
 	request->setUrl(url.c_str());
@@ -1807,6 +1788,10 @@ void LoadingFrame::setTips(std::string msg)
 	{
 		tipsLabel->setVisible(true);
 		tipsLabel->setString(msg.c_str());
+		std::string buildType = libPlatformManager::getPlatform()->getBuildType();
+		if (buildType == "qa") {
+			tipsLabel->setAnchorPoint(ccp(0.5f, 0.0f));
+		}
 	}
 }
 void LoadingFrame::loadingAsset()
@@ -1914,7 +1899,7 @@ void LoadingFrame::resetVersion()
 
 	//下载最新的 peojectManifest 文件
     std::string saveProjrctPath = writeRootPath + versionPath + "/" + projectManifestName;
-	std::string downloadProjectUrl = serverVersionData->packageUrl + "/" + projectManifestName + "?" + "time=" + _time->m_sString;
+	std::string downloadProjectUrl = serverVersionData->packageUrl + "/" + projectManifestName;// + "?" + "time=" + _time->m_sString;
 	CurlDownload::Get()->downloadFile(downloadProjectUrl, saveProjrctPath);
 
 	//更新version文件操作 把之前的下载versionTmp.mainfest文件存到version.manifest文件里面 下次读取使用
@@ -2293,7 +2278,8 @@ void LoadingFrame::compareVersion()
 		result = 2;
 	}
 	else if (versionAppCompareStat == HIGH) {
-		result = 0;
+		//result = 0;
+		result = 1;
 	}
 	else {
 		result = 1;
@@ -2486,7 +2472,7 @@ void LoadingFrame::downloadFailed(const std::string& url, const std::string &fil
 			CCString* _time = CCString::createWithFormat("%d", t);
 			std::string writeRootPath = cocos2d::CCFileUtils::sharedFileUtils()->getWritablePath();
 			std::string saveVersionPath = writeRootPath + versionPath + "/" + versionManifestNameTmp;
-			std::string downloadVerUrl = localVersionData->remoteVersionUrl + "/" + versionManifestName + "?" + "time=" + _time->m_sString;
+			std::string downloadVerUrl = localVersionData->remoteVersionUrl + "/" + versionManifestName;// + "?" + "time=" + _time->m_sString;
 			CurlDownload::Get()->downloadFile(downloadVerUrl, saveVersionPath);
 		}
 		else
@@ -2510,7 +2496,7 @@ void LoadingFrame::downloadFailed(const std::string& url, const std::string &fil
 			std::string writeRootPath = cocos2d::CCFileUtils::sharedFileUtils()->getWritablePath();
 			//下载最新的 peojectManifest 文件
 			std::string saveProjrctPath = writeRootPath + versionPath + "/" + projectManifestName;
-			std::string downloadProjectUrl = serverVersionData->packageUrl + "/" + projectManifestName + "?" + "time=" + _time->m_sString;
+			std::string downloadProjectUrl = serverVersionData->packageUrl + "/" + projectManifestName;// + "?" + "time=" + _time->m_sString;
 			CurlDownload::Get()->downloadFile(downloadProjectUrl, saveProjrctPath);
 		}
 		else
@@ -2523,9 +2509,16 @@ void LoadingFrame::downloadFailed(const std::string& url, const std::string &fil
 	}
 }
 
-void LoadingFrame::onAlreadyDownSize(unsigned long size)
+void LoadingFrame::onAlreadyDownSize(unsigned long size, const std::string& url, const std::string& filename)
 {
 	currentFileLoadSize = float(size);
+	std::string buildType = libPlatformManager::getPlatform()->getBuildType();
+	if (buildType == "qa") {
+		char tipTxt[500];
+		sprintf(tipTxt, "下載檔案 : %s\n下載路徑 : %s\n當前檔案已下載大小 : %dKB",
+			filename.c_str(), url.c_str(), (int)((currentFileLoadSize * 1.0f) / 1024));
+		setTips(tipTxt);
+	}
 }
 void LoadingFrame::showPersent(float persentage, std::string sizeTip)
 {
@@ -2644,7 +2637,7 @@ void LoadingFrame::getServerProjectAssets()
 	time(&t);
 
 	CCString* _time = CCString::createWithFormat("%d", t);
-	std::string url = serverVersionData->packageUrl + "/" + projectManifestName + "?" + "time=" + _time->m_sString;
+	std::string url = serverVersionData->packageUrl + "/" + projectManifestName;// + "?" + "time=" + _time->m_sString;
 	auto request = new CCHttpRequest();
 	request->setUrl(url.c_str());
 	request->setRequestType(CCHttpRequest::HttpRequestType::kHttpGet);
@@ -2893,7 +2886,7 @@ void LoadingFrame::UpdateAssetFromServer()
 	std::string packageUrl = serverVersionData->packageUrl;
 	std::string writeablePath = CCFileUtils::sharedFileUtils()->getWritablePath();
 	for (auto it = needUpdateAsset.begin(); it != needUpdateAsset.end(); ++it) {
-		std::string assetUrl = packageUrl + "/" + (*it)->name + "?" + "time=" + _time->m_sString;
+		std::string assetUrl = packageUrl + "/" + (*it)->name;// + "?" + "time=" + _time->m_sString;
 		CCLog("UpdateAssetFromServer url : %s", assetUrl.c_str());
 		std::string writePath = writeablePath + downLoadSavePath + "/" + (*it)->name;
 
@@ -2921,7 +2914,7 @@ void LoadingFrame::ResumeUpdateAsset()
 	time(&t);
 	CCString* _time = CCString::createWithFormat("%d", t);
 	for (auto it = needUpdateAsset.begin(); it != needUpdateAsset.end(); ++it) {
-		std::string assetUrl = packageUrl + "/" + (*it)->name + "?" + "time=" + _time->m_sString;
+		std::string assetUrl = packageUrl + "/" + (*it)->name;// + "?" + "time=" + _time->m_sString;
 		if (loadFailData.find(assetUrl) != loadFailData.end())
 		{
 			CCLog("ResumeUpdateAsset loadFailData : %s", assetUrl.c_str());

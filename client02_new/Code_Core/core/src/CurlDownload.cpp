@@ -307,7 +307,7 @@ void CurlDownload::update( float dt )
 	{
 		for(std::set<DownloadListener*>::iterator it = mListeners.begin();it!=mListeners.end();++it)
 		{
-			(*it)->onAlreadyDownSize(DownLoadTask::Get()->getAlreadyDownSize());
+			(*it)->onAlreadyDownSize(DownLoadTask::Get()->getAlreadyDownSize(), DownLoadTask::Get()->getURL(), DownLoadTask::Get()->getFilename());
 		}
 	}
 	if (DownLoadTask::Get()->checkTask() == DownLoadTask::DL_OK)

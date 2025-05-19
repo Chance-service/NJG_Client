@@ -76,12 +76,14 @@ void LoginPacket::_sendPacket()
 #ifdef PROJECT91Quasi
 		uin=GamePrecedure::Get()->getLoginUin();
 #endif
-	if(uin.empty()) uin="none";
+	if (uin.empty()) {
+		libOS::getInstance()->showMessagebox(Language::Get()->getString("@LoginIDFail"), 302);
+		return;
+	}
 
 	std::string platformInfo = libPlatformManager::getPlatform()->getPlatformInfo();
 	std::string deviceID = libOS::getInstance()->getDeviceID();
 
-	if(uin.empty()) uin="none";
 	if(deviceID.empty()) deviceID="none";
 	if(!platformInfo.empty())
 		loginPack.set_platform(platformInfo);

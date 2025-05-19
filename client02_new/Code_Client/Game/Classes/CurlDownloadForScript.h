@@ -12,7 +12,7 @@ public:
 
 	virtual void downloaded(const std::string& url, const std::string& filename);
 	virtual void downloadFailed(const std::string& url, const std::string& filename);
-	virtual void onAlreadyDownSize(unsigned long size);
+	virtual void onAlreadyDownSize(unsigned long size, const std::string& url, const std::string& filename);
 
 	std::string getFileName(){ return mFileName; }
 	std::string getUrl(){ return mUrl; }

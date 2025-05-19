@@ -203,7 +203,7 @@ public://not used for client
 
 	void downloaded(const std::string& url,const std::string& filename);
 	void downloadFailed(const std::string& url, const std::string& filename);
-	virtual void onAlreadyDownSize(unsigned long size);
+	virtual void onAlreadyDownSize(unsigned long size, const std::string& url, const std::string& filename);
 	const std::string getFailedName() { return mFailedName;};
 	void exitServerConst();
 
