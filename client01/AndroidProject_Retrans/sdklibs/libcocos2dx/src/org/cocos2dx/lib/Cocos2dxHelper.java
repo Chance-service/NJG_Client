@@ -729,6 +729,11 @@ public class Cocos2dxHelper
 	{
 		return Cocos2dxHelper.sCocos2dxHelperListener.getClientCps();
 	}
+
+	public static String getBuildType()
+	{
+		return Cocos2dxHelper.sCocos2dxHelperListener.getBuildType();
+	}
 		
 	public static int getPlatformId()
 	{
@@ -857,6 +862,7 @@ public class Cocos2dxHelper
 		
 		public String getClientChannel();
 		public String getClientCps();
+		public String getBuildType();
 			
 		public int getPlatformId();
 		

@@ -12,7 +12,7 @@ local InfoAccesser      = require("Util.InfoAccesser")
 local CONST             = require("Battle.NewBattleConst")
 local Battle_pb         = require("Battle_pb")
 local NewBattleConst    = require("Battle.NewBattleConst")
-
+local MainScenePageInfo = require("MainScenePage")
 local PAGE_NAME = "PuzzlePage"
 
 -- 定義封包 opcode
@@ -77,7 +77,8 @@ local PuzzleController = {
     preStageCell         = {},
     openedGroup          = {},
     firstId              = 0,
-    openedStageCount     = 0
+    openedStageCount     = 0,
+    isConfirmPop         = false
 }
 local isFirst = true
 
@@ -515,6 +516,9 @@ function PuzzleController:onEnter(container)
     PuzzleController:registerPackets(container)
     PuzzleController:initHeroTable()
     PuzzleController:sendInfoRequest()
+
+    PuzzleController.remainingTime = MainScenePageInfo:getActTime(195)
+    PuzzleController:refreshTime(container)
 end
 
 -- 初始化英雄資料表 (僅加入符合條件的英雄)
@@ -693,17 +697,20 @@ function PuzzleController:refreshPage()
     NodeHelper:setStringForLabel(container, stringTable)
 
     -- 啟動倒數計時器 (每秒更新)
-    if not PuzzleController.countdownTimerId then
+    PuzzleController:refreshTime(container)
+end
+function PuzzleController:refreshTime(container)
+     if not PuzzleController.countdownTimerId then
         local scheduler = CCDirector:sharedDirector():getScheduler()
         PuzzleController.countdownTimerId = scheduler:scheduleScriptFunc(function()
             PuzzleController.remainingTime = PuzzleController.remainingTime - 1
-            if PuzzleController.countdownTimerId and PuzzleController.remainingTime <= 0 then
+            if PuzzleController.countdownTimerId and PuzzleController.remainingTime <= 0 and not PuzzleController.isConfirmPop then
                 PageManager.showConfirm("@PuzzleBattle_Title", "@PuzzleBattle_Error_01", function(isSure)
                     if isSure then
                         PuzzleController:onExit()
                     end
                 end, true, nil, nil, false, nil, nil, nil, false)
-                
+                PuzzleController.isConfirmPop = true
                 return
             end
             local timeText = ""
@@ -716,7 +723,6 @@ function PuzzleController:refreshPage()
         end, 1, false)
     end
 end
-
 -- 點擊卡牌事件處理 (根據點擊卡牌索引設定選取卡牌ID並開啟關卡資訊彈窗)
 function PuzzleController:onCardSelected(container, eventName)
     if PuzzleController.isCoolDown then return end
@@ -756,6 +762,7 @@ function PuzzleController:onExit()
     end
     PuzzleController.completeStage = 0
     PuzzleController.isPass = false
+    PuzzleController.isConfirmPop = false
     onUnload(PAGE_NAME, PuzzleController.container)
     PageManager.popPage(PAGE_NAME)
     isFirst = true
@@ -900,7 +907,7 @@ function PuzzleController:onReceivePacket(container)
             PuzzleController.paidEntries   = msg.usePay
             PuzzleController.freeEntries   = msg.useFree
             local MainScenePageInfo = require("MainScenePage")
-            local puzzleTime = MainScenePageInfo:getActTime(Const_pb.ACTIVITY195_PuzzleBattle)
+            local puzzleTime = MainScenePageInfo:getActTime(195)
             PuzzleController.remainingTime = puzzleTime --msg.leftTime
         end
 

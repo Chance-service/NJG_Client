@@ -1,3 +1,5 @@
+--[[聖女Spine入口]]
+
 local HP_pb = require("HP_pb")
 require("SecretMessage.SecretMessageManager")
 local thisPageName = "Album.AlbumMainPage"
@@ -43,7 +45,7 @@ local class = 0
 local mainContainer = nil
 
 local HeroData=nil
-
+local nowType = 1
 
 local guideId = nil
 ----------------------------------------------------------
@@ -73,56 +75,31 @@ function AlbumItem:refresh()
         return
     end
     if self.itemId~=990 then
-        local SecretMessagePage=require("SecretMessage.SecretMessagePage")
-        local AlbumData=SecretMessageManager_getAlbumData(self.itemId)
+        local AlbumData = SecretMessageManager_getAlbumData(self.itemId,nowType)
         NodeHelper:setSpriteImage(self.container, { mImg = "UI/RoleShowCards/Hero_" .. string.format("%02d", self.itemId) .. "000.png" })
-        NodeHelper:setStringForLabel(self.container, { mName = common:getLanguageString("@HeroName_" .. self.itemId),mCount=AlbumData.UnLockCount .." / ".. AlbumData.ImgCount})
-        --if albumCount>0 then
-        --    NodeHelper:setNodeIsGray(self.container,{mImg=false})
-        --else
-        --    NodeHelper:setNodeIsGray(self.container,{mImg=true})
-        --end
-        --AlbumItem:RedSync(self.container,self.itemId)
-        NodeHelper:setNodesVisible(self.container,{mRedNode=false})
-        NodeHelper:setNodesVisible(self.container, {mCountBg = true, mCount = true})
-    else
-        NodeHelper:setSpriteImage(self.container, { mImg = "UI/RoleShowCards/Hero_" ..  self.itemId .. "000.png" })
-        NodeHelper:setStringForLabel(self.container, { mName = common:getLanguageString("@HeroName_" .. self.itemId)})
-    end
-end
-function AlbumItem:RedSync(container,id)
-    local KEY=CCUserDefault:sharedUserDefault():getStringForKey("Album") 
-    local keyTable={}
-    if  KEY~="" then
-        for k,v in pairs (common:split(KEY,",")) do
-            local id,state=unpack(common:split(v,"_"))
-            if id~="" then
-                keyTable[tonumber(id)]=state
-            end
-        end
-        for _id,state in pairs (keyTable) do
-            local tmp=tonumber(string.sub(_id,2,3))
-            if tmp==id and state=="false" then
-                NodeHelper:setNodesVisible(container,{mRedNode=true})
-                return
-            else
-                NodeHelper:setNodesVisible(container,{mRedNode=false})
-            end
-        end
+        NodeHelper:setStringForLabel(self.container, { mName = common:getLanguageString("@HeroName_" .. self.itemId),
+                                                       mCount = AlbumData.UnLockCount .." / ".. AlbumData.ImgCount})
+        NodeHelper:setNodesVisible(self.container, {mCountBg = true, mCount = true,mRedNode=false})
     end
 end
 function AlbumItem:onAlbum(container)
     local nowChatId = self.itemId
     local data=nil
-    if nowChatId~=990 and HeroData then
+    
+    if nowChatId~=990 and HeroData and nowType == 1 then
         for _,v in ipairs (HeroData) do
             if v.heroId==nowChatId then
                 data=v
             end
         end 
+        require("Album.AlbumHCGPage"):setType(1)
+        AlbumIndivualPage:SetId(nowChatId,data)
+        PageManager.pushPage("Album.AlbumPage")
+    else
+        require("Album.AlbumHCGPage"):setType(2,nowChatId)
+        PageManager.pushPage("Album.AlbumHCGPage")
     end
-    AlbumIndivualPage:SetId(nowChatId,data)
-    PageManager.pushPage("Album.AlbumPage")
+    
 end
 ----------------------------------------------------------
 function AlbumMainPage:new(o)
@@ -131,7 +108,9 @@ function AlbumMainPage:new(o)
     self.__index = self
     return o
 end
-
+function AlbumMainPage:setType(_type)
+    nowType = _type
+end
 function AlbumMainPage:createPage(_parentPage)
     
     local slf = self
@@ -152,8 +131,6 @@ function AlbumMainPage:createPage(_parentPage)
     return container
 end
 
-function AlbumMainPage:onExecute(container)
-end
 
 function AlbumMainPage:onEnter(container)
     mainContainer = container
@@ -171,12 +148,13 @@ function AlbumMainPage:onEnter(container)
 
     self:onElement(container, "onElement0") 
     self:onClass(container, "onClass0") 
-    --
-    --self:onRefreshPage(container, true)
-    if HeroData == nil then
+
+    if HeroData == nil and nowType == 1 then
         local msg = SecretMsg_pb.secretMsgRequest()
         msg.action = 0
         common:sendPacket(HP_pb.SECRET_MESSAGE_ACTION_C, msg, false)
+    else
+        self:onRefreshPage()
     end
 
     --新手教學
@@ -186,12 +164,11 @@ function AlbumMainPage:onEnter(container)
 end
 -- ScrollView初始化
 function AlbumMainPage:initScrollView(container)
-    --local cell = CCBFileCell:create()
-    --cell:setCCBFile(AlbumItem.ccbiFile)
-    --local handler = common:new( { itemId = 990}, AlbumItem)
-    --cell:registerFunctionHandler(handler)
-    --container.mScrollView:addCell(cell)
-    local cfg=ConfigManager.getAlbumData()
+    
+    local cfg = nil
+
+    cfg = nowType == 1 and ConfigManager.getAlbumData() or nowType == 2 and ConfigManager.getRoleGrowthUnlock()
+    
     local tmp={}
     local OpenedHero={}
     for key,value in pairs (cfg) do
@@ -211,17 +188,7 @@ function AlbumMainPage:initScrollView(container)
             AlbumItems[k] = { cls = handler, node = cell }
         end
     end
-    --for i = 1, #heroCfg do
-    --    if i < 500 and heroCfg[i] then
-    --        local cell = CCBFileCell:create()
-    --        cell:setCCBFile(AlbumItem.ccbiFile)
-    --        local handler = common:new( { itemId = i, element = heroCfg[i].Element, class = heroCfg[i].Job }, AlbumItem)
-    --        cell:registerFunctionHandler(handler)
-    --        container.mScrollView:addCell(cell)
-    --        AlbumItems[i] = { cls = handler, node = cell }
-    --    end
-    --end
-
+   
     container.mScrollView:orderCCBFileCells()
 end
 -- 顯示刷新

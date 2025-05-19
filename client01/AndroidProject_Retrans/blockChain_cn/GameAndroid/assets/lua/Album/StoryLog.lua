@@ -162,7 +162,7 @@ function StoryLogPage:initScrollView(container)
     local handler = common:new({itemId = 990}, AlbumItem)
     cell:registerFunctionHandler(handler)
     container.mScrollView:addCell(cell)
-    for i = 1, 6 do
+    for i = 1, mapCfg[1].MaxBook do
         local cell = CCBFileCell:create()
         cell:setCCBFile(AlbumItem.ccbiFile)
         local handler = common:new({itemId = i}, AlbumItem)

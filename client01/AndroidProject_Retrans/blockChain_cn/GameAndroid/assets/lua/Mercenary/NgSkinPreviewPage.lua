@@ -92,6 +92,12 @@ function NgSkinPreviewPage:showTachieSpine(container)
     local spineName
     if PAGE_INFO.SKIN_ID > 0 then
         spineName = "NG2D_" .. string.format("%05d", PAGE_INFO.SKIN_ID)
+        local isFileExist =  CCFileUtils:sharedFileUtils():isFileExist("Spine/NG2D/" .. spineName .. ".skel")
+        if not isFileExist then
+            -- 沒有皮膚立繪spine -> 播mp4
+            self:playMovie(container)
+            return
+        end
     else
         spineName = "NG2D_" .. string.format("%02d", PAGE_INFO.ITEM_ID)
     end
@@ -122,6 +128,24 @@ function NgSkinPreviewPage:showChibiSpine(container)
     spine:runAnimation(1, CONST.BUFF_SPINE_ANI_NAME.WAIT, -1)
     parentNode:addChild(spineNode)
 end
+-- 播放mp4
+function NgSkinPreviewPage:playMovie(container)
+    -- 播放影片
+    if PAGE_INFO.SKIN_ID ~= 0 then
+        local fileName = "Hero/Hero" .. string.format("%05d", PAGE_INFO.SKIN_ID)
+        local isFileExist =  CCFileUtils:sharedFileUtils():isFileExist("Video/" .. fileName .. ".mp4")
+        if isFileExist then
+            GamePrecedure:getInstance():playMovie(thisPageName, fileName, 1, 0)
+            NodeHelper:setNodesVisible(container, { mSpine = false })
+        end
+    end
+end
+-- 關閉影片
+function NgSkinPreviewPage:closeMovie(container)
+    CCLuaLog("NgSkinPreviewPage:closeMovie")
+    --NodeHelper:setNodesVisible(container, { mSpine = true })
+    GamePrecedure:getInstance():closeMovie(thisPageName)
+end
 ------------------------------------------------------------------------------------------
 -- Main Page Button
 ------------------------------------------------------------------------------------------
@@ -134,7 +158,11 @@ function NgSkinPreviewPage:showSkill(container, eventName)
     HeroSkillPage_setPageSkillId(skill)
     PageManager.pushPage("HeroSkillPage")
 end
+function NgSkinPreviewPage:onHelp(container)
+    PageManager.showHelp(GameConfig.HelpKey.HELP_HEROHELP)
+end
 function NgSkinPreviewPage:onReturn(container)
+    self:closeMovie(container)
     PageManager.popPage(thisPageName)
 end
 ------------------------------------------------------------------------------------------

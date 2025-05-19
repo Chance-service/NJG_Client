@@ -235,4 +235,14 @@ android {
             targetCompatibility JavaVersion.VERSION_1_8
         }
     }
+    buildTypes {
+        debug {
+        }
+        release {
+        }
+        qa {
+            initWith release
+            matchingFallbacks = ['release']
+        }
+    }
 }

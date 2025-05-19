@@ -5853,10 +5853,10 @@ function ConfigManager.getNewMapCfg()
     local cfg = ConfigManager.configs[key]
     if cfg == nil then
         local attrMap = common:table_combineNumber({ 'ID', 'NextID', 'Chapter','Level', 'MonsterID', 'BossID', 'Portrait', 'DropItems', 'BossDrop', 'EXP', 
-                                                     'SkyCoin', 'Potion', 'BP', 'Unlock' ,'GirlTxt','Stone'})
+                                                     'SkyCoin', 'Potion', 'BP', 'Unlock' ,'GirlTxt','Stone','MaxBook'})
         local convertMap = {
             ['ID'] = tonumber, ['NextID'] = tonumber, ['Portrait'] = tonumber, ['EXP'] = tonumber, 
-            ['SkyCoin'] = tonumber, ['Potion'] = tonumber, ['BP'] = tonumber, ['Unlock'] = tonumber,['Chapter'] = tonumber,['Level'] = tonumber,
+            ['SkyCoin'] = tonumber, ['Potion'] = tonumber, ['BP'] = tonumber, ['Unlock'] = tonumber,['Chapter'] = tonumber,['Level'] = tonumber,['MaxBook'] = tonumber,
         ['Stone'] = tonumber,}
         cfg = ConfigManager.loadCfg("map_New.txt", attrMap, 0, convertMap)
         ConfigManager.configs[key] = cfg
@@ -6937,6 +6937,22 @@ function ConfigManager.getLoginReward()
         };
 
         cfg = ConfigManager.loadCfg("loginReward.txt", attrMap, 0, convertMap);
+        ConfigManager.configs[key] = cfg;
+    end
+    return cfg;
+end
+function ConfigManager.getRoleGrowthUnlock()
+    local key = "RoleGrowthUnlockCfg";
+    local cfg = ConfigManager.configs[key];
+    if cfg == nil then
+        local attrMap = common:table_combineNumber( { "id", "itemId", "lockType","lockValue","avgType","avgId","Img","Title"});
+        local convertMap = {
+            ["itemId"] = tonumber,
+            ["avgId"] = tonumber, 
+            ["avgType"] = tonumber, 
+        };
+
+        cfg = ConfigManager.loadCfg("RoleGrowthUnlock_C.txt", attrMap, 0, convertMap);
         ConfigManager.configs[key] = cfg;
     end
     return cfg;

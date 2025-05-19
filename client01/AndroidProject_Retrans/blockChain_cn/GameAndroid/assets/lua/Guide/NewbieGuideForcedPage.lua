@@ -125,7 +125,7 @@ function NewbieGuideForcedBase:refreshPage( container )
         GuideManager.IsNeedShowPage = true
         require("Album.AlbumHCGPage")
         local AlbumStoryDisplayPage = require("AlbumStoryDisplayPage")
-        local table = AlbumSideStory_GuideStroyState(container, 1)
+        local table = AlbumSideStory_GuideStoryState(container, 1)
         AlbumStoryDisplayPage:setData(table, true)
         PageManager.pushPage("AlbumStoryDisplayPage_Flip")
     -- 1. 劇情對話

@@ -3,6 +3,7 @@ local Shop_pb = require("Shop_pb")
 local Const_pb = require("Const_pb")
 local CONST = require("Battle.NewBattleConst")
 local UserItemManager = require("Item.UserItemManager")
+local InfoAccesser = require("Util.InfoAccesser")
 local SkinShop = require("Shop.ShopSubPage_Skin")
 local thisPageName = "Shop.SkinShopPopUp"
 local PAGE_INFO = {
@@ -131,7 +132,7 @@ end
 function SkinShopPopUp:refreshPageInfo(container)
     local skinCfg = ConfigManager.getSkinCfg()[PAGE_INFO.SKIN_ID]
     NodeHelper:setStringForLabel(container, { 
-        currencyText_1 = GameUtil:formatNumber(UserItemManager:getCountByItemId(6002)),
+        currencyText_1 = GameUtil:formatNumber(InfoAccesser:getUserItemCount(PAGE_INFO.SHOP_CFG.price[1].type, PAGE_INFO.SHOP_CFG.price[1].itemId)),
         mSkinName = common:getLanguageString(skinCfg.name),
         mSkinDescTxt = "",
         mTimeTxt = common:getLanguageString("@ActivityDays") .. self:getEndTimeTxt(container)
@@ -225,10 +226,16 @@ function SkinShopPopUp:onBtn(container)
     local _type = PAGE_INFO.SHOP_CFG.type
     if _type == 0 then  -- 購買
         PageManager.showConfirm(common:getLanguageString("@ShopComfirmTitle"), common:getLanguageString("@ShopComfirm"), function(isSure)
+            local cost = PAGE_INFO.SHOP_CFG.price[1].count
+            local userCount = InfoAccesser:getUserItemCount(PAGE_INFO.SHOP_CFG.price[1].type, PAGE_INFO.SHOP_CFG.price[1].itemId)
+            if (userCount < cost) then
+                MessageBoxPage:Msg_Box(common:getLanguageString("@ERRORCODE_3002"))
+                return
+            end
             if isSure then
                 local msg = Shop_pb.BuyShopItemsRequest()
                 msg.type = 1
-                msg.id = PAGE_INFO.SKIN_ID
+                msg.id = PAGE_INFO.CFG_IDX
                 msg.amount = 1
                 msg.shopType = Const_pb.SKIN_MARKET
                 common:sendPacket(HP_pb.SHOP_BUY_C, msg, true)
@@ -275,7 +282,7 @@ function SkinShopPopUp:onReceivePacket(container)
     end
 end
 
-function SkinShopPopUp_setPageInfo(skinId, skillId, replaceSkillId, shopCfg, endTime)
+function SkinShopPopUp_setPageInfo(skinId, skillId, replaceSkillId, shopCfg, endTime, cfgIdx)
     PAGE_INFO.SKIN_ID = skinId
     PAGE_INFO.BASE_SKILL_ID = skillId
     PAGE_INFO.REPLACE_SKILL_ID = replaceSkillId
@@ -283,6 +290,7 @@ function SkinShopPopUp_setPageInfo(skinId, skillId, replaceSkillId, shopCfg, end
     PAGE_INFO.TAG_LIST = common:split(skillCfg[PAGE_INFO.FULL_SKILL_ID].tagType, ",")
     PAGE_INFO.SHOP_CFG = shopCfg
     PAGE_INFO.END_TIME = endTime
+    PAGE_INFO.CFG_IDX = cfgIdx
 end
 
 local CommonPage = require('CommonPage')

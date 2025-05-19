@@ -62,7 +62,9 @@ function AlbumIndivualPage:onEnter(Parentcontainer)
     
   -- -- scrollview
   mainContainer.scrollview=mainContainer:getVarScrollView("mContent")
-  NodeHelper:autoAdjustResizeScrollview(content)
+  NodeHelper:autoAdjustResizeScrollview(mainContainer.scrollview)
+  local height = mainContainer.scrollview:getViewSize().height
+  mainContainer.scrollview:setPositionY(-height)
   self:refresh(mainContainer)
 end
 function AlbumIndivualPage:getRoleTable()
@@ -164,7 +166,7 @@ function AlbumIndivualItem:onRefreshContent(content)
     NodeHelper:setSpriteImage(container, sprite2ImgStuff)
 
     -- 設置星星或心形圖示
-    local isMaxId = (self.id == #AlbumIndivualPage:getRoleTable())
+    local isMaxId = false --(self.id == #AlbumIndivualPage:getRoleTable())
     NodeHelper:setNodesVisible(container, {mVidIcon = false, mRedPoint = false, mHeartNode = not isMaxId, mStarNode = isMaxId})
     if isMaxId then
         for i = 1, 13 do
@@ -183,7 +185,7 @@ function AlbumIndivualItem:onRefreshContent(content)
     else
         self.Lock = true
     end
-    local lockVisible = self.Lock or (isMaxId and SecretMessageManager_LevelAchiveCount(RoleId)==0)
+    local lockVisible = self.Lock
 
     NodeHelper:setNodesVisible(container, {
         mLock = lockVisible, mIcon2 = false,
@@ -202,9 +204,9 @@ function AlbumIndivualItem:onHead(container,_id)
     -- 如果已有子節點則退出
     if children and children:count()>0 then return end
     local cfg = AlbumIndivualPage:getRoleTable()[self.id]
-    if self.id == #AlbumIndivualPage:getRoleTable() then
-        self.Lock = SecretMessageManager_LevelAchiveCount(RoleId)==0
-    end
+    --if self.id == #AlbumIndivualPage:getRoleTable() then
+    --    self.Lock = SecretMessageManager_LevelAchiveCount(RoleId) == 0
+    --end
     if self.Lock then
         PopUpCCB = ScriptContentBase:create("AlbumIndvidualPopoutContent")
         popUpNode:addChild(PopUpCCB)
@@ -218,11 +220,14 @@ function AlbumIndivualItem:onHead(container,_id)
             GuideManager.forceNextNewbieGuide()
         end
     else
+        --等級解鎖(以移至其他地方)
         if self.id == #AlbumIndivualPage:getRoleTable() then
             NgBattleResultManager.showAlbum = true
-            AlbumStoryDisplayPage_Vertical:setData(RoleId, false)
-            PageManager.pushPage("AlbumStoryDisplayPage_Vertical")
+            if AlbumStoryDisplayPage_Vertical:setData(RoleId) then
+                PageManager.pushPage("AlbumStoryDisplayPage_Vertical")
+            end
         else
+        --親密度解鎖
             require("SecretMessage.SecertAVGPage")
             SecertAVG_setMainId(cfg.StroyId)
             PageManager.pushPage("SecretMessage.SecertAVGPage")

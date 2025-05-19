@@ -17,8 +17,8 @@ ID	group	activityId	pickUpId	Image	type	openDay	startTime	endTime	url	offplatfor
 16	1	195	0		0		1746979200	1747238399		
 17	1	195	0		0		1747411200	1749311999		
 18	1	196	0		0		1746028800	1747238399		
-19	0	998		Lobby_Banner_026	0		0	0	https://qm.qq.com/q/mtoj1FFxte	2
-20	0	998		Lobby_Banner_025	0		0	0	https://discord.gg/UVahbnu3ht	2
+19	0	998		Lobby_Banner_026	0		0	0	https://qm.qq.com/q/mtoj1FFxte	2,7
+20	0	998		Lobby_Banner_025	0		0	0	https://discord.gg/UVahbnu3ht	2,7
 21	0	9999		Lobby_Banner_027	0		1745769600	1746287999		
 										
 										

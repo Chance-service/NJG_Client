@@ -3642,9 +3642,9 @@ function PackageLogicForLua.erolabsBuyResult(eventName, handler)
         local reslut = msg.result
         local refno = msg.refno
         CCLuaLog("erolabsBuyResult result : " .. reslut .. ", orderId : " .. refno)
-        local BuyManager = require("BuyManager")
-        CCLuaLog("PackageLogicForLua SendtogetECoin")
-        BuyManager:SendtogetECoin()
+        --local BuyManager = require("BuyManager")
+        --CCLuaLog("PackageLogicForLua SendtogetECoin")
+        --BuyManager:SendtogetECoin()
         local msg2 = MsgRechargeSuccess:new()
 	    MessageManager:getInstance():sendMessageForScript(msg2)
         if reslut == 0 then
@@ -3685,9 +3685,9 @@ function PackageLogicForLua.r18BuyResult(eventName, handler)
         local reslut = msg.result
         local refno = msg.refno
         CCLuaLog("r18BuyResult result : " .. reslut .. ", orderId : " .. refno)
-        local BuyManager = require("BuyManager")
-        CCLuaLog("PackageLogicForLua SendtogetHoneyP")
-        BuyManager:SendtogetHoneyP()
+        --local BuyManager = require("BuyManager")
+        --CCLuaLog("PackageLogicForLua SendtogetHoneyP")
+        --BuyManager:SendtogetHoneyP()
         local msg2 = MsgRechargeSuccess:new()
 	    MessageManager:getInstance():sendMessageForScript(msg2)
         if reslut == 0 then

@@ -91,26 +91,14 @@ android {
         H365 {
             applicationId = "chance.debug.ninja.girl.h365.cn"
             dimension "app_type"
-            dependencies {
-                implementation fileTree(dir: '../../sdklibs/GameLibBC/platformlibs/H365', include: ['*.aar'])
-                implementation fileTree(dir: '../../sdklibs/GameLibBC/libs', include: ['*.aar'])
-            }
         }
         EROR18 {
             applicationId = "chance.debug.ninja.girl.r18.cn"
             dimension "app_type"
-            dependencies {
-                implementation fileTree(dir: '../../sdklibs/GameLibBC/platformlibs/EROR18', include: ['*.aar'])
-                implementation fileTree(dir: '../../sdklibs/GameLibBC/libs', include: ['*.aar'])
-            }
         }
         JSG {
             applicationId = "chance.debug.ninja.girl.jsg.cn"
             dimension "app_type"
-            dependencies {
-                implementation fileTree(dir: '../../sdklibs/GameLibBC/platformlibs/JSG', include: ['*.aar','*.jar'])
-                implementation fileTree(dir: '../../sdklibs/GameLibBC/libs', include: ['*.aar'])
-            }
         }
 //        LSJ {
 //            dimension "app_type"
@@ -118,10 +106,6 @@ android {
         KUSO {
             applicationId = "chance.debug.ninja.girl.kuso.cn"
             dimension "app_type"
-            dependencies {
-                implementation fileTree(dir: '../../sdklibs/GameLibBC/platformlibs/KUSO', include: ['*.aar'])
-                implementation fileTree(dir: '../../sdklibs/GameLibBC/libs', include: ['*.aar'])
-            }
             packagingOptions {
                 exclude 'META-INF/kotlinx-serialization-json.kotlin_module'
                 exclude 'META-INF/kotlinx-serialization-core.kotlin_module'
@@ -134,19 +118,11 @@ android {
         EROLABS {
             applicationId = "chance.debug.ninja.girl.erolabs.cn"
             dimension "app_type"
-            dependencies {
-                implementation fileTree(dir: '../../sdklibs/GameLibBC/platformlibs/EROLABS', include: ['*.aar','*.jar'])
-                implementation fileTree(dir: '../../sdklibs/GameLibBC/libs', include: ['*.aar'])
-            }
         }
 
         APLUS_CPS1 {
             applicationId = "chance.debug.ninja.girl.kuso.cn"
             dimension "app_type"
-            dependencies {
-                implementation fileTree(dir: '../../sdklibs/GameLibBC/platformlibs/APLUS', include: ['*.aar'])
-                implementation fileTree(dir: '../../sdklibs/GameLibBC/libs', include: ['*.aar'])
-            }
             packagingOptions {
                 exclude 'META-INF/kotlinx-serialization-json.kotlin_module'
                 exclude 'META-INF/kotlinx-serialization-core.kotlin_module'
@@ -158,5 +134,32 @@ android {
 //        MURA {
 //            dimension "app_type"
 //        }
+    }
+
+    buildTypes {
+        debug {
+        }
+        release {
+        }
+        qa {
+            initWith release
+            matchingFallbacks = ['release']
+        }
+    }
+
+    afterEvaluate {
+        android.applicationVariants.all { variant ->
+            def flavor = variant.flavorName
+            def configName = "${variant.name}Implementation"
+            def sdkDir = file("../../sdklibs/GameLibBC/platformlibs/${flavor}")
+            def commonLibs = file("../../sdklibs/GameLibBC/libs")
+
+            if (sdkDir.exists()) {
+                dependencies.add(configName, fileTree(dir: sdkDir, include: ['*.aar', '*.jar']))
+            }
+            if (commonLibs.exists()) {
+                dependencies.add(configName, fileTree(dir: commonLibs, include: ['*.aar']))
+            }
+        }
     }
 }

@@ -1,10 +1,12 @@
 package com.nuclear.gjwow;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.UUID;
@@ -17,6 +19,7 @@ import org.cocos2dx.lib.Cocos2dxHandler.ShowWaitingViewMessage;
 import org.json.JSONException;
 
 import com.chance.allsdk.E_APLUS_CPS;
+import com.guajibase.gamelib.BuildConfig;
 import com.nuclear.bean.LoginInfo;
 import com.nuclear.bean.PayInfo;
 import com.nuclear.bean.ShareInfo;
@@ -50,9 +53,18 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import com.chance.allsdk.E_PLATFORM;
 import com.chance.allsdk.SDKFactory;
+
+import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.URL;
+import java.net.UnknownHostException;
+import java.util.Enumeration;
 
 @SuppressLint("NewApi")
 public abstract class GameActivity extends Cocos2dxActivity {
@@ -189,7 +201,18 @@ public abstract class GameActivity extends Cocos2dxActivity {
 //		if (PlatformConst.platform == E_PLATFORM.LSJ) {
 //			lsjsdk = new LSJAPI(this);
 //		}
-
+		TextView myIpText = findViewById(R.id.testMyIp);
+		TextView cdnText = findViewById(R.id.testCdnIp);
+		if (BuildConfig.BUILD_TYPE.equals("qa")) {
+			myIpText.setVisibility(View.VISIBLE);
+			cdnText.setVisibility(View.VISIBLE);
+			myIpText.setText("裝置IP : " + getLocalIPAddress());
+			cdnText.setText("CDN IP : " + resolveHostToIP("https://njgcdn.vslrx.com"));
+		}
+		else {
+			myIpText.setVisibility(View.GONE);
+			cdnText.setVisibility(View.GONE);
+		}
 	}
 
 	public static String getPackageNameToLua() {
@@ -1033,5 +1056,33 @@ public abstract class GameActivity extends Cocos2dxActivity {
 	// form c++
 	public static void setPayUrl(String url) {
 			SDKFactory.getInstance().getSDKHandler().setPayUrl(url);
+	}
+
+	private static String getLocalIPAddress() {
+		try {
+			URL url = new URL("https://checkip.amazonaws.com");
+			BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
+			return in.readLine();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "0.0.0.0";
+		}
+	}
+
+	// ✅ 將 URL 或主機名稱解析成 IP
+	private static String resolveHostToIP(String hostnameOrUrl) {
+		try {
+			// 先嘗試把 URL 拿出主機部分
+			String host = hostnameOrUrl;
+			if (hostnameOrUrl.startsWith("http://") || hostnameOrUrl.startsWith("https://")) {
+				URL url = new URL(hostnameOrUrl);
+				host = url.getHost();
+			}
+			InetAddress address = InetAddress.getByName(host);
+			return address.getHostAddress();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "0.0.0.0";
 	}
 }

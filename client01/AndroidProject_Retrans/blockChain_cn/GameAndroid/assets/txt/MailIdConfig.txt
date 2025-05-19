@@ -52,7 +52,7 @@ id	内容
 67	<font  color="#807e7d" face = "HelveticaBD22" size ="100">女神赠礼。</font>
 68	<font  color="#807e7d" face = "HelveticaBD22" size ="100">新手上路。</font>
 69	<font  color="#807e7d" face = "HelveticaBD22" size ="100">天降礼物。</font>
-100	<font  color="#807e7d" face = "HelveticaBD22" size ="100">#v1# 您购买了商品！<br/><font color="#807e7d" face = "HelveticaBD22">现在赠送您#v2#</font>钻石。</font>
+100	<font  color="#807e7d" face = "HelveticaBD22" size ="100">#v1# 您购买了商品！<br/><font color="#807e7d" face = "HelveticaBD22">已赠送您#v2#</font>钻石。</font>
 101	<font  color="#807e7d" face = "HelveticaBD22" size ="100">#v1# 您购买了月卡！<br/>从今日起30天有效。</font>
 102	<font  color="#807e7d" face = "HelveticaBD22" size ="100">#v1# 您购买了礼包。<br/>收到#v2#商品。</font>
 103	<font  color="#807e7d" face = "HelveticaBD22" size ="100">公会邮件：</font><br/><font  color="#189906" face = "HelveticaBD22">#v1#</font>
@@ -116,3 +116,4 @@ id	内容
 7017	<font  color="#807e7d" face = "HelveticaBD22" size ="100">恭喜你在活动「试炼之塔」中获得第#v1#名，以下是您的奖励。</font>
 7018	<font  color="#807e7d" face = "HelveticaBD22" size ="100">出价已被超越\n已退还#V1#钻石</font>
 7019	<font  color="#807e7d" face = "HelveticaBD22" size ="100">恭喜竞标成功!</font>
+7020	<font  color="#807e7d" face = "HelveticaBD22" size ="100">恭喜你在活动「无畏之塔」中获得#v1# - 第#v2#名，以下是您的奖励。</font>

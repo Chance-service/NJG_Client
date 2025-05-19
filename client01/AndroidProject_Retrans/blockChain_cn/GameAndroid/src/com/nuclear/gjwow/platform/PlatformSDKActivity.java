@@ -34,6 +34,8 @@ import org.cocos2dx.lib.Cocos2dxHelper;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import com.guajibase.gamelib.BuildConfig;
 import com.tds.tapdb.sdk.TapDB;
 
 //import com.adjust.sdk.Adjust;
@@ -766,11 +768,11 @@ public class PlatformSDKActivity extends GameActivity {
 		String fullHotUpdateVideoPath = getContext().getFilesDir().getAbsolutePath() + "/hotUpdate/Video/" + fileName + ".mp4";
 		File file1 = new File(fullVideoPath);
 		File file2 = new File(fullHotUpdateVideoPath);
-		if (fileName.contains("op")){
-			int rawId = getResources().getIdentifier(fileName,  "raw", getPackageName());
-			videoView.setVideoPath("android.resource://" + getPackageName() + "/" + rawId);
-		}
-		else {
+		//if (fileName.contains("op")){
+		//	int rawId = getResources().getIdentifier(fileName,  "raw", getPackageName());
+		//	videoView.setVideoPath("android.resource://" + getPackageName() + "/" + rawId);
+		//}
+		//else {
 			if (file2.exists())
 				videoView.setVideoPath(fullHotUpdateVideoPath);
 			else if (file1.exists())
@@ -780,7 +782,7 @@ public class PlatformSDKActivity extends GameActivity {
 				videoView = null;
 				return;
 			}
-		}
+		//}
 		mVideoLoop = isLoop;
 //
 		videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
@@ -957,6 +959,10 @@ public class PlatformSDKActivity extends GameActivity {
 
 	public String getClientCps() {
 		return "#" + getCpsName().getValue();
+	}
+
+	public String getBuildType() {
+		return BuildConfig.BUILD_TYPE;
 	}
 		
 	@Override
