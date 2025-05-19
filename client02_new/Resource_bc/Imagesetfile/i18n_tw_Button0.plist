@@ -724,7 +724,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Lobby_Btn_Recollect.png</key>
+            <key>Lobby_Btn_Login8Days_01.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -739,7 +739,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Lobby_EventShop.png</key>
+            <key>Lobby_Btn_Recollect.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4143,7 +4143,7 @@
             <key>size</key>
             <string>{2026,2039}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:d4a5a8f1f39246c36dbc7dd046d68042:8239c7b380452e699309321cb70e4ab1:210a2bcd7352f80b43cbb6c6c38d54d5$</string>
+            <string>$TexturePacker:SmartUpdate:3b37dbec7d70bb2315ef88b7aade8989:3e1f2d5ad7ee47cac287f941cb5774e3:210a2bcd7352f80b43cbb6c6c38d54d5$</string>
             <key>textureFileName</key>
             <string>i18n_tw_Button0.png</string>
         </dict>

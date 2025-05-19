@@ -1418,6 +1418,7 @@ id	繁中
 600011	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >所有角色開戰時均會獲得「猛毒」、每當角色暴擊時，會使自身的「猛毒」等級上升1，最高為3，職業為補師角色免疫所有「毒」狀態。</font></p>
 600021	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >所有角色迴避屬性上升200%，每次成功迴避恢復自身攻擊力100%生命值。非玩家角色持有每4下普通攻擊獲得「必中」狀態。</font></p>
 600031	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >所有職業為法師角色開戰時<br/>獲得「順風III」，<br/>所有職業為戰士角色開戰時<br/>獲得「蠻勇III」，<br/>所有職業為坦克角色開戰時<br/>獲得「脆弱III」，<br/>所有職業為補師角色開戰時<br/>獲得「逆風III」，持續99秒。<br/>順風III：所有魔力恢復效果上升30%，移動力上升45%。<br/>蠻勇III：物理攻擊力提升15%。<br/>脆弱III：物理防禦減少60%<br/>逆風III：所有魔力恢復效果下降30%，移動力下降45%。</font></p>
+600041	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >所有角色受到傷害時獲得「業火I」,當任意角色暴擊時,移除場上所有角色物上「業火」。<br/>業火I：每層提升爆擊傷害40%，最高疊數三層，暴擊發生後移除。</font></p>
 999901	<font color="#4D93D9" face = "Barlow-SemiBold" >#v1#</font><font color="#FFFFFF" face = "Barlow-SemiBold" > 施放</font><font color="#996600" face = "Barlow-SemiBold" > #v2#</font>
 999902	<font color="#FF5050" face = "Barlow-SemiBold" >#v1#</font><font color="#FFFFFF" face = "Barlow-SemiBold" > 施放</font><font color="#996600" face = "Barlow-SemiBold" > #v2#</font>
 999903	<font color="#4D93D9" face = "Barlow-SemiBold" >#v1#</font><font color="#FFFFFF" face = "Barlow-SemiBold" > 對</font><font color="#FF5050" face = "Barlow-SemiBold" > #v2#</font><font color="#FFFFFF" face = "Barlow-SemiBold" > 造成</font><font color="#C00000" face = "Barlow-SemiBold" > #v3#</font><font color="#FFFFFF" face = "Barlow-SemiBold" > 傷害</font>

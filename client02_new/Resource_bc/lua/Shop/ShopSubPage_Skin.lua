@@ -6,7 +6,7 @@ local TimeDateUtil = require("Util.TimeDateUtil")
 
 local ShopSubPage_Base = require("Shop.ShopSubPage_Base")
 local ShopDataMgr = require("Shop.ShopDataMgr")
-
+local InfoAccesser = require("Util.InfoAccesser")
 -- 主體
 local ShopSubPage_Skin = { }
 
@@ -160,12 +160,12 @@ function ShopSubPage_Skin.new()
         end)
         local idx = 0
         for _id, _data in ipairs(cfg) do
-            if not Inst.ownSkin[Inst.skinShopCfg[_id].SkinId] then
+            if not Inst.ownSkin[Inst.skinShopCfg[_data.id].SkinId] then
                 idx = idx + 1
                 local cell = CCBFileCell:create()
                 cell:setCCBFile(SaleContent.ccbiFile)
-                local panel = common:new({ id = idx, data = _data, shopCfg = Inst.skinShopCfg[_id], heroCfg = Inst.heroCfg[Inst.skinShopCfg[_id].HeroId],
-                                           shopType = Inst.skinShopCfg[_id].type }, SaleContent)
+                local panel = common:new({ id = idx, data = _data, shopCfg = Inst.skinShopCfg[_data.id], heroCfg = Inst.heroCfg[Inst.skinShopCfg[_data.id].HeroId],
+                                           shopType = Inst.skinShopCfg[_data.id].type, cfgIdx = _data.id }, SaleContent)
                 cell:registerFunctionHandler(panel)
                 self.mScrollView:addCell(cell)
                 table.insert(self.allCardItem, { cell = cell, handler = panel })
@@ -359,16 +359,22 @@ function SaleContent:onHead(container)
     end
     require("Shop.SkinShopPopUp")
     SkinShopPopUp_setPageInfo(self.shopCfg.SkinId, math.floor(skinCfg.skinSkill / 10), math.floor(skinCfg.replacedSkill / 10), 
-                              self.shopCfg, self.data.endTime)
+                              self.shopCfg, self.data.endTime, self.cfgIdx)
     PageManager.pushPage("Shop.SkinShopPopUp")
 end
 function SaleContent:onConfirmation(container)
     if self.shopType == Inst.GOODS_TYPE.BUY then  -- 購買
         PageManager.showConfirm(common:getLanguageString("@ShopComfirmTitle"), common:getLanguageString("@ShopComfirm"), function(isSure)
+            local cost = self.shopCfg.price[1].count
+            local userCount = InfoAccesser:getUserItemCount(self.shopCfg.price[1].type, self.shopCfg.price[1].itemId)
+            if (userCount < cost) then
+                MessageBoxPage:Msg_Box(common:getLanguageString("@ERRORCODE_3002"))
+                return
+            end
             if isSure then
                 local msg = Shop_pb.BuyShopItemsRequest()
                 msg.type = 1
-                msg.id = self.shopCfg.SkinId
+                msg.id = self.cfgIdx
                 msg.amount = 1
                 msg.shopType = Const_pb.SKIN_MARKET
                 common:sendPacket(HP_pb.SHOP_BUY_C, msg, true)

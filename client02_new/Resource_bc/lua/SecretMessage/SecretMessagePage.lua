@@ -209,13 +209,7 @@ function ChatMessageItem:refresh()
     
     self.height = ccbHeight
 end
-function ChatMessageItem:onPhoto(container, isGuide)
-    --NodeHelper:setNodesVisible(mainContainer, {mPhotoNode = true})
-    --NodeHelper:setSpriteImage(mainContainer, {mBigPhoto = self.FileName})
-    local photoPage=require('AlbumPhotoDisplay')
-    photoPage:PhotoInfo(self.FileName)
-    PageManager.pushPage('AlbumPhotoDisplay')
-end
+
 function SecretMessagePage:onCloseImage()
     NodeHelper:setNodesVisible(mainContainer, {mPhotoNode = false})
 end

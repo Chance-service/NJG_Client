@@ -53,14 +53,7 @@ function StoryLogPageBase:onEnter(container)
     mainContainer = container
     NodeHelper:setNodesVisible(mainContainer,{mElementNode=false})
     container.mScrollView = container:getVarScrollView("mContent")
-    -- scrollview自適應
-    --NodeHelper:autoAdjustResizeScrollview(container.mScrollView)
-    --local oldSize = container.mScrollView:getViewSize()
-    --oldSize.width = oldSize.width + 50
-    --container.mScrollView:setViewSize(oldSize)
-    --local X=container.mScrollView:getPositionX()
-    --container.mScrollView:setPositionX(X-10)
-   self:initScrollView(container)
+    self:initScrollView(container)
 end
 -- ScrollView初始化
 function StoryLogPageBase:initScrollView(container)
@@ -85,6 +78,7 @@ function AlbumSideStory:onRefreshContent(content)
     mMask:遮罩
     mTxt:標題
     ]]
+    NodeHelper:setNodesVisible(container,{ mStarNode  = false, mLevelNode = false})
     local Img="UI/HeroMemories/AlbumReview_" .. "001_".. string.format("%02d",self.MapIdx).. ".png"
     if NodeHelper:isFileExist(Img) then
         NodeHelper:setSpriteImage(container, { mBg = Img })

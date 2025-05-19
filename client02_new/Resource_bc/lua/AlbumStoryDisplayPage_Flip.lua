@@ -1,3 +1,5 @@
+--[[¸t¤kHSpine«e¶Â¹õ]]
+
 local thisPageName = "AlbumStoryDisplayPage_Flip"
 
 local opcodes = {

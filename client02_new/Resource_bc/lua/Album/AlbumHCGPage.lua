@@ -1,3 +1,5 @@
+--[[聖女Spine入口]]
+
 local HP_pb = require("HP_pb")
 require("SecretMessage.SecretMessageManager")
 local thisPageName = "Album.AlbumHCGPage"
@@ -40,6 +42,10 @@ local heroCfg = ConfigManager.getNewHeroCfg()
 local element = 0
 local class = 0
 
+local nowType = 1
+local nowId = 0
+local BuildTable = {}
+
 local mainContainer = nil
 
 local HeroData=nil
@@ -78,20 +84,6 @@ function AlbumItem:refresh()
     end
 end
 
-function AlbumItem:onAlbum(container)
-    local nowChatId = 990--self.itemId
-    local data=nil
-    if nowChatId~=990 then
-        for _,v in ipairs (HeroData) do
-            if v.heroId==nowChatId then
-                data=v
-            end
-        end 
-    end
-    local AlbumIndivualPage=require("Album.AlbumSubPage_Indiviual")
-    AlbumIndivualPage:SetId(nowChatId,data)
-    PageManager.pushPage("Album.AlbumPage")
-end
 ----------------------------------------------------------
 function AlbumMainPage:new(o)
     o = o or { }
@@ -120,88 +112,118 @@ function AlbumMainPage:createPage(_parentPage)
     return container
 end
 
-function AlbumMainPage:onExecute(container)
-end
-
 function AlbumMainPage:onEnter(container)
     mainContainer = container
     self:registerPacket(container)
     NodeHelper:setNodesVisible(mainContainer,{mElementNode=false})
     container.mScrollView = container:getVarScrollView("mContent")
-    -- scrollview自適應
-    --NodeHelper:autoAdjustResizeScrollview(container.mScrollView)
-    --local oldSize = container.mScrollView:getViewSize()
-    --oldSize.width = oldSize.width + 50
-    --container.mScrollView:setViewSize(oldSize)
-    --local X=container.mScrollView:getPositionX()
-    --container.mScrollView:setPositionX(X-10)
-    -- 設定過濾按鈕
-   --local filterBg = container:getVarScale9Sprite("mFilterBg")
-   --filterBg:setContentSize(filterCloseSize)
-   --NodeHelper:setNodesVisible(container, { mClassNode = false })
-   --
    self:initScrollView(container)
-   --
-   --self:onElement(container, "onElement0") 
-   --self:onClass(container, "onClass0") 
-   ----
-   --self:onRefreshPage(container, true)
-   --if HeroData == nil then
-   --    local msg = SecretMsg_pb.secretMsgRequest()
-   --    msg.action = 0
-   --    common:sendPacket(HP_pb.SECRET_MESSAGE_ACTION_C, msg, false)
-   --end
-   --
+end
+function AlbumMainPage:setType(_type,id)
+    nowType = _type
+    nowId = id
 end
 -- ScrollView初始化
 function AlbumMainPage:initScrollView(container)
-    local BuildTable=AlbumSideStory:StroyState(container)
-    for key,value in pairs (BuildTable) do
-        local mID=  string.sub(value[1].id, 5, 6)
-        cell = CCBFileCell:create()
-        cell:setCCBFile("AlbumSideStoryContent.ccbi")
-        local panel = common:new({id = key,itemId=mID}, AlbumSideStory)
-        cell:registerFunctionHandler(panel)
-        container.mScrollView:addCell(cell)
+    if nowType == 1 then
+        local BuildTable=AlbumSideStory:StoryState(container)
+        for key,value in pairs (BuildTable) do
+            local mID=  string.sub(value[1].id, 5, 6)
+            cell = CCBFileCell:create()
+            cell:setCCBFile("AlbumSideStoryContent.ccbi")
+            local panel = common:new({id = key,itemId=mID}, AlbumSideStory)
+            cell:registerFunctionHandler(panel)
+            container.mScrollView:addCell(cell)
+        end
+    elseif nowType == 2 then
+        local cfg = ConfigManager.getRoleGrowthUnlock()
+        BuildTable = {}
+        for _,value in pairs (cfg) do
+            if value.itemId == nowId then
+                table.insert(BuildTable,value)
+            end
+        end
+        table.sort(BuildTable,function(a,b) return a.id < b.id end)
+        NodeHelper:buildCellScrollView(container.mScrollView, #BuildTable, "AlbumSideStoryContent.ccbi" , AlbumSideStory)
     end
     container.mScrollView:setTouchEnabled(true)
     container.mScrollView:orderCCBFileCells()
-  --local cell = CCBFileCell:create()
-  --cell:setCCBFile(AlbumItem.ccbiFile)
-  --local handler = common:new( { itemId = 990}, AlbumItem)
-  --cell:registerFunctionHandler(handler)
-  --container.mScrollView:addCell(cell)
-   --for i = 1, #heroCfg do
-   --    if i < 500 and heroCfg[i] then
-   --        local cell = CCBFileCell:create()
-   --        cell:setCCBFile(AlbumItem.ccbiFile)
-   --        local handler = common:new( { itemId = i, element = heroCfg[i].Element, class = heroCfg[i].Job }, AlbumItem)
-   --        cell:registerFunctionHandler(handler)
-   --        container.mScrollView:addCell(cell)
-   --        AlbumItems[i] = { cls = handler, node = cell }
-   --    end
-   --end
 
-    --container.mScrollView:orderCCBFileCells()
 end
 -- 顯示刷新
 function AlbumMainPage:onRefreshPage(container)
 end
+-- 建議在模組最上方就 require 好，避免每次刷新都重複載入
+local SecretMessageManager = require("SecretMessage.SecretMessageManager")
+
 function AlbumSideStory:onRefreshContent(content)
     local container = content:getCCBFileNode()
-    --[[
-    mBg:背景
-    mLock:解鎖Node
-    mMask:遮罩
-    mTxt:標題
-    ]]
-   --NodeHelper:setSpriteImage(container, {mBg = "UI/Common/Album/Memories/" .."PhotounCH"..self.id .. ".png"})
-    NodeHelper:setSpriteImage(container, {mBg = "UI/HeroMemories/PhotounCH".. string.format("%03d",self.itemId)..".png"})
-    NodeHelper:setStringForLabel(container,{mTxt=common:getLanguageString("@memoriestitle".."990"..string.format('%03d',self.itemId))})
-    self:StroyState(container,self.id)
-    
+
+    -- type1: 顯示回憶錄封面
+    if nowType == 1 then
+        local bgPath = ("UI/HeroMemories/PhotounCH%03d.png"):format(self.itemId)
+        local titleKey = ("@memoriestitle990%03d"):format(self.itemId)
+        NodeHelper:setSpriteImage(container, { mBg = bgPath })
+        NodeHelper:setStringForLabel(container, { mTxt = common:getLanguageString(titleKey) })
+        NodeHelper:setNodesVisible(container,{ mStarNode  = false, mLevelNode = false})
+        self:StoryState(container, self.id)
+        return
+    end
+
+    -- type2
+    local data = BuildTable[self.id]
+    -- 背景和標題
+    NodeHelper:setSpriteImage(container, {
+        mBg = ("UI/Common/Album/Memories/%s.jpg"):format(data.Img)
+    })
+    NodeHelper:setStringForLabel(container, {
+        mTxt = common:getLanguageString(data.Title)
+    })
+
+    -- 判斷鎖定狀態
+    local achieved = SecretMessageManager_LimitAchiveCount(data.itemId)
+    local isLocked = self.id > achieved
+    self.isLock = isLocked
+    -- 解析 lockType / lockValue
+    local types = common:split(data.lockType, ",")
+    local vals  = common:split(data.lockValue, ",")
+    local lockStar, lockLevel
+    for i, t in ipairs(types) do
+        if t == "0" then
+            lockStar  = tonumber(vals[i])
+        elseif t == "1" then
+            lockLevel = tonumber(vals[i])
+        end
+    end
+
+    local starNode  = container:getVarNode("mStarNode")
+    local levelNode = container:getVarNode("mLevelNode")
+    local yOffset   = (#types == 2) and 20 or 0
+    starNode:setPositionY( yOffset )
+    levelNode:setPositionY( -yOffset )
+
+    -- 一次性設定所有節點可見性
+    local vis = {
+        mMask      = isLocked,
+        mLock      = false,
+        mStarNode  = isLocked and lockStar  ~= nil,
+        mLevelNode = isLocked and lockLevel ~= nil,
+    }
+    -- 星級圖示
+    for i = 1, 13 do
+        vis["mStar"..i] = (i == lockStar)
+    end
+    -- 稀有度圖示
+    vis.mSr  = lockStar and lockStar  <=  5 or false
+    vis.mSsr = lockStar and lockStar  >   5 and lockStar <= 10 or false
+    vis.mUr  = lockStar and lockStar  >  10 or false
+
+    NodeHelper:setNodesVisible(container, vis)
+    -- 顯示等級文字
+    NodeHelper:setStringForLabel(container, {  mLv = lockLevel or "" })
 end
-function AlbumSideStory:StroyState(container,mID)
+
+function AlbumSideStory:StoryState(container,mID)
     local mapCfg = ConfigManager.getNewMapCfg()
     mapId = mapCfg[UserInfo.stateInfo.curBattleMap] and UserInfo.stateInfo.curBattleMap or 
                   (mapCfg[UserInfo.stateInfo.passMapId] and UserInfo.stateInfo.passMapId or UserInfo.stateInfo.curBattleMap - 1)
@@ -246,7 +268,7 @@ function AlbumSideStory:StroyState(container,mID)
     end
     return groupedTables[mID]
 end
-function AlbumSideStory_GuideStroyState(container)
+function AlbumSideStory_GuideStoryState(container)
     --取story的key
     groupedTables = {}
     local keys = {}
@@ -280,21 +302,35 @@ function AlbumSideStory_GuideStroyState(container)
     return groupedTables[1]
 end
 function AlbumSideStory:onBtn(id,isAlbum)
-    local _id=id
-    local _isAlbum=true
-    if isAlbum~=nil then _isAlbum=isAlbum end
-    if isAlbum==nil then _id=self.id end
-    local stage=groupedTables[_id][1].stage
-    if stage>mapId then 
-        local txt="@memoriestitle9900"..self.itemId.."_error"
-        MessageBoxPage:Msg_Box(common:getLanguageString(txt))
-        return
+    if nowType == 1 then
+        local _id=id
+        local _isAlbum=true
+        if isAlbum~=nil then _isAlbum=isAlbum end
+        if isAlbum==nil then _id=self.id end
+        local stage=groupedTables[_id][1].stage
+        if stage>mapId then 
+            local txt="@memoriestitle9900"..self.itemId.."_error"
+            MessageBoxPage:Msg_Box(common:getLanguageString(txt))
+            return
+        end
+        
+        AlbumStoryDisplayPage:setData(groupedTables[_id],_isAlbum)
+        PageManager.popPage(thisPageName)
+        PageManager.pushPage("AlbumStoryDisplayPage_Flip")
+    elseif nowType == 2 then
+        if self.isLock then
+            --MessageBoxPage:Msg_Box(common:getLanguageString(txt))
+            return
+        end
+         local data = BuildTable[self.id]
+         NgBattleResultManager.showAlbum = true
+         local AlbumStoryDisplayPage_Vertical=require('AlbumStoryDisplayPage_Vertical')
+         if AlbumStoryDisplayPage_Vertical:setData(data.avgId) then
+             PageManager.pushPage("AlbumStoryDisplayPage_Vertical")
+         end
     end
-    
-    AlbumStoryDisplayPage:setData(groupedTables[_id],_isAlbum)
-    PageManager.popPage(thisPageName)
-    PageManager.pushPage("AlbumStoryDisplayPage_Flip")
 end
+
 function AlbumMainPage:onBtn(id)
     AlbumSideStory:onBtn(id,false)
 end
@@ -347,6 +383,8 @@ function AlbumMainPage:onExit(container)
     class = 0
     container.mScrollView:removeAllCell()
     HeroData=nil
+    nowType = 1
+    nowId = 0
 end
 
 -- Server回傳

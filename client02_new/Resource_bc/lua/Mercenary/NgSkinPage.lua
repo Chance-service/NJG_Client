@@ -17,6 +17,7 @@ local option = {
     {
         -- main page
         onReturn = "onReturn",
+        onHelp = "onHelp",
         onDetail = "onDetail",      -- 切換資訊頁面
         onPlus = "onPlus",          -- 切換角色
         onMinus = "onMinus",        -- 切換角色
@@ -29,6 +30,8 @@ local option = {
         -- 請求屬性資料
         ROLE_ATTRINFO_COUNT_C = HP_pb.ROLE_ATTRINFO_COUNT_C,
         ROLE_ATTRINFO_COUNT_S = HP_pb.ROLE_ATTRINFO_COUNT_S,
+        -- 皮膚購買回傳
+        SHOP_BUY_S = HP_pb.SHOP_BUY_S,
     }
 }
 for i = 1, 4 do
@@ -140,6 +143,9 @@ function NgSkinPage:onEnter(container)
     self:initSkinItem(selfContainer)
     self:refreshPage(selfContainer) 
     self:showRoleSpine(selfContainer)
+end
+function NgSkinPage:onHelp(container)
+    PageManager.showHelp(GameConfig.HelpKey.HELP_HEROHELP)
 end
 -- 刷新頁面
 function NgSkinPage:refreshPage(container)
@@ -610,6 +616,10 @@ function NgSkinPage:onReceivePacket(container)
         local key = self:getAttrDataKey(container)
         allAttrData[key] = attr
         self:showAllAttrInfo(container)
+    end
+    if opcode == HP_pb.SHOP_BUY_S then
+        self:initSkinData(container)
+        NgSkinPage:refreshPage(container)
     end
 end
 

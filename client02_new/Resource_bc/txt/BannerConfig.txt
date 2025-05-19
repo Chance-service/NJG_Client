@@ -4,10 +4,10 @@ ID	group	activityId	pickUpId	Image	type	openDay	startTime	endTime	url	offplatfor
 3	0	999	0	Lobby_Banner_3	0		0	0		
 4	1	175	0	lobby_BannerB001	1	4,5,6	0	0		
 5	0	179	0	Lobby_Banner_179	0		0	0		
-6	1	191	0		0		1744819200	1746028799		
+6	1	191	0		0		1745812800	1747843199		
 7	0	147	0	Lobby_Banner_147	0		1741924800	1742788800		
 8	0	147	0	Lobby_Banner_147	0		1741924800	1742788800		
-9	0	197	103	Lobby_Banner_003	0		1743998400	1744214399		
+9	0	197	118	Lobby_Banner_118	0		1748232000	1748447999		
 10	0	197	109	Lobby_Banner_009	0		1744603200	1744819199		
 11	0	197	122	Lobby_Banner_022	0		1745208000	1745423999		
 12	0	197	105	Lobby_Banner_005	0		1745812800	1746028799		
@@ -17,8 +17,8 @@ ID	group	activityId	pickUpId	Image	type	openDay	startTime	endTime	url	offplatfor
 16	1	195	0		0		1746979200	1747238399		
 17	1	195	0		0		1747411200	1749311999		
 18	1	196	0		0		1746028800	1747238399		
-19	0	998		Lobby_Banner_026	0		0	0	https://qm.qq.com/q/mtoj1FFxte	2
-20	0	998		Lobby_Banner_025	0		0	0	https://discord.gg/UVahbnu3ht	2
+19	0	998		Lobby_Banner_026	0		0	0	https://qm.qq.com/q/mtoj1FFxte	2,7
+20	0	998		Lobby_Banner_025	0		0	0	https://discord.gg/UVahbnu3ht	2,7
 21	0	9999		Lobby_Banner_027	0		1745769600	1746287999		
 										
 										

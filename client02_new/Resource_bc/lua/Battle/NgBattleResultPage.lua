@@ -129,15 +129,15 @@ function NgBattleResultPage:onEnter(container)
         local roleInfo = UserMercenaryManager:getUserMercenaryByItemId(mvpID)
         local spineMvp = nil -- 抓MVP角色
         if roleInfo.skinId > 0 then
-            --spineName = "NG2D_" .. string.format("%05d", roleInfo.skinId)
-            --local isFileExist =  CCFileUtils:sharedFileUtils():isFileExist("Spine/NG2D/" .. spineName .. ".skel")
-            --if not isFileExist then
-                -- 沒有皮膚立繪spine -> 播mp4
-                self:playMovie(container, roleInfo.skinId)
-            --    return
-            --else
-            --    spineMvp = SpineContainer:create("NG2D", spineName)
-            --end
+            spineName = "NG2D_" .. string.format("%05d", roleInfo.skinId)
+            local isFileExist =  CCFileUtils:sharedFileUtils():isFileExist("Spine/NG2D/" .. spineName .. ".skel")
+            if not isFileExist then
+              -- 沒有皮膚立繪spine -> 播mp4
+              self:playMovie(container, roleInfo.skinId)
+                return
+            else
+                spineMvp = SpineContainer:create("NG2D", spineName)
+            end
         else
             spineMvp = SpineContainer:create("NG2D", "NG2D_" .. string.format("%02d", mvpID))
         end

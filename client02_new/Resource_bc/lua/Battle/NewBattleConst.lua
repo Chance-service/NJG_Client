@@ -163,7 +163,7 @@ NewBattleConst.PASSIVE_TYPE_ID = {
     -- 魔力條件觸發(持續檢查)
     [NewBattleConst.PASSIVE_TRIGGER_TYPE.MP] = { },
     -- CD觸發
-    [NewBattleConst.PASSIVE_TRIGGER_TYPE.CD] = { 1022, 1072, 1112, 1152, 1202, 1203, 1221, 1232, 
+    [NewBattleConst.PASSIVE_TRIGGER_TYPE.CD] = { 1022, 1072, 1112, 1152, 1202, 1203, 1221, 1232, 11401,
                                                  4001, 4002, 4003, 4004, 4005, 50012, 50022, 50026 },
     -- 普攻命中時觸發
     [NewBattleConst.PASSIVE_TRIGGER_TYPE.ATK_HIT] = { 10201, 1023, 1141, 1162, 1171, 10101, 50015 },    -- 10201先判斷

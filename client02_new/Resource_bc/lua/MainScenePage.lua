@@ -1370,6 +1370,7 @@ function MainScenePageInfo:CreateBtn(info)
         Star       = function() return self:getActTime(147) end,
         Act_Gift   = function() require("Act187_DataBase"); return Act187_DataBase_GetActGiftlastTime() end,
         DailyLogin = function() local d = require("LoginRewardPage"):getServerData(); return d and d.surplusTime or 0 end,
+        Puzzle     = function() return self:getActTime(195) end,
     }
     local time = (timeFns[info.key] and timeFns[info.key]()) or 0
 

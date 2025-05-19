@@ -1,3 +1,4 @@
+--[[¸t¤kHSpine]]
 local thisPageName = "AlbumStoryDisplayPage"
 require("FlagData")
 local TapDBManager = require("TapDBManager")
@@ -807,42 +808,7 @@ end
 function AlbumStoryDisplayBase:onTouch(container, eventName)
     NodeHelper:setNodesVisible(container, {mHideBtn = true, mLogBtn = true, mAutoBtn = true, mSkipBtn = true, mTxtSpine = true})
     isHide = false
---if isAuto or isLog then return end
---if nowState == DiaryState.SPINE then
---    if isLabelPlaying then
---        isLabelPlaying = false
---        if nowActionType == DiaryTypeNew.NONE and not isHide then
---           -- NodeHelper:setNodesVisible(container, {mSpine3 = true})
---        end
---        return
---    end
---    if not SpineData[SpineIdx] then
---        return
---    end
---    if SpineData[SpineIdx].txtCount <= nowLine and SpineData[SpineIdx].anime == "loop" then
---        self:onNext(container)
---        --self:initSetting(selfContainer)
---        return
---    end
---    if not isEndLineAct and (nowActionType == DiaryTypeNew.NONE or nowActionType == DiaryTypeNew.NEXTLINE) and SpineData[SpineIdx].anime == "loop" then
---        nowLine = nowLine + 1
---        NodeHelper:setNodesVisible(container, {mSpine3 = false})
---        if lines[nowLine] then
---            nowLineTable = NodeHelper:utf8tochars(lines[nowLine])
---        end
---        NodeHelper:setStringForLabel(container,{mTitle=linesCharater[nowLine] })
---      table.insert(logTable,{
---                            Txt=lines[nowLine],
---                            Name=linesCharater[nowLine]
---                          });
---        labelTimer = 0
---        lineIndex = 1
---        NodeHelper:setStringForLabel(container, {mTxt = ""})
---        isLabelPlaying = true
---    end
---end
---
-end --
+end 
 local CommonPage = require("CommonPage")
 local AlbumStoryDisplayPage = CommonPage.newSub(AlbumStoryDisplayBase, thisPageName, option)
 
