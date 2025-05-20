@@ -15,6 +15,19 @@
 		17A0DDB71B0AE9BA00E372B4 /* TKLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 17A0DD901B0AE9BA00E372B4 /* TKLoadingView.m */; };
 		17A0DDC01B0AE9BA00E372B4 /* UIHelperAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 17A0DD921B0AE9BA00E372B4 /* UIHelperAlert.m */; };
 		4636528D19912EAD00214C25 /* libPlatform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4636528B19912EAD00214C25 /* libPlatform.cpp */; };
+		4E499DD62DDCB73400922FAD /* lib91.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4605FF5219BEADDA009FD458 /* lib91.mm */; };
+		4E499DD72DDCB73400922FAD /* TKLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 17A0DD901B0AE9BA00E372B4 /* TKLoadingView.m */; };
+		4E499DD82DDCB73400922FAD /* libVoiceChatObj.mm in Sources */ = {isa = PBXBuildFile; fileRef = B2495FEF1ACE493D000FFB32 /* libVoiceChatObj.mm */; };
+		4E499DD92DDCB73400922FAD /* AdverView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DBB5A91AE65C5A007F7290 /* AdverView.m */; };
+		4E499DDA2DDCB73400922FAD /* libVoiceChat.mm in Sources */ = {isa = PBXBuildFile; fileRef = B2495FED1ACE493D000FFB32 /* libVoiceChat.mm */; };
+		4E499DDB2DDCB73400922FAD /* UIHelperAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 17A0DD921B0AE9BA00E372B4 /* UIHelperAlert.m */; };
+		4E499DDC2DDCB73400922FAD /* ControlTKAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 17A0DD891B0AE9BA00E372B4 /* ControlTKAlert.m */; };
+		4E499DDD2DDCB73400922FAD /* TKAlertCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 17A0DD8B1B0AE9BA00E372B4 /* TKAlertCenter.m */; };
+		4E499DDE2DDCB73400922FAD /* libPlatform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4636528B19912EAD00214C25 /* libPlatform.cpp */; };
+		4E499DDF2DDCB73400922FAD /* UIView+TKCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 17A0DD861B0AE9BA00E372B4 /* UIView+TKCategory.m */; };
+		4E499DE02DDCB73400922FAD /* TKAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 17A0DD8D1B0AE9BA00E372B4 /* TKAlertView.m */; };
+		4E499DE22DDCB73400922FAD /* Combine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EDE3AC02D55ECE9000EC88C /* Combine.framework */; };
+		4E499DE32DDCB73400922FAD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55DEFD0C16D7776F00E75F8C /* Foundation.framework */; };
 		4EDE3AC12D55ECE9000EC88C /* Combine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EDE3AC02D55ECE9000EC88C /* Combine.framework */; };
 		55DEFD0D16D7776F00E75F8C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55DEFD0C16D7776F00E75F8C /* Foundation.framework */; };
 		762FBFC81CEC543000FF0999 /* TKAlertCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 17A0DD8B1B0AE9BA00E372B4 /* TKAlertCenter.m */; };
@@ -98,6 +111,25 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		4E499DE42DDCB73400922FAD /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/${PRODUCT_NAME}";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4E499DE52DDCB73400922FAD /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4E7597262D54C20C006840A1 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -215,8 +247,9 @@
 		465EC19E19D9766F008E2E62 /* libYouaiObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libYouaiObj.h; sourceTree = "<group>"; };
 		465EC19F19D9766F008E2E62 /* libYouaiObj.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = libYouaiObj.mm; sourceTree = "<group>"; };
 		465EC1A219D9767D008E2E62 /* libYouai.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = libYouai.h; path = ../../include/libYouai.h; sourceTree = "<group>"; };
+		4E499DE92DDCB73400922FAD /* liblib91Erolabs.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblib91Erolabs.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EDE3AC02D55ECE9000EC88C /* Combine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Combine.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/System/Library/Frameworks/Combine.framework; sourceTree = DEVELOPER_DIR; };
-		55DEFD0916D7776F00E75F8C /* liblib91.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblib91.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		55DEFD0916D7776F00E75F8C /* liblib91Kuso.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblib91Kuso.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		55DEFD0C16D7776F00E75F8C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		762FBFDB1CEC543000FF0999 /* liblibRyuk.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblibRyuk.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		762FC02C1CEC600800FF0999 /* libRyuk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libRyuk.h; sourceTree = "<group>"; };
@@ -274,6 +307,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4E499DE12DDCB73400922FAD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4E499DE22DDCB73400922FAD /* Combine.framework in Frameworks */,
+				4E499DE32DDCB73400922FAD /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		55DEFD0616D7776F00E75F8C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -486,13 +528,14 @@
 		55DEFD0A16D7776F00E75F8C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				55DEFD0916D7776F00E75F8C /* liblib91.a */,
+				55DEFD0916D7776F00E75F8C /* liblib91Kuso.a */,
 				762FBFDB1CEC543000FF0999 /* liblibRyuk.a */,
 				979ED8221DF14C0C003CCCC8 /* liblibRyukNew.a */,
 				D708BB5D20C13476008FF589 /* liblib91GuaJiYouGu.a */,
 				D76E252D20DB51B900FFC35E /* liblib91Demo.a */,
 				D7F5E0AF20FF237300385923 /* liblibLongXiao.a */,
 				D76DCE2F212C18B400678EF8 /* liblib91GuaJiYouGuYiJie.a */,
+				4E499DE92DDCB73400922FAD /* liblib91Erolabs.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -642,9 +685,27 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		55DEFD0816D7776F00E75F8C /* lib91 */ = {
+		4E499DD42DDCB73400922FAD /* lib91Erolabs */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 55DEFD2E16D7776F00E75F8C /* Build configuration list for PBXNativeTarget "lib91" */;
+			buildConfigurationList = 4E499DE62DDCB73400922FAD /* Build configuration list for PBXNativeTarget "lib91Erolabs" */;
+			buildPhases = (
+				4E499DD52DDCB73400922FAD /* Sources */,
+				4E499DE12DDCB73400922FAD /* Frameworks */,
+				4E499DE42DDCB73400922FAD /* CopyFiles */,
+				4E499DE52DDCB73400922FAD /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = lib91Erolabs;
+			productName = lib91;
+			productReference = 4E499DE92DDCB73400922FAD /* liblib91Erolabs.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		55DEFD0816D7776F00E75F8C /* lib91Kuso */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 55DEFD2E16D7776F00E75F8C /* Build configuration list for PBXNativeTarget "lib91Kuso" */;
 			buildPhases = (
 				55DEFD0516D7776F00E75F8C /* Sources */,
 				55DEFD0616D7776F00E75F8C /* Frameworks */,
@@ -655,9 +716,9 @@
 			);
 			dependencies = (
 			);
-			name = lib91;
+			name = lib91Kuso;
 			productName = lib91;
-			productReference = 55DEFD0916D7776F00E75F8C /* liblib91.a */;
+			productReference = 55DEFD0916D7776F00E75F8C /* liblib91Kuso.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		762FBFC61CEC543000FF0999 /* libRyuk */ = {
@@ -784,18 +845,37 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				55DEFD0816D7776F00E75F8C /* lib91 */,
+				55DEFD0816D7776F00E75F8C /* lib91Kuso */,
 				762FBFC61CEC543000FF0999 /* libRyuk */,
 				979ED80E1DF14C0C003CCCC8 /* libRyukNew */,
 				D708BB4920C13476008FF589 /* lib91GuaJiYouGu */,
 				D76E251A20DB51B900FFC35E /* lib91Demo */,
 				D7F5E09C20FF237300385923 /* libLongXiao */,
 				D76DCE1C212C18B400678EF8 /* lib91GuaJiYouGuYiJie */,
+				4E499DD42DDCB73400922FAD /* lib91Erolabs */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
+		4E499DD52DDCB73400922FAD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4E499DD62DDCB73400922FAD /* lib91.mm in Sources */,
+				4E499DD72DDCB73400922FAD /* TKLoadingView.m in Sources */,
+				4E499DD82DDCB73400922FAD /* libVoiceChatObj.mm in Sources */,
+				4E499DD92DDCB73400922FAD /* AdverView.m in Sources */,
+				4E499DDA2DDCB73400922FAD /* libVoiceChat.mm in Sources */,
+				4E499DDB2DDCB73400922FAD /* UIHelperAlert.m in Sources */,
+				4E499DDC2DDCB73400922FAD /* ControlTKAlert.m in Sources */,
+				4E499DDD2DDCB73400922FAD /* TKAlertCenter.m in Sources */,
+				4E499DDE2DDCB73400922FAD /* libPlatform.cpp in Sources */,
+				4E499DDF2DDCB73400922FAD /* UIView+TKCategory.m in Sources */,
+				4E499DE02DDCB73400922FAD /* TKAlertView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		55DEFD0516D7776F00E75F8C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -928,6 +1008,96 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		4E499DE72DDCB73400922FAD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				DSTROOT = /tmp/lib91.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../SDK/91SDK/framework5\"",
+					"\"$(SRCROOT)/../SDK/91SDK/framework5/framework\"",
+				);
+				GCC_CHAR_IS_UNSIGNED_CHAR = NO;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "lib91/lib91-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+					PROJECT_EROLABS,
+				);
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../../../Code_Client/include/libOS/include\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/include\"",
+					"\"$(SRCROOT)/../../ShareSDKToDifPlatform/ShareSDKToDifPlatform\"",
+					"\"$(SRCROOT)/../../ShareSDKToDifPlatform/YVToCom4lovesVoiceSDK\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/com4lovesSDK\"",
+					"\"$(SRCROOT)/../../../Code_Client/xcode/Game/Game/ios\"",
+					"\"$(SRCROOT)/../../../Code_Core/core/include\"",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		4E499DE82DDCB73400922FAD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				DSTROOT = /tmp/lib91.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../SDK/91SDK/framework5\"",
+					"\"$(SRCROOT)/../SDK/91SDK/framework5/framework\"",
+				);
+				GCC_CHAR_IS_UNSIGNED_CHAR = NO;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "lib91/lib91-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = EROLABS;
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../../../Code_Client/include/libOS/include\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/include\"",
+					"\"$(SRCROOT)/../../ShareSDKToDifPlatform/ShareSDKToDifPlatform\"",
+					"\"$(SRCROOT)/../../ShareSDKToDifPlatform/YVToCom4lovesVoiceSDK\"",
+					"\"$(SRCROOT)/../../com4lovesSDK/com4lovesSDK\"",
+					"\"$(SRCROOT)/../../../Code_Client/xcode/Game/Game/ios\"",
+					"\"$(SRCROOT)/../../../Code_Core/core/include\"",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
 		55DEFD2C16D7776F00E75F8C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1050,6 +1220,11 @@
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "lib91/lib91-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+					PROJECT_KUSO,
+				);
 				HEADER_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../../../Code_Client/include/libOS/include\"",
 					"\"$(SRCROOT)/../../com4lovesSDK/include\"",
@@ -1092,6 +1267,7 @@
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "lib91/lib91-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = PROJECT_KUSO;
 				HEADER_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../../../Code_Client/include/libOS/include\"",
 					"\"$(SRCROOT)/../../com4lovesSDK/include\"",
@@ -1545,6 +1721,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		4E499DE62DDCB73400922FAD /* Build configuration list for PBXNativeTarget "lib91Erolabs" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4E499DE72DDCB73400922FAD /* Debug */,
+				4E499DE82DDCB73400922FAD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		55DEFD0316D7776F00E75F8C /* Build configuration list for PBXProject "lib91" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1554,7 +1739,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		55DEFD2E16D7776F00E75F8C /* Build configuration list for PBXNativeTarget "lib91" */ = {
+		55DEFD2E16D7776F00E75F8C /* Build configuration list for PBXNativeTarget "lib91Kuso" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				55DEFD2F16D7776F00E75F8C /* Debug */,

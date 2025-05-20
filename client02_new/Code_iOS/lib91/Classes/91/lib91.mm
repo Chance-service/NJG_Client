@@ -4,7 +4,7 @@
 #include "libOS.h"
 #include "SeverConsts.h"
 
-#if PROJECT_KUSO
+#ifdef PROJECT_KUSO
 #import <KUSOPlaySDK/KUSOPlaySDK.h>
 #endif
 
@@ -71,7 +71,7 @@ static bool enableTapDBLog = true;
 }
 @end
 
-#if PROJECT_KUSO
+#ifdef PROJECT_KUSO
 
 @interface KUSOLoginListener : NSObject <PlayCenterLoginListener>
 @property (nonatomic, copy) void (^onLoginSuccessBlock)
@@ -180,7 +180,7 @@ void lib91::initWithConfigure(const SDK_CONFIG_STU& configure)
 
 void lib91::setupSDK(int platformId)
 {
-#if PROJECT_KUSO
+#ifdef PROJECT_KUSO
     // Setup kuso sdk
     if ((SeverConsts::E_PLATFORM)platformId == SeverConsts::EP_KUSO)
     {
@@ -207,7 +207,7 @@ void lib91::setupSDK(int platformId)
 
 bool lib91::getLogined()
 {
-#if PROJECT_KUSO
+#ifdef PROJECT_KUSO
     return PlayCenter.shared.isLoggedIn;
 #else
     // TODO: Not sure if we should just return true
@@ -226,7 +226,7 @@ void lib91::login()
 
 void lib91::logout()
 {
-#if PROJECT_KUSO
+#ifdef PROJECT_KUSO
     KUSOLogoutListener *listener = [[KUSOLogoutListener alloc] init];
     listener.onLogoutSuccessBlock = ^(BOOL success)
     {
@@ -243,7 +243,7 @@ void lib91::logout()
 
 void lib91::doSDKLogin()
 {
-#if PROJECT_KUSO
+#ifdef PROJECT_KUSO
     NSLog(@"KUSO: Try Login");
     UIViewController* controller = [UIApplication sharedApplication].keyWindow.rootViewController;
     CGRect frame = controller.view.frame;
@@ -273,7 +273,11 @@ void lib91::doSDKLogin()
     };
     
     [PlayCenter.shared loginListener:listener];
+#elif PROJECT_EROLABS
+    // Lua will handle the login flow, so just return success
+    _boardcastLoginResult(true, "");
 #endif
+    
 }
 
 void lib91::switchUsers()
@@ -307,7 +311,7 @@ void lib91::buyGoods(BUYINFO& info)
     }
     NSString *orderSerial = info.cooOrderSerial.empty() ? @"" : [NSString stringWithUTF8String:info.cooOrderSerial.c_str()];
     
-#if PROJECT_KUSO
+#ifdef PROJECT_KUSO
     KUSOPayListener *listener = [[KUSOPayListener alloc] init];
     listener.onPaymentReadyBlock = ^(BOOL success, NSString * _Nullable url, NSString * _Nullable orderId, PlayCenterError * _Nullable error)
     {
@@ -506,7 +510,7 @@ const std::string& lib91::getToken()
 
 void lib91::showPlatformProfile()
 {
-#if PROJECT_KUSO
+#ifdef PROJECT_KUSO
     [PlayCenter.shared profile];
 #endif
 }
@@ -529,7 +533,7 @@ int lib91::getIsGuest()
 
 const unsigned int lib91::getPlatformId()
 {
-#if PROJECT_KUSO
+#ifdef PROJECT_KUSO
     return SeverConsts::EP_KUSO;
 #else
     return SeverConsts::EP_EROLABS;

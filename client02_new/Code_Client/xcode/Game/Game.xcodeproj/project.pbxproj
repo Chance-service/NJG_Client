@@ -250,6 +250,8 @@
 		4E499DD12DDC7F8100922FAD /* version_ios.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D822DDC7F4D00922FAD /* version_ios.cfg */; };
 		4E499DD22DDC7F8100922FAD /* versionApp.manifest in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D722DDC7F4400922FAD /* versionApp.manifest */; };
 		4E499DD32DDC7F8100922FAD /* Video in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D872DDC7F4F00922FAD /* Video */; };
+		4E499DEB2DDCB7A300922FAD /* liblib91Kuso.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E499DEA2DDCB7A300922FAD /* liblib91Kuso.a */; };
+		4E499DED2DDCB7C800922FAD /* liblib91Erolabs.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E499DEC2DDCB7C800922FAD /* liblib91Erolabs.a */; };
 		4E59C3712D603608006518A5 /* libpthread.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7F507D2D5F9F1900DD4AA4 /* libpthread.tbd */; };
 		4E59C3722D603615006518A5 /* libpthread.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7F507D2D5F9F1900DD4AA4 /* libpthread.tbd */; };
 		4E59C3732D603620006518A5 /* libpthread.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7F507D2D5F9F1900DD4AA4 /* libpthread.tbd */; };
@@ -405,7 +407,6 @@
 		4E77C6772DDC4961000823F7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF2D8F2A17B3B1C20050FB70 /* Security.framework */; };
 		4E77C6782DDC4961000823F7 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7A275A117ED4A1700E4F17F /* CoreTelephony.framework */; };
 		4E77C6792DDC4961000823F7 /* Bugly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4499CF912244EA5000B9175C /* Bugly.framework */; };
-		4E77C67A2DDC4961000823F7 /* liblib91.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7F4F822D5F8F4500DD4AA4 /* liblib91.a */; };
 		4E77C67B2DDC4961000823F7 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7F50772D5F9CBB00DD4AA4 /* libcrypto.a */; };
 		4E77C67C2DDC4961000823F7 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF412E9A1835F201004812DB /* AdSupport.framework */; };
 		4E77C67D2DDC4961000823F7 /* libShareSDKToDifPlatform.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 97960F131FBC57F700BDCC0F /* libShareSDKToDifPlatform.a */; };
@@ -454,7 +455,6 @@
 		4E7F4F312D5F2B2D00DD4AA4 /* TapDB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E7F4F2F2D5F2B2D00DD4AA4 /* TapDB.cpp */; };
 		4E7F4F322D5F2B2D00DD4AA4 /* TapDB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E7F4F2F2D5F2B2D00DD4AA4 /* TapDB.cpp */; };
 		4E7F4F332D5F2B2D00DD4AA4 /* TapDB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E7F4F2F2D5F2B2D00DD4AA4 /* TapDB.cpp */; };
-		4E7F4F832D5F8F4500DD4AA4 /* liblib91.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7F4F822D5F8F4500DD4AA4 /* liblib91.a */; };
 		4E7F4F862D5F8FB400DD4AA4 /* BCWebRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E7F4F852D5F8FB400DD4AA4 /* BCWebRequest.cpp */; };
 		4E7F4F872D5F8FB400DD4AA4 /* BCWebRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E7F4F852D5F8FB400DD4AA4 /* BCWebRequest.cpp */; };
 		4E7F4F882D5F8FB400DD4AA4 /* BCWebRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E7F4F852D5F8FB400DD4AA4 /* BCWebRequest.cpp */; };
@@ -1226,6 +1226,8 @@
 		4E499D8F2DDC7F5400922FAD /* skill */ = {isa = PBXFileReference; lastKnownFileType = folder; name = skill; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/skill; sourceTree = "<group>"; };
 		4E499D902DDC7F5500922FAD /* version_android.cfg */ = {isa = PBXFileReference; lastKnownFileType = text; name = version_android.cfg; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/version_android.cfg; sourceTree = "<group>"; };
 		4E499D912DDC7F5600922FAD /* txt */ = {isa = PBXFileReference; lastKnownFileType = folder; name = txt; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/txt; sourceTree = "<group>"; };
+		4E499DEA2DDCB7A300922FAD /* liblib91Kuso.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = liblib91Kuso.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E499DEC2DDCB7C800922FAD /* liblib91Erolabs.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = liblib91Erolabs.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E59C3752D620816006518A5 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
 		4E77C6CD2DDC4961000823F7 /* NinjaGirlErolabs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NinjaGirlErolabs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E77C6CE2DDC496E000823F7 /* NinjaGirlErolabs-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "NinjaGirlErolabs-Info.plist"; path = "/Users/misomacair02/Desktop/Projects/NinjaGirl/NJG_Client/client02_new/Code_Client/xcode/Game/NinjaGirlErolabs-Info.plist"; sourceTree = "<absolute>"; };
@@ -1724,7 +1726,6 @@
 				4E4520F12D5F191600F26188 /* Security.framework in Frameworks */,
 				4E4520F22D5F191600F26188 /* CoreTelephony.framework in Frameworks */,
 				4E4520F32D5F191600F26188 /* Bugly.framework in Frameworks */,
-				4E7F4F832D5F8F4500DD4AA4 /* liblib91.a in Frameworks */,
 				4E7F50842D5FA3C000DD4AA4 /* libcrypto.a in Frameworks */,
 				4E4520F42D5F191600F26188 /* AdSupport.framework in Frameworks */,
 				4E4520F62D5F191600F26188 /* libShareSDKToDifPlatform.a in Frameworks */,
@@ -1749,6 +1750,7 @@
 				4E4521082D5F191600F26188 /* MediaPlayer.framework in Frameworks */,
 				4E7F50792D5F9D0300DD4AA4 /* libssl.a in Frameworks */,
 				4E45210A2D5F191600F26188 /* CoreMotion.framework in Frameworks */,
+				4E499DEB2DDCB7A300922FAD /* liblib91Kuso.a in Frameworks */,
 				4E45210B2D5F191600F26188 /* Social.framework in Frameworks */,
 				4E45210C2D5F191600F26188 /* QuartzCore.framework in Frameworks */,
 				4E45210D2D5F191600F26188 /* iAd.framework in Frameworks */,
@@ -1781,7 +1783,6 @@
 				4E77C6772DDC4961000823F7 /* Security.framework in Frameworks */,
 				4E77C6782DDC4961000823F7 /* CoreTelephony.framework in Frameworks */,
 				4E77C6792DDC4961000823F7 /* Bugly.framework in Frameworks */,
-				4E77C67A2DDC4961000823F7 /* liblib91.a in Frameworks */,
 				4E77C67B2DDC4961000823F7 /* libcrypto.a in Frameworks */,
 				4E77C67C2DDC4961000823F7 /* AdSupport.framework in Frameworks */,
 				4E77C67D2DDC4961000823F7 /* libShareSDKToDifPlatform.a in Frameworks */,
@@ -1813,6 +1814,7 @@
 				4E77C6982DDC4961000823F7 /* CFNetwork.framework in Frameworks */,
 				4E77C6992DDC4961000823F7 /* AssetsLibrary.framework in Frameworks */,
 				4E77C69A2DDC4961000823F7 /* libliblua.a in Frameworks */,
+				4E499DED2DDCB7C800922FAD /* liblib91Erolabs.a in Frameworks */,
 				4E77C69B2DDC4961000823F7 /* OpenGLES.framework in Frameworks */,
 				4E77C69C2DDC4961000823F7 /* TapDB.framework in Frameworks */,
 				4E77C69D2DDC4961000823F7 /* AddressBook.framework in Frameworks */,
@@ -2617,6 +2619,8 @@
 		CFFC4BC616D230D3001F65C9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4E499DEC2DDCB7C800922FAD /* liblib91Erolabs.a */,
+				4E499DEA2DDCB7A300922FAD /* liblib91Kuso.a */,
 				4E59C3752D620816006518A5 /* AVKit.framework */,
 				4E7F507D2D5F9F1900DD4AA4 /* libpthread.tbd */,
 				4E7F507A2D5F9D3C00DD4AA4 /* libShareSDKToFCUUID.a */,
@@ -4141,6 +4145,7 @@
 					USE_FILE32API,
 					CC_TARGET_OS_IPHONE,
 					"HAVE_PTHREAD=1",
+					PROJECT_KUSO,
 				);
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				HEADER_SEARCH_PATHS = (
@@ -4359,6 +4364,7 @@
 					USE_FILE32API,
 					CC_TARGET_OS_IPHONE,
 					"HAVE_PTHREAD=1",
+					PROJECT_EROLABS,
 				);
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				HEADER_SEARCH_PATHS = (
