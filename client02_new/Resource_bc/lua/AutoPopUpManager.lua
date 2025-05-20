@@ -63,13 +63,6 @@ function AutoPopupManager_checkAutoPopup()
         CCUserDefault:sharedUserDefault():setStringForKey("POPAD_" .. UserInfo.playerInfo.playerId,todayDate)
         return
     end
-    --²Ö­pµn¤J
-    local LoginPopString = CCUserDefault:sharedUserDefault():getStringForKey("POPLOGIN_" .. UserInfo.playerInfo.playerId)
-    if LoginPopString ~= todayDate and require("LoginRewardPage"):getServerData().days < 8 then
-        PageManager.pushPage("LoginRewardPage")
-        CCUserDefault:sharedUserDefault():setStringForKey("POPLOGIN_" .. UserInfo.playerInfo.playerId,todayDate)
-        return
-    end
     -- ¼u¸õÂ§¥]
     local PopSaledata = next(ActPopUpSaleSubPage_Content_getServerData())
     if not PopSaledata then

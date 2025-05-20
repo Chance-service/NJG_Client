@@ -89,22 +89,22 @@ android {
     flavorDimensions "app_type"
     productFlavors {
         H365 {
-            applicationId = "chance.debug.ninja.girl.h365.cn"
+            applicationId = "chance.release.ninja.girl"
             dimension "app_type"
         }
         EROR18 {
-            applicationId = "chance.debug.ninja.girl.r18.cn"
+            applicationId = "chance.release.ninja.girl.r18"
             dimension "app_type"
         }
         JSG {
-            applicationId = "chance.debug.ninja.girl.jsg.cn"
+            applicationId = "chance.release.ninja.girl.jsg"
             dimension "app_type"
         }
 //        LSJ {
 //            dimension "app_type"
 //        }
         KUSO {
-            applicationId = "chance.debug.ninja.girl.kuso.cn"
+            applicationId = "chance.release.ninja.girl.kuso"
             dimension "app_type"
             packagingOptions {
                 exclude 'META-INF/kotlinx-serialization-json.kotlin_module'
@@ -116,12 +116,12 @@ android {
         }
 
         EROLABS {
-            applicationId = "chance.debug.ninja.girl.erolabs.cn"
+            applicationId = "chance.release.ninja.girl.erolabs"
             dimension "app_type"
         }
 
         APLUS_CPS1 {
-            applicationId = "chance.debug.ninja.girl.kuso.cn"
+            applicationId = "chance.release.ninja.girl.kuso"
             dimension "app_type"
             packagingOptions {
                 exclude 'META-INF/kotlinx-serialization-json.kotlin_module'

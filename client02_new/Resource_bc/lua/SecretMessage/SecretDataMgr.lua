@@ -42,17 +42,16 @@ Inst.SubPageCfgs = {
 
         -- 其他子頁資訊 ----------
         TopisVisible=false,
-        callFun = function() require("Album.AlbumMainPage"):setType(1) end
+
     },
-    {
-        -- 子頁面名稱 : 相簿
-        subPageName = "GirlGrowth",
+       {
+        -- 子頁面名稱 : HCG
+        subPageName = "HCG",
 
         -- 分頁 相關
-        scriptName = "Album.AlbumMainPage",
-        iconImg_normal = "SubBtn_SecretPhoto2.png",
-        iconImg_selected = "SubBtn_SecretPhoto2_On.png",
-        isRedOn = function() return false end,
+        scriptName = "Album.StoryLog",
+        iconImg_normal = "SubBtn_ HeroMemories.png",
+        iconImg_selected = "SubBtn_ HeroMemories_On.png",
         
         -- 標題
         title = common:getLanguageString("BundleShopTitle"),
@@ -62,8 +61,27 @@ Inst.SubPageCfgs = {
 
         -- 其他子頁資訊 ----------
         TopisVisible=false,
-        callFun = function() require("Album.AlbumMainPage"):setType(2) end
-    },      
+
+    },
+     {
+        -- 子頁面名稱 : 相簿
+        subPageName = "Puzzle",
+
+        -- 分頁 相關
+        scriptName = "Album.AlbumPuzzlePage",
+        iconImg_normal = "SubBtn_Puzzle.png",
+        iconImg_selected = "SubBtn_Puzzle_On.png",
+        
+        -- 標題
+        title = common:getLanguageString("@PuzzleBattle_Title"),
+
+        -- 貨幣資訊 
+        currencyInfos = { },
+
+        -- 其他子頁資訊 ----------
+        TopisVisible=false,
+
+    },
 }
 
 --[[ 取得 子頁面 配置 ]]

@@ -391,7 +391,7 @@ PageJumpMange._JumpCfg = {
     [51] =
     {
         _Id = 51;-- CycleTower
-        _ToPage = "MainFrame_onMainPageBtn(true,false)",
+        _ToPage = "MainFrame_onMainPageBtn(true,true)",
         _SecondFunc = "onActivity",
         _ThirdFunc = "onBattle",
     },
@@ -399,7 +399,7 @@ PageJumpMange._JumpCfg = {
     {
         _Id = 52;-- SingleBoss
         _ToPage = "MainFrame_onMainPageBtn(true,true)",
-        _SecondFunc = "BackSingleBoss",
+        _SecondFunc = "onSingleBoss",
         _act = Const_pb.ACTIVITY193_SingleBoss
     },
     [53] =
@@ -414,7 +414,7 @@ PageJumpMange._JumpCfg = {
     {
         _Id = 54;-- Puzzle 
         _ToPage = "MainFrame_onMainPageBtn(true,true)",
-        _SecondFunc = "BackPuzzle",
+        _SecondFunc = "onPuzzle",
         _act = Const_pb.ACTIVITY195_PuzzleBattle
     },
      [55] =
