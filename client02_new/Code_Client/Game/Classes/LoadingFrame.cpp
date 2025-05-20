@@ -136,6 +136,11 @@ void LoadingFrame::Enter( GamePrecedure* )
     {
         libPlatformManager::getPlatform()->login();
     }
+    else if (SeverConsts::Get()->IsErolabs())
+    {
+        // Erolabs sdk is handled by lua
+        Lua_EcchiGamerSDKBridge::callinitbyC();
+    }
 #endif
 
 	float reqServerTime = StringConverter::parseLong(VaribleManager::Get()->getSetting("ReqServerListOffest", "", "10"), true);
@@ -1486,7 +1491,7 @@ std::string LoadingFrame::onReceiveCommonMessage( const std::string& tag, const 
 	}
 	else if (tag == "P2G_PLATFORM_LOGOUT")
 	{
-		if (SeverConsts::Get()->IsKUSO() || SeverConsts::Get()->IsAPLUS()){
+        if (SeverConsts::Get()->IsKUSO() || SeverConsts::Get()->IsAPLUS() || SeverConsts::Get()->IsErolabs()){
 			if (msg == "1")
 			{
 				libPlatformManager::getPlatform()->login();
