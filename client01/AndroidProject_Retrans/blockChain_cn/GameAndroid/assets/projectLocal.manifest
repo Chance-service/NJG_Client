@@ -1,53 +1,6 @@
 {
     "assets": [
-        {
-            "time": 1749203630.822,
-            "md5": "8e47304dc6772b1e72717e075a38839e",
-            "name": "HalfBody.zip",
-            "size": 2120.984
-        },
-        {
-            "time": 1749203630.822,
-            "md5": "0a98b7a5463f4a0ee361e0721f4be1d3",
-            "name": "LoadingUI_JP.zip",
-            "size": 831.934
-        },
-        {
-            "time": 1749203630.822,
-            "md5": "755a8c18e0eae6490b2ee03de4811afd",
-            "name": "map.zip",
-            "size": 6861.103
-        },
-        {
-            "time": 1749203630.822,
-            "md5": "5b7ca5f8d448939883f13ba06d153ac9",
-            "name": "monster.zip",
-            "size": 1170.266
-        },
-        {
-            "time": 1749203630.822,
-            "md5": "b56006bc5b9e323c2455a4187b44d761",
-            "name": "shader.zip",
-            "size": 8.718
-        },
-        {
-            "time": 1749203630.822,
-            "md5": "6091e73d6f0619fe2eb6d31735dea2d3",
-            "name": "Video_phase1.zip",
-            "size": 52453.185
-        },
-        {
-            "time": 1749203630.822,
-            "md5": "be664094771eb85323e612e0c3b59184",
-            "name": "Video_phase2.zip",
-            "size": 20500.928
-        },
-        {
-            "time": 1749203630.822,
-            "md5": "b091259215dc51efe52d258bcb840549",
-            "name": "Video_phase3.zip",
-            "size": 52327.123
-        }
-    ],
-    "time": 1049203630.822
+
+    ], 
+    "time": 1000047129.179
 }
