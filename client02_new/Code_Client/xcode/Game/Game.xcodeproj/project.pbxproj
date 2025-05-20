@@ -184,6 +184,72 @@
 		4E45216D2D5F1AE100F26188 /* KUSOPlaySDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4E45216A2D5F1AE000F26188 /* KUSOPlaySDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4E45216E2D5F1AE100F26188 /* TapDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E45216B2D5F1AE000F26188 /* TapDB.framework */; };
 		4E45216F2D5F1AE100F26188 /* TapDB.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4E45216B2D5F1AE000F26188 /* TapDB.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4E499D922DDC7F5600922FAD /* UpdateVersionTips.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D712DDC7F4400922FAD /* UpdateVersionTips.cfg */; };
+		4E499D932DDC7F5600922FAD /* versionApp.manifest in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D722DDC7F4400922FAD /* versionApp.manifest */; };
+		4E499D942DDC7F5600922FAD /* LoadingUI_JP in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D732DDC7F4500922FAD /* LoadingUI_JP */; };
+		4E499D952DDC7F5600922FAD /* HalfBody in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D742DDC7F4500922FAD /* HalfBody */; };
+		4E499D962DDC7F5600922FAD /* audio in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D752DDC7F4500922FAD /* audio */; };
+		4E499D972DDC7F5600922FAD /* ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D762DDC7F4600922FAD /* ccbi */; };
+		4E499D982DDC7F5600922FAD /* Lang in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D772DDC7F4800922FAD /* Lang */; };
+		4E499D992DDC7F5600922FAD /* projectLocal.manifest in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D782DDC7F4800922FAD /* projectLocal.manifest */; };
+		4E499D9A2DDC7F5600922FAD /* UpdateVersionTipsTW.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D792DDC7F4900922FAD /* UpdateVersionTipsTW.cfg */; };
+		4E499D9B2DDC7F5600922FAD /* ecchigamer_domain_v1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D7A2DDC7F4900922FAD /* ecchigamer_domain_v1.txt */; };
+		4E499D9C2DDC7F5600922FAD /* BG in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D7B2DDC7F4900922FAD /* BG */; };
+		4E499D9D2DDC7F5600922FAD /* platform.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D7C2DDC7F4A00922FAD /* platform.cfg */; };
+		4E499D9E2DDC7F5600922FAD /* erolabs_domain_v1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D7D2DDC7F4A00922FAD /* erolabs_domain_v1.txt */; };
+		4E499D9F2DDC7F5600922FAD /* UI in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D7E2DDC7F4B00922FAD /* UI */; };
+		4E499DA02DDC7F5600922FAD /* shader in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D7F2DDC7F4B00922FAD /* shader */; };
+		4E499DA12DDC7F5600922FAD /* RecourceFilePath.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D802DDC7F4C00922FAD /* RecourceFilePath.txt */; };
+		4E499DA22DDC7F5600922FAD /* Tips.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D812DDC7F4C00922FAD /* Tips.txt */; };
+		4E499DA32DDC7F5600922FAD /* version_ios.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D822DDC7F4D00922FAD /* version_ios.cfg */; };
+		4E499DA42DDC7F5600922FAD /* i18n in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D832DDC7F4D00922FAD /* i18n */; };
+		4E499DA52DDC7F5600922FAD /* Barlow-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D842DDC7F4E00922FAD /* Barlow-Bold.ttf */; };
+		4E499DA62DDC7F5600922FAD /* Spine in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D852DDC7F4E00922FAD /* Spine */; };
+		4E499DA72DDC7F5600922FAD /* version_android_local.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D862DDC7F4E00922FAD /* version_android_local.cfg */; };
+		4E499DA82DDC7F5600922FAD /* Video in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D872DDC7F4F00922FAD /* Video */; };
+		4E499DA92DDC7F5600922FAD /* Imagesetfile in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D882DDC7F5000922FAD /* Imagesetfile */; };
+		4E499DAA2DDC7F5600922FAD /* Barlow-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D892DDC7F5000922FAD /* Barlow-SemiBold.ttf */; };
+		4E499DAB2DDC7F5600922FAD /* Barlow-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D8A2DDC7F5100922FAD /* Barlow-Regular.ttf */; };
+		4E499DAC2DDC7F5600922FAD /* lua in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D8B2DDC7F5100922FAD /* lua */; };
+		4E499DAD2DDC7F5600922FAD /* monster in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D8C2DDC7F5100922FAD /* monster */; };
+		4E499DAE2DDC7F5600922FAD /* map in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D8D2DDC7F5300922FAD /* map */; };
+		4E499DAF2DDC7F5600922FAD /* version.manifest in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D8E2DDC7F5300922FAD /* version.manifest */; };
+		4E499DB02DDC7F5600922FAD /* skill in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D8F2DDC7F5400922FAD /* skill */; };
+		4E499DB12DDC7F5600922FAD /* version_android.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D902DDC7F5500922FAD /* version_android.cfg */; };
+		4E499DB22DDC7F5600922FAD /* txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D912DDC7F5600922FAD /* txt */; };
+		4E499DB32DDC7F8100922FAD /* audio in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D752DDC7F4500922FAD /* audio */; };
+		4E499DB42DDC7F8100922FAD /* Barlow-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D842DDC7F4E00922FAD /* Barlow-Bold.ttf */; };
+		4E499DB52DDC7F8100922FAD /* Barlow-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D8A2DDC7F5100922FAD /* Barlow-Regular.ttf */; };
+		4E499DB62DDC7F8100922FAD /* Barlow-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D892DDC7F5000922FAD /* Barlow-SemiBold.ttf */; };
+		4E499DB72DDC7F8100922FAD /* BG in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D7B2DDC7F4900922FAD /* BG */; };
+		4E499DB82DDC7F8100922FAD /* ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D762DDC7F4600922FAD /* ccbi */; };
+		4E499DB92DDC7F8100922FAD /* ecchigamer_domain_v1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D7A2DDC7F4900922FAD /* ecchigamer_domain_v1.txt */; };
+		4E499DBA2DDC7F8100922FAD /* erolabs_domain_v1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D7D2DDC7F4A00922FAD /* erolabs_domain_v1.txt */; };
+		4E499DBB2DDC7F8100922FAD /* HalfBody in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D742DDC7F4500922FAD /* HalfBody */; };
+		4E499DBC2DDC7F8100922FAD /* i18n in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D832DDC7F4D00922FAD /* i18n */; };
+		4E499DBD2DDC7F8100922FAD /* Imagesetfile in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D882DDC7F5000922FAD /* Imagesetfile */; };
+		4E499DBE2DDC7F8100922FAD /* Lang in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D772DDC7F4800922FAD /* Lang */; };
+		4E499DBF2DDC7F8100922FAD /* LoadingUI_JP in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D732DDC7F4500922FAD /* LoadingUI_JP */; };
+		4E499DC02DDC7F8100922FAD /* lua in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D8B2DDC7F5100922FAD /* lua */; };
+		4E499DC12DDC7F8100922FAD /* map in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D8D2DDC7F5300922FAD /* map */; };
+		4E499DC22DDC7F8100922FAD /* monster in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D8C2DDC7F5100922FAD /* monster */; };
+		4E499DC32DDC7F8100922FAD /* platform.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D7C2DDC7F4A00922FAD /* platform.cfg */; };
+		4E499DC42DDC7F8100922FAD /* projectLocal.manifest in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D782DDC7F4800922FAD /* projectLocal.manifest */; };
+		4E499DC52DDC7F8100922FAD /* RecourceFilePath.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D802DDC7F4C00922FAD /* RecourceFilePath.txt */; };
+		4E499DC62DDC7F8100922FAD /* shader in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D7F2DDC7F4B00922FAD /* shader */; };
+		4E499DC72DDC7F8100922FAD /* skill in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D8F2DDC7F5400922FAD /* skill */; };
+		4E499DC82DDC7F8100922FAD /* Spine in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D852DDC7F4E00922FAD /* Spine */; };
+		4E499DC92DDC7F8100922FAD /* Tips.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D812DDC7F4C00922FAD /* Tips.txt */; };
+		4E499DCA2DDC7F8100922FAD /* txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D912DDC7F5600922FAD /* txt */; };
+		4E499DCB2DDC7F8100922FAD /* UI in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D7E2DDC7F4B00922FAD /* UI */; };
+		4E499DCC2DDC7F8100922FAD /* UpdateVersionTips.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D712DDC7F4400922FAD /* UpdateVersionTips.cfg */; };
+		4E499DCD2DDC7F8100922FAD /* UpdateVersionTipsTW.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D792DDC7F4900922FAD /* UpdateVersionTipsTW.cfg */; };
+		4E499DCE2DDC7F8100922FAD /* version.manifest in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D8E2DDC7F5300922FAD /* version.manifest */; };
+		4E499DCF2DDC7F8100922FAD /* version_android.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D902DDC7F5500922FAD /* version_android.cfg */; };
+		4E499DD02DDC7F8100922FAD /* version_android_local.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D862DDC7F4E00922FAD /* version_android_local.cfg */; };
+		4E499DD12DDC7F8100922FAD /* version_ios.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D822DDC7F4D00922FAD /* version_ios.cfg */; };
+		4E499DD22DDC7F8100922FAD /* versionApp.manifest in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D722DDC7F4400922FAD /* versionApp.manifest */; };
+		4E499DD32DDC7F8100922FAD /* Video in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D872DDC7F4F00922FAD /* Video */; };
 		4E59C3712D603608006518A5 /* libpthread.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7F507D2D5F9F1900DD4AA4 /* libpthread.tbd */; };
 		4E59C3722D603615006518A5 /* libpthread.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7F507D2D5F9F1900DD4AA4 /* libpthread.tbd */; };
 		4E59C3732D603620006518A5 /* libpthread.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7F507D2D5F9F1900DD4AA4 /* libpthread.tbd */; };
@@ -381,38 +447,6 @@
 		4E77C6A22DDC4961000823F7 /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C1E005829C2B22F002E789C /* libfreetype.a */; };
 		4E77C6A32DDC4961000823F7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFFC4BD116D230D3001F65C9 /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		4E77C6A42DDC4961000823F7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFFC4BD516D230D3001F65C9 /* CoreGraphics.framework */; };
-		4E77C6A62DDC4961000823F7 /* projectLocal.manifest in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA09A2DCB555D0027FDA9 /* projectLocal.manifest */; };
-		4E77C6A72DDC4961000823F7 /* RecourceFilePath.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA09B2DCB555D0027FDA9 /* RecourceFilePath.txt */; };
-		4E77C6A82DDC4961000823F7 /* BG in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA09C2DCB555D0027FDA9 /* BG */; };
-		4E77C6A92DDC4961000823F7 /* map in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA09D2DCB555E0027FDA9 /* map */; };
-		4E77C6AA2DDC4961000823F7 /* Barlow-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA09E2DCB555E0027FDA9 /* Barlow-SemiBold.ttf */; };
-		4E77C6AB2DDC4961000823F7 /* Lang in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA09F2DCB555F0027FDA9 /* Lang */; };
-		4E77C6AC2DDC4961000823F7 /* ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0A02DCB555F0027FDA9 /* ccbi */; };
-		4E77C6AD2DDC4961000823F7 /* skill in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0A12DCB55600027FDA9 /* skill */; };
-		4E77C6AE2DDC4961000823F7 /* shader in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0A22DCB55600027FDA9 /* shader */; };
-		4E77C6AF2DDC4961000823F7 /* UpdateVersionTipsTW.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0A32DCB55610027FDA9 /* UpdateVersionTipsTW.cfg */; };
-		4E77C6B02DDC4961000823F7 /* Barlow-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0A42DCB55610027FDA9 /* Barlow-Bold.ttf */; };
-		4E77C6B12DDC4961000823F7 /* monster in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0A52DCB55620027FDA9 /* monster */; };
-		4E77C6B22DDC4961000823F7 /* txt in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0A62DCB55620027FDA9 /* txt */; };
-		4E77C6B32DDC4961000823F7 /* Barlow-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0A72DCB55630027FDA9 /* Barlow-Regular.ttf */; };
-		4E77C6B42DDC4961000823F7 /* Tips.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0A82DCB55630027FDA9 /* Tips.txt */; };
-		4E77C6B52DDC4961000823F7 /* UpdateVersionTips.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0A92DCB55640027FDA9 /* UpdateVersionTips.cfg */; };
-		4E77C6B62DDC4961000823F7 /* platform.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0AA2DCB55640027FDA9 /* platform.cfg */; };
-		4E77C6B72DDC4961000823F7 /* UI in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0AB2DCB55650027FDA9 /* UI */; };
-		4E77C6B82DDC4961000823F7 /* lua in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0AC2DCB55650027FDA9 /* lua */; };
-		4E77C6B92DDC4961000823F7 /* version_android_local.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0AD2DCB55660027FDA9 /* version_android_local.cfg */; };
-		4E77C6BA2DDC4961000823F7 /* audio in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0AE2DCB55670027FDA9 /* audio */; };
-		4E77C6BB2DDC4961000823F7 /* versionApp.manifest in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0AF2DCB55680027FDA9 /* versionApp.manifest */; };
-		4E77C6BC2DDC4961000823F7 /* version.manifest in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0B02DCB55690027FDA9 /* version.manifest */; };
-		4E77C6BD2DDC4961000823F7 /* Spine in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0B12DCB55690027FDA9 /* Spine */; };
-		4E77C6BE2DDC4961000823F7 /* version_ios.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0B22DCB556A0027FDA9 /* version_ios.cfg */; };
-		4E77C6BF2DDC4961000823F7 /* i18n in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0B32DCB556A0027FDA9 /* i18n */; };
-		4E77C6C02DDC4961000823F7 /* Video in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0B42DCB556B0027FDA9 /* Video */; };
-		4E77C6C12DDC4961000823F7 /* version_android.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0B52DCB556C0027FDA9 /* version_android.cfg */; };
-		4E77C6C22DDC4961000823F7 /* HalfBody in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0B62DCB556C0027FDA9 /* HalfBody */; };
-		4E77C6C32DDC4961000823F7 /* ecchigamer_domain_v1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0B72DCB556D0027FDA9 /* ecchigamer_domain_v1.txt */; };
-		4E77C6C42DDC4961000823F7 /* Imagesetfile in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0B82DCB556D0027FDA9 /* Imagesetfile */; };
-		4E77C6C52DDC4961000823F7 /* LoadingUI_JP in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0B92DCB556E0027FDA9 /* LoadingUI_JP */; };
 		4E77C6C82DDC4961000823F7 /* TapDB.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4E45216B2D5F1AE000F26188 /* TapDB.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4E77C6D02DDC6107000823F7 /* Erolabs.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E77C6CF2DDC6107000823F7 /* Erolabs.xcassets */; };
 		4E7F0A532D5FABCD00DD4AA4 /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C1E005829C2B22F002E789C /* libfreetype.a */; };
@@ -501,38 +535,6 @@
 		4E7F507E2D5F9F2700DD4AA4 /* libpthread.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7F507D2D5F9F1900DD4AA4 /* libpthread.tbd */; };
 		4E7F50832D5FA37300DD4AA4 /* libcocos2dx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7F4FFA2D5F96D100DD4AA4 /* libcocos2dx.a */; };
 		4E7F50842D5FA3C000DD4AA4 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7F50772D5F9CBB00DD4AA4 /* libcrypto.a */; };
-		4ECEA0BA2DCB556F0027FDA9 /* projectLocal.manifest in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA09A2DCB555D0027FDA9 /* projectLocal.manifest */; };
-		4ECEA0BB2DCB556F0027FDA9 /* RecourceFilePath.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA09B2DCB555D0027FDA9 /* RecourceFilePath.txt */; };
-		4ECEA0BC2DCB556F0027FDA9 /* BG in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA09C2DCB555D0027FDA9 /* BG */; };
-		4ECEA0BD2DCB556F0027FDA9 /* map in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA09D2DCB555E0027FDA9 /* map */; };
-		4ECEA0BE2DCB556F0027FDA9 /* Barlow-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA09E2DCB555E0027FDA9 /* Barlow-SemiBold.ttf */; };
-		4ECEA0BF2DCB556F0027FDA9 /* Lang in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA09F2DCB555F0027FDA9 /* Lang */; };
-		4ECEA0C02DCB556F0027FDA9 /* ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0A02DCB555F0027FDA9 /* ccbi */; };
-		4ECEA0C12DCB556F0027FDA9 /* skill in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0A12DCB55600027FDA9 /* skill */; };
-		4ECEA0C22DCB556F0027FDA9 /* shader in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0A22DCB55600027FDA9 /* shader */; };
-		4ECEA0C32DCB556F0027FDA9 /* UpdateVersionTipsTW.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0A32DCB55610027FDA9 /* UpdateVersionTipsTW.cfg */; };
-		4ECEA0C42DCB556F0027FDA9 /* Barlow-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0A42DCB55610027FDA9 /* Barlow-Bold.ttf */; };
-		4ECEA0C52DCB556F0027FDA9 /* monster in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0A52DCB55620027FDA9 /* monster */; };
-		4ECEA0C62DCB556F0027FDA9 /* txt in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0A62DCB55620027FDA9 /* txt */; };
-		4ECEA0C72DCB556F0027FDA9 /* Barlow-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0A72DCB55630027FDA9 /* Barlow-Regular.ttf */; };
-		4ECEA0C82DCB556F0027FDA9 /* Tips.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0A82DCB55630027FDA9 /* Tips.txt */; };
-		4ECEA0C92DCB556F0027FDA9 /* UpdateVersionTips.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0A92DCB55640027FDA9 /* UpdateVersionTips.cfg */; };
-		4ECEA0CA2DCB556F0027FDA9 /* platform.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0AA2DCB55640027FDA9 /* platform.cfg */; };
-		4ECEA0CB2DCB556F0027FDA9 /* UI in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0AB2DCB55650027FDA9 /* UI */; };
-		4ECEA0CC2DCB556F0027FDA9 /* lua in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0AC2DCB55650027FDA9 /* lua */; };
-		4ECEA0CD2DCB556F0027FDA9 /* version_android_local.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0AD2DCB55660027FDA9 /* version_android_local.cfg */; };
-		4ECEA0CE2DCB556F0027FDA9 /* audio in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0AE2DCB55670027FDA9 /* audio */; };
-		4ECEA0CF2DCB556F0027FDA9 /* versionApp.manifest in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0AF2DCB55680027FDA9 /* versionApp.manifest */; };
-		4ECEA0D02DCB556F0027FDA9 /* version.manifest in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0B02DCB55690027FDA9 /* version.manifest */; };
-		4ECEA0D12DCB556F0027FDA9 /* Spine in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0B12DCB55690027FDA9 /* Spine */; };
-		4ECEA0D22DCB556F0027FDA9 /* version_ios.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0B22DCB556A0027FDA9 /* version_ios.cfg */; };
-		4ECEA0D32DCB556F0027FDA9 /* i18n in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0B32DCB556A0027FDA9 /* i18n */; };
-		4ECEA0D42DCB556F0027FDA9 /* Video in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0B42DCB556B0027FDA9 /* Video */; };
-		4ECEA0D52DCB556F0027FDA9 /* version_android.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0B52DCB556C0027FDA9 /* version_android.cfg */; };
-		4ECEA0D62DCB556F0027FDA9 /* HalfBody in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0B62DCB556C0027FDA9 /* HalfBody */; };
-		4ECEA0D72DCB556F0027FDA9 /* ecchigamer_domain_v1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0B72DCB556D0027FDA9 /* ecchigamer_domain_v1.txt */; };
-		4ECEA0D82DCB556F0027FDA9 /* Imagesetfile in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0B82DCB556D0027FDA9 /* Imagesetfile */; };
-		4ECEA0D92DCB556F0027FDA9 /* LoadingUI_JP in Resources */ = {isa = PBXBuildFile; fileRef = 4ECEA0B92DCB556E0027FDA9 /* LoadingUI_JP */; };
 		760161651E6D6C2C005A436D /* GameRyukNew-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 760161641E6D6C2C005A436D /* GameRyukNew-Info.plist */; };
 		76D32B861E691E74001E95AD /* ChangeUserPage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 76D32B841E691E74001E95AD /* ChangeUserPage.cpp */; };
 		974A0DB61E655BD1000CE656 /* CurlDownloadForScript.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 974A0DB41E655BC7000CE656 /* CurlDownloadForScript.cpp */; };
@@ -1191,6 +1193,39 @@
 		4E4521492D5F191600F26188 /* NinjaGirl69.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NinjaGirl69.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E45216A2D5F1AE000F26188 /* KUSOPlaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KUSOPlaySDK.framework; path = ../../../Code_iOS/lib91/SDK/91SDK/framework5/framework/KUSOPlaySDK.framework; sourceTree = "<group>"; };
 		4E45216B2D5F1AE000F26188 /* TapDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TapDB.framework; path = ../../../Code_iOS/lib91/SDK/91SDK/framework5/framework/TapDB.framework; sourceTree = "<group>"; };
+		4E499D712DDC7F4400922FAD /* UpdateVersionTips.cfg */ = {isa = PBXFileReference; lastKnownFileType = text; name = UpdateVersionTips.cfg; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/UpdateVersionTips.cfg; sourceTree = "<group>"; };
+		4E499D722DDC7F4400922FAD /* versionApp.manifest */ = {isa = PBXFileReference; lastKnownFileType = text; name = versionApp.manifest; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/versionApp.manifest; sourceTree = "<group>"; };
+		4E499D732DDC7F4500922FAD /* LoadingUI_JP */ = {isa = PBXFileReference; lastKnownFileType = folder; name = LoadingUI_JP; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/LoadingUI_JP; sourceTree = "<group>"; };
+		4E499D742DDC7F4500922FAD /* HalfBody */ = {isa = PBXFileReference; lastKnownFileType = folder; name = HalfBody; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/HalfBody; sourceTree = "<group>"; };
+		4E499D752DDC7F4500922FAD /* audio */ = {isa = PBXFileReference; lastKnownFileType = folder; name = audio; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/audio; sourceTree = "<group>"; };
+		4E499D762DDC7F4600922FAD /* ccbi */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ccbi; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/ccbi; sourceTree = "<group>"; };
+		4E499D772DDC7F4800922FAD /* Lang */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Lang; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/Lang; sourceTree = "<group>"; };
+		4E499D782DDC7F4800922FAD /* projectLocal.manifest */ = {isa = PBXFileReference; lastKnownFileType = text; name = projectLocal.manifest; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/projectLocal.manifest; sourceTree = "<group>"; };
+		4E499D792DDC7F4900922FAD /* UpdateVersionTipsTW.cfg */ = {isa = PBXFileReference; lastKnownFileType = text; name = UpdateVersionTipsTW.cfg; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/UpdateVersionTipsTW.cfg; sourceTree = "<group>"; };
+		4E499D7A2DDC7F4900922FAD /* ecchigamer_domain_v1.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = ecchigamer_domain_v1.txt; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/ecchigamer_domain_v1.txt; sourceTree = "<group>"; };
+		4E499D7B2DDC7F4900922FAD /* BG */ = {isa = PBXFileReference; lastKnownFileType = folder; name = BG; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/BG; sourceTree = "<group>"; };
+		4E499D7C2DDC7F4A00922FAD /* platform.cfg */ = {isa = PBXFileReference; lastKnownFileType = text; name = platform.cfg; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/platform.cfg; sourceTree = "<group>"; };
+		4E499D7D2DDC7F4A00922FAD /* erolabs_domain_v1.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = erolabs_domain_v1.txt; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/erolabs_domain_v1.txt; sourceTree = "<group>"; };
+		4E499D7E2DDC7F4B00922FAD /* UI */ = {isa = PBXFileReference; lastKnownFileType = folder; name = UI; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/UI; sourceTree = "<group>"; };
+		4E499D7F2DDC7F4B00922FAD /* shader */ = {isa = PBXFileReference; lastKnownFileType = folder; name = shader; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/shader; sourceTree = "<group>"; };
+		4E499D802DDC7F4C00922FAD /* RecourceFilePath.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = RecourceFilePath.txt; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/RecourceFilePath.txt; sourceTree = "<group>"; };
+		4E499D812DDC7F4C00922FAD /* Tips.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = Tips.txt; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/Tips.txt; sourceTree = "<group>"; };
+		4E499D822DDC7F4D00922FAD /* version_ios.cfg */ = {isa = PBXFileReference; lastKnownFileType = text; name = version_ios.cfg; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/version_ios.cfg; sourceTree = "<group>"; };
+		4E499D832DDC7F4D00922FAD /* i18n */ = {isa = PBXFileReference; lastKnownFileType = folder; name = i18n; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/i18n; sourceTree = "<group>"; };
+		4E499D842DDC7F4E00922FAD /* Barlow-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Barlow-Bold.ttf"; path = "../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/Barlow-Bold.ttf"; sourceTree = "<group>"; };
+		4E499D852DDC7F4E00922FAD /* Spine */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Spine; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/Spine; sourceTree = "<group>"; };
+		4E499D862DDC7F4E00922FAD /* version_android_local.cfg */ = {isa = PBXFileReference; lastKnownFileType = text; name = version_android_local.cfg; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/version_android_local.cfg; sourceTree = "<group>"; };
+		4E499D872DDC7F4F00922FAD /* Video */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Video; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/Video; sourceTree = "<group>"; };
+		4E499D882DDC7F5000922FAD /* Imagesetfile */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Imagesetfile; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/Imagesetfile; sourceTree = "<group>"; };
+		4E499D892DDC7F5000922FAD /* Barlow-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Barlow-SemiBold.ttf"; path = "../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/Barlow-SemiBold.ttf"; sourceTree = "<group>"; };
+		4E499D8A2DDC7F5100922FAD /* Barlow-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Barlow-Regular.ttf"; path = "../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/Barlow-Regular.ttf"; sourceTree = "<group>"; };
+		4E499D8B2DDC7F5100922FAD /* lua */ = {isa = PBXFileReference; lastKnownFileType = folder; name = lua; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/lua; sourceTree = "<group>"; };
+		4E499D8C2DDC7F5100922FAD /* monster */ = {isa = PBXFileReference; lastKnownFileType = folder; name = monster; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/monster; sourceTree = "<group>"; };
+		4E499D8D2DDC7F5300922FAD /* map */ = {isa = PBXFileReference; lastKnownFileType = folder; name = map; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/map; sourceTree = "<group>"; };
+		4E499D8E2DDC7F5300922FAD /* version.manifest */ = {isa = PBXFileReference; lastKnownFileType = text; name = version.manifest; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/version.manifest; sourceTree = "<group>"; };
+		4E499D8F2DDC7F5400922FAD /* skill */ = {isa = PBXFileReference; lastKnownFileType = folder; name = skill; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/skill; sourceTree = "<group>"; };
+		4E499D902DDC7F5500922FAD /* version_android.cfg */ = {isa = PBXFileReference; lastKnownFileType = text; name = version_android.cfg; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/version_android.cfg; sourceTree = "<group>"; };
+		4E499D912DDC7F5600922FAD /* txt */ = {isa = PBXFileReference; lastKnownFileType = folder; name = txt; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/txt; sourceTree = "<group>"; };
 		4E59C3752D620816006518A5 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
 		4E77C6CD2DDC4961000823F7 /* NinjaGirlErolabs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NinjaGirlErolabs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E77C6CE2DDC496E000823F7 /* NinjaGirlErolabs-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "NinjaGirlErolabs-Info.plist"; path = "/Users/misomacair02/Desktop/Projects/NinjaGirl/NJG_Client/client02_new/Code_Client/xcode/Game/NinjaGirlErolabs-Info.plist"; sourceTree = "<absolute>"; };
@@ -1260,38 +1295,6 @@
 		4E7F507A2D5F9D3C00DD4AA4 /* libShareSDKToFCUUID.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libShareSDKToFCUUID.a; path = "../../../../../../NG_Client/Code_Client/build/Debug-iphoneos/libShareSDKToFCUUID.a"; sourceTree = "<group>"; };
 		4E7F507B2D5F9DFD00DD4AA4 /* libShareSDKToFCUUID.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libShareSDKToFCUUID.a; path = "../../build/Debug-iphoneos/libShareSDKToFCUUID.a"; sourceTree = "<group>"; };
 		4E7F507D2D5F9F1900DD4AA4 /* libpthread.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libpthread.tbd; path = usr/lib/libpthread.tbd; sourceTree = SDKROOT; };
-		4ECEA09A2DCB555D0027FDA9 /* projectLocal.manifest */ = {isa = PBXFileReference; lastKnownFileType = text; name = projectLocal.manifest; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/projectLocal.manifest; sourceTree = "<group>"; };
-		4ECEA09B2DCB555D0027FDA9 /* RecourceFilePath.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = RecourceFilePath.txt; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/RecourceFilePath.txt; sourceTree = "<group>"; };
-		4ECEA09C2DCB555D0027FDA9 /* BG */ = {isa = PBXFileReference; lastKnownFileType = folder; name = BG; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/BG; sourceTree = "<group>"; };
-		4ECEA09D2DCB555E0027FDA9 /* map */ = {isa = PBXFileReference; lastKnownFileType = folder; name = map; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/map; sourceTree = "<group>"; };
-		4ECEA09E2DCB555E0027FDA9 /* Barlow-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Barlow-SemiBold.ttf"; path = "../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/Barlow-SemiBold.ttf"; sourceTree = "<group>"; };
-		4ECEA09F2DCB555F0027FDA9 /* Lang */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Lang; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/Lang; sourceTree = "<group>"; };
-		4ECEA0A02DCB555F0027FDA9 /* ccbi */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ccbi; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/ccbi; sourceTree = "<group>"; };
-		4ECEA0A12DCB55600027FDA9 /* skill */ = {isa = PBXFileReference; lastKnownFileType = folder; name = skill; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/skill; sourceTree = "<group>"; };
-		4ECEA0A22DCB55600027FDA9 /* shader */ = {isa = PBXFileReference; lastKnownFileType = folder; name = shader; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/shader; sourceTree = "<group>"; };
-		4ECEA0A32DCB55610027FDA9 /* UpdateVersionTipsTW.cfg */ = {isa = PBXFileReference; lastKnownFileType = text; name = UpdateVersionTipsTW.cfg; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/UpdateVersionTipsTW.cfg; sourceTree = "<group>"; };
-		4ECEA0A42DCB55610027FDA9 /* Barlow-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Barlow-Bold.ttf"; path = "../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/Barlow-Bold.ttf"; sourceTree = "<group>"; };
-		4ECEA0A52DCB55620027FDA9 /* monster */ = {isa = PBXFileReference; lastKnownFileType = folder; name = monster; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/monster; sourceTree = "<group>"; };
-		4ECEA0A62DCB55620027FDA9 /* txt */ = {isa = PBXFileReference; lastKnownFileType = folder; name = txt; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/txt; sourceTree = "<group>"; };
-		4ECEA0A72DCB55630027FDA9 /* Barlow-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Barlow-Regular.ttf"; path = "../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/Barlow-Regular.ttf"; sourceTree = "<group>"; };
-		4ECEA0A82DCB55630027FDA9 /* Tips.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = Tips.txt; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/Tips.txt; sourceTree = "<group>"; };
-		4ECEA0A92DCB55640027FDA9 /* UpdateVersionTips.cfg */ = {isa = PBXFileReference; lastKnownFileType = text; name = UpdateVersionTips.cfg; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/UpdateVersionTips.cfg; sourceTree = "<group>"; };
-		4ECEA0AA2DCB55640027FDA9 /* platform.cfg */ = {isa = PBXFileReference; lastKnownFileType = text; name = platform.cfg; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/platform.cfg; sourceTree = "<group>"; };
-		4ECEA0AB2DCB55650027FDA9 /* UI */ = {isa = PBXFileReference; lastKnownFileType = folder; name = UI; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/UI; sourceTree = "<group>"; };
-		4ECEA0AC2DCB55650027FDA9 /* lua */ = {isa = PBXFileReference; lastKnownFileType = folder; name = lua; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/lua; sourceTree = "<group>"; };
-		4ECEA0AD2DCB55660027FDA9 /* version_android_local.cfg */ = {isa = PBXFileReference; lastKnownFileType = text; name = version_android_local.cfg; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/version_android_local.cfg; sourceTree = "<group>"; };
-		4ECEA0AE2DCB55670027FDA9 /* audio */ = {isa = PBXFileReference; lastKnownFileType = folder; name = audio; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/audio; sourceTree = "<group>"; };
-		4ECEA0AF2DCB55680027FDA9 /* versionApp.manifest */ = {isa = PBXFileReference; lastKnownFileType = text; name = versionApp.manifest; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/versionApp.manifest; sourceTree = "<group>"; };
-		4ECEA0B02DCB55690027FDA9 /* version.manifest */ = {isa = PBXFileReference; lastKnownFileType = text; name = version.manifest; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/version.manifest; sourceTree = "<group>"; };
-		4ECEA0B12DCB55690027FDA9 /* Spine */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Spine; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/Spine; sourceTree = "<group>"; };
-		4ECEA0B22DCB556A0027FDA9 /* version_ios.cfg */ = {isa = PBXFileReference; lastKnownFileType = text; name = version_ios.cfg; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/version_ios.cfg; sourceTree = "<group>"; };
-		4ECEA0B32DCB556A0027FDA9 /* i18n */ = {isa = PBXFileReference; lastKnownFileType = folder; name = i18n; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/i18n; sourceTree = "<group>"; };
-		4ECEA0B42DCB556B0027FDA9 /* Video */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Video; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/Video; sourceTree = "<group>"; };
-		4ECEA0B52DCB556C0027FDA9 /* version_android.cfg */ = {isa = PBXFileReference; lastKnownFileType = text; name = version_android.cfg; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/version_android.cfg; sourceTree = "<group>"; };
-		4ECEA0B62DCB556C0027FDA9 /* HalfBody */ = {isa = PBXFileReference; lastKnownFileType = folder; name = HalfBody; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/HalfBody; sourceTree = "<group>"; };
-		4ECEA0B72DCB556D0027FDA9 /* ecchigamer_domain_v1.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = ecchigamer_domain_v1.txt; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/ecchigamer_domain_v1.txt; sourceTree = "<group>"; };
-		4ECEA0B82DCB556D0027FDA9 /* Imagesetfile */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Imagesetfile; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/Imagesetfile; sourceTree = "<group>"; };
-		4ECEA0B92DCB556E0027FDA9 /* LoadingUI_JP */ = {isa = PBXFileReference; lastKnownFileType = folder; name = LoadingUI_JP; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/LoadingUI_JP; sourceTree = "<group>"; };
 		4ED4423EA6EF2659EA2F0A4C /* Login.pb.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Login.pb.cc; path = ../../Game/Protobuf/Login.pb.cc; sourceTree = SOURCE_ROOT; };
 		4FAF47B9B95FE889FEDFFEDC /* CDKeyMsgPage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CDKeyMsgPage.h; path = ../../Game/Classes/CDKeyMsgPage.h; sourceTree = SOURCE_ROOT; };
 		4FB74376A31076ED2F7FD398 /* ContentBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ContentBase.h; path = ../../Game/Classes/ContentBase.h; sourceTree = SOURCE_ROOT; };
@@ -2121,38 +2124,39 @@
 		4ECEA0DA2DCB558F0027FDA9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				4ECEA0AE2DCB55670027FDA9 /* audio */,
-				4ECEA0A42DCB55610027FDA9 /* Barlow-Bold.ttf */,
-				4ECEA0A72DCB55630027FDA9 /* Barlow-Regular.ttf */,
-				4ECEA09E2DCB555E0027FDA9 /* Barlow-SemiBold.ttf */,
-				4ECEA09C2DCB555D0027FDA9 /* BG */,
-				4ECEA0A02DCB555F0027FDA9 /* ccbi */,
-				4ECEA0B72DCB556D0027FDA9 /* ecchigamer_domain_v1.txt */,
-				4ECEA0B62DCB556C0027FDA9 /* HalfBody */,
-				4ECEA0B32DCB556A0027FDA9 /* i18n */,
-				4ECEA0B82DCB556D0027FDA9 /* Imagesetfile */,
-				4ECEA09F2DCB555F0027FDA9 /* Lang */,
-				4ECEA0B92DCB556E0027FDA9 /* LoadingUI_JP */,
-				4ECEA0AC2DCB55650027FDA9 /* lua */,
-				4ECEA09D2DCB555E0027FDA9 /* map */,
-				4ECEA0A52DCB55620027FDA9 /* monster */,
-				4ECEA0AA2DCB55640027FDA9 /* platform.cfg */,
-				4ECEA09A2DCB555D0027FDA9 /* projectLocal.manifest */,
-				4ECEA09B2DCB555D0027FDA9 /* RecourceFilePath.txt */,
-				4ECEA0A22DCB55600027FDA9 /* shader */,
-				4ECEA0A12DCB55600027FDA9 /* skill */,
-				4ECEA0B12DCB55690027FDA9 /* Spine */,
-				4ECEA0A82DCB55630027FDA9 /* Tips.txt */,
-				4ECEA0A62DCB55620027FDA9 /* txt */,
-				4ECEA0AB2DCB55650027FDA9 /* UI */,
-				4ECEA0A92DCB55640027FDA9 /* UpdateVersionTips.cfg */,
-				4ECEA0A32DCB55610027FDA9 /* UpdateVersionTipsTW.cfg */,
-				4ECEA0B02DCB55690027FDA9 /* version.manifest */,
-				4ECEA0B52DCB556C0027FDA9 /* version_android.cfg */,
-				4ECEA0AD2DCB55660027FDA9 /* version_android_local.cfg */,
-				4ECEA0B22DCB556A0027FDA9 /* version_ios.cfg */,
-				4ECEA0AF2DCB55680027FDA9 /* versionApp.manifest */,
-				4ECEA0B42DCB556B0027FDA9 /* Video */,
+				4E499D752DDC7F4500922FAD /* audio */,
+				4E499D842DDC7F4E00922FAD /* Barlow-Bold.ttf */,
+				4E499D8A2DDC7F5100922FAD /* Barlow-Regular.ttf */,
+				4E499D892DDC7F5000922FAD /* Barlow-SemiBold.ttf */,
+				4E499D7B2DDC7F4900922FAD /* BG */,
+				4E499D762DDC7F4600922FAD /* ccbi */,
+				4E499D7A2DDC7F4900922FAD /* ecchigamer_domain_v1.txt */,
+				4E499D7D2DDC7F4A00922FAD /* erolabs_domain_v1.txt */,
+				4E499D742DDC7F4500922FAD /* HalfBody */,
+				4E499D832DDC7F4D00922FAD /* i18n */,
+				4E499D882DDC7F5000922FAD /* Imagesetfile */,
+				4E499D772DDC7F4800922FAD /* Lang */,
+				4E499D732DDC7F4500922FAD /* LoadingUI_JP */,
+				4E499D8B2DDC7F5100922FAD /* lua */,
+				4E499D8D2DDC7F5300922FAD /* map */,
+				4E499D8C2DDC7F5100922FAD /* monster */,
+				4E499D7C2DDC7F4A00922FAD /* platform.cfg */,
+				4E499D782DDC7F4800922FAD /* projectLocal.manifest */,
+				4E499D802DDC7F4C00922FAD /* RecourceFilePath.txt */,
+				4E499D7F2DDC7F4B00922FAD /* shader */,
+				4E499D8F2DDC7F5400922FAD /* skill */,
+				4E499D852DDC7F4E00922FAD /* Spine */,
+				4E499D812DDC7F4C00922FAD /* Tips.txt */,
+				4E499D912DDC7F5600922FAD /* txt */,
+				4E499D7E2DDC7F4B00922FAD /* UI */,
+				4E499D712DDC7F4400922FAD /* UpdateVersionTips.cfg */,
+				4E499D792DDC7F4900922FAD /* UpdateVersionTipsTW.cfg */,
+				4E499D8E2DDC7F5300922FAD /* version.manifest */,
+				4E499D902DDC7F5500922FAD /* version_android.cfg */,
+				4E499D862DDC7F4E00922FAD /* version_android_local.cfg */,
+				4E499D822DDC7F4D00922FAD /* version_ios.cfg */,
+				4E499D722DDC7F4400922FAD /* versionApp.manifest */,
+				4E499D872DDC7F4F00922FAD /* Video */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -3092,38 +3096,39 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4ECEA0BA2DCB556F0027FDA9 /* projectLocal.manifest in Resources */,
-				4ECEA0BB2DCB556F0027FDA9 /* RecourceFilePath.txt in Resources */,
-				4ECEA0BC2DCB556F0027FDA9 /* BG in Resources */,
-				4ECEA0BD2DCB556F0027FDA9 /* map in Resources */,
-				4ECEA0BE2DCB556F0027FDA9 /* Barlow-SemiBold.ttf in Resources */,
-				4ECEA0BF2DCB556F0027FDA9 /* Lang in Resources */,
-				4ECEA0C02DCB556F0027FDA9 /* ccbi in Resources */,
-				4ECEA0C12DCB556F0027FDA9 /* skill in Resources */,
-				4ECEA0C22DCB556F0027FDA9 /* shader in Resources */,
-				4ECEA0C32DCB556F0027FDA9 /* UpdateVersionTipsTW.cfg in Resources */,
-				4ECEA0C42DCB556F0027FDA9 /* Barlow-Bold.ttf in Resources */,
-				4ECEA0C52DCB556F0027FDA9 /* monster in Resources */,
-				4ECEA0C62DCB556F0027FDA9 /* txt in Resources */,
-				4ECEA0C72DCB556F0027FDA9 /* Barlow-Regular.ttf in Resources */,
-				4ECEA0C82DCB556F0027FDA9 /* Tips.txt in Resources */,
-				4ECEA0C92DCB556F0027FDA9 /* UpdateVersionTips.cfg in Resources */,
-				4ECEA0CA2DCB556F0027FDA9 /* platform.cfg in Resources */,
-				4ECEA0CB2DCB556F0027FDA9 /* UI in Resources */,
-				4ECEA0CC2DCB556F0027FDA9 /* lua in Resources */,
-				4ECEA0CD2DCB556F0027FDA9 /* version_android_local.cfg in Resources */,
-				4ECEA0CE2DCB556F0027FDA9 /* audio in Resources */,
-				4ECEA0CF2DCB556F0027FDA9 /* versionApp.manifest in Resources */,
-				4ECEA0D02DCB556F0027FDA9 /* version.manifest in Resources */,
-				4ECEA0D12DCB556F0027FDA9 /* Spine in Resources */,
-				4ECEA0D22DCB556F0027FDA9 /* version_ios.cfg in Resources */,
-				4ECEA0D32DCB556F0027FDA9 /* i18n in Resources */,
-				4ECEA0D42DCB556F0027FDA9 /* Video in Resources */,
-				4ECEA0D52DCB556F0027FDA9 /* version_android.cfg in Resources */,
-				4ECEA0D62DCB556F0027FDA9 /* HalfBody in Resources */,
-				4ECEA0D72DCB556F0027FDA9 /* ecchigamer_domain_v1.txt in Resources */,
-				4ECEA0D82DCB556F0027FDA9 /* Imagesetfile in Resources */,
-				4ECEA0D92DCB556F0027FDA9 /* LoadingUI_JP in Resources */,
+				4E499DB32DDC7F8100922FAD /* audio in Resources */,
+				4E499DB42DDC7F8100922FAD /* Barlow-Bold.ttf in Resources */,
+				4E499DB52DDC7F8100922FAD /* Barlow-Regular.ttf in Resources */,
+				4E499DB62DDC7F8100922FAD /* Barlow-SemiBold.ttf in Resources */,
+				4E499DB72DDC7F8100922FAD /* BG in Resources */,
+				4E499DB82DDC7F8100922FAD /* ccbi in Resources */,
+				4E499DB92DDC7F8100922FAD /* ecchigamer_domain_v1.txt in Resources */,
+				4E499DBA2DDC7F8100922FAD /* erolabs_domain_v1.txt in Resources */,
+				4E499DBB2DDC7F8100922FAD /* HalfBody in Resources */,
+				4E499DBC2DDC7F8100922FAD /* i18n in Resources */,
+				4E499DBD2DDC7F8100922FAD /* Imagesetfile in Resources */,
+				4E499DBE2DDC7F8100922FAD /* Lang in Resources */,
+				4E499DBF2DDC7F8100922FAD /* LoadingUI_JP in Resources */,
+				4E499DC02DDC7F8100922FAD /* lua in Resources */,
+				4E499DC12DDC7F8100922FAD /* map in Resources */,
+				4E499DC22DDC7F8100922FAD /* monster in Resources */,
+				4E499DC32DDC7F8100922FAD /* platform.cfg in Resources */,
+				4E499DC42DDC7F8100922FAD /* projectLocal.manifest in Resources */,
+				4E499DC52DDC7F8100922FAD /* RecourceFilePath.txt in Resources */,
+				4E499DC62DDC7F8100922FAD /* shader in Resources */,
+				4E499DC72DDC7F8100922FAD /* skill in Resources */,
+				4E499DC82DDC7F8100922FAD /* Spine in Resources */,
+				4E499DC92DDC7F8100922FAD /* Tips.txt in Resources */,
+				4E499DCA2DDC7F8100922FAD /* txt in Resources */,
+				4E499DCB2DDC7F8100922FAD /* UI in Resources */,
+				4E499DCC2DDC7F8100922FAD /* UpdateVersionTips.cfg in Resources */,
+				4E499DCD2DDC7F8100922FAD /* UpdateVersionTipsTW.cfg in Resources */,
+				4E499DCE2DDC7F8100922FAD /* version.manifest in Resources */,
+				4E499DCF2DDC7F8100922FAD /* version_android.cfg in Resources */,
+				4E499DD02DDC7F8100922FAD /* version_android_local.cfg in Resources */,
+				4E499DD12DDC7F8100922FAD /* version_ios.cfg in Resources */,
+				4E499DD22DDC7F8100922FAD /* versionApp.manifest in Resources */,
+				4E499DD32DDC7F8100922FAD /* Video in Resources */,
 				4E4521342D5F191600F26188 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3132,39 +3137,40 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4E77C6A62DDC4961000823F7 /* projectLocal.manifest in Resources */,
-				4E77C6A72DDC4961000823F7 /* RecourceFilePath.txt in Resources */,
-				4E77C6A82DDC4961000823F7 /* BG in Resources */,
-				4E77C6A92DDC4961000823F7 /* map in Resources */,
-				4E77C6AA2DDC4961000823F7 /* Barlow-SemiBold.ttf in Resources */,
-				4E77C6AB2DDC4961000823F7 /* Lang in Resources */,
-				4E77C6AC2DDC4961000823F7 /* ccbi in Resources */,
-				4E77C6AD2DDC4961000823F7 /* skill in Resources */,
-				4E77C6AE2DDC4961000823F7 /* shader in Resources */,
-				4E77C6AF2DDC4961000823F7 /* UpdateVersionTipsTW.cfg in Resources */,
-				4E77C6B02DDC4961000823F7 /* Barlow-Bold.ttf in Resources */,
-				4E77C6B12DDC4961000823F7 /* monster in Resources */,
-				4E77C6B22DDC4961000823F7 /* txt in Resources */,
-				4E77C6B32DDC4961000823F7 /* Barlow-Regular.ttf in Resources */,
-				4E77C6B42DDC4961000823F7 /* Tips.txt in Resources */,
-				4E77C6B52DDC4961000823F7 /* UpdateVersionTips.cfg in Resources */,
-				4E77C6B62DDC4961000823F7 /* platform.cfg in Resources */,
-				4E77C6B72DDC4961000823F7 /* UI in Resources */,
-				4E77C6B82DDC4961000823F7 /* lua in Resources */,
-				4E77C6B92DDC4961000823F7 /* version_android_local.cfg in Resources */,
-				4E77C6BA2DDC4961000823F7 /* audio in Resources */,
-				4E77C6BB2DDC4961000823F7 /* versionApp.manifest in Resources */,
+				4E499D922DDC7F5600922FAD /* UpdateVersionTips.cfg in Resources */,
+				4E499D932DDC7F5600922FAD /* versionApp.manifest in Resources */,
+				4E499D942DDC7F5600922FAD /* LoadingUI_JP in Resources */,
+				4E499D952DDC7F5600922FAD /* HalfBody in Resources */,
+				4E499D962DDC7F5600922FAD /* audio in Resources */,
+				4E499D972DDC7F5600922FAD /* ccbi in Resources */,
+				4E499D982DDC7F5600922FAD /* Lang in Resources */,
+				4E499D992DDC7F5600922FAD /* projectLocal.manifest in Resources */,
+				4E499D9A2DDC7F5600922FAD /* UpdateVersionTipsTW.cfg in Resources */,
+				4E499D9B2DDC7F5600922FAD /* ecchigamer_domain_v1.txt in Resources */,
+				4E499D9C2DDC7F5600922FAD /* BG in Resources */,
+				4E499D9D2DDC7F5600922FAD /* platform.cfg in Resources */,
+				4E499D9E2DDC7F5600922FAD /* erolabs_domain_v1.txt in Resources */,
+				4E499D9F2DDC7F5600922FAD /* UI in Resources */,
+				4E499DA02DDC7F5600922FAD /* shader in Resources */,
+				4E499DA12DDC7F5600922FAD /* RecourceFilePath.txt in Resources */,
+				4E499DA22DDC7F5600922FAD /* Tips.txt in Resources */,
+				4E499DA32DDC7F5600922FAD /* version_ios.cfg in Resources */,
+				4E499DA42DDC7F5600922FAD /* i18n in Resources */,
+				4E499DA52DDC7F5600922FAD /* Barlow-Bold.ttf in Resources */,
+				4E499DA62DDC7F5600922FAD /* Spine in Resources */,
+				4E499DA72DDC7F5600922FAD /* version_android_local.cfg in Resources */,
+				4E499DA82DDC7F5600922FAD /* Video in Resources */,
+				4E499DA92DDC7F5600922FAD /* Imagesetfile in Resources */,
+				4E499DAA2DDC7F5600922FAD /* Barlow-SemiBold.ttf in Resources */,
+				4E499DAB2DDC7F5600922FAD /* Barlow-Regular.ttf in Resources */,
+				4E499DAC2DDC7F5600922FAD /* lua in Resources */,
+				4E499DAD2DDC7F5600922FAD /* monster in Resources */,
+				4E499DAE2DDC7F5600922FAD /* map in Resources */,
+				4E499DAF2DDC7F5600922FAD /* version.manifest in Resources */,
+				4E499DB02DDC7F5600922FAD /* skill in Resources */,
+				4E499DB12DDC7F5600922FAD /* version_android.cfg in Resources */,
+				4E499DB22DDC7F5600922FAD /* txt in Resources */,
 				4E77C6D02DDC6107000823F7 /* Erolabs.xcassets in Resources */,
-				4E77C6BC2DDC4961000823F7 /* version.manifest in Resources */,
-				4E77C6BD2DDC4961000823F7 /* Spine in Resources */,
-				4E77C6BE2DDC4961000823F7 /* version_ios.cfg in Resources */,
-				4E77C6BF2DDC4961000823F7 /* i18n in Resources */,
-				4E77C6C02DDC4961000823F7 /* Video in Resources */,
-				4E77C6C12DDC4961000823F7 /* version_android.cfg in Resources */,
-				4E77C6C22DDC4961000823F7 /* HalfBody in Resources */,
-				4E77C6C32DDC4961000823F7 /* ecchigamer_domain_v1.txt in Resources */,
-				4E77C6C42DDC4961000823F7 /* Imagesetfile in Resources */,
-				4E77C6C52DDC4961000823F7 /* LoadingUI_JP in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
