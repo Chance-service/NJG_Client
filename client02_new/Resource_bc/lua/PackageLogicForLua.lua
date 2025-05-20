@@ -3851,17 +3851,6 @@ function PackageLogicForLua.PickUpData(eventName, handler)
 end
 PackageLogicForLua.PickUpData = PacketScriptHandler:new(HP_pb.ACTIVITY197_SUPER_PICKUP_INFO_S, PackageLogicForLua.PickUpData)
 
-function PackageLogicForLua.LoginReward(eventName, handler)
-    if eventName == "luaReceivePacket" then
-       local Activity6_pb = require("Activity6_pb")
-       local msgBuff = handler:getRecPacketBuffer()
-       local msg = Activity6_pb.EightDayLoginAwardRep()
-       msg:ParseFromString(msgBuff)
-       require("LoginRewardPage"):setServerData(msg)
-    end
-end
-PackageLogicForLua.HPLoginReward = PacketScriptHandler:new(HP_pb.ACTIVITY200_EIGHT_DAY_LOGIN_S, PackageLogicForLua.LoginReward)
-
 
 -----------JGG get order handler------------
 --[[
@@ -4047,7 +4036,6 @@ function validateAndRegisterAllHandler()
     PackageLogicForLua.HPTowerData_Limit:registerFunctionHandler(PackageLogicForLua.TowerData_Limit)
     PackageLogicForLua.HPTowerData_Fear:registerFunctionHandler(PackageLogicForLua.TowerData_Fear)
     PackageLogicForLua.PickUpData:registerFunctionHandler(PackageLogicForLua.PickUpData)
-    PackageLogicForLua.HPLoginReward:registerFunctionHandler(PackageLogicForLua.LoginReward)
     --JGG order
  --   PackageLogicForLua.HPJggGetOrder = PacketScriptHandler:new(HP_pb.SHOP_JGG_ORDER_S, PackageLogicForLua.onJggGetOrder)
 
