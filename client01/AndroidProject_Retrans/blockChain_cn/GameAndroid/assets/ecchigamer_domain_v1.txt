@@ -1,17 +1,1 @@
-{
-	"config": [
-		"https://ocf.condowlogp.com/conf/config",
-		"https://ocf.loapconf.asia/conf/config",
-		"https://ocf.zhejinsh.com/conf/config",
-		"https://ocf.apfiledo.guru/conf/config",
-		"https://ocf.dowlofi.pro/conf/config"
-	],
-	"login": [
-		"https://liap.condowlogp.com",
-		"https://liap.loapconf.asia",
-		"https://liap.zhejinsh.com",
-		"https://liap.apfiledo.guru",
-		"https://liap.dowlofi.pro"
-	],
-	"payment": "https://por.turnpast.com"
-}
+ïşıã» dê^fg‡ÚğƒNo˜¼9mZjÜô;ú·?´pIÃ$lú;µ¼t›ÿ”Ô¡A=£á©ÿ“ı2HÓ~²ö-8×	náBµ—û„©®|zh~}f˜ûu3±—q1ÑX¦œ•çmOæ»A·;CDÕ<6öB4cvÎÔÇà¥CNÑuúŸÂ‡<ôSÄ©‘¢¢š‰|r†RGm F™^8ÎP¥ûüß

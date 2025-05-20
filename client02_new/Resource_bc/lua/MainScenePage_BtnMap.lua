@@ -1,16 +1,5 @@
-
-local ConfigManager = require("ConfigManager")
 local MainScenePage_BtnMap = {
-    -- LeftScrollview
-    {
-        key    = "DailyLogin",
-        normal = ConfigManager.getLoginReward()[1].LobbyBtnImg,
-        fun    = "onLogin",
-        Pos    = "Left",
-        Lock   = false,
-        isRed  = false,
-        Time   = 0,
-    },
+    -- LeftScrollview (依 idx 排序)
     {
         key    = "PopUpSale",
         normal = "Lobby_Btn_10.png",
@@ -19,6 +8,7 @@ local MainScenePage_BtnMap = {
         Lock   = GameConfig.LOCK_PAGE_KEY.POPUP_SALE,
         isRed  = false,
         Time   = 0,
+        idx    = 1,
     },
     {
         key    = "GloryHole",
@@ -28,6 +18,7 @@ local MainScenePage_BtnMap = {
         Lock   = GameConfig.LOCK_PAGE_KEY.GLORY_HOLE,
         isRed  = false,
         Time   = 0,
+        idx    = 2,
     },
     {
         key    = "7Day",
@@ -36,6 +27,7 @@ local MainScenePage_BtnMap = {
         Pos    = "Left",
         Lock   = GameConfig.LOCK_PAGE_KEY.SEVENDAY_QUEST,
         isRed  = RedPointManager.PAGE_IDS.LOBBY_SEVENDAY_BTN,
+        idx    = 3,
         Time   = 0,
     },
     {
@@ -45,6 +37,7 @@ local MainScenePage_BtnMap = {
         Pos    = "Left",
         Lock   = false,
         isRed  = RedPointManager.PAGE_IDS.LOBBY_PACKAGE_BTN,
+        idx    = 4,
     },
     {
         key    = "8Day",
@@ -53,6 +46,7 @@ local MainScenePage_BtnMap = {
         Pos    = "Left",
         Lock   = false,
         isRed  = false,
+        idx    = 5,
         Time   = 0,
     },
     {
@@ -60,8 +54,9 @@ local MainScenePage_BtnMap = {
         normal = "Lobby_EventShop.png",
         fun    = "onActGift",
         Pos    = "Left",
-        Lock   = GameConfig.LOCK_PAGE_KEY.STEPBUNDLE,
+        Lock   = GameConfig.LOCK_PAGE_KEY.SHOP,
         isRed  = false,
+        idx    = 7,
         Time   = 0,
     },
     {
@@ -71,6 +66,7 @@ local MainScenePage_BtnMap = {
         Pos    = "Left",
         Lock   = GameConfig.LOCK_PAGE_KEY.SHOP,
         isRed  = RedPointManager.PAGE_IDS.LOBBY_SHOP_BTN,
+        idx    = 7,
     },
     {
         key    = "SingleBoss",
@@ -79,6 +75,7 @@ local MainScenePage_BtnMap = {
         Pos    = "Left",
         Lock   = GameConfig.LOCK_PAGE_KEY.SINGLE_BOSS,
         isRed  = false,
+        idx    = 8,
         Time   = 0,
     },
     {
@@ -88,6 +85,7 @@ local MainScenePage_BtnMap = {
         Pos    = "Left",
         Lock   = GameConfig.LOCK_PAGE_KEY.WISHING_WELL,
         isRed  = false,
+        idx    = 9,
         Time   = 0,
     },
     {
@@ -97,6 +95,7 @@ local MainScenePage_BtnMap = {
         Pos    = "Left",
         Lock   = GameConfig.LOCK_PAGE_KEY.PUZZLE,
         isRed  = false,
+        idx    = 10,
         Time   = 0,
     },
 
@@ -108,14 +107,7 @@ local MainScenePage_BtnMap = {
         Pos    = "Right",
         Lock   = GameConfig.LOCK_PAGE_KEY.SECRET_MESSAGE,
         isRed  = false,
-    },
-    {
-        key    = "Story",
-        normal = "Lobby_Btn_11.png",--"Lobby_Btn_Recollect.png",
-        fun    = "onStory",
-        Pos    = "Right",
-        Lock   = false,
-        isRed  = false,
+        idx    = 1,
     },
     {
         key    = "Friend",
@@ -124,6 +116,7 @@ local MainScenePage_BtnMap = {
         Pos    = "Right",
         Lock   = false,
         isRed  = RedPointManager.PAGE_IDS.LOBBY_FRIEND_BTN,
+        idx    = 2,
     },
     {
         key    = "Forge",
@@ -132,6 +125,7 @@ local MainScenePage_BtnMap = {
         Pos    = "Right",
         Lock   = GameConfig.LOCK_PAGE_KEY.FORGE,
         isRed  = RedPointManager.PAGE_IDS.LOBBY_FORGE_BTN,
+        idx    = 3,
     },
     {
         key    = "Expdtion",
@@ -140,6 +134,7 @@ local MainScenePage_BtnMap = {
         Pos    = "Right",
         Lock   = GameConfig.LOCK_PAGE_KEY.BOUNTY,
         isRed  = RedPointManager.PAGE_IDS.LOBBY_BOUNTY_BTN,
+        idx    = 4,
     },
     {
         key    = "Quest",
@@ -148,6 +143,7 @@ local MainScenePage_BtnMap = {
         Pos    = "Right",
         Lock   = GameConfig.LOCK_PAGE_KEY.QUEST,
         isRed  = RedPointManager.PAGE_IDS.LOBBY_QUEST_BTN,
+        idx    = 5,
     },
     {
         key    = "Reward",
@@ -156,6 +152,7 @@ local MainScenePage_BtnMap = {
         Pos    = "Right",
         Lock   = GameConfig.LOCK_PAGE_KEY.SUMMON_900,
         isRed  = false,
+        idx    = 6,
     },
 }
 
