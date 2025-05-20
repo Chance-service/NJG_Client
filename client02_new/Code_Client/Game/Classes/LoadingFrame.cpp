@@ -136,6 +136,10 @@ void LoadingFrame::Enter( GamePrecedure* )
     {
         libPlatformManager::getPlatform()->login();
     }
+    else if (SeverConsts::Get()->IsErolabs())
+    {
+        libPlatformManager::getPlatform()->login();
+    }
 #endif
 
 	float reqServerTime = StringConverter::parseLong(VaribleManager::Get()->getSetting("ReqServerListOffest", "", "10"), true);

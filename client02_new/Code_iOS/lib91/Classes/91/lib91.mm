@@ -4,7 +4,10 @@
 #include "libOS.h"
 #include "SeverConsts.h"
 
+#if PROJECT_KUSO
 #import <KUSOPlaySDK/KUSOPlaySDK.h>
+#endif
+
 #import <TapDB/TapDB.h>
 
 //lib91Obj* s_lib91Ojb = 0;
@@ -67,6 +70,8 @@ static bool enableTapDBLog = true;
     return tmp;
 }
 @end
+
+#if PROJECT_KUSO
 
 @interface KUSOLoginListener : NSObject <PlayCenterLoginListener>
 @property (nonatomic, copy) void (^onLoginSuccessBlock)
@@ -132,6 +137,8 @@ static bool enableTapDBLog = true;
 
 @end
 
+#endif
+
 void lib91::initWithConfigure(const SDK_CONFIG_STU& configure)
 {
     sdkConfigure = configure;
@@ -173,6 +180,7 @@ void lib91::initWithConfigure(const SDK_CONFIG_STU& configure)
 
 void lib91::setupSDK(int platformId)
 {
+#if PROJECT_KUSO
     // Setup kuso sdk
     if ((SeverConsts::E_PLATFORM)platformId == SeverConsts::EP_KUSO)
     {
@@ -187,6 +195,7 @@ void lib91::setupSDK(int platformId)
          setupViewController:controller
          config:config];
     }
+#endif
     // Init tapDB
     NSLog(@"TapDB: Setup");
     [TapDB enableLog:enableTapDBLog];
@@ -198,20 +207,25 @@ void lib91::setupSDK(int platformId)
 
 bool lib91::getLogined()
 {
+#if PROJECT_KUSO
     return PlayCenter.shared.isLoggedIn;
+#endif
+    // TODO:
+    return true;
 }
 
 void lib91::login()
 {
     if(!this->getLogined())
 	{
-        this->doKUSOLogin();
+        this->doSDKLogin();
     }
     
 }
 
 void lib91::logout()
 {
+#if PROJECT_KUSO
     KUSOLogoutListener *listener = [[KUSOLogoutListener alloc] init];
     listener.onLogoutSuccessBlock = ^(BOOL success)
     {
@@ -223,10 +237,12 @@ void lib91::logout()
     };
     
     [PlayCenter.shared logoutListener:listener];
+#endif
 }
 
-void lib91::doKUSOLogin()
+void lib91::doSDKLogin()
 {
+#if PROJECT_KUSO
     NSLog(@"KUSO: Try Login");
     UIViewController* controller = [UIApplication sharedApplication].keyWindow.rootViewController;
     CGRect frame = controller.view.frame;
@@ -256,6 +272,7 @@ void lib91::doKUSOLogin()
     };
     
     [PlayCenter.shared loginListener:listener];
+#endif
 }
 
 void lib91::switchUsers()
@@ -289,6 +306,7 @@ void lib91::buyGoods(BUYINFO& info)
     }
     NSString *orderSerial = info.cooOrderSerial.empty() ? @"" : [NSString stringWithUTF8String:info.cooOrderSerial.c_str()];
     
+#if PROJECT_KUSO
     KUSOPayListener *listener = [[KUSOPayListener alloc] init];
     listener.onPaymentReadyBlock = ^(BOOL success, NSString * _Nullable url, NSString * _Nullable orderId, PlayCenterError * _Nullable error)
     {
@@ -338,7 +356,7 @@ void lib91::buyGoods(BUYINFO& info)
      nonce:orderSerial
      items:itemsString
      listener:listener];
-    
+#endif
     /*if(info.cooOrderSerial=="")
     {
         info.cooOrderSerial = libOS::getInstance()->generateSerial();
@@ -487,7 +505,9 @@ const std::string& lib91::getToken()
 
 void lib91::showPlatformProfile()
 {
+#if PROJECT_KUSO
     [PlayCenter.shared profile];
+#endif
 }
 
 
@@ -508,9 +528,11 @@ int lib91::getIsGuest()
 
 const unsigned int lib91::getPlatformId()
 {
-    // Match E_PLATFORM enum
-    // 6 = KUSO
-    return 6u;
+#if PROJECT_KUSO
+    return SeverConsts::EP_KUSO;
+#else
+    return SeverConsts::EP_EROLABS;
+#endif
 }
 
 void lib91::setIsGuest(const int guest)

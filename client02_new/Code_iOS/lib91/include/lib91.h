@@ -29,7 +29,7 @@ public:
     
 	virtual void login();
     
-    virtual void doKUSOLogin();
+    virtual void doSDKLogin();
 
     virtual void updateApp(std::string& storeUrl);
     
