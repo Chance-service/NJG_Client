@@ -4299,7 +4299,7 @@
 					"-ObjC",
 					"-lsqlite3.0",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ios.ninja.girl.erolabs.cn;
+				PRODUCT_BUNDLE_IDENTIFIER = ninja.girl.erolabs.cn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "6987a272-2e42-4377-a502-a6ffdfbcb24a";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -4406,7 +4406,7 @@
 					"-ObjC",
 					"-lsqlite3.0",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ios.ninja.girl.erolabs.cn;
+				PRODUCT_BUNDLE_IDENTIFIER = ninja.girl.erolabs.cn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "978e775b-9f2f-4a14-a9e8-17cd9ff07c9e";
 				"PROVISIONING_PROFILE[sdk=*]" = "";

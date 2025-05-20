@@ -209,9 +209,10 @@ bool lib91::getLogined()
 {
 #if PROJECT_KUSO
     return PlayCenter.shared.isLoggedIn;
+#else
+    // TODO: Not sure if we should just return true
+    return false;
 #endif
-    // TODO:
-    return true;
 }
 
 void lib91::login()
