@@ -8,6 +8,10 @@
 #import <KUSOPlaySDK/KUSOPlaySDK.h>
 #endif
 
+#ifdef PROJECT_EROLABS
+#import "analytics_sdk_ios_framework/analytics_sdk_ios_framework.m"
+#endif
+
 #import <TapDB/TapDB.h>
 
 //lib91Obj* s_lib91Ojb = 0;
@@ -196,6 +200,11 @@ void lib91::setupSDK(int platformId)
          config:config];
     }
 #endif
+    
+#ifdef PROJECT_EROLABS
+    //[Hyena setAdvertiserIDCollectionEnabled:NO];
+    [Hyena appStart:@"70A857C60DF94AACB8C48D6EE6A5C594"];
+#endif
     // Init tapDB
     NSLog(@"TapDB: Setup");
     [TapDB enableLog:enableTapDBLog];
@@ -273,7 +282,8 @@ void lib91::doSDKLogin()
     };
     
     [PlayCenter.shared loginListener:listener];
-#elif PROJECT_EROLABS
+#endif
+#ifdef PROJECT_EROLABS
     // Lua will handle the login flow, so just return success
     _boardcastLoginResult(true, "");
 #endif

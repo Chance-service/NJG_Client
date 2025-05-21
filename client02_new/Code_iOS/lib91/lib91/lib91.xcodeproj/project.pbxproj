@@ -1072,7 +1072,7 @@
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "lib91/lib91-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = EROLABS;
+				GCC_PREPROCESSOR_DEFINITIONS = PROJECT_EROLABS;
 				HEADER_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../../../Code_Client/include/libOS/include\"",
 					"\"$(SRCROOT)/../../com4lovesSDK/include\"",

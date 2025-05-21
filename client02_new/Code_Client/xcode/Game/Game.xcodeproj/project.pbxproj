@@ -17,6 +17,8 @@
 		4499CFB22244EA5000B9175C /* Bugly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4499CF912244EA5000B9175C /* Bugly.framework */; };
 		4499CFB32244EA5000B9175C /* libBuglyAgent.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4499CF952244EA5000B9175C /* libBuglyAgent.a */; };
 		4499CFB52244EBF300B9175C /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4499CFB42244EBF300B9175C /* libc++.tbd */; };
+		4E1C06CA2DDDFE3D0029BDBF /* analytics_sdk_ios_framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E1C06C92DDDFE3C0029BDBF /* analytics_sdk_ios_framework.framework */; };
+		4E1C06CB2DDDFE3D0029BDBF /* analytics_sdk_ios_framework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4E1C06C92DDDFE3C0029BDBF /* analytics_sdk_ios_framework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4E341A452D6EF65C002FE81D /* liblibOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7F50702D5F9B2100DD4AA4 /* liblibOS.a */; };
 		4E341A462D6EF66B002FE81D /* liblibOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7F50702D5F9B2100DD4AA4 /* liblibOS.a */; };
 		4E341A472D6EF679002FE81D /* liblibOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7F50702D5F9B2100DD4AA4 /* liblibOS.a */; };
@@ -1028,6 +1030,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				4E77C6C82DDC4961000823F7 /* TapDB.framework in Embed Frameworks */,
+				4E1C06CB2DDDFE3D0029BDBF /* analytics_sdk_ios_framework.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1190,6 +1193,7 @@
 		49BB4F54AB4832F37362595C /* NoticeBox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NoticeBox.h; path = ../../Game/Classes/NoticeBox.h; sourceTree = SOURCE_ROOT; };
 		4AD74B3991D9EE923EAD8528 /* RadialBlurSprite.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = RadialBlurSprite.cpp; path = ../../Game/Classes/RadialBlurSprite.cpp; sourceTree = SOURCE_ROOT; };
 		4D9741FB8B473B68880AF15A /* CCBContainer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = CCBContainer.cpp; path = ../../Game/Classes/CCBContainer.cpp; sourceTree = SOURCE_ROOT; };
+		4E1C06C92DDDFE3C0029BDBF /* analytics_sdk_ios_framework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = analytics_sdk_ios_framework.framework; path = ../../../Code_iOS/lib91/SDK/91SDK/framework5/framework/analytics_sdk_ios_framework.framework; sourceTree = "<group>"; };
 		4E4521492D5F191600F26188 /* NinjaGirl69.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NinjaGirl69.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E45216A2D5F1AE000F26188 /* KUSOPlaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KUSOPlaySDK.framework; path = ../../../Code_iOS/lib91/SDK/91SDK/framework5/framework/KUSOPlaySDK.framework; sourceTree = "<group>"; };
 		4E45216B2D5F1AE000F26188 /* TapDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TapDB.framework; path = ../../../Code_iOS/lib91/SDK/91SDK/framework5/framework/TapDB.framework; sourceTree = "<group>"; };
@@ -1811,6 +1815,7 @@
 				4E77C6942DDC4961000823F7 /* QuartzCore.framework in Frameworks */,
 				4E77C6952DDC4961000823F7 /* iAd.framework in Frameworks */,
 				4E77C6972DDC4961000823F7 /* CoreMedia.framework in Frameworks */,
+				4E1C06CA2DDDFE3D0029BDBF /* analytics_sdk_ios_framework.framework in Frameworks */,
 				4E77C6982DDC4961000823F7 /* CFNetwork.framework in Frameworks */,
 				4E77C6992DDC4961000823F7 /* AssetsLibrary.framework in Frameworks */,
 				4E77C69A2DDC4961000823F7 /* libliblua.a in Frameworks */,
@@ -2619,6 +2624,7 @@
 		CFFC4BC616D230D3001F65C9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4E1C06C92DDDFE3C0029BDBF /* analytics_sdk_ios_framework.framework */,
 				4E499DEC2DDCB7C800922FAD /* liblib91Erolabs.a */,
 				4E499DEA2DDCB7A300922FAD /* liblib91Kuso.a */,
 				4E59C3752D620816006518A5 /* AVKit.framework */,
