@@ -60,9 +60,10 @@ public:
     virtual std::string getPlatformMoneyName();
 
 #ifdef WIN32
-	//方便win32下调试，记录下上次登录成功的puid，下次进游戏默认为上次登录的puid, by zhenhui 2014/5/20
+	//锟斤拷锟斤拷win32锟铰碉拷锟皆ｏ拷锟斤拷录锟斤拷锟较次碉拷录锟缴癸拷锟斤拷puid锟斤拷锟铰次斤拷锟斤拷戏默锟斤拷为锟较次碉拷录锟斤拷puid, by zhenhui 2014/5/20
 	static void libEfun::setLoginName(const std::string content);
 #endif
+    virtual std::string getLoginName();
     virtual void notifyEnterGame();
     
     virtual bool getIsTryUser();

@@ -61,6 +61,7 @@ public:
 	//����win32�µ��ԣ���¼���ϴε�¼�ɹ���puid���´ν���ϷĬ��Ϊ�ϴε�¼��puid, by zhenhui 2014/5/20
 	static void libEfun::setLoginName(const std::string content);
 #endif
+    virtual std::string getLoginName();
     virtual void notifyEnterGame();
     
     virtual bool getIsTryUser();

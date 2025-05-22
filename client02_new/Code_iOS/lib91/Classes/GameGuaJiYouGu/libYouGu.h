@@ -74,8 +74,9 @@ public:
     virtual void updateApp(std::string &storeUrl);
     
 #ifdef WIN32
-    static void libR2::setLoginName(const std::string content);
+    static void setLoginName(const std::string content);
 #endif
+    virtual std::string getLoginName();
     virtual void notifyEnterGame();
     
     virtual bool getIsTryUser();

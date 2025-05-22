@@ -97,7 +97,7 @@ void libAndroid::initWithConfigure(const SDK_CONFIG_STU& configure)//init(bool p
 {
 	libAndroid_mLogined = false;
 	//
-	//Æ½Ì¨Ö§³ÖµÄÓÎÏ·°æ±¾¸üÐÂÒÑ¾­ÔÚÇ°Ãæ¼ì²éÁË£¬¿ÉÒÔÍ¬²½µÈÆä½á¹û»ØÀ´ÔÙ·¢ÆðÄÚ¸üÐÂ¼ì²â£¬»òÒì²½
+	//Æ½Ì¨Ö§ï¿½Öµï¿½ï¿½ï¿½Ï·ï¿½æ±¾ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½Ë£ï¿½ï¿½ï¿½ï¿½ï¿½Í¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ù·ï¿½ï¿½ï¿½ï¿½Ú¸ï¿½ï¿½Â¼ï¿½â£¬ï¿½ï¿½ï¿½ì²½
 	_boardcastUpdateCheckDone(true,"");
 }
 
@@ -124,6 +124,11 @@ static int isGuest = 0;
 void libAndroid::setLoginName(const std::string content){
 	libAndroid_mLoginTime = timeGetTime();
 	loginName = content;
+}
+
+std::string libAndroid::getLoginName()
+{
+    return loginName;
 }
 
 void libAndroid::setIsGuest(const int guest){
@@ -234,24 +239,24 @@ const std::string& libAndroid::nickName()
 
 void libAndroid::switchUsers()
 {
-	//²»Ìá¹©ÇÐ»»Æ½Ì¨ÕËºÅ
-	//²»Ìá¹©Ó¦ÓÃÄÚ×¢Ïú
-	//Æ½Ì¨ÕËºÅ¹ÜÀíÒ³ÃæµÄ×¢Ïú£º
-	//1¡¢ÓÃ»§»¹Î´Ð¯ÕËºÅ½øÈëÓÎÏ·£¬ÔÊÐí×¢ÏúÖØ·µÆ½Ì¨ÕËºÅµÇÂ¼½çÃæ
-	//2¡¢ÓÃ»§ÒÑ½øÈëÓÎÏ·£¬´ËÊ±×¢ÏúÖ±½ÓÍË³öÓÎÏ·£¬ÒªÇóÓÃ»§ÊÖ¶¯ÖØÆô
+	//ï¿½ï¿½ï¿½á¹©ï¿½Ð»ï¿½Æ½Ì¨ï¿½Ëºï¿½
+	//ï¿½ï¿½ï¿½á¹©Ó¦ï¿½ï¿½ï¿½ï¿½×¢ï¿½ï¿½
+	//Æ½Ì¨ï¿½ËºÅ¹ï¿½ï¿½ï¿½Ò³ï¿½ï¿½ï¿½×¢ï¿½ï¿½ï¿½ï¿½
+	//1ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½Î´Ð¯ï¿½ËºÅ½ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×¢ï¿½ï¿½ï¿½Ø·ï¿½Æ½Ì¨ï¿½ËºÅµï¿½Â¼ï¿½ï¿½ï¿½ï¿½
+	//2ï¿½ï¿½ï¿½Ã»ï¿½ï¿½Ñ½ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ï¿½Ê±×¢ï¿½ï¿½Ö±ï¿½ï¿½ï¿½Ë³ï¿½ï¿½ï¿½Ï·ï¿½ï¿½Òªï¿½ï¿½ï¿½Ã»ï¿½ï¿½Ö¶ï¿½ï¿½ï¿½ï¿½ï¿½
 	/*loginName="";
 	sessionId="";
 	userNickName="";
 	libAndroid_mLogined = false;
 	*/
-	//ÒÑµÇÂ¼Çé¿öÏÂµ÷³öÕËºÅ¹ÜÀí½çÃæ£¬Î´µÇÂ¼Çé¿öÏÂµ÷³öµÇÂ¼½çÃæ
+	//ï¿½Ñµï¿½Â¼ï¿½ï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½ï¿½ËºÅ¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½æ£¬Î´ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½
 	callPlatformAccountManageJNI();
 }
 
 
 void libAndroid::buyGoods( BUYINFO& info)
 {
-	//BUYINFOµÄproductCountÊÇ×Ü¼Û£ºµ¥¼Û*¸öÊý
+	//BUYINFOï¿½ï¿½productCountï¿½ï¿½ï¿½Ü¼Û£ï¿½ï¿½ï¿½ï¿½ï¿½*ï¿½ï¿½ï¿½ï¿½
 	if (IsH365 || IsKUSO || IsAPLUS)
 	{
 		int iCount = 1;
@@ -344,9 +349,9 @@ void libAndroid::notifyGameSvrBindTryUserToOkUserResult( int result )
 }
 
 /************************************************************/
-/*º«¹úkakaoºÃÓÑ½Ó¿Ú*/
+/*ï¿½ï¿½ï¿½ï¿½kakaoï¿½ï¿½ï¿½Ñ½Ó¿ï¿½*/
 
-//»ñµÃÑûÇë´ÎÊý
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void libAndroid::OnKrGetInviteCount()
 {
 	callPlatformSendMessageG2PJNI("OnKrGetInviteCount",Json::Value(Json::objectValue));

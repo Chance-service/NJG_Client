@@ -54,6 +54,11 @@ void lib91::setLoginName(const std::string content){
 	loginName = content;
 }
 
+std::string lib91::getLoginName()
+{
+    return loginName;
+}
+
 void lib91::setIsGuest(const int guest){
 	isGuest = guest;
 }

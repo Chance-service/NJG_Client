@@ -214,22 +214,21 @@ void libPlatform::setPayR18(int mid, int serverid, const std::string& url)
 
 bool libPlatform::getIsH365()
 {
-    
+    return false;
 }
 
 int libPlatform::getHoneyP()
 {
-    
+    return 0;
 }
 
 int libPlatform::getIsGuest()
 {
-    
+    return false;
 }
 
 const std::string& libPlatform::getToken()
 {
-    
 }
 
 void libPlatform::updateApp(std::string &storeUrl)
@@ -248,5 +247,5 @@ void libPlatform::setLoginName(const std::string content)
 }
 std::string libPlatform::getLoginName()
 {
-    
+    return "";
 }

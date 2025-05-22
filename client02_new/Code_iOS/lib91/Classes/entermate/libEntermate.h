@@ -68,8 +68,9 @@ public:
     
 #ifdef WIN32
     //∑Ω±„win32œ¬µ˜ ‘£¨º«¬ºœ¬…œ¥Œµ«¬º≥…π¶µƒpuid£¨œ¬¥ŒΩ¯”Œœ∑ƒ¨»œŒ™…œ¥Œµ«¬ºµƒpuid, by zhenhui 2014/5/20
-    static void libR2::setLoginName(const std::string content);
+    static void setLoginName(const std::string content);
 #endif
+    virtual std::string getLoginName();
     virtual void notifyEnterGame();
     
     virtual bool getIsTryUser();

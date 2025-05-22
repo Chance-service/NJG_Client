@@ -254,6 +254,12 @@ const unsigned int lib91::getPlatformId()
 
 void lib91::setLoginName(const std::string content)
 {
+    loginName = content;
+}
+
+std::string lib91::getLoginName()
+{
+    return loginName;
 }
 
 void lib91::setIsGuest(const int guest)

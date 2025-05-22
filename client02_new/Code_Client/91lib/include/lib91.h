@@ -73,6 +73,7 @@ public:
     
 
 	virtual void setLoginName(const std::string content);
+    virtual std::string getLoginName();
 	virtual void setIsGuest(const int guest);
 	virtual void notifyEnterGame();
 #if defined(WIN32) || defined(ANDROID) || defined(CC_TARGET_OS_IPHONE)
