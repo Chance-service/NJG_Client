@@ -248,6 +248,10 @@ void lib91::logout()
     
     [PlayCenter.shared logoutListener:listener];
 #endif
+#ifdef PROJECT_EROLABS
+    _boardcastPlatformLogout();
+    libPlatformManager::getPlatform()->sendMessageP2G("P2G_PLATFORM_LOGOUT", "1");
+#endif
 }
 
 void lib91::doSDKLogin()
