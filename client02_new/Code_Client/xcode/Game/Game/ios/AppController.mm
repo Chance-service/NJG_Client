@@ -563,37 +563,58 @@ static AppDelegate s_sharedApplication;
     // 1 = loop, 0 = no loop
     g_iPlayVideoState = iStateAfterPlay;
     
-    NSString* url = [[NSBundle mainBundle] pathForResource:strFilenameNoExtension ofType:strExtension];
-    NSLog(@"Play Video: url: %@ fullscreen: %d loop: %d", url, iFullScreen, iStateAfterPlay);
-    
-    player = [AVPlayer playerWithURL:[NSURL fileURLWithPath:url]];
-    playerViewController = [[AVPlayerViewController alloc] init];
-    
-    playerViewController.player = player;
-    
-    
-    playerViewController.showsPlaybackControls = FALSE; // Hide controls if not needed
-    
-    if (iFullScreen)
-    {
-        playerViewController.view.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-        playerViewController.view.frame = viewController.view.superview.bounds;
-        playerViewController.videoGravity = AVLayerVideoGravityResizeAspect;
-        playerViewController.modalPresentationStyle = UIModalPresentationFullScreen;
+    NSString *filename = strFilenameNoExtension;
+    NSString *extension = strExtension;
+
+    // Build hotupdate path
+    NSString *documentsPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
+    NSString *hotUpdatePath = [documentsPath stringByAppendingPathComponent:@"hotUpdate"];
+    NSString *hotUpdateFilePath = [hotUpdatePath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.%@", filename, extension]];
+
+    // Try to load from hotupdate directory
+    NSString *urlPath = nil;
+    if ([[NSFileManager defaultManager] fileExistsAtPath:hotUpdateFilePath]) {
+        urlPath = hotUpdateFilePath;
+        NSLog(@"Play Video (from hotupdate): %@", urlPath);
+    } else {
+        urlPath = [[NSBundle mainBundle] pathForResource:filename ofType:extension];
+        NSLog(@"Play Video (from main bundle): %@", urlPath);
     }
     
-    [viewController.view.superview addSubview:playerViewController.view];
-    // Send the view to back so ui can still show
-    [viewController.view.superview sendSubviewToBack:playerViewController.view];
+    NSLog(@"Play Video: url: %@ fullscreen: %d loop: %d", urlPath, iFullScreen, iStateAfterPlay);
     
-    [[NSNotificationCenter defaultCenter]
-     addObserver:self
-     selector:@selector(movieFinishedCallback:)
-     name:AVPlayerItemDidPlayToEndTimeNotification
-     object:nil];
-    
-    [player play];
-    
+    if (urlPath)
+    {
+        player = [AVPlayer playerWithURL:[NSURL fileURLWithPath:urlPath]];
+        playerViewController = [[AVPlayerViewController alloc] init];
+        
+        playerViewController.player = player;
+        
+        playerViewController.showsPlaybackControls = FALSE; // Hide controls if not needed
+        
+        if (iFullScreen)
+        {
+            playerViewController.view.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+            playerViewController.view.frame = viewController.view.superview.bounds;
+            playerViewController.videoGravity = AVLayerVideoGravityResizeAspect;
+            playerViewController.modalPresentationStyle = UIModalPresentationFullScreen;
+        }
+        
+        [viewController.view.superview addSubview:playerViewController.view];
+        // Send the view to back so ui can still show
+        [viewController.view.superview sendSubviewToBack:playerViewController.view];
+        
+        [[NSNotificationCenter defaultCenter]
+         addObserver:self
+         selector:@selector(movieFinishedCallback:)
+         name:AVPlayerItemDidPlayToEndTimeNotification
+         object:nil];
+        
+        [player play];
+    } else
+    {
+        NSLog(@"Error: Video file not found in hotupdate or main bundle.");
+    }
 }
 
 -(void)pauseVideo
