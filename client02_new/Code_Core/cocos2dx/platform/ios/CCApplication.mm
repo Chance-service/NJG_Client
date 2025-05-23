@@ -84,7 +84,7 @@ ccLanguageType CCApplication::getCurrentLanguage()
     if ([languageCode isEqualToString:@"zh"])
     {
         ret = kLanguageChinese;
-        if ([currentLanguage isEqualToString:@"zh-Hant"]) {
+        if ([currentLanguage hasPrefix:@"zh-Hant"]) {
             ret = kLanguageCH_TW;
         }
     }

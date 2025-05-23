@@ -2929,9 +2929,9 @@ void LoadingFrame::ResumeUpdateAsset()
 			(*it)->savePath = writePath;
 			(*it)->stroge = writeablePath + downLoadSavePath + "/";
 			downTotalSize += (*it)->size;
-			std::string crc = (*it)->crc;
-			unsigned short crcCmp = atoi((char*)crc.c_str());
-			CurlDownload::Get()->downloadFile(assetUrl, writePath, crcCmp);
+            std::string md5 = (*it)->md5;
+			//unsigned short md5Cmp = atoi((char*)md5.c_str());
+			CurlDownload::Get()->downloadFile(assetUrl, writePath, md5);
 		}
 	}
 
