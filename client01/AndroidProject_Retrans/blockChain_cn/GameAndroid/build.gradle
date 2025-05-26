@@ -150,6 +150,9 @@ android {
     afterEvaluate {
         android.applicationVariants.all { variant ->
             def flavor = variant.flavorName
+            if (variant.flavorName.contains("APLUS")) {
+                flavor = "APLUS"
+            }
             def configName = "${variant.name}Implementation"
             def sdkDir = file("../../sdklibs/GameLibBC/platformlibs/${flavor}")
             def commonLibs = file("../../sdklibs/GameLibBC/libs")
