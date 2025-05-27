@@ -257,7 +257,7 @@ void lib91::setLoginName(const std::string content)
     loginName = content;
 }
 
-std::string getLoginName()
+std::string lib91::getLoginName()
 {
     return loginName;
 }

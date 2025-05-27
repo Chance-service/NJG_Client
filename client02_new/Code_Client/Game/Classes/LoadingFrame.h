@@ -298,13 +298,13 @@ public:
 	void ResumeUpdateAsset();
 
 	void resetVersion();
-	void loadingAsset();
+	void loadingAsset(float dt);
 	void appStoreUpdate();
 
 
 	void downloaded(const std::string& url, const std::string& filename);
 
-	void downloadFailed(const std::string& url, const std::string& filename);
+	void downloadFailed(const std::string& url, const std::string& filename, int errorType);
 
 	void onAlreadyDownSize(unsigned long size, const std::string& url, const std::string& filename);
 
@@ -333,9 +333,11 @@ private:
 
 	int getDefaultSeverID();
 	void showSpine();
+	void hotUpdateReport(int errorId, std::string detail);
 	void loginReport(int step);
 	void loginGame(std::string& address, int port, bool isRegister = false);
 	void writeProjectManifest();
+	std::string split(const std::string& str, char delimiter);
 
 	bool mIsCanShowDataTransfer;
 	int  downVersionTimes; //下载Version文件 失败的次数

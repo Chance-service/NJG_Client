@@ -67,6 +67,9 @@ android {
         APLUS_CPS1 {
             res.srcDirs = ['APLUS/res']
         }
+        OP {
+            res.srcDirs = ['OP/res']
+        }
         // Move the tests to tests/java, tests/res, etc...
         androidTest.setRoot('tests')
 
@@ -130,6 +133,15 @@ android {
                 exclude 'META-INF/com.android.tools/proguard/coroutines.pro'
                 exclude 'META-INF/kotlinx_coroutines_core.version'
             }
+        }
+
+        OP {
+            applicationId = "chance.debug.ninja.girl.op.cn"
+            dimension "app_type"
+//            dependencies {
+//                implementation fileTree(dir: '../../sdklibs/GameLibBC/platformlibs/OP', include: ['*.aar','*.jar'])
+//                implementation fileTree(dir: '../../sdklibs/GameLibBC/libs', include: ['*.aar'])
+//            }
         }
 //        MURA {
 //            dimension "app_type"

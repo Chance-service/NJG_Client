@@ -303,6 +303,7 @@ void CurlDownload::update( float dt )
 	_mutex.lock();
 	bool sendOK = false;
 	bool sendFailed = false;
+	int errorType = 0;
 	if(DownLoadTask::Get()->checkTask() == DownLoadTask::DL_PROCESSING)
 	{
 		for(std::set<DownloadListener*>::iterator it = mListeners.begin();it!=mListeners.end();++it)
@@ -325,6 +326,7 @@ void CurlDownload::update( float dt )
 //				LOGE("DownLoadTask::Get()->getCheckCRC()");
 //#endif
 				sendFailed = true;
+				errorType = CurlDownload::CRC_CHECK_FAILED;
 			}
 			
 		}
@@ -336,6 +338,7 @@ void CurlDownload::update( float dt )
 			else
 			{
 				sendFailed = true;
+				errorType = CurlDownload::MD5_CHECK_FAILED;
 			}
 
 		}
@@ -343,8 +346,10 @@ void CurlDownload::update( float dt )
 			sendOK = true;
 			
 	}
-	else if (DownLoadTask::Get()->checkTask() == DownLoadTask::DL_FAILED)
+	else if (DownLoadTask::Get()->checkTask() == DownLoadTask::DL_FAILED) {
 		sendFailed = true;
+		errorType = CurlDownload::DOWNLOAD_FAILED;
+	}
 
 	if (sendOK)
 	{
@@ -361,7 +366,7 @@ void CurlDownload::update( float dt )
 		DownLoadTask::Get()->setReady();
 		for(std::set<DownloadListener*>::iterator it = mListeners.begin();it!=mListeners.end();++it)
 		{
-			(*it)->downloadFailed(DownLoadTask::Get()->getURL(),DownLoadTask::Get()->getFilename());
+			(*it)->downloadFailed(DownLoadTask::Get()->getURL(), DownLoadTask::Get()->getFilename(), errorType);
 		}
 	}
 	_mutex.unlock();

@@ -42,7 +42,7 @@ private:
     void onBtnAction();
     
     void downloaded(const std::string& url, const std::string& filename);
-    void downloadFailed(const std::string& url, const std::string& filename);
+	void downloadFailed(const std::string& url, const std::string& filename, int errorType);
     
     void onMessageboxEnter(int tag);
 };

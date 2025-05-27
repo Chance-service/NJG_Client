@@ -62,7 +62,7 @@ public:
 	void startDown();
 	void downInternalAnnouncementFile();
 	void downloaded(const std::string& url,const std::string& filename);
-	void downloadFailed(const std::string& url, const std::string& filename);
+	void downloadFailed(const std::string& url, const std::string& filename, int errorType);
 	virtual void onMessageboxEnter(int tag);
 	void _retryShowDownFaildMsgBox(AnnouncementError errorCode);
 

@@ -9,7 +9,8 @@ public enum E_PLATFORM {
     MURA(5),
     KUSO(6),
     EROLABS(7),
-    TEMP2(8),
+
+    OP(8),
     APLUS(9);
     private int value;
     E_PLATFORM(int value) {
@@ -28,7 +29,7 @@ public enum E_PLATFORM {
             case 5: return MURA;
             case 6: return KUSO;
             case 7: return EROLABS;
-            case 8: return TEMP2;
+            case 8: return OP;
             case 9: return APLUS;
             default: return null;
         }

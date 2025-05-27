@@ -101,6 +101,7 @@ public:
 		EP_MURA,
 		EP_KUSO,
 		EP_EROLABS,
+		EP_OP,
 		EP_TEMP2,
 		EP_APLUS,
 	};
@@ -202,7 +203,7 @@ public://not used for client
 
 
 	void downloaded(const std::string& url,const std::string& filename);
-	void downloadFailed(const std::string& url, const std::string& filename);
+	void downloadFailed(const std::string& url, const std::string& filename, int errorType);
 	virtual void onAlreadyDownSize(unsigned long size, const std::string& url, const std::string& filename);
 	const std::string getFailedName() { return mFailedName;};
 	void exitServerConst();
@@ -236,6 +237,7 @@ public://not used for client
 	bool IsMURA(){ return(ePlatform == SeverConsts::EP_MURA); }
 	bool IsKUSO(){ return(ePlatform == SeverConsts::EP_KUSO); }
 	bool IsErolabs(){ return(ePlatform == SeverConsts::EP_EROLABS); }
+	bool IsOP(){ return(ePlatform == SeverConsts::EP_OP); }
 	bool IsAPLUS(){ return(ePlatform == SeverConsts::EP_APLUS); }
 	bool IsDebug() { return _IsDebug; }
 private:

@@ -159,7 +159,7 @@ void SeverConsts::update( float dt )
 
 void SeverConsts::downloaded( const std::string& url,const std::string& filename )
 {
-	if(url.find(mSeverFile)!=url.npos)
+	if(url.find(mSeverFile) != url.npos)
 	{
 		_parseSeverFile(filename);
 		if (mCheckState != CS_OK) {
@@ -182,9 +182,9 @@ void SeverConsts::downloaded( const std::string& url,const std::string& filename
 	}
 }
 
-void SeverConsts::downloadFailed( const std::string& url, const std::string& filename )
+void SeverConsts::downloadFailed(const std::string& url, const std::string& filename, int errorType)
 {
-	if(url.find(mSeverFile) == url.npos)
+	if (url.find(mSeverFile) != url.npos)
 	{
 		downloadServerFileTimes++;
 		if (downloadServerFileTimes < 10)

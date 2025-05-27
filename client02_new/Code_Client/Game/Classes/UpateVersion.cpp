@@ -557,6 +557,9 @@ void UpdateVersion::appStoreUpdate()
 	else if (SeverConsts::Get()->IsErolabs()) {
 		libOS::getInstance()->openURL(serverVersionData->AppUpdateUrlEROLABS);
 	}
+	else if (SeverConsts::Get()->IsOP()) {
+		libOS::getInstance()->openURL(serverVersionData->AppUpdateUrlOP);
+	}
 	else if (SeverConsts::Get()->IsKUSO()) {
 		libOS::getInstance()->openURL(serverVersionData->AppUpdateUrlKUSO);
 	}
@@ -915,7 +918,7 @@ void UpdateVersion::downloaded(const std::string &url, const std::string& filena
     }
 }
 
-void UpdateVersion::downloadFailed(const std::string& url, const std::string &filename)
+void UpdateVersion::downloadFailed(const std::string& url, const std::string &filename, int errorType)
 {
 	CCLOG("hotUpdate downloadFailed  url: %s    : filename : %s ", url.c_str(), filename.c_str());
 	for (auto it = needUpdateAsset.begin(); it != needUpdateAsset.end(); ++it) {

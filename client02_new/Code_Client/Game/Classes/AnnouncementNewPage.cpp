@@ -330,7 +330,7 @@ void AnnouncementNewPage::downloaded( const std::string& url,const std::string& 
 	}
 }
 
-void AnnouncementNewPage::downloadFailed( const std::string& url, const std::string& filename )
+void AnnouncementNewPage::downloadFailed(const std::string& url, const std::string& filename, int errorType)
 {
 	if(url.find(mInternalAnnouncementFilePath)!=url.npos)
 	{

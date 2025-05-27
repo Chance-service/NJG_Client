@@ -204,7 +204,7 @@ public:
 	virtual const std::string& nickName();
 
 	virtual void setLoginName(const std::string content) {};
-    virtual std::string getLoginName();
+	virtual std::string getLoginName() { return ""; };
 	virtual void setIsGuest(const int guest) {};
 	virtual void notifyEnterGame();
 

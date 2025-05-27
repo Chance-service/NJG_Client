@@ -120,7 +120,7 @@ public class PlatformAPI extends SDKService {
     public void sdkLogin() {
 		if (h365sdk != null)
 		{
-			showlog("login_H356 call sdk");
+			showlog("login_H365 call sdk");
 			h365sdk.login(loginCallback);
 		}
 		else
@@ -167,14 +167,14 @@ public class PlatformAPI extends SDKService {
     public void validate() {
 		if ((h365sdk != null)) {
 			h365sdk.validate(platformtoken, httpCallback);
-			showlog("validate H356");
+			showlog("validate H365");
 		}
 	}
 
     public void openPaymentURL(String url, String paymentId){
 		if ((h365sdk != null)) {
     		h365sdk.openPaymentURL(url, paymentId);
-    		showlog("openPaymentURL H356");
+    		showlog("openPaymentURL H365");
 		}
     }
 

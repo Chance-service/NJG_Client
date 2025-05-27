@@ -20,6 +20,7 @@ import org.json.JSONException;
 
 import com.chance.allsdk.E_APLUS_CPS;
 import com.guajibase.gamelib.BuildConfig;
+import com.jgg18.androidsdk.JGGSDK;
 import com.nuclear.bean.LoginInfo;
 import com.nuclear.bean.PayInfo;
 import com.nuclear.bean.ShareInfo;

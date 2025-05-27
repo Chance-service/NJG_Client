@@ -797,7 +797,15 @@ public class PlatformSDKActivity extends GameActivity {
 				float layoutRatio = (float)height / width;
 				float scale = 1.0f;
 				if (videoRatio > layoutRatio) {	// 影片比例比裝置長 -> 放大填滿寬度
-					scale = videoRatio / layoutRatio;
+					if (videoRatio <= 1.78f) {	// 1280*720
+						scale = 1.0f;
+					}
+					else if (videoHeight >= 2.22f) {	//1600*720
+						scale = (float)height / 1280;
+					}
+					else {
+						scale = (float)height / 1280;
+					}
 				}
 				if (layoutRatio > videoRatio) {	// 裝置比例比影片長 -> 檢查是否要自適應
 					if (autoScale == 1) {	// 需要自適應 -> 放大填滿高度
@@ -808,6 +816,7 @@ public class PlatformSDKActivity extends GameActivity {
 				videoView.setScaleY(scale);
 				Log.d(TAG, "Video scale: " + scale);
 				Log.d(TAG, "Video width: " + videoWidth + ", height: " + videoHeight);
+				Log.d(TAG, "Layout width: " + width + ", height: " + height);
 				videoView.seekTo(0);
 				videoView.start();
 			}
@@ -951,6 +960,9 @@ public class PlatformSDKActivity extends GameActivity {
 			case APLUS:
 				Log.d(TAG,"ClientChannel is android_aplus");
 				return "android_aplus";
+			case OP:
+				Log.d(TAG,"ClientChannel is android_op");
+				return "android_op";
 			default:
 				Log.d(TAG,"ClientChannel is NULL");
 				return "android_h365";

@@ -57,7 +57,7 @@
             </intent-filter>
         </activity>
 
-		<!-- JSGameSDK begin
+		<!-- JSGameSDK begin-->
 		<meta-data
 			tools:replace="android:value"
 			android:name="JsGame_GAMEID"
@@ -70,12 +70,12 @@
 			tools:replace="android:value"
 			android:name="JsGame_AGENT"
 			android:value="cps001" />
-		<!- 游戏调试好后请将sdk调试模式关闭   0为关闭->
+		<!-- 游戏调试好后请将sdk调试模式关闭   0为关闭 -->
 		<meta-data
 			tools:replace="android:value"
 			android:name="JsGame_DEBUG"
 			android:value="0" />
-		JsGameSDK end-->
+		<!-- JsGameSDK end-->
 
 <meta-data
 android:name="com.google.android.gms.analytics.globalConfigResource"

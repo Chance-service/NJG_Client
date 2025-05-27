@@ -34,7 +34,7 @@ void CurlDownloadScriptListener::downloaded(const std::string& url, const std::s
 	RUN_SCRIPT_FUN("onDownLoaded");
 }
 
-void CurlDownloadScriptListener::downloadFailed(const std::string& url, const std::string& filename)
+void CurlDownloadScriptListener::downloadFailed(const std::string& url, const std::string& filename, int errorType)
 {
 	mUrl = url;
 	mFileName = filename;

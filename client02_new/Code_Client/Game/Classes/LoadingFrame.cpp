@@ -75,6 +75,8 @@ REGISTER_PAGE("LoadingFrame",LoadingFrame);
 #define CONNECT_DIRECT_PORT 25524
 #define MaxResumeTime 50
 int g_iSelectedSeverIDCopy;
+float downloadSpeed = 0.0f;
+float preAlreadyDownloadSize = 0.0f;
 
 LoadingFrame::LoadingFrame(void)
 	:mIsFirstLoginNotServerIDInfo(false)
@@ -122,6 +124,10 @@ void LoadingFrame::Enter( GamePrecedure* )
 	
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) 
 	if (SeverConsts::Get()->IsH365()) // H365
+	{
+		libPlatformManager::getPlatform()->login();
+	}
+	else if (SeverConsts::Get()->IsOP())
 	{
 		libPlatformManager::getPlatform()->login();
 	}
@@ -235,7 +241,7 @@ void LoadingFrame::Execute( GamePrecedure* gp)
 		CurlDownload::Get()->update(0.2);
 	}
 
-	loadingAsset();
+	loadingAsset(gp->getFrameTime());
 
 	SeverConsts::Get()->update(gp->getFrameTime());
 
@@ -321,7 +327,7 @@ void LoadingFrame::onLogin(libPlatform* lib, bool success, const std::string& lo
     {
 		std::string uin = "";
 		std::string pass = "";
-		if (SeverConsts::Get()->IsH365() || SeverConsts::Get()->IsJSG() || SeverConsts::Get()->IsLSJ()) // H365/JSG/LSJ
+		if (SeverConsts::Get()->IsH365() || SeverConsts::Get()->IsOP() || SeverConsts::Get()->IsJSG() || SeverConsts::Get()->IsLSJ()) // H365/JSG/LSJ
 		{
 			#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 				std::string uinkey = "LastLoginPUID";
@@ -448,7 +454,8 @@ void LoadingFrame::onMessageboxEnter(int tag)
 		else if (versionStat == UPDATE_FAIL)
 		{
 			ResumeCount = MaxResumeTime;
-			UpdateAssetFromServer();
+			//UpdateAssetFromServer();
+			ResumeUpdateAsset();
 		}
 		else if (versionStat == CHECK_VERSION)
 		{
@@ -537,7 +544,7 @@ void LoadingFrame::onMenuItemAction( const std::string& itemName ,cocos2d::CCObj
 		if (m_IsCheckLogout)
 		{
 			CCLog("onConfirmLogout2");
-			if (SeverConsts::Get()->IsH365() || SeverConsts::Get()->IsJSG() || SeverConsts::Get()->IsLSJ() || SeverConsts::Get()->IsKUSO() || SeverConsts::Get()->IsAPLUS())
+			if (SeverConsts::Get()->IsH365() || SeverConsts::Get()->IsOP() || SeverConsts::Get()->IsJSG() || SeverConsts::Get()->IsLSJ() || SeverConsts::Get()->IsKUSO() || SeverConsts::Get()->IsAPLUS())
 			{
 				CCLog("onConfirmLogout3");
 				libPlatformManager::getPlatform()->logout();
@@ -562,7 +569,7 @@ void LoadingFrame::onMenuItemAction( const std::string& itemName ,cocos2d::CCObj
 	}
 	else if (itemName == "onOpenLogoutNode")
 	{
-		if (SeverConsts::Get()->IsH365() || SeverConsts::Get()->IsJSG() || SeverConsts::Get()->IsLSJ() || SeverConsts::Get()->IsKUSO() || SeverConsts::Get()->IsAPLUS())
+		if (SeverConsts::Get()->IsH365() || SeverConsts::Get()->IsOP() || SeverConsts::Get()->IsJSG() || SeverConsts::Get()->IsLSJ() || SeverConsts::Get()->IsKUSO() || SeverConsts::Get()->IsAPLUS())
 		{
 			libPlatformManager::getPlatform()->logout();
 		}
@@ -602,6 +609,35 @@ void LoadingFrame::onAnimationDone(const std::string& animationName){
 		setPosLoadingAniPage();
 		checkVersion();
 	}
+}
+
+void LoadingFrame::hotUpdateReport(int errorId, std::string detail)
+{
+	try
+	{
+		// PlatformSDKActivity.java 接口
+		Json::Value data;
+		data["funtion"] = "trackEvent";
+		data["param"] = "exception_error";
+
+		Json::Value property;
+		char sztmp[16] = { };
+		sprintf(sztmp, "%d", errorId);
+		std::string errorMsg = "hotUpdate_error Id : ";
+		errorMsg.append(sztmp);
+		property["exception_thread_info"] = detail;
+		property["exception_value"] = errorMsg;
+		property["exception_type"] = "hotUpdate_error";
+
+		data["properties"] = property.toStyledString();
+
+		libPlatformManager::getPlatform()->sendMessageG2P("G2P_TAPDB_HANDLER", data.toStyledString());
+	}
+	catch (...)
+	{
+		CCLog("URL REQUEST IS NOT  REACH");
+	}
+
 }
 
 void LoadingFrame::loginReport(int step)
@@ -1069,7 +1105,7 @@ void LoadingFrame::showEnter()
 
 	hidLoadingAniPage();
 	CCLog("LoadingFrame::showEnter");
-	if (SeverConsts::Get()->IsH365() || SeverConsts::Get()->IsEroR18() || SeverConsts::Get()->IsErolabs() || SeverConsts::Get()->IsKUSO() || SeverConsts::Get()->IsAPLUS()) {
+	if (SeverConsts::Get()->IsH365() || SeverConsts::Get()->IsEroR18() || SeverConsts::Get()->IsErolabs() || SeverConsts::Get()->IsKUSO() || SeverConsts::Get()->IsAPLUS() || SeverConsts::Get()->IsOP()) {
 		setEnterGameNodeVisible(true);
 	}
 	else {
@@ -1077,7 +1113,7 @@ void LoadingFrame::showEnter()
 	}
     
 	setEnterServerListVisible(true);
-	if (SeverConsts::Get()->IsH365() || SeverConsts::Get()->IsEroR18() || SeverConsts::Get()->IsErolabs() || SeverConsts::Get()->IsKUSO() || SeverConsts::Get()->IsAPLUS())
+	if (SeverConsts::Get()->IsH365() || SeverConsts::Get()->IsEroR18() || SeverConsts::Get()->IsErolabs() || SeverConsts::Get()->IsKUSO() || SeverConsts::Get()->IsAPLUS() || SeverConsts::Get()->IsOP())
 	{
 		setLogoutBtnVisible(true);
 	}
@@ -1574,7 +1610,7 @@ void LoadingFrame::onEnterGame(bool isRegister)
 	if (!m_IsCanClickStartGameBtn)
 		return;
 
-	if (SeverConsts::Get()->IsH365() || SeverConsts::Get()->IsEroR18() || SeverConsts::Get()->IsErolabs() || SeverConsts::Get()->IsJSG() || SeverConsts::Get()->IsLSJ() || SeverConsts::Get()->IsKUSO()) // H365,JSG,LSJ
+	if (SeverConsts::Get()->IsH365() || SeverConsts::Get()->IsEroR18() || SeverConsts::Get()->IsErolabs() || SeverConsts::Get()->IsJSG() || SeverConsts::Get()->IsLSJ() || SeverConsts::Get()->IsKUSO() || SeverConsts::Get()->IsOP()) // H365,JSG,LSJ
 	{
 		std::string uuid = libPlatformManager::getPlatform()->loginUin();
 		if (uuid == "")
@@ -1799,7 +1835,7 @@ void LoadingFrame::setTips(std::string msg)
 		}
 	}
 }
-void LoadingFrame::loadingAsset()
+void LoadingFrame::loadingAsset(float dt)
 {
 	if (versionStat != LOADING_ASSETS)
 	{
@@ -1893,6 +1929,9 @@ void LoadingFrame::loadingAsset()
 	char perTxt[64];
 	sprintf(perTxt, "(%dKB / %dKB)", (int)alreadyLoadSize, (int)downTotalSize);
 	showPersent(persentage, perTxt);
+	// 計算下載速度
+	downloadSpeed = (alreadyLoadSize - preAlreadyDownloadSize) / dt;
+	preAlreadyDownloadSize = alreadyLoadSize;
 }
 void LoadingFrame::resetVersion()
 {
@@ -2273,11 +2312,6 @@ void LoadingFrame::compareVersion()
 	*/
 
 	int result = 0; // result = 0  not update, result = 1 resourse update, result = 2 appStore update 
-	
-	#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
-		//WINDOWS不檢查APP版本
-		versionAppCompareStat = HIGH;
-	#endif
 
 	if (versionAppCompareStat == LESS) {
 		result = 2;
@@ -2289,6 +2323,12 @@ void LoadingFrame::compareVersion()
 	else {
 		result = 1;
 	}
+
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	//WINDOWS不檢查APP版本
+	versionAppCompareStat = HIGH;
+	result = 0;
+#endif
 	//result = 1;
 	cocos2d::CCLog("compareVersion result is %d", result);
 	ostringstream   ostr;
@@ -2369,6 +2409,9 @@ void LoadingFrame::appStoreUpdate()
 		else {
 			libOS::getInstance()->openURL(serverVersionData->AppUpdateUrlAPLUS_CPS1);
 		}
+	}
+	else if (SeverConsts::Get()->IsOP()) {
+		libOS::getInstance()->openURL(serverVersionData->AppUpdateUrlOP);
 	}
 	else {
 		libOS::getInstance()->openURL(serverVersionData->AndroidStoreURL);
@@ -2454,8 +2497,9 @@ void LoadingFrame::downloaded(const std::string &url, const std::string& filenam
 		downProjectTimes = 0;
 	}
 }
-void LoadingFrame::downloadFailed(const std::string& url, const std::string &filename)
+void LoadingFrame::downloadFailed(const std::string& url, const std::string &filename, int errorType)
 {
+	int failedTime = (MaxResumeTime - ResumeCount) + 1;
 	CCLog("hotUpdate downloadFailed  url: %s    : filename : %s ", url.c_str(), filename.c_str());
 	for (auto it = needUpdateAsset.begin(); it != needUpdateAsset.end(); ++it) {
 		if (url.compare((*it)->url) == 0)
@@ -2487,6 +2531,7 @@ void LoadingFrame::downloadFailed(const std::string& url, const std::string &fil
 			showFailedMessage(m_updateVersionTips->checkFailTxT,100);
 
 		}
+		failedTime = downVersionTimes;
 	}
 	if (url.find(projectManifestName) != url.npos)
 	{
@@ -2510,8 +2555,14 @@ void LoadingFrame::downloadFailed(const std::string& url, const std::string &fil
 			setTips(m_updateVersionTips->checkProjectFailTxT);
 			showFailedMessage(m_updateVersionTips->checkProjectFailTxT, 100);
 		}
-
+		failedTime = downProjectTimes;
 	}
+	// 錯誤訊息上報
+	char sztmp[16] = {};
+	sprintf(sztmp, "%d", failedTime);
+	std::string errorMsg = "downloadFailed  url: " + url + ", failTime : ";
+	errorMsg.append(sztmp);
+	hotUpdateReport(errorType, errorMsg);
 }
 
 void LoadingFrame::onAlreadyDownSize(unsigned long size, const std::string& url, const std::string& filename)
@@ -2519,10 +2570,13 @@ void LoadingFrame::onAlreadyDownSize(unsigned long size, const std::string& url,
 	currentFileLoadSize = float(size);
 	std::string buildType = libPlatformManager::getPlatform()->getBuildType();
 	if (buildType == "qa") {
-		char tipTxt[500];
-		sprintf(tipTxt, "下載檔案 : %s\n下載路徑 : %s\n當前檔案已下載大小 : %dKB",
-			filename.c_str(), url.c_str(), (int)((currentFileLoadSize * 1.0f) / 1024));
-		setTips(tipTxt);
+		if (url.find(projectManifestName) == url.npos && url.find(versionManifestName) == url.npos) {
+			char tipTxt[500];
+			std::string result = split(filename, '/');
+			sprintf(tipTxt, "downloading : %s (%.2f MB/s)",
+				result.c_str(), (downloadSpeed * 1.0f) / (1024));
+			setTips(tipTxt);
+		}
 	}
 }
 void LoadingFrame::showPersent(float persentage, std::string sizeTip)
@@ -2919,19 +2973,20 @@ void LoadingFrame::ResumeUpdateAsset()
 	time(&t);
 	CCString* _time = CCString::createWithFormat("%d", t);
 	for (auto it = needUpdateAsset.begin(); it != needUpdateAsset.end(); ++it) {
-		std::string assetUrl = packageUrl + "/" + (*it)->name;// + "?" + "time=" + _time->m_sString;
+		std::string timeStr = "?time=" + _time->m_sString;
+		std::string assetUrl = packageUrl + "/" + (*it)->name;
 		if (loadFailData.find(assetUrl) != loadFailData.end())
 		{
-			CCLog("ResumeUpdateAsset loadFailData : %s", assetUrl.c_str());
 			std::string writePath = writeablePath + downLoadSavePath + "/" + (*it)->name;
 
-			(*it)->url = assetUrl;
+			(*it)->url = assetUrl + timeStr;
 			(*it)->savePath = writePath;
 			(*it)->stroge = writeablePath + downLoadSavePath + "/";
-			downTotalSize += (*it)->size;
-            std::string md5 = (*it)->md5;
+			CCLog("ResumeUpdateAsset loadFailData : %s", (*it)->url.c_str());
+			//downTotalSize += (*it)->size;
+			std::string md5 = (*it)->md5;
 			//unsigned short md5Cmp = atoi((char*)md5.c_str());
-			CurlDownload::Get()->downloadFile(assetUrl, writePath, md5);
+			CurlDownload::Get()->downloadFile((*it)->url, writePath, md5);
 		}
 	}
 
@@ -3056,4 +3111,16 @@ void LoadingFrame::writeProjectManifest()
 	std::cout << out << std::endl;
 	fout << out << std::endl;
 	fout.close();
+}
+
+std::string LoadingFrame::split(const std::string& str, char delimiter) {
+	std::vector<std::string> tokens;
+	std::stringstream ss(str);
+	std::string item;
+	std::string fileName = "";
+
+	while (std::getline(ss, item, delimiter)) {
+		fileName = item;
+	}
+	return fileName;
 }

@@ -49,6 +49,11 @@ android {
             jniLibs.srcDirs = ['platformlibs/APLUS']
             res.srcDirs = ['APLUS/res']
         }
+        OP {
+            java.srcDirs = ['platformSrc/OP', 'platformSrc/OP']
+            jniLibs.srcDirs = ['platformlibs/OP']
+            res.srcDirs = ['OP/res']
+        }
 //        MURA {
 //            java.srcDirs = ['platformSrc/MURA']
 //            jniLibs.srcDirs = ['platformlibs/MURA']
@@ -206,6 +211,18 @@ android {
                         because("kotlin-stdlib-jdk8 is now a part of kotlin-stdlib")
                     }
                 }
+
+            }
+            defaultConfig {
+                minSdkVersion 21
+            }
+        }
+        OP {
+            dimension "app_type"
+            dependencies {
+                compileOnly fileTree(dir: 'platformlibs/OP', include: ['*.jar','*.aar'])
+                compileOnly fileTree(dir: 'libs', include: ['*.aar'])
+                implementation project(':sdklibs:libcocos2dx')
 
             }
             defaultConfig {

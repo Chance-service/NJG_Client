@@ -61,6 +61,7 @@ public:
 	std::string AppUpdateUrlR18;
 	std::string AppUpdateUrlKUSO;
 	std::string AppUpdateUrlEROLABS;
+	std::string AppUpdateUrlOP;
 	std::string AppUpdateUrlJSG;
 	std::string AppUpdateUrlAPLUS_CPS1;
 	std::string versionResource;
@@ -78,6 +79,7 @@ public:
 		 ,AppUpdateUrlR18(std::string(""))
 		 ,AppUpdateUrlKUSO(std::string(""))
 		 ,AppUpdateUrlEROLABS(std::string(""))
+		  ,AppUpdateUrlOP(std::string(""))
 		 ,AppUpdateUrlJSG(std::string(""))
 		 ,AppUpdateUrlAPLUS_CPS1(std::string(""))
 		 ,versionResource(std::string(""))
@@ -194,7 +196,7 @@ public:
 
     void downloaded(const std::string& url, const std::string& filename);
     
-    void downloadFailed(const std::string& url, const std::string& filename);
+	void downloadFailed(const std::string& url, const std::string& filename, int errorType);
     
 	void onAlreadyDownSize(unsigned long size, const std::string& url, const std::string& filename);
     

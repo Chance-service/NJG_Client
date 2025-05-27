@@ -115,7 +115,7 @@ void BulletinManager::downloaded(const std::string &url, const std::string &file
 }
 
 
-void BulletinManager::downloadFailed(const std::string &url, const std::string &filename)
+void BulletinManager::downloadFailed(const std::string &url, const std::string &filename, int errorType)
 {
 
 }

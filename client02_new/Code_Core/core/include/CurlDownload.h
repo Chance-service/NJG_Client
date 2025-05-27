@@ -8,6 +8,12 @@
 class CurlDownload : public Singleton<CurlDownload>
 {	
 private:
+	enum DOWNLOAD_ERROR {
+		CRC_CHECK_FAILED = 1,
+		MD5_CHECK_FAILED = 2,
+		DOWNLOAD_FAILED = 3,
+	};
+
 	class DownloadFile
 	{
 	public:
@@ -40,7 +46,7 @@ public:
 	{
 	public:
 		virtual void downloaded(const std::string& url,const std::string& filename){};
-		virtual void downloadFailed(const std::string& url, const std::string& filename){};
+		virtual void downloadFailed(const std::string& url, const std::string& filename, int errorType){};
 		virtual void onAlreadyDownSize(unsigned long size, const std::string& url, const std::string& filename){}
 	};
 	

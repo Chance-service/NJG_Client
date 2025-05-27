@@ -249,7 +249,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 	ccLanguageType currentLanguageType = getCurrentLanguage();
 	if (currentLanguageType == kLanguageChinese)
 	{
-        /*
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 		std::string currentCountry = libOS::getInstance()->getCurrentCountry();
 		if (currentCountry == "cn")
 		{
@@ -259,7 +259,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 		{
 			currentLanguageType = kLanguageCH_TW;
 		}
-        */
+#endif
 	}
 
 	SeverConsts::Get()->initSearchPath();
