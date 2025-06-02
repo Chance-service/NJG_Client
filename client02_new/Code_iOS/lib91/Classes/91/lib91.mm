@@ -675,8 +675,18 @@ std::string lib91::sendMessageG2P(const std::string& tag, const std::string& msg
                 [TapDB userAdd:jsonDict];
             }
         }
-        
     }
+    if(tag == "G2P_REPORT_HANDLER")
+    {
+        NSDictionary* jsonObject = [Helpers stringToDictionary:[NSString stringWithUTF8String:msg.c_str()]];
+        NSNumber *eventIdNumber = jsonObject[@"eventId"];
+        if ([eventIdNumber intValue] == 2) { // report hyena login
+            NSString *userId = jsonObject[@"userId"];
+            NSString *platformUserId = jsonObject[@"userId"];  // assuming same field as in Java code
+            [[Hyena getTracker] login:userId and:platformUserId];
+        }
+    }
+        
     return "";
 }
 
