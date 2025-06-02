@@ -111,19 +111,19 @@ extern "C" {
 
 	/*
 		xinzheng 2013-06-20
-		Ó¦ÓÃ³ÌÐòÆô¶¯¡¢¸üÐÂ¼ì²â¡¢¸üÐÂÁ÷³Ì£º
-		apkºÍipa³ÌÐòÈë¿ÚÏàµ±ÓÚÒ»¸öloader³ÌÐò£¬Ó¦ÔÚloaderÀ­ÆðGame.so£¨AppDelegate±»´´½¨£©µÄÊ±ºò£¬×¼±¸ºÃ¶þÕßµÄÏÎ½Ó£»
-		¶øÇÒÖ»ÊÇState(LoadingFrame)Õâ¸ö×´Ì¬ÐèÒªÓëloaderÍ¨ÐÅ£»
-		ÒÔÏÂË³ÐòÖ´ÐÐ£¬ÎªÁË¼õÉÙÂé·³£¬²»²¢ÐÐ£º
-		0¡¢apkÈë¿Ú£¬ÏÔÊ¾¹«Ë¾&ÓÎÏ·logo¡¢¶¯»­£¬Õâ¸ö¹ý³Ì²»ÒË¹ý³¤£»¼ì²âÍøÂç¡¢´æ´¢Ìõ¼þ£»
-		0a¡¢¸ôÀëÆ½Ì¨µÄ°æ±¾¸üÐÂ¼ì²âºÍÊµÏÖ£»ÒòÎªÓÐÐ©Æ½Ì¨Ç¿ÖÆÔÚ³õÊ¼»¯Ê¹ÓÃÆä°æ±¾¸üÐÂ¹¦ÄÜ£»
-		1¡¢³õÊ¼»¯Æ½Ì¨SDK£¬ÏÔÊ¾Æ½Ì¨logo£¬Èç¹ûÆ½Ì¨²»ÐèÏÔÊ¾logo£¬¿ÉÒÔÑÓ³¤0²½µÄÏÔÊ¾½çÃæ£»Èç¹û²»½ÓÈëÆ½Ì¨SDK£¬Ö±½ÓÌøµ½µÚ2²½£»
-		2¡¢°æ±¾¸ü¼ì²â£¬a¡¢×ÔÓÐ°æ±¾¸üÐÂÊµÏÖ£¬ÐèÒªÇø±ðÊÇ·ñÊ¹ÓÃÆ½Ì¨Ìá¹©µÄ¸üÐÂ¼ì²â£»b¡¢µ÷ÓÃÆ½Ì¨SDKÌá¹©µÄ¸üÐÂÊµÏÖ£»¸üÐÂ¼ì²â½á¹ûÎª¿ÉÑ¡»òÎÞÊ±£¬½øÈëµÚ3²½£»
-		3¡¢³õÊ¼»¯OpenGL ES Context¡¢ÎÆÀí¡¢ÒôÆµ¡¢ÊäÈëµÈÓëÏµÍ³Ïà¹ØµÄ±ØÐë×é¼þ£»Õâ¸ö¹ý³Ì»áºÚÆÁ£¬ÐèÒªÔÚloader²ã±£³Ö×îÉÏ²ãlogo½çÃæ»òÕßÁíÍâµÄlogo¡¢¶¯»­½çÃæ£»
-		4¡¢³õÊ¼»¯Game.so£¬´´½¨AppDelegate£¬Ö¸¶¨¼¯³ÉµÄµÇÂ¼&Ö§¸¶Æ½Ì¨£¬×¼±¸ºÃÓëloaderµÄÏÎ½Ó£¬½øÈëState(LoadingFrame)£¬Í¨Öª¿ÉÒÔ·¢ÆðÄÚ¸üÐÂ¼ì²â£»ÒÆ³ýloader²ã¶àÓàµÄ½çÃæ£¬ÕæÕý¿ªÊ¼ÏÔÊ¾Game.soäÖÈ¾µÄ½çÃæ£»
-		5¡¢ÄÚ¸üÐÂ¼ì²â·µ»ØÎÞÐè¸üÐÂ£¬·¢Æðµ÷ÓÃÆ½Ì¨ÕËºÅµÇÂ¼£»»òÕß£¬ÄÚ¸üÐÂ½øÐÐ¸üÐÂ£¬³É¹¦Íê±Ïºó£¬·¢Æðµ÷ÓÃÆ½Ì¨ÕËºÅµÇÂ¼£»
-		6¡¢Í£ÁôÔÚState(LoadingFrame)£¬Ö±µ½Æ½Ì¨ÕËºÅµÇÂ¼³É¹¦Í¨ÖªGame.so£¬½â³ýÓëloaderµÄÏÎ½Ó£¬ÔÊÐí½øÈëÓÎÏ·State(MainFrame£©£»
-		7¡¢Ä¿Ç°½øÈëState(MainFrame£©ºó²»ÔÊÐíÔÙÇÐ»»ÕËºÅ·µ»ØState(LoadingFrame)£¬Ö»µÃÖØÆô£»
+		Ó¦ï¿½Ã³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½â¡¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì£ï¿½
+		apkï¿½ï¿½ipaï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½àµ±ï¿½ï¿½Ò»ï¿½ï¿½loaderï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½loaderï¿½ï¿½ï¿½ï¿½Game.soï¿½ï¿½AppDelegateï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½×¼ï¿½ï¿½ï¿½Ã¶ï¿½ï¿½ßµï¿½ï¿½Î½Ó£ï¿½
+		ï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½State(LoadingFrame)ï¿½ï¿½ï¿½×´Ì¬ï¿½ï¿½Òªï¿½ï¿½loaderÍ¨ï¿½Å£ï¿½
+		ï¿½ï¿½ï¿½ï¿½Ë³ï¿½ï¿½Ö´ï¿½Ð£ï¿½Îªï¿½Ë¼ï¿½ï¿½ï¿½ï¿½é·³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð£ï¿½
+		0ï¿½ï¿½apkï¿½ï¿½Ú£ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½Ë¾&ï¿½ï¿½Ï·logoï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì²ï¿½ï¿½Ë¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ç¡¢ï¿½æ´¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		0aï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ½Ì¨ï¿½Ä°æ±¾ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½Êµï¿½Ö£ï¿½ï¿½ï¿½Îªï¿½ï¿½Ð©Æ½Ì¨Ç¿ï¿½ï¿½ï¿½Ú³ï¿½Ê¼ï¿½ï¿½Ê¹ï¿½ï¿½ï¿½ï¿½æ±¾ï¿½ï¿½ï¿½Â¹ï¿½ï¿½Ü£ï¿½
+		1ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½Æ½Ì¨SDKï¿½ï¿½ï¿½ï¿½Ê¾Æ½Ì¨logoï¿½ï¿½ï¿½ï¿½ï¿½Æ½Ì¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾logoï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½0ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½æ£»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ½Ì¨SDKï¿½ï¿½Ö±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½2ï¿½ï¿½ï¿½ï¿½
+		2ï¿½ï¿½ï¿½æ±¾ï¿½ï¿½ï¿½ï¿½â£¬aï¿½ï¿½ï¿½ï¿½ï¿½Ð°æ±¾ï¿½ï¿½ï¿½ï¿½Êµï¿½Ö£ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½Ê¹ï¿½ï¿½Æ½Ì¨ï¿½á¹©ï¿½Ä¸ï¿½ï¿½Â¼ï¿½â£»bï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ½Ì¨SDKï¿½á¹©ï¿½Ä¸ï¿½ï¿½ï¿½Êµï¿½Ö£ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½3ï¿½ï¿½ï¿½ï¿½
+		3ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½OpenGL ES Contextï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÏµÍ³ï¿½ï¿½ØµÄ±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½loaderï¿½ã±£ï¿½ï¿½ï¿½ï¿½ï¿½Ï²ï¿½logoï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½logoï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½æ£»
+		4ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½Game.soï¿½ï¿½ï¿½ï¿½ï¿½ï¿½AppDelegateï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ÉµÄµï¿½Â¼&Ö§ï¿½ï¿½Æ½Ì¨ï¿½ï¿½×¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½loaderï¿½ï¿½ï¿½Î½Ó£ï¿½ï¿½ï¿½ï¿½ï¿½State(LoadingFrame)ï¿½ï¿½Í¨Öªï¿½ï¿½ï¿½Ô·ï¿½ï¿½ï¿½ï¿½Ú¸ï¿½ï¿½Â¼ï¿½â£»ï¿½Æ³ï¿½loaderï¿½ï¿½ï¿½ï¿½ï¿½Ä½ï¿½ï¿½æ£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½Ê¾Game.soï¿½ï¿½È¾ï¿½Ä½ï¿½ï¿½æ£»
+		5ï¿½ï¿½ï¿½Ú¸ï¿½ï¿½Â¼ï¿½â·µï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ½Ì¨ï¿½ËºÅµï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ß£ï¿½ï¿½Ú¸ï¿½ï¿½Â½ï¿½ï¿½Ð¸ï¿½ï¿½Â£ï¿½ï¿½É¹ï¿½ï¿½ï¿½Ïºó£¬·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ½Ì¨ï¿½ËºÅµï¿½Â¼ï¿½ï¿½
+		6ï¿½ï¿½Í£ï¿½ï¿½ï¿½ï¿½State(LoadingFrame)ï¿½ï¿½Ö±ï¿½ï¿½Æ½Ì¨ï¿½ËºÅµï¿½Â¼ï¿½É¹ï¿½Í¨ÖªGame.soï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½loaderï¿½ï¿½ï¿½Î½Ó£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï·State(MainFrameï¿½ï¿½ï¿½ï¿½
+		7ï¿½ï¿½Ä¿Ç°ï¿½ï¿½ï¿½ï¿½State(MainFrameï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð»ï¿½ï¿½ËºÅ·ï¿½ï¿½ï¿½State(LoadingFrame)ï¿½ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	*/
 
 	JNIEXPORT void JNICALL Java_org_cocos2dx_lib_Cocos2dxHelper_nativeNotifyPlatformInitResult(JNIEnv*  env, jobject thiz, 
@@ -139,7 +139,7 @@ extern "C" {
 	JNIEXPORT void JNICALL Java_org_cocos2dx_lib_Cocos2dxHelper_nativeNotifyPlatformGameUpdateResult(JNIEnv*  env, jobject thiz, 
 		jint result, jint max_version, jint local_version, jstring down_url) {
 
-			if (result < 2)//2Ç¿ÖÆ¸üÐÂ1½¨Òé¸üÐÂ0ÎÞ¸üÐÂ»ò´íÎó
+			if (result < 2)//2Ç¿ï¿½Æ¸ï¿½ï¿½ï¿½1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½0ï¿½Þ¸ï¿½ï¿½Â»ï¿½ï¿½ï¿½ï¿½
 			{
 				LOGD("libPlatformManager::getPlatform()->_boardcastNeedUpdateApp(true)");
 				libPlatformManager::getPlatform()->_boardcastUpdateCheckDone(true, JniHelper::jstring2string(down_url));
@@ -1045,5 +1045,30 @@ std::string getBuildTypeJNI()
 		 t.env->DeleteLocalRef(stringArg1);
 	 }
  }
+
+
+void callDownloadJNI(std::string assetUrl, std::string filename, std::string writePath, std::string md5)
+{
+	JniMethodInfo t;
+
+	if (JniHelper::getStaticMethodInfo(t, CLASS_NAME, "callDownload", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V")) {
+		jstring stringArg1 = t.env->NewStringUTF(assetUrl.c_str());
+		jstring stringArg2 = t.env->NewStringUTF(filename.c_str());
+		jstring stringArg3 = t.env->NewStringUTF(writePath.c_str());
+		jstring stringArg4 = t.env->NewStringUTF(md5.c_str());
+		
+		
+		t.env->CallStaticVoidMethod(t.classID, t.methodID, stringArg1, stringArg2, stringArg3, stringArg4);
+
+		t.env->DeleteLocalRef(t.classID);
+		t.env->DeleteLocalRef(stringArg1);
+		t.env->DeleteLocalRef(stringArg2);
+		t.env->DeleteLocalRef(stringArg3);
+		t.env->DeleteLocalRef(stringArg4);
+		
+	}
+	
+}
+
  
 //

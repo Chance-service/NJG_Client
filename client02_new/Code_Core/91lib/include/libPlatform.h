@@ -114,6 +114,9 @@ public:
 	virtual void OnKrGetKakaoIdBack(const std::string& resultStr){};
 	//kakao�B�ziOS�����f�֮ɱ���������ê��\����s
 	virtual void OnKrIsShowFucForIOSBack(bool result){};
+	virtual void OnDownloadProgress(const std::string& urlStr, const std::string& filenameStr, const std::string& basePathStr, long progress){};
+	virtual void OnDownloadComplete(const std::string& urlStr, const std::string& filenameStr, const std::string& basePathStr, const std::string& md5Str){};
+	virtual void OnDownloadFailed(const std::string& urlStr, const std::string& filenameStr, const std::string& basePathStr, int errorCode){};
 };
 
 class libPlatform
@@ -481,6 +484,42 @@ public:
 				(*it)->OnKrIsShowFucForIOSBack(result);
 			}
 
+		}
+	}
+
+	void _boardcastOnDownloadProgress(const std::string& url, const std::string& filename, const std::string& basePath, long progress)
+	{
+		std::set<platformListener*> listeners;
+		listeners.insert(mListeners.begin(), mListeners.end());
+
+		std::set<platformListener*>::iterator it = listeners.begin();
+		for (; it != listeners.end(); ++it)
+		{
+			(*it)->OnDownloadProgress(url, filename, basePath, progress);
+		}
+	}
+
+	void _boardcastOnDownloadComplete(const std::string& url, const std::string& filename, const std::string& basePath, const std::string& md5)
+	{
+		std::set<platformListener*> listeners;
+		listeners.insert(mListeners.begin(), mListeners.end());
+
+		std::set<platformListener*>::iterator it = listeners.begin();
+		for (; it != listeners.end(); ++it)
+		{
+			(*it)->OnDownloadComplete(url, filename, basePath, md5);
+		}
+	}
+
+	void _boardcastOnDownloadFailed(const std::string& url, const std::string& filename, const std::string& basePath, int errorCode)
+	{
+		std::set<platformListener*> listeners;
+		listeners.insert(mListeners.begin(), mListeners.end());
+
+		std::set<platformListener*>::iterator it = listeners.begin();
+		for (; it != listeners.end(); ++it)
+		{
+			(*it)->OnDownloadFailed(url, filename, basePath, errorCode);
 		}
 	}
 };

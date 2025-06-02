@@ -94,6 +94,7 @@ extern void notifyEnterGameJNI();
 extern void setClipboardTextJNI(const char * text);
 extern void setEditBoxTextJNI(const char * text);
 extern std::string getClipboardTextJNI();
+extern void callDownloadJNI(std::string assetUrl, std::string filename, std::string writePath, std::string md5);
 extern void showAnnouncement(const char* pAnnounceUrl);
 
 extern void pushSysNotification(const char* pTitle,const char* pMessage ,int pInstantMinite );

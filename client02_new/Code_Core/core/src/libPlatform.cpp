@@ -479,6 +479,42 @@ public:
 
 		}
 	}
+
+	void _boardcastOnDownloadProgress(const std::string& url, const std::string& filename, const std::string& basePath, long progress)
+	{
+		std::set<platformListener*> listeners;
+		listeners.insert(mListeners.begin(), mListeners.end());
+
+		std::set<platformListener*>::iterator it = listeners.begin();
+		for (; it != listeners.end(); ++it)
+		{
+			(*it)->OnDownloadProgress(url, filename, basePath, progress);
+		}
+	}
+
+	void _boardcastOnDownloadComplete(const std::string& url, const std::string& filename, const std::string& basePath, const std::string& md5)
+	{
+		std::set<platformListener*> listeners;
+		listeners.insert(mListeners.begin(), mListeners.end());
+
+		std::set<platformListener*>::iterator it = listeners.begin();
+		for (; it != listeners.end(); ++it)
+		{
+			(*it)->OnDownloadComplete(url, filename, basePath, md5);
+		}
+	}
+
+	void _boardcastOnDownloadFailed(const std::string& url, const std::string& filename, const std::string& basePath, int errorCode)
+	{
+		std::set<platformListener*> listeners;
+		listeners.insert(mListeners.begin(), mListeners.end());
+
+		std::set<platformListener*>::iterator it = listeners.begin();
+		for (; it != listeners.end(); ++it)
+		{
+			(*it)->OnDownloadFailed(url, filename, basePath, errorCode);
+		}
+	}
 };
 
 

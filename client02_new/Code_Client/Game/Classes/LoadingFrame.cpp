@@ -2457,7 +2457,8 @@ void LoadingFrame::downloaded(const std::string &url, const std::string& filenam
 		{
 			alreadyDownloadData.push_back(url);
 			// 下載完先解壓縮
-			bool value = AssetsManagerEx::getInstance()->uncompress((*it)->savePath, (*it)->stroge);
+			CCLog("--->hotUpdate downloaded save path: %s storage: %s ext path %s", (*it)->savePath.c_str(), (*it)->stroge.c_str(), filename.c_str());
+			bool value = AssetsManagerEx::getInstance()->uncompress( (*it)->savePath.c_str(), (*it)->stroge);
 			//CCLog("downloaded uncompress: %s", ((*it)->name).c_str());
 			// delete file
 			remove((*it)->savePath.c_str());
@@ -2500,7 +2501,7 @@ void LoadingFrame::downloaded(const std::string &url, const std::string& filenam
 void LoadingFrame::downloadFailed(const std::string& url, const std::string &filename, int errorType)
 {
 	int failedTime = (MaxResumeTime - ResumeCount) + 1;
-	CCLog("hotUpdate downloadFailed  url: %s    : filename : %s ", url.c_str(), filename.c_str());
+	CCLog("--->hotUpdate downloadFailed  url: %s    : filename : %s ", url.c_str(), filename.c_str());
 	for (auto it = needUpdateAsset.begin(); it != needUpdateAsset.end(); ++it) {
 		if (url.compare((*it)->url) == 0)
 		{
@@ -2567,7 +2568,9 @@ void LoadingFrame::downloadFailed(const std::string& url, const std::string &fil
 
 void LoadingFrame::onAlreadyDownSize(unsigned long size, const std::string& url, const std::string& filename)
 {
+	
 	currentFileLoadSize = float(size);
+	cocos2d::CCLog("--->hotUpdate : onAlreadyDownSize downloading : %f url: %s", currentFileLoadSize, url.c_str());
 	std::string buildType = libPlatformManager::getPlatform()->getBuildType();
 	if (buildType == "qa") {
 		if (url.find(projectManifestName) == url.npos && url.find(versionManifestName) == url.npos) {
@@ -2955,8 +2958,16 @@ void LoadingFrame::UpdateAssetFromServer()
 		downTotalSize += (*it)->size;
 		std::string crc = (*it)->crc;
 		std::string md5 = (*it)->md5;
+		std::string filename = (*it)->name;
+		std::string path = downLoadSavePath;
 		unsigned short crcCmp = atoi((char*)crc.c_str());
+		
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) 
+		// Call java to download file so it can run while app is paused
+		callDownloadJNI(assetUrl, filename, path, md5);
+#else 
 		CurlDownload::Get()->downloadFile(assetUrl, writePath, md5);
+#endif
 	}
 }
 
@@ -2985,8 +2996,16 @@ void LoadingFrame::ResumeUpdateAsset()
 			CCLog("ResumeUpdateAsset loadFailData : %s", (*it)->url.c_str());
 			//downTotalSize += (*it)->size;
 			std::string md5 = (*it)->md5;
+			std::string filename = (*it)->name;
+			std::string path = downLoadSavePath;
 			//unsigned short md5Cmp = atoi((char*)md5.c_str());
+			
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) 
+			// Call java to download file so it can run while app is paused
+			callDownloadJNI((*it)->url, filename, path, md5);
+#else 
 			CurlDownload::Get()->downloadFile((*it)->url, writePath, md5);
+#endif
 		}
 	}
 
@@ -3124,3 +3143,23 @@ std::string LoadingFrame::split(const std::string& str, char delimiter) {
 	}
 	return fileName;
 }
+
+// PlatformListener callbacks implementation 
+// Called by java DownloadManager
+void LoadingFrame::OnDownloadProgress(const std::string& url, const std::string& filename, const std::string& basePath, long progress)
+{
+	//CCLog("--->OnDownloadProgress");
+	onAlreadyDownSize(progress, url, filename);
+};
+
+void LoadingFrame::OnDownloadComplete(const std::string& url, const std::string& filename, const std::string& filenameWithPath, const std::string& md5Str)
+{
+	CCLog("--->OnDownloadComplete: %s", filenameWithPath.c_str());
+	downloaded(url, filenameWithPath); 
+	//moveDownloaded(url, filenameWithPath);
+};
+void LoadingFrame::OnDownloadFailed(const std::string& url, const std::string& filename, const std::string& basePath, int errorCode)
+{
+	//CCLog("--->OnDownloadFailed");
+	downloadFailed(url, filename, errorCode);
+};

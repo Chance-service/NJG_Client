@@ -2,13 +2,17 @@ package com.nuclear.gjwow;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 import org.cocos2dx.lib.Cocos2dxActivity;
 import org.cocos2dx.lib.Cocos2dxHandler;
@@ -39,9 +43,12 @@ import CpsConstValue.CpsConst;
 import android.annotation.SuppressLint;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
@@ -56,6 +63,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.app.DownloadManager;
 
 import com.chance.allsdk.E_PLATFORM;
 import com.chance.allsdk.SDKFactory;
@@ -86,6 +94,12 @@ public abstract class GameActivity extends Cocos2dxActivity {
 	static {
 		System.loadLibrary("Game");
 	}
+
+	private static final Map<Long, String> downloadIdToUrlMap = new HashMap<>();
+	private static final Map<Long, String> downloadIdToPathMap = new HashMap<>();
+	private static final Map<Long, Boolean> downloadActiveMap = new HashMap<>();
+	private static final Map<Long, String> downloadIdToMd5Map = new HashMap<>();
+	private static final Map<Long, String> downloadIdToFilenameMap = new HashMap<>();
 
 	@SuppressLint("HandlerLeak")
 	private class GameAppStateHandler extends Handler {
@@ -1020,6 +1034,11 @@ public abstract class GameActivity extends Cocos2dxActivity {
 	public static native void nativeRequestGameSvrBindTryToOkUser(
 			String tryUser, String okUser);
 
+	// Download manager delegates
+	public static native void nativeOnDownloadProgress(String url, String filename, String basePath, long percent);
+	public static native void nativeOnDownloadComplete(String url, String filename, String basePath, String md5);
+	public static native void nativeOnDownloadFailed(String url, String filename, String basePath, int errorCode);
+
 	abstract public Drawable getSplashDrawable();
 
 	abstract public Drawable getLogoDrawable();
@@ -1085,5 +1104,144 @@ public abstract class GameActivity extends Cocos2dxActivity {
 			e.printStackTrace();
 		}
 		return "0.0.0.0";
+	}
+
+
+	public void callDownload(String assetUrl, String filename, String writePath, String md5)
+	{
+		new Thread(() ->
+		{
+
+			//Log.d(TAG, "--->callDownload assetUrl: " + assetUrl);
+			//Log.d(TAG, "--->callDownload filename: " + filename);
+			//Log.d(TAG, "--->callDownload writepath: " + writePath);
+			//Log.d(TAG, "--->callDownload md5: " + md5);
+
+
+			// TODO:
+			//File basePath = new File(getContext().getExternalFilesDir(null), writePath);
+			//if (!basePath.exists()) {
+			//	basePath.mkdirs();
+			//}
+
+			//File fullPath = new File(basePath, filename);
+
+
+			Log.d(TAG, "--->callDownload fullPath: " + writePath + " url: " + assetUrl);
+
+
+			DownloadManager.Request request = new DownloadManager.Request(Uri.parse(assetUrl));
+
+			request.setTitle("Downloading");
+			request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE);
+
+			request.setDestinationInExternalFilesDir(getContext(), null, writePath + "/" + filename);
+
+			final DownloadManager dm = (DownloadManager) getContext().getSystemService(DOWNLOAD_SERVICE);
+
+			final long downloadId = dm.enqueue(request);
+
+			downloadIdToPathMap.put(downloadId, writePath);
+			downloadIdToUrlMap.put(downloadId, assetUrl);
+			downloadIdToMd5Map.put(downloadId, md5);
+			downloadIdToFilenameMap.put(downloadId, filename);
+			downloadActiveMap.put(downloadId, true);
+
+			DownloadManager.Query query = new DownloadManager.Query();
+			query.setFilterById(downloadId);
+
+			while (downloadActiveMap.getOrDefault(downloadId, false))
+			{
+				Cursor cursor = dm.query(query);
+				if (cursor != null && cursor.moveToFirst())
+				{
+					long bytesDownloaded = cursor.getLong(cursor.getColumnIndexOrThrow(DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR));
+					long bytesTotal = cursor.getLong(cursor.getColumnIndexOrThrow(DownloadManager.COLUMN_TOTAL_SIZE_BYTES));
+					int status = cursor.getInt(cursor.getColumnIndexOrThrow(DownloadManager.COLUMN_STATUS));
+
+					final String path = downloadIdToPathMap.get(downloadId);
+					final String fn = downloadIdToFilenameMap.get(downloadId);
+					final String url = downloadIdToUrlMap.get(downloadId);
+					final String fileMd5 = downloadIdToMd5Map.get(downloadId);
+
+					if (bytesDownloaded > 0)
+					{
+						//final int progress = (int) ((bytesDownloaded * 100L) / bytesTotal);
+						//Log.d(TAG, "--->downloading: " + path + " progress: " + bytesDownloaded);
+						runOnGLThread(() -> nativeOnDownloadProgress(url, fn, path, bytesDownloaded));
+					}
+
+					switch (status) {
+						case DownloadManager.STATUS_PENDING:
+							//Log.d(TAG, "--->Download pending...");
+							break;
+						case DownloadManager.STATUS_RUNNING:
+							//Log.d(TAG, "--->Download running...");
+							break;
+						case DownloadManager.STATUS_PAUSED:
+							//Log.d(TAG, "--->Download paused...");
+							break;
+						case DownloadManager.STATUS_FAILED:
+							downloadActiveMap.put(downloadId, false);
+							int reason = cursor.getInt(cursor.getColumnIndexOrThrow(DownloadManager.COLUMN_REASON));
+							//Log.e(TAG, "--->Download failed! Reason: " + reason);
+							runOnGLThread(() -> nativeOnDownloadFailed(url, fn, path, status));
+							break;
+						case DownloadManager.STATUS_SUCCESSFUL:
+							downloadActiveMap.put(downloadId, false);
+							//Log.d(TAG, "--->Download successful.");
+							File file = new File(getContext().getExternalFilesDir(null), writePath + "/" + filename);
+							String fullPath = file.getAbsolutePath();
+							moveFileToInternal(getContext(), fullPath,writePath + "/" + filename);
+							runOnGLThread(() -> nativeOnDownloadComplete(url, fn, path, fileMd5));
+							break;
+					}
+
+					cursor.close();
+				}
+
+				try {
+					Thread.sleep(500);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+					downloadActiveMap.put(downloadId, false);
+				}
+			}
+
+
+		}).start();
+
+	}
+
+	public static boolean moveFileToInternal(Context context, String externalPath, String internalFileName) {
+		try {
+			Log.d(TAG, "--->moveFileToInternal..." + externalPath + " internal: " + internalFileName);
+			File srcFile = new File(externalPath);
+			File dstFile = new File(context.getFilesDir(), internalFileName);
+			File dstDir = dstFile.getParentFile();
+			if (!dstDir.exists()) {
+				dstDir.mkdirs();  // ✅ Create all parent folders
+			}
+
+			InputStream in = new FileInputStream(srcFile);
+			OutputStream out = new FileOutputStream(dstFile);
+
+			byte[] buffer = new byte[4096];
+			int read;
+			while ((read = in.read(buffer)) != -1) {
+				out.write(buffer, 0, read);
+			}
+			in.close();
+			out.close();
+
+			// Optional: delete original
+			srcFile.delete();
+
+			return true;
+		} catch (IOException e) {
+			Log.d(TAG, "--->moveFileToInternal err." + e.getLocalizedMessage());
+			e.printStackTrace();
+			return false;
+		}
 	}
 }
