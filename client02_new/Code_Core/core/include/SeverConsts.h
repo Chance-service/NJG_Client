@@ -23,9 +23,9 @@ sever file example:
 "defaultSeverID" : 1,
 "severs" :
 [
-{"id":1, "name":"Ò»·«·çË³" , "address":"127.0.0.1", "port":9999, "state":"full"},
-{"id":2, "name":"´«µ½ÇÅÍ·" , "address":"127.0.0.1", "port":9998, "state":"general"},
-{"id":3, "name":"·çµ÷ÓêË³" , "address":"127.0.0.1", "port":9998, "state":"new"},
+{"id":1, "name":"Ò»ï¿½ï¿½ï¿½ï¿½Ë³" , "address":"127.0.0.1", "port":9999, "state":"full"},
+{"id":2, "name":"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í·" , "address":"127.0.0.1", "port":9998, "state":"general"},
+{"id":3, "name":"ï¿½ï¿½ï¿½ï¿½ï¿½Ë³" , "address":"127.0.0.1", "port":9998, "state":"new"},
 ]
 } 
 
@@ -86,8 +86,8 @@ public:
 		CS_FAILED,
 		CS_SEVERFAILED,
 		//
-		//ÎÊÌâ£¬Ã»·¨·Å»Ò¶ÈºÅ¡¢ÄÚ²¿ºÅ½øÈë£¬ÔÝ²»ÊµÏÖ
-		//CS_SERVER_STATE_WAITING,	//xinzheng 2013-07-15 ÔÚserverµÄÇø·þÅäÖÃÉÏ ±êÊ¾¸ÃÇøGameServerµÄµ±Ç°×´Ì¬£¬1Õý³££¬0µ¯Ò»¸ömsg×èÖ¹½øÈë
+		//ï¿½ï¿½ï¿½â£¬Ã»ï¿½ï¿½ï¿½Å»Ò¶ÈºÅ¡ï¿½ï¿½Ú²ï¿½ï¿½Å½ï¿½ï¿½ë£¬ï¿½Ý²ï¿½Êµï¿½ï¿½
+		//CS_SERVER_STATE_WAITING,	//xinzheng 2013-07-15 ï¿½ï¿½serverï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½GameServerï¿½Äµï¿½Ç°×´Ì¬ï¿½ï¿½1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½0ï¿½ï¿½Ò»ï¿½ï¿½msgï¿½ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½
 		//
 	};
 
@@ -162,11 +162,11 @@ public:
 	void initSearchPath();
 	void setSearchPath();
 
-	//ÎÄ×ÖäÖÈ¾Ë³Ðò£¬ÀýÈç°¢À­²®´ÓÓÒÏò×ó
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¾Ë³ï¿½ï¿½ï¿½ï¿½ï¿½ç°¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	void initIsTextLeft2Right(bool value);
 	bool getIsTextLeft2Right(){ return mIsTextLeft2Right; }
 
-	//ÉèÖÃÊÇ·ñÔÚÉóºËios
+	//ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ios
 	void setIsAppStoreChecking(bool value){ mIsAppStoreChecking = value; }
 	bool getIsAppStoreChecking(){ return  mIsAppStoreChecking; }
 	void setIsOpenDataTransfer(bool value){mIsOpenDataTransfer = value;}
@@ -252,7 +252,7 @@ private:
 	std::string mSeverFile;
 	std::string mConfigFile;
 	std::string mFailedName;
-	std::string mCfgFilePath;	//bundleµÄversion_xx.cfgÎÄ¼þÈ«Â·¾¶
+	std::string mCfgFilePath;	//bundleï¿½ï¿½version_xx.cfgï¿½Ä¼ï¿½È«Â·ï¿½ï¿½
 	std::string platformName;
 
 	bool _IsDebug;
@@ -273,18 +273,18 @@ private:
 	ThreadService mCheckFileThread;
 	bool _isPopNotifyWhenFileNotFound;
 	std::string mAdditionalSearchPath;
-	//ÆäÊµÊÇplatformÂ·¾¶£¬Ö÷ÒªÓÃÓÚwin32
+	//ï¿½ï¿½Êµï¿½ï¿½platformÂ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½win32
 	std::string mPlatformPath;
-	//ÓïÑÔ°ü³õÊ¼Â·¾¶
+	//ï¿½ï¿½ï¿½Ô°ï¿½ï¿½ï¿½Ê¼Â·ï¿½ï¿½
 	std::string mLanguageInitPath;
-	//ÓïÑÔ°üÂ·¾¶£¬ÓÃÓÚ¶àÓïÑÔÍ¬°üµÄÇé¿ö
+	//ï¿½ï¿½ï¿½Ô°ï¿½Â·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú¶ï¿½ï¿½ï¿½ï¿½ï¿½Í¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	std::string mLanguagePath;
-	//ÎÄ×ÖäÖÈ¾Ïà¹Ø
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¾ï¿½ï¿½ï¿½
 	bool mIsTextLeft2Right;
 	
 	bool mIsAppStoreChecking;
-	bool mIsFirstUpdate;//ÊÇ·ñµÚÒ»´ÎÄÚ¸üÐÂ
-	bool mIsOpenDataTransfer;//ÊÇ·ñ¿ªÆôÒÆÐÐ
+	bool mIsFirstUpdate;//ï¿½Ç·ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ú¸ï¿½ï¿½ï¿½
+	bool mIsOpenDataTransfer;//ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	std::vector<std::string> mAlreadyDownZipVec;
 
 	std::string mInternalAnnouncementFilePath;
@@ -294,7 +294,7 @@ private:
 	bool _mReDownLoadServerFile;
 	float _updateReqServerListOffestTime;
 	float _updateReqServerListTime;
-	int downloadServerFileTimes;  //ÏÂÔØ·þÎñÆ÷ÁÐ±íµÄ´ÎÊý
+	int downloadServerFileTimes;  //ï¿½ï¿½ï¿½Ø·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½ï¿½Ä´ï¿½ï¿½ï¿½
 
 private:
 	//bool _parseConfigFile(const std::string& configfile);

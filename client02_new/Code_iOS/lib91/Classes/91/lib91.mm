@@ -218,10 +218,8 @@ bool lib91::getLogined()
 {
 #ifdef PROJECT_KUSO
     return PlayCenter.shared.isLoggedIn;
-#else
-    // TODO: Not sure if we should just return true
-    return false;
 #endif
+    return false;
 }
 
 void lib91::login()
@@ -475,7 +473,13 @@ const std::string& lib91::nickName()
 #pragma mark ----------------------------- platform data -----------------------------------
 const std::string lib91::getClientChannel()
 {
+#ifdef PROJECT_KUSO
     return "ios_kuso";
+#endif
+#ifdef PROJECT_EROLABS
+    return "ios_erolabs";
+#endif
+    return "";
 }
 
 const std::string lib91::getClientCps()
@@ -549,9 +553,11 @@ const unsigned int lib91::getPlatformId()
 {
 #ifdef PROJECT_KUSO
     return SeverConsts::EP_KUSO;
-#else
+#endif
+#ifdef PROJECT_EROLABS
     return SeverConsts::EP_EROLABS;
 #endif
+    return SeverConsts::EP_NONE;
 }
 
 void lib91::setIsGuest(const int guest)

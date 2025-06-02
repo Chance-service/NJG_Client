@@ -317,7 +317,7 @@ void CurlDownload::update( float dt )
 		
 		if (DownLoadTask::Get()->getCheckCRC())
 		{
-			unsigned short crc = DownLoadTask::Get()->getCRC();
+			//unsigned short crc = DownLoadTask::Get()->getCRC();
 			if (DownLoadTask::Get()->getDataCRC() == DownLoadTask::Get()->getCRC())
 				sendOK = true;
 			else
