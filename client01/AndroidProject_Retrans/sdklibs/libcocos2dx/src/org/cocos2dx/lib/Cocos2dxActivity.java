@@ -733,6 +733,11 @@ public abstract class Cocos2dxActivity extends Activity implements
 			
 		});
 	}
+
+	@Override
+	public void callDownload(String assetUrl, String filename, String writePath, String md5)
+	{
+	}
 	
 	// ===========================================================
 	// Inner and Anonymous Classes

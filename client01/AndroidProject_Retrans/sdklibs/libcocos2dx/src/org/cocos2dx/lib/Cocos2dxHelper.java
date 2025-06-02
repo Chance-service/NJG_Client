@@ -803,6 +803,11 @@ public class Cocos2dxHelper
 	{
 		Cocos2dxHelper.sCocos2dxHelperListener.setEditBoxText(pText);
 	}
+
+	public static void callDownload(String assetUrl, String filename, String writePath, String md5)
+	{
+		Cocos2dxHelper.sCocos2dxHelperListener.callDownload(assetUrl, filename, writePath, md5);
+	}
 	
 	// ===========================================================
 	// Inner and Anonymous Classes
@@ -890,5 +895,6 @@ public class Cocos2dxHelper
 		public void clearSysNotification();
 		public String getClipboardText();
 		public void setClipboardText(String text);
+		public void callDownload(String assetUrl, String filename, String writePath, String md5);
 	}
 }

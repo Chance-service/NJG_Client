@@ -246,6 +246,10 @@ public:
 
     virtual void onInputboxEnter(const std::string& content);
     virtual void onShowMessageBox(const std::string& msgString, int tag);
+	virtual void OnKrIsShowFucForIOSBack(bool result){};
+	virtual void OnDownloadProgress(const std::string& urlStr, const std::string& filenameStr, const std::string& basePathStr, long progress);
+	virtual void OnDownloadComplete(const std::string& urlStr, const std::string& filenameStr, const std::string& basePathStr, const std::string& md5Str);
+	virtual void OnDownloadFailed(const std::string& urlStr, const std::string& filenameStr, const std::string& basePathStr, int errorCode);
 	void showLoginUser(const std::string& UserID = "", const std::string& aPwd = "", const ERO_LOGINTYPE = ERO_LOGINTYPE::LOGINTYPE_NONE);
 	void showEnter();
 	void hideLoginingInPercent();

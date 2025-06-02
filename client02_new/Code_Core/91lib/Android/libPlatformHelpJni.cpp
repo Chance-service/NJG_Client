@@ -46,7 +46,7 @@ extern "C" {
   JNIEXPORT void JNICALL Java_com_nuclear_gjwow_GameActivity_nativeOnShareEngineMessage(JNIEnv* env,jobject thiz ,bool _result,jstring _resultStr) {
 	//int length = env->GetStringLength(_resultStr);
     std::string resultStr = JniHelper::jstring2string(_resultStr);
-	CCLog("GameActivity_nativeOnShareEngineMessage=====¡·%d======¡·%s======",int(_result),resultStr.c_str());
+	CCLog("GameActivity_nativeOnShareEngineMessage=====ï¿½ï¿½%d======ï¿½ï¿½%s======",int(_result),resultStr.c_str());
     libPlatformManager::getPlatform()->_boardcastOnShareEngineMessage(_result/*,resultStr.c_str()*/);
     
   }
@@ -56,50 +56,50 @@ extern "C" {
     libPlatformManager::getPlatform()->_boardcastOnMotionShake();
     
   }
-  //º«¹úkakaoºÃÓÑ»Øµ÷
-  //»ñµÃÑûÇë´ÎÊý
+  //ï¿½ï¿½ï¿½ï¿½kakaoï¿½ï¿½ï¿½Ñ»Øµï¿½
+  //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
   JNIEXPORT void JNICALL Java_com_nuclear_gjwow_GameActivity_nativeOnKrGetInviteCount(JNIEnv * env, jobject obj,int nCount) {
 	libPlatformManager::getPlatform()->_boardcastOnKrCallBack(libPlatform::GET_INVITE_COUNT,nCount);
   }
-  //ÑûÇëÁÐ±í
+  //ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
   JNIEXPORT void JNICALL Java_com_nuclear_gjwow_GameActivity_nativeOnKrGetInviteLists(JNIEnv * env, jobject obj,jstring strInviteInfo) {
 	   std::string inviteInfo = JniHelper::jstring2string(strInviteInfo);
 	   libPlatformManager::getPlatform()->_boardcastOnKrCallBack(libPlatform::GET_INVITE_LIST,0,false,inviteInfo);
   }
-  //ºÃÓÑÁÐ±í
+  //ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
   JNIEXPORT void JNICALL Java_com_nuclear_gjwow_GameActivity_nativeOnKrGetFriendLists(JNIEnv * env, jobject obj,jstring strFriendInfo) {
 	  std::string friendInfo = JniHelper::jstring2string(strFriendInfo);
 	  libPlatformManager::getPlatform()->_boardcastOnKrCallBack(libPlatform::GET_FRIEND_LIST,0,false,friendInfo);
   }
-  //·¢ËÍÑûÇëÐÅÏ¢
+  //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
   JNIEXPORT void JNICALL Java_com_nuclear_gjwow_GameActivity_nativeOnKrSendInvite(JNIEnv * env, jobject obj,jstring resultStr) {
 	  std::string result = JniHelper::jstring2string(resultStr);
 	  libPlatformManager::getPlatform()->_boardcastOnKrCallBack(libPlatform::SEND_INVITE,0,false,result);
   }
-  //»ñÈ¡ÀñÎïÁÐ±í
+  //ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
   JNIEXPORT void JNICALL Java_com_nuclear_gjwow_GameActivity_nativeOnKrGetGiftLists(JNIEnv * env, jobject obj,jstring strGiftList) {
 	  std::string giftList = JniHelper::jstring2string(strGiftList);
 	  libPlatformManager::getPlatform()->_boardcastOnKrCallBack(libPlatform::GET_GIFT_LIST,0,false,giftList);
   }
-  //½ÓÊÜÀñÎï
+  //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
   JNIEXPORT void JNICALL Java_com_nuclear_gjwow_GameActivity_nativeOnKrReceiveGift(JNIEnv * env, jobject obj,bool result) {
 	   libPlatformManager::getPlatform()->_boardcastOnKrCallBack(libPlatform::RECEIVE_GIFT,0,result);
   }
-  //µ±Ç°Ëù½ÓÊÜÀñÎïµÄ¸öÊý
+  //ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½ï¿½
   JNIEXPORT void JNICALL Java_com_nuclear_gjwow_GameActivity_nativeOnKrGetGiftCount(JNIEnv * env, jobject obj,int nCount) {
 	  libPlatformManager::getPlatform()->_boardcastOnKrCallBack(libPlatform::GET_GIFT_COUNT,nCount);
   }
-  //ÔùËÍÀñÎï
+  //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
   JNIEXPORT void JNICALL Java_com_nuclear_gjwow_GameActivity_nativeOnKrSendGift(JNIEnv * env, jobject obj,jstring resultStr) {
 	  std::string result = JniHelper::jstring2string(resultStr);
 	  libPlatformManager::getPlatform()->_boardcastOnKrCallBack(libPlatform::SEND_GIFT,0,false,result);
   }
-  //ÆÁ±ÎÀñÎï
+  //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
   JNIEXPORT void JNICALL Java_com_nuclear_gjwow_GameActivity_nativeOnKrGiftBlock(JNIEnv * env, jobject obj,jstring resultStr) {
 	   std::string result = JniHelper::jstring2string(resultStr);
 	   libPlatformManager::getPlatform()->_boardcastOnKrCallBack(libPlatform::GIFT_BLOCK,0,false,result);
   }
-  //CDKey»Øµ÷
+  //CDKeyï¿½Øµï¿½
   JNIEXPORT void JNICALL Java_com_nuclear_gjwow_GameActivity_nativeOnKrCouponsBack(JNIEnv * env, jobject obj,jstring resultStr) {
 	  CCLog("Java_com_nuclear_gjwow_GameActivity_nativeOnKrCouponsBack == begin");
 	  std::string result = JniHelper::jstring2string(resultStr);
@@ -109,6 +109,31 @@ extern "C" {
   JNIEXPORT void JNICALL Java_com_nuclear_gjwow_GameActivity_nativeOnKrGetKakaoIdBack(JNIEnv * env, jobject obj,jstring resultStr) {
 	  std::string result = JniHelper::jstring2string(resultStr);
 	  libPlatformManager::getPlatform()->_boardcastOnKrCallBack(libPlatform::Get_KakaoId,0,false,result);
+  }
+  
+  JNIEXPORT void JNICALL Java_com_nuclear_gjwow_GameActivity_nativeOnDownloadProgress(JNIEnv *env, jobject obj, jstring urlStr, jstring filenameStr, jstring basePathStr, long percent) {
+	  std::string url = JniHelper::jstring2string(urlStr);
+	  std::string filename = JniHelper::jstring2string(filenameStr);
+	  std::string basePath = JniHelper::jstring2string(basePathStr);
+	  CCLog("--->Java_com_nuclear_gjwow_GameActivity_nativeOnDownloadProgress == %s %s %s %l", url.c_str(), filename.c_str(), basePath.c_str(), percent);
+	  //libPlatformManager::getPlatform()->_boardcastOnKrCallBack(libPlatform::Get_KakaoId,0,false,result);
+  }
+
+  JNIEXPORT void JNICALL Java_com_nuclear_gjwow_GameActivity_nativeOnDownloadComplete(JNIEnv *env, jobject obj, jstring urlStr, jstring filenameStr, jstring basePathStr, jstring md5Str) {
+	  std::string url = JniHelper::jstring2string(urlStr);
+	  std::string filename = JniHelper::jstring2string(filenameStr);
+	  std::string basePath = JniHelper::jstring2string(basePathStr);
+	  std::string md5 = JniHelper::jstring2string(md5Str);
+	  CCLog("--->Java_com_nuclear_gjwow_GameActivity_nativeOnDownloadComplete == %s %s %s %s", url.c_str(), filename.c_str(), basePath.c_str(), md5Str.c_str());
+	  //libPlatformManager::getPlatform()->_boardcastOnKrCallBack(libPlatform::Get_KakaoId,0,false,result);
+  }
+
+  JNIEXPORT void JNICALL Java_com_nuclear_gjwow_GameActivity_nativeOnDownloadFailed(JNIEnv *env, jobject obj, jstring urlStr, jstring filenameStr, jstring basePathStr, int errorCode) {
+	  std::string url = JniHelper::jstring2string(urlStr);
+	  std::string filename = JniHelper::jstring2string(filenameStr);
+	  std::string basePath = JniHelper::jstring2string(basePathStr);
+	  CCLog("--->Java_com_nuclear_gjwow_GameActivity_nativeOnDownloadFailed == %s %s %s %l", url.c_str(), filename.c_str(), basePath.c_str(), errorCode);
+	  //libPlatformManager::getPlatform()->_boardcastOnKrCallBack(libPlatform::Get_KakaoId,0,false,result);
   }
 }
 
