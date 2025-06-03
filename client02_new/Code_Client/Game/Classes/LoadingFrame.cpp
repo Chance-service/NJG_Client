@@ -2965,6 +2965,7 @@ void LoadingFrame::UpdateAssetFromServer()
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) 
 		// Call java to download file so it can run while app is paused
 		callDownloadJNI(assetUrl, filename, path, md5);
+		//CurlDownload::Get()->downloadFile(assetUrl, writePath, md5);
 #else 
 		CurlDownload::Get()->downloadFile(assetUrl, writePath, md5);
 #endif
@@ -3003,6 +3004,7 @@ void LoadingFrame::ResumeUpdateAsset()
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) 
 			// Call java to download file so it can run while app is paused
 			callDownloadJNI((*it)->url, filename, path, md5);
+			//CurlDownload::Get()->downloadFile((*it)->url, writePath, md5);
 #else 
 			CurlDownload::Get()->downloadFile((*it)->url, writePath, md5);
 #endif
@@ -3154,7 +3156,7 @@ void LoadingFrame::OnDownloadProgress(const std::string& url, const std::string&
 
 void LoadingFrame::OnDownloadComplete(const std::string& url, const std::string& filename, const std::string& filenameWithPath, const std::string& md5Str)
 {
-	CCLog("--->OnDownloadComplete: %s", filenameWithPath.c_str());
+	//CCLog("--->OnDownloadComplete: %s", filenameWithPath.c_str());
 	downloaded(url, filenameWithPath); 
 	//moveDownloaded(url, filenameWithPath);
 };

@@ -34,7 +34,6 @@ import com.nuclear.state.GameAppState;
 import com.nuclear.state.SplashState;
 import com.nuclear.util.ContextUtil;
 import com.nuclear.util.DeviceUtil;
-//import com.nuclear.util.DownloadApk;
 import com.nuclear.util.LogUtil;
 import com.guajibase.gamelib.R;
 import ConstValue.PlatformConst;
@@ -74,6 +73,7 @@ import java.net.NetworkInterface;
 import java.net.URL;
 import java.net.UnknownHostException;
 import java.util.Enumeration;
+import java.security.MessageDigest;
 
 @SuppressLint("NewApi")
 public abstract class GameActivity extends Cocos2dxActivity {
@@ -1185,15 +1185,24 @@ public abstract class GameActivity extends Cocos2dxActivity {
 							downloadActiveMap.put(downloadId, false);
 							int reason = cursor.getInt(cursor.getColumnIndexOrThrow(DownloadManager.COLUMN_REASON));
 							//Log.e(TAG, "--->Download failed! Reason: " + reason);
-							runOnGLThread(() -> nativeOnDownloadFailed(url, fn, path, status));
+							runOnGLThread(() -> nativeOnDownloadFailed(url, fn, path, reason));
 							break;
 						case DownloadManager.STATUS_SUCCESSFUL:
 							downloadActiveMap.put(downloadId, false);
 							//Log.d(TAG, "--->Download successful.");
 							File file = new File(getContext().getExternalFilesDir(null), writePath + "/" + filename);
 							String fullPath = file.getAbsolutePath();
-							moveFileToInternal(getContext(), fullPath,writePath + "/" + filename);
-							runOnGLThread(() -> nativeOnDownloadComplete(url, fn, path, fileMd5));
+							// Validate md5 first
+							String computeMD5hash = computeMD5(file);
+							Log.d(TAG, "--->Download successful. check md5: " + computeMD5hash + " against original: " + fileMd5 + " for " + url);
+							if (computeMD5hash.equals(fileMd5)) {
+								moveFileToInternal(getContext(), fullPath, writePath + "/" + filename);
+								runOnGLThread(() -> nativeOnDownloadComplete(url, fn, path, fileMd5));
+							}
+							else {
+								Log.d(TAG, "--->Download md5 failed");
+								runOnGLThread(() -> nativeOnDownloadFailed(url, fn, path, 0));
+							}
 							break;
 					}
 
@@ -1215,7 +1224,7 @@ public abstract class GameActivity extends Cocos2dxActivity {
 
 	public static boolean moveFileToInternal(Context context, String externalPath, String internalFileName) {
 		try {
-			Log.d(TAG, "--->moveFileToInternal..." + externalPath + " internal: " + internalFileName);
+			//Log.d(TAG, "--->moveFileToInternal..." + externalPath + " internal: " + internalFileName);
 			File srcFile = new File(externalPath);
 			File dstFile = new File(context.getFilesDir(), internalFileName);
 			File dstDir = dstFile.getParentFile();
@@ -1242,6 +1251,29 @@ public abstract class GameActivity extends Cocos2dxActivity {
 			Log.d(TAG, "--->moveFileToInternal err." + e.getLocalizedMessage());
 			e.printStackTrace();
 			return false;
+		}
+	}
+
+	public static String computeMD5(File file) {
+		try {
+			MessageDigest md = MessageDigest.getInstance("MD5");
+			FileInputStream fis = new FileInputStream(file);
+			byte[] buffer = new byte[4096];
+			int bytesRead;
+			while ((bytesRead = fis.read(buffer)) != -1) {
+				md.update(buffer, 0, bytesRead);
+			}
+			fis.close();
+
+			byte[] digest = md.digest();
+			StringBuilder sb = new StringBuilder();
+			for (byte b : digest) {
+				sb.append(String.format("%02x", b));
+			}
+			return sb.toString();  // Lowercase MD5 hex string
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
 		}
 	}
 }
