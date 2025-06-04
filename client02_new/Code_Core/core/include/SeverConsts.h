@@ -102,7 +102,6 @@ public:
 		EP_KUSO,
 		EP_EROLABS,
 		EP_OP,
-		EP_TEMP2,
 		EP_APLUS,
 	};
 	
