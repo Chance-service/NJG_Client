@@ -83,6 +83,7 @@ android {
                 implementation 'com.google.android.gms:play-services-appset:16.0.2'
                 implementation 'com.google.android.gms:play-services-ads-identifier:18.0.1'
                 implementation 'com.google.code.gson:gson:2.8.5'
+                implementation 'com.squareup.okhttp3:okhttp:4.12.0'
                 //implementation  project(':sdklibs:h365app')
             }
             defaultConfig {
@@ -97,6 +98,7 @@ android {
                 implementation project(':sdklibs:libcocos2dx')
                 //implementation 'com.adjust.sdk:adjust-android-huawei-referrer:5.0.0'
                 implementation 'com.android.installreferrer:installreferrer:2.2'
+                implementation 'com.squareup.okhttp3:okhttp:4.12.0'
             }
             defaultConfig {
                 minSdkVersion 21
@@ -109,6 +111,7 @@ android {
                 compileOnly fileTree(dir:'libs', include: ['*.aar'])
                 implementation   project(':sdklibs:libcocos2dx')
                 implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+                implementation 'com.squareup.okhttp3:okhttp:4.12.0'
                 // libs
                 //files('libs/ChannelManager.jar')
                 //implementation(name:'JsGameSDK',ext:'aar')
@@ -149,6 +152,7 @@ android {
 
                 implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
                 implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
+                implementation 'com.squareup.okhttp3:okhttp:4.12.0'
 
 
                 constraints {
@@ -179,6 +183,7 @@ android {
                 compileOnly fileTree(dir: 'platformlibs/EROLABS', include: ['*.jar','*.aar'])
                 compileOnly fileTree(dir: 'libs', include: ['*.aar'])
                 implementation project(':sdklibs:libcocos2dx')
+                implementation 'com.squareup.okhttp3:okhttp:4.12.0'
 
             }
             defaultConfig {
@@ -201,6 +206,7 @@ android {
 
                 implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
                 implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
+                implementation 'com.squareup.okhttp3:okhttp:4.12.0'
 
 
                 constraints {

@@ -2570,7 +2570,7 @@ void LoadingFrame::onAlreadyDownSize(unsigned long size, const std::string& url,
 {
 	
 	currentFileLoadSize = float(size);
-	cocos2d::CCLog("--->hotUpdate : onAlreadyDownSize downloading : %f url: %s", currentFileLoadSize, url.c_str());
+	//cocos2d::CCLog("--->hotUpdate : onAlreadyDownSize downloading : %f url: %s", currentFileLoadSize, url.c_str());
 	std::string buildType = libPlatformManager::getPlatform()->getBuildType();
 	if (buildType == "qa") {
 		if (url.find(projectManifestName) == url.npos && url.find(versionManifestName) == url.npos) {
