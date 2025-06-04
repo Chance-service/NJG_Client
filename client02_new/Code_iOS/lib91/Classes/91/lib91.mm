@@ -24,6 +24,7 @@ static int serverId = 9;
 static NSString* tapDBId = @"38557e71wa26gpy8";
 static NSString* tapDBChannel = @"quanta";
 static bool enableTapDBLog = true;
+static int HoneyP = 0;
 
 @interface Helpers : NSObject
 + (NSDictionary*) stringToDictionary:(NSString*) jsonString;
@@ -710,8 +711,9 @@ void lib91::setPayR18(int mid, int serverid, const std::string& url){}
     
 int lib91::getHoneyP()
 {
-    return 0;
+    return HoneyP;
 }
 void lib91::setHoneyP(int aMoney)
 {
+    HoneyP = aMoney;
 }
