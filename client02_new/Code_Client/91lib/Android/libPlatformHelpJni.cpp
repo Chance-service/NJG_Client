@@ -115,7 +115,7 @@ extern "C" {
 	  std::string url = JniHelper::jstring2string(urlStr);
 	  std::string filename = JniHelper::jstring2string(filenameStr);
 	  std::string basePath = JniHelper::jstring2string(basePathStr);
-	  CCLog("--->1Java_com_nuclear_gjwow_GameActivity_nativeOnDownloadProgress == %s %s %s %d", url.c_str(), filename.c_str(), basePath.c_str(), percent);
+	  //CCLog("--->1Java_com_nuclear_gjwow_GameActivity_nativeOnDownloadProgress == %s %s %s %d", url.c_str(), filename.c_str(), basePath.c_str(), percent);
 	  libPlatformManager::getPlatform()->_boardcastOnDownloadProgress(url, filename, basePath, percent);
   }
 
@@ -124,7 +124,7 @@ extern "C" {
 	  std::string filename = JniHelper::jstring2string(filenameStr);
 	  std::string basePath = JniHelper::jstring2string(basePathStr);
 	  std::string md5 = JniHelper::jstring2string(md5Str);
-	  CCLog("--->1Java_com_nuclear_gjwow_GameActivity_nativeOnDownloadComplete == %s %s %s %s", url.c_str(), filename.c_str(), basePath.c_str(), md5.c_str());
+	  //CCLog("--->1Java_com_nuclear_gjwow_GameActivity_nativeOnDownloadComplete == %s %s %s %s", url.c_str(), filename.c_str(), basePath.c_str(), md5.c_str());
 	  libPlatformManager::getPlatform()->_boardcastOnDownloadComplete(url, filename, basePath, md5);
   }
 
@@ -132,7 +132,7 @@ extern "C" {
 	  std::string url = JniHelper::jstring2string(urlStr);
 	  std::string filename = JniHelper::jstring2string(filenameStr);
 	  std::string basePath = JniHelper::jstring2string(basePathStr);
-	  CCLog("--->1Java_com_nuclear_gjwow_GameActivity_nativeOnDownloadFailed == %s %s %s %d", url.c_str(), filename.c_str(), basePath.c_str(), errorCode);
+	  //CCLog("--->1Java_com_nuclear_gjwow_GameActivity_nativeOnDownloadFailed == %s %s %s %d", url.c_str(), filename.c_str(), basePath.c_str(), errorCode);
 	  libPlatformManager::getPlatform()->_boardcastOnDownloadFailed(url, filename, basePath, errorCode);
   }
 
