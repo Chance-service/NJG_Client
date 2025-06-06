@@ -2711,7 +2711,7 @@ void LoadingFrame::showPersent(float persentage, std::string sizeTip)
 		if (persentage <= 0.00f)
 			persentage = 0.00f;
 		if (persentage - lastPercent >= 0.02) {
-			return;
+			//return;
 		}
 		if (persentage >= lastPercent)
 		{
