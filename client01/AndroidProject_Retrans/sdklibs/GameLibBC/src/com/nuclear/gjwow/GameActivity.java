@@ -226,8 +226,8 @@ public abstract class GameActivity extends Cocos2dxActivity {
 		if (BuildConfig.BUILD_TYPE.equals("qa")) {
 			myIpText.setVisibility(View.VISIBLE);
 			cdnText.setVisibility(View.VISIBLE);
-			myIpText.setText("裝置IP : " + getLocalIPAddress());
-			cdnText.setText("CDN IP : " + resolveHostToIP("https://njgcdn.vslrx.com"));
+			myIpText.setText(getLocalIPAddress() + "  " + resolveHostToIP("https://njgcdn.vslrx.com"));
+			cdnText.setText("");
 		}
 		else {
 			myIpText.setVisibility(View.GONE);

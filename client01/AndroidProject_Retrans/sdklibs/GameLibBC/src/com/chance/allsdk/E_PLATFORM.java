@@ -9,7 +9,6 @@ public enum E_PLATFORM {
     MURA(5),
     KUSO(6),
     EROLABS(7),
-
     OP(8),
     APLUS(9);
     private int value;

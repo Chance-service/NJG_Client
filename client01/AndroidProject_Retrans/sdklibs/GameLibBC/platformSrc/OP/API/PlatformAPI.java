@@ -127,6 +127,7 @@ public class PlatformAPI extends SDKService {
 		dologout = true;
 		isLogin = false;
 		Log.d(aTag, "logout2");
+		sdkLogin();
 	}
 
 	@Override
@@ -139,7 +140,7 @@ public class PlatformAPI extends SDKService {
 		PurchaseRequest req = new PurchaseRequest();
 		req.products = new ArrayList<>();
 
-		String imageurl = "https://s3-ap-northeast-1.amazonaws.com/file.idleparadise.com/idleparadise/icon/idleparadise.png";
+		String imageurl = "https://s3.ap-southeast-1.amazonaws.com/njg365bundle.quantagalaxies.com/Icon/OP_icon.png";
 		PaymentItem item = new PaymentItem(pay_info.name, pay_info.product_name,
 				Math.round(pay_info.price), pay_info.count, imageurl, pay_info.description);
 		req.products.add(item);

@@ -1,4 +1,0 @@
-id	bg	textKey
-1	bg	@FearlessTower_Pride
-2	bg	@FearlessTower_Lust
-3	bg	@FearlessTower_Wrath

@@ -88,6 +88,7 @@ import androidx.core.content.ContextCompat;
 import android.text.TextUtils;
 //import android.util.Base64;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -760,34 +761,43 @@ public class PlatformSDKActivity extends GameActivity {
 	}
 	@Override
 	public void callPlayMovie(String fileName, int isLoop, int autoScale) {
+		Log.d(TAG, "Video play : " + fileName);
 		FrameLayout videoMask = (FrameLayout)findViewById(R.id.videoMask);
 		videoMask.setVisibility(View.VISIBLE);
-		videoView = (VideoView)findViewById(R.id.videovideo);
-		videoView.setVisibility(View.VISIBLE);
+
+		FrameLayout container = findViewById(R.id.videoContainer);
+		if (videoView != null) {
+			container.removeView(videoView); // 移除舊的
+			videoView = null;
+		}
+		videoView = new VideoView(getContext());
+		FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
+				FrameLayout.LayoutParams.MATCH_PARENT,
+				FrameLayout.LayoutParams.MATCH_PARENT
+		);
+		params.gravity = Gravity.CENTER; // 將 VideoView 置中
+		videoView.setLayoutParams(params);
+		videoView.setAlpha(0.0f); // 先隱藏，避免閃爍
+		container.addView(videoView); // 加到容器中
+
 		String fullVideoPath = filesPath + "/Video/" + fileName + ".mp4";
 		String fullHotUpdateVideoPath = getContext().getFilesDir().getAbsolutePath() + "/hotUpdate/Video/" + fileName + ".mp4";
 		File file1 = new File(fullVideoPath);
 		File file2 = new File(fullHotUpdateVideoPath);
-		//if (fileName.contains("op")){
-		//	int rawId = getResources().getIdentifier(fileName,  "raw", getPackageName());
-		//	videoView.setVideoPath("android.resource://" + getPackageName() + "/" + rawId);
-		//}
-		//else {
-			if (file2.exists())
-				videoView.setVideoPath(fullHotUpdateVideoPath);
-			else if (file1.exists())
-				videoView.setVideoPath(fullVideoPath);
-			else {
-				videoView.setOnTouchListener(null);
-				videoView = null;
-				return;
-			}
-		//}
+		if (file2.exists())
+			videoView.setVideoPath(fullHotUpdateVideoPath);
+		else if (file1.exists())
+			videoView.setVideoPath(fullVideoPath);
+		else {
+			videoView.setOnTouchListener(null);
+			return;
+		}
 		mVideoLoop = isLoop;
 //
 		videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
 			@Override
 			public void onPrepared(MediaPlayer mp) {
+				Log.d(TAG, "Video onPrepared");
 				int videoWidth = mp.getVideoWidth();
 				int videoHeight = mp.getVideoHeight();
 				RelativeLayout layout = findViewById(R.id.GameApp_LogoRelativeLayout);
@@ -801,10 +811,10 @@ public class PlatformSDKActivity extends GameActivity {
 						scale = 1.0f;
 					}
 					else if (videoHeight >= 2.22f) {	//1600*720
-						scale = (float)height / 1280;
+						scale = (float)videoHeight / 1280;
 					}
 					else {
-						scale = (float)height / 1280;
+						scale = (float)videoHeight / 1280;
 					}
 				}
 				if (layoutRatio > videoRatio) {	// 裝置比例比影片長 -> 檢查是否要自適應
@@ -827,8 +837,9 @@ public class PlatformSDKActivity extends GameActivity {
 			public boolean onInfo(MediaPlayer mp, int what, int extra) {
 				if (what == MediaPlayer.MEDIA_INFO_VIDEO_RENDERING_START) {
 					Log.d(TAG, "Video rendering started – hide mask now");
+					videoView.setAlpha(1.0f);
 					FrameLayout videoMask = (FrameLayout) findViewById(R.id.videoMask);
-					videoMask.setVisibility(View.GONE);
+					videoMask.setVisibility(View.INVISIBLE);
 					return true;
 				}
 				return false;
@@ -838,7 +849,7 @@ public class PlatformSDKActivity extends GameActivity {
         videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
         	 @Override
         	 public void onCompletion(MediaPlayer mp) {
-        		 LogUtil.LOGE(TAG,"VideoView Notice: onCompletion");
+				 Log.d(TAG,"VideoView Notice: onCompletion");
         		 if (videoView != null)
         		 {
 					 if (mVideoLoop == 1) {
@@ -871,12 +882,16 @@ public class PlatformSDKActivity extends GameActivity {
 	}
 
 	public void callCloseMovie() {
-		LogUtil.LOGE(TAG,"VideoView Notice: callClose");
+		Log.d(TAG,"VideoView Notice: callClose");
 		if (videoView != null)
 		{
-			videoView.suspend();
+			videoView.seekTo(0);
+			videoView.stopPlayback();
+			//videoView.suspend();
 			Cocos2dxHelper.nativeSendMessageP2G("onPlayMovieEnd","");
 			videoView.setOnTouchListener(null);
+			FrameLayout videoMask = (FrameLayout)findViewById(R.id.videoMask);
+			videoMask.setVisibility(View.VISIBLE);
 		}
 		mVideoLoop = 0;
 	}

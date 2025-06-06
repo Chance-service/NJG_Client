@@ -1,4 +1,0 @@
-id	level
-roleLevelLimit	200
-starSoulLevelLimit	200
-

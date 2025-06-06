@@ -601,20 +601,20 @@ public class UzipState extends BaseState {
 		tempDir = null;
 		//
 		// 需要時才清除舊熱更資料
-		if (checkExternalStorageResourcesVersion()) {
-			tempDir = new File(mAppDataExternalStorageHotupdateFullPath);
-			StorageUtil.removeFileDirectory(tempDir);
-			if (tempDir.exists())
-				LogUtil.LOGE(TAG,
-						"mAppDataExternalStorageHotupdateFullPath: "
-								+ tempDir.getAbsolutePath() + " delete failed!");
-			tempDir = new File(mAppDataExternalStorageVersionFullPath);
-			StorageUtil.removeFileDirectory(tempDir);
-			if (tempDir.exists())
-				LogUtil.LOGE(TAG,
-						"mAppDataExternalStorageVersionFullPath: "
-								+ tempDir.getAbsolutePath() + " delete failed!");
-		}
+		//if (checkExternalStorageResourcesVersion()) {
+		//	tempDir = new File(mAppDataExternalStorageHotupdateFullPath);
+		//	StorageUtil.removeFileDirectory(tempDir);
+		//	if (tempDir.exists())
+		//		LogUtil.LOGE(TAG,
+		//				"mAppDataExternalStorageHotupdateFullPath: "
+		//						+ tempDir.getAbsolutePath() + " delete failed!");
+		//	tempDir = new File(mAppDataExternalStorageVersionFullPath);
+		//	StorageUtil.removeFileDirectory(tempDir);
+		//	if (tempDir.exists())
+		//		LogUtil.LOGE(TAG,
+		//				"mAppDataExternalStorageVersionFullPath: "
+		//						+ tempDir.getAbsolutePath() + " delete failed!");
+		//}
 	}
 
 	private boolean checkExternalStorageResourcesVersion() {

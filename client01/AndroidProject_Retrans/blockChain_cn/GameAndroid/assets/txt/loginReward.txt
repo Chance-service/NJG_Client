@@ -1,9 +1,0 @@
-id	lobbyTab	backGround	Title	Reward
-1	Lobby_Btn_10.png	Spine/NG2D,NG2D_24	Login8Days_label01.png	10000_1001_1000
-2	Lobby_Btn_10.png	Spine/NG2D,NG2D_24	Login8Days_label01.png	10000_1001_1001
-3	Lobby_Btn_10.png	Spine/NG2D,NG2D_24	Login8Days_label01.png	10000_1001_1002
-4	Lobby_Btn_10.png	Spine/NG2D,NG2D_24	Login8Days_label01.png	10000_1001_1003
-5	Lobby_Btn_10.png	Spine/NG2D,NG2D_24	Login8Days_label01.png	10000_1001_1004
-6	Lobby_Btn_10.png	Spine/NG2D,NG2D_24	Login8Days_label01.png	10000_1001_1005
-7	Lobby_Btn_10.png	Spine/NG2D,NG2D_24	Login8Days_label01.png	10000_1001_1006
-8	Lobby_Btn_10.png	Spine/NG2D,NG2D_24	Login8Days_label01.png	10000_1001_1007
