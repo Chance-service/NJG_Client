@@ -479,14 +479,36 @@ void libOS::openURL(const std::string& url)
     NSString * urlstr = [NSString stringWithUTF8String:url.c_str()];
     if (urlstr && ([urlstr hasPrefix:@"http://"] || [urlstr hasPrefix:@"https://"] ))
     {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlstr]];
+        NSURL *url = [NSURL URLWithString:urlstr];
+        if ([[UIApplication sharedApplication] canOpenURL:url]) {
+            [[UIApplication sharedApplication] openURL:url
+                                               options:@{}
+                                     completionHandler:^(BOOL success) {
+                if (success) {
+                    NSLog(@"URL opened successfully");
+                } else {
+                    NSLog(@"Failed to open URL");
+                }
+            }];
+        }
     }
     else
     {
         std::string head("http://");
         head.append([urlstr UTF8String]);
         urlstr = [NSString stringWithUTF8String:head.c_str()];
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlstr]];
+        NSURL *url = [NSURL URLWithString:urlstr];
+        if ([[UIApplication sharedApplication] canOpenURL:url]) {
+            [[UIApplication sharedApplication] openURL:url
+                                               options:@{}
+                                     completionHandler:^(BOOL success) {
+                if (success) {
+                    NSLog(@"URL opened successfully");
+                } else {
+                    NSLog(@"Failed to open URL");
+                }
+            }];
+        }
     }
    
 }
@@ -503,9 +525,20 @@ void libOS::openURLHttps(const std::string& url)
         urlstr = [NSString stringWithUTF8String:head.c_str()];
     }
     if(urlstr)
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlstr]];
-    
-    
+    {
+        NSURL *url = [NSURL URLWithString:urlstr];
+        if ([[UIApplication sharedApplication] canOpenURL:url]) {
+            [[UIApplication sharedApplication] openURL:url
+                                               options:@{}
+                                     completionHandler:^(BOOL success) {
+                if (success) {
+                    NSLog(@"URL opened successfully");
+                } else {
+                    NSLog(@"Failed to open URL");
+                }
+            }];
+        }
+    }
 }
 
 void libOS::checkIosSDKVersion(const std::string &version, GetStringCallback p_callback)
@@ -548,9 +581,21 @@ void libOS::emailTo( const std::string& mailto, const std::string & cc , const s
 	NSString* str = [NSString stringWithFormat:@"mailto:%@?cc=%@&subject=%@&body=%@",  
                      n_mailto, n_cc, n_title, n_body];  
   
-    str = [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];  
-     
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];  
+    str = [str stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    
+    NSURL *url = [NSURL URLWithString:str];
+    if ([[UIApplication sharedApplication] canOpenURL:url]) {
+        [[UIApplication sharedApplication] openURL:url
+                                           options:@{}
+                                 completionHandler:^(BOOL success) {
+            if (success) {
+                NSLog(@"URL opened successfully");
+            } else {
+                NSLog(@"Failed to open URL");
+            }
+        }];
+    }
+    
 }
 
 long libOS::avalibleMemory()

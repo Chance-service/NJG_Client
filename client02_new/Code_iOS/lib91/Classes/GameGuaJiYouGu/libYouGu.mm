@@ -290,8 +290,19 @@ std::string libYouGu::sendMessageG2P(const std::string& tag, const std::string& 
 
 void libYouGu::updateApp(std::string &storeUrl)
 {
-    NSString* url = [NSString stringWithCString:storeUrl.c_str() encoding:[NSString defaultCStringEncoding]];
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+    NSString* str = [NSString stringWithCString:storeUrl.c_str() encoding:[NSString defaultCStringEncoding]];
+    NSURL *url = [NSURL URLWithString:str];
+    if ([[UIApplication sharedApplication] canOpenURL:url]) {
+        [[UIApplication sharedApplication] openURL:url
+                                           options:@{}
+                                 completionHandler:^(BOOL success) {
+            if (success) {
+                NSLog(@"URL opened successfully");
+            } else {
+                NSLog(@"Failed to open URL");
+            }
+        }];
+    }
 }
 
 
