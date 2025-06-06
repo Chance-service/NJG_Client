@@ -700,6 +700,9 @@ void AppDelegate::applicationDidEnterBackground()
 	{
         GamePrecedure::Get()->enterBackGround();
     }
+	else {
+		GamePrecedure::Get()->enterLoadingBackGround();
+	}
 	if(TimeCalculator::getInstance()->hasKey("ExitGameTime"))
 	{
 		if(TimeCalculator::getInstance()->getTimeLeft("ExitGameTime")<=0)
@@ -742,6 +745,9 @@ void AppDelegate::applicationWillEnterForeground()
 {
     if(!GamePrecedure::Get()->isInLoadingScene())
         GamePrecedure::Get()->enterForeGround();
+	else {
+		GamePrecedure::Get()->enterLoadingForeGround();
+	}
 
 	if (GamePrecedure::Get()->isInLoadingScene() && SeverConsts::Get()->getIsRedownLoadServer())
 	{

@@ -101,6 +101,7 @@ public:
     virtual void setLanguageName(const std::string& lang);
 	virtual void setPlatformName(int platform);
 	virtual void setPayH365(const std::string& url);
+	virtual std::string getDomainIp(const std::string& url) { return "0.0.0.0"; };
 	virtual void setPayR18(int mid, int serverid, const std::string& url);
     virtual int getHoneyP();
     virtual void setHoneyP(int aMoney);

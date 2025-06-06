@@ -116,6 +116,8 @@ public:
 
 	virtual void  setPayH365(const std::string& url);
 
+	virtual std::string getDomainIp(const std::string& url);
+
 	virtual void  setHoneyP(int aMoney);
 
 	virtual int  getHoneyP();

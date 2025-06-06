@@ -33,6 +33,7 @@ public:
     std::string appStoreUpdateTxT;
 	std::string updateBtnTxT;
 	std::string confirmBtnTxT;
+	std::string bgDownloadTip;
 
 	UpdateVersionTips():checkVersionTxT(std::string(""))
 		 ,noAssetNeedUpdateTxT(std::string(""))
@@ -46,6 +47,7 @@ public:
          ,appStoreUpdateTxT(std::string(""))
 		 ,updateBtnTxT(std::string(""))
 		 ,confirmBtnTxT(std::string(""))
+		 ,bgDownloadTip(std::string(""))
 	{}
 };
 

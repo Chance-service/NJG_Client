@@ -342,6 +342,7 @@ void UpdateVersion::getUpdateVersionTips()
     m_updateVersionTips->appStoreUpdateTxT = data["appStoreUpdateTxT"].asString();
 	m_updateVersionTips->updateBtnTxT = data["updateBtnTxT"].asString();
 	m_updateVersionTips->confirmBtnTxT = data["exitBtnTxT"].asString();
+	m_updateVersionTips->bgDownloadTip = data["bgDownloadTip"].asString();
 }
 
 void UpdateVersion::checkNewAssets()
@@ -789,6 +790,9 @@ void UpdateVersion::compareProjectAsset()
 		const char* size = CCString::createWithFormat("%d", downSize)->getCString();
 
 	    std::string needUpdateAsset = m_updateVersionTips->newAssetNeedUpdateTxT + std::string(size) + "M";
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) 
+		needUpdateAsset = needUpdateAsset + "\n" + m_updateVersionTips->bgDownloadTip;
+#endif
 	    setTips(needUpdateAsset);
 	}
 }

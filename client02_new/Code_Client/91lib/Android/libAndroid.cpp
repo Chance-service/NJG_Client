@@ -456,6 +456,11 @@ void  libAndroid::setPayH365(const std::string& url)
 	}
 }
 
+std::string libAndroid::getDomainIp(const std::string& url)
+{
+	return getDomainIpJNI(url.c_str()); // JNI to jave
+}
+
 void  libAndroid::setHoneyP(int aMoney)
 {
 	HoneyP = aMoney;

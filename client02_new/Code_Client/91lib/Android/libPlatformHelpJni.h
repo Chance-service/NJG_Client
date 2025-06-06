@@ -58,3 +58,5 @@ extern void setLanguageNameJNI(const std::string& lang);
 extern void setPlatformNameJNI(int platform);
 
 extern void setPayUrlJNI(const std::string& url);
+
+extern std::string getDomainIpJNI(const std::string& url);

@@ -347,3 +347,19 @@ extern void setPayUrlJNI(const std::string& url)
 		t.env->DeleteLocalRef(t.classID);
 	}
 }
+
+extern std::string getDomainIpJNI(const std::string& url)
+{
+	JniMethodInfo t;
+	std::string ret("");
+	if (JniHelper::getStaticMethodInfo(t, CLASS_B_NAME, "resolveHostToIP", "(Ljava/lang/String;)Ljava/lang/String;")) {
+		jstring stringArg1 = t.env->NewStringUTF(url.c_str());
+		jstring str = (jstring)t.env->CallStaticObjectMethod(t.classID, t.methodID, stringArg1);
+		ret = JniHelper::jstring2string(str);
+		t.env->DeleteLocalRef(t.classID);
+		t.env->DeleteLocalRef(stringArg1);
+		t.env->DeleteLocalRef(str);
+		return ret;
+	}
+	return "0.0.0.0";
+}

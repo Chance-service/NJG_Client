@@ -997,6 +997,14 @@ void GamePrecedure::enterForeGround()
 	}
 }
 
+void GamePrecedure::enterLoadingForeGround()
+{
+	CCLog("GamePrecedure::enterLoadingForeGround, enter the fore ground");
+	if (mLoadingFrame) {
+		mLoadingFrame->enterForeGround();
+	}
+}
+
 void GamePrecedure::preEnterMainMenu()
 {
 	CCLOG("preEnterMainMenu readTables");
@@ -1355,7 +1363,7 @@ void GamePrecedure::_failedPakcage( int opcode, bool isSendFaild )
 
 void GamePrecedure::enterBackGround()
 {
-	CCLOG("GamePrecedure::enterBackGround, enter the back ground");
+	CCLog("GamePrecedure::enterBackGround, enter the back ground");
 	//如果登录数据包没有收到完成包，退出
 	//if(m_loginPacketAssemblySuccess == false)
 	//	exit(0);
@@ -1372,6 +1380,14 @@ void GamePrecedure::enterBackGround()
 		pEngine->executeGlobalFunctionByName("GamePrecedure_enterBackGround",this,"GamePrecedure");
 	}
     
+}
+
+void GamePrecedure::enterLoadingBackGround()
+{
+	CCLog("GamePrecedure::enterLoadingBackGround, enter the back ground");
+	if (mLoadingFrame) {
+		mLoadingFrame->enterBackGround();
+	}
 }
 
 bool GamePrecedure::isInLoadingSceneAndNeedExit()
@@ -1861,6 +1877,7 @@ extern "C"
 
 void GamePrecedure::playMovie(std::string pageName, std::string fileName, int isLoop, int autoScale)
 {
+	MainFrame::getInstance()->addMovie(pageName, fileName, isLoop, autoScale);
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 	callPlatformPlayMovieJNI(fileName.c_str(), isLoop, autoScale);
 #endif
@@ -1868,7 +1885,6 @@ void GamePrecedure::playMovie(std::string pageName, std::string fileName, int is
 	fileName = "Video/" + fileName;
     libOS::getInstance()->playMovie(fileName.c_str(), isLoop);
 #endif
-	MainFrame::getInstance()->addMovie(pageName, fileName, isLoop, autoScale);
 }
 
 void GamePrecedure::closeMovie(std::string pageName)

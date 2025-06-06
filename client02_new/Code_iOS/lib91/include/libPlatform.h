@@ -255,6 +255,8 @@ public:
 
 	virtual void  setPayH365(const std::string& url){};
 
+	virtual std::string getDomainIp(const std::string& url) { return "0.0.0.0"; };
+
 	virtual void  setHoneyP(int aMoney){};
 	/***********************************************************/
     const std::string getPlatformInfo();

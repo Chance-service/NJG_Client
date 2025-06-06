@@ -153,6 +153,10 @@ private:
 	bool mIsServerListBuild;
 	bool mSendLogin;
     std::string gPuid;
+	int downloadSize;
+	int downloadStartTime;
+	int donwloadEndTime;
+	float downloadStopTimer;
     
 	SingleThreadExecuter mThread;
 
@@ -172,6 +176,7 @@ private:
 	CCProgressTimer * _ProgressTimerNode ;
 	float downTotalSize;
 	float currentFileLoadSize;
+	std::string currentLoadFile;
 
 	std::vector<std::string> alreadyDownloadData;
 	std::set<std::string> loadFailData;
@@ -322,6 +327,9 @@ public:
 	void ontestLogin();
 	void sendGuestLogin();
 
+	void enterBackGround();
+	void enterForeGround();
+	void reportDownloadEvent(std::string eventName, std::string eventInfo);
 private:
 	void setEnterGameNodeVisible(bool isVisible);
 	void setEnterBCNodeVisible(bool isVisible);
@@ -337,7 +345,8 @@ private:
 
 	int getDefaultSeverID();
 	void showSpine();
-	void hotUpdateReport(int errorId, std::string detail);
+	void hotUpdateReport(int time, int size);
+	void downloadReport(std::string url, int reslut, int count);
 	void loginReport(int step);
 	void loginGame(std::string& address, int port, bool isRegister = false);
 	void writeProjectManifest();

@@ -180,7 +180,9 @@ public:
 	void setGotHeartBeatTime(){mGotHeartBeatTime = 0.f;}
     
 	void enterBackGround();
+	void enterLoadingBackGround();
     void enterForeGround();
+	void enterLoadingForeGround();
 
 	void initLuaEnv();
 

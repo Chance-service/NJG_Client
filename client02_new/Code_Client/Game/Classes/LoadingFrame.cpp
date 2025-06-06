@@ -75,6 +75,7 @@ REGISTER_PAGE("LoadingFrame",LoadingFrame);
 #define CONNECT_DIRECT_PORT 25524
 #define MaxResumeTime 50
 int g_iSelectedSeverIDCopy;
+int needTime = 0;
 float downloadSpeed = 0.0f;
 float preAlreadyDownloadSize = 0.0f;
 
@@ -88,6 +89,7 @@ LoadingFrame::LoadingFrame(void)
 	, m_updateVersionTips(NULL)
 	, downTotalSize(0)
 	, currentFileLoadSize(0)
+	, currentLoadFile("")
 	, versionStat(NONE)
 	, versionAppCompareStat(EQUAL)
 	, versionResourceStat(EQUAL)
@@ -112,6 +114,10 @@ LoadingFrame::~LoadingFrame(void)
 
 void LoadingFrame::Enter( GamePrecedure* )
 {
+	downloadSize = 0;
+	downloadStartTime = 0;
+	donwloadEndTime = 0;
+	downloadStopTimer = 0.0f;
 	mLogined = false;
     mNetWorkNotWorkMsgShown = false;
 	mSelectedSeverID = 0;//初始化
@@ -345,6 +351,7 @@ void LoadingFrame::onLogin(libPlatform* lib, bool success, const std::string& lo
 		}
 		else if (SeverConsts::Get()->IsEroR18() || SeverConsts::Get()->IsErolabs()) //工口 or Erolabs
 		{
+			glClear(GL_COLOR_BUFFER_BIT);
 			Lua_EcchiGamerSDKBridge::callLoginbyC(); // c++ sdk to call java
 		}
 		else if (SeverConsts::Get()->IsKUSO()) //69
@@ -611,24 +618,47 @@ void LoadingFrame::onAnimationDone(const std::string& animationName){
 	}
 }
 
-void LoadingFrame::hotUpdateReport(int errorId, std::string detail)
+void LoadingFrame::hotUpdateReport(int time, int size)
+{
+	if (time <= 0 || size <= 0) {
+		return;
+	}
+	try
+	{
+		// PlatformSDKActivity.java 接口
+		Json::Value data;
+		data["funtion"] = "trackEvent";
+		data["param"] = "#event_hotupdate_time";
+
+		Json::Value property;
+		property["#hotupdate_time"] = time;
+		property["#hotupdate_size"] = size;
+
+		data["properties"] = property.toStyledString();
+
+		libPlatformManager::getPlatform()->sendMessageG2P("G2P_TAPDB_HANDLER", data.toStyledString());
+	}
+	catch (...)
+	{
+		CCLog("URL REQUEST IS NOT  REACH");
+	}
+
+}
+
+void LoadingFrame::downloadReport(std::string url, int reslut, int count)
 {
 	try
 	{
 		// PlatformSDKActivity.java 接口
 		Json::Value data;
 		data["funtion"] = "trackEvent";
-		data["param"] = "exception_error";
+		data["param"] = "#event_download_result";
 
 		Json::Value property;
-		char sztmp[16] = { };
-		sprintf(sztmp, "%d", errorId);
-		std::string errorMsg = "hotUpdate_error Id : ";
-		errorMsg.append(sztmp);
-		property["exception_thread_info"] = detail;
-		property["exception_value"] = errorMsg;
-		property["exception_type"] = "hotUpdate_error";
-
+		property["#download_url"] = url;
+		property["#download_result"] = reslut;
+		property["#download_failed_time"] = count;
+		property["#download_ip"] = libPlatformManager::getPlatform()->getDomainIp(url);
 		data["properties"] = property.toStyledString();
 
 		libPlatformManager::getPlatform()->sendMessageG2P("G2P_TAPDB_HANDLER", data.toStyledString());
@@ -794,6 +824,14 @@ void LoadingFrame::load( void )
 		}
 		else {
 			logo->setTexture("LoadingUI_JP/loadingUI_logo_EROLABS_SC.png");
+		}
+	}
+	else if (SeverConsts::Get()->IsOP()) {	//OP
+		if (langType == kLanguageCH_TW) {
+			logo->setTexture("LoadingUI_JP/loadingUI_logo_OP_TC.png");
+		}
+		else {
+			logo->setTexture("LoadingUI_JP/loadingUI_logo_OP_SC.png");
 		}
 	}
 	else {
@@ -1820,6 +1858,7 @@ void LoadingFrame::getUpdateVersionTips()
 	m_updateVersionTips->appStoreUpdateTxT = data["appStoreUpdateTxT"].asString();
 	m_updateVersionTips->updateBtnTxT = data["updateBtnTxT"].asString();
 	m_updateVersionTips->confirmBtnTxT = data["exitBtnTxT"].asString();
+	m_updateVersionTips->bgDownloadTip = data["bgDownloadTip"].asString();
 }
 
 void LoadingFrame::setTips(std::string msg)
@@ -1890,6 +1929,12 @@ void LoadingFrame::loadingAsset(float dt)
 			GamePrecedure::Get()->loadPlsit();
 			LoginSuccess();
 		}
+
+		time_t t;
+		time(&t);
+		donwloadEndTime = t;
+
+		hotUpdateReport(donwloadEndTime - downloadStartTime, downloadSize);
 		
 		return;
 	}
@@ -1927,11 +1972,68 @@ void LoadingFrame::loadingAsset(float dt)
 	}
 	float persentage = alreadyLoadSize / downTotalSize;
 	char perTxt[64];
+	// TODO 預估剩餘時間顯示
+	//int newNeedTime = 0;
+	//if (downloadSpeed <= 0) {
+	//	newNeedTime = 1200;
+	//}
+	//else {
+	//	newNeedTime = (int)(((int)downTotalSize - (int)alreadyLoadSize) / downloadSpeed);
+	//	if (newNeedTime > 1200) {
+	//		newNeedTime = 1200;
+	//	}
+	//}
+	//if (needTime <= 0) {
+	//	needTime = newNeedTime;
+	//}
+	//else if (needTime > newNeedTime) {
+	//	needTime = needTime - 1;
+	//	if (needTime < 0) {
+	//		needTime = 0;
+	//	}
+	//}
+	//else if (needTime < newNeedTime) {
+	//	needTime = needTime + 1;
+	//	if (needTime > 1200) {
+	//		needTime = 1200;
+	//	}
+	//}
+	//int needMin = (int)(needTime / 60);
+	//int needSec = (int)(needTime % 60);
+	//if (needMin > 0) {
+	//	sprintf(perTxt, "(%dKB / %dKB)\n%s : %dMin %dSec", (int)alreadyLoadSize, (int)downTotalSize, "Need Time : ", needMin, needSec);
+	//}
+	//else {
+	//	sprintf(perTxt, "(%dKB / %dKB)\n%s : %dSec", (int)alreadyLoadSize, (int)downTotalSize, "Need Time : ", needSec);
+	//}
 	sprintf(perTxt, "(%dKB / %dKB)", (int)alreadyLoadSize, (int)downTotalSize);
 	showPersent(persentage, perTxt);
 	// 計算下載速度
 	downloadSpeed = (alreadyLoadSize - preAlreadyDownloadSize) / dt;
 	preAlreadyDownloadSize = alreadyLoadSize;
+	if (downloadSpeed < 0.1f) {
+		downloadStopTimer += dt;
+		if (downloadStopTimer >= 30.0f) {
+			std::ostringstream oss;
+			oss << std::fixed << std::setprecision(2) << currentFileLoadSize;
+			std::string size = oss.str();
+			std::string eventInfo = "downloading file : " + currentLoadFile + ", downloaded size : " + size;
+			if (loadFailData.size() > 0) {
+				eventInfo = eventInfo + ", fail file : ";
+				for (auto it = needUpdateAsset.begin(); it != needUpdateAsset.end(); ++it) {
+					std::string assetUrl = serverVersionData->packageUrl + "/" + (*it)->name;
+					if (loadFailData.find(assetUrl) != loadFailData.end()) {
+						eventInfo = eventInfo + (*it)->name + ", ";
+					}
+				}
+			}
+			reportDownloadEvent("DownloadStop", eventInfo);
+			downloadStopTimer = 0.0f;
+		}
+	}
+	else {
+		downloadStopTimer = 0.0f;
+	}
 }
 void LoadingFrame::resetVersion()
 {
@@ -2229,16 +2331,17 @@ std::vector<std::string> LoadingFrame::splitVersion(std::string content, std::st
 
 void LoadingFrame::transform()
 {
+	// tapdb 
 	Json::Value data;
 	data["funtion"] = "setUser";
 	data["param"] = "abcdefghijklnmopqrstuvwxyz123456789";
-
-	//Json::Value property;
-	//property["#device_step"] = step;
-
-	//data["properties"] = property.toStyledString();
-
 	libPlatformManager::getPlatform()->sendMessageG2P("G2P_TAPDB_HANDLER", data.toStyledString());
+
+	// h365 login , hyena login
+	Json::Value data2;
+	data2["eventId"] = 2;
+	data2["userId"] = "abcdefghijklnmopqrstuvwxyz123456789";
+	libPlatformManager::getPlatform()->sendMessageG2P("G2P_REPORT_HANDLER", data2.toStyledString());
 }
 
 CompareStat LoadingFrame::compareVersion(std::string localVersion, std::string serverVersion)
@@ -2417,7 +2520,12 @@ void LoadingFrame::appStoreUpdate()
 		libOS::getInstance()->openURL(serverVersionData->AndroidStoreURL);
 	}
 #elif(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-	libPlatformManager::getInstance()->getPlatform()->updateApp(serverVersionData->IOSAppStoreURL); 
+	if (SeverConsts::Get()->IsErolabs()) {	// 跟android用同一個連結
+		libPlatformManager::getInstance()->getPlatform()->updateApp(serverVersionData->AppUpdateUrlEROLABS);
+	}
+	else {
+		libPlatformManager::getInstance()->getPlatform()->updateApp(serverVersionData->IOSAppStoreURL); 
+	}
 	//[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://itunes.apple.com/cn/app/id1276526048?mt=8
 #endif
 }
@@ -2455,6 +2563,7 @@ void LoadingFrame::downloaded(const std::string &url, const std::string& filenam
 	for (auto it = needUpdateAsset.begin(); it != needUpdateAsset.end(); ++it) {
 		if (url.compare((*it)->url) == 0)
 		{
+			currentFileLoadSize = 0.0;
 			alreadyDownloadData.push_back(url);
 			// 下載完先解壓縮
 			CCLog("--->hotUpdate downloaded save path: %s storage: %s ext path %s", (*it)->savePath.c_str(), (*it)->stroge.c_str(), filename.c_str());
@@ -2490,13 +2599,15 @@ void LoadingFrame::downloaded(const std::string &url, const std::string& filenam
 			getVersionData(serverVersionData, pBuffer);
 			cocos2d::CCLog("LoadingFrame::compareVersion");
 			compareVersion();
-			//transform();
+			transform();
 		}
 	}
 	if (url.find(projectManifestName) != url.npos)
 	{
 		downProjectTimes = 0;
 	}
+	// 下載檔案訊息上報
+	downloadReport(url, -1, 0);
 }
 void LoadingFrame::downloadFailed(const std::string& url, const std::string &filename, int errorType)
 {
@@ -2558,12 +2669,8 @@ void LoadingFrame::downloadFailed(const std::string& url, const std::string &fil
 		}
 		failedTime = downProjectTimes;
 	}
-	// 錯誤訊息上報
-	char sztmp[16] = {};
-	sprintf(sztmp, "%d", failedTime);
-	std::string errorMsg = "downloadFailed  url: " + url + ", failTime : ";
-	errorMsg.append(sztmp);
-	hotUpdateReport(errorType, errorMsg);
+	// 下載檔案訊息上報
+	downloadReport(url, errorType, failedTime);
 }
 
 void LoadingFrame::onAlreadyDownSize(unsigned long size, const std::string& url, const std::string& filename)
@@ -2602,8 +2709,11 @@ void LoadingFrame::showPersent(float persentage, std::string sizeTip)
 		if (persentage > 1.0f)
 			persentage = 1.0f;
 		if (persentage <= 0.00f)
-			persentage = 0.01f;
-		if (persentage > lastPercent)
+			persentage = 0.00f;
+		if (persentage - lastPercent >= 0.02) {
+			return;
+		}
+		if (persentage >= lastPercent)
 		{
 			_ProgressTimerNode->setPercentage(persentage * 100);
 			CCLabelTTF* sever = dynamic_cast<CCLabelTTF*>(getVariable("mPersentageTxt"));
@@ -2619,7 +2729,7 @@ void LoadingFrame::showPersent(float persentage, std::string sizeTip)
 			}
 			
 
-			lastPercent = 0.0f;// persentage;
+			lastPercent = persentage;
 
 			CCNode * light = dynamic_cast<CCNode*>(getVariable("mNowPercent"));
 			CCSize szie = _spriteBg->getContentSize();
@@ -2647,6 +2757,18 @@ void LoadingFrame::onHttpRequestCompleted(cocos2d::CCNode *sender, void*data)
 			CLogReport::Get()->webReportLog(CLogReport::Get()->getReportType(EnumReportType::CHKVERSION), libOS::getInstance()->getDeviceInfo(), libOS::getInstance()->getDeviceID(), localVersionData->versionResource, "get ServerProject fail");
 		}
 		cocos2d::CCLog("hotUpdate: onHttpRequestCompleted fail : %s", response->getHttpRequest()->getTag());
+		const char* serverVersionTag = "serverVersionCfg";
+		const char* serverProjectAssetTag = "serverProjectAsset";
+		if (strcmp(response->getHttpRequest()->getTag(), serverVersionTag) == 0)
+		{
+			// 下載檔案訊息上報
+			downloadReport(localVersionData->remoteVersionUrl + "/" + versionManifestName, 2, 0);
+		}
+		else if (strcmp(response->getHttpRequest()->getTag(), serverProjectAssetTag) == 0)
+		{
+			// 下載檔案訊息上報
+			downloadReport(serverVersionData->packageUrl + "/" + projectManifestName, 2, 0);
+		}
 		return;
 	}
 
@@ -2680,14 +2802,17 @@ void LoadingFrame::onHttpRequestCompleted(cocos2d::CCNode *sender, void*data)
 		cocos2d::CCLog("hotUpdate : compareVersion");
 		getVersionData(serverVersionData, unsignedContent);
 		compareVersion();
+		// 下載檔案訊息上報
+		downloadReport(localVersionData->remoteVersionUrl + "/" + versionManifestName, -1, 0);
 	}
 	else if (strcmp(tag, serverProjectAssetTag) == 0)
 	{
 		cocos2d::CCLog("hotUpdate : compareProjectAsset");
 		getProjectAssetData(serverProjectAssetData, unsignedContent);
 		compareProjectAsset();
+		// 下載檔案訊息上報
+		downloadReport(serverVersionData->packageUrl + "/" + projectManifestName, -1, 0);
 	}
-
 }
 void LoadingFrame::getServerProjectAssets()
 {
@@ -2803,9 +2928,14 @@ void LoadingFrame::compareProjectAsset()
 		const char* size = CCString::createWithFormat("%d", downSize)->getCString();
 
 		std::string needUpdateAsset = m_updateVersionTips->newAssetNeedUpdateTxT + std::string(size) + "M";
-		setTips(needUpdateAsset);
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) 
+		needUpdateAsset = needUpdateAsset + "\n" + m_updateVersionTips->bgDownloadTip;
+#endif
+		//setTips(needUpdateAsset);
 		libOS::getInstance()->showMessagebox(needUpdateAsset, 100);
 		loginReport(REPORT_STEP::REPORT_STEP_START_DOWNLOAD_PATCH);
+
+		downloadSize = downSize;
 	}
 }
 void LoadingFrame::getProjectAssetData(ProjectAssetData* projectAssetData, unsigned char* content, bool isLocal, unsigned char* contentLocal)
@@ -2944,6 +3074,7 @@ void LoadingFrame::UpdateAssetFromServer()
 	time_t t;
 	time(&t);
 	CCString* _time = CCString::createWithFormat("%d", t);
+	downloadStartTime = t;
 
 	std::string packageUrl = serverVersionData->packageUrl;
 	std::string writeablePath = CCFileUtils::sharedFileUtils()->getWritablePath();
@@ -3165,3 +3296,54 @@ void LoadingFrame::OnDownloadFailed(const std::string& url, const std::string& f
 	//CCLog("--->OnDownloadFailed");
 	downloadFailed(url, filename, errorCode);
 };
+void LoadingFrame::enterBackGround() {
+	if (versionStat != LOADING_ASSETS) {
+		CCLog("LoadingFrame::enterBackGround()");
+		return;
+	}
+	std::ostringstream oss;
+	oss << std::fixed << std::setprecision(2) << currentFileLoadSize;
+	std::string size = oss.str();
+	std::string eventInfo = "downloading file : " + currentLoadFile + ", downloaded size : " + size;
+	if (loadFailData.size() > 0) {
+		eventInfo = eventInfo + ", fail file : ";
+		for (auto it = needUpdateAsset.begin(); it != needUpdateAsset.end(); ++it) {
+			std::string assetUrl = serverVersionData->packageUrl + "/" + (*it)->name;
+			if (loadFailData.find(assetUrl) != loadFailData.end()) {
+				eventInfo = eventInfo + (*it)->name + ", ";
+			}
+		}
+	}
+	reportDownloadEvent("enterBackGround", eventInfo);
+}
+
+void LoadingFrame::enterForeGround() {
+	if (versionStat != LOADING_ASSETS) {
+		CCLog("LoadingFrame::enterForeGround()");
+		return;
+	}
+	reportDownloadEvent("enterForeGround", "");
+}
+void LoadingFrame::reportDownloadEvent(std::string eventName, std::string eventInfo) {
+	try
+	{
+		// PlatformSDKActivity.java 接口
+		Json::Value data;
+		data["funtion"] = "trackEvent";
+		data["param"] = "#event_download_event";
+
+		time_t now = time(nullptr);
+		std::string timeStr = std::ctime(&now);
+		Json::Value property;
+		property["#download_event"] = eventName;
+		property["#download_event_time"] = timeStr;
+		property["#download_event_info"] = eventInfo;
+		data["properties"] = property.toStyledString();
+
+		libPlatformManager::getPlatform()->sendMessageG2P("G2P_TAPDB_HANDLER", data.toStyledString());
+	}
+	catch (...)
+	{
+		CCLog("URL REQUEST IS NOT  REACH");
+	}
+}

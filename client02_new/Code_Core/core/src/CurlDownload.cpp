@@ -45,6 +45,7 @@ private:
 	bool _md5Check;
 	unsigned short _crc;
 	std::string _md5;
+	int mFailedRes;
 
 	Mutex _mutex;
 	ThreadService mThread;
@@ -77,6 +78,8 @@ public:
 		_crcCheck = crcCheck;
 		_md5 = md5;
 		_md5Check = md5Check;
+
+		mFailedRes = 100;
 
 		mTaskState = DL_PROCESSING;
 		DownloadPoolTask * task = new DownloadPoolTask(url,filename);
@@ -180,6 +183,7 @@ public:
 	unsigned short getCRC(){ return _crc; }
 	const std::string& getMD5(){ return _md5; }
 	unsigned long getAlreadyDownSize(){return _size;};
+	int getFailedRes(){ return mFailedRes; }
 public:
 
 	FILE* getFileHandle()
@@ -196,7 +200,7 @@ public:
 			_mutex.unlock();
 		}
 	}
-	void setFailed()
+	void setFailed(int res)
 	{
 		if(checkTask()!=DL_FAILED)
 		{
@@ -207,6 +211,7 @@ public:
 
 			_mutex.lock();
 			mTaskState = DL_FAILED;
+			mFailedRes = res;
 			_mutex.unlock();
 		}
 	}
@@ -251,7 +256,7 @@ int DownloadPoolTask::run()
 //#endif
 //
 //		CCLOG("DownLoadTask ---step1----failed");
-		DownLoadTask::Get()->setFailed();
+		DownLoadTask::Get()->setFailed(99);
 		return false;  
 	} 
 
@@ -286,7 +291,7 @@ int DownloadPoolTask::run()
 //#endif
 //		CCLOG("DownLoadTask ---step2----failed");
 //		CCLOG("DownLoadTask ---step2-- curl_easy_perform--  %d", res);
-	DownLoadTask::Get()->setFailed();
+		DownLoadTask::Get()->setFailed(res);
 	}
 
 	
@@ -348,7 +353,7 @@ void CurlDownload::update( float dt )
 	}
 	else if (DownLoadTask::Get()->checkTask() == DownLoadTask::DL_FAILED) {
 		sendFailed = true;
-		errorType = CurlDownload::DOWNLOAD_FAILED;
+		errorType = CurlDownload::DOWNLOAD_FAILED * 100 + DownLoadTask::Get()->getFailedRes();
 	}
 
 	if (sendOK)
