@@ -37,12 +37,12 @@ function Skill_1083:runSkill(chaNode, skillId, resultTable, allPassiveTable, tar
         if resultTable[NewBattleConst.LogDataType.SP_FUN_TAR] then
             table.insert(resultTable[NewBattleConst.LogDataType.SP_FUN_CLASS], NewBattleConst.FunClassType.NG_BATTLE_CHARACTER_UTIL)
             table.insert(resultTable[NewBattleConst.LogDataType.SP_FUN_NAME], "addShield")
-            table.insert(resultTable[NewBattleConst.LogDataType.SP_FUN_PARAM], { chaNode, target, math.floor(maxHp * tonumber(params[1]) + 0.5) })
+            table.insert(resultTable[NewBattleConst.LogDataType.SP_FUN_PARAM], { chaNode, target, math.floor(maxHp * tonumber(params[1]) + 0.5), skillId })
             table.insert(resultTable[NewBattleConst.LogDataType.SP_FUN_TAR], target)
         else
             resultTable[NewBattleConst.LogDataType.SP_FUN_CLASS] = { NewBattleConst.FunClassType.NG_BATTLE_CHARACTER_UTIL }
             resultTable[NewBattleConst.LogDataType.SP_FUN_NAME] = { "addShield" }
-            resultTable[NewBattleConst.LogDataType.SP_FUN_PARAM] = { { chaNode, target, math.floor(maxHp * tonumber(params[1]) + 0.5) } }
+            resultTable[NewBattleConst.LogDataType.SP_FUN_PARAM] = { { chaNode, target, math.floor(maxHp * tonumber(params[1]) + 0.5), skillId } }
             resultTable[NewBattleConst.LogDataType.SP_FUN_TAR] = { target }
         end
     end

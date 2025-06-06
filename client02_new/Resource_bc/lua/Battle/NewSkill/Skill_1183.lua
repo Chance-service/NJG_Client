@@ -41,12 +41,12 @@ function Skill_1183:runSkill(chaNode, skillId, resultTable, allPassiveTable, tar
         if resultTable[NewBattleConst.LogDataType.SP_FUN_TAR] then
             table.insert(resultTable[NewBattleConst.LogDataType.SP_FUN_CLASS], NewBattleConst.FunClassType.NG_BATTLE_CHARACTER_UTIL)
             table.insert(resultTable[NewBattleConst.LogDataType.SP_FUN_NAME], "addShield")
-            table.insert(resultTable[NewBattleConst.LogDataType.SP_FUN_PARAM], { chaNode, chaNode, shield })
+            table.insert(resultTable[NewBattleConst.LogDataType.SP_FUN_PARAM], { chaNode, chaNode, shield, skillId })
             table.insert(resultTable[NewBattleConst.LogDataType.SP_FUN_TAR], chaNode)
         else
             resultTable[NewBattleConst.LogDataType.SP_FUN_CLASS] = { NewBattleConst.FunClassType.NG_BATTLE_CHARACTER_UTIL }
             resultTable[NewBattleConst.LogDataType.SP_FUN_NAME] = { "addShield" }
-            resultTable[NewBattleConst.LogDataType.SP_FUN_PARAM] = { { chaNode, chaNode, shield } }
+            resultTable[NewBattleConst.LogDataType.SP_FUN_PARAM] = { { chaNode, chaNode, shield, skillId } }
             resultTable[NewBattleConst.LogDataType.SP_FUN_TAR] = { chaNode }
         end
     end

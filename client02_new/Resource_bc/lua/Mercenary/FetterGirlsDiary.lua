@@ -1234,7 +1234,7 @@ function FetterGirlsDiary:createAction(container, para, action, bgAction, chActi
 				px = tonumber(px)
 				py = tonumber(py)
 			end
-			spineNode:setPosition(ccp(px, py))
+			parentNode:setPosition(ccp(px, py))
 			spineNode:setScaleX(tonumber(scale))
 			spineNode:setRotation(rotate)
 			diarySpine:runAnimation(1, ani, -1)

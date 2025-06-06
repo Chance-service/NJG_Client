@@ -907,7 +907,7 @@ function PuzzleController:onReceivePacket(container)
             PuzzleController.paidEntries   = msg.usePay
             PuzzleController.freeEntries   = msg.useFree
             local MainScenePageInfo = require("MainScenePage")
-            local puzzleTime = MainScenePageInfo:getActTime(195)
+            local puzzleTime = MainScenePageInfo:getActTime(Const_pb.ACTIVITY195_PuzzleBattle)
             PuzzleController.remainingTime = puzzleTime --msg.leftTime
         end
 

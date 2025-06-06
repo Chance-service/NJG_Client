@@ -436,9 +436,9 @@ id	繁中
 10131	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >提升自身暴擊值15%</font></p>
 10132	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >提升自身暴擊值25%、開戰時自身獲得【暴風II】15秒</font></p>
 10133	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >提升自身暴擊值35%、開戰時自身獲得【暴風III】20秒</font></p>
-101021	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >每4次普通攻擊後，下一次攻擊必定產生爆擊，八重瑩火接下來3次承受傷害下降30%。</font></p>
-101022	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >每3次普通攻擊後，下一次攻擊必定產生爆擊，八重瑩火接下來3次承受傷害下降40%。</font></p>
-101023	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >每2次普通攻擊後，下一次攻擊必定產生爆擊，八重瑩火接下來3次承受傷害下降50%。</font></p>
+101061	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >每4次普通攻擊後，下一次攻擊必定產生爆擊，八重螢火接下來3次承受傷害下降30%。</font></p>
+101062	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >每3次普通攻擊後，下一次攻擊必定產生爆擊，八重螢火接下來3次承受傷害下降40%。</font></p>
+101063	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >每2次普通攻擊後，下一次攻擊必定產生爆擊，八重螢火接下來3次承受傷害下降50%。</font></p>
 10201	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >隨機進行2次單體必中傷害，每次造成100%傷害</font></p>
 10202	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >隨機進行3次單體必中傷害，每次造成110%傷害</font></p>
 10203	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >隨機進行4次單體必中傷害，每次造成120%傷害</font></p>
@@ -499,6 +499,9 @@ id	繁中
 10631	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >每當友方【業火】移除時，該名友方獲得【餘燼I】8秒</font></p>
 10632	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >每當友方【業火】移除時，該名友方獲得【餘燼II】8秒</font></p>
 10633	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >每當友方【業火】移除時，該名友方獲得【餘燼III】8秒</font></p>
+106061	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >移除所有友軍身上全部「業火」，每移除1個業火，對隨機兩名目標造成一次莉娜攻擊力15%的無視防禦傷害，CD8秒。</font></p>
+106062	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >移除所有友軍身上全部「業火」，每移除1個業火，對隨機兩名目標造成一次莉娜攻擊力20%的無視防禦傷害，CD6秒。</font></p>
+106063	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >移除所有友軍身上全部「業火」，每移除1個業火，對隨機兩名目標造成一次莉娜攻擊力25%的無視防禦傷害，CD4秒。</font></p>
 10701	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >給予友方全體自身血量15%的護盾，並給予【堅守I】6秒</font></p>
 10702	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >給予友方全體自身血量20%的護盾，並給予【堅守II】8秒</font></p>
 10703	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >給予友方全體自身血量25%的護盾，並給予【堅守III】10秒</font></p>
@@ -595,6 +598,12 @@ id	繁中
 11431	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >"疾風切襲"額外恢復自身10點魔力</font></p>
 11432	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >"疾風切襲"額外恢復自身20點魔力</font></p>
 11433	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >"疾風切襲"額外恢復自身30點魔力</font></p>
+114001	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >持續時間內免疫「恐懼」，全攻擊力提升5%，攻速提升20%，並獲得最大生命值10%之護盾。</font></p>
+114002	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >持續時間內免疫「恐懼」，全攻擊力提升10%，攻速提升40%，並獲得最大生命值20%之護盾。</font></p>
+114003	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >持續時間內免疫「恐懼」，全攻擊力提升15%，攻速提升60%，並獲得最大生命值30%之護盾。</font></p>
+114061	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >所有隊友移除所有「恐懼」狀態，並獲得「戰意I」，持續6秒。CD10秒</font></p>
+114062	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >所有隊友移除所有「恐懼」狀態，並獲得「戰意II」，持續7秒。CD10秒</font></p>
+114063	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >所有隊友移除所有「恐懼」狀態，並獲得「戰意III」，持續8秒。CD10秒</font></p>
 11501	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >對敵方全體造成120%傷害，並給予【逆風I】6秒</font></p>
 11502	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >對敵方全體造成160%傷害，並給予【逆風II】7秒</font></p>
 11503	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >對敵方全體造成200%傷害，並給予【逆風III】8秒</font></p>
@@ -631,6 +640,9 @@ id	繁中
 11731	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >自身存活時，發動【抵抗I】靈氣</font></p>
 11732	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >自身存活時，發動【抵抗II】靈氣</font></p>
 11733	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >自身存活時，發動【抵抗III】靈氣</font></p>
+117061	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >對隨機一名敵人施加「命刻」，持續8秒，開場4秒施放，CD18秒。</font></p>
+117062	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >對隨機兩名敵人施加「命刻」，持續10秒，開場4秒施放，CD17秒。</font></p>
+117063	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >對隨機三名敵人施加「命刻」，持續12秒，開場4秒施放，CD16秒。</font></p>
 11801	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >對敵方全體造成130%傷害，並給予【出血I】5秒</font></p>
 11802	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >對敵方全體造成160%傷害，並給予【出血II】6秒</font></p>
 11803	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >對敵方全體造成190%傷害，並給予【出血III】7秒</font>< /p>
@@ -1418,6 +1430,7 @@ id	繁中
 600011	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >所有角色開戰時均會獲得「猛毒」、每當角色暴擊時，會使自身的「猛毒」等級上升1，最高為3，職業為補師角色免疫所有「毒」狀態。</font></p>
 600021	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >所有角色迴避屬性上升200%，每次成功迴避恢復自身攻擊力100%生命值。非玩家角色持有每4下普通攻擊獲得「必中」狀態。</font></p>
 600031	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >所有職業為法師角色開戰時<br/>獲得「順風III」，<br/>所有職業為戰士角色開戰時<br/>獲得「蠻勇III」，<br/>所有職業為坦克角色開戰時<br/>獲得「脆弱III」，<br/>所有職業為補師角色開戰時<br/>獲得「逆風III」，持續99秒。<br/>順風III：所有魔力恢復效果上升30%，移動力上升45%。<br/>蠻勇III：物理攻擊力提升15%。<br/>脆弱III：物理防禦減少60%<br/>逆風III：所有魔力恢復效果下降30%，移動力下降45%。</font></p>
+600041	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >所有角色受到傷害時獲得「業火I」,當任意角色暴擊時,移除場上所有角色物上「業火」。<br/>業火I：每層提升爆擊傷害40%，最高疊數三層，暴擊發生後移除。</font></p>
 999901	<font color="#4D93D9" face = "Barlow-SemiBold" >#v1#</font><font color="#FFFFFF" face = "Barlow-SemiBold" > 施放</font><font color="#996600" face = "Barlow-SemiBold" > #v2#</font>
 999902	<font color="#FF5050" face = "Barlow-SemiBold" >#v1#</font><font color="#FFFFFF" face = "Barlow-SemiBold" > 施放</font><font color="#996600" face = "Barlow-SemiBold" > #v2#</font>
 999903	<font color="#4D93D9" face = "Barlow-SemiBold" >#v1#</font><font color="#FFFFFF" face = "Barlow-SemiBold" > 對</font><font color="#FF5050" face = "Barlow-SemiBold" > #v2#</font><font color="#FFFFFF" face = "Barlow-SemiBold" > 造成</font><font color="#C00000" face = "Barlow-SemiBold" > #v3#</font><font color="#FFFFFF" face = "Barlow-SemiBold" > 傷害</font>

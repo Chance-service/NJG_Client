@@ -1,0 +1,153 @@
+
+NGUI_100_CreateRole_2.png
+size: 791,791
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+H1
+  rotate: false
+  xy: 157, 24
+  size: 31, 23
+  orig: 31, 23
+  offset: 0, 0
+  index: -1
+H2
+  rotate: false
+  xy: 122, 14
+  size: 33, 33
+  orig: 33, 33
+  offset: 0, 0
+  index: -1
+H4
+  rotate: true
+  xy: 2, 4
+  size: 43, 78
+  orig: 43, 78
+  offset: 0, 0
+  index: -1
+H5
+  rotate: true
+  xy: 82, 10
+  size: 37, 38
+  orig: 37, 38
+  offset: 0, 0
+  index: -1
+H6
+  rotate: false
+  xy: 719, 145
+  size: 48, 114
+  orig: 48, 114
+  offset: 0, 0
+  index: -1
+HB
+  rotate: false
+  xy: 598, 363
+  size: 159, 426
+  orig: 159, 426
+  offset: 0, 0
+  index: -1
+HB main
+  rotate: true
+  xy: 182, 249
+  size: 540, 414
+  orig: 540, 414
+  offset: 0, 0
+  index: -1
+L eye
+  rotate: true
+  xy: 182, 225
+  size: 22, 20
+  orig: 22, 20
+  offset: 0, 0
+  index: -1
+L pupil
+  rotate: false
+  xy: 136, 3
+  size: 12, 9
+  orig: 12, 9
+  offset: 0, 0
+  index: -1
+Lash L
+  rotate: true
+  xy: 182, 127
+  size: 22, 12
+  orig: 22, 12
+  offset: 0, 0
+  index: -1
+Lash R
+  rotate: true
+  xy: 182, 104
+  size: 21, 12
+  orig: 21, 12
+  offset: 0, 0
+  index: -1
+R eye
+  rotate: true
+  xy: 182, 200
+  size: 23, 17
+  orig: 23, 17
+  offset: 0, 0
+  index: -1
+R pupil
+  rotate: false
+  xy: 122, 2
+  size: 12, 10
+  orig: 12, 10
+  offset: 0, 0
+  index: -1
+body
+  rotate: false
+  xy: 2, 49
+  size: 178, 740
+  orig: 178, 740
+  offset: 0, 0
+  index: -1
+boob
+  rotate: false
+  xy: 626, 3
+  size: 124, 95
+  orig: 124, 95
+  offset: 0, 0
+  index: -1
+eye L BG
+  rotate: true
+  xy: 182, 173
+  size: 25, 15
+  orig: 25, 15
+  offset: 0, 0
+  index: -1
+eye R BG
+  rotate: true
+  xy: 182, 151
+  size: 20, 14
+  orig: 20, 14
+  offset: 0, 0
+  index: -1
+eye closed
+  rotate: false
+  xy: 157, 2
+  size: 57, 20
+  orig: 57, 20
+  offset: 0, 0
+  index: -1
+hand L
+  rotate: true
+  xy: 216, 2
+  size: 96, 408
+  orig: 96, 408
+  offset: 0, 0
+  index: -1
+hand R
+  rotate: true
+  xy: 216, 100
+  size: 147, 501
+  orig: 147, 501
+  offset: 0, 0
+  index: -1
+head
+  rotate: true
+  xy: 598, 261
+  size: 100, 126
+  orig: 100, 126
+  offset: 0, 0
+  index: -1

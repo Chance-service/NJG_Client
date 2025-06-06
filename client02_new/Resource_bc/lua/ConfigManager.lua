@@ -6751,6 +6751,7 @@ function ConfigManager.getLimitTowerCfg()
             ["LevelLimit"] = tonumber,
             ["GirlLimit"] = tonumber,
             ["id"] = tonumber,
+            ["nextStage"] = tonumber,
             ["idx"] = tonumber,
             ["type"] = tonumber,
             ["count"] = tonumber,
@@ -6920,6 +6921,21 @@ function ConfigManager.getFearTowerAchivCfg()
         };
 
         cfg = ConfigManager.loadCfg("FearlessToweAchv_C.txt", attrMap, 0, convertMap);
+        ConfigManager.configs[key] = cfg;
+    end
+    return cfg;
+end
+function ConfigManager.getLoginReward()
+    local key = "LoginRewardCfg";
+    local cfg = ConfigManager.configs[key];
+    if cfg == nil then
+        local attrMap = common:table_combineNumber( { "id", "LobbyBtnImg", "Spine","Title","reward"});
+        local convertMap = {
+            ["id"] = tonumber,
+            ["reward"] = ConfigManager.parseItemWithComma,
+        };
+
+        cfg = ConfigManager.loadCfg("loginReward.txt", attrMap, 0, convertMap);
         ConfigManager.configs[key] = cfg;
     end
     return cfg;

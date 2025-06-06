@@ -191,7 +191,9 @@ function AnnouncementPopPageBase:onReceivePacket(container)
                 table.insert(self.openList, tostring(info.id) .. ".txt")
             end
         end
-        self:deleteUnusedFiles()
+        if CC_TARGET_PLATFORM_LUA ~= common.platform.CC_PLATFORM_IOS then
+            self:deleteUnusedFiles()    -- ios¥i¯à·|¸õ¿ù
+        end
         table.sort(AnnouncementPopPageBase.allInfo, function(a, b) return a.sort < b.sort end)
         self:buildScrollView()
     elseif opcode == opcodes.BULLETIN_CONTENT_SYNC_S then

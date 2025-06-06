@@ -484,7 +484,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Lobby_Banner_1.png</key>
+            <key>Lobby_Banner_028.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -499,7 +499,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Lobby_Banner_147.png</key>
+            <key>Lobby_Banner_1.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -514,7 +514,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Lobby_Banner_179.png</key>
+            <key>Lobby_Banner_147.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -903,7 +903,7 @@
             <key>size</key>
             <string>{2048,2045}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:e2df21fe79782ba08b11473c3afeb1d9:0804ba703c20e319d407962187a16c55:228f84c3582f5e1e4a63fe7be1cf7f16$</string>
+            <string>$TexturePacker:SmartUpdate:8dcc07f5666164241299738df55d7288:c537c3c6b08f4ecec29521a84e7f4ad5:228f84c3582f5e1e4a63fe7be1cf7f16$</string>
             <key>textureFileName</key>
             <string>i18n_tw_Banner1.png</string>
         </dict>

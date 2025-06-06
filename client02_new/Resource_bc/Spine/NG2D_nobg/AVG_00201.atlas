@@ -1,251 +1,251 @@
 
 AVG_00201.png
-size: 1207,1207
+size: 1223,1223
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 A00
   rotate: false
-  xy: 867, 670
-  size: 139, 146
-  orig: 139, 146
+  xy: 881, 678
+  size: 141, 148
+  orig: 141, 148
   offset: 0, 0
   index: -1
 Boob
   rotate: false
-  xy: 892, 818
-  size: 228, 182
-  orig: 228, 182
+  xy: 906, 828
+  size: 231, 185
+  orig: 231, 185
   offset: 0, 0
   index: -1
 F01
   rotate: false
-  xy: 1008, 670
-  size: 139, 146
-  orig: 139, 146
+  xy: 1024, 678
+  size: 141, 148
+  orig: 141, 148
   offset: 0, 0
   index: -1
 F02
   rotate: true
-  xy: 715, 460
-  size: 139, 146
-  orig: 139, 146
+  xy: 726, 465
+  size: 141, 148
+  orig: 141, 148
   offset: 0, 0
   index: -1
 F03
   rotate: false
-  xy: 699, 312
-  size: 139, 146
-  orig: 139, 146
+  xy: 710, 315
+  size: 141, 148
+  orig: 141, 148
   offset: 0, 0
   index: -1
 F04
   rotate: true
-  xy: 867, 529
-  size: 139, 146
-  orig: 139, 146
+  xy: 881, 535
+  size: 141, 148
+  orig: 141, 148
   offset: 0, 0
   index: -1
 F05
   rotate: false
-  xy: 1015, 522
-  size: 139, 146
-  orig: 139, 146
+  xy: 1031, 528
+  size: 141, 148
+  orig: 141, 148
   offset: 0, 0
   index: -1
 F06
   rotate: true
-  xy: 863, 388
-  size: 139, 146
-  orig: 139, 146
+  xy: 876, 392
+  size: 141, 148
+  orig: 141, 148
   offset: 0, 0
   index: -1
 F07
   rotate: true
-  xy: 1011, 381
-  size: 139, 146
-  orig: 139, 146
+  xy: 1026, 385
+  size: 141, 148
+  orig: 141, 148
   offset: 0, 0
   index: -1
 F08
   rotate: true
-  xy: 840, 248
-  size: 138, 145
-  orig: 138, 145
+  xy: 853, 250
+  size: 140, 148
+  orig: 140, 148
   offset: 0, 0
   index: -1
 F09
   rotate: true
-  xy: 987, 241
-  size: 138, 145
-  orig: 138, 145
+  xy: 1003, 243
+  size: 140, 148
+  orig: 140, 148
   offset: 0, 0
   index: -1
 F10
   rotate: false
-  xy: 712, 91
-  size: 138, 145
-  orig: 138, 145
+  xy: 723, 90
+  size: 140, 148
+  orig: 140, 148
   offset: 0, 0
   index: -1
 H1
   rotate: false
-  xy: 807, 38
+  xy: 810, 37
   size: 49, 51
   orig: 49, 51
   offset: 0, 0
   index: -1
 H2
   rotate: false
-  xy: 1122, 859
-  size: 73, 60
-  orig: 73, 60
+  xy: 865, 91
+  size: 74, 60
+  orig: 74, 60
   offset: 0, 0
   index: -1
 H3
   rotate: false
-  xy: 699, 238
-  size: 74, 72
-  orig: 74, 72
+  xy: 710, 240
+  size: 75, 73
+  orig: 75, 73
   offset: 0, 0
   index: -1
 HB 1
   rotate: true
-  xy: 570, 235
-  size: 263, 127
-  orig: 263, 127
+  xy: 579, 237
+  size: 267, 129
+  orig: 267, 129
   offset: 0, 0
   index: -1
 HB 2
   rotate: false
-  xy: 892, 1002
-  size: 241, 203
-  orig: 241, 203
+  xy: 906, 1015
+  size: 244, 206
+  orig: 244, 206
   offset: 0, 0
   index: -1
 L pupil
   rotate: false
-  xy: 867, 852
-  size: 20, 17
-  orig: 20, 17
+  xy: 853, 405
+  size: 21, 18
+  orig: 21, 18
   offset: 0, 0
   index: -1
 Lash L
   rotate: true
-  xy: 840, 420
+  xy: 853, 425
   size: 38, 21
   orig: 38, 21
   offset: 0, 0
   index: -1
 Lash R
   rotate: true
-  xy: 1135, 1016
-  size: 37, 28
-  orig: 37, 28
+  xy: 954, 164
+  size: 38, 29
+  orig: 38, 29
   offset: 0, 0
   index: -1
 R pupil
   rotate: false
-  xy: 1134, 363
+  xy: 881, 864
   size: 18, 16
   orig: 18, 16
   offset: 0, 0
   index: -1
 bat L
   rotate: true
-  xy: 775, 269
-  size: 41, 63
-  orig: 41, 63
+  xy: 787, 271
+  size: 42, 64
+  orig: 42, 64
   offset: 0, 0
   index: -1
 bat R
-  rotate: true
-  xy: 712, 3
-  size: 86, 93
-  orig: 86, 93
+  rotate: false
+  xy: 865, 153
+  size: 87, 95
+  orig: 87, 95
   offset: 0, 0
   index: -1
 bat top R
   rotate: false
-  xy: 1122, 921
-  size: 83, 79
-  orig: 83, 79
+  xy: 723, 7
+  size: 85, 81
+  orig: 85, 81
   offset: 0, 0
   index: -1
 body
   rotate: false
-  xy: 2, 9
-  size: 566, 1196
-  orig: 566, 1196
+  xy: 2, 7
+  size: 575, 1214
+  orig: 575, 1214
   offset: 0, 0
   index: -1
 cape
   rotate: false
-  xy: 570, 500
-  size: 143, 369
-  orig: 143, 369
+  xy: 579, 506
+  size: 145, 374
+  orig: 145, 374
   offset: 0, 0
   index: -1
 eye L
   rotate: false
-  xy: 775, 238
-  size: 39, 29
-  orig: 39, 29
+  xy: 787, 240
+  size: 40, 29
+  orig: 40, 29
   offset: 0, 0
   index: -1
 eye L BG
-  rotate: false
-  xy: 807, 10
-  size: 42, 26
-  orig: 42, 26
+  rotate: true
+  xy: 1190, 1127
+  size: 43, 26
+  orig: 43, 26
   offset: 0, 0
   index: -1
 eye R
-  rotate: false
-  xy: 1122, 821
-  size: 38, 36
-  orig: 38, 36
+  rotate: true
+  xy: 1152, 1075
+  size: 39, 36
+  orig: 39, 36
   offset: 0, 0
   index: -1
 eye R BG
   rotate: true
-  xy: 1173, 1156
-  size: 49, 30
-  orig: 49, 30
+  xy: 1190, 1172
+  size: 49, 31
+  orig: 49, 31
   offset: 0, 0
   index: -1
 eyes closed
   rotate: true
-  xy: 1135, 1101
-  size: 104, 36
-  orig: 104, 36
+  xy: 1152, 1116
+  size: 105, 36
+  orig: 105, 36
   offset: 0, 0
   index: -1
 img2
   rotate: true
-  xy: 570, 10
-  size: 223, 140
-  orig: 223, 140
+  xy: 579, 8
+  size: 227, 142
+  orig: 227, 142
   offset: 0, 0
   index: -1
 mouth open
   rotate: false
-  xy: 1135, 1055
+  xy: 954, 204
   size: 36, 44
   orig: 36, 44
   offset: 0, 0
   index: -1
 skirt Back
   rotate: false
-  xy: 570, 871
-  size: 320, 334
-  orig: 320, 334
+  xy: 579, 882
+  size: 325, 339
+  orig: 325, 339
   offset: 0, 0
   index: -1
 skirt L
   rotate: false
-  xy: 715, 601
-  size: 150, 268
-  orig: 150, 268
+  xy: 726, 608
+  size: 153, 272
+  orig: 153, 272
   offset: 0, 0
   index: -1

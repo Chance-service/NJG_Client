@@ -458,6 +458,7 @@ end
 function EquipLeadPage:initSpine(container)
     effectSpine = SpineContainer:create("Spine/NGUI", "NGUI_02_HLevelUp")
     local spineNode = tolua.cast(effectSpine, "CCNode")
+    spineNode:setVisible(false)
     effectSpineParent = container:getVarNode("mSpineNode")
     effectSpineParent:removeAllChildrenWithCleanup(true)
     effectSpineParent:addChild(spineNode)
@@ -708,7 +709,7 @@ function EquipLeadPage:showSkill(container, eventName)
     require("HeroSkillPage")
     HeroSkillPage_setPageRoleInfo(curRoleInfo.level, curRoleInfo.starLevel,roleId,itemId)
     HeroSkillPage_setPageSkillLevel(skillLv)
-    HeroSkillPage_setPageSkillId(skill)
+    HeroSkillPage_setPageSkillId(skill, tonumber(id))
     PageManager.pushPage("HeroSkillPage")
 end
 
@@ -1487,6 +1488,8 @@ function EquipLeadPage:onReceivePacket(container)
         UserEquipManager:checkAllEquipNotice()
         self:refreshPage(selfContainer)
     elseif opcode == option.opcodes.ROLE_UP_LEVEL_S then
+        local spineNode = tolua.cast(effectSpine, "CCNode")
+        spineNode:setVisible(true)
         effectSpine:runAnimation(1, "animation", 0)
         self:refreshPage(selfContainer)
         --新手教學
@@ -1516,6 +1519,8 @@ function EquipLeadPage:onReceivePacket(container)
         end
         NodeHelper:setMenuItemsEnabled(container,{ mMaxLv = true , mTrainBtn = true,mStoneBtn = true})
     elseif opcode == option.opcodes.ROLE_LEVEL_MAX_S then
+        local spineNode = tolua.cast(effectSpine, "CCNode")
+        spineNode:setVisible(true)
         effectSpine:runAnimation(1, "animation", 0)
         self:refreshPage(selfContainer)
         --新手教學

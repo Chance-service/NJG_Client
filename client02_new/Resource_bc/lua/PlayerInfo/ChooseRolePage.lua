@@ -86,26 +86,27 @@ function ChooseRolePageInfo.onEnter()
         _WaitAnimNode:setVisible(false)
         _PageContainer:addChild(_WaitAnimNode, 100001)
         _WaitAnimNode:release()
-
-        local spinePath = "Spine/NG2D_nobg"
-        local spineName = "NG2D_999_nobg"
-        CCLuaLog("ChooseRolePageInfo1")
-        local spine = SpineContainer:create(spinePath, spineName)
-        CCLuaLog("ChooseRolePageInfo2")
-        local spineNode = tolua.cast(spine, "CCNode")
-        local parentNode = _PageContainer:getVarNode("mSpine")
-        parentNode:addChild(spineNode)
-        spine:runAnimation(1,"animation", -1)
+        for i = 1, 6 do
+            local spinePath = "Spine/NGUI"
+            local spineName = "NGUI_100_CreateRole_" .. i
+            local spine = SpineContainer:create(spinePath, spineName)
+            local spineNode = tolua.cast(spine, "CCNode")
+            local parentNode = _PageContainer:getVarNode("mSpine")
+            parentNode:addChild(spineNode)
+            spine:runAnimation(1, "animation", -1)
+            if i == 6 then
+                local langType = CCUserDefault:sharedUserDefault():getIntegerForKey("LanguageType")
+                if langType ~= kLanguageCH_TW then
+                    langType = kLanguageChinese
+                end
+                spine:setSkin(langType)
+            end
+        end
     end
-
-    local bg = _PageContainer:getVarSprite("mBg")
-    bg:setScale(NodeHelper:getScaleProportion())
 
     _PageContainer:registerPacket(HP.ROLE_CREATE_S)
     _PageContainer:registerMessage(MSG_MAINFRAME_COVERSHOW)
     _Gs_ShowAnimFunc = ChooseRolePageInfo.onRunLoadingAni
-
-    --_PageContainer:runAnimation("part1")
 
     ----------------
     local tabTime = os.date("*t")

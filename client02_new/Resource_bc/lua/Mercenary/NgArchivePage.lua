@@ -422,7 +422,7 @@ function NgArchivePage:showSkill(container, eventName)
     require("HeroSkillPage")
     HeroSkillPage_setPageRoleInfo(heroArchiveCfg.MaxLevel, heroArchiveCfg.MaxStar)
     HeroSkillPage_setPageSkillLevel(3)
-    HeroSkillPage_setPageSkillId(skill)
+    HeroSkillPage_setPageSkillId(skill, tonumber(id))
     PageManager.pushPage("HeroSkillPage")
 end
 
