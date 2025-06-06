@@ -212,7 +212,6 @@
 		4E499DAC2DDC7F5600922FAD /* lua in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D8B2DDC7F5100922FAD /* lua */; };
 		4E499DAF2DDC7F5600922FAD /* version.manifest in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D8E2DDC7F5300922FAD /* version.manifest */; };
 		4E499DB12DDC7F5600922FAD /* version_android.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D902DDC7F5500922FAD /* version_android.cfg */; };
-		4E499DB22DDC7F5600922FAD /* txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D912DDC7F5600922FAD /* txt */; };
 		4E499DB32DDC7F8100922FAD /* audio in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D752DDC7F4500922FAD /* audio */; };
 		4E499DB42DDC7F8100922FAD /* Barlow-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D842DDC7F4E00922FAD /* Barlow-Bold.ttf */; };
 		4E499DB52DDC7F8100922FAD /* Barlow-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D8A2DDC7F5100922FAD /* Barlow-Regular.ttf */; };
@@ -230,7 +229,6 @@
 		4E499DC62DDC7F8100922FAD /* shader in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D7F2DDC7F4B00922FAD /* shader */; };
 		4E499DC82DDC7F8100922FAD /* Spine in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D852DDC7F4E00922FAD /* Spine */; };
 		4E499DC92DDC7F8100922FAD /* Tips.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D812DDC7F4C00922FAD /* Tips.txt */; };
-		4E499DCA2DDC7F8100922FAD /* txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D912DDC7F5600922FAD /* txt */; };
 		4E499DCB2DDC7F8100922FAD /* UI in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D7E2DDC7F4B00922FAD /* UI */; };
 		4E499DCC2DDC7F8100922FAD /* UpdateVersionTips.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D712DDC7F4400922FAD /* UpdateVersionTips.cfg */; };
 		4E499DCD2DDC7F8100922FAD /* UpdateVersionTipsTW.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D792DDC7F4900922FAD /* UpdateVersionTipsTW.cfg */; };
@@ -1212,7 +1210,6 @@
 		4E499D8B2DDC7F5100922FAD /* lua */ = {isa = PBXFileReference; lastKnownFileType = folder; name = lua; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/lua; sourceTree = "<group>"; };
 		4E499D8E2DDC7F5300922FAD /* version.manifest */ = {isa = PBXFileReference; lastKnownFileType = text; name = version.manifest; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/version.manifest; sourceTree = "<group>"; };
 		4E499D902DDC7F5500922FAD /* version_android.cfg */ = {isa = PBXFileReference; lastKnownFileType = text; name = version_android.cfg; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/version_android.cfg; sourceTree = "<group>"; };
-		4E499D912DDC7F5600922FAD /* txt */ = {isa = PBXFileReference; lastKnownFileType = folder; name = txt; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/txt; sourceTree = "<group>"; };
 		4E499DEA2DDCB7A300922FAD /* liblib91Kuso.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = liblib91Kuso.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E499DEC2DDCB7C800922FAD /* liblib91Erolabs.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = liblib91Erolabs.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E59C3752D620816006518A5 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
@@ -2141,7 +2138,6 @@
 				4E499D7F2DDC7F4B00922FAD /* shader */,
 				4E499D852DDC7F4E00922FAD /* Spine */,
 				4E499D812DDC7F4C00922FAD /* Tips.txt */,
-				4E499D912DDC7F5600922FAD /* txt */,
 				4E499D7E2DDC7F4B00922FAD /* UI */,
 				4E499D712DDC7F4400922FAD /* UpdateVersionTips.cfg */,
 				4E499D792DDC7F4900922FAD /* UpdateVersionTipsTW.cfg */,
@@ -3111,7 +3107,6 @@
 				4E499DC62DDC7F8100922FAD /* shader in Resources */,
 				4E499DC82DDC7F8100922FAD /* Spine in Resources */,
 				4E499DC92DDC7F8100922FAD /* Tips.txt in Resources */,
-				4E499DCA2DDC7F8100922FAD /* txt in Resources */,
 				4E499DCB2DDC7F8100922FAD /* UI in Resources */,
 				4E499DCC2DDC7F8100922FAD /* UpdateVersionTips.cfg in Resources */,
 				4E499DCD2DDC7F8100922FAD /* UpdateVersionTipsTW.cfg in Resources */,
@@ -3156,7 +3151,6 @@
 				4E499DAC2DDC7F5600922FAD /* lua in Resources */,
 				4E499DAF2DDC7F5600922FAD /* version.manifest in Resources */,
 				4E499DB12DDC7F5600922FAD /* version_android.cfg in Resources */,
-				4E499DB22DDC7F5600922FAD /* txt in Resources */,
 				4E77C6D02DDC6107000823F7 /* Erolabs.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
