@@ -136,7 +136,7 @@ android {
         }
 
         OP {
-            applicationId = "chance.debug.ninja.girl.op.cn"
+            applicationId = "chance.release.ninja.girl.op"
             dimension "app_type"
 //            dependencies {
 //                implementation fileTree(dir: '../../sdklibs/GameLibBC/platformlibs/OP', include: ['*.aar','*.jar'])

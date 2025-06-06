@@ -1,3 +1,0 @@
-id	RechargeId	activityId	tabMain	tabSubName
-1	9001	194	19401	@9001
-2	9002	194	19401	@9002
