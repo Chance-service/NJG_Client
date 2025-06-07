@@ -204,21 +204,17 @@
 		4E499DA12DDC7F5600922FAD /* RecourceFilePath.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D802DDC7F4C00922FAD /* RecourceFilePath.txt */; };
 		4E499DA22DDC7F5600922FAD /* Tips.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D812DDC7F4C00922FAD /* Tips.txt */; };
 		4E499DA32DDC7F5600922FAD /* version_ios.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D822DDC7F4D00922FAD /* version_ios.cfg */; };
-		4E499DA42DDC7F5600922FAD /* i18n in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D832DDC7F4D00922FAD /* i18n */; };
 		4E499DA52DDC7F5600922FAD /* Barlow-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D842DDC7F4E00922FAD /* Barlow-Bold.ttf */; };
 		4E499DA62DDC7F5600922FAD /* Spine in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D852DDC7F4E00922FAD /* Spine */; };
 		4E499DA72DDC7F5600922FAD /* version_android_local.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D862DDC7F4E00922FAD /* version_android_local.cfg */; };
 		4E499DA82DDC7F5600922FAD /* Video in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D872DDC7F4F00922FAD /* Video */; };
-		4E499DA92DDC7F5600922FAD /* Imagesetfile in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D882DDC7F5000922FAD /* Imagesetfile */; };
 		4E499DAA2DDC7F5600922FAD /* Barlow-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D892DDC7F5000922FAD /* Barlow-SemiBold.ttf */; };
 		4E499DAB2DDC7F5600922FAD /* Barlow-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D8A2DDC7F5100922FAD /* Barlow-Regular.ttf */; };
 		4E499DAC2DDC7F5600922FAD /* lua in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D8B2DDC7F5100922FAD /* lua */; };
 		4E499DAD2DDC7F5600922FAD /* monster in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D8C2DDC7F5100922FAD /* monster */; };
 		4E499DAE2DDC7F5600922FAD /* map in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D8D2DDC7F5300922FAD /* map */; };
 		4E499DAF2DDC7F5600922FAD /* version.manifest in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D8E2DDC7F5300922FAD /* version.manifest */; };
-		4E499DB02DDC7F5600922FAD /* skill in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D8F2DDC7F5400922FAD /* skill */; };
 		4E499DB12DDC7F5600922FAD /* version_android.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D902DDC7F5500922FAD /* version_android.cfg */; };
-		4E499DB22DDC7F5600922FAD /* txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D912DDC7F5600922FAD /* txt */; };
 		4E499DB32DDC7F8100922FAD /* audio in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D752DDC7F4500922FAD /* audio */; };
 		4E499DB42DDC7F8100922FAD /* Barlow-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D842DDC7F4E00922FAD /* Barlow-Bold.ttf */; };
 		4E499DB52DDC7F8100922FAD /* Barlow-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D8A2DDC7F5100922FAD /* Barlow-Regular.ttf */; };
@@ -228,8 +224,6 @@
 		4E499DB92DDC7F8100922FAD /* ecchigamer_domain_v1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D7A2DDC7F4900922FAD /* ecchigamer_domain_v1.txt */; };
 		4E499DBA2DDC7F8100922FAD /* erolabs_domain_v1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D7D2DDC7F4A00922FAD /* erolabs_domain_v1.txt */; };
 		4E499DBB2DDC7F8100922FAD /* HalfBody in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D742DDC7F4500922FAD /* HalfBody */; };
-		4E499DBC2DDC7F8100922FAD /* i18n in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D832DDC7F4D00922FAD /* i18n */; };
-		4E499DBD2DDC7F8100922FAD /* Imagesetfile in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D882DDC7F5000922FAD /* Imagesetfile */; };
 		4E499DBE2DDC7F8100922FAD /* Lang in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D772DDC7F4800922FAD /* Lang */; };
 		4E499DBF2DDC7F8100922FAD /* LoadingUI_JP in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D732DDC7F4500922FAD /* LoadingUI_JP */; };
 		4E499DC02DDC7F8100922FAD /* lua in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D8B2DDC7F5100922FAD /* lua */; };
@@ -239,10 +233,8 @@
 		4E499DC42DDC7F8100922FAD /* projectLocal.manifest in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D782DDC7F4800922FAD /* projectLocal.manifest */; };
 		4E499DC52DDC7F8100922FAD /* RecourceFilePath.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D802DDC7F4C00922FAD /* RecourceFilePath.txt */; };
 		4E499DC62DDC7F8100922FAD /* shader in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D7F2DDC7F4B00922FAD /* shader */; };
-		4E499DC72DDC7F8100922FAD /* skill in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D8F2DDC7F5400922FAD /* skill */; };
 		4E499DC82DDC7F8100922FAD /* Spine in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D852DDC7F4E00922FAD /* Spine */; };
 		4E499DC92DDC7F8100922FAD /* Tips.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D812DDC7F4C00922FAD /* Tips.txt */; };
-		4E499DCA2DDC7F8100922FAD /* txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D912DDC7F5600922FAD /* txt */; };
 		4E499DCB2DDC7F8100922FAD /* UI in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D7E2DDC7F4B00922FAD /* UI */; };
 		4E499DCC2DDC7F8100922FAD /* UpdateVersionTips.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D712DDC7F4400922FAD /* UpdateVersionTips.cfg */; };
 		4E499DCD2DDC7F8100922FAD /* UpdateVersionTipsTW.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D792DDC7F4900922FAD /* UpdateVersionTipsTW.cfg */; };
@@ -1217,21 +1209,17 @@
 		4E499D802DDC7F4C00922FAD /* RecourceFilePath.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = RecourceFilePath.txt; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/RecourceFilePath.txt; sourceTree = "<group>"; };
 		4E499D812DDC7F4C00922FAD /* Tips.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = Tips.txt; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/Tips.txt; sourceTree = "<group>"; };
 		4E499D822DDC7F4D00922FAD /* version_ios.cfg */ = {isa = PBXFileReference; lastKnownFileType = text; name = version_ios.cfg; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/version_ios.cfg; sourceTree = "<group>"; };
-		4E499D832DDC7F4D00922FAD /* i18n */ = {isa = PBXFileReference; lastKnownFileType = folder; name = i18n; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/i18n; sourceTree = "<group>"; };
 		4E499D842DDC7F4E00922FAD /* Barlow-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Barlow-Bold.ttf"; path = "../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/Barlow-Bold.ttf"; sourceTree = "<group>"; };
 		4E499D852DDC7F4E00922FAD /* Spine */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Spine; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/Spine; sourceTree = "<group>"; };
 		4E499D862DDC7F4E00922FAD /* version_android_local.cfg */ = {isa = PBXFileReference; lastKnownFileType = text; name = version_android_local.cfg; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/version_android_local.cfg; sourceTree = "<group>"; };
 		4E499D872DDC7F4F00922FAD /* Video */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Video; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/Video; sourceTree = "<group>"; };
-		4E499D882DDC7F5000922FAD /* Imagesetfile */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Imagesetfile; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/Imagesetfile; sourceTree = "<group>"; };
 		4E499D892DDC7F5000922FAD /* Barlow-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Barlow-SemiBold.ttf"; path = "../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/Barlow-SemiBold.ttf"; sourceTree = "<group>"; };
 		4E499D8A2DDC7F5100922FAD /* Barlow-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Barlow-Regular.ttf"; path = "../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/Barlow-Regular.ttf"; sourceTree = "<group>"; };
 		4E499D8B2DDC7F5100922FAD /* lua */ = {isa = PBXFileReference; lastKnownFileType = folder; name = lua; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/lua; sourceTree = "<group>"; };
 		4E499D8C2DDC7F5100922FAD /* monster */ = {isa = PBXFileReference; lastKnownFileType = folder; name = monster; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/monster; sourceTree = "<group>"; };
 		4E499D8D2DDC7F5300922FAD /* map */ = {isa = PBXFileReference; lastKnownFileType = folder; name = map; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/map; sourceTree = "<group>"; };
 		4E499D8E2DDC7F5300922FAD /* version.manifest */ = {isa = PBXFileReference; lastKnownFileType = text; name = version.manifest; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/version.manifest; sourceTree = "<group>"; };
-		4E499D8F2DDC7F5400922FAD /* skill */ = {isa = PBXFileReference; lastKnownFileType = folder; name = skill; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/skill; sourceTree = "<group>"; };
 		4E499D902DDC7F5500922FAD /* version_android.cfg */ = {isa = PBXFileReference; lastKnownFileType = text; name = version_android.cfg; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/version_android.cfg; sourceTree = "<group>"; };
-		4E499D912DDC7F5600922FAD /* txt */ = {isa = PBXFileReference; lastKnownFileType = folder; name = txt; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/txt; sourceTree = "<group>"; };
 		4E499DEA2DDCB7A300922FAD /* liblib91Kuso.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = liblib91Kuso.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E499DEC2DDCB7C800922FAD /* liblib91Erolabs.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = liblib91Erolabs.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E59C3752D620816006518A5 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
@@ -2152,8 +2140,6 @@
 				4E499D7A2DDC7F4900922FAD /* ecchigamer_domain_v1.txt */,
 				4E499D7D2DDC7F4A00922FAD /* erolabs_domain_v1.txt */,
 				4E499D742DDC7F4500922FAD /* HalfBody */,
-				4E499D832DDC7F4D00922FAD /* i18n */,
-				4E499D882DDC7F5000922FAD /* Imagesetfile */,
 				4E499D772DDC7F4800922FAD /* Lang */,
 				4E499D732DDC7F4500922FAD /* LoadingUI_JP */,
 				4E499D8B2DDC7F5100922FAD /* lua */,
@@ -2163,10 +2149,8 @@
 				4E499D782DDC7F4800922FAD /* projectLocal.manifest */,
 				4E499D802DDC7F4C00922FAD /* RecourceFilePath.txt */,
 				4E499D7F2DDC7F4B00922FAD /* shader */,
-				4E499D8F2DDC7F5400922FAD /* skill */,
 				4E499D852DDC7F4E00922FAD /* Spine */,
 				4E499D812DDC7F4C00922FAD /* Tips.txt */,
-				4E499D912DDC7F5600922FAD /* txt */,
 				4E499D7E2DDC7F4B00922FAD /* UI */,
 				4E499D712DDC7F4400922FAD /* UpdateVersionTips.cfg */,
 				4E499D792DDC7F4900922FAD /* UpdateVersionTipsTW.cfg */,
@@ -3128,8 +3112,6 @@
 				4E499DB92DDC7F8100922FAD /* ecchigamer_domain_v1.txt in Resources */,
 				4E499DBA2DDC7F8100922FAD /* erolabs_domain_v1.txt in Resources */,
 				4E499DBB2DDC7F8100922FAD /* HalfBody in Resources */,
-				4E499DBC2DDC7F8100922FAD /* i18n in Resources */,
-				4E499DBD2DDC7F8100922FAD /* Imagesetfile in Resources */,
 				4E499DBE2DDC7F8100922FAD /* Lang in Resources */,
 				4E499DBF2DDC7F8100922FAD /* LoadingUI_JP in Resources */,
 				4E499DC02DDC7F8100922FAD /* lua in Resources */,
@@ -3139,10 +3121,8 @@
 				4E499DC42DDC7F8100922FAD /* projectLocal.manifest in Resources */,
 				4E499DC52DDC7F8100922FAD /* RecourceFilePath.txt in Resources */,
 				4E499DC62DDC7F8100922FAD /* shader in Resources */,
-				4E499DC72DDC7F8100922FAD /* skill in Resources */,
 				4E499DC82DDC7F8100922FAD /* Spine in Resources */,
 				4E499DC92DDC7F8100922FAD /* Tips.txt in Resources */,
-				4E499DCA2DDC7F8100922FAD /* txt in Resources */,
 				4E499DCB2DDC7F8100922FAD /* UI in Resources */,
 				4E499DCC2DDC7F8100922FAD /* UpdateVersionTips.cfg in Resources */,
 				4E499DCD2DDC7F8100922FAD /* UpdateVersionTipsTW.cfg in Resources */,
@@ -3179,12 +3159,10 @@
 				4E499DA12DDC7F5600922FAD /* RecourceFilePath.txt in Resources */,
 				4E499DA22DDC7F5600922FAD /* Tips.txt in Resources */,
 				4E499DA32DDC7F5600922FAD /* version_ios.cfg in Resources */,
-				4E499DA42DDC7F5600922FAD /* i18n in Resources */,
 				4E499DA52DDC7F5600922FAD /* Barlow-Bold.ttf in Resources */,
 				4E499DA62DDC7F5600922FAD /* Spine in Resources */,
 				4E499DA72DDC7F5600922FAD /* version_android_local.cfg in Resources */,
 				4E499DA82DDC7F5600922FAD /* Video in Resources */,
-				4E499DA92DDC7F5600922FAD /* Imagesetfile in Resources */,
 				4E7A89DA2DED975900A3C1DC /* InfoPlist.strings in Resources */,
 				4E499DAA2DDC7F5600922FAD /* Barlow-SemiBold.ttf in Resources */,
 				4E499DAB2DDC7F5600922FAD /* Barlow-Regular.ttf in Resources */,
@@ -3192,9 +3170,7 @@
 				4E499DAD2DDC7F5600922FAD /* monster in Resources */,
 				4E499DAE2DDC7F5600922FAD /* map in Resources */,
 				4E499DAF2DDC7F5600922FAD /* version.manifest in Resources */,
-				4E499DB02DDC7F5600922FAD /* skill in Resources */,
 				4E499DB12DDC7F5600922FAD /* version_android.cfg in Resources */,
-				4E499DB22DDC7F5600922FAD /* txt in Resources */,
 				4E77C6D02DDC6107000823F7 /* Erolabs.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
