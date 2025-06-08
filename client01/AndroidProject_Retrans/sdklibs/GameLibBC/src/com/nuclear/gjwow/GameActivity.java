@@ -41,6 +41,8 @@ import CpsConstValue.CpsConst;
 
 import android.annotation.SuppressLint;
 import android.app.AlarmManager;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.ClipboardManager;
@@ -77,6 +79,8 @@ import java.security.MessageDigest;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
+import androidx.core.app.NotificationCompat;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -104,6 +108,8 @@ public abstract class GameActivity extends Cocos2dxActivity {
 	}
 
 	private final ExecutorService downloadExecutor = Executors.newFixedThreadPool(2);
+	// Place this in a singleton or global class
+	private static final AtomicInteger activeDownloads = new AtomicInteger(0);
 
 
 	@SuppressLint("HandlerLeak")
@@ -1190,6 +1196,8 @@ public abstract class GameActivity extends Cocos2dxActivity {
 
 		@Override
 		public void run() {
+			activeDownloads.incrementAndGet(); // Track this download
+
 			OkHttpClient client = new OkHttpClient.Builder()
 					.connectTimeout(30, TimeUnit.SECONDS)
 					.readTimeout(60, TimeUnit.SECONDS)
@@ -1260,11 +1268,40 @@ public abstract class GameActivity extends Cocos2dxActivity {
 				e.printStackTrace();
 				notifyFailed(-1);
 			}
+			finally {
+				// Notify if all downloads have finished
+				if (activeDownloads.decrementAndGet() == 0) {
+					showDownloadCompleteNotification(context);
+				}
+			}
 		}
 
 		private void notifyFailed(int reasonCode) {
 			runOnGLThread(() -> nativeOnDownloadFailed(url, filename, writePath, reasonCode));
 		}
+	}
+
+	public static void showDownloadCompleteNotification(Context context) {
+		String channelId = "downloads";
+		NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+			NotificationChannel channel = new NotificationChannel(
+					channelId,
+					"Download Notifications",
+					NotificationManager.IMPORTANCE_DEFAULT
+			);
+			manager.createNotificationChannel(channel);
+		}
+
+		NotificationCompat.Builder builder = new NotificationCompat.Builder(context, channelId)
+				.setSmallIcon(android.R.drawable.stat_sys_download_done)
+				.setContentTitle("Download Complete")
+				.setContentText("All downloads are finished.")
+				.setPriority(NotificationCompat.PRIORITY_DEFAULT)
+				.setAutoCancel(true);
+
+		manager.notify(1001, builder.build());
 	}
 
 }

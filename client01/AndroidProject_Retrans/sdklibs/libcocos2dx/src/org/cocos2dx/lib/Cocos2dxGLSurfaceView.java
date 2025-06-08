@@ -35,6 +35,8 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.inputmethod.InputMethodManager;
+import org.cocos2dx.lib.BuildConfig;
+
 
 @SuppressLint("NewApi")
 public class Cocos2dxGLSurfaceView extends GLSurfaceView {
