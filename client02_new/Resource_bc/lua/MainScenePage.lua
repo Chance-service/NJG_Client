@@ -1020,9 +1020,11 @@ function MainScenePageInfo.onEnter(container)
     local DailyBundlePage = require ("Activity.DailyBundlePage")
     DailyBundlePage:getVipPointRequest()
     --累計登入資料要求
-    local msg = Activity6_pb.EightDayLoginAwardReq()
-    msg.action = 0
-    common:sendPacket(HP_pb.ACTIVITY200_EIGHT_DAY_LOGIN_C, msg, false)
+    if ActivityInfo:getActivityIsOpenById(Const_pb.ACTIVITY200_EIGHT_DAY_LOGIN) then
+        local msg = Activity6_pb.EightDayLoginAwardReq()
+        msg.action = 0
+        common:sendPacket(HP_pb.ACTIVITY200_EIGHT_DAY_LOGIN_C, msg, false)
+    end
 
     MainScenePageInfo.setNoticeNodes(container)
 

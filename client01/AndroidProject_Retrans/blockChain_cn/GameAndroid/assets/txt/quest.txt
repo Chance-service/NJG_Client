@@ -91,7 +91,7 @@ id	name	content	questType	team	needCount	排序ID	任务奖励数量	任务图�
 1001091	@QuestName_059	@QuestContent_059_3	2	51	13	39	20	Item/2.png	1	30	0	5	27
 1001092	@QuestName_059	@QuestContent_059_4	2	51	18	40	20	Item/2.png	1	30	0	5	27
 1001093	@QuestName_059	@QuestContent_059_5	2	51	28	41	20	Item/2.png	1	30	0	5	27
-1001094	@QuestName_059	@QuestContent_059_6	2	51	39	42	5	Item/I_6004.png	1	30	0	5	27
+1001094	@QuestName_059	@QuestContent_059_6	2	51	38	42	5	Item/I_6004.png	1	30	0	5	27
 1001095	@QuestName_059	@QuestContent_059_7	2	51	59	43	60	Item/Shard_013.png	1	30	0	5	27
 1001096	@QuestName_059	@QuestContent_059_8	2	51	65	44	60	Item/Shard_013.png	1	30	0	5	27
 1001097	@QuestName_059	@QuestContent_059_9	2	51	67	45	20	Item/2.png	1	30	0	5	27
