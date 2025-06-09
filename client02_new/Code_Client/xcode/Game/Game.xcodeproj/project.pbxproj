@@ -243,6 +243,7 @@
 		4E5348ED2DF6CD0F006E5EA5 /* monster in Resources */ = {isa = PBXBuildFile; fileRef = 4E5348EA2DF6CD0E006E5EA5 /* monster */; };
 		4E5348EE2DF6CD0F006E5EA5 /* map in Resources */ = {isa = PBXBuildFile; fileRef = 4E5348EB2DF6CD0E006E5EA5 /* map */; };
 		4E5348EF2DF6CD0F006E5EA5 /* HalfBody in Resources */ = {isa = PBXBuildFile; fileRef = 4E5348EC2DF6CD0F006E5EA5 /* HalfBody */; };
+		4E5348F32DF71E30006E5EA5 /* txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E5348F22DF71E2F006E5EA5 /* txt */; };
 		4E59C3712D603608006518A5 /* libpthread.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7F507D2D5F9F1900DD4AA4 /* libpthread.tbd */; };
 		4E59C3722D603615006518A5 /* libpthread.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7F507D2D5F9F1900DD4AA4 /* libpthread.tbd */; };
 		4E59C3732D603620006518A5 /* libpthread.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7F507D2D5F9F1900DD4AA4 /* libpthread.tbd */; };
@@ -1218,6 +1219,7 @@
 		4E5348EA2DF6CD0E006E5EA5 /* monster */ = {isa = PBXFileReference; lastKnownFileType = folder; name = monster; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/monster; sourceTree = "<group>"; };
 		4E5348EB2DF6CD0E006E5EA5 /* map */ = {isa = PBXFileReference; lastKnownFileType = folder; name = map; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/map; sourceTree = "<group>"; };
 		4E5348EC2DF6CD0F006E5EA5 /* HalfBody */ = {isa = PBXFileReference; lastKnownFileType = folder; name = HalfBody; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/HalfBody; sourceTree = "<group>"; };
+		4E5348F22DF71E2F006E5EA5 /* txt */ = {isa = PBXFileReference; lastKnownFileType = folder; name = txt; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/txt; sourceTree = "<group>"; };
 		4E59C3752D620816006518A5 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
 		4E77C6CD2DDC4961000823F7 /* NinjaGirlErolabs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NinjaGirlErolabs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E77C6CE2DDC496E000823F7 /* NinjaGirlErolabs-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "NinjaGirlErolabs-Info.plist"; path = "/Users/misomacair02/Desktop/Projects/NinjaGirl/NJG_Client/client02_new/Code_Client/xcode/Game/NinjaGirlErolabs-Info.plist"; sourceTree = "<absolute>"; };
@@ -2127,6 +2129,7 @@
 		4ECEA0DA2DCB558F0027FDA9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4E5348F22DF71E2F006E5EA5 /* txt */,
 				4E499D752DDC7F4500922FAD /* audio */,
 				4E499D842DDC7F4E00922FAD /* Barlow-Bold.ttf */,
 				4E499D8A2DDC7F5100922FAD /* Barlow-Regular.ttf */,
@@ -3133,6 +3136,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E5348F32DF71E30006E5EA5 /* txt in Resources */,
 				4E5348ED2DF6CD0F006E5EA5 /* monster in Resources */,
 				4E5348EE2DF6CD0F006E5EA5 /* map in Resources */,
 				4E5348EF2DF6CD0F006E5EA5 /* HalfBody in Resources */,
