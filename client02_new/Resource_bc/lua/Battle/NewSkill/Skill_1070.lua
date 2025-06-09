@@ -55,7 +55,7 @@ function Skill_1070:runSkill(chaNode, skillId, resultTable, allPassiveTable, tar
         table.insert(buffCountTable, 1)
         table.insert(spClassTable, NewBattleConst.FunClassType.NG_BATTLE_CHARACTER_UTIL)
         table.insert(spFuncTable, "addShield")
-        table.insert(spParamTable, { chaNode, target, math.floor(maxHp * tonumber(params[1]) + 0.5) })
+        table.insert(spParamTable, { chaNode, target, math.floor(maxHp * tonumber(params[1]) + 0.5), skillId })
         table.insert(spTarTable, target)
     end
 

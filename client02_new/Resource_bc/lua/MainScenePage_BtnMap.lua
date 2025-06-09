@@ -109,14 +109,14 @@ local MainScenePage_BtnMap = {
         Lock   = GameConfig.LOCK_PAGE_KEY.SECRET_MESSAGE,
         isRed  = false,
     },
-    {
+    --[[{
         key    = "Story",
-        normal = "Lobby_Btn_11.png",--"Lobby_Btn_Recollect.png",
+        normal = "Lobby_Btn_Recollect.png",
         fun    = "onStory",
         Pos    = "Right",
         Lock   = false,
         isRed  = false,
-    },
+    },]]--
     {
         key    = "Friend",
         normal = "Lobby_Btn_2.png",

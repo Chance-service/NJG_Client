@@ -520,7 +520,6 @@ function MainScenePageInfo.broadcastMessage(container)
         local castNode = container:getVarNode("mNoticeNode")
         castNode:removeAllChildren()
     end
-    -- local PackageLogicForLua = require("PackageLogicForLua")
     local size = #worldBroadCastList
     if size > 0 then
         if isInAnimation == false then
@@ -1228,7 +1227,7 @@ function MainScenePageInfo:BuildBtnScrollview(container, Pos, isShort)
     local rules = {
         DailyLogin = function()
             local d = require("LoginRewardPage"):getServerData()
-            return d and d.surplusTime > 0 and d.days < 8
+            return d and d.surplusTime > 0 and d.days <= 8
         end,
         PopUpSale = function()
             -- 特規型禮包
@@ -1581,89 +1580,55 @@ function sendRoleInfo()
     setPayUrl() -- setPayurl(H365/JGG/KUSO/APLUS)
 end
 
+-- 伺服器 ID → 主機位址對照表
+local SERVER_HOSTS = {
+    [1]    = "54.255.44.130:5138",      -- 測試服1
+    [2]    = "18.143.35.236:5138",      -- 測試服2
+    [3]    = "18.143.216.175:5138",     -- 測試服3
+    [6]    = "18.182.62.36:5132",       -- NGTest
+    [9]    = "220.130.219.201:5132",    -- 內部102
+    [703]  = "59.127.222.98:5132",      -- Tinlin_Tainan
+    [1001] = "175.41.148.243:5138",     -- 正式服1
+    [1002] = "13.215.133.203:5138",     -- 正式服2
+}
+
+-- 平台設定：協議 + 路徑
+local PLATFORM_SETTINGS = {
+    h365  = { scheme = "http",  path = "payNotice" },
+    op    = { scheme = "http",  path = "OPpay"     },
+    kuso  = { scheme = "https", path = "KusoPay"   },
+    aplus = { scheme = "https", path = "KusoPay"   },
+}
+
 function setPayUrl()
+    -- r18／Erolabs 平台不處理
     if Golb_Platform_Info.is_r18 or Golb_Platform_Info.is_erolabs then
         return
     end
-    local Svrid = GamePrecedure:getInstance():getServerID()
-    local PayUrl = ""
-    if Golb_Platform_Info.is_h365 then
-        if (NodeHelper:isDebug()) then
-            if (Svrid == 1) then    --測試服1
-                PayUrl = "http://54.255.44.130:5138/payNotice?params="
-            elseif (Svrid == 2) then -- 測試服2
-	    		PayUrl = "http://18.143.35.236:5138/payNotice?params="
-            elseif (Svrid == 3) then -- 測試服3
-	    		PayUrl = "http://18.143.216.175:5138/payNotice?params="
-            elseif (Svrid == 6) then -- NGTest
-	    		PayUrl = "http://18.182.62.36:5132/payNotice?params="
-            elseif (Svrid == 9) then -- 內部102
-	    		PayUrl = "http://220.130.219.201:5132/payNotice?params="
-            --------------------------------
-            elseif (Svrid == 1001) then -- 正式服1
-	    		PayUrl = "http://175.41.148.243:5138/payNotice?params="
-            elseif (Svrid == 1002) then -- 正式服2
-	    		PayUrl = "http://13.215.133.203:5138/payNotice?params="
-            end
-        else
-            if (Svrid == 1) then    --測試服
-                PayUrl = "http://54.255.44.130:5138/payNotice?params="
-            elseif (Svrid == 2) then -- 測試服2
-	    		PayUrl = "http://18.143.35.236:5138/payNotice?params="
-            elseif (Svrid == 3) then -- 測試服3
-	    		PayUrl = "http://18.143.216.175:5138/payNotice?params="
-            elseif (Svrid == 6) then
-                PayUrl = "http://18.182.62.36:5132/payNotice?params="
-            elseif (Svrid == 9) then -- 內部102
-	    		PayUrl = "http://220.130.219.201:5132/payNotice?params="
-            --------------------------------
-            elseif (Svrid == 1001) then -- 正式服1
-	    		PayUrl = "http://175.41.148.243:5138/payNotice?params="
-            elseif (Svrid == 1002) then -- 正式服2
-	    		PayUrl = "http://13.215.133.203:5138/payNotice?params="
-            end
+
+    -- 取伺服器 host
+    local svrId = GamePrecedure:getInstance():getServerID()
+    local host  = SERVER_HOSTS[svrId]
+    if not host then return end
+
+    -- 平台設定
+    local setting
+    for plat, data in pairs(PLATFORM_SETTINGS) do
+        if Golb_Platform_Info["is_" .. plat] then
+            setting = data
+            break
         end
+    end
+    if not setting then
+        return  -- 沒有對應的平台，跳過
     end
 
-    if (Golb_Platform_Info.is_kuso or Golb_Platform_Info.is_aplus) then
-        if (NodeHelper:isDebug()) then
-            if (Svrid == 1) then    --測試服
-                PayUrl = "https://gs01.paycallback.quantagalaxies.com/KusoPay?params="
-            elseif (Svrid == 2) then -- 測試服2
-	    		PayUrl = "https://gs02.paycallback.quantagalaxies.com/KusoPay?params="
-            elseif (Svrid == 3) then -- 測試服3
-	    		PayUrl = "https://gs03.paycallback.quantagalaxies.com/KusoPay?params="
-            elseif (Svrid == 6) then -- NGTest
-	    		PayUrl = "https://dev.paycallback.quantagalaxies.com/KusoPay?params="
-            elseif (Svrid == 9) then -- 內部102
-	    		PayUrl = "https://debug.paycallback.quantagalaxies.com/KusoPay?params="
-            --------------------------------
-            elseif (Svrid == 1001) then -- 正式服1
-	    		PayUrl = "https://gs1001.paycallback.quantagalaxies.com/KusoPay?params="
-            elseif (Svrid == 1002) then -- 正式服2
-	    		PayUrl = "https://gs1002.paycallback.quantagalaxies.com/KusoPay?params="
-            end
-        else
-            if (Svrid == 1) then    --測試服
-                PayUrl = "https://gs01.paycallback.quantagalaxies.com/KusoPay?params="
-            elseif (Svrid == 2) then -- 測試服2
-	    		PayUrl = "https://gs02.paycallback.quantagalaxies.com/KusoPay?params="
-            elseif (Svrid == 3) then -- 測試服3
-	    		PayUrl = "https://gs03.paycallback.quantagalaxies.com/KusoPay?params="
-            elseif (Svrid == 6) then
-                PayUrl = "https://dev.paycallback.quantagalaxies.com/KusoPay?params="
-            elseif (Svrid == 9) then -- 內部102
-	    		PayUrl = "https://debug.paycallback.quantagalaxies.com/KusoPay?params="
-            --------------------------------
-            elseif (Svrid == 1001) then -- 正式服1
-	    		PayUrl = "https://gs1001.paycallback.quantagalaxies.com/KusoPay?params="
-            elseif (Svrid == 1002) then -- 正式服2
-	    		PayUrl = "https://gs1002.paycallback.quantagalaxies.com/KusoPay?params="
-            end
-        end
-    end
-    libPlatformManager:getPlatform():setPayH365(PayUrl)
+    -- 組 URL 並設定
+    -- 例如 "http://54.255.44.130:5138/payNotice?params="
+    local url = string.format("%s://%s/%s?params=", setting.scheme, host, setting.path)
+    libPlatformManager:getPlatform():setPayH365(url)
 end
+
 
 --- 添加主角Spine动画
 function MainScenePageInfo.showRoleSpineExtend(container)
@@ -1681,12 +1646,9 @@ function MainScenePageInfo.showRoleSpineExtend(container)
         local skinId = 0
         local fileName = "NG2D_" .. string.format("%02d", math.floor(mainHero / 1000))
         if mainHero % 1000 > 0 then
-            skinId = mainHero
-            --fileName = "NG2D_" .. string.format("%02d", math.floor(mainHero / 1000)) .. string.format("%03d", skinId)
-            MainScenePageInfo.playMovie(container, skinId)
-            return
+            skinId = mainHero % 1000
+            fileName = "NG2D_" .. string.format("%02d", math.floor(mainHero / 1000)) .. string.format("%03d", skinId)
         end
-        --MainScenePageInfo.closeMovie(container)
 
         local spine = SpineContainer:create("NG2D", fileName)
         local spineNode = tolua.cast(spine, "CCNode")
@@ -1787,6 +1749,8 @@ function MainScenePageInfo.onExecute(container)
     end
 
     local dt = GamePrecedure:getInstance():getFrameTime()
+    local PackageLogicForLua = require("PackageLogicForLua")
+    PackageLogicForLua.UpdateOp(dt)
     checkAndCloseMainSceneLoadingEnd(dt)
 end
 
@@ -1882,7 +1846,6 @@ function MainScenePageInfo.onExit(container)
         CCDirector:sharedDirector():getScheduler():unscheduleScriptEntry(MainScenePageInfo.ActCountDown)
         MainScenePageInfo.ActCountDown=nil                   
     end
-    MainScenePageInfo.closeMovie(container)
 end
 
 function MainScenePageInfo.onUnLoad(container)
@@ -2226,24 +2189,6 @@ function MainScenePageInfo.setActivityTime(Time)
             NodeHelper:setNodesVisible(container,{mActivityNode = false})
         end
     end
-end
-
--- 播放mp4
-function MainScenePageInfo.playMovie(container, skinId)
-    -- 播放影片
-    local fileName = "Hero/Hero" .. string.format("%05d", skinId)
-    local isFileExist =  CCFileUtils:sharedFileUtils():isFileExist("Video/" .. fileName .. ".mp4")
-    if isFileExist then
-        --MainScenePageInfo.libPlatformListener = LibPlatformScriptListener:new(libPlatformListener)
-        GamePrecedure:getInstance():playMovie(thisPageName, fileName, 1, 0)
-        NodeHelper:setNodesVisible(container, { mSpine = false })
-    end
-end
--- 關閉影片
-function MainScenePageInfo.closeMovie(container)
-    CCLuaLog("MainScenePageInfo:closeMovie")
-    NodeHelper:setNodesVisible(container, { mSpine = true })
-    GamePrecedure:getInstance():closeMovie(thisPageName)
 end
 
 return MainScenePageInfo

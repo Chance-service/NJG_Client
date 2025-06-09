@@ -175,13 +175,6 @@ local mercenaryInfos = nil
 local HeroTable={}
 local nowRoleId_Idx=0
 
-local pageContainer = nil
-local libPlatformListener = { }
-function libPlatformListener:onPlayMovieEnd(listener)
-    if not listener then return end
-    --EquipLeadPage:closeMovie(pageContainer)
-end
------------------------------------------------------------------------------------------------------
 local AttributeContent = { }
 local AttributeSetting = {
     { Const_pb.BUFF_CRITICAL_DAMAGE, 4 },
@@ -262,8 +255,6 @@ function EquipLeadPage:onEnter(container)
     self:initSpine(selfContainer)
 
     nowPageType = PAGE_TYPE.BASE_INFO
-    -- 播放影片
-    self:playMovie(container)
     self:refreshMainButton(container)
     self:refreshPage(selfContainer)
     self:showRoleSpine(selfContainer)
@@ -328,7 +319,7 @@ end
 -- UI顯示切換
 function EquipLeadPage:setShowPage(container)
     -- 故事/服裝按鈕切換
-    NodeHelper:setNodesVisible(container, { mTopBtnNormal = (nowPageType ~= PAGE_TYPE.SKIN), mTopBtnCostume = (libOS:getInstance():getIsDebug()) })
+    NodeHelper:setNodesVisible(container, { mTopBtnNormal = (nowPageType ~= PAGE_TYPE.SKIN), mTopBtnCostume = (nowPageType == PAGE_TYPE.SKIN) })
     -- 主UI切換
     NodeHelper:setNodesVisible(container, { mNormalUiNode = (nowPageType ~= PAGE_TYPE.SKIN), mCostumeUiNode = (nowPageType == PAGE_TYPE.SKIN) })
     -- 子UI切換
@@ -343,10 +334,8 @@ function EquipLeadPage:showRoleSpine(container, _spineName, _skinId)
 end 
 -- 設定立繪spine
 function EquipLeadPage:showTachieSpine(container, _spineName) 
-    if COSTUME_DATA.NOW_SKIN > 0 then   -- skin播放mp4
-        return
-    end
-    local spineName = _spineName or "NG2D_" .. string.format("%02d", itemId)
+    local spineName = _spineName or ((COSTUME_DATA.NOW_SKIN == 0) and "NG2D_" .. string.format("%02d", itemId) or 
+                                                                      "NG2D_" .. string.format("%05d", COSTUME_DATA.NOW_SKIN))
     if nowSpineName == spineName and not _spineName then
         return
     end
@@ -357,7 +346,7 @@ function EquipLeadPage:showTachieSpine(container, _spineName)
     local spineNode = tolua.cast(spine, "CCNode")
     spine:runAnimation(1, "animation", -1)
     spineNode:setScale(NodeHelper:getScaleProportion())
-    parentNode:addChild(spineNode, 1)
+    parentNode:addChild(spineNode)
 
     nowSpineName = spineName
 end
@@ -481,7 +470,6 @@ function EquipLeadPage:onReturn(container)
     PageManager.refreshPage("EquipmentPage", "refreshScrollView")
     --PageManager.refreshPage("EquipmentPage", "refreshRedPoint")
     PageManager.popPage(thisPageName)
-    EquipLeadPage:closeMovie(container)
 end
 
 function EquipLeadPage:onInfoPage(container)
@@ -527,9 +515,14 @@ function EquipLeadPage:onUpgradePage(container)
 end
 
 function EquipLeadPage:onSkinPage(container)
-    local skinPage = require("NgSkinPage")
-    PageManager.pushPage("NgSkinPage")
-    skinPage:setPageInfo(roleId, COSTUME_DATA.NOW_SKIN)
+    if nowPageType == PAGE_TYPE.SKIN then
+        return
+    end
+    nowPageType = PAGE_TYPE.SKIN
+    self:refreshMainButton(container)
+    self:returnToNowSkinItem(container)
+    self:refreshPage(container)
+    self:showRoleSpine(container)
 end
 
 function EquipLeadPage:onRebirth(container)
@@ -575,8 +568,7 @@ function EquipLeadPage:refreshMainButton(container)
 end
 
 function EquipLeadPage:onPlus(container)
-    EquipLeadPage:closeMovie(container)
-    for k,v in pairs(HeroTable) do
+     for k,v in pairs(HeroTable) do
         if v.roleId == roleId then
             nowRoleId_Idx=k
         end
@@ -597,7 +589,6 @@ function EquipLeadPage:onPlus(container)
     self:initSkinItem(selfContainer)
     self:initSpine(selfContainer)
 
-    EquipLeadPage:playMovie(container)
     --nowPageType = PAGE_TYPE.BASE_INFO
     self:refreshMainButton(container)
     self:refreshPage(selfContainer)
@@ -605,7 +596,6 @@ function EquipLeadPage:onPlus(container)
 end
 
 function EquipLeadPage:onMinus(container)
-    EquipLeadPage:closeMovie(container)
     for k,v in pairs(HeroTable) do
         if v.roleId == roleId then
             nowRoleId_Idx=k
@@ -628,7 +618,6 @@ function EquipLeadPage:onMinus(container)
     self:initSkinItem(selfContainer)
     self:initSpine(selfContainer)
 
-    EquipLeadPage:playMovie(container)
     --nowPageType = PAGE_TYPE.BASE_INFO
     self:refreshMainButton(container)
     self:refreshPage(selfContainer)
@@ -720,7 +709,7 @@ function EquipLeadPage:showSkill(container, eventName)
     require("HeroSkillPage")
     HeroSkillPage_setPageRoleInfo(curRoleInfo.level, curRoleInfo.starLevel,roleId,itemId)
     HeroSkillPage_setPageSkillLevel(skillLv)
-    HeroSkillPage_setPageSkillId(skill)
+    HeroSkillPage_setPageSkillId(skill, tonumber(id))
     PageManager.pushPage("HeroSkillPage")
 end
 
@@ -1611,10 +1600,6 @@ function EquipLeadPage:onExit(container)
     container:removeMessage(MSG_MAINFRAME_REFRESH)
     container:removeMessage(MSG_MAINFRAME_POPPAGE)
     container:removeMessage(MSG_REFRESH_REDPOINT)
-    if EquipLeadPage.libPlatformListener then
-        EquipLeadPage.libPlatformListener:delete()
-        EquipLeadPage.libPlatformListener = nil
-    end
 end
 
 function EquipLeadPage:setMercenaryId(id)
@@ -1660,24 +1645,6 @@ function EquipLeadPage:onExecute(container)
         LEVEL_UP_DATA.TOUCH_TIMEINTERVAL = 1
         LEVEL_UP_DATA.IS_TOUCHING = false   
     end
-end
-function EquipLeadPage:playMovie(container)
-    -- 播放影片
-    if COSTUME_DATA.NOW_SKIN ~= 0 then
-        local fileName = "Hero/Hero" .. string.format("%05d", COSTUME_DATA.NOW_SKIN)
-        local isFileExist =  CCFileUtils:sharedFileUtils():isFileExist("Video/" .. fileName .. ".mp4")
-        if isFileExist then
-            EquipLeadPage.libPlatformListener = LibPlatformScriptListener:new(libPlatformListener)
-            GamePrecedure:getInstance():playMovie(thisPageName, fileName, 1, 0)
-            NodeHelper:setNodesVisible(container, { mSpine = false })
-        end
-    end
-end
-function EquipLeadPage:closeMovie(container)
-    -- 關閉影片
-    CCLuaLog("EquipLeadPage:closeMovie")
-    NodeHelper:setNodesVisible(container, { mSpine = true })
-    GamePrecedure:getInstance():closeMovie(thisPageName)
 end
 
 function EquipLeadPage_getCurRoleInfo()

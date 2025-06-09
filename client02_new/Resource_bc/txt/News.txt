@@ -14,3 +14,5 @@ id	banner	是否有跳轉	describe
 15	EventNews_banner015.png	3	EROLABS的DC
 16	EventNews_banner016.png	3	EROLABS的討論區
 17	EventNews_banner017.png	3	EROLABS的ECoin
+18	EventNews_banner018.png	3	OP的客服聯繫
+19	EventNews_banner019.png	3	OP的官方網站

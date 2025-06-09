@@ -479,7 +479,7 @@ function ConfigManager.getSubscription()
     local key = "Subscription";
     local cfg = ConfigManager.configs[key];
     if cfg == nil then
-        local attrMap = common:table_combineNumber( { "id", "OnBuy", "DailyGift","BG","Title"});
+        local attrMap = common:table_combineNumber( { "id", "OnBuy", "DailyGift"});
         local convertMap = {
             ["id"] = tonumber,
             ["DailyGift"]= ConfigManager.parseItemWithComma,
@@ -3369,23 +3369,24 @@ function ConfigManager.getSuitAtrrCfg()
     end
     return cfg;
 end
-function ConfigManager.getSkinShopCfg()
-    local key = "SkinShopCfg";
+function ConfigManager.getSkinCfg()
+    local key = "SkinCfg";
     local cfg = ConfigManager.configs[key];
     if cfg == nil then
-        local attrMap = common:table_combineNumber( { "id", "type",  "item", "price", "discount", "HeroId", "SkinId", "Sort" });
+        local attrMap = common:table_combineNumber( { "id", "Item",  "Cost", "count","discount","HeroId","SkinId","isShow","Sort","SkinName", "Spine" });
         local convertMap = {
             ["id"] = tonumber,
-            ["type"] = tonumber,
-            ["item"] = ConfigManager.parseItemWithComma,
-            ["price"]=ConfigManager.parseItemWithComma,
+            ["Item"] = ConfigManager.parseItemWithComma,
+            ["Cost"]=ConfigManager.parseItemWithComma,
+            ["count"] = tonumber,
             ["discount"] = tonumber,
             ["HeroId"] = tonumber,
             ["SkinId"] = tonumber,
+            ["isShow"] = tonumber,
             ["Sort"] = tonumber,
             
         };
-        cfg = ConfigManager.loadCfg("SkinShop_C.txt", attrMap, nil, convertMap);
+        cfg = ConfigManager.loadCfg("SkinShop.txt", attrMap, nil, convertMap);
         ConfigManager.configs[key] = cfg;
     end
     return cfg;
@@ -5853,10 +5854,10 @@ function ConfigManager.getNewMapCfg()
     local cfg = ConfigManager.configs[key]
     if cfg == nil then
         local attrMap = common:table_combineNumber({ 'ID', 'NextID', 'Chapter','Level', 'MonsterID', 'BossID', 'Portrait', 'DropItems', 'BossDrop', 'EXP', 
-                                                     'SkyCoin', 'Potion', 'BP', 'Unlock' ,'GirlTxt','Stone','MaxBook'})
+                                                     'SkyCoin', 'Potion', 'BP', 'Unlock' ,'GirlTxt','Stone'})
         local convertMap = {
             ['ID'] = tonumber, ['NextID'] = tonumber, ['Portrait'] = tonumber, ['EXP'] = tonumber, 
-            ['SkyCoin'] = tonumber, ['Potion'] = tonumber, ['BP'] = tonumber, ['Unlock'] = tonumber,['Chapter'] = tonumber,['Level'] = tonumber,['MaxBook'] = tonumber,
+            ['SkyCoin'] = tonumber, ['Potion'] = tonumber, ['BP'] = tonumber, ['Unlock'] = tonumber,['Chapter'] = tonumber,['Level'] = tonumber,
         ['Stone'] = tonumber,}
         cfg = ConfigManager.loadCfg("map_New.txt", attrMap, 0, convertMap)
         ConfigManager.configs[key] = cfg
@@ -6750,6 +6751,7 @@ function ConfigManager.getLimitTowerCfg()
             ["LevelLimit"] = tonumber,
             ["GirlLimit"] = tonumber,
             ["id"] = tonumber,
+            ["nextStage"] = tonumber,
             ["idx"] = tonumber,
             ["type"] = tonumber,
             ["count"] = tonumber,
@@ -6784,13 +6786,10 @@ function ConfigManager.getSkinCfg()
     local key = "SkinNg";
     local cfg = ConfigManager.configs[key];
     if cfg == nil then
-        local attrMap = common:table_combineNumber( { "id", "name", "element", "ownAdd", "ownDec", "skills", 
-                                                       "skinSkill", "replacedSkill", "chibi", "jumpId", "jumpTxt" });
+        local attrMap = common:table_combineNumber( { "id", "name", "element", "skills", "chibi" });
         local convertMap = {
             ["id"] = tonumber,
             ["element"] = tonumber,
-            ["skinSkill"] = tonumber,
-            ["replacedSkill"] = tonumber,
         };
         cfg = ConfigManager.loadCfg("skin_NG.txt", attrMap, 0, convertMap);
         ConfigManager.configs[key] = cfg;
@@ -6937,22 +6936,6 @@ function ConfigManager.getLoginReward()
         };
 
         cfg = ConfigManager.loadCfg("loginReward.txt", attrMap, 0, convertMap);
-        ConfigManager.configs[key] = cfg;
-    end
-    return cfg;
-end
-function ConfigManager.getRoleGrowthUnlock()
-    local key = "RoleGrowthUnlockCfg";
-    local cfg = ConfigManager.configs[key];
-    if cfg == nil then
-        local attrMap = common:table_combineNumber( { "id", "itemId", "lockType","lockValue","avgType","avgId","Img","Title"});
-        local convertMap = {
-            ["itemId"] = tonumber,
-            ["avgId"] = tonumber, 
-            ["avgType"] = tonumber, 
-        };
-
-        cfg = ConfigManager.loadCfg("RoleGrowthUnlock_C.txt", attrMap, 0, convertMap);
         ConfigManager.configs[key] = cfg;
     end
     return cfg;

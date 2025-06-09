@@ -26,6 +26,12 @@ function BuffManager:getBuff(chaNode, target, buffId, buffTime, buffCount)
             return false
         end
     end
+    if self:isInWillToFight(target.buffData)then   --戰意狀態 不可上恐懼
+        local baseBuffId = math.floor(buffId / 100) % 1000
+        if baseBuffId == CONST.BUFF.FEAR then
+            return false
+        end
+    end
     if buffConfig[buffId].gain == 0 and buffConfig[buffId].dispel == 1 then -- 角色免疫屬性
         if NewBattleUtil:isTriggerDebuffImmunity(target, chaNode) then
             return false
@@ -240,6 +246,9 @@ function BuffManager:checkAtkBuffValue(chaNode, isPhy, aniName)
                     addValue = tonumber(buffValues[1])
                 end
                 if mainBuffId == CONST.BUFF.WITCHER_I then  -- 獵魔人I式
+                    addValue = tonumber(buffValues[2])
+                end
+                if mainBuffId == CONST.BUFF.WILL_TO_FIGHT then  -- 戰意
                     addValue = tonumber(buffValues[2])
                 end
                 ---------------------------------------------------------------
@@ -863,6 +872,9 @@ function BuffManager:checkAtkSpeedBuffValue(buff, isPhy, aniName)
                 if mainBuffId == CONST.BUFF.UNRIVALED then  -- 無雙
                     addValue = tonumber(buffValues[3])
                 end
+                if mainBuffId == CONST.BUFF.WILL_TO_FIGHT then  -- 戰意
+                    addValue = tonumber(buffValues[3])
+                end
                 if addValue then
                     buffValue, auraValue, markValue = self:addBuffValue(fullBuffId, addValue, buffValue, auraValue, markValue)
                 end
@@ -1268,7 +1280,7 @@ function BuffManager:getSpecialBuff(chaNode, target, buff, fullBuffId, oldIsMaxC
                 --獲得護盾
                 local CHAR_UTIL = require("Battle.NgBattleCharacterUtil")
                 local shield = math.floor(target.battleData[CONST.BATTLE_DATA.MAX_HP] * tonumber(buffValues[3]) + 0.5)
-                CHAR_UTIL:addShield(target, target, shield)   --增加護盾
+                CHAR_UTIL:addShield(target, target, shield, fullBuffId)   --增加護盾
             end
             if mainBuffId == CONST.BUFF.FRENZY then  -- 狂亂
                 -- 滿層時進入狂亂狀態
@@ -1326,6 +1338,12 @@ function BuffManager:getSpecialBuff(chaNode, target, buff, fullBuffId, oldIsMaxC
                     -- 清除靜電
                     self:forceClearBuff(target, fullBuffId)
                 end
+            end
+            if mainBuffId == CONST.BUFF.WILL_TO_FIGHT then  -- 戰意
+                --獲得護盾
+                local CHAR_UTIL = require("Battle.NgBattleCharacterUtil")
+                local shield = math.floor(target.battleData[CONST.BATTLE_DATA.MAX_HP] * tonumber(buffValues[4]) + 0.5)
+                CHAR_UTIL:addShield(target, target, shield, fullBuffId)   --增加護盾
             end
         end
     end
@@ -1686,6 +1704,18 @@ function BuffManager:isInConductor(buff)
         for fullBuffId, buffData in pairs(buff) do
             local mainBuffId = math.floor(fullBuffId / 100) % 1000
             if mainBuffId == CONST.BUFF.CONDUCTOR then  -- 導電體
+                return true
+            end
+        end
+    end
+    return false
+end
+-- 是否戰意狀態(不會獲得恐懼)
+function BuffManager:isInWillToFight(buff)
+    if buff then
+        for fullBuffId, buffData in pairs(buff) do
+            local mainBuffId = math.floor(fullBuffId / 100) % 1000
+            if mainBuffId == CONST.BUFF.WILL_TO_FIGHT then  -- 戰意
                 return true
             end
         end
@@ -2214,7 +2244,7 @@ function BuffManager:checkBuffTimer(node, buffId)
                         local trueRecoverShield = math.min(maxRecoverShield - node.battleData[CONST.BATTLE_DATA.SHIELD], recoverShield)
                         if trueRecoverShield > 0 then   -- 可以回復護盾
                             LOG_UTIL:setPreLog(node)
-                            CHAR_UTIL:addShield(node, node, recoverShield)   --回復護盾
+                            CHAR_UTIL:addShield(node, node, recoverShield, buffId)   --回復護盾
                             LOG_UTIL:addBuffLog(node, buffId)
                         end
                     end

@@ -335,6 +335,7 @@ end
 function RechargeSubPage_Diamond:onReceiveMessage(message)
 	local typeId = message:getTypeId()
 	if typeId == MSG_RECHARGE_SUCCESS then
+        CCLuaLog(">>>>>>onReceiveMessage RechargeSubPage_Diamond")
         if requestingLastShop then
             return
         end

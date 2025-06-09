@@ -251,10 +251,16 @@ function TowerBase:onReceivePacket(packet)
         msg:ParseFromString(msgBuff)
         if msg.type == NewBattleConst.FORMATION_PROTO_TYPE.REQUEST_ENEMY then
             local battlePage = require("NgBattlePage")
+            CCLuaLog("----------------------------------------------------")
+            CCLuaLog("getData_C")
+            CCLuaLog("----------------------------------------------------")
             resetMenu("mBattlePageBtn", true)
             require("NgBattleDataManager")
             NgBattleDataManager_setDungeonId(tonumber(msg.mapId))
             PageManager.changePage("NgBattlePage")
+            CCLuaLog("----------------------------------------------------")
+            CCLuaLog("onSeasonTower_1")
+            CCLuaLog("----------------------------------------------------")
             battlePage:onSeasonTower(selfContainer, msg.resultInfo, msg.battleId, msg.battleType, tonumber(msg.mapId))
         end
     end

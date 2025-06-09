@@ -17,10 +17,8 @@ local option = {
     {
         -- main page
         onReturn = "onReturn",
-        onHelp = "onHelp",
         onDetail = "onDetail",      -- 切換資訊頁面
-        onPlus = "onPlus",          -- 切換角色
-        onMinus = "onMinus",        -- 切換角色
+        onSelect = "onSelect",      -- 切換選擇頁面
         onEquip = "onEquip",        -- 裝備皮膚
     },
     opcodes = {
@@ -30,8 +28,6 @@ local option = {
         -- 請求屬性資料
         ROLE_ATTRINFO_COUNT_C = HP_pb.ROLE_ATTRINFO_COUNT_C,
         ROLE_ATTRINFO_COUNT_S = HP_pb.ROLE_ATTRINFO_COUNT_S,
-        -- 皮膚購買回傳
-        SHOP_BUY_S = HP_pb.SHOP_BUY_S,
     }
 }
 for i = 1, 4 do
@@ -40,8 +36,7 @@ end
 
 local selfContainer = nil
 
-local BTN_TYPE = { ENABLE = 1, DISABLE_EQUIPED = 2, ENABLE_HAVENT = 3 }
-local btnType = BTN_TYPE.ENABLE
+local BTN_TYPE = { ENABLE = 1, DISABLE_EQUIPED = 2, DISABLE_HAVENT = 3 }
 
 local PAGE_TYPE = { SELECT = 1, DETAIL = 2 }
 local nowPageType = PAGE_TYPE.SELECT
@@ -66,12 +61,6 @@ local COSTUME_DATA = {
     IS_MOVEING = false, -- 卡牌移動中
 }
 local allAttrData = { }
------------------------------------------------------------------------------------------------------
-local libPlatformListener = { }
-function libPlatformListener:onPlayMovieEnd(listener)
-    if not listener then return end
-    --NgSkinPage:closeMovie(pageContainer)
-end
 -----------------------------------------------------------------------------------------------------
 function NgSkinPage.onFunction(eventName, container)
     if option.handlerMap[eventName] then
@@ -144,9 +133,6 @@ function NgSkinPage:onEnter(container)
     self:refreshPage(selfContainer) 
     self:showRoleSpine(selfContainer)
 end
-function NgSkinPage:onHelp(container)
-    PageManager.showHelp(GameConfig.HelpKey.HELP_HEROHELP)
-end
 -- 刷新頁面
 function NgSkinPage:refreshPage(container)
     UserInfo.sync()
@@ -178,51 +164,25 @@ function NgSkinPage:showPageInfo(container)
 end
 -- 設定顯示狀態
 function NgSkinPage:refreshPageVisible(container)
-    NodeHelper:setNodesVisible(container, { mSelectNode = (nowPageType == PAGE_TYPE.SELECT), 
-                                            mDetailNode = (nowPageType == PAGE_TYPE.DETAIL) })
+    NodeHelper:setNodesVisible(container, { mDetailBtn = (nowPageType == PAGE_TYPE.SELECT), mSelectNode = (nowPageType == PAGE_TYPE.SELECT), 
+                                            mSelectBtn = (nowPageType == PAGE_TYPE.DETAIL), mDetailNode = (nowPageType == PAGE_TYPE.DETAIL) })
 end
 -- 設定spine
 function NgSkinPage:showRoleSpine(container)
     self:showTachieSpine(container)
     self:showChibiSpine(container)
 end 
--- 播放mp4
-function NgSkinPage:playMovie(container)
-    -- 播放影片
-    if COSTUME_DATA.NOW_SKIN ~= 0 then
-        local fileName = "Hero/Hero" .. string.format("%05d", COSTUME_DATA.NOW_SKIN)
-        local isFileExist =  CCFileUtils:sharedFileUtils():isFileExist("Video/" .. fileName .. ".mp4")
-        if isFileExist then
-            NgSkinPage.libPlatformListener = LibPlatformScriptListener:new(libPlatformListener)
-            GamePrecedure:getInstance():playMovie(thisPageName, fileName, 1, 0)
-            NodeHelper:setNodesVisible(container, { mSpine = false })
-        end
-    end
-end
--- 關閉影片
-function NgSkinPage:closeMovie(container)
-    CCLuaLog("EquipLeadPage:closeMovie")
-    --NodeHelper:setNodesVisible(container, { mSpine = true })
-    GamePrecedure:getInstance():closeMovie(thisPageName)
-end
 -- 設定立繪spine
 function NgSkinPage:showTachieSpine(container) 
     local spineName
-    local parentNode = container:getVarNode("mSpine")
-    parentNode:removeAllChildrenWithCleanup(true)
     if COSTUME_DATA.NOW_SKIN > 0 then
         spineName = "NG2D_" .. string.format("%05d", COSTUME_DATA.NOW_SKIN)
-        local isFileExist =  CCFileUtils:sharedFileUtils():isFileExist("Spine/NG2D/" .. spineName .. ".skel")
-        if not isFileExist then
-            --self:closeMovie(container)
-            -- 沒有皮膚立繪spine -> 播mp4
-            self:playMovie(container)
-            return
-        end
     else
         spineName = "NG2D_" .. string.format("%02d", itemId)
-        NodeHelper:setNodesVisible(container, { mSpine = true })
     end
+
+    local parentNode = container:getVarNode("mSpine")
+    parentNode:removeAllChildrenWithCleanup(true)
 
     local spine = SpineContainer:create("NG2D", spineName)
     local spineNode = tolua.cast(spine, "CCNode")
@@ -276,19 +236,9 @@ end
 -- Main Page Button
 ------------------------------------------------------------------------------------------
 function NgSkinPage:onReturn(container)
-    if nowPageType == PAGE_TYPE.DETAIL then
-        nowPageType = PAGE_TYPE.SELECT
-        self:refreshPage(container)
-    else
-        self:removePacket(container)
-        PageManager.refreshPage("EquipmentPage", "refreshScrollView")
-        PageManager.popPage(thisPageName)
-    end
-    NgSkinPage:closeMovie(container)
-    if NgSkinPage.libPlatformListener then
-        NgSkinPage.libPlatformListener:delete()
-        NgSkinPage.libPlatformListener = nil
-    end
+    self:removePacket(container)
+    PageManager.refreshPage("EquipmentPage", "refreshScrollView")
+    PageManager.popPage(thisPageName)
 end
 
 function NgSkinPage:onDetail(container)
@@ -298,39 +248,19 @@ function NgSkinPage:onDetail(container)
     nowPageType = PAGE_TYPE.DETAIL
     self:refreshPage(container)
 end
+function NgSkinPage:onSelect(container)
+    if nowPageType == PAGE_TYPE.SELECT then
+        return
+    end
+    nowPageType = PAGE_TYPE.SELECT
+    self:refreshPage(container)
+end
 function NgSkinPage:onEquip(container)
-    if btnType == BTN_TYPE.ENABLE then  -- 裝備
-        local RoleOpr_pb = require("RoleOpr_pb")
-        local msg = RoleOpr_pb.HPChangeMercenarySkinReq()
-	    msg.fromRoleId = curRoleInfo.roleId
-	    msg.toRoleId = COSTUME_DATA.NOW_SKIN
-        common:sendPacket(HP_pb.ROLE_CHANGE_SKIN_C, msg, true)
-    elseif btnType == BTN_TYPE.ENABLE_HAVENT then   -- 解鎖
-        require("Shop.SkinShopJumpPopUp")
-        SkinShopJumpPopUp_setPageInfo(COSTUME_DATA.NOW_SKIN, itemId)
-        PageManager.pushPage("Shop.SkinShopJumpPopUp")
-    end
-end
-
-function NgSkinPage:onPlus(container)
-	if COSTUME_DATA.ALL_SKIN[COSTUME_DATA.NOW_COSTUME_ID] and COSTUME_DATA.ALL_SKIN[COSTUME_DATA.NOW_COSTUME_ID + 1] then
-        COSTUME_DATA.NOW_COSTUME_ID = COSTUME_DATA.NOW_COSTUME_ID + 1
-    else
-        COSTUME_DATA.NOW_COSTUME_ID = 1
-    end
-    selfContainer.mScrollView:setContentOffsetInDuration(ccp((COSTUME_DATA.NOW_COSTUME_ID - 1) * -1 * COSTUME_ITEM_WIDTH, 0), 0)
-    COSTUME_DATA.NOW_SKIN = COSTUME_DATA.ALL_SKIN[COSTUME_DATA.NOW_COSTUME_ID] or 0
-    NgSkinPage:refreshSkinUI(selfContainer)
-end
-function NgSkinPage:onMinus(container)
-	if COSTUME_DATA.ALL_SKIN[COSTUME_DATA.NOW_COSTUME_ID] and COSTUME_DATA.ALL_SKIN[COSTUME_DATA.NOW_COSTUME_ID - 1] then
-        COSTUME_DATA.NOW_COSTUME_ID = COSTUME_DATA.NOW_COSTUME_ID - 1
-    else
-        COSTUME_DATA.NOW_COSTUME_ID = #COSTUME_DATA.ALL_SKIN
-    end
-    selfContainer.mScrollView:setContentOffsetInDuration(ccp((COSTUME_DATA.NOW_COSTUME_ID - 1) * -1 * COSTUME_ITEM_WIDTH, 0), 0)
-    COSTUME_DATA.NOW_SKIN = COSTUME_DATA.ALL_SKIN[COSTUME_DATA.NOW_COSTUME_ID] or 0
-    NgSkinPage:refreshSkinUI(selfContainer)
+    local RoleOpr_pb = require("RoleOpr_pb")
+    local msg = RoleOpr_pb.HPChangeMercenarySkinReq()
+	msg.fromRoleId = curRoleInfo.roleId
+	msg.toRoleId = COSTUME_DATA.NOW_SKIN
+    common:sendPacket(HP_pb.ROLE_CHANGE_SKIN_C, msg, true)
 end
 ------------------------------------------------------------------------------------------
 -- Detail Page
@@ -369,8 +299,8 @@ local AttributeContent = { }
 local AttributeSetting = {
     { Const_pb.BUFF_CRITICAL_DAMAGE, 4 },
     { Const_pb.BUFF_AVOID_CONTROL, 6 },
-    { Const_pb.BUFF_MAGDEF_PENETRATE, 1 },
-    { Const_pb.BUFF_PHYDEF_PENETRATE, 1 },
+    { Const_pb.BUFF_MAGDEF_PENETRATE, 3 },
+    { Const_pb.BUFF_PHYDEF_PENETRATE, 3 },
     { Const_pb.RESILIENCE, 3 },
     { Const_pb.CRITICAL, 3 },
     { Const_pb.DODGE, 3 },
@@ -395,12 +325,12 @@ function AttributeContent:onRefreshContent(ccbRoot)
     if AttributeSetting[self.id][2] == 4 then
         value = (value + 100) .. "%"
     end
-    if AttributeSetting[self.id][2] == 1 or AttributeSetting[self.id][2] == 6 then
+    if AttributeSetting[self.id][2] == 6 then
         value = value .. "%"
     end
     NodeHelper:setStringForLabel(container, { mAtt2 = value })
     if AttributeSetting[self.id][2] == 2 or AttributeSetting[self.id][2] == 3 then
-        NodeHelper:setNodesVisible(container, { mAtt3 = true })
+        NodeHelper:setNodesVisible(container, { mAttr3 = true })
         NodeHelper:setStringForLabel(container, { mAtt3 = "(" .. EquipManager:getBattleAttrEffect(key, value, curRoleInfo.level) .. "%)" })
     else
         NodeHelper:setNodesVisible(container, { mAtt3 = false })
@@ -563,7 +493,8 @@ function NgSkinPage:refreshSkinUI(container)
     self:showRoleSpine(container)
 end
 function NgSkinPage:refreshEquipBtn(container)
-    local btnTxt = ""
+    local btnType
+    local btnTxt
     if COSTUME_DATA.OWN_SKIN[COSTUME_DATA.NOW_SKIN] then
         if curRoleInfo.skinId == COSTUME_DATA.NOW_SKIN then
             btnType = BTN_TYPE.DISABLE_EQUIPED
@@ -573,11 +504,11 @@ function NgSkinPage:refreshEquipBtn(container)
             btnTxt = common:getLanguageString("@Skin_Apply")
         end
     else
-        btnType = BTN_TYPE.ENABLE_HAVENT
-        btnTxt = common:getLanguageString("@Unlock")
+        btnType = BTN_TYPE.DISABLE_HAVENT
+        btnTxt = common:getLanguageString("@Skin_NotHeld")
     end
     NodeHelper:setStringForLabel(container, { mEquipBtnTxt = btnTxt })
-    NodeHelper:setMenuItemEnabled(container, "mEquipBtn", (btnType ~= BTN_TYPE.DISABLE_EQUIPED))
+    NodeHelper:setMenuItemEnabled(container, "mEquipBtn", (btnType == BTN_TYPE.ENABLE))
 end
 ------------------------------------------------------------------------------------------
 function NgSkinPage:setPageInfo(_roleId, _skinId)
@@ -616,10 +547,6 @@ function NgSkinPage:onReceivePacket(container)
         local key = self:getAttrDataKey(container)
         allAttrData[key] = attr
         self:showAllAttrInfo(container)
-    end
-    if opcode == HP_pb.SHOP_BUY_S then
-        self:initSkinData(container)
-        NgSkinPage:refreshPage(container)
     end
 end
 
