@@ -961,7 +961,7 @@ void GamePrecedure::enterForeGround()
     if(privateLogin!="true")
         libPlatformManager::getPlatform()->gamePause();
     
-    time_t t = time(0);
+    //time_t t = time(0);
 
 	if (SeverConsts::Get()->getIsRedownLoadServer())//后台切前台如果服务器列表还是维护状态 执行重新下载服务器列表
 	{

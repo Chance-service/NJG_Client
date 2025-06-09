@@ -517,28 +517,30 @@ void libOS::openURLHttps(const std::string& url)
 {
     NSString * urlstr = [NSString stringWithUTF8String:url.c_str()];
     NSRange range6 = NSMakeRange(0, 8);
-    NSString* str = [[urlstr substringWithRange:range6] lowercaseString];
     if([urlstr length]<7 || ![[[urlstr substringWithRange:range6] lowercaseString]isEqualToString:@"https://"])
     {
         std::string head("https://");
         head.append([urlstr UTF8String]);
         urlstr = [NSString stringWithUTF8String:head.c_str()];
     }
-    if(urlstr)
-    {
-        NSURL *url = [NSURL URLWithString:urlstr];
-        if ([[UIApplication sharedApplication] canOpenURL:url]) {
-            [[UIApplication sharedApplication] openURL:url
-                                               options:@{}
-                                     completionHandler:^(BOOL success) {
-                if (success) {
-                    NSLog(@"URL opened successfully");
-                } else {
-                    NSLog(@"Failed to open URL");
-                }
-            }];
+    // Wait a bit so client can receive messages from server before going into background
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        if(urlstr)
+        {
+            NSURL *url = [NSURL URLWithString:urlstr];
+            if ([[UIApplication sharedApplication] canOpenURL:url]) {
+                [[UIApplication sharedApplication] openURL:url
+                                                   options:@{}
+                                         completionHandler:^(BOOL success) {
+                    if (success) {
+                        NSLog(@"URL opened successfully");
+                    } else {
+                        NSLog(@"Failed to open URL");
+                    }
+                }];
+            }
         }
-    }
+    });
 }
 
 void libOS::checkIosSDKVersion(const std::string &version, GetStringCallback p_callback)

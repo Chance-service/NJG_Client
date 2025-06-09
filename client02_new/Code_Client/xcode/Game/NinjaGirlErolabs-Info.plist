@@ -75,6 +75,12 @@
 	<array>
 		<string>FOT-Skip Std D.ttf</string>
 	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>processing</string>
+		<string>remote-notification</string>
+	</array>
 	<key>UILaunchImageFile</key>
 	<string>Default</string>
 	<key>UILaunchImageFile~ipad</key>

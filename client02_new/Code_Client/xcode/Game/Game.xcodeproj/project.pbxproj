@@ -246,6 +246,7 @@
 		4E499DD32DDC7F8100922FAD /* Video in Resources */ = {isa = PBXBuildFile; fileRef = 4E499D872DDC7F4F00922FAD /* Video */; };
 		4E499DEB2DDCB7A300922FAD /* liblib91Kuso.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E499DEA2DDCB7A300922FAD /* liblib91Kuso.a */; };
 		4E499DED2DDCB7C800922FAD /* liblib91Erolabs.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E499DEC2DDCB7C800922FAD /* liblib91Erolabs.a */; };
+		4E5348F12DF701FA006E5EA5 /* txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E5348F02DF701F9006E5EA5 /* txt */; };
 		4E59C3712D603608006518A5 /* libpthread.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7F507D2D5F9F1900DD4AA4 /* libpthread.tbd */; };
 		4E59C3722D603615006518A5 /* libpthread.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7F507D2D5F9F1900DD4AA4 /* libpthread.tbd */; };
 		4E59C3732D603620006518A5 /* libpthread.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7F507D2D5F9F1900DD4AA4 /* libpthread.tbd */; };
@@ -1222,6 +1223,7 @@
 		4E499D902DDC7F5500922FAD /* version_android.cfg */ = {isa = PBXFileReference; lastKnownFileType = text; name = version_android.cfg; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/version_android.cfg; sourceTree = "<group>"; };
 		4E499DEA2DDCB7A300922FAD /* liblib91Kuso.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = liblib91Kuso.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E499DEC2DDCB7C800922FAD /* liblib91Erolabs.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = liblib91Erolabs.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E5348F02DF701F9006E5EA5 /* txt */ = {isa = PBXFileReference; lastKnownFileType = folder; name = txt; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/txt; sourceTree = "<group>"; };
 		4E59C3752D620816006518A5 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
 		4E77C6CD2DDC4961000823F7 /* NinjaGirlErolabs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NinjaGirlErolabs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E77C6CF2DDC6107000823F7 /* Erolabs.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Erolabs.xcassets; sourceTree = "<group>"; };
@@ -2131,6 +2133,7 @@
 		4ECEA0DA2DCB558F0027FDA9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4E5348F02DF701F9006E5EA5 /* txt */,
 				4E499D752DDC7F4500922FAD /* audio */,
 				4E499D842DDC7F4E00922FAD /* Barlow-Bold.ttf */,
 				4E499D8A2DDC7F5100922FAD /* Barlow-Regular.ttf */,
@@ -3140,6 +3143,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E5348F12DF701FA006E5EA5 /* txt in Resources */,
 				4E7A89D52DED96D100A3C1DC /* NinjaGirlErolabs-Info.plist in Resources */,
 				4E499D922DDC7F5600922FAD /* UpdateVersionTips.cfg in Resources */,
 				4E499D932DDC7F5600922FAD /* versionApp.manifest in Resources */,
