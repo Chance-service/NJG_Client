@@ -1,0 +1,27 @@
+ID	group	activityId	pickUpId	Image	type	openDay	startTime	endTime	url	offplatformtype
+1	1	159	0	Lobby_Banner_1	0		1696089600	1733068799		
+2	0	163	0	Lobby_Banner_2	0		0	0		
+3	0	999	0	Lobby_Banner_3	0		1696089600	1733068799		
+4	1	175	0	lobby_BannerB001	1	4,5,6	0	0		
+5	0	179	0	Lobby_Banner_179	0		0	0		
+6	1	191	0		0		1750262400	1751471999		
+7	0	147	0	Lobby_Banner_147	0		1741924800	1742788800		
+8	0	147	0	Lobby_Banner_147	0		1741924800	1742788800		
+9	0	197	118	Lobby_Banner_018	0		1748232000	1748447999		
+10	0	197	108	Lobby_Banner_008	0		1748836800	1749052799		
+11	0	197	104	Lobby_Banner_004	0		1749441600	1749657599		
+12	0	197	107	Lobby_Banner_007	0		1750046400	1750262399		
+13	0	197	115	Lobby_Banner_015	0		1746417600	1746633599		
+14	0	197	114	Lobby_Banner_014	0		1747022400	1747238399		
+15	0	197	121	Lobby_Banner_021	0		1747627200	1747843199		
+16	1	195	0		0		1746979200	1747238399		
+17	1	195	0		0		1747411200	1749311999		
+18	1	196	0		0		1746028800	1747238399		
+19	0	998		Lobby_Banner_026	0		0	0	https://qm.qq.com/q/mtoj1FFxte	2,7,8
+20	0	998		Lobby_Banner_025	0		0	0	https://discord.gg/UVahbnu3ht	2,7,8
+21	0	998		Lobby_Banner_025	0		0	0	https://discord.com/invite/7JX5P32Q6B?r=download	1,2,6,7,9
+22	0	998		Lobby_Banner_028	0		0	0	https://www.op-18.com	1,2,6,7,9
+23	0	9999		Lobby_Banner_027	0		1745769600	1746287999		
+24	0	997		Lobby_Banner_029	0		1741924800	1742788800		
+										
+										

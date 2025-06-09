@@ -3,7 +3,7 @@
     package="chance.ninja.girl"
     android:installLocation="preferExternal"
     android:versionCode="10406"
-    android:versionName="1.4.6.1"
+    android:versionName="1.4.6.2"
     xmlns:tools="http://schemas.android.com/tools"
      >
 

@@ -1,0 +1,77 @@
+subStageId	mainId	limitPeople	limitElement	limitPosition	stageName	bg	bgm
+1	1	3	2,4,5		@PuzzleBattle_NoNameTrial_1	BG\Battle\battle_bg_008.png	
+2	1	3	1,4,5		@PuzzleBattle_NoNameTrial_1	BG\Battle\battle_bg_008.png	
+3	1	3	2,3		@PuzzleBattle_NoNameTrial_1	BG\Battle\battle_bg_008.png	
+4	1	3	0	11_0	@PuzzleBattle_NoNameTrial_1	BG\Battle\battle_bg_008.png	
+5	2	4	1,4,5		@PuzzleBattle_NoNameTrial_2	BG\Battle\battle_bg_008.png	
+6	2	4	1,2		@PuzzleBattle_NoNameTrial_2	BG\Battle\battle_bg_008.png	
+7	2	4	1,3		@PuzzleBattle_NoNameTrial_2	BG\Battle\battle_bg_008.png	
+8	2	3	3,4,5		@PuzzleBattle_NoNameTrial_2	BG\Battle\battle_bg_008.png	
+9	2	3	2,3		@PuzzleBattle_NoNameTrial_2	BG\Battle\battle_bg_008.png	
+10	2	3	1,2		@PuzzleBattle_NoNameTrial_2	BG\Battle\battle_bg_008.png	
+11	2	4	1,4,5		@PuzzleBattle_NoNameTrial_2	BG\Battle\battle_bg_008.png	
+12	2	4	2,4,5		@PuzzleBattle_NoNameTrial_2	BG\Battle\battle_bg_008.png	
+13	2	4	1,3		@PuzzleBattle_NoNameTrial_2	BG\Battle\battle_bg_008.png	
+14	3	2	0	6_0	@PuzzleBattle_NoNameTrial_3	BG\Battle\battle_bg_008.png	
+15	3	3	0	18_0	@PuzzleBattle_NoNameTrial_3	BG\Battle\battle_bg_008.png	
+16	3	2	0	24_0	@PuzzleBattle_NoNameTrial_3	BG\Battle\battle_bg_008.png	
+17	3	3	0	24_0	@PuzzleBattle_NoNameTrial_3	BG\Battle\battle_bg_008.png	
+18	4	4	4,5		@PuzzleBattle_NoNameTrial_4	BG\Battle\battle_bg_008.png	
+19	4	4	0	1_0,2_0	@PuzzleBattle_NoNameTrial_4	BG\Battle\battle_bg_008.png	
+20	4	4	0	1_0,6_0	@PuzzleBattle_NoNameTrial_4	BG\Battle\battle_bg_008.png	
+21	4	4	4,5		@PuzzleBattle_NoNameTrial_4	BG\Battle\battle_bg_008.png	
+22	5	2	0		@PuzzleBattle_NoNameTrial_5	BG\Battle\battle_bg_008.png	
+23	5	3	0		@PuzzleBattle_NoNameTrial_5	BG\Battle\battle_bg_008.png	
+24	5	2	0		@PuzzleBattle_NoNameTrial_5	BG\Battle\battle_bg_008.png	
+25	5	2	0		@PuzzleBattle_NoNameTrial_5	BG\Battle\battle_bg_008.png	
+26	5	2	0		@PuzzleBattle_NoNameTrial_5	BG\Battle\battle_bg_008.png	
+27	5	2	0		@PuzzleBattle_NoNameTrial_5	BG\Battle\battle_bg_008.png	
+28	5	2	0		@PuzzleBattle_NoNameTrial_5	BG\Battle\battle_bg_008.png	
+29	5	2	0		@PuzzleBattle_NoNameTrial_5	BG\Battle\battle_bg_008.png	
+30	5	3	0		@PuzzleBattle_NoNameTrial_5	BG\Battle\battle_bg_008.png	
+31	6	4	1,3,4		@PuzzleBattle_NoNameTrial_6	BG\Battle\battle_bg_008.png	
+32	6	5	1,2,5		@PuzzleBattle_NoNameTrial_6	BG\Battle\battle_bg_008.png	
+33	6	4	1,3		@PuzzleBattle_NoNameTrial_6	BG\Battle\battle_bg_008.png	
+34	6	5	2,4,5		@PuzzleBattle_NoNameTrial_6	BG\Battle\battle_bg_008.png	
+35	7	3	0	14_0	@PuzzleBattle_NoNameTrial_7	BG\Battle\battle_bg_008.png	
+36	7	2	0		@PuzzleBattle_NoNameTrial_7	BG\Battle\battle_bg_008.png	
+37	7	2	0	17_0	@PuzzleBattle_NoNameTrial_7	BG\Battle\battle_bg_008.png	
+38	7	3	0		@PuzzleBattle_NoNameTrial_7	BG\Battle\battle_bg_008.png	
+39	8	3	1,3		@PuzzleBattle_NoNameTrial_1	BG\Battle\battle_bg_008.png	
+40	8	3	4,5		@PuzzleBattle_NoNameTrial_1	BG\Battle\battle_bg_008.png	
+41	8	3	0		@PuzzleBattle_NoNameTrial_1	BG\Battle\battle_bg_008.png	
+42	8	3	0		@PuzzleBattle_NoNameTrial_1	BG\Battle\battle_bg_008.png	
+43	9	4	0		@PuzzleBattle_NoNameTrial_2	BG\Battle\battle_bg_008.png	
+44	9	4	0		@PuzzleBattle_NoNameTrial_2	BG\Battle\battle_bg_008.png	
+45	9	4	0		@PuzzleBattle_NoNameTrial_2	BG\Battle\battle_bg_008.png	
+46	9	4	0		@PuzzleBattle_NoNameTrial_2	BG\Battle\battle_bg_008.png	
+47	9	4	0		@PuzzleBattle_NoNameTrial_2	BG\Battle\battle_bg_008.png	
+48	9	4	0		@PuzzleBattle_NoNameTrial_2	BG\Battle\battle_bg_008.png	
+49	9	4	0		@PuzzleBattle_NoNameTrial_2	BG\Battle\battle_bg_008.png	
+50	9	4	0		@PuzzleBattle_NoNameTrial_2	BG\Battle\battle_bg_008.png	
+51	9	4	0		@PuzzleBattle_NoNameTrial_2	BG\Battle\battle_bg_008.png	
+52	10	2	0		@PuzzleBattle_NoNameTrial_3	BG\Battle\battle_bg_008.png	
+53	10	3	0		@PuzzleBattle_NoNameTrial_3	BG\Battle\battle_bg_008.png	
+54	10	2	0		@PuzzleBattle_NoNameTrial_3	BG\Battle\battle_bg_008.png	
+55	10	3	0		@PuzzleBattle_NoNameTrial_3	BG\Battle\battle_bg_008.png	
+56	11	4	2,3,5		@PuzzleBattle_NoNameTrial_4	BG\Battle\battle_bg_008.png	
+57	11	4	0		@PuzzleBattle_NoNameTrial_4	BG\Battle\battle_bg_008.png	
+58	11	4	1,3,4		@PuzzleBattle_NoNameTrial_4	BG\Battle\battle_bg_008.png	
+59	11	4	2,4,5		@PuzzleBattle_NoNameTrial_4	BG\Battle\battle_bg_008.png	
+60	12	2	1,3		@PuzzleBattle_NoNameTrial_5	BG\Battle\battle_bg_008.png	
+61	12	3	2,3		@PuzzleBattle_NoNameTrial_5	BG\Battle\battle_bg_008.png	
+62	12	2	3,4		@PuzzleBattle_NoNameTrial_5	BG\Battle\battle_bg_008.png	
+63	12	2	3,5		@PuzzleBattle_NoNameTrial_5	BG\Battle\battle_bg_008.png	
+64	12	2	1,3		@PuzzleBattle_NoNameTrial_5	BG\Battle\battle_bg_008.png	
+65	12	2	1,2		@PuzzleBattle_NoNameTrial_5	BG\Battle\battle_bg_008.png	
+66	12	2	2,4		@PuzzleBattle_NoNameTrial_5	BG\Battle\battle_bg_008.png	
+67	12	2	3,5		@PuzzleBattle_NoNameTrial_5	BG\Battle\battle_bg_008.png	
+68	12	3	1,3		@PuzzleBattle_NoNameTrial_5	BG\Battle\battle_bg_008.png	
+69	13	4	0		@PuzzleBattle_NoNameTrial_6	BG\Battle\battle_bg_008.png	
+70	13	5	0		@PuzzleBattle_NoNameTrial_6	BG\Battle\battle_bg_008.png	
+71	13	4	0		@PuzzleBattle_NoNameTrial_6	BG\Battle\battle_bg_008.png	
+72	13	5	0		@PuzzleBattle_NoNameTrial_6	BG\Battle\battle_bg_008.png	
+73	14	3	1,3,4		@PuzzleBattle_NoNameTrial_7	BG\Battle\battle_bg_008.png	
+74	14	2	1,2,5		@PuzzleBattle_NoNameTrial_7	BG\Battle\battle_bg_008.png	
+75	14	2	1,3		@PuzzleBattle_NoNameTrial_7	BG\Battle\battle_bg_008.png	
+76	14	3	2,4,5		@PuzzleBattle_NoNameTrial_7	BG\Battle\battle_bg_008.png	
