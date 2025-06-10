@@ -177,6 +177,7 @@ private:
 	float downTotalSize;
 	float currentFileLoadSize;
 	std::string currentLoadFile;
+	std::map<std::string, float> fileLoadSizeMap;
 
 	std::vector<std::string> alreadyDownloadData;
 	std::set<std::string> loadFailData;

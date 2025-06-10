@@ -798,6 +798,9 @@ public class PlatformSDKActivity extends GameActivity {
 			@Override
 			public void onPrepared(MediaPlayer mp) {
 				Log.d(TAG, "Video onPrepared");
+				if (videoView == null) {
+					return;
+				}
 				int videoWidth = mp.getVideoWidth();
 				int videoHeight = mp.getVideoHeight();
 				RelativeLayout layout = findViewById(R.id.GameApp_LogoRelativeLayout);
@@ -861,6 +864,9 @@ public class PlatformSDKActivity extends GameActivity {
 						 Cocos2dxHelper.nativeSendMessageP2G("onPlayMovieEnd", "");
 						 videoView.stopPlayback();
 						 videoView.setOnTouchListener(null);
+						 FrameLayout container = findViewById(R.id.videoContainer);
+						 container.removeView(videoView);
+						 videoView = null;
 					 }
         		 }
 
@@ -892,24 +898,33 @@ public class PlatformSDKActivity extends GameActivity {
 			videoView.setOnTouchListener(null);
 			FrameLayout videoMask = (FrameLayout)findViewById(R.id.videoMask);
 			videoMask.setVisibility(View.VISIBLE);
+			FrameLayout container = findViewById(R.id.videoContainer);
+			container.removeView(videoView);
+			videoView = null;
 		}
 		mVideoLoop = 0;
 	}
 
 	public void callPauseMovie() {
+		Log.d(TAG,"VideoView Notice: callPause");
 		if (videoView != null) {
+			Log.d(TAG,"VideoView Notice: callPause1");
 			videoView.pause();
 			mVideoCurrPos = videoView.getCurrentPosition();
 			mVideoPause = true;
 		}
+		Log.d(TAG,"VideoView Notice: callPause2");
 	}
 
 	public void callResumeMovie() {
-		if (videoView != null/* && mVideoPause*/) {
+		Log.d(TAG,"VideoView Notice: callResume");
+		if (videoView != null && mVideoPause) {
+			Log.d(TAG,"VideoView Notice: callResume1");
 			videoView.seekTo(mVideoCurrPos);
 			videoView.start();
 			mVideoPause = false;
 		}
+		Log.d(TAG,"VideoView Notice: callResume2");
 	}
 	
 	@Override

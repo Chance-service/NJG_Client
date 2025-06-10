@@ -1959,17 +1959,24 @@ void LoadingFrame::loadingAsset(float dt)
 		return;
 	}
 
-	float alreadyLoadSize = (currentFileLoadSize * 1.0f) / 1024;
+	float alreadyLoadSize = 0.0f;//(currentFileLoadSize * 1.0f) / 1024;
 	for (auto it = alreadyDownloadData.begin(); it != alreadyDownloadData.end(); ++it) {
 		for (auto itNeed = needUpdateAsset.begin(); itNeed != needUpdateAsset.end(); ++itNeed) {
 			if ((*it) != (*itNeed)->url)
 			{
 				continue;
 			}
-
+	
 			alreadyLoadSize += (*itNeed)->size;
 		}
 	}
+	for (auto it = fileLoadSizeMap.begin(); it != fileLoadSizeMap.end(); ++it) {
+		alreadyLoadSize += (it->second / 1024);
+		if (it->second > 0) {
+			CCLog("Download size : %s : %f", it->first.c_str(), (it->second / 1024));
+		}
+	}
+
 	float persentage = alreadyLoadSize / downTotalSize;
 	char perTxt[64];
 	// TODO 預估剩餘時間顯示
@@ -2076,6 +2083,7 @@ void LoadingFrame::getLocalVersionCfg()
 		localVersionData->AppUpdateUrlH365 = CCUserDefault::sharedUserDefault()->getStringForKey("AppUpdateUrlH365");
 		localVersionData->AppUpdateUrlKUSO = CCUserDefault::sharedUserDefault()->getStringForKey("AppUpdateUrlKUSO");
 		localVersionData->AppUpdateUrlAPLUS_CPS1 = CCUserDefault::sharedUserDefault()->getStringForKey("AppUpdateUrlAPLUS_CPS1");
+		localVersionData->AppUpdateUrlEROLABS = CCUserDefault::sharedUserDefault()->getStringForKey("AppUpdateUrlEROLABS");
 		localVersionData->isLoadSuccess = true;
 
 		CLogReport::Get()->webReportLog(CLogReport::Get()->getReportType(EnumReportType::CHKVERSION),libOS::getInstance()->getDeviceInfo(), libOS::getInstance()->getDeviceID(), localVersionData->versionResource, "get local version from userdefault");
@@ -2205,6 +2213,7 @@ void LoadingFrame::getVersionData(VersionData* versionData, unsigned char* conte
 			versionData->AppUpdateUrlH365 = CCUserDefault::sharedUserDefault()->getStringForKey("AppUpdateUrlH365");
 			versionData->AppUpdateUrlKUSO = CCUserDefault::sharedUserDefault()->getStringForKey("AppUpdateUrlKUSO");
 			versionData->AppUpdateUrlAPLUS_CPS1 = CCUserDefault::sharedUserDefault()->getStringForKey("AppUpdateUrlAPLUS_CPS1");
+			versionData->AppUpdateUrlEROLABS = CCUserDefault::sharedUserDefault()->getStringForKey("AppUpdateUrlEROLABS");
 			versionData->isLoadSuccess = true;
 		}
 		return;
@@ -2220,6 +2229,7 @@ void LoadingFrame::getVersionData(VersionData* versionData, unsigned char* conte
 	versionData->AppUpdateUrlKUSO = value["AppUpdateUrlKUSO"].asString();
 	versionData->AppUpdateUrlJSG = value["AppUpdateUrlJSG"].asString();
 	versionData->AppUpdateUrlAPLUS_CPS1 = value["AppUpdateUrlAPLUS_CPS1"].asString();
+	versionData->AppUpdateUrlEROLABS = value["AppUpdateUrlEROLABS"].asString();
 	versionData->versionResource = value["versionResource"].asString();
 	versionData->isNeedGoAppStore = value["isNeedGoAppStore"].asInt();
 	versionData->isLoadSuccess = true;
@@ -2563,7 +2573,8 @@ void LoadingFrame::downloaded(const std::string &url, const std::string& filenam
 	for (auto it = needUpdateAsset.begin(); it != needUpdateAsset.end(); ++it) {
 		if (url.compare((*it)->url) == 0)
 		{
-			currentFileLoadSize = 0.0;
+			currentFileLoadSize = 0.0f;
+			fileLoadSizeMap[url] = 0.0f;
 			alreadyDownloadData.push_back(url);
 			// 下載完先解壓縮
 			CCLog("--->hotUpdate downloaded save path: %s storage: %s ext path %s", (*it)->savePath.c_str(), (*it)->stroge.c_str(), filename.c_str());
@@ -2677,7 +2688,8 @@ void LoadingFrame::onAlreadyDownSize(unsigned long size, const std::string& url,
 {
 	
 	currentFileLoadSize = float(size);
-	//cocos2d::CCLog("--->hotUpdate : onAlreadyDownSize downloading : %f url: %s", currentFileLoadSize, url.c_str());
+	fileLoadSizeMap[url] = float(size);
+	cocos2d::CCLog("--->hotUpdate : onAlreadyDownSize downloading : %f url: %s", currentFileLoadSize / 1024, url.c_str());
 	std::string buildType = libPlatformManager::getPlatform()->getBuildType();
 	if (buildType == "qa") {
 		if (url.find(projectManifestName) == url.npos && url.find(versionManifestName) == url.npos) {
@@ -3059,6 +3071,7 @@ void LoadingFrame::UpdateAssetFromServer()
 	alreadyDownloadData.clear();
 	loadFailData.clear();
 	lastPercent = 0.0f;
+	fileLoadSizeMap.clear();
 
 	//进度条
 	setWaitGameNodeVisible(true);
