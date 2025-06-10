@@ -542,6 +542,19 @@ bool lib91::getIsH365()
 
 void lib91::updateApp(std::string& storeUrl)
 {
+    NSString *urlStr = [NSString stringWithUTF8String:storeUrl.c_str()];
+    NSURL *url = [NSURL URLWithString:urlStr];
+    if ([[UIApplication sharedApplication] canOpenURL:url]) {
+        [[UIApplication sharedApplication] openURL:url
+                                           options:@{}
+                                 completionHandler:^(BOOL success) {
+            if (success) {
+                NSLog(@"URL opened successfully");
+            } else {
+                NSLog(@"Failed to open URL");
+            }
+        }];
+    }
 }
 
 int lib91::getIsGuest()

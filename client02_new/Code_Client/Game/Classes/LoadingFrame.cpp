@@ -2612,7 +2612,7 @@ void LoadingFrame::downloaded(const std::string &url, const std::string& filenam
 void LoadingFrame::downloadFailed(const std::string& url, const std::string &filename, int errorType)
 {
 	int failedTime = (MaxResumeTime - ResumeCount) + 1;
-	CCLog("--->hotUpdate downloadFailed  url: %s    : filename : %s ", url.c_str(), filename.c_str());
+	CCLog("--->hotUpdate downloadFailed  url: %s    : filename : %s error: %d", url.c_str(), filename.c_str(), errorType);
 	for (auto it = needUpdateAsset.begin(); it != needUpdateAsset.end(); ++it) {
 		if (url.compare((*it)->url) == 0)
 		{
