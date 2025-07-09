@@ -82,13 +82,24 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.os.Looper;
 import android.provider.Settings.Secure;
+
+import androidx.annotation.OptIn;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.media3.common.MediaItem;
+import androidx.media3.common.PlaybackException;
+import androidx.media3.common.Player;
+import androidx.media3.common.util.UnstableApi;
+import androidx.media3.exoplayer.ExoPlayer;
+import androidx.media3.ui.PlayerView;
+
 import android.text.TextUtils;
 //import android.util.Base64;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -108,8 +119,10 @@ public class PlatformSDKActivity extends GameActivity {
 	//private String Recharge_URL;
 	private String filesPath;
 	private String base64EncodedPublicKey;
-	private VideoView videoView = null;
-	private int mVideoCurrPos = 0;
+	private PlayerView playerView;
+	private ExoPlayer exoPlayer;
+	private Player.Listener exoPlayerListener;
+	private long mVideoCurrPos = 0;
 	private int mVideoLoop = 0;
 	private boolean mVideoPause = false;
 	//public CallbackManager callbackManager;
@@ -538,6 +551,13 @@ public class PlatformSDKActivity extends GameActivity {
 
 	};
 
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if(keyCode == 4) {
+			SDKFactory.getInstance().getSDKHandler().onBackPressed();
+		}
+		return super.onKeyDown(keyCode, event);
+	};
 	private static void copy(InputStream is, OutputStream out) throws IOException{
         byte[] buffer = new byte[1024];
         int n = 0;
@@ -555,7 +575,7 @@ public class PlatformSDKActivity extends GameActivity {
 	@Override
 	public void init() {
 
-		UzipState.allowStorage = isStoragePermissionGranted(10001);
+		UzipState.allowStorage = true;//isStoragePermissionGranted(10001);
 		LogUtil.LOGE("googlelogin","platformSdk init");
 
 
@@ -761,155 +781,159 @@ public class PlatformSDKActivity extends GameActivity {
 	}
 	@Override
 	public void callPlayMovie(String fileName, int isLoop, int autoScale) {
-		Log.d(TAG, "Video play : " + fileName);
-		FrameLayout videoMask = (FrameLayout)findViewById(R.id.videoMask);
-		videoMask.setVisibility(View.VISIBLE);
+		new Handler(Looper.getMainLooper()).post(() -> {
+			Log.d(TAG, "Video play : " + fileName);
+			FrameLayout videoMask = findViewById(com.guajibase.gamelib.R.id.videoMask);
+			videoMask.setVisibility(View.VISIBLE);
 
-		FrameLayout container = findViewById(R.id.videoContainer);
-		if (videoView != null) {
-			container.removeView(videoView); // 移除舊的
-			videoView = null;
-		}
-		videoView = new VideoView(getContext());
-		FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
-				FrameLayout.LayoutParams.MATCH_PARENT,
-				FrameLayout.LayoutParams.MATCH_PARENT
-		);
-		params.gravity = Gravity.CENTER; // 將 VideoView 置中
-		videoView.setLayoutParams(params);
-		videoView.setAlpha(0.0f); // 先隱藏，避免閃爍
-		container.addView(videoView); // 加到容器中
+			FrameLayout container = findViewById(com.guajibase.gamelib.R.id.videoContainer);
+			if (playerView != null) {
+				container.removeView(playerView);
+				playerView = null;
+			}
 
-		String fullVideoPath = filesPath + "/Video/" + fileName + ".mp4";
-		String fullHotUpdateVideoPath = getContext().getFilesDir().getAbsolutePath() + "/hotUpdate/Video/" + fileName + ".mp4";
-		File file1 = new File(fullVideoPath);
-		File file2 = new File(fullHotUpdateVideoPath);
-		if (file2.exists())
-			videoView.setVideoPath(fullHotUpdateVideoPath);
-		else if (file1.exists())
-			videoView.setVideoPath(fullVideoPath);
-		else {
-			videoView.setOnTouchListener(null);
-			return;
-		}
-		mVideoLoop = isLoop;
-//
-		videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-			@Override
-			public void onPrepared(MediaPlayer mp) {
-				Log.d(TAG, "Video onPrepared");
-				int videoWidth = mp.getVideoWidth();
-				int videoHeight = mp.getVideoHeight();
-				RelativeLayout layout = findViewById(R.id.GameApp_LogoRelativeLayout);
-				int height = layout.getMeasuredHeight();
-				int width = layout.getMeasuredWidth();
-				float videoRatio = (float)videoHeight / videoWidth;
-				float layoutRatio = (float)height / width;
-				float scale = 1.0f;
-				if (videoRatio > layoutRatio) {	// 影片比例比裝置長 -> 放大填滿寬度
-					if (videoRatio <= 1.78f) {	// 1280*720
-						scale = 1.0f;
-					}
-					else if (videoHeight >= 2.22f) {	//1600*720
-						scale = (float)videoHeight / 1280;
-					}
-					else {
-						scale = (float)videoHeight / 1280;
+			playerView = new PlayerView(getContext());
+			FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
+					FrameLayout.LayoutParams.MATCH_PARENT,
+					FrameLayout.LayoutParams.MATCH_PARENT
+			);
+			params.gravity = Gravity.CENTER;
+			playerView.setLayoutParams(params);
+			playerView.setUseController(false);
+			playerView.setAlpha(0f);
+			container.addView(playerView);
+
+			String fullVideoPath = filesPath + "/Video/" + fileName + ".mp4";
+			String fullHotUpdateVideoPath = getContext().getFilesDir().getAbsolutePath() + "/hotUpdate/Video/" + fileName + ".mp4";
+			Uri videoUri = null;
+
+			if (new File(fullHotUpdateVideoPath).exists()) {
+				videoUri = Uri.fromFile(new File(fullHotUpdateVideoPath));
+			} else if (new File(fullVideoPath).exists()) {
+				videoUri = Uri.fromFile(new File(fullVideoPath));
+			} else {
+				return;
+			}
+
+			mVideoLoop = isLoop;
+
+			if (exoPlayer != null) {
+				exoPlayer.stop();
+				exoPlayer.release();
+			}
+
+			exoPlayer = new ExoPlayer.Builder(getContext()).build();
+			playerView.setPlayer(exoPlayer);
+
+			MediaItem mediaItem = MediaItem.fromUri(videoUri);
+			exoPlayer.setMediaItem(mediaItem);
+			exoPlayer.setRepeatMode(mVideoLoop == 1 ? Player.REPEAT_MODE_ONE : Player.REPEAT_MODE_OFF);
+			exoPlayer.prepare();
+			exoPlayer.play();
+
+			// 移除前一個 listener，防止多重觸發
+			if (exoPlayerListener != null) {
+				exoPlayer.removeListener(exoPlayerListener);
+			}
+
+			exoPlayerListener = new Player.Listener() {
+				@Override
+				public void onPlaybackStateChanged(int state) {
+					if (state == Player.STATE_READY && playerView.getAlpha() == 0f) {
+						playerView.setAlpha(1.0f);
+						FrameLayout videoMask = findViewById(com.guajibase.gamelib.R.id.videoMask);
+						videoMask.setVisibility(View.INVISIBLE);
+					} else if (state == Player.STATE_ENDED) {
+						if (mVideoLoop == 1) {
+							Cocos2dxHelper.nativeSendMessageP2G("onPlayMovieLoop", "");
+						} else {
+							Cocos2dxHelper.nativeSendMessageP2G("onPlayMovieEnd", "");
+							callCloseMovie(); // 自動清除
+						}
 					}
 				}
-				if (layoutRatio > videoRatio) {	// 裝置比例比影片長 -> 檢查是否要自適應
-					if (autoScale == 1) {	// 需要自適應 -> 放大填滿高度
+
+				@Override
+				public void onPlayerError(PlaybackException error) {
+					Log.e(TAG, "ExoPlayer Error: " + error.getMessage());
+					mVideoLoop = 0;
+					Cocos2dxHelper.nativeSendMessageP2G("onPlayMovieEnd", "");
+					callCloseMovie();
+				}
+
+				@Override
+				public void onRenderedFirstFrame() {
+					@OptIn(markerClass = UnstableApi.class) int videoWidth = exoPlayer.getVideoFormat() != null ? exoPlayer.getVideoFormat().width : 0;
+					@OptIn(markerClass = UnstableApi.class) int videoHeight = exoPlayer.getVideoFormat() != null ? exoPlayer.getVideoFormat().height : 0;
+
+					if (videoWidth <= 0 || videoHeight <= 0) return;
+
+					RelativeLayout layout = findViewById(com.guajibase.gamelib.R.id.GameApp_LogoRelativeLayout);
+					int height = layout.getMeasuredHeight();
+					int width = layout.getMeasuredWidth();
+
+					float videoRatio = (float) videoHeight / videoWidth;
+					float layoutRatio = (float) height / width;
+					float scale = 1.0f;
+
+					if (videoRatio > layoutRatio) {
+						float baseRatio = 1280.0f / 720.0f;
+						scale = layoutRatio <= baseRatio ? (float) (videoRatio / baseRatio) : (float) (videoRatio / layoutRatio);
+					}
+					if (layoutRatio > videoRatio && autoScale == 1) {
 						scale = layoutRatio / videoRatio;
 					}
+
+					playerView.setScaleX(scale);
+					playerView.setScaleY(scale);
+
+					Log.d(TAG, "Video scale: " + scale);
+					Log.d(TAG, "Video width: " + videoWidth + ", height: " + videoHeight);
+					Log.d(TAG, "Layout width: " + width + ", height: " + height);
 				}
-				videoView.setScaleX(scale);
-				videoView.setScaleY(scale);
-				Log.d(TAG, "Video scale: " + scale);
-				Log.d(TAG, "Video width: " + videoWidth + ", height: " + videoHeight);
-				Log.d(TAG, "Layout width: " + width + ", height: " + height);
-				videoView.seekTo(0);
-				videoView.start();
-			}
+			};
+			exoPlayer.addListener(exoPlayerListener);
 		});
-
-		videoView.setOnInfoListener(new MediaPlayer.OnInfoListener() {
-			@Override
-			public boolean onInfo(MediaPlayer mp, int what, int extra) {
-				if (what == MediaPlayer.MEDIA_INFO_VIDEO_RENDERING_START) {
-					Log.d(TAG, "Video rendering started – hide mask now");
-					videoView.setAlpha(1.0f);
-					FrameLayout videoMask = (FrameLayout) findViewById(R.id.videoMask);
-					videoMask.setVisibility(View.INVISIBLE);
-					return true;
-				}
-				return false;
-			}
-		});
-
-        videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-        	 @Override
-        	 public void onCompletion(MediaPlayer mp) {
-				 Log.d(TAG,"VideoView Notice: onCompletion");
-        		 if (videoView != null)
-        		 {
-					 if (mVideoLoop == 1) {
-						 Cocos2dxHelper.nativeSendMessageP2G("onPlayMovieLoop", "");
-						 videoView.seekTo(0);
-						 videoView.start();
-					 }
-					 else {
-						 Cocos2dxHelper.nativeSendMessageP2G("onPlayMovieEnd", "");
-						 videoView.stopPlayback();
-						 videoView.setOnTouchListener(null);
-					 }
-        		 }
-
-        	 }
-        });
-
-        videoView.setOnErrorListener(new MediaPlayer.OnErrorListener() {
-        	@Override
-        	public boolean onError(MediaPlayer mp, int what, int extra){
-				LogUtil.LOGE(TAG,"VideoView Notice: onError");
-				if (videoView != null)
-				{
-					videoView.setOnTouchListener(null);
-				}
-				mVideoLoop = 0;
-        		return true;
-        	}
-        });
-	}
-
-	public void callCloseMovie() {
-		Log.d(TAG,"VideoView Notice: callClose");
-		if (videoView != null)
-		{
-			videoView.seekTo(0);
-			videoView.stopPlayback();
-			//videoView.suspend();
-			Cocos2dxHelper.nativeSendMessageP2G("onPlayMovieEnd","");
-			videoView.setOnTouchListener(null);
-			FrameLayout videoMask = (FrameLayout)findViewById(R.id.videoMask);
-			videoMask.setVisibility(View.VISIBLE);
-		}
-		mVideoLoop = 0;
 	}
 
 	public void callPauseMovie() {
-		if (videoView != null) {
-			videoView.pause();
-			mVideoCurrPos = videoView.getCurrentPosition();
+		if (exoPlayer != null) {
+			exoPlayer.pause();
+			mVideoCurrPos = exoPlayer.getCurrentPosition();
 			mVideoPause = true;
 		}
 	}
 
 	public void callResumeMovie() {
-		if (videoView != null/* && mVideoPause*/) {
-			videoView.seekTo(mVideoCurrPos);
-			videoView.start();
+		if (exoPlayer != null && mVideoPause) {
+			exoPlayer.seekTo(mVideoCurrPos);
+			exoPlayer.play();
 			mVideoPause = false;
 		}
+	}
+
+	public void callCloseMovie() {
+		new Handler(Looper.getMainLooper()).post(() -> {
+			Log.d(TAG, "VideoView Notice: callClose");
+			if (exoPlayer != null) {
+				if (exoPlayerListener != null) {
+					exoPlayer.removeListener(exoPlayerListener);
+					exoPlayerListener = null;
+				}
+				exoPlayer.stop();
+				exoPlayer.release();
+				exoPlayer = null;
+			}
+			if (playerView != null) {
+				FrameLayout container = findViewById(com.guajibase.gamelib.R.id.videoContainer);
+				container.removeView(playerView);
+				playerView = null;
+			}
+			FrameLayout videoMask = findViewById(com.guajibase.gamelib.R.id.videoMask);
+			videoMask.setVisibility(View.VISIBLE);
+			Cocos2dxHelper.nativeSendMessageP2G("onPlayMovieEnd", "");
+			mVideoLoop = 0;
+		});
 	}
 	
 	@Override
@@ -978,6 +1002,9 @@ public class PlatformSDKActivity extends GameActivity {
 			case OP:
 				Log.d(TAG,"ClientChannel is android_op");
 				return "android_op";
+			case GP:
+				Log.d(TAG,"ClientChannel is android_gp");
+				return "android_gp";
 			default:
 				Log.d(TAG,"ClientChannel is NULL");
 				return "android_h365";

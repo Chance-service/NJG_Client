@@ -44,11 +44,11 @@ public class ListenerEditText extends EditText {
         public void onKeyIme(int keyCode, KeyEvent event);
     }
 
-    @Override
+    /*@Override
     public boolean onKeyPreIme (int keyCode, KeyEvent event){
         if(keyImeChangeListener != null){
             keyImeChangeListener.onKeyIme(keyCode, event);
         }        
         return false;
-    }
+    }*/
 }

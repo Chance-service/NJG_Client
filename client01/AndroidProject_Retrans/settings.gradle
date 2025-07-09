@@ -1,3 +1,5 @@
+rootProject.name = "AndroidProject"
+
 include ':blockChain_cn:GameAndroid'
-include ':sdklibs:libcocos2dx'
 include ':sdklibs:GameLibBC'
+include ':sdklibs:libcocos2dx'

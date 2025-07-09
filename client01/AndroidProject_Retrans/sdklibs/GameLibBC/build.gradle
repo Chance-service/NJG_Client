@@ -1,8 +1,38 @@
 apply plugin: 'com.android.library'
 
+def opCps = [
+        "OP_CPS0", "OP_CPS9", "OP_CPS12", "OP_CPS13", "OP_CPS18", "OP_CPS19", "OP_CPS20",
+        "OP_CPS25", "OP_CPS39", "OP_CPS42", "OP_CPS49", "OP_CPS61", "OP_CPS75", "OP_CPS76",
+        "OP_CPS85", "OP_CPS89", "OP_CPS96", "OP_CPS98", "OP_CPS114", "OP_CPS115", "OP_CPS116",
+        "OP_CPS117", "OP_CPS120", "OP_CPS126", "OP_CPS129", "OP_CPS130", "OP_CPS131", "OP_CPS132",
+        "OP_CPS133", "OP_CPS134", "OP_CPS135", "OP_CPS136", "OP_CPS137", "OP_CPS138", "OP_CPS139",
+        "OP_CPS140", "OP_CPS141", "OP_CPS142", "OP_CPS143", "OP_CPS147", "OP_CPS152",
+        "OP_CPS155", "OP_CPS167", "OP_CPS168", "OP_CPS169", "OP_CPS170", "OP_CPS174",
+        "OP_CPS175", "OP_CPS176", "OP_CPS184", "OP_CPS186", "OP_CPS195", "OP_CPS197",
+        "OP_CPS199", "OP_CPS202", "OP_CPS203", "OP_CPS204",
+        "OP_CPS207", "OP_CPS210",
+        "OP_CPS218", "OP_CPS220", "OP_CPS226", "OP_CPS229",
+        "OP_CPS230", "OP_CPS232", "OP_CPS234", "OP_CPS248", "OP_CPS249",
+        "OP_CPS253",
+        "OP_CPS268", "OP_CPS270",
+        "OP_CPS271", "OP_CPS272", "OP_CPS274", "OP_CPS275", "OP_CPS276", "OP_CPS277", "OP_CPS278",
+        "OP_CPS280", "OP_CPS281", "OP_CPS283",
+        "OP_CPS290", "OP_CPS291",
+        "OP_CPS298", "OP_CPS299"
+]
+
 android {
-    compileSdkVersion 30
-    buildToolsVersion "28.0.3"
+    namespace 'com.guajibase.gamelib'
+    compileSdkVersion 34
+
+    buildFeatures {
+        buildConfig = true // Should be true by default, but ensure it's not disabled
+    }
+    
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 
     sourceSets {
         main {
@@ -30,10 +60,6 @@ android {
             jniLibs.srcDirs = ['platformlibs/JSG']
             res.srcDirs = ['JSG/res']
         }
-//        LSJ {
-//            java.srcDirs = ['platformSrc/LSJ']
-//            jniLibs.srcDirs = ['platformlibs/LSJ']
-//        }
         KUSO {
             java.srcDirs = ['platformSrc/KUSO']
             jniLibs.srcDirs = ['platformlibs/KUSO']
@@ -49,15 +75,18 @@ android {
             jniLibs.srcDirs = ['platformlibs/APLUS']
             res.srcDirs = ['APLUS/res']
         }
-        OP {
-            java.srcDirs = ['platformSrc/OP', 'platformSrc/OP']
-            jniLibs.srcDirs = ['platformlibs/OP']
-            res.srcDirs = ['OP/res']
+        for (cps in opCps) {
+            "${cps}" {
+                java.srcDirs = ['platformSrc/OP', "platformSrc/OP_CPS/${cps}"]
+                jniLibs.srcDirs = ['platformlibs/OP']
+                res.srcDirs = ['OP/res']
+            }
         }
-//        MURA {
-//            java.srcDirs = ['platformSrc/MURA']
-//            jniLibs.srcDirs = ['platformlibs/MURA']
-//        }
+        GP{
+            java.srcDirs = ['platformSrc/GP', 'platformSrc/GP']
+            jniLibs.srcDirs = ['platformlibs/GP']
+            res.srcDirs = ['GP/res']
+        }
 
         // Move the tests to tests/java, tests/res, etc...
         androidTest.setRoot('tests')
@@ -112,30 +141,11 @@ android {
                 implementation   project(':sdklibs:libcocos2dx')
                 implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
                 implementation 'com.squareup.okhttp3:okhttp:4.12.0'
-                // libs
-                //files('libs/ChannelManager.jar')
-                //implementation(name:'JsGameSDK',ext:'aar')
             }
             defaultConfig {
                 minSdkVersion 21
             }
         }
-//        LSJ {
-//            dimension "app_type"
-//            dependencies {
-//                implementation  fileTree(dir: 'platformlibs/LSJ', include: ['*.jar','*.aar'])
-//                api fileTree(dir:'libs', include: ['*.aar'])
-//                implementation  project(':sdklibs:libcocos2dx')
-//                implementation 'androidx.appcompat:appcompat:1.3.1' // LSJ SDK need
-//                implementation 'androidx.constraintlayout:constraintlayout:2.1.3' // LSJ SDK need.
-//                implementation 'com.github.bumptech.glide:glide:4.12.0'
-//                implementation 'io.github.lucksiege:pictureselector:v2.7.3-rc08'
-//                //implementation  project(':sdklibs:lsjonline')
-//            }
-//            defaultConfig {
-//                minSdkVersion 21
-//            }
-//        }
         KUSO {
             dimension "app_type"
             dependencies {
@@ -190,6 +200,7 @@ android {
                 minSdkVersion 21
             }
         }
+
         APLUS_CPS1 {
             dimension "app_type"
             dependencies {
@@ -223,40 +234,33 @@ android {
                 minSdkVersion 21
             }
         }
-        OP {
+
+        for (cps in opCps) {
+            "${cps}" {
+                dimension "app_type"
+                dependencies {
+                    compileOnly fileTree(dir: 'platformlibs/OP', include: ['*.jar','*.aar'])
+                    compileOnly fileTree(dir: 'libs', include: ['*.aar'])
+                    implementation project(':sdklibs:libcocos2dx')
+                    implementation 'com.squareup.okhttp3:okhttp:4.12.0'
+                }
+                defaultConfig {
+                    minSdkVersion 21
+                }
+            }
+        }
+        GP {
             dimension "app_type"
             dependencies {
-                compileOnly fileTree(dir: 'platformlibs/OP', include: ['*.jar','*.aar'])
                 compileOnly fileTree(dir: 'libs', include: ['*.aar'])
                 implementation project(':sdklibs:libcocos2dx')
-
+                implementation 'com.squareup.okhttp3:okhttp:4.12.0'
             }
             defaultConfig {
                 minSdkVersion 21
             }
         }
-//        MURA {
-//            dimension "app_type"
-//
-//            dependencies {
-//                api fileTree(dir: 'platformlibs/MURA', include: '*.aar')
-//                api fileTree(dir:'libs', include: ['*.jar'])
-//                implementation project(':sdklibs:libcocos2dx')
-//                implementation 'androidx.core:core-ktx:1.7.0'
-//                implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-//                implementation 'io.jsonwebtoken:jjwt-api:0.9.2'
-//                implementation 'io.jsonwebtoken:jjwt-impl:0.11.2'
-//                implementation 'io.jsonwebtoken:jjwt-jackson:0.11.2'
-//            }
-//            defaultConfig {
-//                minSdkVersion 21
-//            }
-//        }
 
-        compileOptions {
-            sourceCompatibility JavaVersion.VERSION_1_8
-            targetCompatibility JavaVersion.VERSION_1_8
-        }
     }
     buildTypes {
         debug {

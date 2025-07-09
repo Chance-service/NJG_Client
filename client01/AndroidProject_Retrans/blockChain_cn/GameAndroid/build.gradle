@@ -1,11 +1,15 @@
+import com.android.build.gradle.internal.api.BaseVariantOutputImpl
+
 apply plugin: 'com.android.application'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: '*.jar')
-    implementation 'androidx.core:core:1.5.0'
+    implementation 'androidx.core:core:1.13.1'
     implementation  project(':sdklibs:libcocos2dx')
     implementation  project(':sdklibs:GameLibBC')
     implementation 'androidx.multidex:multidex:2.0.1'
+    implementation 'androidx.media3:media3-exoplayer:1.3.1'
+    implementation 'androidx.media3:media3-ui:1.3.1'
 }
 
 configurations.all {
@@ -23,12 +27,34 @@ configurations.all {
 //    }
 }
 
+def opCps = [
+    "OP_CPS0", "OP_CPS9", "OP_CPS12", "OP_CPS13", "OP_CPS18", "OP_CPS19", "OP_CPS20",
+    "OP_CPS25", "OP_CPS39", "OP_CPS42", "OP_CPS49", "OP_CPS61", "OP_CPS75", "OP_CPS76",
+    "OP_CPS85", "OP_CPS89", "OP_CPS96", "OP_CPS98", "OP_CPS114", "OP_CPS115", "OP_CPS116",
+    "OP_CPS117", "OP_CPS120", "OP_CPS126", "OP_CPS129", "OP_CPS130", "OP_CPS131", "OP_CPS132",
+    "OP_CPS133", "OP_CPS134", "OP_CPS135", "OP_CPS136", "OP_CPS137", "OP_CPS138", "OP_CPS139",
+    "OP_CPS140", "OP_CPS141", "OP_CPS142", "OP_CPS143", "OP_CPS147", "OP_CPS152",
+    "OP_CPS155", "OP_CPS167", "OP_CPS168", "OP_CPS169", "OP_CPS170", "OP_CPS174",
+    "OP_CPS175", "OP_CPS176", "OP_CPS184", "OP_CPS186", "OP_CPS195", "OP_CPS197",
+    "OP_CPS199", "OP_CPS202", "OP_CPS203", "OP_CPS204",
+    "OP_CPS207", "OP_CPS210",
+    "OP_CPS218", "OP_CPS220", "OP_CPS226", "OP_CPS229",
+    "OP_CPS230", "OP_CPS232", "OP_CPS234", "OP_CPS248", "OP_CPS249",
+    "OP_CPS253",
+    "OP_CPS268", "OP_CPS270",
+    "OP_CPS271", "OP_CPS272", "OP_CPS274", "OP_CPS275", "OP_CPS276", "OP_CPS277", "OP_CPS278",
+    "OP_CPS280", "OP_CPS281", "OP_CPS283",
+    "OP_CPS290", "OP_CPS291",
+    "OP_CPS298", "OP_CPS299"
+]
+
 android {
-    compileSdkVersion 30
-    buildToolsVersion "28.0.3"
+    namespace 'chance.ninja.girl'
+    compileSdkVersion 34
 
     defaultConfig{
         minSdkVersion 21
+        targetSdkVersion 33
         ndk {
             abiFilters "arm64-v8a"
         }
@@ -36,6 +62,8 @@ android {
         //aaptOptions.useNewCruncher = false //It will be removed in a future version of the gradle plugin.
         multiDexEnabled true
     }
+
+
     sourceSets {
         main {
             manifest.srcFile 'AndroidManifest.xml'
@@ -55,9 +83,6 @@ android {
         JSG {
             res.srcDirs = ['JSG/res']
         }
-        //LSJ {
-        //    res.srcDirs = ['H365/res']
-        //}
         KUSO {
             res.srcDirs = ['KUSO/res']
         }
@@ -67,8 +92,13 @@ android {
         APLUS_CPS1 {
             res.srcDirs = ['APLUS/res']
         }
-        OP {
-            res.srcDirs = ['OP/res']
+        for (cps in opCps) {
+            "${cps}" {
+                res.srcDirs = ['OP/res']
+            }
+        }
+        GP {
+            res.srcDirs = ['GP/res']
         }
         // Move the tests to tests/java, tests/res, etc...
         androidTest.setRoot('tests')
@@ -103,9 +133,6 @@ android {
             applicationId = "chance.debug.ninja.girl.jsg.cn"
             dimension "app_type"
         }
-//        LSJ {
-//            dimension "app_type"
-//        }
         KUSO {
             applicationId = "chance.debug.ninja.girl.kuso.cn"
             dimension "app_type"
@@ -135,17 +162,16 @@ android {
             }
         }
 
-        OP {
-            applicationId = "chance.debug.ninja.girl.op.cn"
-            dimension "app_type"
-//            dependencies {
-//                implementation fileTree(dir: '../../sdklibs/GameLibBC/platformlibs/OP', include: ['*.aar','*.jar'])
-//                implementation fileTree(dir: '../../sdklibs/GameLibBC/libs', include: ['*.aar'])
-//            }
+        for (cps in opCps) {
+            "${cps}" {
+                applicationId = "chance.debug.ninja.girl.op.cn"
+                dimension "app_type"
+            }
         }
-//        MURA {
-//            dimension "app_type"
-//        }
+        GP {
+            applicationId = "chance.debug.ninja.girl.gp.cn"
+            dimension "app_type"
+        }
     }
 
     buildTypes {
@@ -165,6 +191,9 @@ android {
             if (variant.flavorName.contains("APLUS")) {
                 flavor = "APLUS"
             }
+            if (variant.flavorName.contains("OP")) {
+                flavor = "OP"
+            }
             def configName = "${variant.name}Implementation"
             def sdkDir = file("../../sdklibs/GameLibBC/platformlibs/${flavor}")
             def commonLibs = file("../../sdklibs/GameLibBC/libs")
@@ -175,6 +204,56 @@ android {
             if (commonLibs.exists()) {
                 dependencies.add(configName, fileTree(dir: commonLibs, include: ['*.aar']))
             }
+            if (variant.flavorName.contains("OP") && variant.buildType.name.contains("release")) {
+                variant.outputs.all { output ->
+                    def variantName = variant.name
+                    def taskName = "copy${variant.flavorName}_${variant.buildType.name}Apk"
+                    tasks.register(taskName, Copy) {
+                        def str = output.outputFile.toString().split(variant.flavorName)
+                        def path = str[0]
+                        dependsOn variant.assembleProvider
+                        from output.outputFile
+                        into "$path/OP_ALLCPS/${variant.buildType.name}/${variant.getVersionCode()}"
+                        println "Copying to: $path/OP_ALLCPS/${variant.buildType.name}/${variant.getVersionCode()}"
+                    }
+
+                    tasks.named("assemble${variantName.capitalize()}") {
+                        finalizedBy tasks.named(taskName)
+                    }
+                }
+            }
+            else {
+                variant.outputs.all { output ->
+                    def variantName = variant.name
+                    def taskName = "copy${variant.flavorName}_${variant.buildType.name}Apk"
+                    tasks.register(taskName, Copy) {
+                        def str = output.outputFile.toString().split(variant.flavorName)
+                        def path = str[0]
+                        dependsOn variant.assembleProvider
+                        from output.outputFile
+                        into "$path/${variant.buildType.name}${variant.getVersionCode()}"
+                        println "Copying to: $path/${variant.buildType.name}${variant.getVersionCode()}"
+                    }
+
+                    tasks.named("assemble${variantName.capitalize()}") {
+                        finalizedBy tasks.named(taskName)
+                    }
+                }
+            }
+        }
+    }
+    applicationVariants.all { variant ->
+        def flavorName = variant.flavorName ?: ""
+        def buildType = variant.buildType.name
+
+        variant.outputs.all { output ->
+            def vCode = variant.versionCode
+            def vName = variant.versionName
+
+            def outputApkName = flavorName.contains("OP_CPS")
+                    ? "NG_${vCode}_${flavorName.split("CPS")[1]}.apk"
+                    : "NG_${vName}_${buildType}_${flavorName}.apk"
+	        output.outputFileName = outputApkName
         }
     }
 }

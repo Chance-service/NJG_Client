@@ -32,6 +32,8 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
+import org.cocos2dx.lib.BuildConfig;
+
 
 public class Cocos2dxTextInputWraper implements TextWatcher, OnEditorActionListener {
 	// ===========================================================

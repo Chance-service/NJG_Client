@@ -18,6 +18,7 @@ import com.jgg18.androidsdk.dataclasses.Session;
 import com.jgg18.androidsdk.dataclasses.TransactionStatus;
 import com.jgg18.androidsdk.networking.results.JGGError;
 import com.nuclear.bean.PayInfo;
+import CpsConstValue.CpsConst;
 
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
@@ -71,7 +72,7 @@ public class PlatformAPI extends SDKService {
 	public void onCreateSDK() {
 		final Activity act = home_activity;
 		final String gameId = "a8f40cd6-d0f0-47ca-b378-205f6cd372fe";
-		final String channelId = "0";
+		final String channelId = String.valueOf(CpsConst.cps.getValue());
 
 		if (!isCreate) {
 			try {

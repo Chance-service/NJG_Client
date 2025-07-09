@@ -10,7 +10,8 @@ public enum E_PLATFORM {
     KUSO(6),
     EROLABS(7),
     OP(8),
-    APLUS(9);
+    APLUS(9),
+    GP(10);
     private int value;
     E_PLATFORM(int value) {
         this.value = value;
@@ -30,6 +31,7 @@ public enum E_PLATFORM {
             case 7: return EROLABS;
             case 8: return OP;
             case 9: return APLUS;
+            case 10:return GP;
             default: return null;
         }
     }

@@ -5,8 +5,12 @@ dependencies {
 }
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "28.0.3"
+    namespace "org.cocos2dx.lib"
+    compileSdkVersion 34
+
+    buildFeatures {
+        buildConfig = true // Should be true by default, but ensure it's not disabled
+    }
 
     sourceSets {
         main {

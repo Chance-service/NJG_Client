@@ -52,6 +52,10 @@ public abstract class SDKService implements ISDKService {
 
     }
 
+    public boolean onBackPressed() {
+        return false; // 預設不處理返回
+    }
+
     @Override
     public void initTabDB(){
         showlog(tabDBId);

@@ -1,26 +1,37 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="chance.ninja.girl"
     android:installLocation="preferExternal"
-    android:versionCode="10406"
-    android:versionName="1.4.6.2"
+    android:versionCode="1040702"
+    android:versionName="1.4.7.2"
     xmlns:tools="http://schemas.android.com/tools"
      >
 
-	<uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
-		tools:ignore="ProtectedPermissions"/>
-	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-	<uses-permission android:name="com.android.vending.BILLING" />
-	<uses-permission android:name="android.permission.INTERNET"/>
-	<uses-permission android:name="android.permission.BROADCAST_STICKY"/>
-	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
-	<uses-permission android:name="android.permission.VIBRATE"/> 
-	<uses-permission android:name="android.permission.WAKE_LOCK" />
-	<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+	<!-- Core permissions -->
+	<uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-	<uses-permission android:name="android.permission.GET_TASKS"/>
+	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+	<!-- Media access (modern Android 13+) -->
+	<uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+	<uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+	<uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
+	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+		android:maxSdkVersion="32"/>
+
+	<!-- Optional: Notifications, billing, camera -->
+	<uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+	<uses-permission android:name="com.android.vending.BILLING" />
+	<uses-permission android:name="android.permission.CAMERA" />
+
+	<!-- Foreground service & background operation -->
+	<uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+	<uses-permission android:name="android.permission.WAKE_LOCK" />
+	<uses-permission android:name="android.permission.VIBRATE" />
+
+	<!-- Optional: Needs runtime permission -->
+	<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
     <supports-screens
         android:anyDensity="true"
         android:largeScreens="true"
@@ -33,7 +44,6 @@
         android:hardwareAccelerated="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:largeHeap="true"
         android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
         android:vmSafeMode="false"
 		android:name="com.nuclear.gjwow.platform.MyGameApp"
@@ -42,6 +52,7 @@
             android:name="com.nuclear.gjwow.platform.PlatformSDKActivity"
             android:label="@string/app_name"
             android:launchMode="singleTop"
+			android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/ThemeAppCompat" >
             <intent-filter>
@@ -56,6 +67,10 @@
                     <data android:host="chance" android:scheme="chance.ninja.girl"/>
             </intent-filter>
         </activity>
+		<activity
+			android:name="games.coresdk.activity.DeepLinkActivity"
+			android:exported="true"
+			tools:node="replace" />
 
 		<!-- JSGameSDK begin-->
 		<meta-data
@@ -129,6 +144,6 @@ android:enabled="true" >
 
     <uses-sdk
         android:minSdkVersion="21"
-        android:targetSdkVersion="26"
+        android:targetSdkVersion="33"
 		tools:overrideLibrary="com.guajibase.gamelib"/>
 </manifest>
