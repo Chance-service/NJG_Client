@@ -17,7 +17,7 @@ public:
 	void update(float dt);
 	bool getWaiting();
 	std::string getWaitingOpcode();
-	void startWaiting(int send_opcode,int opcode_to_hide, float showtime = 10.0f);
+	void startWaiting(int send_opcode,int opcode_to_hide, float showtime = 15.0f);
 	void endWaiting();
 	void registerErrReportHandler();
 	virtual void onReceivePacket(const int opcode, const ::google::protobuf::Message* packet);

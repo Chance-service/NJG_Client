@@ -120,7 +120,7 @@ id	內容
 122	<font color="#b2630e" face = "Barlow-SemiBold" >#v1#</font>
 123	<font color="#6f2f00" face = "Barlow-SemiBold" >The number of challenges available today is </font><font color="#dc1f1f" face = "Barlow-SemiBold" > 0 </font><font color="#6f2f00" face = "Barlow-SemiBold" >.</font><font color="#f9b522" face = "Barlow-SemiBold" >Want to use</font><font color="#6f2f00" face = "Barlow-SemiBold" >School Trip Coupon </font><br/><br/><font color="#6f2f00" face = "Barlow-SemiBold" >(quantity in warehouse:</font><font color="#00fe18" face = "Barlow-SemiBold" > #v1#</font><font color="#6f2f00" face = "Barlow-SemiBold" >)</font>
 124	<font color="#EE7700" face = "Barlow-SemiBold" >#v1#</font><font color="#136811" face = "Barlow-SemiBold" >#v2#</font>
-125	<font face = "Barlow-Regular18" color = "#70716E" >#v1##v2#</font><br/><font face = "Barlow-Regular18" color = "#70716E" >属性调整:#v3#</font>
+125	<font face = "Barlow-Regular18" color = "#70716E" >#v1#</font><br/><font face = "Barlow-Regular18" color = "#70716E" >属性调整:#v2#</font>
 150	<font color="#6f2f00" face = "Barlow-SemiBold" >#v1#(#v2#/#v3#)</font>
 151	<font color="#6f2f00" face = "Barlow-SemiBold" >#v1# Special Gear</font>
 152	<font color="#6f2f00" face = "Barlow-SemiBold" >装备战力 #v1#</font>
@@ -514,9 +514,9 @@ id	內容
 10731	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >血量降至50%以下时，自身获得【荆棘I】15秒</font></p>
 10732	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >血量降至50%以下时，自身获得【荆棘II】20秒</font></p>
 10733	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >血量降至50%以下时，自身获得【荆棘III】30秒</font></p>
-10801	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >对血量最高的1名敌方造成120%伤害，每有1名存活中的友方水属性忍娘，额外增加20%伤害，最多增加2次</font></p>
-10802	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >对血量最高的1名敌方造成140%伤害，每有1名存活中的友方水属性忍娘，额外增加30%伤害，最多增加3次</font></p>
-10803	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >对血量最高的1名敌方造成160%伤害，每有1名存活中的友方水属性忍娘，额外增加40%伤害，最多增加4次</font></p>
+10801	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >对血量最高的1名敌方造成120%伤害並附加1层「冻伤」持续8秒，每有1名存活中的友方水属性忍娘，额外增加20%伤害，最多增加2次</font></p>
+10802	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >对血量最高的1名敌方造成140%伤害並附加2层「冻伤」持续8秒，每有1名存活中的友方水属性忍娘，额外增加30%伤害，最多增加3次</font></p>
+10803	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >对血量最高的1名敌方造成160%伤害並附加3层「冻伤」持续8秒，每有1名存活中的友方水属性忍娘，额外增加40%伤害，最多增加4次</font></p>
 10811	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >自身普通攻击和技能对【冻伤】目标造成伤害时，额外造成60%无视防御伤害</font></p>
 10812	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >自身普通攻击和技能对【冻伤】目标造成伤害时，额外造成80%无视防御伤害</font></p>
 10813	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >自身普通攻击和技能对【冻伤】目标造成伤害时，额外造成100%无视防御伤害</font></p>
@@ -550,12 +550,12 @@ id	內容
 11031	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >每4次普通攻击，下一次普通攻击造成150%伤害，并给予1层【冻伤】8秒</font></p>
 11032	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >每3次普通攻击，下一次普通攻击造成150%伤害，并给予1层【冻伤】10秒</font></p>
 11033	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >每2次普通攻击，下一次普通攻击造成150%伤害，并给予1层【冻伤】12秒</font></p>
-11101	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >对敌方全体造成120%伤害，并给予【衰弱I】【致盲I】8秒</font></p>
-11102	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >对敌方全体造成180%伤害，并给予【衰弱II】【致盲II】8秒</font></p>
-11103	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >对敌方全体造成220%伤害，并给予【衰弱III】【致盲III】8秒</font></p>
-11111	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >移除目标敌人身上所有负面状态，每移除目标身上一个负面状态，对目标造成水桥月攻击力50%伤害，CD15秒</font></p>
-11112	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >移除目标敌人身上所有负面状态，每移除目标身上一个负面状态，对目标造成水桥月攻击力60%伤害，CD13秒</font></p>
-11113	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >移除目标敌人身上所有负面状态，每移除目标身上一个负面状态，对目标造成水桥月攻击力70%伤害，CD12秒</font></p>
+11101	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >对随机两名敌人造成120%伤害，并给予【衰弱I】【致盲I】8秒</font></p>
+11102	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >对随机两名敌人造成180%伤害，并给予【衰弱II】【致盲II】8秒</font></p>
+11103	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >对随机两名敌人造成220%伤害，并给予【衰弱III】【致盲III】8秒</font></p>
+11111	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >移除目标敌人身上所有负面状态，每移除目标身上一个负面状态，对目标造成水桥月攻击力30%伤害，CD15秒</font></p>
+11112	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >移除目标敌人身上所有负面状态，每移除目标身上一个负面状态，对目标造成水桥月攻击力35%伤害，CD13秒</font></p>
+11113	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >移除目标敌人身上所有负面状态，每移除目标身上一个负面状态，对目标造成水桥月攻击力40%伤害，CD12秒</font></p>
 11121	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >队伍中有水野雫时，给予随机1名敌方【破防I】【破魔I】8秒，冷却时间12秒</font></p>
 11122	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >队伍中有水野雫时，给予随机1名敌方【破防II】【破魔II】9秒，冷却时间10秒</font></p>
 11123	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >队伍中有水野雫时，给予随机1名敌方【破防III】【破魔III】10秒，冷却时间8秒</font></p>
@@ -727,66 +727,66 @@ id	內容
 12431	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >友方死亡时，恢复自身30%血量，并获得【无双I】5秒</font></p>
 12432	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >友方死亡时，恢复自身40%血量，并获得【无双II】5秒</font></p>
 12433	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >友方死亡时，恢复自身50%血量，并获得【无双III】5秒</font></p>
-50101	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体设置【爆炸种子】，造成180%无视防御伤害，并吸取最多5点魔力。给予友军全体【精确I】5秒</font></p>
-50102	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体设置【爆炸种子】，造成210%无视防御伤害，并吸取最多5点魔力。给予友军全体【精确I】5秒</font></p>
-50103	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体设置【爆炸种子】，造成240%无视防御伤害，并吸取最多5点魔力。给予友军全体【精确II】5秒</font></p>
-50104	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体设置【爆炸种子】，造成270%无视防御伤害，并吸取最多5点魔力。给予友军全体【精确II】5秒</font></p>
-50105	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体设置【爆炸种子】，造成300%无视防御伤害，并吸取最多10点魔力。给予友军全体【精确II】5秒</font></p>
-50201	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成250%伤害，并给予目标【晕眩】2秒。恢复友军全体50%攻击力血量，并给予目标【守护I】5秒</font></p>
-50202	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成275%伤害，并给予目标【晕眩】2秒。恢复友军全体75%攻击力血量，并给予目标【守护I】5秒</font></p>
-50203	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成300%伤害，并给予目标【晕眩】2秒。恢复友军全体100%攻击力血量，并给予目标【守护II】5秒</font></p>
-50204	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成325%伤害，并给予目标【晕眩】2秒。恢复友军全体125%攻击力血量，并给予目标【守护II】5秒</font></p>
-50205	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成350%伤害，并给予目标【晕眩】4秒。恢复友军全体150%攻击力血量，并给予目标【守护II】5秒</font></p>
-50301	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成400%伤害，并驱散正面效果。给予友军全体【狂战士】5秒</font></p>
-50302	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成460%伤害，并驱散正面效果。给予友军全体【狂战士】5秒</font></p>
-50303	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成520%伤害，并驱散正面效果。给予友军全体【狂战士】7秒</font></p>
-50304	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成580%伤害，并驱散正面效果。给予友军全体【狂战士】7秒</font></p>
-50305	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成640%伤害，并驱散正面效果。给予友军全体【狂战士】7秒</font></p>
-50401	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成360%伤害，并给予目标【侵蚀I】6秒。给予友军全体【不屈】5秒</font></p>
-50402	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成400%伤害，并给予目标【侵蚀I】6秒。给予友军全体【不屈】5秒</font></p>
-50403	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成440%伤害，并给予目标【侵蚀I】10秒。给予友军全体【不屈】5秒</font></p>
-50404	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成480%伤害，并给予目标【侵蚀I】10秒。给予友军全体【不屈】5秒</font></p>
-50405	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成520%伤害，并给予目标【侵蚀I】10秒。给予友军全体【不屈】7秒</font></p>
-50501	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成240%伤害，并有机率给予目标【自然印记I】5秒</font></p>
-50502	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成264%伤害，并有机率给予目标【自然印记I】5秒</font></p>
-50503	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成288%伤害，并有机率给予目标【自然印记I】5秒</font></p>
-50504	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成312%伤害，并有机率给予目标【自然印记I】5秒</font></p>
-50505	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成336%伤害，并有机率给予目标【自然印记I】7秒</font></p>
-50601	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成240%伤害，并有机率给予目标【沉默】3秒</font></p>
-50602	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成276%伤害，并有机率给予目标【沉默】3秒</font></p>
-50603	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成312%伤害，并有机率给予目标【沉默】3秒</font></p>
-50604	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成348%伤害，并有机率给予目标【沉默】3秒</font></p>
-50605	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成384%伤害，并有机率给予目标【沉默】5秒</font></p>
-50701	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成275%伤害，并有机率给予目标【致盲I】5秒</font></p>
-50702	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成308%伤害，并有机率给予目标【致盲I】5秒</font></p>
-50703	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成341%伤害，并有机率给予目标【致盲I】5秒</font></p>
-50704	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成374%伤害，并有机率给予目标【致盲I】5秒</font></p>
-50705	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成407%伤害，并有机率给予目标【致盲I】7秒</font></p>
-50801	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成270%伤害，并有机率给予目标【石化】2秒</font></p>
-50802	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成300%伤害，并有机率给予目标【石化】2秒</font></p>
-50803	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成330%伤害，并有机率给予目标【石化】2秒</font></p>
-50804	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成360%伤害，并有机率给予目标【石化】2秒</font></p>
-50805	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成390%伤害，并有机率给予目标【石化】4秒</font></p>
-50901	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成170%伤害，并有机率给予目标【衰弱I】5秒</font></p>
-50902	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成200%伤害，并有机率给予目标【衰弱I】5秒</font></p>
-50903	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成230%伤害，并有机率给予目标【衰弱I】5秒</font></p>
-50904	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成260%伤害，并有机率给予目标【衰弱I】5秒</font></p>
-50905	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成290%伤害，并有机率给予目标【衰弱I】7秒</font></p>
-51001	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成180%伤害，并有机率给予目标【中毒】6秒</font></p>
-51002	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成207%伤害，并有机率给予目标【中毒】6秒</font></p>
-51003	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成234%伤害，并有机率给予目标【中毒】6秒</font></p>
-51004	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成261%伤害，并有机率给予目标【中毒】6秒</font></p>
-51005	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成288%伤害，并有机率给予目标【中毒】10秒</font></p>
-51101	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对随机敌方单体造成800%伤害，并有机率给予目标【防御破坏I】5秒</font></p>
-51102	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对随机敌方单体造成920%伤害，并有机率给予目标【防御破坏I】5秒</font></p>
-51103	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对随机敌方单体造成1040%伤害，并有机率给予目标【防御破坏I】5秒</font></p>
-51104	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对随机敌方单体造成1160%伤害，并有机率给予目标【防御破坏I】5秒</font></p>
-51105	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对随机敌方单体造成1280%伤害，并有机率给予目标【防御破坏I】7秒</font></p>
-51201	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成150%伤害，并有机率给予目标【狂乱】3秒</font></p>
-51202	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成180%伤害，并有机率给予目标【狂乱】3秒</font></p>
-51203	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成210%伤害，并有机率给予目标【狂乱】3秒</font></p>
-51204	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成240%伤害，并有机率给予目标【狂乱】3秒</font></p>
-51205	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成270%伤害，并有机率给予目标【狂乱】5秒</font></p>
+55011	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体设置【爆炸种子】，造成180%无视防御伤害，并吸取最多5点魔力。给予友军全体【精确I】5秒</font></p>
+55012	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体设置【爆炸种子】，造成210%无视防御伤害，并吸取最多5点魔力。给予友军全体【精确I】5秒</font></p>
+55013	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体设置【爆炸种子】，造成240%无视防御伤害，并吸取最多5点魔力。给予友军全体【精确II】5秒</font></p>
+55014	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体设置【爆炸种子】，造成270%无视防御伤害，并吸取最多5点魔力。给予友军全体【精确II】5秒</font></p>
+55015	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体设置【爆炸种子】，造成300%无视防御伤害，并吸取最多10点魔力。给予友军全体【精确II】5秒</font></p>
+55021	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成250%伤害，并给予目标【晕眩】2秒。恢复友军全体50%攻击力血量，并给予目标【守护I】5秒</font></p>
+55022	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成275%伤害，并给予目标【晕眩】2秒。恢复友军全体75%攻击力血量，并给予目标【守护I】5秒</font></p>
+55023	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成300%伤害，并给予目标【晕眩】2秒。恢复友军全体100%攻击力血量，并给予目标【守护II】5秒</font></p>
+55024	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成325%伤害，并给予目标【晕眩】2秒。恢复友军全体125%攻击力血量，并给予目标【守护II】5秒</font></p>
+55025	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成350%伤害，并给予目标【晕眩】4秒。恢复友军全体150%攻击力血量，并给予目标【守护II】5秒</font></p>
+55031	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成400%伤害，并驱散正面效果。给予友军全体【狂战士】5秒</font></p>
+55032	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成460%伤害，并驱散正面效果。给予友军全体【狂战士】5秒</font></p>
+55033	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成520%伤害，并驱散正面效果。给予友军全体【狂战士】7秒</font></p>
+55034	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成580%伤害，并驱散正面效果。给予友军全体【狂战士】7秒</font></p>
+55035	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成640%伤害，并驱散正面效果。给予友军全体【狂战士】7秒</font></p>
+55041	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成360%伤害，并给予目标【侵蚀I】6秒。给予友军全体【不屈】5秒</font></p>
+55042	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成400%伤害，并给予目标【侵蚀I】6秒。给予友军全体【不屈】5秒</font></p>
+55043	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成440%伤害，并给予目标【侵蚀I】10秒。给予友军全体【不屈】5秒</font></p>
+55044	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成480%伤害，并给予目标【侵蚀I】10秒。给予友军全体【不屈】5秒</font></p>
+55045	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成520%伤害，并给予目标【侵蚀I】10秒。给予友军全体【不屈】7秒</font></p>
+55051	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成240%伤害，并有机率给予目标【自然印记I】5秒</font></p>
+55052	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成264%伤害，并有机率给予目标【自然印记I】5秒</font></p>
+55053	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成288%伤害，并有机率给予目标【自然印记I】5秒</font></p>
+55054	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成312%伤害，并有机率给予目标【自然印记I】5秒</font></p>
+55055	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成336%伤害，并有机率给予目标【自然印记I】7秒</font></p>
+55061	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成240%伤害，并有机率给予目标【沉默】3秒</font></p>
+55062	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成276%伤害，并有机率给予目标【沉默】3秒</font></p>
+55063	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成312%伤害，并有机率给予目标【沉默】3秒</font></p>
+55064	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成348%伤害，并有机率给予目标【沉默】3秒</font></p>
+55065	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成384%伤害，并有机率给予目标【沉默】5秒</font></p>
+55071	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成275%伤害，并有机率给予目标【致盲I】5秒</font></p>
+55072	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成308%伤害，并有机率给予目标【致盲I】5秒</font></p>
+55073	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成341%伤害，并有机率给予目标【致盲I】5秒</font></p>
+55074	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成374%伤害，并有机率给予目标【致盲I】5秒</font></p>
+55075	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成407%伤害，并有机率给予目标【致盲I】7秒</font></p>
+55081	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成270%伤害，并有机率给予目标【石化】2秒</font></p>
+55082	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成300%伤害，并有机率给予目标【石化】2秒</font></p>
+55083	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成330%伤害，并有机率给予目标【石化】2秒</font></p>
+55084	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成360%伤害，并有机率给予目标【石化】2秒</font></p>
+55085	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成390%伤害，并有机率给予目标【石化】4秒</font></p>
+55091	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成170%伤害，并有机率给予目标【衰弱I】5秒</font></p>
+55092	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成200%伤害，并有机率给予目标【衰弱I】5秒</font></p>
+55093	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成230%伤害，并有机率给予目标【衰弱I】5秒</font></p>
+55094	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成260%伤害，并有机率给予目标【衰弱I】5秒</font></p>
+55095	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成290%伤害，并有机率给予目标【衰弱I】7秒</font></p>
+55101	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成180%伤害，并有机率给予目标【中毒】6秒</font></p>
+55102	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成207%伤害，并有机率给予目标【中毒】6秒</font></p>
+55103	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成234%伤害，并有机率给予目标【中毒】6秒</font></p>
+55104	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成261%伤害，并有机率给予目标【中毒】6秒</font></p>
+55105	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成288%伤害，并有机率给予目标【中毒】10秒</font></p>
+55111	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对随机敌方单体造成800%伤害，并有机率给予目标【防御破坏I】5秒</font></p>
+55112	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对随机敌方单体造成920%伤害，并有机率给予目标【防御破坏I】5秒</font></p>
+55113	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对随机敌方单体造成1040%伤害，并有机率给予目标【防御破坏I】5秒</font></p>
+55114	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对随机敌方单体造成1160%伤害，并有机率给予目标【防御破坏I】5秒</font></p>
+55115	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对随机敌方单体造成1280%伤害，并有机率给予目标【防御破坏I】7秒</font></p>
+55121	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成150%伤害，并有机率给予目标【狂乱】3秒</font></p>
+55122	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成180%伤害，并有机率给予目标【狂乱】3秒</font></p>
+55123	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成210%伤害，并有机率给予目标【狂乱】3秒</font></p>
+55124	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成240%伤害，并有机率给予目标【狂乱】3秒</font></p>
+55125	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#e7d7be" >对敌方全体造成270%伤害，并有机率给予目标【狂乱】5秒</font></p>
 500101	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >造成一个200%伤害且必定爆击</font></p>
 100101	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >物理防御力提升15%</font></p>
 100102	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >物理防御力提升30%</font></p>
@@ -1426,11 +1426,35 @@ id	內容
 500265	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >对随机敌人施加「恐惧III」，如阴努斯在场，改为对全场敌人施加「恐惧III」，持续6秒，CD12秒。<br/>恐惧III：物理攻击力与魔法攻击力下降45%<br/></font></p>
 500266	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >对随机敌人施加「恐惧III」，如阴努斯在场，改为对全场敌人施加「恐惧III」，持续6秒，CD12秒。<br/>恐惧III：物理攻击力与魔法攻击力下降45%<br/></font></p>
 500267	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >对随机敌人施加「恐惧III」，如阴努斯在场，改为对全场敌人施加「恐惧III」，持续8秒，CD10秒。<br/>恐惧III：物理攻击力与魔法攻击力下降45%<br/></font></p>
+500311	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >对最多两名目标造成将军蝎防御力100%伤害，获得「荆棘」12秒。</font></p>
+500312	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >对最多两名目标造成将军蝎防御力120%伤害，获得「荆棘」12秒。</font></p>
+500313	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >对最多两名目标造成将军蝎防御力140%伤害，获得「荆棘II」12秒。</font></p>
+500314	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >对最多两名目标造成将军蝎防御力160%伤害，获得「荆棘II」12秒。</font></p>
+500315	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >对最多三名目标造成将军蝎防御力180%伤害，获得「荆棘III」12秒。</font></p>
+500316	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >对最多三名目标造成将军蝎防御力200%伤害，获得「荆棘III」12秒。</font></p>
+500317	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >对最多三名目标造成将军蝎防御力220%伤害，获得「荆棘III」12秒。</font></p>
+500321	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >对随机目标造成将军蝎攻击力120%伤害，晕眩8秒，CD16秒。</font></p>
+500322	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >对随机目标造成将军蝎攻击力140%伤害，晕眩8秒，CD15秒。</font></p>
+500323	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >对随机目标造成将军蝎攻击力180%伤害，晕眩8秒，CD14秒。</font></p>
+500324	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >对随机目标造成将军蝎攻击力220%伤害，晕眩8秒，CD13秒。</font></p>
+500325	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >对随机目标造成将军蝎攻击力260%伤害，晕眩8秒，CD12秒。</font></p>
+500326	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >对随机目标造成将军蝎攻击力300%伤害，晕眩8秒，CD11秒。</font></p>
+500327	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >对随机目标造成将军蝎攻击力340%伤害，晕眩8秒，CD10秒。</font></p>
+500331	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >当将军蝎生命值余下50%时，每秒对近距离敌人造成将军蝎攻击力15%无视防御伤害。</font></p>
+500341	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >当将军蝎生命值余下50%时，每秒对近距离敌人造成将军蝎攻击力15%无视防御伤害。<br/>当受到暴击伤害时，为将军蝎产生一个跟伤害值相同的护盾，CD14秒。</font></p>
+500342	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >当将军蝎生命值余下50%时，每秒对近距离敌人造成将军蝎攻击力15%无视防御伤害。<br/>当受到暴击伤害时，为将军蝎产生一个跟伤害值相同的护盾，CD13秒。</font></p>
+500343	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >当将军蝎生命值余下50%时，每秒对近距离敌人造成将军蝎攻击力15%无视防御伤害。<br/>当受到暴击伤害时，为将军蝎产生一个跟伤害值相同的护盾，CD12秒。</font></p>
+500344	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >当将军蝎生命值余下50%时，每秒对近距离敌人造成将军蝎攻击力15%无视防御伤害。<br/>当受到暴击伤害时，为将军蝎产生一个跟伤害值相同的护盾，CD11秒。</font></p>
+500345	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >当将军蝎生命值余下50%时，每秒对近距离敌人造成将军蝎攻击力15%无视防御伤害。<br/>当受到暴击伤害时，为将军蝎产生一个跟伤害值相同的护盾，CD10秒。</font></p>
+500346	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >当将军蝎生命值余下50%时，每秒对近距离敌人造成将军蝎攻击力15%无视防御伤害。<br/>当受到暴击伤害时，为将军蝎产生一个跟伤害值相同的护盾，CD9秒。</font></p>
+500347	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >当将军蝎生命值余下50%时，每秒对近距离敌人造成将军蝎攻击力15%无视防御伤害。<br/>当受到暴击伤害时，为将军蝎产生一个跟伤害值相同的护盾，CD8秒。</font></p>
 600001	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >职业为战士的角色生命值增加100%，获得30%普攻吸血，所有职业的治疗效果下降40%。</font></p>
 600011	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >所有角色开战时均会获得「猛毒」、每当角色暴击时，会使自身的「猛毒」等级上升1，最高为3，职业为补师角色免疫所有「毒」状态。</font></p>
 600021	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >所有角色回避属性上升200%，每次成功回避恢复自身攻击力100%生命值。非玩家角色持有每4下普通攻击获得「必中」状态。</font></p>
 600031	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >所有职业为法师角色开战时<br/>获得「顺风III」，<br/>所有职业为战士角色开战时<br/>获得「蛮勇III」，<br/>所有职业为坦克角色开战时<br/>获得「脆弱III」，<br/>所有职业为补师角色开战时<br/>获得「逆风III」，持续99秒。<br/>顺风III：所有魔力恢复效果上升30%，移动力上升45%。<br/>蛮勇III：物理攻击力提升15%。<br/>脆弱III：物理防御减少60%<br/>逆风III：所有魔力恢复效果下降30%，移动力下降45%。</font></p>
 600041	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >所有角色受到伤害时获得「业火I」,当任意角色暴击时,移除场上所有角色物上「业火」。<br/>业火I：每层提升爆击伤害40%，最高迭数三层，暴击发生后移除。</font></p>
+600051	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >所有角色对持有护盾敌人造成额外200%伤害，所有角色治疗效果增外提升50%。</font></p>
+600061	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >职业为战士的角色爆击率100%，每次爆击成功对自身造成最大生命值2%伤害。</font></p>
 999901	<font color="#4D93D9" face = "Barlow-SemiBold" >#v1#</font><font color="#FFFFFF" face = "Barlow-SemiBold" > 施放</font><font color="#996600" face = "Barlow-SemiBold" > #v2#</font>
 999902	<font color="#FF5050" face = "Barlow-SemiBold" >#v1#</font><font color="#FFFFFF" face = "Barlow-SemiBold" > 施放</font><font color="#996600" face = "Barlow-SemiBold" > #v2#</font>
 999903	<font color="#4D93D9" face = "Barlow-SemiBold" >#v1#</font><font color="#FFFFFF" face = "Barlow-SemiBold" > 對</font><font color="#FF5050" face = "Barlow-SemiBold" > #v2#</font><font color="#FFFFFF" face = "Barlow-SemiBold" > 造成</font><font color="#C00000" face = "Barlow-SemiBold" > #v3#</font><font color="#FFFFFF" face = "Barlow-SemiBold" > 傷害</font>
@@ -1581,6 +1605,12 @@ id	內容
 1280001	<font face = "Barlow-SemiBold24" color = "#763306" >法术穿透+5%</font>
 1280002	<font face = "Barlow-SemiBold24" color = "#763306" >法术穿透+10%</font>
 1280003	<font face = "Barlow-SemiBold24" color = "#763306" >法术穿透+15%,HP上限+10%</font>
+1290001	<font face = "Barlow-SemiBold24" color = "#763306" >当敌人身上存有2种或以上不同类型的「中毒」状态时，每1秒该敌人流失自身血量2%*的生命值，持续4秒，CD12秒</font>
+1290002	<font face = "Barlow-SemiBold24" color = "#763306" >当敌人身上存有2种或以上不同类型的「中毒」状态时，每1秒该敌人流失自身血量4%*的生命值，持续4秒，CD10秒</font>
+1290003	<font face = "Barlow-SemiBold24" color = "#763306" >当敌人身上存有2种或以上不同类型的「中毒」状态时，每1秒该敌人流失自身血量6%*的生命值，持续4秒，CD8秒</font>
+1290004	<font face = "Barlow-SemiBold24" color = "#763306" >蛇神的眷属</font>
+1290005	<font face = "Barlow-SemiBold24" color = "#763306" >蛇神的眷属II</font>
+1290006	<font face = "Barlow-SemiBold24" color = "#763306" >蛇神的眷属III</font>
 2010001	<font face = "Barlow-SemiBold24" color = "#763306" >暴击值+4%</font>
 2010002	<font face = "Barlow-SemiBold24" color = "#763306" >暴击值+6%</font>
 2010003	<font face = "Barlow-SemiBold24" color = "#763306" >暴击值+10%,物理穿透+10%</font>

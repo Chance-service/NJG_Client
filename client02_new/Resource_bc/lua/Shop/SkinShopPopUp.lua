@@ -143,6 +143,7 @@ function SkinShopPopUp:refreshPageInfo(container)
     NodeHelper:setNodesVisible(container, {
         mCoin = (_type == 0),
         mOffNode = (_type == 0) and (PAGE_INFO.SHOP_CFG.discount ~= 100),
+        mTimeTxt = (PAGE_INFO.SHOP_CFG.timeType == 1),
     })
     if _type == 0 then  -- 購買
         NodeHelper:setStringForLabel(container, { 
@@ -223,34 +224,60 @@ function SkinShopPopUp:onDetail(container)
 end
 
 function SkinShopPopUp:onBtn(container)
-    local _type = PAGE_INFO.SHOP_CFG.type
-    if _type == 0 then  -- 購買
-        PageManager.showConfirm(common:getLanguageString("@ShopComfirmTitle"), common:getLanguageString("@ShopComfirm"), function(isSure)
-            local cost = PAGE_INFO.SHOP_CFG.price[1].count
-            local userCount = InfoAccesser:getUserItemCount(PAGE_INFO.SHOP_CFG.price[1].type, PAGE_INFO.SHOP_CFG.price[1].itemId)
-            if (userCount < cost) then
-                MessageBoxPage:Msg_Box(common:getLanguageString("@ERRORCODE_3002"))
-                return
-            end
-            if isSure then
-                local msg = Shop_pb.BuyShopItemsRequest()
-                msg.type = 1
-                msg.id = PAGE_INFO.CFG_IDX
-                msg.amount = 1
-                msg.shopType = Const_pb.SKIN_MARKET
-                common:sendPacket(HP_pb.SHOP_BUY_C, msg, true)
-            end
-        end, true)
-    elseif _type == 1 then  -- 活動
-        local skinCfg = ConfigManager.getSkinCfg()[PAGE_INFO.SKIN_ID]
-        if not skinCfg then
+    local shopCfg  = PAGE_INFO.SHOP_CFG
+    local cfgIdx   = PAGE_INFO.CFG_IDX
+    local skinId   = PAGE_INFO.SKIN_ID
+    local shopType = shopCfg.type
+
+    -- 購買類型
+    if shopType == 0 then
+        local priceInfo = shopCfg.price[1]
+        local cost      = priceInfo.count
+        local userCount = InfoAccesser:getUserItemCount(priceInfo.type, priceInfo.itemId)
+
+        if userCount < cost then
+            PageManager.showConfirm(
+                common:getLanguageString("@ShopComfirmTitle"),
+                common:getLanguageString("@Outof6002"),
+                function(isSure)
+                    if isSure then
+                        require("IAP.IAPPage"):setEntrySubPage("Recharge")
+                        PageManager.pushPage("IAP.IAPPage")
+                    end
+                end,
+                true
+            )
             return
         end
+
+        -- 確認購買
+        PageManager.showConfirm(
+            common:getLanguageString("@ShopComfirmTitle"),
+            common:getLanguageString("@ShopComfirm"),
+            function(isSure)
+                if isSure then
+                    local msg       = Shop_pb.BuyShopItemsRequest()
+                    msg.type        = 1
+                    msg.id          = cfgIdx
+                    msg.amount      = 1
+                    msg.shopType    = Const_pb.SKIN_MARKET
+                    common:sendPacket(HP_pb.SHOP_BUY_C, msg, true)
+                end
+            end,
+            true
+        )
+
+    -- 活動跳轉類型
+    elseif shopType == 1 then
+        local skinCfg = ConfigManager.getSkinCfg()[skinId]
+        if not skinCfg then return end
+
         local LobbyMarqueeBanner = require("LobbyMarqueeBanner")
         local ids = common:split(skinCfg.jumpId, ",")
         LobbyMarqueeBanner:jumpActivityById(tonumber(ids[1]))
     end
 end
+
 
 function SkinShopPopUp:onReturn(container)
     self:removePacket(container)

@@ -110,7 +110,7 @@ import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 import android.widget.VideoView;
-import chance.ninja.girl.R;
+import chance.release.ninja.girl.R;
 
 public class PlatformSDKActivity extends GameActivity {
 	private static final String TAG = "PlatformSDKActivity";

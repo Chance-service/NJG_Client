@@ -6,7 +6,7 @@ NgBattleEffectManager.FxSkinSetting = {
     --["NG_01001_FX1"] = {
     --    [CONST.ANI_ACT.ATTACK] = {
     --        triggerFn = function(chaNode)
-    --            local scripe = require("Battle.NewSkill.Skill_10102")
+    --            local scripe = require("Battle.NewSkill.Skill_10106")
     --            return scripe["canPlaySpFx"] and scripe:canPlaySpFx(chaNode)
     --        end,
     --        [true] = "01",

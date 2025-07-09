@@ -648,7 +648,10 @@ function NgBattleCharacterBase:beAttack(chaNode, target, dmg, isCri, isSkipCalHp
                 if isHero then   --Hero
                     local heroCfg = ConfigManager.getNewHeroCfg()
                     local effectCfg = ConfigManager.getHeroEffectPathCfg()
-                    local idx = tonumber(chaNode.otherData[CONST.OTHER_DATA.ITEM_ID] .. string.format("%03d", chaNode.otherData[CONST.OTHER_DATA.SPINE_SKIN]))
+                    local idx = tonumber(chaNode.otherData[CONST.OTHER_DATA.ITEM_ID] .. "000")
+                    if chaNode.otherData[CONST.OTHER_DATA.SPINE_SKIN] > 0 then
+                        idx = tonumber(string.format("%05d", chaNode.otherData[CONST.OTHER_DATA.SPINE_SKIN]))
+                    end
                     if effectCfg[idx] then
                         if effectCfg[idx].AttackHit then
                             fileNames = common:split(effectCfg[idx].AttackHit, ",")
@@ -724,19 +727,15 @@ function NgBattleCharacterBase:beAttack(chaNode, target, dmg, isCri, isSkipCalHp
             end
             if isCri then
                 for k, v in pairs(CONST.PASSIVE_TYPE_ID[CONST.PASSIVE_TRIGGER_TYPE.BE_CRI_HIT]) do -- 被普攻/技能暴擊命中
-                    NewBattleUtil:castPassiveSkill(target, v, resultTable, allPassiveTable, CONST.PASSIVE_TRIGGER_TYPE.BE_CRI_HIT, { chaNode })
+                    NewBattleUtil:castPassiveSkill(target, v, resultTable, allPassiveTable, CONST.PASSIVE_TRIGGER_TYPE.BE_CRI_HIT, { chaNode, dmg = dmg })
                 end
             end
             for k, v in pairs(CONST.PASSIVE_TYPE_ID[CONST.PASSIVE_TRIGGER_TYPE.BE_HIT]) do -- 被普攻/技能命中
                 NewBattleUtil:castPassiveSkill(target, v, resultTable, allPassiveTable, CONST.PASSIVE_TRIGGER_TYPE.BE_HIT, { chaNode })
             end
-            for k, v in pairs(CONST.PASSIVE_TYPE_ID[CONST.PASSIVE_TRIGGER_TYPE.AURA_BE_HIT]) do -- (靈氣)被普攻/技能命中
-                NewBattleUtil:calAuraSkillEffect(target, CONST.PASSIVE_TRIGGER_TYPE.AURA_BE_HIT)
-            end
+            NewBattleUtil:calAuraSkillEffect(target, CONST.PASSIVE_TRIGGER_TYPE.AURA_BE_HIT) -- (靈氣)被普攻/技能命中
         else
-            for k, v in pairs(CONST.PASSIVE_TYPE_ID[CONST.PASSIVE_TRIGGER_TYPE.AURA_DODGE]) do -- 閃避觸發
-                NewBattleUtil:calAuraSkillEffect(target, CONST.PASSIVE_TRIGGER_TYPE.AURA_DODGE)
-            end
+            NewBattleUtil:calAuraSkillEffect(target, CONST.PASSIVE_TRIGGER_TYPE.AURA_DODGE) -- (靈氣)閃避觸發
         end
         -- 受擊震動(TEST)
         --target.heroNode.chaCCB:runAnimation("Hurt")
@@ -789,8 +788,8 @@ function NgBattleCharacterBase:beAttack(chaNode, target, dmg, isCri, isSkipCalHp
     isSkipCal = isSkipCal or isSkipCal2
     if not isSkipCal then
         CHAR_UTIL:setHp(target, math.min(target.battleData[CONST.BATTLE_DATA.HP] - hpDmg, target.battleData[CONST.BATTLE_DATA.MAX_HP]))
-        CHAR_UTIL:setShield(target, math.min(target.battleData[CONST.BATTLE_DATA.SHIELD] - shieldDmg))
     end
+    CHAR_UTIL:setShield(target, math.min(target.battleData[CONST.BATTLE_DATA.SHIELD] - shieldDmg))
 
     SKILL_UTIL:triggerSkillSpecialEffect(chaNode, target, skillId)
 
@@ -923,9 +922,7 @@ function NgBattleCharacterBase:onHit(chaNode, skillId, resultTable, allPassiveTa
             for k, v in pairs(CONST.PASSIVE_TYPE_ID[CONST.PASSIVE_TRIGGER_TYPE.ATK_HIT]) do -- 普攻命中
                 NewBattleUtil:castPassiveSkill(chaNode, v, resultTable, allPassiveTable, CONST.PASSIVE_TRIGGER_TYPE.ATK_HIT, { target })
             end
-            for k, v in pairs(CONST.PASSIVE_TYPE_ID[CONST.PASSIVE_TRIGGER_TYPE.AURA_FRIEND_ATK]) do -- 普攻命中時
-                NewBattleUtil:calAuraSkillEffect(chaNode, CONST.PASSIVE_TRIGGER_TYPE.AURA_FRIEND_ATK)
-            end
+            NewBattleUtil:calAuraSkillEffect(chaNode, CONST.PASSIVE_TRIGGER_TYPE.AURA_FRIEND_ATK)-- (靈氣)普攻命中時
             CHAR_UTIL:clearSkillTimer(chaNode.skillData, CONST.ADD_BUFF_COUNT_EVENT.NORMAL_ATTACK)      -- 清空特定skill計時
             BuffManager:clearBuffTimer(chaNode, chaNode.buffData, CONST.ADD_BUFF_COUNT_EVENT.NORMAL_ATTACK)      -- 清空特定buff計時
             BuffManager:addBuffCount(chaNode, chaNode.buffData, CONST.ADD_BUFF_COUNT_EVENT.NORMAL_ATTACK)        -- 增加buff層數
@@ -941,9 +938,7 @@ function NgBattleCharacterBase:onHit(chaNode, skillId, resultTable, allPassiveTa
                     NewBattleUtil:castPassiveSkill(list[aliveIdTable[i]], v, resultTable, allPassiveTable, CONST.PASSIVE_TRIGGER_TYPE.FRIEND_CRI_HIT, { list[aliveIdTable[i]] })
                 end
             end
-            for k, v in pairs(CONST.PASSIVE_TYPE_ID[CONST.PASSIVE_TRIGGER_TYPE.AURA_CRI_HIT]) do-- 普攻/技能暴擊命中(光環)
-                NewBattleUtil:calAuraSkillEffect(chaNode, CONST.PASSIVE_TRIGGER_TYPE.AURA_CRI_HIT)
-            end
+            NewBattleUtil:calAuraSkillEffect(chaNode, CONST.PASSIVE_TRIGGER_TYPE.AURA_CRI_HIT) -- (靈氣)普攻/技能暴擊命中
         end
         for k, v in pairs(CONST.PASSIVE_TYPE_ID[CONST.PASSIVE_TRIGGER_TYPE.HIT]) do -- 普攻/技能命中
             NewBattleUtil:castPassiveSkill(chaNode, v, resultTable, allPassiveTable, CONST.PASSIVE_TRIGGER_TYPE.HIT, { target })
@@ -981,9 +976,7 @@ function NgBattleCharacterBase:onMiss(chaNode, skillId, resultTable, allPassiveT
         CHAR_UTIL:setMp(chaNode, math.min(chaNode.battleData[CONST.BATTLE_DATA.MP] + mp, chaNode.battleData[CONST.BATTLE_DATA.MAX_MP]))
 
         if not skillId then
-            for k, v in pairs(CONST.PASSIVE_TYPE_ID[CONST.PASSIVE_TRIGGER_TYPE.AURA_FRIEND_ATK]) do -- 普攻Miss時
-                NewBattleUtil:calAuraSkillEffect(chaNode, CONST.PASSIVE_TRIGGER_TYPE.AURA_FRIEND_ATK)
-            end
+            NewBattleUtil:calAuraSkillEffect(chaNode, CONST.PASSIVE_TRIGGER_TYPE.AURA_FRIEND_ATK) -- (靈氣)普攻Miss時
         end
 
         if isGainMp then
@@ -1056,8 +1049,8 @@ function NgBattleCharacterBase:beDot(chaNode, target, dmg, buffId, isSkipPre, is
     isSkipCal = isSkipCal or isSkipCal2
     if not isSkipCal then
         CHAR_UTIL:setHp(target, math.min(target.battleData[CONST.BATTLE_DATA.HP] - hpDmg, target.battleData[CONST.BATTLE_DATA.MAX_HP]))
-        CHAR_UTIL:setShield(target, math.min(target.battleData[CONST.BATTLE_DATA.SHIELD] - shieldDmg))
     end
+    CHAR_UTIL:setShield(target, math.min(target.battleData[CONST.BATTLE_DATA.SHIELD] - shieldDmg))
     if target.battleData[CONST.BATTLE_DATA.HP] <= 0 then --死亡
         CHAR_UTIL:setMp(target, math.min(target.battleData[CONST.BATTLE_DATA.MP], target.battleData[CONST.BATTLE_DATA.MAX_MP]))
         local list = NgBattleDataManager_getEnemyList(target)
@@ -1453,7 +1446,7 @@ function NgBattleCharacterBase:onFunction(tag, eventName)
             triggerBuffList = BuffManager:specialBuffEffect(chaNode.buffData, buffEvent, chaNode, chaNode.target, skillId)    -- 觸發buff效果
         end
         -- 特殊buff觸發處理
-        if triggerBuffList[CONST.BUFF.PARALYSIS] or triggerBuffList[CONST.BUFF.TOXIN_OF_POSION] then  -- 麻痺, 烈毒
+        if triggerBuffList[CONST.BUFF.PARALYSIS] or triggerBuffList[CONST.BUFF.TOXIN_OF_POISON] then  -- 麻痺, 烈毒
             CHAR_UTIL:setSpineAnimation(chaNode, CONST.ANI_ACT.WAIT, true)
         else
             --紀錄hit數
@@ -1739,9 +1732,7 @@ function NgBattleCharacterBase:castStartBattleSkill(chaNode)
             CHAR_UTIL:calculateAllTable(chaNode, resultTable, isSkipCal, actionResultTable, allTargetTable, v * 10, allPassiveTable)   -- 全部傷害/治療/buff...處理
         end
     end
-    for k, v in pairs(CONST.PASSIVE_TYPE_ID[CONST.PASSIVE_TRIGGER_TYPE.AURA_START_BATTLE]) do -- 開場觸發
-        NewBattleUtil:calAuraSkillEffect(chaNode, CONST.PASSIVE_TRIGGER_TYPE.AURA_START_BATTLE)
-    end
+    NewBattleUtil:calAuraSkillEffect(chaNode, CONST.PASSIVE_TRIGGER_TYPE.AURA_START_BATTLE) -- (靈氣)開場觸發
 end
 function NgBattleCharacterBase:castCdPassiveSkill(chaNode)
     if chaNode.nowState == CONST.CHARACTER_STATE.DYING and chaNode.nowState == CONST.CHARACTER_STATE.DEATH 
@@ -1757,7 +1748,7 @@ function NgBattleCharacterBase:castCdPassiveSkill(chaNode)
             local allTargetTable = { }
             if NewBattleUtil:castPassiveSkill(chaNode, v, resultTable, allPassiveTable, CONST.PASSIVE_TRIGGER_TYPE.CD) then
                 LOG_UTIL:setPreLog(chaNode, resultTable)
-                CHAR_UTIL:calculateAllTable(chaNode, resultTable, isSkipCal, actionResultTable, allTargetTable, v * 10, allPassiveTable)   -- 全部傷害/治療/buff...處理
+                CHAR_UTIL:calculateAllTable(chaNode, resultTable, isSkipCal, actionResultTable, allTargetTable, v * 10 + 1, allPassiveTable)   -- 全部傷害/治療/buff...處理
             end
         end
     end

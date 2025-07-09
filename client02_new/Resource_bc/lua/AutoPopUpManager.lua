@@ -63,12 +63,21 @@ function AutoPopupManager_checkAutoPopup()
         CCUserDefault:sharedUserDefault():setStringForKey("POPAD_" .. UserInfo.playerInfo.playerId,todayDate)
         return
     end
+    --skinShop
+    local SkinPopString = CCUserDefault:sharedUserDefault():getStringForKey("SKIN_SHOP" .. UserInfo.playerInfo.playerId)
+    if require ("Shop.ShopSubPage_Skin"):hasItem() and  SkinPopString ~= todayDate then 
+        PageManager.pushPage("ShopControlPage")
+        CCUserDefault:sharedUserDefault():setStringForKey("SKIN_SHOP" .. UserInfo.playerInfo.playerId,todayDate)
+        return
+    end
     --²Ö­pµn¤J
     local LoginPopString = CCUserDefault:sharedUserDefault():getStringForKey("POPLOGIN_" .. UserInfo.playerInfo.playerId)
-    if LoginPopString ~= todayDate and require("LoginRewardPage"):getServerData().days < 8 then
-        PageManager.pushPage("LoginRewardPage")
-        CCUserDefault:sharedUserDefault():setStringForKey("POPLOGIN_" .. UserInfo.playerInfo.playerId,todayDate)
-        return
+    if ActivityInfo:getActivityIsOpenById(Const_pb.ACTIVITY200_EIGHT_DAY_LOGIN) then
+        if LoginPopString ~= todayDate and require("LoginRewardPage"):getServerData().days <= 8 then
+            PageManager.pushPage("LoginRewardPage")
+            CCUserDefault:sharedUserDefault():setStringForKey("POPLOGIN_" .. UserInfo.playerInfo.playerId,todayDate)
+            return
+        end
     end
     -- ¼u¸õÂ§¥]
     local PopSaledata = next(ActPopUpSaleSubPage_Content_getServerData())

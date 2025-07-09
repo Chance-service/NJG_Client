@@ -2,7 +2,7 @@ local CONST = require("Battle.NewBattleConst")
 local DATA = require("Battle.NgBattleDataManager")
 
 NgBattleResultManager = NgBattleResultManager or { }
-NgBattleResultManager.playType = { NONE = 0, BATTLE_RESULT = 1, LEVEL_UP = 2, H_SCENE = 3, MAIN_STORY = 4, MAIN_H_STORY = 5 ,ALBUM = 6 }
+NgBattleResultManager.playType = { NONE = 0, BATTLE_RESULT = 1, LEVEL_UP = 2, H_SCENE = 3, MAIN_STORY = 4, MAIN_H_STORY = 5 ,ALBUM = 6, NEXT_STAGE = 7 }
 
 NgBattleResultManager.showReslut = false    -- 戰鬥結算
 NgBattleResultManager.showLevelUp = false   -- 升級
@@ -10,7 +10,7 @@ NgBattleResultManager.showMainStory = false -- 主線劇情
 NgBattleResultManager.showMainHStory = false-- 主線中間H劇情
 NgBattleResultManager.showHStory = false    -- 聖女H劇情
 NgBattleResultManager.showAlbum = false 
-
+NgBattleResultManager.isNextStage = false 
 
 function NgBattleResultManager_clearData()
     NgBattleResultManager.showReslut = false
@@ -34,8 +34,7 @@ function NgBattleResultManager_playNextResult(isLose)
             return NgBattleResultManager.playType.LEVEL_UP
         end
         if NgBattleResultManager.showMainStory then
-            PageManager.pushPage("FetterGirlsDiary")
-                  
+            PageManager.pushPage("FetterGirlsDiary")       
             return NgBattleResultManager.playType.MAIN_STORY
         end
         if NgBattleResultManager.showMainHStory then
@@ -49,6 +48,19 @@ function NgBattleResultManager_playNextResult(isLose)
             PageManager.pushPage("AlbumStoryDisplayPage")
             NgBattleResultManager.showHStory = false
             return NgBattleResultManager.playType.H_SCENE
+        end
+        if NgBattleResultManager.isNextStage then
+            local array = CCArray:create()
+            array:addObject(CCCallFunc:create(function()
+                PageManager.pushPage("TransScenePopUp")
+                PageManager.popPage("NgBattleResultPage")
+            end))
+            array:addObject(CCDelayTime:create(0.5))
+            array:addObject(CCCallFunc:create(function()
+                 require("Battle.NgBattlePage"):onDekaronBoss()
+            end))
+            NgBattlePageContainer:runAction(CCSequence:create(array))
+            return NgBattleResultManager.playType.NEXT_STAGE
         end
         local currPage = MainFrame:getInstance():getCurShowPageName()
         if currPage == "NgBattlePage" then  --回復BGM

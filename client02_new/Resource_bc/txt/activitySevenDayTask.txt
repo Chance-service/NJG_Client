@@ -5,9 +5,9 @@ id	day	tagNum	tagName	task	taskTarget	reward	类型	价格	跳转备注
 1004	0	0	0	0	100	70000_21_120	0	0	0
 10001	0	0	-100,50	1	7	10000_1002_5000	0	0	0
 101	1	1	@MissionDay7_tagname_9	@MissionDay7_target_13	1	10000_1001_50	0	0	0
-102	1	2	@MissionDay7_tagname_7	@MissionDay7_target_7_1	19	30000_9002_25	0	0	30
-103	1	2	@MissionDay7_tagname_7	@MissionDay7_target_7_2	33	70000_1_30	0	0	30
-104	1	2	@MissionDay7_tagname_7	@MissionDay7_target_7_3	38	10000_1002_50000	0	0	30
+102	1	2	@MissionDay7_tagname_7	@MissionDay7_target_7_1	9	30000_9002_25	0	0	30
+103	1	2	@MissionDay7_tagname_7	@MissionDay7_target_7_2	19	70000_1_30	0	0	30
+104	1	2	@MissionDay7_tagname_7	@MissionDay7_target_7_3	28	10000_1002_50000	0	0	30
 105	1	2	@MissionDay7_tagname_7	@MissionDay7_target_7_4	39	10000_1001_50	0	0	30
 106	1	2	@MissionDay7_tagname_7	@MissionDay7_target_7_5	46	30000_7001_50000	0	0	30
 107	1	3	@MissionDay7_tagname_4	@MissionDay7_target_4	5	10000_1001_50	0	0	30

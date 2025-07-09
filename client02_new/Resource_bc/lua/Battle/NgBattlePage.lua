@@ -2,7 +2,8 @@
 
 local thisPageName = "NgBattlePage"
 NgBattlePageInfo = { }
-local selfContainer = nil       -- all ui information
+
+
 gameStartTime = 0
 
 local Formation_pb = require("Formation_pb")
@@ -303,13 +304,14 @@ end
 -------------------------------------------------------------------------
 function NgBattlePageInfo:onEnter(container)
     container:registerLibOS()
+    NgBattlePageContainer = container
     --if libOS:getInstance():getIsDebug() then
     --    battleSpeedTable = { [1.5] = 1, [2.5] = 2--[[, [4] = 3]] }
     --else
     --    battleSpeedTable = { [1.5] = 1, [2.5] = 2 }
     --end
     UserInfo.sync()
-    
+    NodeHelper:setNodesVisible(container,{mBlackMask = CONST.IS_BATTLE_NEXT })
     self:MiniGameSync(container)
     NgBattleDataManager_setBattlePageContainer(container) 
     NgBattleDataManager.battleMapId = UserInfo.stateInfo.curBattleMap
@@ -483,6 +485,7 @@ function NgBattlePageInfo:onExecute(container)
     else
         MainFrame_setGuideMask(false)
     end
+    NodeHelper:setNodesVisible(container, { mTipAni = self:isShowTip() })
 end
 ---------------------------------------------------------------------
 -- UI按鈕回應
@@ -534,7 +537,9 @@ function NgBattlePageInfo:onCycle(container, resultInfo, battleId, battleType, m
     NgBattleDataManager.serverEnemyInfo = resultInfo
     NgBattleDataManager.battleId = battleId
     NgBattleDataManager.TowerId = mapId
-    NgFightSceneHelper:EnterState(container, CONST.FIGHT_STATE.EDIT_TEAM)
+    if not CONST.IS_BATTLE_NEXT then
+        NgFightSceneHelper:EnterState(container, CONST.FIGHT_STATE.EDIT_TEAM)
+    end
     --NodeHelper:setMenuItemEnabled(container, "InfoBtn", false)
 end
 function NgBattlePageInfo:onSeasonTower(container, resultInfo, battleId, battleType, mapId)
@@ -575,7 +580,9 @@ function NgBattlePageInfo:onSingleBoss(container, resultInfo, battleId, battleTy
     NgBattleDataManager.serverEnemyInfo = resultInfo
     NgBattleDataManager.battleId = battleId
     NgBattleDataManager.SingleBossId = mapId
-    NgFightSceneHelper:EnterState(container, CONST.FIGHT_STATE.EDIT_TEAM)
+    if not CONST.IS_BATTLE_NEXT then
+        NgFightSceneHelper:EnterState(container, CONST.FIGHT_STATE.EDIT_TEAM)
+    end
 end
 
 function NgBattlePageInfo:onSingleBossSim(container, resultInfo, battleId, battleType, mapId)
@@ -697,10 +704,49 @@ function NgBattlePageInfo_onRestartBoss(container)
     end
 end
 --------------------------------------------------------
+function NgBattlePageInfo:moveBtns(container)
+    local initialY = nil -- 用於記錄按鈕的初始Y座標
+
+    -- 設定按鈕移動效果
+    local function moveButtons(isVisible)
+        local mainContainer = tolua.cast(MainFrame:getInstance(), "CCBContainer")
+        local mainButtons = mainContainer:getCCNodeFromCCB("mMainFrameButtons")
+
+        -- 如果尚未記錄初始位置，則進行記錄
+        if not initialY then
+            initialY = mainButtons:getPositionY()
+        end
+
+        local visibleSize = CCEGLView:sharedOpenGLView():getFrameSize()
+        local contentHeight = 159
+        local targetY = isVisible and initialY or initialY - contentHeight
+        local moveAction = CCMoveTo:create(0.2, ccp(0, targetY)) -- 移動動作
+        mainButtons:runAction(moveAction)
+    end
+
+    -- 動作序列
+    local array = CCArray:create()
+    array:addObject(CCCallFunc:create(function()
+        local GuideManager = require("Guide.GuideManager")
+        if not GuideManager.isInGuide then
+            moveButtons(false) -- 按鈕移動到負-Y座標
+        end
+
+    end))
+    array:addObject(CCDelayTime:create(1)) -- 延遲1秒
+    array:addObject(CCCallFunc:create(function()
+        moveButtons(true) -- 按鈕移回初始位置
+    end))
+    -- 執行序列
+    container:runAction(CCSequence:create(array))
+end
 -- AFK Btn
 -- Boss挑戰
 function NgBattlePageInfo:onDekaronBoss(container)
-    if NgBattleDataManager.battleType == CONST.SCENE_TYPE.AFK then
+    NgBattleDataManager_clearBattleData()
+    NodeHelper:setNodesVisible(NgBattlePageContainer,{mBlackMask = true })
+    self:moveBtns(NgBattlePageContainer)
+    if NgBattleDataManager.battleType == CONST.SCENE_TYPE.AFK or NgBattleResultManager.isNextStage then
         if mapCfg[UserInfo.stateInfo.curBattleMap].NextID ~= 0 then
             if mapCfg[UserInfo.stateInfo.curBattleMap].Unlock > UserInfo.roleInfo.level then
                 MessageBoxPage:Msg_Box(common:getLanguageString("@OpenLevel", mapCfg[UserInfo.stateInfo.curBattleMap].Unlock))
@@ -750,7 +796,7 @@ function NgBattlePageInfo:onMiniGame(container)
                 return
             end
         end
-        FetterGirlsDiary_setPhotoRole(nil, chapter, level, storyIdx)
+        FetterGirlsDiary_setPhotoRole(nil, chapter, level, storyIdx,1)
         PageManager.pushPage("FetterGirlsDiary")
         NgBattleResultManager.showHStory = NgFightSceneHelper:StroyDisplay(stage)
     end
@@ -1084,7 +1130,9 @@ function NgBattlePageInfo:setUIType(container)
         mAutoLock = (not isGuide) and (LockManager_getShowLockByPageName(GameConfig.LOCK_PAGE_KEY.AUTO_BATTLE)),
         mVipSpeedLock = (not isGuide) and (FlagDataBase_GetData()[flagDataBase.FlagId.BATTLE_SPEED_X4] ~= 1),
         mSingleBossNode = (NgBattleDataManager.battleType == NewBattleConst.SCENE_TYPE.SINGLE_BOSS) or
-                          (NgBattleDataManager.battleType == NewBattleConst.SCENE_TYPE.SINGLE_BOSS_SIM)
+                          (NgBattleDataManager.battleType == NewBattleConst.SCENE_TYPE.SINGLE_BOSS_SIM),
+        --mTipAni = self:isShowTip(),
+        mShade = false,
     })
     NodeHelper:setMenuItemEnabled(NgBattleDataManager.battlePageContainer, "InfoBtn", true)
     NodeHelper:setMenuItemImage(container, { mSpeedBtnImg = { normal = "Battle_btn_speedx" .. math.floor(battleSpeed) .. ".png" } })
@@ -1903,6 +1951,19 @@ function NgBattlePageInfo:pushPopUpPage(id)
     local actPopupSalePage = require("ActPopUpSale.ActPopUpSalePage")
     actPopupSalePage:setEntryTab(tostring(id))
     PageManager.pushPage("ActPopUpSale.ActPopUpSalePage")
+end
+
+function NgBattlePageInfo:isShowTip()
+    local mapId = NgBattleDataManager.battleMapId
+    if not mapCfg[mapId] then
+        return false
+    end
+    local chapter = mapCfg[mapId].Chapter
+    local level = mapCfg[mapId].Level
+    local GuideManager = require("Guide.GuideManager")
+    -- 第二章&3-1召喚完&3-6快速戰鬥完出現手指+光圈提示(不壓黑)
+    return (tonumber(chapter) == 2 and (not GuideManager.isInGuide)) or (tonumber(chapter) == 3 and tonumber(level) == 6 and (not GuideManager.isInGuide))
+           or (tonumber(chapter) == 3 and tonumber(level) == 1 and (not GuideManager.isInGuide))
 end
 ---------------------------------------------------------------------
 

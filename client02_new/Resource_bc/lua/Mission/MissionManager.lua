@@ -41,6 +41,7 @@ function MissionManager.AnalysisPacket(msg)
     local questCfg = ConfigManager.getQuestCfg()
     local allPacket = {}
     local showTaskInfo = {}
+
     for i = 1,#msg.questList do
         local tempQuest = msg.questList[i]
         if allPacket[questCfg[tempQuest.id].team] == nil then

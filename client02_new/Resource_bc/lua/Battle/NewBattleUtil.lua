@@ -248,7 +248,7 @@ function NewBattleUtil:calReduction(attacker, target, isPhy)
     local def = self:calDef(attacker, target, isPhy)
     local reduction = def / (def + self:calRoundValue(1 + level / 3, 1) * (800 - level))
     reduction = math.max(reduction, 0)   -- 防止負數
-    reduction = math.min(reduction, CONST.MAX_DEF_PER)   -- 15%減傷上限
+    reduction = math.min(reduction, self:calTargetMaxReduction(target))   -- 減傷上限
     return self:calRoundValue(reduction, -4)
 end
 --計算(目標)物/魔減傷(%)(不計算穿透)
@@ -257,8 +257,24 @@ function NewBattleUtil:calReduction2(attacker, target, isPhy)
     local def = self:calDef2(attacker, target, isPhy)
     local reduction = def / (def + self:calRoundValue(1 + level / 3, 1) * (800 - level))
     reduction = math.max(reduction, 0)   -- 防止負數
-    reduction = math.min(reduction, CONST.MAX_DEF_PER)   -- 15%減傷上限
+    reduction = math.min(reduction, self:calTargetMaxReduction(target))   -- 減傷上限
     return self:calRoundValue(reduction, -4)
+end
+--計算(目標)物/魔減傷(%)上限
+function NewBattleUtil:calTargetMaxReduction(target)
+    local level = target.otherData[CONST.OTHER_DATA.CHARACTER_LEVEL]
+    local params = { { 1, 0.15 }, { 31, 0.16 }, { 51, 0.18 }, { 71, 0.2 }, { 101, 0.22 }, { 121, 0.24 },
+                    { 161, 0.26 }, { 201, 0.28 }, { 241, 0.3 }
+    }
+    local maxReduction = 0.15
+    for i = 1, #params do
+        if level >= params[i][1] then
+            maxReduction = params[i][2]
+        else
+            break
+        end
+    end
+    return maxReduction
 end
 
 --計算角色屬性血量
@@ -299,6 +315,10 @@ function NewBattleUtil:calCri(attacker, target)
     criRate = math.max(criRate, 0)   -- 防止負數
     -- 被動技能檢查
     --local passiveValue = self:calPassiveSkillAttrPercent(attacker, Const_pb.CRITICAL)
+    local criValueAura = NewBattleUtil:calAuraSkillValue(attacker, CONST.PASSIVE_TRIGGER_TYPE.AURA_SET_CRI_PER)
+    if criValueAura then
+        criRate = criValueAura
+    end
     return self:calRoundValue(criRate, -4)
 end
 
@@ -1252,7 +1272,7 @@ function NewBattleUtil:calAuraSkillRatio(chaNode, auraType, isAdd)
             for i = 1, #aliveIdTableF do
                 local skillType, fullSkillId = self:checkSkill(v, flist[aliveIdTableF[i]].skillData)
                 if skillType == CONST.SKILL_DATA.PASSIVE then
-                    local params = SkillManager:calSkillSpecialParams(fullSkillId, { auraType = auraType, job = chaNode.otherData[CONST.OTHER_DATA.CFG].Job, buff = chaNode.buffData })
+                    local params = SkillManager:calSkillSpecialParams(fullSkillId, { auraType = auraType, job = chaNode.otherData[CONST.OTHER_DATA.CFG].Job, buff = chaNode.buffData, chaNode = chaNode })
                     if math.abs(params[1]) > triggerValue then
                         ratio = ratio + params[1]
                         triggerValue = math.abs(params[1])
@@ -1264,7 +1284,7 @@ function NewBattleUtil:calAuraSkillRatio(chaNode, auraType, isAdd)
             for i = 1, #aliveIdTableE do
                 local skillType, fullSkillId = self:checkSkill(v, elist[aliveIdTableE[i]].skillData)
                 if skillType == CONST.SKILL_DATA.PASSIVE then
-                    local params = SkillManager:calSkillSpecialParams(fullSkillId, { auraType = auraType, job = chaNode.otherData[CONST.OTHER_DATA.CFG].Job, buff = chaNode.buffData })
+                    local params = SkillManager:calSkillSpecialParams(fullSkillId, { auraType = auraType, job = chaNode.otherData[CONST.OTHER_DATA.CFG].Job, buff = chaNode.buffData, chaNode = chaNode })
                     if math.abs(params[1]) > triggerValue then
                         ratio = ratio + params[1]
                         triggerValue = math.abs(params[1])
@@ -1275,6 +1295,40 @@ function NewBattleUtil:calAuraSkillRatio(chaNode, auraType, isAdd)
     end
     ratio = math.max(0, ratio)
     return ratio
+end
+-- 計算光環技能影響數值
+function NewBattleUtil:calAuraSkillValue(chaNode, auraType)
+    local value = nil
+    local flist = NgBattleDataManager_getFriendList(chaNode)
+    local elist = NgBattleDataManager_getEnemyList(chaNode)
+    local aliveIdTableF = self:initAliveTable(flist)
+    local aliveIdTableE = self:initAliveTable(elist)
+    for k, v in pairs(CONST.PASSIVE_TYPE_ID[auraType]) do
+        local auraTriggerType = math.floor(auraType / 100)
+        if auraTriggerType == CONST.AURA_TRIGGER_TYPE.ALL or auraTriggerType == CONST.AURA_TRIGGER_TYPE.FRIEND then
+            for i = 1, #aliveIdTableF do
+                local skillType, fullSkillId = self:checkSkill(v, flist[aliveIdTableF[i]].skillData)
+                if skillType == CONST.SKILL_DATA.PASSIVE then
+                    local params = SkillManager:calSkillSpecialParams(fullSkillId, { auraType = auraType, job = chaNode.otherData[CONST.OTHER_DATA.CFG].Job, buff = chaNode.buffData, chaNode = chaNode })
+                    if params[1] then
+                        value = math.abs(params[1])
+                    end
+                end
+            end
+        end
+        if auraTriggerType == CONST.AURA_TRIGGER_TYPE.ALL or auraTriggerType == CONST.AURA_TRIGGER_TYPE.ENEMY then
+            for i = 1, #aliveIdTableE do
+                local skillType, fullSkillId = self:checkSkill(v, elist[aliveIdTableE[i]].skillData)
+                if skillType == CONST.SKILL_DATA.PASSIVE then
+                    local params = SkillManager:calSkillSpecialParams(fullSkillId, { auraType = auraType, job = chaNode.otherData[CONST.OTHER_DATA.CFG].Job, buff = chaNode.buffData, chaNode = chaNode })
+                    if params[1] then
+                        value = math.abs(params[1])
+                    end
+                end
+            end
+        end
+    end
+    return value
 end
 -- 計算光環技能額外效果
 function NewBattleUtil:calAuraSkillEffect(chaNode, auraType)

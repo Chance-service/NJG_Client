@@ -468,6 +468,9 @@ function MissionDay7Page:getBarScaleX(mSigninCount)
             break
         end
     end
+    if mSigninCount >= scaleXTable[#scaleXTable][1] then
+        scaleX = 1
+    end
     return scaleX
 end
 

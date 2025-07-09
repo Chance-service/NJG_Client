@@ -111,6 +111,9 @@ function NewbieGuideForcedBase:refreshPage( container )
         --第一步一定要记录下，如果不记录，玩家在创建完角色后直接退出游戏，下次再进入就不再触发新手部分的引导
         self:setStepPacket(container, currGuideType, 10001)
     end
+    if currStepIdx == 10601 then    -- 檢查火2是否解鎖
+        self:checkEmployRole(container, 2)
+    end
 
     ------------------------------------------------------------------------------------------------------
     -- add & modify 
@@ -162,7 +165,8 @@ function NewbieGuideForcedBase:refreshPage( container )
            currStepCfg.showType == GameConfig.GUIDE_TYPE.TOUCH_HINT_2 or
            currStepCfg.showType == GameConfig.GUIDE_TYPE.TOUCH_HINT_3 then
         touchStep = currStepIdx
-        NodeHelper:setNodesVisible(container, { mHintNode = true })
+        NodeHelper:setNodesVisible(container, { mHintNode = true, mHintMask1 = true, mHintMask2 = true,
+                                                mHintMask3 = true, mHintMask4 = true })
         btnClickNode:setEnabled(true)   -- 開啟按鈕點擊
         touchLayer:setTouchEnabled(false)   -- 關閉pushPage預設layer
         -- 取得對應page的container
@@ -217,6 +221,68 @@ function NewbieGuideForcedBase:refreshPage( container )
             local eft = eftLs[idx]
             if eft ~= nill then
                 local eftNode = ScriptContentBase:create(eft, 0)
+                circleNode:addChild(eftNode)
+                eftNode:release()
+            end
+        end
+        -- 移動座標
+        local hintNode = container:getVarNode("mHintNode")
+        hintNode:setPosition(posFinal)
+        -- 註冊layer點擊事件
+        self:registLayerEvent(container)
+    -- 8. 按鈕點擊(非強制)
+    elseif currStepCfg.showType == GameConfig.GUIDE_TYPE.TOUCH_HINT_NO_MASK then
+        touchStep = currStepIdx
+        NodeHelper:setNodesVisible(container, { mHintNode = true, mHintMask1 = false, mHintMask2 = false,
+                                                mHintMask3 = false, mHintMask4 = false })
+        btnClickNode:setEnabled(true)   -- 開啟按鈕點擊
+        touchLayer:setTouchEnabled(false)   -- 關閉pushPage預設layer
+        -- 取得對應page的container
+        local containerRef = GuideManager.PageContainerRef[currStepCfg.pageName]
+        if containerRef and string.find(currStepCfg.pageName, "_cell") then
+            containerRef = containerRef:getCCBFileNode()
+        end
+        if containerRef == nil then
+            PageManager.popPage(thisPageName)
+            GuideManager.isInGuide = false
+            GuideManager.IsNeedShowPage = false
+            CCLuaLog(">>NewbieGuideForcedBase containerRef == nil")
+            if GuideManager.currGuideType > GuideManager.guideType.NEWBIE_GUIDE then
+                -- 非一開始教學出現錯誤 > 強制結束教學
+                currStepIdx = 0
+                GuideManager.currGuide[GuideManager.currGuideType] = 0
+                self:setStepPacket(container, currGuideType, currStepIdx)
+            end
+            return
+        end
+        -- 點擊目標node
+        local targetClickNode = containerRef:getVarNode(currStepCfg.ownerVar)
+        if targetClickNode == nil then
+            PageManager.popPage(thisPageName)
+            GuideManager.isInGuide = false
+            GuideManager.IsNeedShowPage = false
+            CCLuaLog(">>NewbieGuideForcedBase ClickNode == nil")
+            if GuideManager.currGuideType > GuideManager.guideType.NEWBIE_GUIDE then
+                -- 非一開始教學出現錯誤 > 強制結束教學
+                currStepIdx = 0
+                GuideManager.currGuide[GuideManager.currGuideType] = 0
+                self:setStepPacket(container, currGuideType, currStepIdx)
+            end
+            return
+        end
+        -- 光圈/手指parent
+        local circleNode = container:getVarNode("mCircleNode")
+        -- 取得世界座標
+        local worldPos = targetClickNode:getParent():convertToWorldSpace(ccp(targetClickNode:getPositionX(), targetClickNode:getPositionY()))
+        local posFinal = circleNode:convertToNodeSpace(worldPos)
+        -- 綁定光圈/手指UI
+        local eftLs = common:split(currStepCfg.selectEffect, "|")
+        circleNode:removeAllChildren()
+        for idx = 1,  #eftLs do
+            local eft = eftLs[idx]
+            if eft ~= nill then
+                local eftNode = ScriptContentBase:create(eft, 0)
+                NodeHelper:setNodesVisible(eftNode, { mShade = false })
                 circleNode:addChild(eftNode)
                 eftNode:release()
             end
@@ -311,8 +377,12 @@ function NewbieGuideForcedBase:registLayerEvent(container) -- 點擊手指提示
             --CCLuaLog("GUIDE CHECK STEP : " .. touchStep)
             --CCLuaLog("GUIDE CHECK STR : " .. str)
             if str ~= checkStr then
+                if NewbieGuideCfg[touchStep].showType == GameConfig.GUIDE_TYPE.TOUCH_HINT_NO_MASK then
+                    GuideManager.currGuide[GuideManager.currGuideType] = 0
+                    GuideManager.isInGuide = false
+                end
                 NewbieGuideForcedBase:setStepPacket(container, GuideManager.currGuideType, 0)
-                PageManager.popPage(thisPageName) 
+                PageManager.popPage(thisPageName)
                 return
             end
             if isAuto then
@@ -430,6 +500,18 @@ function NewbieGuideForcedBase:onTestSkip(container)
     local CONST = require("Battle.NewBattleConst")
     if NgBattleDataManager.battleType == CONST.SCENE_TYPE.GUIDE then
         MainFrame_onMainPageBtn()
+    end
+end
+
+function NewbieGuideForcedBase:checkEmployRole(container, itemId)
+    local UserMercenaryManager = require("UserMercenaryManager")
+    local statusInfo = UserMercenaryManager:getMercenaryStatusByItemId(itemId)
+    if statusInfo.roleStage ~= Const_pb.IS_ACTIVITE then
+        local RoleOpr_pb = require("RoleOpr_pb")
+        local msg = RoleOpr_pb.HPRoleEmploy()
+        msg.roleId = statusInfo.roleId
+        local pb = msg:SerializeToString()
+        PacketManager:getInstance():sendPakcet(HP_pb.ROLE_EMPLOY_C, pb, #pb, true)
     end
 end
 

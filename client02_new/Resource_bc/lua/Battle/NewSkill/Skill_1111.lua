@@ -7,7 +7,7 @@ require("Battle.NewSkill.SkillUtil")
 local aliveIdTable = { }
 -------------------------------------------------------
 --[[ NEW
-對當前目標造成50/60/80%(params1)傷害，並額外造成其身上Debuff數量 * 50/60/80%(params1)傷害
+對當前目標造成其身上Debuff數量 * 30/35/40%(params1)傷害，並移除該目標全部debuff
 ]]--
 --[[ OLD
 對MP最高的敵方周圍橢圓形區域(w:240(params1), h:150(params2))內目標造成150%/170%/200%(params3)傷害，
@@ -50,6 +50,10 @@ function Skill_1111:runSkill(chaNode, skillId, resultTable, allPassiveTable, tar
     local tarTable = { }
     local criTable = { }
     local weakTable = { }
+    local spClassTable = { }
+    local spFuncTable = { }
+    local spParamTable = { }
+    local spTarTable = { }
     for i = 1, #allTarget do
         local target = allTarget[i]
         --減傷
@@ -63,7 +67,7 @@ function Skill_1111:runSkill(chaNode, skillId, resultTable, allPassiveTable, tar
                                                                                  chaNode.battleData[NewBattleConst.BATTLE_DATA.IS_PHY], 
                                                                                  skillCfg.actionName)
         local addRatio = self:getSpRate(target, skillId)
-        local baseDmg = atk * (1 - reduction) * elementRate * tonumber(params[1]) * (1 + addRatio) / hitMaxNum * buffValue * auraValue * markValue
+        local baseDmg = atk * (1 - reduction) * elementRate * tonumber(params[1]) * (addRatio) / hitMaxNum * buffValue * auraValue * markValue
 
         local isCri = false
         local weakType = (elementRate > 1 and 1) or (elementRate < 1 and -1) or 0
@@ -88,11 +92,22 @@ function Skill_1111:runSkill(chaNode, skillId, resultTable, allPassiveTable, tar
             table.insert(criTable, false)
             table.insert(weakTable, 0)
         end
+        if hitNum == hitMaxNum then
+            table.insert(spClassTable, NewBattleConst.FunClassType.BUFF_MANAGER)
+            table.insert(spFuncTable, "clearAllDeBuff")
+            table.insert(spParamTable, { target, target.buffData })
+            table.insert(spTarTable, target)
+        end
     end
+    
     resultTable[NewBattleConst.LogDataType.DMG] = dmgTable
     resultTable[NewBattleConst.LogDataType.DMG_TAR] = tarTable
     resultTable[NewBattleConst.LogDataType.DMG_CRI] = criTable
     resultTable[NewBattleConst.LogDataType.DMG_WEAK] = weakTable
+    resultTable[NewBattleConst.LogDataType.SP_FUN_CLASS] = spClassTable
+    resultTable[NewBattleConst.LogDataType.SP_FUN_NAME] = spFuncTable
+    resultTable[NewBattleConst.LogDataType.SP_FUN_PARAM] = spParamTable
+    resultTable[NewBattleConst.LogDataType.SP_FUN_TAR] = spTarTable
 
     return resultTable
 end
@@ -124,7 +139,7 @@ function Skill_1111:getSpRate(chaNode, skillId)
     local num = 0
     local cfg = ConfigManager:getNewBuffCfg()
     for k, v in pairs(chaNode.buffData) do
-        if cfg[k] and cfg[k].gain == 0 and cfg[k].visible == 1 then -- 可見的debuff才計算
+        if cfg[k] and cfg[k].gain == 0 and cfg[k].visible == 1 and cfg[k].dispel then -- 可見&可驅散的debuff才計算
             num = num + 1
         end
     end

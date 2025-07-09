@@ -156,7 +156,7 @@ function Skill_1180:runSkill(chaNode, skillId, resultTable, allPassiveTable, tar
             local hp = target.battleData[NewBattleConst.BATTLE_DATA.HP]
             table.insert(spClassTable, NewBattleConst.FunClassType.NG_BATTLE_CHARACTER_UTIL)
             table.insert(spFuncTable, "addShield")
-            table.insert(spParamTable, { chaNode, target, math.floor(hp * tonumber(params2[3]) + 0.5) })
+            table.insert(spParamTable, { chaNode, target, math.floor(hp * tonumber(params2[3]) + 0.5), skillId })
             table.insert(spTarTable, target)
         end
     end

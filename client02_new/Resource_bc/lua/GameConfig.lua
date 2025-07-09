@@ -539,6 +539,7 @@ GameConfig = {
         HELP_AGREEMENT_R18 = "HelpServiceAnnounceECCHI ",
         HELP_AGREEMENT_KUSO = "HelpServiceAnnounce24",
         HELP_AGREEMENT_EROLABS = "HelpServiceAnnounceEROLABS",
+        HELP_AGREEMENT_OP = "HelpServiceAnnounceOP",
         -------- 大廳 --------
         -- 工坊
         HELP_SMELT = "HelpSmelt",
@@ -1677,7 +1678,7 @@ GameConfig = {
         size = 3,
         price = 200,
     },
-    buyFastFightPrice = "0,0,50,50,50,50,100,100,100,100,100,100",
+    buyFastFightPrice = "0,50,150,250",
     -- 渠道配置   是否强制提示 0 关闭 1正常提示 2强制提示     网址     第三方支付开启  0关闭  1开启
     -- 第四个参数 是判断同包名 不同版本号判断第一个参数是否生效  s
     ChannelConfig = {
@@ -2140,6 +2141,7 @@ GameConfig.GUIDE_TYPE = {
     POP_NEWBIE_PAGE = 5,
     NEXT_NEWBIE_STEP = 6,
     CALL_FUNC = 7,
+    TOUCH_HINT_NO_MASK = 8,
     TOUCH_HINT_2 = 12,  -- 2-7編隊專用 需要判斷隊伍空位
     TOUCH_HINT_3 = 22,  -- 2-7編隊專用 需要判斷風5位置
     OPEN_MASK_WAIT_BATTLE_INIT = 14,

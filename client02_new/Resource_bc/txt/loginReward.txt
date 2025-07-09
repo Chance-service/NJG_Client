@@ -1,9 +1,9 @@
 id	lobbyTab	backGround	Title	Reward
-1	Lobby_Btn_Login8Days_01.png	Spine/NG2D,NG2D_24	Login8Days_label01.png	10000_1001_1000
-2	Lobby_Btn_Login8Days_01.png	Spine/NG2D,NG2D_24	Login8Days_label01.png	10000_1001_1001
-3	Lobby_Btn_Login8Days_01.png	Spine/NG2D,NG2D_24	Login8Days_label01.png	10000_1001_1002
-4	Lobby_Btn_Login8Days_01.png	Spine/NG2D,NG2D_24	Login8Days_label01.png	10000_1001_1003
-5	Lobby_Btn_Login8Days_01.png	Spine/NG2D,NG2D_24	Login8Days_label01.png	10000_1001_1004
-6	Lobby_Btn_Login8Days_01.png	Spine/NG2D,NG2D_24	Login8Days_label01.png	10000_1001_1005
-7	Lobby_Btn_Login8Days_01.png	Spine/NG2D,NG2D_24	Login8Days_label01.png	10000_1001_1006
-8	Lobby_Btn_Login8Days_01.png	Spine/NG2D,NG2D_24	Login8Days_label01.png	10000_1001_1007
+1	_Lobby_Btn_Login8Days_02.png	Spine/NG2D,NG2D_24	Login8Days_label01.png	30000_6012_2
+2	_Lobby_Btn_Login8Days_02.png	Spine/NG2D,NG2D_24	Login8Days_label01.png	30000_7503_5
+3	_Lobby_Btn_Login8Days_02.png	Spine/NG2D,NG2D_24	Login8Days_label01.png	30000_7186_3
+4	_Lobby_Btn_Login8Days_02.png	Spine/NG2D,NG2D_24	Login8Days_label01.png	30000_7209_5
+5	_Lobby_Btn_Login8Days_02.png	Spine/NG2D,NG2D_24	Login8Days_label01.png	30000_6012_3
+6	_Lobby_Btn_Login8Days_02.png	Spine/NG2D,NG2D_24	Login8Days_label01.png	30000_7216_5
+7	_Lobby_Btn_Login8Days_02.png	Spine/NG2D,NG2D_24	Login8Days_label01.png	30000_7223_30
+8	_Lobby_Btn_Login8Days_02.png	Spine/NG2D,NG2D_24	Login8Days_label01.png	30000_6012_5

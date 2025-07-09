@@ -274,10 +274,10 @@ function DungeonPageBase:setRefreshTime(container)
                 leftTime = leftTime-1
                 local txt = common:dateFormat2String(leftTime, true)
                 NodeHelper:setStringForLabel(container,{ mReceiveTxt = txt })
-                if leftTime <= 0 then
+                if leftTime <= 0 and container.RefreshTime then
                      CCDirector:sharedDirector():getScheduler():unscheduleScriptEntry(container.RefreshTime)
                      container.RefreshTime = nil
-                     DungeonPageBase:InfoReq()
+                     DungeonPageBase:BuildScrollview(DungeonPageBase.container)
                 end
             end, 1, false)
             break

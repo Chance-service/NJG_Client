@@ -3979,7 +3979,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_204401.png</key>
+            <key>Buff_114001.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -3994,7 +3994,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_204402.png</key>
+            <key>Buff_114002.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4009,7 +4009,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_204501.png</key>
+            <key>Buff_114003.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4024,7 +4024,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_204502.png</key>
+            <key>Buff_204401.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4039,7 +4039,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_204503.png</key>
+            <key>Buff_204402.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4054,7 +4054,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_204601.png</key>
+            <key>Buff_204501.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4069,7 +4069,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_204602.png</key>
+            <key>Buff_204502.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4084,7 +4084,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_204603.png</key>
+            <key>Buff_204503.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4099,7 +4099,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_204701.png</key>
+            <key>Buff_204601.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4114,7 +4114,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_204801.png</key>
+            <key>Buff_204602.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4129,7 +4129,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_204802.png</key>
+            <key>Buff_204603.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4144,7 +4144,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_204803.png</key>
+            <key>Buff_204701.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4159,7 +4159,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_204804.png</key>
+            <key>Buff_204801.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4174,7 +4174,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_204901.png</key>
+            <key>Buff_204802.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4189,7 +4189,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_204902.png</key>
+            <key>Buff_204803.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4204,7 +4204,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_204903.png</key>
+            <key>Buff_204804.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4219,7 +4219,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_204904.png</key>
+            <key>Buff_204901.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4234,7 +4234,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_205001.png</key>
+            <key>Buff_204902.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4249,7 +4249,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_205101.png</key>
+            <key>Buff_204903.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4264,7 +4264,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_205201.png</key>
+            <key>Buff_204904.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4279,7 +4279,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_205202.png</key>
+            <key>Buff_205001.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4294,7 +4294,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_205203.png</key>
+            <key>Buff_205101.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4309,7 +4309,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_205301.png</key>
+            <key>Buff_205201.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4324,7 +4324,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_205302.png</key>
+            <key>Buff_205202.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4339,7 +4339,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_205303.png</key>
+            <key>Buff_205203.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4354,7 +4354,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_205304.png</key>
+            <key>Buff_205301.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4369,7 +4369,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_205401.png</key>
+            <key>Buff_205302.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4384,7 +4384,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_205501.png</key>
+            <key>Buff_205303.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4399,7 +4399,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_205502.png</key>
+            <key>Buff_205304.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4414,7 +4414,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_205503.png</key>
+            <key>Buff_205401.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4429,7 +4429,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_205601.png</key>
+            <key>Buff_205501.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4444,7 +4444,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_205602.png</key>
+            <key>Buff_205502.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4459,7 +4459,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_205603.png</key>
+            <key>Buff_205503.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4474,7 +4474,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_205701.png</key>
+            <key>Buff_205601.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4489,7 +4489,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_205801.png</key>
+            <key>Buff_205602.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4504,7 +4504,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_205901.png</key>
+            <key>Buff_205603.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4519,7 +4519,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_205902.png</key>
+            <key>Buff_205701.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4534,7 +4534,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_205903.png</key>
+            <key>Buff_205801.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4549,7 +4549,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_206001.png</key>
+            <key>Buff_205901.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4564,7 +4564,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_206101.png</key>
+            <key>Buff_205902.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4579,7 +4579,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_206201.png</key>
+            <key>Buff_205903.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4594,7 +4594,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_206301.png</key>
+            <key>Buff_206001.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4609,7 +4609,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_206401.png</key>
+            <key>Buff_206101.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4624,7 +4624,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_206402.png</key>
+            <key>Buff_206201.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4639,7 +4639,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_206403.png</key>
+            <key>Buff_206301.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4654,7 +4654,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_206601.png</key>
+            <key>Buff_206401.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4669,7 +4669,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_206602.png</key>
+            <key>Buff_206402.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4684,7 +4684,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_207101.png</key>
+            <key>Buff_206403.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4699,7 +4699,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_207201.png</key>
+            <key>Buff_206601.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4714,7 +4714,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_207202.png</key>
+            <key>Buff_206602.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4729,7 +4729,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_207203.png</key>
+            <key>Buff_207101.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4744,7 +4744,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_207401.png</key>
+            <key>Buff_207201.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4759,7 +4759,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_207501.png</key>
+            <key>Buff_207202.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4774,7 +4774,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_207502.png</key>
+            <key>Buff_207203.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4789,7 +4789,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_207503.png</key>
+            <key>Buff_207401.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4804,7 +4804,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_207901.png</key>
+            <key>Buff_207501.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4819,7 +4819,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_207902.png</key>
+            <key>Buff_207502.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4834,7 +4834,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_207903.png</key>
+            <key>Buff_207503.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4849,7 +4849,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_208101.png</key>
+            <key>Buff_207901.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4864,7 +4864,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_208102.png</key>
+            <key>Buff_207902.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4879,7 +4879,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_208103.png</key>
+            <key>Buff_207903.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4894,7 +4894,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_208401.png</key>
+            <key>Buff_208101.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4909,7 +4909,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_208402.png</key>
+            <key>Buff_208102.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4924,7 +4924,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_208501.png</key>
+            <key>Buff_208103.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4939,7 +4939,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_208502.png</key>
+            <key>Buff_208401.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4954,7 +4954,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_208503.png</key>
+            <key>Buff_208402.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4969,7 +4969,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_208701.png</key>
+            <key>Buff_208501.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4984,7 +4984,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_208901.png</key>
+            <key>Buff_208502.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4999,7 +4999,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_208902.png</key>
+            <key>Buff_208503.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -5014,7 +5014,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_208903.png</key>
+            <key>Buff_208701.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -5029,7 +5029,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_209201.png</key>
+            <key>Buff_208901.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -5044,7 +5044,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_209202.png</key>
+            <key>Buff_208902.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -5059,7 +5059,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_209203.png</key>
+            <key>Buff_208903.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -5074,7 +5074,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_209501.png</key>
+            <key>Buff_209201.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -5089,7 +5089,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_209502.png</key>
+            <key>Buff_209202.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -5104,7 +5104,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_209503.png</key>
+            <key>Buff_209203.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -5119,7 +5119,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_209601.png</key>
+            <key>Buff_209501.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -5134,7 +5134,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_209602.png</key>
+            <key>Buff_209502.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -5149,7 +5149,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_209603.png</key>
+            <key>Buff_209503.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -5164,7 +5164,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_209701.png</key>
+            <key>Buff_209601.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -5179,7 +5179,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_209702.png</key>
+            <key>Buff_209602.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -5194,7 +5194,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_209703.png</key>
+            <key>Buff_209603.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -5209,7 +5209,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_209801.png</key>
+            <key>Buff_209701.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -5224,7 +5224,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_209802.png</key>
+            <key>Buff_209702.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -5239,7 +5239,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_209803.png</key>
+            <key>Buff_209703.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -5254,7 +5254,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_209901.png</key>
+            <key>Buff_209801.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -5269,7 +5269,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_209902.png</key>
+            <key>Buff_209802.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -5284,7 +5284,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_209903.png</key>
+            <key>Buff_209803.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -5299,7 +5299,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_210001.png</key>
+            <key>Buff_209901.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -5314,7 +5314,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_210002.png</key>
+            <key>Buff_209902.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -5329,7 +5329,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_210003.png</key>
+            <key>Buff_209903.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -5344,7 +5344,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_210101.png</key>
+            <key>Buff_210001.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -5359,7 +5359,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_210102.png</key>
+            <key>Buff_210002.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -5374,7 +5374,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_210103.png</key>
+            <key>Buff_210003.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -5389,7 +5389,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_211801.png</key>
+            <key>Buff_210101.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -5404,7 +5404,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_211802.png</key>
+            <key>Buff_210102.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -5419,7 +5419,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>Buff_211803.png</key>
+            <key>Buff_210103.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -5431,6 +5431,96 @@
                 <string>{43,43}</string>
                 <key>textureRect</key>
                 <string>{{1306,451},{43,43}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>Buff_211801.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{43,43}</string>
+                <key>spriteSourceSize</key>
+                <string>{43,43}</string>
+                <key>textureRect</key>
+                <string>{{1351,1},{43,43}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>Buff_211802.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{43,43}</string>
+                <key>spriteSourceSize</key>
+                <string>{43,43}</string>
+                <key>textureRect</key>
+                <string>{{1351,46},{43,43}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>Buff_211803.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{43,43}</string>
+                <key>spriteSourceSize</key>
+                <string>{43,43}</string>
+                <key>textureRect</key>
+                <string>{{1351,91},{43,43}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>Buff_214101.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{43,43}</string>
+                <key>spriteSourceSize</key>
+                <string>{43,43}</string>
+                <key>textureRect</key>
+                <string>{{1351,136},{43,43}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>Buff_214102.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{43,43}</string>
+                <key>spriteSourceSize</key>
+                <string>{43,43}</string>
+                <key>textureRect</key>
+                <string>{{1351,181},{43,43}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>Buff_214103.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{43,43}</string>
+                <key>spriteSourceSize</key>
+                <string>{43,43}</string>
+                <key>textureRect</key>
+                <string>{{1351,181},{43,43}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -5446,9 +5536,9 @@
             <key>realTextureFileName</key>
             <string>Buff0.png</string>
             <key>size</key>
-            <string>{1350,495}</string>
+            <string>{1395,495}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:5ffb35c5e3ef7cb4728a5f1d47a30b7a:8973309c27f2091ce89874e0c6ccfc1a:0d99b17d3b20b19db551873e3d0eb5ae$</string>
+            <string>$TexturePacker:SmartUpdate:0ab879e959beeae5a135a202c069e8e8:366cfb7227112fc80697caae1140dba4:0d99b17d3b20b19db551873e3d0eb5ae$</string>
             <key>textureFileName</key>
             <string>Buff0.png</string>
         </dict>

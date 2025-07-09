@@ -52,6 +52,15 @@ end
 
 --[[ 排序資料 ]]
 function Inst.sort (a, b)
+    local GuideManager = require("Guide.GuideManager")
+    if GuideManager.isInGuide then
+        if a == 30101 then
+            return true
+        end
+        if b == 30101 then
+            return false
+        end
+    end
     return ItemManager:getSortIdById(a) < ItemManager:getSortIdById(b)
 end
 

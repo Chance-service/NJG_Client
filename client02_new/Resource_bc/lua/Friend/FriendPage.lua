@@ -166,7 +166,7 @@ function FriendItem:onRefreshContent(ccbRoot)
     -- 根據編輯模式顯示按鈕與選中狀態
     NodeHelper:setNodesVisible(container, { mSelectBtn = isEditMode, mBtns = not isEditMode })
     local isSelected = ChooseIndex[self.id] or false
-    NodeHelper:setNodesVisible(container, { mSelectImg = isSelected })
+    NodeHelper:setNodesVisible(container, { mSelectImg = isSelected and isEditMode })
 end
 
 -- 同意好友申請

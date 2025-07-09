@@ -44,7 +44,7 @@ function Skill_1041:runSkill(chaNode, skillId, resultTable, allPassiveTable, tar
     table.insert(spClassTable, NewBattleConst.FunClassType.NG_BATTLE_CHARACTER_UTIL)
     table.insert(spFuncTable, "addShield")
     local loseHp = chaNode.battleData[NewBattleConst.BATTLE_DATA.MAX_HP] - chaNode.battleData[NewBattleConst.BATTLE_DATA.HP]
-    table.insert(spParamTable, { chaNode, chaNode, math.floor(loseHp * tonumber(params[1]) + 0.5) })
+    table.insert(spParamTable, { chaNode, chaNode, math.floor(loseHp * tonumber(params[1]) + 0.5), skillId })
     table.insert(spTarTable, chaNode)
     resultTable[NewBattleConst.LogDataType.SP_FUN_CLASS] = spClassTable
     resultTable[NewBattleConst.LogDataType.SP_FUN_NAME] = spFuncTable

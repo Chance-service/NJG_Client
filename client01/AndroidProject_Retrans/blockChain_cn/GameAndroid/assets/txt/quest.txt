@@ -37,16 +37,6 @@ id	name	content	questType	team	needCount	排序ID	任务奖励数量	任务图�
 1001036	@QuestName_063	@QuestContent_063	2	14	150	36	90	Item/2.png	0	NULL	0	6	24
 1001037	@QuestName_063	@QuestContent_063	2	14	170	37	100	Item/2.png	0	NULL	0	6	24
 1001038	@QuestName_063	@QuestContent_063	2	14	200	38	110	Item/2.png	0	NULL	0	6	24
-1001039	@QuestName_036	@QuestContent_036	2	9	3	39	20	Item/2.png	1	24	0	6	44
-1001040	@QuestName_036	@QuestContent_036	2	9	5	40	20	Item/2.png	1	24	0	5	44
-1001041	@QuestName_036	@QuestContent_036	2	9	7	41	20	Item/2.png	1	24	0	6	44
-1001042	@QuestName_036	@QuestContent_036	2	9	9	42	20	Item/2.png	1	24	0	3	44
-1001043	@QuestName_036	@QuestContent_036	2	9	10	43	1	Item/I_6003.png	1	24	0	5	44
-1001044	@QuestName_036	@QuestContent_036	2	9	11	44	1	Item/I_6003.png	1	24	0	2	44
-1001045	@QuestName_036	@QuestContent_036	2	9	12	45	1	Item/I_6003.png	1	24	0	2	44
-1001046	@QuestName_036	@QuestContent_036	2	9	13	46	3	Item/I_6003.png	1	24	0	5	44
-1001047	@QuestName_036	@QuestContent_036	2	9	14	47	3	Item/I_6003.png	1	24	0	5	44
-1001048	@QuestName_036	@QuestContent_036	2	9	15	48	5	Item/I_6003.png	1	24	0	5	44
 1001049	@QuestName_065	@QuestContent_065_0	2	12	6	49	20	Item/2.png	1	21	0	5	9
 1001050	@QuestName_065	@QuestContent_065_1	2	12	10	50	20	Item/2.png	1	21	0	5	9
 1001051	@QuestName_065	@QuestContent_065_2	2	12	50	51	5	Item/I_7049.png	1	21	0	5	9

@@ -269,7 +269,7 @@ function SpineTouchEdit:onTestBattle(container, eventName)
             enemyFormation = enemyFormation .. 0 .. "_" .. i .. (i == 15 and "" or ",")
         end
     end
-    msg.mapId = enemyFormation
+    msg.mapId = mapInput .. "" --enemyFormation
     common:sendPacket(HP_pb.BATTLE_FORMATION_C, msg, false)
 end
 -----------------------------------------------------------------------

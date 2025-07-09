@@ -66,11 +66,16 @@ ActivityInfo = {
     
     -- 更新事件
     onUpdate = Event:new(),
+
+    -- client暫存關閉活動id
+    tempCloseIds = { },
 }
 local TodoTrue = false
 local isFirstEnter = false -- vip福利活动 可领取奖励后 第一次进入页面
 local m_sScheduleTimeKey = "ActivitySyncTimeLimits" -- 如果在1秒内接收到多次，return掉
 local m_nScheduleTime = 1
+local m_sRequestTimeKey = "ActivityRequestTimeLimits" -- 每次要求活動id至少間隔10秒
+local m_nRequestTime = 10
 --------------------------------------------------------------------------------
 ------------local variable for system api--------------------------------------
 local tostring = tostring
@@ -78,6 +83,15 @@ local tonumber = tonumber
 local string = string
 local pairs = pairs
 --------------------------------------------------------------------------------
+-- 主動同步活動列表
+function onActivityOpenRequest()
+    if TimeCalculator:getInstance():hasKey(m_sRequestTimeKey) and
+       TimeCalculator:getInstance():getTimeLeft(m_sRequestTimeKey) ~= 0 then
+        return
+    end
+    common:sendEmptyPacket(HP_pb.GET_ACTIVITY_LIST_C, false)
+    TimeCalculator:getInstance():createTimeCalcultor(m_sRequestTimeKey, m_nRequestTime)
+end
 -- 同步活动列表
 function onActivityOpenSync(eventName, handler)
     -- 如果在1秒内接收到多次，return掉
@@ -681,6 +695,9 @@ end
 
 function ActivityInfo:getActivityIsOpenById(activityId)
     local bl = false
+    if ActivityInfo.tempCloseIds[activityId] then
+        return bl
+    end
     for i = 1, #ActivityInfo.allIds do
         if ActivityInfo.allIds[i] == activityId then
             bl = true
@@ -700,5 +717,8 @@ function ActivityInfo:getActivitySortData(activityId)
     end
 end
 
-
+function ActivityInfo:addTempCloseActivity(activityId)
+    ActivityInfo.tempCloseIds = ActivityInfo.tempCloseIds or { }
+    ActivityInfo.tempCloseIds[activityId] = true
+end
 --------------------------------------------------------------------------------

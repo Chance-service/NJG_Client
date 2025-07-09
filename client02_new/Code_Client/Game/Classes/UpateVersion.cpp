@@ -561,6 +561,9 @@ void UpdateVersion::appStoreUpdate()
 	else if (SeverConsts::Get()->IsOP()) {
 		libOS::getInstance()->openURL(serverVersionData->AppUpdateUrlOP);
 	}
+	else if (SeverConsts::Get()->IsGP()) {
+		libOS::getInstance()->openURL(serverVersionData->AppUpdateUrlGP);
+	}
 	else if (SeverConsts::Get()->IsKUSO()) {
 		libOS::getInstance()->openURL(serverVersionData->AppUpdateUrlKUSO);
 	}

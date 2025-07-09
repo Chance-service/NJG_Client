@@ -20,6 +20,35 @@ Inst.SubPageCfgs = { }
 --初始Table
 Inst.OriginTable = {
     {
+        subPageName = "Guide",
+        scriptName = "Summon.SummonSubPage_Guide",
+        iconImg_normal = "Imagesetfile/i18n_Button/SubBtn_SummonNewPlayer.png",
+        iconImg_selected = "Imagesetfile/i18n_Button/SubBtn_SummonNewPlayer_On.png",
+        title = "@Summon.Premium.title",
+        currencyInfos = {
+            { priceStr = "10000_1001_0" },
+            { priceStr = "30000_6004_0" },
+        },
+        ccbiFile = "Summon_Guide.ccbi",
+        spineSummon = "Spine/NGUI,NGUI_53_Gacha1Summon",
+        spineBG = "Spine/NGUI,NGUI_53_Gacha1Summon_BG",
+        spineAnimName_bg_idle = "wait",
+        spineAnimName_bg_summon = "summon",
+        spineAnimName_summon_idle = "wait",
+        spineAnimName_summon_summon_list = {
+            "summonN",
+            "summonSR",
+            "summonSSR",
+        },
+        isFreeSummonAble = true,
+        Help = "HELP_NORMALSUMMON",
+        summonBgm = "normal_summon_bgm.mp3",
+        isRedOn = function() 
+            return false
+        end,
+        activityID = Const_pb.ACTIVITY172_PICKUP,
+    },
+    {
         subPageName = "Premium",
         scriptName = "Summon.SummonSubPage_Normal",
         iconImg_normal = "Imagesetfile/i18n_Button/SubBtn_SummonPremium.png",

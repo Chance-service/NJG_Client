@@ -4,8 +4,9 @@ local UserInfo = require("PlayerInfo.UserInfo");
 local TapDBManager = require("TapDBManager")
 local NewID = ""
 function BuyManager.Buy(playerId, buyInfo)
-     if (Golb_Platform_Info.is_h365) or (Golb_Platform_Info.is_jgg) or (Golb_Platform_Info.is_kuso) or (Golb_Platform_Info.is_aplus) then --H365, jgg ,kuso
+     if (Golb_Platform_Info.is_h365) or (Golb_Platform_Info.is_jgg) or (Golb_Platform_Info.is_kuso) or (Golb_Platform_Info.is_aplus) or (Golb_Platform_Info.is_op) or (Golb_Platform_Info.is_gp) then --H365, jgg ,kuso
         libPlatformManager:getPlatform():buyGoods(buyInfo)
+        CCLuaLog("-------------------------"..buyInfo)
      elseif (Golb_Platform_Info.is_r18) or (Golb_Platform_Info.is_erolabs) then --R18 , erolabs
         local title = Language:getInstance():getString("@SDK3")
         local message = ""

@@ -52,7 +52,9 @@ end
 function StoryLogPageBase:onEnter(container)
     mainContainer = container
     NodeHelper:setNodesVisible(mainContainer,{mElementNode=false})
-    container.mScrollView = container:getVarScrollView("mContent")
+    container.mScrollView = container:getVarScrollView("mContent2")
+    NodeHelper:autoAdjustResizeScrollview(container.mScrollView)
+    NodeHelper:setNodesVisible(container,{mBottom1 = false,mBottom2 = true})
     self:initScrollView(container)
 end
 -- ScrollView初始化
@@ -105,7 +107,7 @@ function AlbumSideStory:onBtn()
         return 
     end
     require("FetterGirlsDiary")
-    FetterGirlsDiary_setPhotoRole(nil, self.chapter, self.level,self.storyIdx)
+    FetterGirlsDiary_setPhotoRole(nil, self.chapter, self.level,self.storyIdx,1)
     PageManager.pushPage("FetterGirlsDiary")
 end
 

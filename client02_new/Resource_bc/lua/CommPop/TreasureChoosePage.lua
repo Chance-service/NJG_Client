@@ -113,7 +113,7 @@ function ChooseContent:onRefreshContent(content)
     local container = content:getCCBFileNode()
     container:getVarNode("mNode"):setPosition(ccp(65,75))
     local ResManager = require "ResManagerForLua"
-    local resInfo = ResManager:getResInfoByTypeAndId(self.rewardItems and self.rewardItems.type, self.rewardItems and self.rewardItems.itemId , UseCount)
+    local resInfo = ResManager:getResInfoByTypeAndId(self.rewardItems and self.rewardItems.type, self.rewardItems and self.rewardItems.itemId , self.rewardItems and self.rewardItems.count)
     container.mId=self.rewardItems.itemId
     nodes[self.rewardItems.itemId]=container
 

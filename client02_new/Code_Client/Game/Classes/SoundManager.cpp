@@ -11,6 +11,11 @@
 #define battlemusic "battle.mp3"
 #define clicksound_1 "click_1.mp3"
 #define clicksound_2 "click_2.mp3"
+#define clicksound_cancel "click_cancel.mp3"
+#define clicksound_func "click_func.mp3"
+#define click_prebattle "click_prebattle.mp3"
+#define click_eff_lvup "eff_lvup.mp3"
+#define click_GloryHole "click_gloryhole.mp3"
 #define loadingmusic "loadingMusic.mp3"
 #define gvgmusic "GVG_Bg.mp3"
 #define worldbossmusic "WorldBoss_Bg.mp3"
@@ -108,14 +113,27 @@ void SoundManager::onReceiveMassage( const GameMessage * message )
 			CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect(item->file.c_str(),false);
 		}
 		else
-		{
-			if (msg->tag == -1)
+		{	
+			const char* soundToPlay = nullptr;
+
+			switch (msg->tag)
 			{
-				CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect(clicksound_2, false);
+			case -1: soundToPlay = clicksound_2; break;
+			case  0: soundToPlay = clicksound_1; break;
+			case  1: soundToPlay = clicksound_cancel; break;
+			case  2: soundToPlay = clicksound_func; break;
+			case  12531: soundToPlay = clicksound_func; break;
+			case  3: soundToPlay = click_prebattle; break;
+			case  4: soundToPlay = click_eff_lvup; break;
+			case  5: soundToPlay = click_GloryHole; break;
+			case -2: break;
+			default: break;
 			}
-			else if (msg->tag == 0)
+
+			if (soundToPlay)
 			{
-				CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect(clicksound_1, false);
+				CCLog("Playing sound: %s (tag = %d)", soundToPlay, msg->tag);
+				CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect(soundToPlay, false);
 			}
 		}
 		delete msg;

@@ -26,6 +26,12 @@ function BuffManager:getBuff(chaNode, target, buffId, buffTime, buffCount)
             return false
         end
     end
+    if self:isInWillToFight(target.buffData)then   --戰意狀態 不可上恐懼
+        local baseBuffId = math.floor(buffId / 100) % 1000
+        if baseBuffId == CONST.BUFF.FEAR then
+            return false
+        end
+    end
     if buffConfig[buffId].gain == 0 and buffConfig[buffId].dispel == 1 then -- 角色免疫屬性
         if NewBattleUtil:isTriggerDebuffImmunity(target, chaNode) then
             return false
@@ -240,6 +246,9 @@ function BuffManager:checkAtkBuffValue(chaNode, isPhy, aniName)
                     addValue = tonumber(buffValues[1])
                 end
                 if mainBuffId == CONST.BUFF.WITCHER_I then  -- 獵魔人I式
+                    addValue = tonumber(buffValues[2])
+                end
+                if mainBuffId == CONST.BUFF.WILL_TO_FIGHT then  -- 戰意
                     addValue = tonumber(buffValues[2])
                 end
                 ---------------------------------------------------------------
@@ -684,10 +693,11 @@ function BuffManager:checkBeDmgBuffValue(attacker, target, isPhy, aniName)
                 local addValue = nil
                 ---------------------------------------------------------------
                 -- 毒類型Buff
-                if mainBuffId == CONST.BUFF.POSITION or
-                   mainBuffId == CONST.BUFF.SOUL_OF_POSION or
-                   mainBuffId == CONST.BUFF.TOXIN_OF_POSION or
-                   mainBuffId == CONST.BUFF.SNAKE_OF_POSION then
+                if mainBuffId == CONST.BUFF.POISON or
+                   mainBuffId == CONST.BUFF.SOUL_OF_POISON or
+                   mainBuffId == CONST.BUFF.TOXIN_OF_POISON or
+                   mainBuffId == CONST.BUFF.SNAKE_OF_POISON or
+                   mainBuffId == CONST.BUFF.HYPER_OF_POISON then
                     -- 檢查受擊者技能ID
                     for skillType, skillTypeData in pairs(target.skillData) do
                         for skillId, skillIdData in pairs(skillTypeData) do
@@ -706,7 +716,8 @@ function BuffManager:checkBeDmgBuffValue(attacker, target, isPhy, aniName)
             end
         end
     end
-    return math.max(buffValue, 0) * math.max(skillValue, 0), math.max(auraValue, 0), math.max(markValue, 0)
+    local auraRatio = NewBattleUtil:calAuraSkillRatio(target, CONST.PASSIVE_TRIGGER_TYPE.AURA_DMG)   -- 受到傷害光環
+    return math.max(buffValue, 0) * math.max(skillValue, 0), math.max(auraValue, 0) * auraRatio, math.max(markValue, 0)
 end
 -- 爆擊率加成
 function BuffManager:checkCriBuffValue(attacker, buff, isPhy, aniName)
@@ -863,6 +874,9 @@ function BuffManager:checkAtkSpeedBuffValue(buff, isPhy, aniName)
                 if mainBuffId == CONST.BUFF.UNRIVALED then  -- 無雙
                     addValue = tonumber(buffValues[3])
                 end
+                if mainBuffId == CONST.BUFF.WILL_TO_FIGHT then  -- 戰意
+                    addValue = tonumber(buffValues[3])
+                end
                 if addValue then
                     buffValue, auraValue, markValue = self:addBuffValue(fullBuffId, addValue, buffValue, auraValue, markValue)
                 end
@@ -883,7 +897,7 @@ function BuffManager:checkAtkSpeedDeBuffValue(buff, isPhy, aniName)
                 if mainBuffId == CONST.BUFF.FROSTBITE then -- 凍傷
                     addValue = tonumber(buffValues[1]) * buffData[CONST.BUFF_DATA.COUNT]
                 end
-                if mainBuffId == CONST.BUFF.SNAKE_OF_POSION then  -- 蛇毒
+                if mainBuffId == CONST.BUFF.SNAKE_OF_POISON then  -- 蛇毒
                     addValue = tonumber(buffValues[2])
                 end
                 ---------------------------------------------------------------
@@ -1091,7 +1105,7 @@ function BuffManager:checkBeHealBuffValue(target, isPhy, aniName)
                 if mainBuffId == CONST.BUFF.ANTI_HEAL then  -- 禁療
                     addValue = tonumber(buffValues[1])
                 end
-                if mainBuffId == CONST.BUFF.SNAKE_OF_POSION then  -- 蛇毒
+                if mainBuffId == CONST.BUFF.SNAKE_OF_POISON then  -- 蛇毒
                     addValue = tonumber(buffValues[1])
                 end
                 ---------------------------------------------------------------
@@ -1268,7 +1282,7 @@ function BuffManager:getSpecialBuff(chaNode, target, buff, fullBuffId, oldIsMaxC
                 --獲得護盾
                 local CHAR_UTIL = require("Battle.NgBattleCharacterUtil")
                 local shield = math.floor(target.battleData[CONST.BATTLE_DATA.MAX_HP] * tonumber(buffValues[3]) + 0.5)
-                CHAR_UTIL:addShield(target, target, shield)   --增加護盾
+                CHAR_UTIL:addShield(target, target, shield, fullBuffId)   --增加護盾
             end
             if mainBuffId == CONST.BUFF.FRENZY then  -- 狂亂
                 -- 滿層時進入狂亂狀態
@@ -1326,6 +1340,12 @@ function BuffManager:getSpecialBuff(chaNode, target, buff, fullBuffId, oldIsMaxC
                     -- 清除靜電
                     self:forceClearBuff(target, fullBuffId)
                 end
+            end
+            if mainBuffId == CONST.BUFF.WILL_TO_FIGHT then  -- 戰意
+                --獲得護盾
+                local CHAR_UTIL = require("Battle.NgBattleCharacterUtil")
+                local shield = math.floor(target.battleData[CONST.BATTLE_DATA.MAX_HP] * tonumber(buffValues[4]) + 0.5)
+                CHAR_UTIL:addShield(chaNode, target, shield, fullBuffId)   --增加護盾
             end
         end
     end
@@ -1436,7 +1456,7 @@ function BuffManager:specialBuffEffect(buff, eventType, chaNode, target, skillId
                             triggerBuffList[mainBuffId] = fullBuffId
                         end
                     end
-                    if mainBuffId == CONST.BUFF.TOXIN_OF_POSION then  -- 烈毒
+                    if mainBuffId == CONST.BUFF.TOXIN_OF_POISON then  -- 烈毒
                         local buffValues = common:split(buffConfig[fullBuffId].values, ",")
                         buffData[CONST.BUFF_DATA.COUNTER] = buffData[CONST.BUFF_DATA.COUNTER] and buffData[CONST.BUFF_DATA.COUNTER] + 1 or 1
                         if buffData[CONST.BUFF_DATA.COUNTER] >= tonumber(buffValues[1]) then    -- 觸發烈毒
@@ -1686,6 +1706,18 @@ function BuffManager:isInConductor(buff)
         for fullBuffId, buffData in pairs(buff) do
             local mainBuffId = math.floor(fullBuffId / 100) % 1000
             if mainBuffId == CONST.BUFF.CONDUCTOR then  -- 導電體
+                return true
+            end
+        end
+    end
+    return false
+end
+-- 是否戰意狀態(不會獲得恐懼)
+function BuffManager:isInWillToFight(buff)
+    if buff then
+        for fullBuffId, buffData in pairs(buff) do
+            local mainBuffId = math.floor(fullBuffId / 100) % 1000
+            if mainBuffId == CONST.BUFF.WILL_TO_FIGHT then  -- 戰意
                 return true
             end
         end
@@ -2015,7 +2047,7 @@ function BuffManager:castDotDamage(chaNode, target, buffId, isSkipPre, isSkipAdd
             dmg = math.min(maxDmg, math.floor(dmg * buffValue * auraValue * markValue + 0.5))
             NgBattleCharacterBase:beDot(chaNode, target, dmg, buffId, isSkipPre, isSkipAdd)
         end
-        if mainBuffId == CONST.BUFF.POSITION then  -- 中毒
+        if mainBuffId == CONST.BUFF.POISON then  -- 中毒
             -- 增傷buff
             local buffValue, auraValue, markValue = self:checkAllDmgBuffValue(chaNode, target, true,  nil)
             local maxDmg = NewBattleUtil:calAtk(chaNode, nil) * CONST.PERCENT_DMG_MAX_RATIO
@@ -2094,7 +2126,7 @@ function BuffManager:castDotDamage(chaNode, target, buffId, isSkipPre, isSkipAdd
             local dmg = math.min(maxDmg, math.abs(atk * tonumber(buffValues[2]) * count * buffValue * auraValue * markValue))
             NgBattleCharacterBase:beDot(chaNode, target, math.floor(dmg + 0.5), buffId, isSkipPre, isSkipAdd)
         end
-        if mainBuffId == CONST.BUFF.TOXIN_OF_POSION then  -- 烈毒
+        if mainBuffId == CONST.BUFF.TOXIN_OF_POISON then  -- 烈毒
             -- 增傷buff
             local buffValue, auraValue, markValue = self:checkAllDmgBuffValue(chaNode, target, chaNode.battleData[CONST.BATTLE_DATA.IS_PHY],  nil)
             local maxDmg = NewBattleUtil:calAtk(chaNode, nil) * CONST.PERCENT_DMG_MAX_RATIO
@@ -2103,7 +2135,7 @@ function BuffManager:castDotDamage(chaNode, target, buffId, isSkipPre, isSkipAdd
             dmg = math.min(maxDmg, math.floor(dmg * buffValue * auraValue * markValue))
             NgBattleCharacterBase:beDot(chaNode, target, dmg, buffId, isSkipPre, isSkipAdd)
         end
-        if mainBuffId == CONST.BUFF.SOUL_OF_POSION then  -- 猛毒
+        if mainBuffId == CONST.BUFF.SOUL_OF_POISON then  -- 猛毒
             -- 增傷buff
             local buffValue, auraValue, markValue = self:checkAllDmgBuffValue(chaNode, target, chaNode.battleData[CONST.BATTLE_DATA.IS_PHY],  nil)
             local maxDmg = NewBattleUtil:calAtk(chaNode, nil) * CONST.PERCENT_DMG_MAX_RATIO
@@ -2121,6 +2153,15 @@ function BuffManager:castDotDamage(chaNode, target, buffId, isSkipPre, isSkipAdd
             local dmg = baseDmg * tonumber(buffValues[1])
             local maxDmg = NewBattleUtil:calAtk(chaNode, nil) * CONST.PERCENT_DMG_MAX_RATIO
             dmg = math.min(maxDmg, dmg)
+            NgBattleCharacterBase:beDot(chaNode, target, dmg, buffId, isSkipPre, isSkipAdd)
+        end
+        if mainBuffId == CONST.BUFF.HYPER_OF_POISON then  -- 超猛毒
+            -- 增傷buff
+            local buffValue, auraValue, markValue = self:checkAllDmgBuffValue(chaNode, target, chaNode.battleData[CONST.BATTLE_DATA.IS_PHY],  nil)
+            local maxDmg = NewBattleUtil:calAtk(chaNode, nil) * CONST.PERCENT_DMG_MAX_RATIO
+            -- 最大血量 * %數
+            local dmg = math.abs(target.battleData[CONST.BATTLE_DATA.MAX_HP] * tonumber(buffValues[2]))
+            dmg = math.min(maxDmg, math.floor(dmg * buffValue * auraValue * markValue))
             NgBattleCharacterBase:beDot(chaNode, target, dmg, buffId, isSkipPre, isSkipAdd)
         end
     end
@@ -2214,7 +2255,7 @@ function BuffManager:checkBuffTimer(node, buffId)
                         local trueRecoverShield = math.min(maxRecoverShield - node.battleData[CONST.BATTLE_DATA.SHIELD], recoverShield)
                         if trueRecoverShield > 0 then   -- 可以回復護盾
                             LOG_UTIL:setPreLog(node)
-                            CHAR_UTIL:addShield(node, node, recoverShield)   --回復護盾
+                            CHAR_UTIL:addShield(node, node, recoverShield, buffId)   --回復護盾
                             LOG_UTIL:addBuffLog(node, buffId)
                         end
                     end
@@ -2247,11 +2288,12 @@ function BuffManager:checkBuffTimer(node, buffId)
             end
         end
         if mainBuffId == CONST.BUFF.EROSION or  -- 侵蝕
-           mainBuffId == CONST.BUFF.POSITION or  -- 中毒
+           mainBuffId == CONST.BUFF.POISON or  -- 中毒
            mainBuffId == CONST.BUFF.BLEED or  -- 出血
            mainBuffId == CONST.BUFF.BURN or  -- 燃燒
-           mainBuffId == CONST.BUFF.SOUL_OF_POSION or  -- 猛毒
-           mainBuffId == CONST.BUFF.OFFERINGS then  -- 祭品
+           mainBuffId == CONST.BUFF.SOUL_OF_POISON or  -- 猛毒
+           mainBuffId == CONST.BUFF.OFFERINGS or  -- 祭品
+           mainBuffId == CONST.BUFF.HYPER_OF_POISON then  -- 超猛毒
             local time = tonumber(valueArr[1]) * 1000 - 50   -- -50毫秒避免作用次數誤差
             if node.buffData[buffId][CONST.BUFF_DATA.TIMER] > time then
                 -- dot傷害
@@ -2431,7 +2473,7 @@ function BuffManager:getExternNormalAtkBuff(chaNode, target)
                mainBuffId == CONST.BUFF.EXHAUST_ATTACK or     -- 破魔攻擊
                mainBuffId == CONST.BUFF.FROSTBITE_ATTACK or   -- 凍傷攻擊
                mainBuffId == CONST.BUFF.BLEED_ATTACK or     -- 流血攻擊
-               mainBuffId == CONST.BUFF.SOUL_OF_POSION_ATTACK then  -- 猛血攻擊
+               mainBuffId == CONST.BUFF.SOUL_OF_POISON_ATTACK then  -- 猛血攻擊
                 local data = { }
                 local buffValue = common:split(buffConfig[fullBuffId].values, ",")
                 if not tonumber(buffValue[3]) or (tonumber(buffValue[3]) * 100 >= math.random(1, 100)) then

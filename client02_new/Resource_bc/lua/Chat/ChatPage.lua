@@ -10,7 +10,7 @@ local VoiceChatManager = require("Battle.VoiceChatManager")
 local ChatFacePage = require("ChatFacePage")
 local OSPVPManager = require("OSPVPManager")
 local CommTabStorage = require("CommComp.CommTabStorage")
-
+local FriendManager       = require("FriendManager")
 
 local chatBgSize = nil
 local htmlWidth = nil
@@ -180,7 +180,7 @@ function ChatPage:onEnter(container)
 
     container:registerMessage(MSG_MAINFRAME_REFRESH)
     container:registerPacket(HP_pb.MESSAGE_LIST_S)
-
+    container:registerPacket(HP_pb.FRIEND_FIND_S)
     currentChanel = Const_pb.CHAT_WORLD
     if GameConfig.guildJumpChat.isGuildJump or GameConfig.guildJumpChat.isRetuGuild then
         currentChanel = Const_pb.CHAT_ALLIANCE
@@ -501,6 +501,12 @@ function ChatPage:onReceivePacket(container)
         else
             CCLuaLog("@onReceiveOfflineMessageBox -- error in data")
         end
+    end
+    if opcode == HP_pb.FRIEND_FIND_S then
+        local msg = Friend_pb.FriendItem()
+        msg:ParseFromString(msgBuff)
+        local FriendSearchResult  = require("FriendSearchResult")
+        FriendSearchResultBase_onSearchResult(msg)
     end
 end
 
@@ -1587,6 +1593,8 @@ function ListContent:onRefreshContent(content)
         mercenaryHeadContent:refreshItem(headNode,playerInfo, playerInfo[1] == GameConfig.SystemId )
         headNode:setAnchorPoint(ccp(0.0, 0.0))
         headNode:setScale(0.8)
+        headNode:registerFunctionHandler(function(eventName,container) 
+        if eventName == "onHead" then FriendManager.searchFriendById(playerInfo[1]) end  end)
         parentNode:addChild(headNode)
     end
     local x = labBack:getContentSize().width
@@ -1899,145 +1907,177 @@ function ChatPage:removePrivateChat(container, tag)
 
 end
 
+-- 切換並刷新聊天頻道內容
 function ChatPage:switchChatChanel(container)
-    if not self.scrollview then
-        return
-    end
+    ---------------------------------------------------------------------
+    -- 前置檢查
+    ---------------------------------------------------------------------
+    if not self.scrollview then return end
     local scrollview = self.scrollview
+
+    ---------------------------------------------------------------------
+    -- 重設 ScrollView 與內部狀態
+    ---------------------------------------------------------------------
     scrollview:removeAllCell()
-    ChatPage.cellList = { }
     scrollview:resetContainer()
-    local chatCount = 0
-    local fOneItemWidth = 0
-    local currHeight = 0
-    local messageList = { }
+    ChatPage.cellList = {}
 
+    -- 初始化變數
+    local chatCount          = 0
+    local fOneItemWidth      = 0
+    local currHeight         = 0
+    local messageList        = {}
     UserInfo.sync()
+
+    ---------------------------------------------------------------------
+    -- 小工具函式
+    ---------------------------------------------------------------------
+    local function setTitle(titleKey)
+        NodeHelper:setStringForLabel(container, { mTitle = common:getLanguageString(titleKey) })
+        NodeHelper:setNodesVisible(container, { mTitle = true, mTitle_1 = false })
+    end
+
+    local function saveLatestTime(saveKey, msgTime)
+        CCUserDefault:sharedUserDefault():setStringForKey(saveKey, msgTime)
+    end
+
+    ---------------------------------------------------------------------
+    -- 決定資料來源與 UI 標題
+    ---------------------------------------------------------------------
     if currentChanel == Const_pb.CHAT_WORLD then
-        chatCount = #VoiceChatManager.worldChatMessageList
         messageList = VoiceChatManager.worldChatMessageList
-        NodeHelper:setStringForLabel(container, { mTitle = common:getLanguageString("@ChatTitle") })
-        NodeHelper:setNodesVisible(container, { mTitle = true, mTitle_1 = false })
-        if chatCount > 0 then
-            CCUserDefault:sharedUserDefault():setStringForKey("SaveChatWorldEndTime", messageList[chatCount].msgTime)
-        end
+        setTitle("@ChatTitle")
+
     elseif currentChanel == Const_pb.CHAT_ALLIANCE then
-        chatCount = #VoiceChatManager.guildChatMessageList
         messageList = VoiceChatManager.guildChatMessageList
-        NodeHelper:setStringForLabel(container, { mTitle = common:getLanguageString("@ChatTitle") })
-        NodeHelper:setNodesVisible(container, { mTitle = true, mTitle_1 = false })
-        if chatCount > 0 then
-            CCUserDefault:sharedUserDefault():setStringForKey("SaveChatGuildEndTime", messageList[chatCount].msgTime)
-        end
+        setTitle("@ChatTitle")
+
     elseif currentChanel == Const_pb.CHAT_CROSS_PVP then
-        chatCount = #VoiceChatManager.crossChatMessageList
         messageList = VoiceChatManager.crossChatMessageList
-        NodeHelper:setStringForLabel(container, { mTitle = common:getLanguageString("@ChatTitle") })
-        NodeHelper:setNodesVisible(container, { mTitle = true, mTitle_1 = false })
-        if chatCount > 0 then
-            CCUserDefault:sharedUserDefault():setStringForKey("SaveChatCrossEndTime", messageList[chatCount].msgTime)
-        end
+        setTitle("@ChatTitle")
+
     elseif currentChanel == Const_pb.CHAT_PERSONAL then
-        if ChatManager.curChatPerson == nil or ChatManager.curChatPerson.msgList == nil then
-            return
-        end
+        local person = ChatManager.curChatPerson
+        if not person or not person.msgList then return end
 
-        -- 刷新聊天玩家的选中状态
-        self:setCurrentPrivateChatPlayerSelectState(container, ChatManager.curChatPerson.chatUnit.playerId)
+        -- 更新選中狀態
+        self:setCurrentPrivateChatPlayerSelectState(container, person.chatUnit.playerId)
 
-        chatCount = #ChatManager.curChatPerson.msgList
-        messageList = ChatManager.curChatPerson.msgList
-        
-        -- 标记为已读
-        local curChatPersonName = ChatManager.curChatPerson.chatUnit.name
-        NodeHelper:setStringForLabel(container, { mTitle_1 = curChatPersonName })
+        messageList = person.msgList
+        NodeHelper:setStringForLabel(container, { mTitle_1 = person.chatUnit.name })
         NodeHelper:setNodesVisible(container, { mTitle = false, mTitle_1 = true })
-        local identify = ChatManager.curChatPerson.chatUnit.senderIdentify
+
+        local identify = person.chatUnit.senderIdentify
         if not identify or identify == "" then
-            identify = ChatManager.curChatPerson.chatUnit.playerId
+            identify = person.chatUnit.playerId
         end
         ChatManager.readMsg(identify)
-        if chatCount > 0 then
-            CCUserDefault:sharedUserDefault():setStringForKey("SaveChatPersonalEndTime", messageList[chatCount].msgTime)
-        end
-        --私聊聊天记录修改
+
+        -- 保存私聊排序紀錄
         if isSaveChatHistory then
-            ChatManager.insertSortChatPrivate(ChatManager.curChatPerson.uniquePlayerId)
+            ChatManager.insertSortChatPrivate(person.uniquePlayerId)
             self:initPrivateNode(container)
-            --ChatPersonalRecord:showPrivateRecordList(container,ChatPage)
         end
     end
 
+    ---------------------------------------------------------------------
+    -- 更新最新訊息時間
+    ---------------------------------------------------------------------
+    chatCount = #messageList
+    if chatCount > 0 then
+        local latestTime = messageList[chatCount].msgTime
+        local saveKeyMap = {
+            [Const_pb.CHAT_WORLD]     = "SaveChatWorldEndTime",
+            [Const_pb.CHAT_ALLIANCE]  = "SaveChatGuildEndTime",
+            [Const_pb.CHAT_CROSS_PVP] = "SaveChatCrossEndTime",
+            [Const_pb.CHAT_PERSONAL]  = "SaveChatPersonalEndTime",
+        }
+        saveLatestTime(saveKeyMap[currentChanel], latestTime)
+    end
+
+    ---------------------------------------------------------------------
+    -- 生成聊天 Cell（由最新往上）
+    ---------------------------------------------------------------------
     for i = chatCount, 1, -1 do
         local itemInfo = messageList[i]
-        if not itemInfo then
-            break
-        end
-        local isSelfMessage = false
-        if currentChanel == Const_pb.CHAT_PERSONAL then
-            if itemInfo.senderId == UserInfo.playerInfo.playerId then
-                isSelfMessage = true
+
+        if itemInfo and itemInfo.skinId ~= -9999 then
+            -----------------------------------------------------------------
+            -- 判斷是否自己訊息
+            -----------------------------------------------------------------
+            local isSelfMessage = false
+            if currentChanel == Const_pb.CHAT_PERSONAL then
+                isSelfMessage = (itemInfo.senderId == UserInfo.playerInfo.playerId)
+            else
+                local playerInfo = itemInfo.voiceInfo
+                isSelfMessage = (playerInfo and playerInfo[1] == UserInfo.playerInfo.playerId)
             end
-        else
-            local playerInfo = itemInfo.voiceInfo
-            if (playerInfo[1] == UserInfo.playerInfo.playerId) then
-                isSelfMessage = true
+
+            -----------------------------------------------------------------
+            -- 建立 Cell
+            -----------------------------------------------------------------
+            local cell          = CCBFileCell:create()
+            local contentSize   = isSelfMessage and selfCellSize or otherCellSize
+            local ccbiFile      = isSelfMessage and "BattleSpeechChatRightContent.ccbi"
+                                              or "BattleSpeechChatLeftContent.ccbi"
+
+            cell:setCCBFile(ccbiFile)
+            cell:setContentSize(contentSize)
+            cell:setPosition(ccp(0, currHeight + cellSpacing))
+
+            -- 事件處理 Panel
+            local panel = ListContent:new {
+                id       = i,
+                chatType = currentChanel,
+                isSelf   = isSelfMessage
+            }
+            cell:registerFunctionHandler(panel)
+
+            -- 加入 ScrollView
+            scrollview:addCell(cell)
+            ChatPage.cellList[i] = cell
+
+            -- 更新尺寸
+            currHeight = currHeight + contentSize.height + cellSpacing
+            if fOneItemWidth < contentSize.width then
+                fOneItemWidth = contentSize.width
             end
         end
-
-        local containerWidth = scrollview:getContentSize().width
-        local ccbi = "BattleSpeechChatLeftContent.ccbi"
-        cell = CCBFileCell:create()
-        local pItemHeight = 0
-        if isSelfMessage then
-            cell:setCCBFile("BattleSpeechChatRightContent.ccbi")
-            cell:setContentSize(selfCellSize)
-            pItemHeight = selfCellSize.height
-        else
-            cell:setCCBFile("BattleSpeechChatLeftContent.ccbi")
-            cell:setContentSize(otherCellSize)
-            pItemHeight = otherCellSize.height
-        end
-        local panel = ListContent:new { id = i, chatType = currentChanel, isSelf = isSelfMessage }
-        cell:registerFunctionHandler(panel)
-
-        cell:setPosition(ccp(0, currHeight + cellSpacing))
-
-        if fOneItemWidth < cell:getContentSize().width then
-            fOneItemWidth = cell:getContentSize().width
-        end
-        currHeight = currHeight + pItemHeight + cellSpacing
-        scrollview:addCell(cell)
-        ChatPage.cellList[i] = cell
     end
 
+    ---------------------------------------------------------------------
+    -- 調整 ScrollView 尺寸
+    ---------------------------------------------------------------------
     if currentChanel == Const_pb.CHAT_PERSONAL then
-        self.scrollview:setViewSize(CCSizeMake(initialChatViewSize.width, initialChatViewSize.height - chatContentDifference))
+        scrollview:setViewSize(CCSizeMake(
+            initialChatViewSize.width,
+            initialChatViewSize.height - chatContentDifference
+        ))
     else
-        if self.scrollview:getViewSize().height ~= initialChatViewSize.height then
-            self.scrollview:setViewSize(initialChatViewSize)
+        if scrollview:getViewSize().height ~= initialChatViewSize.height then
+            scrollview:setViewSize(initialChatViewSize)
         end
     end
-    if currHeight < self.scrollview:getViewSize().height then
-        currHeight = self.scrollview:getViewSize().height
+
+    if currHeight < scrollview:getViewSize().height then
+        currHeight = scrollview:getViewSize().height
     end
-    local size = CCSizeMake(fOneItemWidth, currHeight)
-    scrollview:setContentSize(size)
 
-
+    scrollview:setContentSize(CCSizeMake(fOneItemWidth, currHeight))
     scrollview:setContentOffset(ccp(0, 0))
-    -- end	
     scrollview:forceRecaculateChildren()
     ScriptMathToLua:setSwallowsTouches(scrollview)
 
-    --self.btnNode:setPosition(ccp(self.btnNode:getPositionX(), initialChatViewSize.height + 109.3))
-
+    ---------------------------------------------------------------------
+    -- 更新頻道 Tab 字型
+    ---------------------------------------------------------------------
     NodeHelper:setBMFontFile(container, {
-        mChatTabTxt1 = currentChanel == Const_pb.CHAT_WORLD and "Lang/Font-HT-TabPage.fnt" or "Lang/Font-HT-TabPage2.fnt",
-        mChatTabTxt2 = currentChanel == Const_pb.CHAT_ALLIANCE and "Lang/Font-HT-TabPage.fnt" or "Lang/Font-HT-TabPage2.fnt",
-        mChatTabTxt3 = currentChanel == Const_pb.CHAT_PERSONAL and "Lang/Font-HT-TabPage.fnt" or "Lang/Font-HT-TabPage2.fnt",
-    } )
+        mChatTabTxt1 = currentChanel == Const_pb.CHAT_WORLD     and "Lang/Font-HT-TabPage.fnt" or "Lang/Font-HT-TabPage2.fnt",
+        mChatTabTxt2 = currentChanel == Const_pb.CHAT_ALLIANCE  and "Lang/Font-HT-TabPage.fnt" or "Lang/Font-HT-TabPage2.fnt",
+        mChatTabTxt3 = currentChanel == Const_pb.CHAT_PERSONAL  and "Lang/Font-HT-TabPage.fnt" or "Lang/Font-HT-TabPage2.fnt",
+    })
 end
+
 
 function ChatPage:insertChatChannel(chatType, newMsgNum)
 
@@ -2122,6 +2162,8 @@ function ChatPage:insertChatChannel(chatType, newMsgNum)
                 local playerInfo = itemInfo.voiceInfo
                 if (playerInfo[1] == UserInfo.playerInfo.playerId) then
                     isSelfMessage = true
+                elseif (playerInfo[1] == 999999)  then 
+                    return
                 end
             end
             cell = CCBFileCell:create()

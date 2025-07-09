@@ -305,7 +305,7 @@ function GrowthFundPage:onEnter(ParentContainer)
     mainContainer.scrollview = mainContainer:getVarScrollView("mContent")
     NodeHelper:autoAdjustResizeScrollview(mainContainer.scrollview)
     NodeHelper:autoAdjustResizeScale9Sprite( mainContainer:getVarScale9Sprite("mContentBg"))
-    mainContainer:getVarNode("mTop"):setPositionY(750 + NodeHelper:calcAdjustResolutionOffY())
+    mainContainer:getVarNode("mTop"):setPositionY(770 + NodeHelper:calcAdjustResolutionOffY())
 
     if RechargeCfg == {} then
         --local msg = Recharge_pb.HPFetchShopList()

@@ -7,7 +7,7 @@ require("Battle.NewSkill.SkillUtil")
 local aliveIdTable = {}
 -------------------------------------------------------
 --[[ NEW
-恢復生命最低的1/2/3名(params1)友方攻擊力300%/350%/400%(params2)的HP，並賦予"堅守II"(params3)8秒(params4)、"力場II/力場II/力場II"(params5)8/8/8秒(params6)
+恢復生命最低的1/2/3名(params1)友方攻擊力180%/230%/280%(params2)的HP，並賦予"堅守II"(params3)8秒(params4)、"力場II/力場II/力場II"(params5)8/8/8秒(params6)
 ]]--
 --[[ OLD
 指定當前HP比例最低的3位(params1)友方，為其恢復魔法攻擊力220%/260%/300%(params2)的HP，Lv3時賦予"堅守I"(params3)7秒(params4)

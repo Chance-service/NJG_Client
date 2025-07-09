@@ -183,7 +183,7 @@ function RuneInfoPage:initUI(container)
         end
     end
 
-    -- 根據精煉狀態更新介面（以下程式碼略，可依需求補全）
+    -- 根據精煉狀態更新介面
     runeInfo.lockCount = 0
     local isRefine = false
     if not deepCompare(runeInfo.readyToRefine or runeInfo.newSkill, runeInfo.skill, DEEP_COMPARE_OFFSET) then
@@ -595,6 +595,7 @@ function RuneInfoPage:onReceivePacket(container)
             self:buildUpperScrollview(self.pageContainer, true)
             self:buildLowerScrollview(self.pageContainer, true)
         elseif msg.action == 2 then
+            runeInfo.readyToRefine = nil
             NodeHelper:setNodesVisible(SpRefinPopUp, { mSkillNode = true, mItemNode = false })
             local opts = { PosY = 12, Scale = 1.5, width = 350 }
             SkillContent:setHtmlString(SpRefinPopUp, msg.refineId[runeInfo.nowClickId], opts, "mSkillName2")

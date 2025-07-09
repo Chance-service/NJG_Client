@@ -270,11 +270,15 @@ function NgFightSceneHelper:openEditTeamPage(container)
     GuideManager.openOtherGuideFun(GuideManager.guideType.EDIT_TEAM_17, false)
     -- 有戰前劇情->播放劇情 沒有劇情進行下一步教學
     if NgFightSceneHelper:StorySync(1) and NgBattleDataManager.battleType ~= CONST.SCENE_TYPE.CYCLE_TOWER  then
+        NgBattleResultManager.isNextStage = false
+        require("TransScenePopUp")
+        TransScenePopUp_closePage()
         PageManager.pushPage("FetterGirlsDiary")
-    else
-        if GuideManager.isInGuide then 
-            GuideManager.forceNextNewbieGuide()
-        end
+    elseif GuideManager.isInGuide then
+        GuideManager.forceNextNewbieGuide()
+    elseif NgBattleResultManager.isNextStage then
+        CONST.IS_BATTLE_NEXT = true
+        NgBattleResultManager.isNextStage = false
     end
 end
 function NgFightSceneHelper:StorySync(storyIdx)
@@ -290,7 +294,7 @@ function NgFightSceneHelper:StorySync(storyIdx)
         local fetterControlCfg = ConfigManager:getFetterBDSMControlCfg()
         if fetterControlCfg[id] then
             require("FetterGirlsDiary")
-            FetterGirlsDiary_setPhotoRole(container, chapter, level,storyIdx)
+            FetterGirlsDiary_setPhotoRole(container, chapter, level,storyIdx,1)
             return true
             --PageManager.pushPage("FetterGirlsDiary")
         end

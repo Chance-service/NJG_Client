@@ -6,7 +6,7 @@ id	name	content	type	completeCountCfg	pointNumber	任务奖励数量	任务图�
 5	@WeeklyQuestName_17	@WeeklyQuestContent_17	9	15	20	1	Item/I_7012.png	5	1	21	0	5
 6	@WeeklyQuestName_11	@WeeklyQuestContent_11	12	8	20	2	Item/I_3501.png	6	1	9	0	5
 7	@WeeklyQuestName_09	@WeeklyQuestContent_09	4	3	10	3	Item/I_3801.png	7	1	35	0	5
-8	@WeeklyQuestName_18	@WeeklyQuestContent_18	6	10	20	5	Item/I_6004.png	8	1	48	0	5
+8	@WeeklyQuestName_18	@WeeklyQuestContent_18	6	10	20	5	Item/I_3001.png	8	1	48	0	5
 9	@WeeklyQuestName_08	@WeeklyQuestContent_08	15	3	20	5	Item/I_7037.png	9	1	7	0	5
 10	@WeeklyQuestName_19	@WeeklyQuestContent_19	17	3	20	10	Item/I_7055.png	10	1	44	0	5
 11	@WeeklyQuestName_22	@WeeklyQuestContent_22	14	10	20	2	Item/I_3001.png	11	1	1	0	5

@@ -38,6 +38,8 @@ local option = {
         onServiceAnnounce = "onServiceAnnounce",
         onChangePlayerIcon = "onChangePlayerIcon",
         onLangSetting = "onLangSetting",
+        onOffcial = "onOffcial",
+        onService = "onService"
     },
     opcode = opcodes
 }
@@ -86,6 +88,10 @@ function PlayerInfoPageBase:onEnter(container)
 
     self:getDefaultTeamInfo(container)
     self:refreshPage(container)
+
+    local is_op = Golb_Platform_Info.is_op 
+
+    NodeHelper:setNodesVisible(container,{Btns_Normal = not is_op,Btns_OP = is_op})
 end
 
 function PlayerInfoPageBase:onExecute(container)
@@ -179,6 +185,8 @@ function PlayerInfoPageBase:onServiceAnnounce(container)
         PageManager.showHelp(GameConfig.HelpKey.HELP_AGREEMENT_KUSO)    -- 跟69共用
     elseif Golb_Platform_Info.is_erolabs then
         PageManager.showHelp(GameConfig.HelpKey.HELP_AGREEMENT_EROLABS)
+    elseif Golb_Platform_Info.is_op then
+        PageManager.showHelp(GameConfig.HelpKey.HELP_AGREEMENT_OP)
     else
         PageManager.showHelp(GameConfig.HelpKey.HELP_AGREEMENT)
     end
@@ -195,6 +203,8 @@ function PlayerInfoPageBase:onDataTransfer(container)
         cfg = ConfigManager.loadCfgByIoString("Feedback_EROR18.txt")
     elseif Golb_Platform_Info.is_jgg then
         cfg = ConfigManager.loadCfgByIoString("Feedback_JGG.txt")
+    elseif Golb_Platform_Info.is_op then
+        cfg = ConfigManager.loadCfgByIoString("Feedback_JGG.txt")
     else
         cfg = ConfigManager.loadCfgByIoString("Feedback.txt")
     end
@@ -210,6 +220,12 @@ end
 
 function PlayerInfoPageBase:onLangSetting()
     PageManager.pushPage("LangSettingPopUp")
+end
+function PlayerInfoPageBase:onOffcial()
+    common:openURL("https://www.op-18.com")
+end
+function PlayerInfoPageBase:onService()
+    common:openURL("https://d1pol01lyiwa62.cloudfront.net/game-support/")
 end
 
 function PlayerInfoPageBase:onEntermateLogout(container)

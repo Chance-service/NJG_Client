@@ -705,12 +705,14 @@ function PuzzleController:refreshTime(container)
         PuzzleController.countdownTimerId = scheduler:scheduleScriptFunc(function()
             PuzzleController.remainingTime = PuzzleController.remainingTime - 1
             if PuzzleController.countdownTimerId and PuzzleController.remainingTime <= 0 and not PuzzleController.isConfirmPop then
-                PageManager.showConfirm("@PuzzleBattle_Title", "@PuzzleBattle_Error_01", function(isSure)
-                    if isSure then
-                        PuzzleController:onExit()
-                    end
-                end, true, nil, nil, false, nil, nil, nil, false)
+                --PageManager.showConfirm("@PuzzleBattle_Title", "@PuzzleBattle_Error_01", function(isSure)
+                --    if isSure then
+                --        
+                --    end
+                --end, true, nil, nil, false, nil, nil, nil, false)
                 PuzzleController.isConfirmPop = true
+                MessageBoxPage:Msg_Box(common:getLanguageString("@PuzzleBattle_Error_01"))
+                PuzzleController:onExit()
                 return
             end
             local timeText = ""
@@ -907,7 +909,7 @@ function PuzzleController:onReceivePacket(container)
             PuzzleController.paidEntries   = msg.usePay
             PuzzleController.freeEntries   = msg.useFree
             local MainScenePageInfo = require("MainScenePage")
-            local puzzleTime = MainScenePageInfo:getActTime(195)
+            local puzzleTime = MainScenePageInfo:getActTime(Const_pb.ACTIVITY195_PuzzleBattle)
             PuzzleController.remainingTime = puzzleTime --msg.leftTime
         end
 

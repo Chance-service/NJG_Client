@@ -7,7 +7,8 @@ require("Battle.NewSkill.SkillUtil")
 local aliveIdTable = { }
 -------------------------------------------------------
 --[[ NEW
-對生命最高的敵方單體造成120/140/160%(params1)傷害，隊伍中每有一名存活的水屬性隊友，額外追加1次100%/100%/100%(params2)傷害，最多追加2/3/4次(params3)
+對生命最高的敵方單體賦予(第1hit)"凍傷I/凍傷I/凍傷I"(params3)8秒(params5)1/2/3層(params4)，
+(第2hit)並造成120/140/160%(params3)傷害，隊伍中每有一名存活的水屬性隊友，額外增加20%/30%/40%(params4)傷害
 ]]--
 --[[ OLD
 對敵方全體造成每下80%/100%/120%(params1)傷害，對有Debuff的目標傷害加倍，Lv3時第一下傷害賦予目標"防禦破壞II"(params2)3秒(params3)
@@ -40,62 +41,46 @@ function Skill_1080:runSkill(chaNode, skillId, resultTable, allPassiveTable, tar
     local tarTable = { }
     local criTable = { }
     local weakTable = { }
+    local buffTable = { }
+    local buffTarTable = { }
+    local buffTimeTable = { }
+    local buffCountTable = { }
 
-    local addDmgNum = math.min(self:getWaterElementNum(chaNode, skillId), tonumber(params[3]))
+    local addDmg = self:getWaterElementNum(chaNode, skillId) * tonumber(params[2])
 
     for i = 1, #allTarget do
         local target = allTarget[i]
-        --減傷
-        local reduction = NewBattleUtil:calReduction(chaNode, target)
-        --攻擊力
-        local atk = NewBattleUtil:calAtk(chaNode, target)
-        --屬性加成
-        local elementRate = NewBattleUtil:calElementRate(chaNode, target)
-        --基礎傷害
-        local buffValue, auraValue, markValue = BuffManager:checkAllDmgBuffValue(chaNode, target, 
-                                                                                 chaNode.battleData[NewBattleConst.BATTLE_DATA.IS_PHY], 
-                                                                                 skillCfg.actionName)
-        local isCri = false
-        local weakType = (elementRate > 1 and 1) or (elementRate < 1 and -1) or 0
-
-        local baseDmg = atk * (1 - reduction) * elementRate * tonumber(params[1]) * buffValue * auraValue * markValue
-        -- 時間考量只加在1080技能內判斷
-        local unReductDmg = 0
-        local unReductDmg2 = 0
-        for k, v in pairs(NewBattleConst.PASSIVE_TYPE_ID[NewBattleConst.PASSIVE_TRIGGER_TYPE.ADD_UNREDUCT_DMG]) do -- 追加無視減傷傷害
-            local skillType, fullSkillId = NewBattleUtil:checkSkill(v, chaNode.skillData)
-            if skillType == NewBattleConst.SKILL_DATA.PASSIVE then
-                local SkillManager = require("Battle.NewSkill.SkillManager")
-                local passiveParams = SkillManager:calSkillSpecialParams(fullSkillId, { target })
-                unReductDmg = unReductDmg + atk * passiveParams[1] * elementRate * tonumber(params[1]) * buffValue * auraValue * markValue
-                unReductDmg2 = unReductDmg2 + atk * passiveParams[1] * elementRate * tonumber(params[2]) * buffValue * auraValue * markValue
-            end
-        end
-        baseDmg = baseDmg + unReductDmg
-        if NewBattleUtil:calIsHit(chaNode, target) then
-            --爆傷
-            local criRate = 1
-            isCri = NewBattleUtil:calIsCri(chaNode, target)
-            if isCri then
-                criRate = NewBattleUtil:calFinalCriDmgRate(chaNode, target)
-            end
-            --最終傷害(四捨五入)
-            local dmg = math.floor(baseDmg * criRate + 0.5)
-            --最終結果
-            table.insert(dmgTable, dmg)
-            table.insert(tarTable, target)
-            table.insert(criTable, isCri)
-            table.insert(weakTable, weakType)
+        if hitNum == 1 then
+            table.insert(buffTable, tonumber(params[3]))
+            table.insert(buffTarTable, target)
+            table.insert(buffTimeTable, tonumber(params[5]) * 1000)
+            table.insert(buffCountTable, tonumber(params[4]))
         else
-            --最終結果
-            table.insert(dmgTable, 0)
-            table.insert(tarTable, target)
-            table.insert(criTable, false)
-            table.insert(weakTable, 0)
-        end
-        local addDmg = atk * (1 - reduction) * elementRate * tonumber(params[2]) * buffValue * auraValue * markValue
-        addDmg = addDmg + unReductDmg2
-        for i = 1, addDmgNum do
+            --減傷
+            local reduction = NewBattleUtil:calReduction(chaNode, target)
+            --攻擊力
+            local atk = NewBattleUtil:calAtk(chaNode, target)
+            --屬性加成
+            local elementRate = NewBattleUtil:calElementRate(chaNode, target)
+            --基礎傷害
+            local buffValue, auraValue, markValue = BuffManager:checkAllDmgBuffValue(chaNode, target, 
+                                                                                     chaNode.battleData[NewBattleConst.BATTLE_DATA.IS_PHY], 
+                                                                                     skillCfg.actionName)
+            local isCri = false
+            local weakType = (elementRate > 1 and 1) or (elementRate < 1 and -1) or 0
+
+            local baseDmg = atk * (1 - reduction) * elementRate * (tonumber(params[1]) + addDmg) * buffValue * auraValue * markValue
+            -- 時間考量只加在1080技能內判斷
+            local unReductDmg = 0
+            for k, v in pairs(NewBattleConst.PASSIVE_TYPE_ID[NewBattleConst.PASSIVE_TRIGGER_TYPE.ADD_UNREDUCT_DMG]) do -- 追加無視減傷傷害
+                local skillType, fullSkillId = NewBattleUtil:checkSkill(v, chaNode.skillData)
+                if skillType == NewBattleConst.SKILL_DATA.PASSIVE then
+                    local SkillManager = require("Battle.NewSkill.SkillManager")
+                    local passiveParams = SkillManager:calSkillSpecialParams(fullSkillId, { target })
+                    unReductDmg = unReductDmg + atk * passiveParams[1] * elementRate * tonumber(params[1]) * buffValue * auraValue * markValue
+                end
+            end
+            baseDmg = baseDmg + unReductDmg
             if NewBattleUtil:calIsHit(chaNode, target) then
                 --爆傷
                 local criRate = 1
@@ -104,7 +89,7 @@ function Skill_1080:runSkill(chaNode, skillId, resultTable, allPassiveTable, tar
                     criRate = NewBattleUtil:calFinalCriDmgRate(chaNode, target)
                 end
                 --最終傷害(四捨五入)
-                local dmg = math.floor(addDmg * criRate + 0.5)
+                local dmg = math.floor(baseDmg * criRate + 0.5)
                 --最終結果
                 table.insert(dmgTable, dmg)
                 table.insert(tarTable, target)
@@ -123,6 +108,10 @@ function Skill_1080:runSkill(chaNode, skillId, resultTable, allPassiveTable, tar
     resultTable[NewBattleConst.LogDataType.DMG_TAR] = tarTable
     resultTable[NewBattleConst.LogDataType.DMG_CRI] = criTable
     resultTable[NewBattleConst.LogDataType.DMG_WEAK] = weakTable
+    resultTable[NewBattleConst.LogDataType.BUFF] = buffTable
+    resultTable[NewBattleConst.LogDataType.BUFF_TAR] = buffTarTable
+    resultTable[NewBattleConst.LogDataType.BUFF_TIME] = buffTimeTable
+    resultTable[NewBattleConst.LogDataType.BUFF_COUNT] = buffCountTable
 
     return resultTable
 end

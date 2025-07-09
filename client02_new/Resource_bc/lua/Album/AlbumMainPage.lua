@@ -79,7 +79,7 @@ function AlbumItem:refresh()
         NodeHelper:setSpriteImage(self.container, { mImg = "UI/RoleShowCards/Hero_" .. string.format("%02d", self.itemId) .. "000.png" })
         NodeHelper:setStringForLabel(self.container, { mName = common:getLanguageString("@HeroName_" .. self.itemId),
                                                        mCount = AlbumData.UnLockCount .." / ".. AlbumData.ImgCount})
-        NodeHelper:setNodesVisible(self.container, {mCountBg = true, mCount = true,mRedNode=false})
+        NodeHelper:setNodesVisible(self.container, {mCountBg = true, mCount = true,mRedNode=false,mBorder1 = nowType == 1,mBorder2 = nowType ==2})
     end
 end
 function AlbumItem:onAlbum(container)
@@ -133,23 +133,36 @@ end
 
 
 function AlbumMainPage:onEnter(container)
-    mainContainer = container
+    -- 註冊封包
     self:registerPacket(container)
 
-    container.mScrollView = container:getVarScrollView("mContent")
-    -- scrollview自適應
-    --NodeHelper:autoAdjustResizeScrollview(container.mScrollView)
-    -- 設定過濾按鈕
+    -- 取得並自適應 ScrollView
+    local scrollView = container:getVarScrollView("mContent")
+    container.mScrollView = scrollView
+    NodeHelper:autoAdjustResizeScrollview(scrollView)
+
+    -- 設定過濾按鈕大小
     local filterBg = container:getVarScale9Sprite("mFilterBg")
     filterBg:setContentSize(filterCloseSize)
-    NodeHelper:setNodesVisible(container, { mClassNode = false })
 
+    -- 節點可見性
+    NodeHelper:setNodesVisible(container, {
+        mBottom1    = true,
+        mBottom2    = false,
+        mClassNode  = false,
+        mBg2        = (nowType == 1),
+        mBg3        = (nowType == 2),
+    })
+
+    --  初始化列表內容
     self:initScrollView(container)
 
-    self:onElement(container, "onElement0") 
-    self:onClass(container, "onClass0") 
+    -- 元素與分類預設
+    self:onElement(container, "onElement0")
+    self:onClass (container, "onClass0")
 
-    if HeroData == nil and nowType == 1 then
+    --  根據狀態發送請求或刷新頁面
+    if nowType == 1 and not HeroData then
         local msg = SecretMsg_pb.secretMsgRequest()
         msg.action = 0
         common:sendPacket(HP_pb.SECRET_MESSAGE_ACTION_C, msg, false)
@@ -157,7 +170,7 @@ function AlbumMainPage:onEnter(container)
         self:onRefreshPage()
     end
 
-    --新手教學
+    -- 新手教學
     local GuideManager = require("Guide.GuideManager")
     GuideManager.PageContainerRef["AlbumMainPage"] = container
     PageManager.pushPage("NewbieGuideForcedPage")

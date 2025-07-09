@@ -6,6 +6,7 @@
 
 #ifdef PROJECT_KUSO
 #import <KUSOPlaySDK/KUSOPlaySDK.h>
+#import "analytics_sdk_ios_framework/analytics_sdk_ios_framework.m"
 #endif
 
 #ifdef PROJECT_EROLABS
@@ -193,7 +194,7 @@ void lib91::setupSDK(int platformId)
         NSLog(@"KUSO: Setup");
         PlayCenterConfig *config = [[[PlayCenterConfig alloc]
                                      initWithAppId:@"APPncbR1hdPgUIjSKt"
-                                     isSandbox:YES
+                                     isSandbox:false
                                      subId:@"NG24"
                                     ] autorelease];
         [PlayCenter.shared

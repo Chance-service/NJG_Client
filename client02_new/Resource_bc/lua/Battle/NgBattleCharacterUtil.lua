@@ -383,15 +383,15 @@ function NgBattleCharacterUtil:setShield(chaNode, shield)
     NgBattlePageInfo_updateTargetCardShieldInfo(chaNode.idx, chaNode.battleData[CONST.BATTLE_DATA.SHIELD], chaNode.battleData[CONST.BATTLE_DATA.MAX_HP])
 end
 --增加護盾值(技能用)
-function NgBattleCharacterUtil:addShield(chaNode, target, shieldNum)
+function NgBattleCharacterUtil:addShield(chaNode, target, shieldNum, skillId)
     if target then
         local ratio = NewBattleUtil:calAuraSkillRatio(target, CONST.PASSIVE_TRIGGER_TYPE.AURA_SHIELD)  -- 護盾光環
         local buffRatio = BuffManager:calAuraBuffRatio(target, CONST.PASSIVE_TRIGGER_TYPE.AURA_SHIELD)
         local shieldResult = NewBattleUtil:calRoundValue(shieldNum * ratio * buffRatio, 1)
         self:setShield(target, target.battleData[CONST.BATTLE_DATA.SHIELD] + shieldResult)   --增加護盾
-        LOG_UTIL:addTestLog(LOG_UTIL.TestLogType.ADD_SHIELD, chaNode, target, 0, false, false, shieldResult)
+        LOG_UTIL:addTestLog(LOG_UTIL.TestLogType.ADD_SHIELD, chaNode, target, skillId, false, false, shieldResult)
         local sceneHelper = require("Battle.NgFightSceneHelper")
-        sceneHelper:addBattleResult(CONST.DETAIL_DATA_TYPE.HEALTH, chaNode.idx, shieldNum, 0, false, shieldNum) -- 護盾值合併到治療量
+        sceneHelper:addBattleResult(CONST.DETAIL_DATA_TYPE.HEALTH, chaNode.idx, shieldNum, skillId, false, shieldNum) -- 護盾值合併到治療量
     end
 end
 --重置技能CD(技能用)

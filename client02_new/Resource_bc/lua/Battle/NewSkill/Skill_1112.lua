@@ -7,7 +7,7 @@ require("Battle.NewSkill.SkillUtil")
 local aliveIdTable = { }
 -------------------------------------------------------
 --[[ NEW
-ねよ璣动Τ偿Shizuku(params1)结ぉ繦诀ヘ夹"瘆ňI/瘆ňII/瘆ňIII"(params2)8/10/12(params3)"瘆臸I/瘆臸II/瘆臸III"(params4)8/10/12(params5)
+ねよ璣动Τ偿Shizuku(params1)结ぉ繦诀ヘ夹"瘆ňI/瘆ňII/瘆ňIII"(params2)8/9/10(params3)"瘆臸I/瘆臸II/瘆臸III"(params4)8/9/10(params5)
 ]]--
 -------------------------------------------------------
 function Skill_1112:castSkill(chaNode, skillType, skillId)

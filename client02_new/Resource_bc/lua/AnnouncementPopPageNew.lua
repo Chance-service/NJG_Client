@@ -53,7 +53,8 @@ local annoCfg = ConfigManager.getAnnounceCfg()
 
 -- 各活動跳轉功能定義
 local toActFunctions = {
-    [1] = { 
+    [1] = {
+        isOpen = function() return true end,
         Fun   = function()
                     local closeR18 = VaribleManager:getInstance():getSetting("IsCloseR18")
                     if tonumber(closeR18) == 1 then
@@ -72,6 +73,7 @@ local toActFunctions = {
         ActId = 175
     },
     [2] = { 
+        isOpen = function() return true end,
         Fun   = function()
                     if LockManager_getShowLockByPageName(GameConfig.LOCK_PAGE_KEY.MONTHLY_CARD) then
                         MessageBoxPage:Msg_Box(LockManager_getLockStringByPageName(GameConfig.LOCK_PAGE_KEY.MONTHLY_CARD))
@@ -82,6 +84,7 @@ local toActFunctions = {
                 end
     },
     [3] = { 
+        isOpen = function() return true end,
         Fun   = function(txt)
                     if not txt then
                         MessageBoxPage:Msg_Box("URL EMPTY")
@@ -91,6 +94,7 @@ local toActFunctions = {
                 end
     },
     [4] = { 
+        isOpen = function() return true end,
         Fun   = function()
                     if LockManager_getShowLockByPageName(GameConfig.LOCK_PAGE_KEY.Event001) then
                         MessageBoxPage:Msg_Box(LockManager_getLockStringByPageName(GameConfig.LOCK_PAGE_KEY.Event001))
@@ -104,6 +108,48 @@ local toActFunctions = {
                             PageManager.pushPage("Event001Page")
                         end
                     end
+                end
+    },
+    [5] = { 
+        isOpen = function()
+                     for _, id in ipairs(ActivityInfo.NewPlayerLevel9Ids) do
+                        if ActivityInfo.activities[id] then return true end
+                     end
+                     return false
+                 end,
+        Fun   = function()
+                    require("NewPlayerBasePage")
+                    NewPlayerBasePage_setPageType(ACTIVITY_TYPE.NEWPLAYER_LEVEL9)
+                    PageManager.pushPage("NewPlayerBasePage")
+                end
+    },
+    [6] = { 
+        isOpen = function()
+                     --local page1 = require("Reward.RewardSubPage_CostSummon1"):AllSigned()
+                     --local page2 = require("Reward.RewardSubPage_CostSummon2"):AllSigned() 
+                     --local page3 = require("Reward.RewardSubPage_CostSummon3"):AllSigned()
+                     local freeSummon = require("Reward.RewardSubPage_FreeSummon2"):AllSigned() 
+                     if freeSummon then 
+                        return false 
+                     end                 
+                     return true
+                 end,
+        Fun   = function()
+                    if LockManager_getShowLockByPageName(GameConfig.LOCK_PAGE_KEY.SUMMON_900) then
+                         MessageBoxPage:Msg_Box(LockManager_getLockStringByPageName(GameConfig.LOCK_PAGE_KEY.SUMMON_900))
+                    else
+                        PageManager.pushPage("Reward.RewardPage")
+                    end
+                end
+    },
+    [7] = { 
+        isOpen = function()
+                   for _, id in ipairs(ActivityInfo.NewPlayerLogin) do
+                        if ActivityInfo.activities[id] then return true end
+                   end
+                 end,
+        Fun   = function()
+                  PageManager.pushPage("LivenessPage")
                 end
     }
 }
@@ -191,7 +237,9 @@ function AnnouncementPopPageBase:onReceivePacket(container)
                 table.insert(self.openList, tostring(info.id) .. ".txt")
             end
         end
-        self:deleteUnusedFiles()
+        if CC_TARGET_PLATFORM_LUA ~= common.platform.CC_PLATFORM_IOS then
+            self:deleteUnusedFiles()    -- ios可能會跳錯
+        end
         table.sort(AnnouncementPopPageBase.allInfo, function(a, b) return a.sort < b.sort end)
         self:buildScrollView()
     elseif opcode == opcodes.BULLETIN_CONTENT_SYNC_S then
@@ -298,12 +346,23 @@ function AnnouncementPopPageBase:buildScrollView()
             cell:setCCBFile(buildItems[self.nowTag])
             local handler
             if self.nowTag == 2 then
-                handler = common:new({ id = data.id }, ActItem)
+                local data = AnnouncementPopPageBase:getDetail(data.id)
+                local parts = common:split(data.titleStr, "_")
+                local Jump = annoCfg[tonumber(parts[1])].isJump
+                if toActFunctions[Jump] then
+                    if toActFunctions[Jump].isOpen() then 
+                         handler = common:new({ id = data.id }, ActItem)
+                    end
+                else
+                     handler = common:new({ id = data.id }, ActItem)
+                end
             else
                 handler = common:new({ id = data.id }, StrItem)
             end
-            cell:registerFunctionHandler(handler)
-            scrollView:addCell(cell)
+            if handler then
+                cell:registerFunctionHandler(handler)
+                scrollView:addCell(cell)
+            end
         end
     end
 
@@ -375,7 +434,7 @@ function ActItem:onRefreshContent(content)
     local bannerImg = ""
     if annoCfg[self.ActId] then
         bannerImg = annoCfg[self.ActId].Banner
-        NodeHelper:setNodesVisible(container, { mBtn = (self.Jump > 0) })
+        NodeHelper:setNodesVisible(container, { mBtn = false })
     end
     if bannerImg ~= "" then
         NodeHelper:setSpriteImage(container, { bannerImg = bannerImg })
@@ -389,9 +448,13 @@ function ActItem:onRefreshContent(content)
 end
 
 function ActItem:onBannerClick()
-    local msg = Bulletin.BulletinContentRet()
-    msg.id = self.id
-    common:sendPacket(HP_pb.BULLETIN_CONTENT_SYNC_C, msg, true)
+    --local msg = Bulletin.BulletinContentRet()
+    --msg.id = self.id
+    --common:sendPacket(HP_pb.BULLETIN_CONTENT_SYNC_C, msg, true)
+    if toActFunctions[self.Jump] then
+        toActFunctions[self.Jump].Fun(self.txt)
+    end
+    PageManager.popPage(thisPageName)
 end
 
 function ActItem:toAct()

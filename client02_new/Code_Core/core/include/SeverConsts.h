@@ -103,6 +103,7 @@ public:
 		EP_EROLABS,
 		EP_OP,
 		EP_APLUS,
+		EP_GP
 	};
 	
 	struct SEVER_ATTRIBUTE
@@ -237,6 +238,7 @@ public://not used for client
 	bool IsKUSO(){ return(ePlatform == SeverConsts::EP_KUSO); }
 	bool IsErolabs(){ return(ePlatform == SeverConsts::EP_EROLABS); }
 	bool IsOP(){ return(ePlatform == SeverConsts::EP_OP); }
+	bool IsGP(){ return(ePlatform == SeverConsts::EP_GP); }
 	bool IsAPLUS(){ return(ePlatform == SeverConsts::EP_APLUS); }
 	bool IsDebug() { return _IsDebug; }
 private:

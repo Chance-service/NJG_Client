@@ -43,14 +43,14 @@ function Skill_50022:runSkill(chaNode, skillId, resultTable, allPassiveTable, ta
 
     -- ªþ¥[Buff
     if resultTable[NewBattleConst.LogDataType.SP_FUN_TAR] then
-        table.insert(spClassTable, NewBattleConst.FunClassType.NG_BATTLE_CHARACTER_UTIL)
-        table.insert(spFuncTable, "addShield")
-        table.insert(spParamTable, { chaNode, target[1], shield })
-        table.insert(spTarTable, target[1])
+        table.insert(resultTable[NewBattleConst.LogDataType.SP_FUN_CLASS], NewBattleConst.FunClassType.NG_BATTLE_CHARACTER_UTIL)
+        table.insert(resultTable[NewBattleConst.LogDataType.SP_FUN_NAME], "addShield")
+        table.insert(resultTable[NewBattleConst.LogDataType.SP_FUN_PARAM], { chaNode, target[1], shield, skillId })
+        table.insert(resultTable[NewBattleConst.LogDataType.SP_FUN_TAR], target[1])
     else
         resultTable[NewBattleConst.LogDataType.SP_FUN_CLASS] = { NewBattleConst.FunClassType.NG_BATTLE_CHARACTER_UTIL }
         resultTable[NewBattleConst.LogDataType.SP_FUN_NAME] = { "addShield" }
-        resultTable[NewBattleConst.LogDataType.SP_FUN_PARAM] = { { chaNode, target[1], shield } }
+        resultTable[NewBattleConst.LogDataType.SP_FUN_PARAM] = { { chaNode, target[1], shield, skillId } }
         resultTable[NewBattleConst.LogDataType.SP_FUN_TAR] = { target[1] }
     end
 

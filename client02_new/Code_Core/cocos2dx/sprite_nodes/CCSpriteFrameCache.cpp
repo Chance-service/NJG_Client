@@ -591,6 +591,9 @@ CCSpriteFrame* CCSpriteFrameCache::spriteFrameByName(const char *pszName)
 		else if (SeverConsts::Get()->IsOP()) {
 			pszName = "Icon_Hcoin_op.png";
 		}
+		else if (SeverConsts::Get()->IsGP()) {
+			pszName = "Icon_Hcoin_RMB.png";
+		}
 		else if (SeverConsts::Get()->IsAPLUS()) {
 			pszName = "Icon_Hcoin_aplus.png";
 		}

@@ -7,8 +7,8 @@ require("Battle.NewSkill.SkillUtil")
 local aliveIdTable = { }
 -------------------------------------------------------
 --[[ NEW
-對敵方全體造成120%/180%/220%(params1)傷害，並賦予目標"衰弱I/衰弱II/衰弱III"(params2)8/10/12秒(params3)、"致盲I/致盲II/致盲III"(params4)8/10/12秒(params5)
-當自身有1113技能時，額外賦予目標"魔力鎖鏈I/魔力鎖鏈II/魔力鎖鏈III"(params2)8/10/12秒(params3)、"纏繞I/纏繞II/纏繞III"(params4)8/10/12秒(params5)
+對隨機2名(params6)敵方單體造成120%/180%/220%(params1)傷害，並賦予目標"衰弱I/衰弱II/衰弱III"(params2)8/8/8秒(params3)、"致盲I/致盲II/致盲III"(params4)8/8/8秒(params5)
+當自身有1113技能時，額外賦予目標"魔力鎖鏈I/魔力鎖鏈II/魔力鎖鏈III"(params1)8/9/10秒(params2)、"纏繞I/纏繞II/纏繞III"(params3)8/9/10秒(params4)
 ]]--
 --[[ OLD
 對敵方全體造成150%/170%/190%(params1)傷害，並賦予目標"致盲I/致盲I/致盲II"(params2)5秒(params3)
@@ -125,9 +125,12 @@ function Skill_1110:runSkill(chaNode, skillId, resultTable, allPassiveTable, tar
 end
 
 function Skill_1110:getSkillTarget(chaNode, skillId)
+    local skillCfg = ConfigManager:getSkillCfg()[skillId]
+    local skillLevel = skillId % 10
+    local params = common:split(skillCfg.values, ",")
     local enemyList = NgBattleDataManager_getEnemyList(chaNode)
     aliveIdTable = NewBattleUtil:initAliveTable(NgBattleDataManager_getEnemyList(chaNode))
-    return SkillUtil:getSkillTarget(chaNode, enemyList, aliveIdTable, SkillUtil.AREA_TYPE.ALL, { })
+    return SkillUtil:getRandomTarget(chaNode, enemyList, tonumber(params[6]))
 end
 
 return Skill_1110

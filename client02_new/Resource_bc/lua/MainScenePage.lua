@@ -20,6 +20,7 @@ local TimeDateUtil = require("Util.TimeDateUtil")
 local FriendManager = require("FriendManager")
 local TapDBManager = require("TapDBManager")
 local thisPageName = "MainScenePage"
+local Activity5_pb = require("Activity5_pb");
 
 require("Util.RedPointManager")
 require("Util.LockManager")
@@ -520,7 +521,6 @@ function MainScenePageInfo.broadcastMessage(container)
         local castNode = container:getVarNode("mNoticeNode")
         castNode:removeAllChildren()
     end
-    -- local PackageLogicForLua = require("PackageLogicForLua")
     local size = #worldBroadCastList
     if size > 0 then
         if isInAnimation == false then
@@ -896,12 +896,53 @@ function MainScenePageInfo.removePacket(container)
         end
     end
 end
-function MainScenePageInfo.RequestData()
-    --popUp資料要求
-    require("ActPopUpSale.ActPopUpSaleSubPage_132")
-    require("ActPopUpSale.ActPopUpSaleSubPage_177")
-    ActPopUpSaleSubPage_132_sendInfoRequest()
-    ActPopUpSaleSubPage_177_sendInfoRequest()      
+function MainScenePageInfo.RequestData() 
+    --Flag狀態要求
+    require("FlagData")
+    local data=FlagDataBase_GetData()
+    FlagDataBase_ReqStatus()    
+
+
+    --補給資料要求
+    --require("IAP.IAPRedPointMgr")
+    --Calendar_sendNRInfo()
+    --Calendar_sendPRInfo()
+
+    --月卡資料要求
+    --小月卡
+    common:sendEmptyPacket(HP_pb.CONSUME_MONTHCARD_INFO_C, false)
+    --大月卡
+    common:sendEmptyPacket(HP_pb.CONSUME_WEEK_CARD_INFO_C, false)
+
+    --商城資料要求
+    local SummonPage=require("Reward.RewardSubPage_FreeSummon")
+    SummonPage:sendLoginSignedInfoReqMessage()
+    local SummonPage2=require("Reward.RewardSubPage_FreeSummon2")
+    SummonPage2:sendLoginSignedInfoReqMessage()
+    
+    local msg = Activity5_pb.StepSummonReq()
+    msg.action=0
+    common:sendPacket(HP_pb.ACTIVITY190_STEP_SUMMON_C, msg, false)
+
+    local LoginPage=require("Reward.RewardSubPage_DayLogin30")
+    LoginPage:sendLoginSignedInfoReqMessage()
+    local StepBundle =  require ("IAP.IAPSubPage_StepBundle")
+    StepBundle:ItemInfoRequest()
+
+    --充值回饋資料要求
+    local DailyBundlePage = require ("Activity.DailyBundlePage")
+    DailyBundlePage:getVipPointRequest()
+    --累計登入資料要求
+    if ActivityInfo:getActivityIsOpenById(Const_pb.ACTIVITY200_EIGHT_DAY_LOGIN) then
+        local msg = Activity6_pb.EightDayLoginAwardReq()
+        msg.action = 0
+        common:sendPacket(HP_pb.ACTIVITY200_EIGHT_DAY_LOGIN_C, msg, false)
+    end
+    --skin資料要求
+    if not LockManager_getShowLockByPageName( GameConfig.LOCK_PAGE_KEY.SKIN_SHOP) then
+        local ShopDataMgr = require("Shop.ShopDataMgr")
+        ShopDataMgr:sendShopItemInfoInitRequest(Const_pb.SKIN_MARKET)
+    end
     --require("ActPopUpSale.ActPopUpSaleSubPage_Content")
     --local cfg = ConfigManager.getPopUpCfg()
     --for _,v in pairs (cfg) do
@@ -962,6 +1003,17 @@ function MainScenePageInfo.onEnter(container)
     --
     OnEnterGame()     --2020/3/31啟用
 
+    --popUp資料要求
+    require("ActPopUpSale.ActPopUpSaleSubPage_132")
+    require("ActPopUpSale.ActPopUpSaleSubPage_151")
+    require("ActPopUpSale.ActPopUpSaleSubPage_177")
+    ActPopUpSaleSubPage_132_sendInfoRequest()
+    ActPopUpSaleSubPage_151_sendInfoRequest()
+    ActPopUpSaleSubPage_177_sendInfoRequest() 
+
+    --派遣紅點要求
+    require("Mercenary.MercenaryExpeditionPage")
+    MercenaryExpeditionPage_getSimpleInfo()
     local UserMercenaryManager = require("UserMercenaryManager")
     if UserMercenaryManager:getMercenaryStatusInfos() == nil or #UserMercenaryManager:getMercenaryStatusInfos() == 0 then
         -- 没有副将信息 请求一次
@@ -982,48 +1034,6 @@ function MainScenePageInfo.onEnter(container)
     MainScenePageInfo.registerPacket(container)
 
      MainScenePageInfo.refreshPage(container)
-    --Flag狀態要求
-    require("FlagData")
-    local data=FlagDataBase_GetData()
-    FlagDataBase_ReqStatus()
-    
-    --派遣紅點要求
-    require("Mercenary.MercenaryExpeditionPage")
-    MercenaryExpeditionPage_getSimpleInfo()
-
-    --補給資料要求
-    require("IAP.IAPRedPointMgr")
-    Calendar_sendNRInfo()
-    Calendar_sendPRInfo()
-
-    --月卡資料要求
-    --小月卡
-    common:sendEmptyPacket(HP_pb.CONSUME_MONTHCARD_INFO_C, false)
-    --大月卡
-    common:sendEmptyPacket(HP_pb.CONSUME_WEEK_CARD_INFO_C, false)
-
-    --商城資料要求
-    local SummonPage=require("Reward.RewardSubPage_FreeSummon")
-    SummonPage:sendLoginSignedInfoReqMessage()
-    local SummonPage2=require("Reward.RewardSubPage_FreeSummon2")
-    SummonPage2:sendLoginSignedInfoReqMessage()
-    
-    local msg = Activity5_pb.StepSummonReq()
-    msg.action=0
-    common:sendPacket(HP_pb.ACTIVITY190_STEP_SUMMON_C, msg, false)
-
-    local LoginPage=require("Reward.RewardSubPage_DayLogin30")
-    LoginPage:sendLoginSignedInfoReqMessage()
-    local StepBundle =  require ("IAP.IAPSubPage_StepBundle")
-    StepBundle:ItemInfoRequest()
-
-    --充值回饋資料要求
-    local DailyBundlePage = require ("Activity.DailyBundlePage")
-    DailyBundlePage:getVipPointRequest()
-    --累計登入資料要求
-    local msg = Activity6_pb.EightDayLoginAwardReq()
-    msg.action = 0
-    common:sendPacket(HP_pb.ACTIVITY200_EIGHT_DAY_LOGIN_C, msg, false)
 
     MainScenePageInfo.setNoticeNodes(container)
 
@@ -1228,15 +1238,22 @@ function MainScenePageInfo:BuildBtnScrollview(container, Pos, isShort)
     local rules = {
         DailyLogin = function()
             local d = require("LoginRewardPage"):getServerData()
-            return d and d.surplusTime > 0 and d.days < 8
+            return d and d.surplusTime > 0 and d.days <= 8
         end,
         PopUpSale = function()
-            -- 特規型禮包
-            for _, id in ipairs({132,177}) do
+            local function isShow(id,cfg) 
                 require("ActPopUpSale.ActPopUpSaleSubPage_"..id)
                 local fn = _G["ActPopUpSaleSubPage_"..id.."_getIsShowMainSceneIcon"]
-                if fn and fn().isShowFn then return true end
+                for _, v in pairs(cfg) do
+                    if fn(v.id).isShowFn then
+                        return true 
+                    end
+                end
             end
+            -- 特規型禮包
+            isShow(132,ConfigManager.getAct132Cfg())
+            isShow(151,ConfigManager.getAct151Cfg())
+            isShow(177,ConfigManager.getAct177Cfg())
             -- 整合型禮包
             require("ActPopUpSale.ActPopUpSaleSubPage_Content")
             for _, v in pairs(ConfigManager.getPopUpCfg2()) do
@@ -1341,8 +1358,8 @@ function MainScenePageInfo:handleScrollview(scrollview, pos, isShort, showTable)
         end
     end
 
-    if totalH > 850 then
-        totalH = 850
+    if totalH > 650 then
+        totalH = 650
         scrollview:setTouchEnabled(true)
         scrollview:setBounceable(false)
     else
@@ -1386,14 +1403,13 @@ function MainScenePageInfo:CreateBtn(info)
         Pos    = info.Pos,
     }, BtnItem)
     cell:registerFunctionHandler(handler)
-
     if info.Pos == "Left" then
         table.insert(btnItemsLeft, {cell = cell, handler = handler})
     else
         table.insert(btnItemsRight, {cell = cell, handler = handler})
     end
 
-    local h = (type(time)=="string" or time>0) and 125 or 90
+    local h = (type(time)=="string" or time>0) and 113 or 87
     cell:setContentSize(CCSizeMake(100, h))
     return cell
 end
@@ -1402,7 +1418,7 @@ function MainScenePageInfo:GetPopUpTime()
      local _time= 0
      local TimeTable = {}
       --popUp資料要求
-      local pages = {132,177}
+      local pages = {132,151,177}
       local cfg = ConfigManager.getPopUpCfg()
       local cfg2 = ConfigManager.getPopUpCfg2()
 
@@ -1417,7 +1433,7 @@ function MainScenePageInfo:GetPopUpTime()
       end
      
      for i, page in ipairs(pages) do
-         if page == 132 or page == 177 then 
+         if page == 132 or page == 151 or page == 177 then 
             local serverDataFunc = _G["ActPopUpSaleSubPage_"..page.."_getServerData"]
             local serverData = serverDataFunc and serverDataFunc()
             TimeTable[i] = serverData and serverData.limitDate or 0
@@ -1503,14 +1519,15 @@ function BtnItem:onRefreshContent(ccRoot)
     end
 
     -- 其餘顯示及位置設定不變
+    local isTimeVisable =  (type(self.Time) == "string") or (self.Time > 0)
     local vis = {
-        mTimeNode = (type(self.Time) == "string") or (self.Time > 0),
+        mTimeNode = isTimeVisable,
         mLock     = LockManager_getShowLockByPageName(self.Lock),
         mPoint    = self.Red and RedPointManager_getShowRedPoint(self.Red) or false,
     }
     NodeHelper:setNodesVisible(container, vis)
     NodeHelper:setMenuItemImage(container, { mBtn = { normal = self.Normal } })
-    container:getVarNode("mPosition1"):setPositionY(vis.mTimeNode and 80 or 40)
+    container:getVarNode("mPosition1"):setPositionY(isTimeVisable and 113 or 87)
 end
 
 -- 處理按鈕點擊事件
@@ -1581,89 +1598,62 @@ function sendRoleInfo()
     setPayUrl() -- setPayurl(H365/JGG/KUSO/APLUS)
 end
 
+-- 伺服器 ID → 主機位址對照表
+local SERVER_HOSTS = {
+    [1]    = "54.255.44.130:5138",      -- 測試服1
+    [2]    = "18.143.35.236:5138",      -- 測試服2
+    [3]    = "18.143.216.175:5138",     -- 測試服3
+    [6]    = "18.182.62.36:5132",       -- NGTest
+    [9]    = "220.130.219.201:5132",    -- 內部102
+    [703]  = "59.127.222.98:5132",      -- Tinlin_Tainan
+    [1001] = "175.41.148.243:5138",     -- 正式服1
+    [1002] = "13.215.133.203:5138",     -- 正式服2
+    [1003] = "54.254.201.5:5138",       -- 正式服3
+    [2004] = "13.250.185.32:5138",      -- 正式服4
+    [2005] = "18.139.136.198:5138",     -- 正式服5
+    [3006] = "18.138.27.74:5138",      -- 正式服6
+    [3007] = "3.1.51.230:5138",         -- 正式服7
+    [3008] = "13.212.166.30:5138",      -- 正式服8
+    [2101] = "52.74.87.8:5138",         -- OP正式服
+}
+
+-- 平台設定：協議 + 路徑
+local PLATFORM_SETTINGS = {
+    h365  = { scheme = "http",  path = "payNotice" },
+    op    = { scheme = "http",  path = "OPpay"     },
+    kuso  = { scheme = "https", path = "KusoPay"   },
+    aplus = { scheme = "https", path = "KusoPay"   },
+}
+
 function setPayUrl()
+    -- r18／Erolabs 平台不處理
     if Golb_Platform_Info.is_r18 or Golb_Platform_Info.is_erolabs then
         return
     end
-    local Svrid = GamePrecedure:getInstance():getServerID()
-    local PayUrl = ""
-    if Golb_Platform_Info.is_h365 then
-        if (NodeHelper:isDebug()) then
-            if (Svrid == 1) then    --測試服1
-                PayUrl = "http://54.255.44.130:5138/payNotice?params="
-            elseif (Svrid == 2) then -- 測試服2
-	    		PayUrl = "http://18.143.35.236:5138/payNotice?params="
-            elseif (Svrid == 3) then -- 測試服3
-	    		PayUrl = "http://18.143.216.175:5138/payNotice?params="
-            elseif (Svrid == 6) then -- NGTest
-	    		PayUrl = "http://18.182.62.36:5132/payNotice?params="
-            elseif (Svrid == 9) then -- 內部102
-	    		PayUrl = "http://220.130.219.201:5132/payNotice?params="
-            --------------------------------
-            elseif (Svrid == 1001) then -- 正式服1
-	    		PayUrl = "http://175.41.148.243:5138/payNotice?params="
-            elseif (Svrid == 1002) then -- 正式服2
-	    		PayUrl = "http://13.215.133.203:5138/payNotice?params="
-            end
-        else
-            if (Svrid == 1) then    --測試服
-                PayUrl = "http://54.255.44.130:5138/payNotice?params="
-            elseif (Svrid == 2) then -- 測試服2
-	    		PayUrl = "http://18.143.35.236:5138/payNotice?params="
-            elseif (Svrid == 3) then -- 測試服3
-	    		PayUrl = "http://18.143.216.175:5138/payNotice?params="
-            elseif (Svrid == 6) then
-                PayUrl = "http://18.182.62.36:5132/payNotice?params="
-            elseif (Svrid == 9) then -- 內部102
-	    		PayUrl = "http://220.130.219.201:5132/payNotice?params="
-            --------------------------------
-            elseif (Svrid == 1001) then -- 正式服1
-	    		PayUrl = "http://175.41.148.243:5138/payNotice?params="
-            elseif (Svrid == 1002) then -- 正式服2
-	    		PayUrl = "http://13.215.133.203:5138/payNotice?params="
-            end
+
+    -- 取伺服器 host
+    local svrId = GamePrecedure:getInstance():getServerID()
+    local host  = SERVER_HOSTS[svrId]
+    if not host then return end
+
+    -- 平台設定
+    local setting
+    for plat, data in pairs(PLATFORM_SETTINGS) do
+        if Golb_Platform_Info["is_" .. plat] then
+            setting = data
+            break
         end
+    end
+    if not setting then
+        return  -- 沒有對應的平台，跳過
     end
 
-    if (Golb_Platform_Info.is_kuso or Golb_Platform_Info.is_aplus) then
-        if (NodeHelper:isDebug()) then
-            if (Svrid == 1) then    --測試服
-                PayUrl = "https://gs01.paycallback.quantagalaxies.com/KusoPay?params="
-            elseif (Svrid == 2) then -- 測試服2
-	    		PayUrl = "https://gs02.paycallback.quantagalaxies.com/KusoPay?params="
-            elseif (Svrid == 3) then -- 測試服3
-	    		PayUrl = "https://gs03.paycallback.quantagalaxies.com/KusoPay?params="
-            elseif (Svrid == 6) then -- NGTest
-	    		PayUrl = "https://dev.paycallback.quantagalaxies.com/KusoPay?params="
-            elseif (Svrid == 9) then -- 內部102
-	    		PayUrl = "https://debug.paycallback.quantagalaxies.com/KusoPay?params="
-            --------------------------------
-            elseif (Svrid == 1001) then -- 正式服1
-	    		PayUrl = "https://gs1001.paycallback.quantagalaxies.com/KusoPay?params="
-            elseif (Svrid == 1002) then -- 正式服2
-	    		PayUrl = "https://gs1002.paycallback.quantagalaxies.com/KusoPay?params="
-            end
-        else
-            if (Svrid == 1) then    --測試服
-                PayUrl = "https://gs01.paycallback.quantagalaxies.com/KusoPay?params="
-            elseif (Svrid == 2) then -- 測試服2
-	    		PayUrl = "https://gs02.paycallback.quantagalaxies.com/KusoPay?params="
-            elseif (Svrid == 3) then -- 測試服3
-	    		PayUrl = "https://gs03.paycallback.quantagalaxies.com/KusoPay?params="
-            elseif (Svrid == 6) then
-                PayUrl = "https://dev.paycallback.quantagalaxies.com/KusoPay?params="
-            elseif (Svrid == 9) then -- 內部102
-	    		PayUrl = "https://debug.paycallback.quantagalaxies.com/KusoPay?params="
-            --------------------------------
-            elseif (Svrid == 1001) then -- 正式服1
-	    		PayUrl = "https://gs1001.paycallback.quantagalaxies.com/KusoPay?params="
-            elseif (Svrid == 1002) then -- 正式服2
-	    		PayUrl = "https://gs1002.paycallback.quantagalaxies.com/KusoPay?params="
-            end
-        end
-    end
-    libPlatformManager:getPlatform():setPayH365(PayUrl)
+    -- 組 URL 並設定
+    -- 例如 "http://54.255.44.130:5138/payNotice?params="
+    local url = string.format("%s://%s/%s?params=", setting.scheme, host, setting.path)
+    libPlatformManager:getPlatform():setPayH365(url)
 end
+
 
 --- 添加主角Spine动画
 function MainScenePageInfo.showRoleSpineExtend(container)
@@ -1787,6 +1777,8 @@ function MainScenePageInfo.onExecute(container)
     end
 
     local dt = GamePrecedure:getInstance():getFrameTime()
+    local PackageLogicForLua = require("PackageLogicForLua")
+    PackageLogicForLua.UpdateOp(dt)
     checkAndCloseMainSceneLoadingEnd(dt)
 end
 
@@ -1805,11 +1797,7 @@ function MainScenePageInfo:setChat(msg)
     for i=1,100 do
         ChatContent=ChatContent:gsub("/"..i.."/","[表情符號]")
     end
-    local count=utf8Sub(ChatContent,10)
-    if count>=10 then
-        ChatContent = string.sub(ChatContent, 1, count).."..."
-    end
-     NodeHelper:setStringForLabel(self.container,{mChat=""})
+    NodeHelper:setStringForLabel(self.container,{mChat=""})
     local string = nil
     if ChatType == Const_pb.CHAT_WORLD then
         string = FreeTypeConfig[301244].content
@@ -1818,11 +1806,15 @@ function MainScenePageInfo:setChat(msg)
     elseif ChatType == Const_pb.CHAT_PERSONAL then
         string = FreeTypeConfig[301246].content
     end
+    local count = utf8Sub(ChatName..ChatContent,10)
+    if count>=10 then
+        ChatContent = string.sub(ChatContent, 1, count).."..."
+    end
     string = GameMaths:replaceStringWithCharacterAll(string, "#v1#",ChatName)
     string = GameMaths:replaceStringWithCharacterAll(string, "#v2#", ChatContent)
     if MainScenePageInfo.container then
         MainScenePageInfo.container:getVarNode("mChat"):setPositionY(4)
-        NodeHelper:setCCHTMLLabel(MainScenePageInfo.container, "mChat", CCSize(300, 5), string, false)
+        NodeHelper:setCCHTMLLabel(MainScenePageInfo.container, "mChat", CCSize(220, 5), string, false)
     end
 end
 function utf8Sub(str, n)
@@ -2232,7 +2224,7 @@ end
 function MainScenePageInfo.playMovie(container, skinId)
     -- 播放影片
     local fileName = "Hero/Hero" .. string.format("%05d", skinId)
-    local isFileExist =  CCFileUtils:sharedFileUtils():isFileExist("Video/" .. fileName .. ".mp4")
+    local isFileExist =  NodeHelper:isFileExist("Video/" .. fileName .. ".mp4")
     if isFileExist then
         --MainScenePageInfo.libPlatformListener = LibPlatformScriptListener:new(libPlatformListener)
         GamePrecedure:getInstance():playMovie(thisPageName, fileName, 1, 0)

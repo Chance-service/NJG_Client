@@ -182,13 +182,12 @@ function SecretMessageManager_getAlbumData(_id, _type)
 end
 
 -- 取得符合條件的解鎖數量
-function SecretMessageManager_LimitAchiveCount(_id)
+function SecretMessageManager_LimitAchiveCount(_id, idx)
     local UserMercenaryManager = require("UserMercenaryManager")
-    local count = 0
-    local mInfoSorts = UserMercenaryManager:getMercenaryStatusInfos()
-    local MercenaryId = 0
 
-    for _, v in ipairs(mInfoSorts) do
+    -- 先找到對應的 MercenaryId
+    local MercenaryId = 0
+    for _, v in ipairs(UserMercenaryManager:getMercenaryStatusInfos()) do
         if v.itemId == _id then
             MercenaryId = v.roleId
             break
@@ -196,29 +195,50 @@ function SecretMessageManager_LimitAchiveCount(_id)
     end
 
     local cur = UserMercenaryManager:getUserMercenaryById(MercenaryId)
+    local count = 0
+
     if cur then
         local cfg = getRoleTable(_id, 2)
-        for _, v in ipairs(cfg) do
+        for k, v in ipairs(cfg) do
+            -- 解析 lockType、lockValue，取得 lockStar 與 lockLevel
+            local lockStar, lockLevel
             local typeList = common:split(v.lockType, ",")
-            local valList = common:split(v.lockValue, ",")
-            local lockStar, lockLevel = nil, nil
+            local valList  = common:split(v.lockValue, ",")
 
             for i = 1, #typeList do
-                local t, val = tonumber(typeList[i]), tonumber(valList[i])
-                if t == 0 then lockStar = val end
-                if t == 1 then lockLevel = val end
+                local t   = tonumber(typeList[i])
+                local val = tonumber(valList[i])
+                if t == 0 then
+                    lockStar = val
+                elseif t == 1 then
+                    lockLevel = val
+                end
             end
 
-            local starOk = (not lockStar or cur.starLevel >= lockStar)
-            local levelOk = (not lockLevel or cur.level >= lockLevel)
+            -- 判斷當前星級與等級是否達標
+            local starOk  = (not lockStar) or (cur.starLevel >= lockStar)
+            local levelOk = (not lockLevel) or (cur.level     >= lockLevel)
+
+            -- 如果 idx 剛好等於目前索引，就直接回傳鎖定狀態（true 表示鎖定，false 表示未鎖定）
+            if idx == k then
+                return not (starOk and levelOk)
+            end
+
+            -- 若達標就累計 count
             if starOk and levelOk then
                 count = count + 1
             end
         end
     end
 
+    -- 如果有傳入 idx、但沒有任何達標項，就視為鎖定
+    if idx and count == 0 then
+        return true
+    end
+
     return count
 end
+
 
 function SecretMessageManager_getMessageQueue()
     return SecretMessageData.messageQueue

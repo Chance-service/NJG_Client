@@ -392,10 +392,7 @@ function TaskContent.onRefreshItemView(container)
            CountDownHandler= CCDirector:sharedDirector():getScheduler():scheduleScriptFunc(function()
            leftTime=leftTime-1     
            local txt=GameMaths:formatSecondsToTime(leftTime)
-           local nodeTTF = container:getVarLabelTTF("mTime")
-           if nodeTTF then
-               nodeTTF:setString(tostring(txt))
-           end
+           NodeHelper:setStringForLabel(container,{mTime = txt})        
         end, 1.0, false)
             --strMap["mTime"] = GameMaths:formatSecondsToTime(leftTime)-- 秒
         else

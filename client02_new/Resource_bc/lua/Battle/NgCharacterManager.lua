@@ -498,7 +498,10 @@ function NgCharacterManager:preloadAllHitEffect(fList, eList)
                                     eList[e].otherData[CONST.OTHER_DATA.CHARACTER_TYPE] == CONST.CHARACTER_TYPE.SPRITE)
                     if isHero then   --Hero
                         local effectCfg = ConfigManager.getHeroEffectPathCfg()
-                        local idx = tonumber(eList[e].otherData[CONST.OTHER_DATA.ITEM_ID] .. string.format("%03d", eList[e].otherData[CONST.OTHER_DATA.SPINE_SKIN]))
+                        local idx = tonumber(eList[e].otherData[CONST.OTHER_DATA.ITEM_ID] .. "000")
+                        if eList[e].otherData[CONST.OTHER_DATA.SPINE_SKIN] > 0 then
+                            idx = tonumber(string.format("%05d", eList[e].otherData[CONST.OTHER_DATA.SPINE_SKIN]))
+                        end
                         if effectCfg[idx] then
                             if effectCfg[idx].AttackHit then
                                 fileNames = common:split(effectCfg[idx].AttackHit, ",")
@@ -529,7 +532,10 @@ function NgCharacterManager:preloadAllHitEffect(fList, eList)
                                     fList[f].otherData[CONST.OTHER_DATA.CHARACTER_TYPE] == CONST.CHARACTER_TYPE.SPRITE)
                     if isHero then   --Hero
                         local effectCfg = ConfigManager.getHeroEffectPathCfg()
-                        local idx = tonumber(fList[f].otherData[CONST.OTHER_DATA.ITEM_ID] .. string.format("%03d", fList[f].otherData[CONST.OTHER_DATA.SPINE_SKIN]))
+                        local idx = tonumber(fList[f].otherData[CONST.OTHER_DATA.ITEM_ID] .. "000")
+                        if fList[f].otherData[CONST.OTHER_DATA.SPINE_SKIN] > 0 then
+                            idx = tonumber(string.format("%05d", fList[f].otherData[CONST.OTHER_DATA.SPINE_SKIN]))
+                        end
                         if effectCfg[idx] then
                             if effectCfg[idx].AttackHit then
                                 fileNames = common:split(effectCfg[idx].AttackHit, ",")
@@ -591,7 +597,7 @@ function NgCharacterManager:addTestSkill(skillData, option)
     if true then
         return  -- Ãö³¬´ú¸Õ
     end
-    local skillIds = { 600041 }
+    local skillIds = { 600061 }
     if option and option.isMine then
         for k, v in pairs(skillIds) do
             table.insert(skillData, v)

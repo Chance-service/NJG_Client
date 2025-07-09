@@ -2824,7 +2824,7 @@ function ConfigManager.getAct132Cfg()
     local key = "getAct132Cfg";
     local cfg = ConfigManager.configs[key];
     if cfg == nil then
-        local attrMap = common:table_combineNumber( { "id", "minLv", "BG", "Banner","Icon","title", "Text" ,"reward"});
+        local attrMap = common:table_combineNumber( { "id", "minLv", "BG", "Banner","IconName","Text", "Title" ,"reward"});
         local convertMap = {
             ["id"] = tonumber,
             ["minLv"] = tonumber,
@@ -2840,13 +2840,13 @@ function ConfigManager.getAct151Cfg()
     local key = "getAct151Cfg";
     local cfg = ConfigManager.configs[key];
     if cfg == nil then
-        local attrMap = common:table_combineNumber( { "id", "minStage", "maxStage", "reward", "price" });
+        local attrMap = common:table_combineNumber( { "id", "minStage", "maxStage", "BG", "Banner","IconName","Text", "Title","reward" });
         local convertMap = {
             ["id"] = tonumber,
             ["minStage"] = tonumber,
             ["maxStage"] = tonumber,
             ["price"] = tonumber,
-            -- ["reward"] = ConfigManager.parseItemOnlyWithUnderline,
+            ["reward"] = ConfigManager.parseItemWithComma
         };
         cfg = ConfigManager.loadCfg("StageGiftAward151.txt", attrMap, nil, convertMap);
         ConfigManager.configs[key] = cfg;
@@ -2857,11 +2857,10 @@ function ConfigManager.getAct177Cfg()
     local key = "getAct177Cfg";
     local cfg = ConfigManager.configs[key];
     if cfg == nil then
-        local attrMap = common:table_combineNumber( { "id","reward","price" });
+        local attrMap = common:table_combineNumber( { "id", "BG", "Banner","IconName","Text", "Title","reward" });
         local convertMap = {
             ["id"] = tonumber,
-            ["price"] = tonumber,
-            -- ["reward"] = ConfigManager.parseItemOnlyWithUnderline,
+            ["reward"] = ConfigManager.parseItemWithComma
         };
         cfg = ConfigManager.loadCfg("FailedGiftAward177.txt", attrMap, nil, convertMap);
         ConfigManager.configs[key] = cfg;
@@ -3373,7 +3372,7 @@ function ConfigManager.getSkinShopCfg()
     local key = "SkinShopCfg";
     local cfg = ConfigManager.configs[key];
     if cfg == nil then
-        local attrMap = common:table_combineNumber( { "id", "type",  "item", "price", "discount", "HeroId", "SkinId", "Sort" });
+        local attrMap = common:table_combineNumber( { "id", "type",  "item", "price", "discount", "HeroId", "SkinId", "Sort", "timeType" });
         local convertMap = {
             ["id"] = tonumber,
             ["type"] = tonumber,
@@ -3383,6 +3382,7 @@ function ConfigManager.getSkinShopCfg()
             ["HeroId"] = tonumber,
             ["SkinId"] = tonumber,
             ["Sort"] = tonumber,
+            ["timeType"] = tonumber,
             
         };
         cfg = ConfigManager.loadCfg("SkinShop_C.txt", attrMap, nil, convertMap);
@@ -5005,6 +5005,47 @@ function ConfigManager.getFetterBDSMActionCfg()
             ['spawnId'] = tonumber,
         }
         cfg = ConfigManager.loadCfg("fetterBDSMMovement.txt", attrMap, 0, convertMap)
+        ConfigManager.configs[key] = cfg
+    end
+    return cfg
+end
+--- 少女成長設定
+function ConfigManager.getGirlGrowthControlCfg()
+    local key = "GirlGrowthControl"
+    local cfg = ConfigManager.configs[key]
+    if cfg == nil then
+        local attrMap = common:table_combineNumber( { 'id', 'role', 'bg','startMovementId', "endMovementId", 'bgm', 'eff', "AutoWait" })
+        local convertMap = {
+            ['id'] = tonumber,
+            ['role'] = tonumber,
+            ['startMovementId'] = tonumber,
+            ['endMovementId'] = tonumber,
+            ['AutoWait'] = tonumber,
+        }
+        cfg = ConfigManager.loadCfg("GrowthStoryControl.txt", attrMap, 0, convertMap)
+        ConfigManager.configs[key] = cfg
+    end
+    return cfg
+end
+
+--- 少女成長演出
+function ConfigManager.getGirlGrowthActionCfg()
+    local key = "GirlGrowthAction"
+    local cfg = ConfigManager.configs[key]
+    if cfg == nil then
+        local attrMap = common:table_combineNumber( { 'id', 'actionType', 'spine', 'define','position','wait', 'transform', 'rotate', 'scale', 'time', 'parent', 'spawnId' })
+        local convertMap = {
+            ['id'] = tonumber,
+            ['actionType'] = tonumber,
+            ['define'] = tonumber,
+            ['wait'] = tonumber,
+            ['rotate'] = tonumber,
+            --['scale'] = tonumber,
+            ['time'] = tonumber,
+            ['parent'] = tonumber,
+            ['spawnId'] = tonumber,
+        }
+        cfg = ConfigManager.loadCfg("GrowthStoryMovement.txt", attrMap, 0, convertMap)
         ConfigManager.configs[key] = cfg
     end
     return cfg
@@ -6750,6 +6791,7 @@ function ConfigManager.getLimitTowerCfg()
             ["LevelLimit"] = tonumber,
             ["GirlLimit"] = tonumber,
             ["id"] = tonumber,
+            ["nextStage"] = tonumber,
             ["idx"] = tonumber,
             ["type"] = tonumber,
             ["count"] = tonumber,
@@ -6948,7 +6990,6 @@ function ConfigManager.getRoleGrowthUnlock()
         local attrMap = common:table_combineNumber( { "id", "itemId", "lockType","lockValue","avgType","avgId","Img","Title"});
         local convertMap = {
             ["itemId"] = tonumber,
-            ["avgId"] = tonumber, 
             ["avgType"] = tonumber, 
         };
 

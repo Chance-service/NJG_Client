@@ -18,10 +18,10 @@ id	type	backGround	spine/image	FX	jump	chibi/item	infoTextKey	tab	titleKey	pictu
 108	0,0,0,0	SummonPickup_bg02	Spine/NG2D,NG2D_08	Spine/NGUI,NGUI_53_Gacha1Summon_Water	8	Spine/CharacterSpine,NG_08000	@PickUpInfoText_108	SubBtn_PickUp	@PickUpTitle_108	SummonPickup_Label_008.png
 110801	1,1,1,1	SummonPickup_bg02	SummonPickup_img10801.png	Spine/NGUI,NGUI_53_Gacha1Summon_Water	10801	I_10801.png	@PickUpInfoText_110801	SubBtn_PickUp	@PickUpTitle_110801	SummonPickup_Label_10801.png
 104	0,0,0,0	SummonPickup_bg02	Spine/NG2D,NG2D_04	Spine/NGUI,NGUI_53_Gacha1Summon_Fire	4	Spine/CharacterSpine,NG_04000	@PickUpInfoText_104	SubBtn_PickUp	@PickUpTitle_104	SummonPickup_Label_004.png
-110401	1,1,1,1	SummonPickup_bg02	SummonPickup_img10401.png	Spine/NGUI,NGUI_53_Gacha1Summon_Fire	10401	I_10401.png	@PickUpInfoText_110401	SubBtn_PickUp	@PickUpTitle_110401	SummonPickup_Label_10401.png
+120	0,0,0,0	SummonPickup_bg02	Spine/NG2D,NG2D_20	Spine/NGUI,NGUI_53_Gacha1Summon_Fire	20	Spine/CharacterSpine,NG_20000	@PickUpInfoText_120	SubBtn_PickUp	@PickUpTitle_120	SummonPickup_Label_020.png
 107	0,0,0,0	SummonPickup_bg02	Spine/NG2D,NG2D_07	Spine/NGUI,NGUI_53_Gacha1Summon_Water	7	Spine/CharacterSpine,NG_07000	@PickUpInfoText_107	SubBtn_PickUp	@PickUpTitle_107	SummonPickup_Label_007.png
 110701	1,1,1,1	SummonPickup_bg02	SummonPickup_img10701.png	Spine/NGUI,NGUI_53_Gacha1Summon_Water	10701	I_10701.png	@PickUpInfoText_110701	SubBtn_PickUp	@PickUpTitle_110701	SummonPickup_Label_10701.png
 215	0,0,0,0	SummonPickup_bg02	Spine/NG2D,NG2D_15	Spine/NGUI,NGUI_53_Gacha1Summon_Wind	15	Spine/CharacterSpine,NG_15000	@PickUpInfoText_215	SubBtn_PickUp	@PickUpTitle_215	SummonPickup_Label_015.png
 211501	1,1,1,1	SummonPickup_bg02	SummonPickup_img11501.png	Spine/NGUI,NGUI_53_Gacha1Summon_Wind	11501	I_11501.png	@PickUpInfoText_211501	SubBtn_PickUp	@PickUpTitle_211501	SummonPickup_Label_11501.png
-120	0,0,0,0	SummonPickup_bg02	Spine/NG2D,NG2D_20	Spine/NGUI,NGUI_53_Gacha1Summon_Light	20	Spine/CharacterSpine,NG_20000	@PickUpInfoText_120	SubBtn_PickUp	@PickUpTitle_120	SummonPickup_Label_020.png
+220	0,0,0,0	SummonPickup_bg02	Spine/NG2D,NG2D_20	Spine/NGUI,NGUI_53_Gacha1Summon_Light	20	Spine/CharacterSpine,NG_20000	@PickUpInfoText_220	SubBtn_PickUp	@PickUpTitle_220	SummonPickup_Label_020.png
 112001	1,1,1,1	SummonPickup_bg02	SummonPickup_img12001.png	Spine/NGUI,NGUI_53_Gacha1Summon_Light	12001	I_12001.png	@PickUpInfoText_112001	SubBtn_PickUp	@PickUpTitle_112001	SummonPickup_Label_12001.png

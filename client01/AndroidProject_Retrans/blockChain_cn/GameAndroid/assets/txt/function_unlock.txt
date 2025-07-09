@@ -34,7 +34,7 @@ id	type	功能(字串/代號)	解鎖條件類型	解鎖條件	解鎖字串	是�
 33	2	106	0	10000	@WaitingOpen	0
 34	2	107	1	118	@StageOpen	0
 35	2	201	1	28	@StageOpen	0
-36	2	202	1	28	@StageOpen	0
+36	2	202	1	58	@StageOpen	0
 37	2	203	1	28	@StageOpen	1
 38	2	204	1	28	@StageOpen	0
 39	2	205	1	28	@StageOpen	0

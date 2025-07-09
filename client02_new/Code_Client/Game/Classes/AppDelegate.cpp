@@ -544,7 +544,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     
 	GamePrecedure::Get()->init();
 	//添加啟動後統計訊息
-	GamePrecedure::Get()->startupreport();
+	//GamePrecedure::Get()->startupreport();
 	//GamePrecedure::Get()->enterMainMenu();
 	// 安卓平台的logomovie是在java層實現的，所以直接進入loading狀態
 	GamePrecedure::Get()->enterLoading();

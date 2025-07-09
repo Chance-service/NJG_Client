@@ -46,6 +46,7 @@ function AlbumItem:refresh()
     if self.container == nil then
         return
     end
+    NodeHelper:setNodesVisible(self.container,{mBorder1 = false,mBorder2 = false})
     if self.itemId ~= 990 then
         NodeHelper:setSpriteImage(self.container, {mImg = "UI/HeroMemories/AlbumReview_" .. string.format("%03d",self.itemId+1) .. ".png"})
         NodeHelper:setNodesVisible(self.container, {mCountBg = false, mCount = false, mRedNode = false})
@@ -136,22 +137,32 @@ function StoryLogPage:onExecute(container)
 end
 
 function StoryLogPage:onEnter(container)
-    mainContainer = container
+    -- 快取 container 與使用者資料
+    self.mainContainer = container
     self:registerPacket(container)
     UserInfo.sync()
     passedMap = UserInfo.stateInfo.passMapId
-    container.mScrollView = container:getVarScrollView("mContent")
-    NodeHelper:setNodesVisible(mainContainer,{mElementNode=false})
-    -- scrollview??A??
-    --NodeHelper:autoAdjustResizeScrollview(container.mScrollView)
-    -- ?]?w?L?o???s
-    local filterBg = container:getVarScale9Sprite("mFilterBg")
-    NodeHelper:setNodesVisible(container, {mClassNode = false})
-    
+
+    -- 設定並調整 ScrollView
+    local scrollView = container:getVarScrollView("mContent2")
+    container.mScrollView = scrollView
+    NodeHelper:autoAdjustResizeScrollview(scrollView)
+
+    -- 節點可見性
+    NodeHelper:setNodesVisible(container, {
+        mBottom1    = false,
+        mBottom2    = true,
+        mClassNode  = false,
+        mBg2        = false,
+        mBg3        = false,
+    })
+
+
+    -- 初始化 ScrollView 內容
     self:initScrollView(container)
 
-    --新手教學
-    local GuideManager = require("Guide.GuideManager")
+    -- 新手教學
+     local GuideManager = require("Guide.GuideManager")
     GuideManager.PageContainerRef["StoryLogPage"] = container
     PageManager.pushPage("NewbieGuideForcedPage")
 end
@@ -177,6 +188,7 @@ end
 function StoryLogPage:onRefreshPage()
     mainContainer.mScrollView:removeAllCell()
     self:initScrollView(mainContainer)
+    NodeHelper:setNodesVisible(mainContainer,{mBg2 = false,mBg3 = false})
 end
 
 function StoryLogPage:onReturn(container)

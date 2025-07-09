@@ -544,6 +544,21 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
+            <key>popsale_132_icon.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{78,63}</string>
+                <key>spriteSourceSize</key>
+                <string>{78,63}</string>
+                <key>textureRect</key>
+                <string>{{593,1812},{78,63}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
             <key>popsale_151_icon.png</key>
             <dict>
                 <key>aliases</key>
@@ -618,7 +633,7 @@
             <key>size</key>
             <string>{1017,1884}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:87c610c0de474d9aa7ac0c81bc755b5a:b569e21ec81e63568e0091a3656e8331:20bc248e1b895c81808d7be2435ebe79$</string>
+            <string>$TexturePacker:SmartUpdate:fe1797c968c4dc92573605695694da57:cba6a582395323e7311e52b4a771a346:20bc248e1b895c81808d7be2435ebe79$</string>
             <key>textureFileName</key>
             <string>Recharge0.png</string>
         </dict>

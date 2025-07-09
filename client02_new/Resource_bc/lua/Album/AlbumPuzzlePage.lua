@@ -84,8 +84,15 @@ function AlbumPuzzlePage:onEnter(container)
     mainContainer = container
     self:registerPacket(container)
     NodeHelper:setNodesVisible(mainContainer,{mElementNode=false})
-    --container.mScrollView = container:getVarScrollView("mContent")
-    --NodeHelper:autoAdjustResizeScrollview(container.mScrollView)
+    container.mScrollView = container:getVarScrollView("mContent2")
+    NodeHelper:autoAdjustResizeScrollview(container.mScrollView)
+    NodeHelper:setNodesVisible(container, {
+        mBottom1    = false,
+        mBottom2    = true,
+        mClassNode  = false,
+        mBg2        = false,
+        mBg3        = false,
+    })
     self:sendInfoRequest()
     
 end
@@ -110,17 +117,15 @@ function AlbumPuzzlePage:tableSort()
     return heroTable
 end
 function AlbumPuzzlePage:buildScrollview(container)
-   local ScrollView = container:getVarScrollView("mContent")
     local cfg =  AlbumPuzzlePage:tableSort()
     for StageId,value in pairs (cfg) do
         local cell = CCBFileCell:create()
         cell:setCCBFile(AlbumPuzzleContent.ccbiFile)
         local panel = common:new({ ids = value }, AlbumPuzzleContent)
         cell:registerFunctionHandler(panel)
-        ScrollView:addCell(cell)
+        container.mScrollView:addCell(cell)
     end
-    ScrollView:orderCCBFileCells()
-    ScrollView:setTouchEnabled(#cfg > 3)
+    container.mScrollView:orderCCBFileCells()
 end
 function AlbumPuzzleContent:onRefreshContent(content)
     local container = content:getCCBFileNode()
@@ -135,9 +140,20 @@ function AlbumPuzzleContent:onRefreshContent(content)
         end
     end
 
+       -- 取關卡設定
     local data = mainPuzzleConfig[self.ids[1]]
-    local FinalTxt = string.format("%s  %d / %d", common:getLanguageString("@HeroName_" .. string.sub(data.groupId, 1, 2)), passCount, 7)
-    NodeHelper:setStringForLabel(container, { mAlbumName = FinalTxt })
+    
+    local groupKey  = ("%04d"):format(data.groupId):sub(1, 2)     -- 例如 1203 → "12"
+    local heroName  = common:getLanguageString("@HeroName_" .. tonumber(groupKey))
+    -- ↑↑↑---------------------------------------------------------------------
+    
+    -- 拼最終顯示文字；7 為總關卡數，若日後可變動可抽成常數
+    local TOTAL_STAGE = 7
+    local finalTxt = ("%s  %d / %d"):format(heroName, passCount, TOTAL_STAGE)
+    
+    -- 更新 UI
+    NodeHelper:setStringForLabel(container, { mAlbumName = finalTxt })
+
 end
 
 local function onCard(container, idTable, idx)

@@ -80,15 +80,13 @@ function AlbumStoryDisplayBase_Vertical:setData(mID)
     local Tmptable = {}
     local cfg = ConfigManager.getStoryData_Vertical()
     --local id = "1" .. string.format("%02d", mID)
-    local id = mID .. string.format("%02d", 1)
     for i = 1, 99 do
-        local tmpId = tonumber(id .. string.format("%02d", i))
+        local tmpId = tonumber(mID .. string.format("%02d", i))
         if cfg[tmpId] then
             table.insert(Tmptable, cfg[tmpId])
         end
     end
     SpineData = Tmptable
-
     soundTable = {}
     for _,data in pairs (SpineData) do
         local nameTable = common:split(data.EFF,",")
@@ -98,6 +96,7 @@ function AlbumStoryDisplayBase_Vertical:setData(mID)
         end     
     end
     AlbumStoryDisplayBase_Vertical:preloadAudioEffects(soundTable,3)
+    return true
 end
 function AlbumStoryDisplayBase_Vertical:preloadAudioEffects(files, batchSize)
     for i = 1, #files, batchSize do

@@ -92,7 +92,7 @@ function NgSkinPreviewPage:showTachieSpine(container)
     local spineName
     if PAGE_INFO.SKIN_ID > 0 then
         spineName = "NG2D_" .. string.format("%05d", PAGE_INFO.SKIN_ID)
-        local isFileExist =  CCFileUtils:sharedFileUtils():isFileExist("Spine/NG2D/" .. spineName .. ".skel")
+        local isFileExist =  NodeHelper:isFileExist("Spine/NG2D/" .. spineName .. ".skel")
         if not isFileExist then
             -- 沒有皮膚立繪spine -> 播mp4
             self:playMovie(container)
@@ -133,7 +133,7 @@ function NgSkinPreviewPage:playMovie(container)
     -- 播放影片
     if PAGE_INFO.SKIN_ID ~= 0 then
         local fileName = "Hero/Hero" .. string.format("%05d", PAGE_INFO.SKIN_ID)
-        local isFileExist =  CCFileUtils:sharedFileUtils():isFileExist("Video/" .. fileName .. ".mp4")
+        local isFileExist =  NodeHelper:isFileExist("Video/" .. fileName .. ".mp4")
         if isFileExist then
             GamePrecedure:getInstance():playMovie(thisPageName, fileName, 1, 0)
             NodeHelper:setNodesVisible(container, { mSpine = false })
@@ -155,7 +155,7 @@ function NgSkinPreviewPage:showSkill(container, eventName)
     require("HeroSkillPage")
     HeroSkillPage_setPageRoleInfo(355, 13)
     HeroSkillPage_setPageSkillLevel(3)
-    HeroSkillPage_setPageSkillId(skill)
+    HeroSkillPage_setPageSkillId(skill, tonumber(id))
     PageManager.pushPage("HeroSkillPage")
 end
 function NgSkinPreviewPage:onHelp(container)

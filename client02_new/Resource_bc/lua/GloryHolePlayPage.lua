@@ -193,7 +193,7 @@ function GloryHole_PlayBase:onEnter(container)
     local layer = container:getVarNode("mNotTouch")
     if not layer then
         layer = CCLayer:create()
-        layer:setTag(100001)
+        layer:setTag(5)
         container:addChild(layer)
         layer:setContentSize(CCEGLView:sharedOpenGLView():getDesignResolutionSize())
         layer:registerScriptTouchHandler( function(eventName, pTouch)
@@ -210,6 +210,8 @@ function GloryHole_PlayBase:onEnter(container)
         , false, -129, false)
         layer:setTouchEnabled(true)
         layer:setVisible(true)
+    elseif layer then
+        layer:setTag(5)
     end
 end
 function GloryHole_PlayBase:SetItemEffect(container)

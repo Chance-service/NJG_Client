@@ -1,0 +1,174 @@
+
+NGUI_100_CreateRole_3.png
+size: 778,778
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+A_02
+  rotate: false
+  xy: 231, 494
+  size: 360, 282
+  orig: 360, 282
+  offset: 0, 0
+  index: -1
+A_03
+  rotate: false
+  xy: 231, 237
+  size: 360, 255
+  orig: 360, 255
+  offset: 0, 0
+  index: -1
+H1
+  rotate: true
+  xy: 664, 80
+  size: 33, 108
+  orig: 33, 108
+  offset: 0, 0
+  index: -1
+H2
+  rotate: false
+  xy: 699, 322
+  size: 53, 92
+  orig: 53, 92
+  offset: 0, 0
+  index: -1
+H3
+  rotate: false
+  xy: 199, 160
+  size: 30, 33
+  orig: 30, 33
+  offset: 0, 0
+  index: -1
+H4
+  rotate: false
+  xy: 749, 686
+  size: 19, 21
+  orig: 19, 21
+  offset: 0, 0
+  index: -1
+L eye
+  rotate: false
+  xy: 699, 297
+  size: 29, 23
+  orig: 29, 23
+  offset: 0, 0
+  index: -1
+L pupil
+  rotate: false
+  xy: 699, 283
+  size: 16, 12
+  orig: 16, 12
+  offset: 0, 0
+  index: -1
+Lash L
+  rotate: false
+  xy: 532, 26
+  size: 28, 12
+  orig: 28, 12
+  offset: 0, 0
+  index: -1
+Lash R
+  rotate: false
+  xy: 25, 7
+  size: 20, 13
+  orig: 20, 13
+  offset: 0, 0
+  index: -1
+R eye
+  rotate: false
+  xy: 629, 70
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+R pupil
+  rotate: false
+  xy: 730, 307
+  size: 15, 13
+  orig: 15, 13
+  offset: 0, 0
+  index: -1
+acc L
+  rotate: false
+  xy: 532, 40
+  size: 95, 56
+  orig: 95, 56
+  offset: 0, 0
+  index: -1
+acc R
+  rotate: false
+  xy: 593, 239
+  size: 104, 175
+  orig: 104, 175
+  offset: 0, 0
+  index: -1
+body
+  rotate: false
+  xy: 2, 195
+  size: 227, 581
+  orig: 227, 581
+  offset: 0, 0
+  index: -1
+boob
+  rotate: true
+  xy: 664, 115
+  size: 122, 104
+  orig: 122, 104
+  offset: 0, 0
+  index: -1
+eye L BG
+  rotate: false
+  xy: 199, 144
+  size: 28, 14
+  orig: 28, 14
+  offset: 0, 0
+  index: -1
+eye R BG
+  rotate: false
+  xy: 2, 2
+  size: 21, 18
+  orig: 21, 18
+  offset: 0, 0
+  index: -1
+eyes closed
+  rotate: true
+  xy: 749, 709
+  size: 67, 24
+  orig: 67, 24
+  offset: 0, 0
+  index: -1
+hand L
+  rotate: true
+  xy: 593, 416
+  size: 170, 168
+  orig: 170, 168
+  offset: 0, 0
+  index: -1
+hand R
+  rotate: true
+  xy: 231, 25
+  size: 210, 299
+  orig: 210, 299
+  offset: 0, 0
+  index: -1
+hand acc L
+  rotate: true
+  xy: 2, 22
+  size: 171, 195
+  orig: 171, 195
+  offset: 0, 0
+  index: -1
+head
+  rotate: true
+  xy: 593, 588
+  size: 188, 154
+  orig: 188, 154
+  offset: 0, 0
+  index: -1
+skirt L
+  rotate: true
+  xy: 532, 98
+  size: 137, 130
+  orig: 137, 130
+  offset: 0, 0
+  index: -1

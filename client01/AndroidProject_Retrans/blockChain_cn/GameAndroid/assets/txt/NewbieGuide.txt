@@ -183,7 +183,9 @@
 40009	40010	4	40001	5														
 40010	40011	4	40001	1	@NewbieGuideStr25				@HeroName_1			HalfBody/role/teach_01000.png						NewbieGuide_Vo_25
 40011	40012	4	0	2			NgBattleResultPage	mDungenBtn			guideBtnItem.ccbi|A_Shou3.ccbi					BattleWinOrLosePopUp_1.ccbi_onWinBtn		
-40012	0	4	0	1	@NewbieGuideStr25_2				@HeroName_1			HalfBody/role/teach_01000.png						NewbieGuide_Vo_25_2
+40012	40013	4	0	1	@NewbieGuideStr25_2				@HeroName_1			HalfBody/role/teach_01000.png						NewbieGuide_Vo_25_2
+40013	40014	4	0	2			CommonTabStorage_Dungeon.DungeonPage	mGuideNode			guideBtnItem.ccbi|A_Shou3.ccbi		1			CommonTabStorage.ccbi_onReturnBtn		
+40014	0	4	0	2			MainFrame	mMainPageBtn			guideBtnItem.ccbi|A_Shou3.ccbi		1			MainFrame.ccbi_onMainPageBtn		
 	50002	0	50001	1	@NewbieGuideStr26				@HeroName_1			HalfBody/role/teach_01000.png						NewbieGuide_Vo_26
 	50003	0	50001	2			MainFrame	mLeaderPageBtn			guideBtnItem.ccbi|A_Shou3.ccbi							
 	50004	0	50001	2			EquipmentPageFire1_cell	mHeadNode			guideBtnItem.ccbi|A_Shou3.ccbi							
@@ -198,8 +200,8 @@
 70003	70004	7	70001	2			SummonPageBase	summon10Guide			guideBtnItem.ccbi|A_Shou4.ccbi		1			Summon_Guide.ccbi_onSummon10		
 70004	70005	7	70006	4														
 70005	70007	7	70006	5														
-70007	0	7	0	8			CommonTabStorage_Summon.SummonPage	mGuideNode			guideBtnItem.ccbi|A_Shou3.ccbi					CommonTabStorage.ccbi_onReturnBtn		
-70006	0	7	70006	2			MainFrame	mBackpackPageBtn			guideBtnItem.ccbi|A_Shou4.ccbi					MainFrame.ccbi_onBackpackPageBtn		
+70007	0	7	0	8			CommonTabStorage_Summon.SummonPage	mGuideNode			guideBtnItem.ccbi|A_Shou3.ccbi		1			CommonTabStorage.ccbi_onReturnBtn		
+70006	70005	7	70006	2			MainFrame	mBackpackPageBtn			guideBtnItem.ccbi|A_Shou4.ccbi					MainFrame.ccbi_onBackpackPageBtn		
 80001	80002	8	80001	1	@NewbieGuideStr30				@HeroName_1			HalfBody/role/teach_01000.png						NewbieGuide_Vo_30
 80002	80003	8	80001	2			MainFrame	mLeaderPageBtn			guideBtnItem.ccbi|A_Shou3.ccbi					MainFrame.ccbi_onLeaderPageBtn		
 80003	80004	8	80001	2			EquipmentPageFire1_cell	mHeadNode			guideBtnItem.ccbi|A_Shou3.ccbi					EquipmentPage_new_Item.ccbi_onHead		
@@ -243,9 +245,12 @@
 140010	140011	14	140009	2			EquipmentPageFire1_cell	mHeadNode			guideBtnItem.ccbi|A_Shou3.ccbi					EquipmentPage_new_Item.ccbi_onHead		
 140011	140012	14	140009	2			EquipLeadPage	mBtn2			guideBtnItem.ccbi|A_Shou3.ccbi		1			EquipmentPageRoleContent_new.ccbi_onEquipPage		
 140012	140013	14	140009	2			EquipLeadPage	mAWBtn			guideBtnItem.ccbi|A_Shou3.ccbi					EquipmentPageRoleContent_new.ccbi_onAncientWeapon		
-140013	140015	14	140009	2			AWSystemPage	mEquipBtn			guideBtnItem.ccbi|A_Shou3.ccbi		1			AWSystemPage.ccbi_onEquip		
+140013	140015	14	140009	2			AWSystemPage	mEquipBtn			guideBtnItem.ccbi|A_Shou3.ccbi		1			AWSystemPage2.ccbi_onEquip		
 140015	140014	14	140009	5														
-140014	0	14	0	1	@NewbieGuideStr44				@HeroName_1			HalfBody/role/teach_01000.png						NewbieGuide_Vo_44
+140014	140016	14	0	1	@NewbieGuideStr44				@HeroName_1			HalfBody/role/teach_01000.png						NewbieGuide_Vo_44
+140016	140017	14	0	2			EquipLeadPage	mReturnNode			guideBtnItem.ccbi|A_Shou3.ccbi		1			EquipmentPageRoleContent_new.ccbi_onReturn		
+140017	140018	14	0	2			MainFrame	mBattlePageBtn			guideBtnItem.ccbi|A_Shou3.ccbi					MainFrame.ccbi_onBattlePageBtn		
+140018	0	14	0	8			NgBattlePage	mChallangeNode			guideBtnItem.ccbi|A_Shou3.ccbi					BattlePage.ccbi_onDekaronBoss		
 140051	140003	14	140051	1	@NewbieGuideStr42				@HeroName_1			HalfBody/role/teach_01000.png						NewbieGuide_Vo_42
 150001	150002	15	150051	1	@NewbieGuideStr45				@HeroName_1			HalfBody/role/teach_01000.png						NewbieGuide_Vo_45
 150002	150003	15	150051	2			MainFrame	mMainPageBtn			guideBtnItem.ccbi|A_Shou3.ccbi					MainFrame.ccbi_onMainPageBtn		

@@ -499,10 +499,7 @@ function AchievementPageBase:onReceivePacket(container)
         selectedIndex = 1
         self:refreshPage(container)
     elseif opcode == HP_pb.QUEST_SINGLE_UPDATE_S then
-        local msg = Quest_pb.HPQuestUpdate()
-        msg:ParseFromString(msgBuff)
-        AchievementManager:updateQuest(msg.quest)
-        self:refreshPage(container)
+        common:sendEmptyPacket(HP_pb.QUEST_GET_ACHIVIMENT_LIST_C, true)
     end
     --[[elseif opcode == HP_pb.PLAYER_GOOGLE_ACHIEVE_S then
          local msg = Player_pb.HPGoogleAchieveMsgRet()

@@ -311,28 +311,7 @@ function MissionLineTask:onReceivePacket(ParentContainer)
 		_lineTaskPacket,_curShowTaskInfo = MissionManager.AnalysisPacket(msg)
         self:rebuildAllItem()
     elseif opcode == HP_pb.QUEST_SINGLE_UPDATE_S then--_curShowTaskInfo内删除已领奖任务，添加当前类型中的下一个任务
-        local msg = Quest_pb.HPQuestUpdate()
-        msg:ParseFromString(msgBuff)
-        local index = 0
-        for k, v in pairs(_curShowTaskInfo) do
-            index = index + 1
-            if v.id == msg.quest.id then
-                table.remove(_curShowTaskInfo,index);
-                if #_lineTaskPacket[questCfg[msg.quest.id].team] > 0 then
-                    table.insert(_curShowTaskInfo,_lineTaskPacket[questCfg[msg.quest.id].team][1]);
-                    table.remove(_lineTaskPacket[questCfg[msg.quest.id].team],1);
-                end
-                break
-            end
-        end
-        MissionManager.sortData(_curShowTaskInfo);
-        --[[table.sort( _curShowTaskInfo,function (task1,task2)
-            return questCfg[task1.id].sortId < questCfg[task2.id].sortId
-        end);]]--
-        self:rebuildAllItem()
-
-        local NgBattlePage=require("Battle.NgBattlePage")
-        NgBattlePage:setQuestBtn(_curShowTaskInfo)
+         common:sendEmptyPacket(HP_pb.QUEST_GET_ACHIVIMENT_LIST_C, true)
 	end
    
 end

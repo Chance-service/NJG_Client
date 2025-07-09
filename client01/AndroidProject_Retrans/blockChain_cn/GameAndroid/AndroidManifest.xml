@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     android:installLocation="preferExternal"
-    android:versionCode="1040702"
-    android:versionName="1.4.7.2"
+    android:versionCode="1011501"
+    android:versionName="1.1.15.1"
     xmlns:tools="http://schemas.android.com/tools"
      >
 
@@ -64,7 +64,7 @@
 					<action android:name="android.intent.action.VIEW"/>
 					<category android:name="android.intent.category.DEFAULT" />
 					<category android:name="android.intent.category.BROWSABLE" />
-                    <data android:host="chance" android:scheme="chance.ninja.girl"/>
+                    <data android:host="chance" android:scheme="chance.release.ninja.girl"/>
             </intent-filter>
         </activity>
 		<activity

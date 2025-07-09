@@ -131,10 +131,14 @@ Inst.Type2SubPageInfo = {
            { priceStr = "30000_" .. EventDataMgr[Const_pb.ACTIVITY191_CycleStage].TOKEN_ID .. "_0" },
        },
        _avaliableConditions = {
-           deactive = not ActivityInfo:getActivityIsOpenById(Const_pb.ACTIVITY191_CycleStage),
+           deactive = function() 
+                return not ActivityInfo:getActivityIsOpenById(Const_pb.ACTIVITY191_CycleStage) 
+           end
        },
        -- 關閉道具+號按鈕
        _closePlusBtn = true,
+       -- 解鎖條件KEY
+       LOCK_KEY = GameConfig.LOCK_PAGE_KEY.Event001,
    },
    -- 神海2
    [Inst.ShopType.GODSEA2] = {
@@ -152,10 +156,14 @@ Inst.Type2SubPageInfo = {
            { priceStr = "30000_" .. EventDataMgr[Const_pb.ACTIVITY196_CycleStage_Part2].TOKEN_ID .. "_0" },
        },
        _avaliableConditions = {
-           deactive = not ActivityInfo:getActivityIsOpenById(Const_pb.ACTIVITY196_CycleStage_Part2),
+           deactive = function() 
+                return not ActivityInfo:getActivityIsOpenById(Const_pb.ACTIVITY196_CycleStage_Part2) 
+           end
        },
        -- 關閉道具+號按鈕
        _closePlusBtn = true,
+       -- 解鎖條件KEY
+       LOCK_KEY = GameConfig.LOCK_PAGE_KEY.Event001,
    },
     -- 每日
     [Inst.ShopType.DAILY] = {
@@ -373,7 +381,9 @@ function Inst:getAvaliableShopTypes()
         if info._avaliableConditions then
 
             -- 指定關閉
-            if info._avaliableConditions.deactive then
+            if type(info._avaliableConditions.deactive) == "function" and info._avaliableConditions.deactive() then
+                break --continue
+            elseif type(info._avaliableConditions.deactive) ~= "function" and info._avaliableConditions.deactive then
                 break --continue
             end
 

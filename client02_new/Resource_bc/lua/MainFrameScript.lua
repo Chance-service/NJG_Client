@@ -21,6 +21,45 @@ function libPlatformListener:onKusoPay(listener)
     msg.goodsId = tonumber(goodsId)
     common:sendPacket(HP_pb.SHOP_69COIN_TAKE_C, msg, true)
 end
+function libPlatformListener:onGPPay(listener)
+    if not listener then return end
+    local strResult = listener:getResultStr()
+    CCLuaLog("onGPPay : " .. strResult)
+    local Shop_pb = require("Shop_pb")
+    local msg = Shop_pb.PlatformGetGoods()
+    local orderId, token, goodsId = unpack(common:split(strResult, "|"))
+      CCLuaLog("-------------------------orderId = " .. orderId)
+    if tonumber(orderId) == 0 then 
+         CCLuaLog("onGPPayFailed: " .. orderId)
+         MessageBoxPage:Msg_Box(common:getLanguageString("@GPNoMoney"))
+         return
+    end
+    msg.token = token
+    msg.orderid = orderId
+    msg.goodsId = tonumber(goodsId)
+    common:sendPacket(HP_pb.SHOP_GP_ORDER_C, msg, true)
+end
+
+function libPlatformListener:GPStatus(listener)
+    if not listener then return end
+    local strResult = listener:getResultStr()
+    CCLuaLog("GPStatus : " .. strResult)
+    if strResult == "startLoading" then
+        PageManager.pushPage("LoadingAniPage")
+    elseif strResult == "endLoading" then
+        PageManager.popPage("LoadingAniPage")
+    elseif strResult == "noMoney" then
+        local title = common:getLanguageString("@GPNoMoney")
+        local msg = common:getLanguageString("@GPNoMoney")
+        PageManager.showConfirm(title, msg, function(isSure)
+                 if isSure then
+                    common:openURL("https://www.gamepark.co/store")
+                 end
+             end,nil,"@GoToHttp","@Confirmation")
+        PageManager.popPage("LoadingAniPage")
+    end
+end
+
 MainFrameScript.libPlatformListener = LibPlatformScriptListener:new(libPlatformListener)
 
 function setCCBMenuAnimation(menuName, actionName)

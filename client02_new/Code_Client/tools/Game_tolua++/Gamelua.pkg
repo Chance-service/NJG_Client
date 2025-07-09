@@ -1,5 +1,7 @@
 $#include "Gamelua.h"
 
+$pfile "InGameDownloader.pkg"
+
 $pfile "CCBScriptContainer.pkg"
 
 $pfile "CCScrollView.pkg"

@@ -49,8 +49,14 @@ local FetterLogContent = {
 	logTxt = {},
 	logVoice = {},
 }
+local Types = {
+    MainStory = 1,
+    GirlGrowth = 2
+}
 
+local nowType = 1
 local diaryContainer = nil
+local MainId = ""
 
 local DiaryState = {SPINE = 1, HIDE = 2}
 local DiaryTypeNew = {NONE = 0, SPINE = 1, TRANS = 2, FADEIN = 3, ANIMATION = 4, WAITLINE = 5,
@@ -63,8 +69,8 @@ local nowState = DiaryState.SPINE
 local diarySpine = nil
 local diarySpineFade = nil
 
-local fetterControlCfg = ConfigManager:getFetterBDSMControlCfg()
-local fetterMovementCfg = ConfigManager:getFetterBDSMActionCfg()
+local ControlCfg = ConfigManager:getFetterBDSMControlCfg() 
+local MovementCfg =  ConfigManager:getFetterBDSMActionCfg()
 
 local mSpineNode = nil
 local mSpineFadeNode = nil
@@ -176,24 +182,27 @@ function FetterGirlsDiary:onEnter(container)
             nowSpines[i] = nil
         end
     end
+    if nowType == Types.MainStory then
+        ControlCfg = ConfigManager:getFetterBDSMControlCfg() 
+        MovementCfg =  ConfigManager:getFetterBDSMActionCfg()
+        MainId = string.format("%02d", areaNum) .. string.format("%02d", stageNum) .. storyIdx
+    elseif nowType == Types.GirlGrowth then
+        ControlCfg = ConfigManager:getGirlGrowthControlCfg() 
+        MovementCfg =  ConfigManager:getGirlGrowthActionCfg()
+    end
 	NodeHelper:setNodesVisible(container, {mDiaryWindow = false, mFullScreen = true})
     FetterGirlsDiary:removeSpinesSafely()
 	nowOtherEffId = 0
 	nowOtherEffName = ""
 	SoundManager:getInstance():stopAllEffect()
-    self.container = container
     mainContainer = container
 	self:openMainScreen(container)
-	--NodeHelper:Add_9_16_Layer(container,"mLayer")
-	--container:getVarNode("mStory"):setPositionY(TextHeight)
-	---
 	fadeBgSprite = CCSprite:create("UI/Mask/Image_Empty.png")
 	fadeBgSprite:setOpacity(0)
 	local sprite = container:getVarSprite("mBg")
 	sprite:getParent():addChild(fadeBgSprite)
 	---
 	FetterGirlsDiary:registerPacket(container)
-	--FetterGirlsDiary:refreshPage(container)
 	NodeHelper:setNodesVisible(container, {mLogNode = false,mTouch = false})
 	--------------------------------------------------------------------
 	--Debug
@@ -235,19 +244,35 @@ function FetterGirlsDiary:onEnter(container)
 	PageManager.setIsInGirlDiaryPage(true) 
 end
 function FetterGirlsDiary:HSPINESync(container)
-	local mID
-	for line=1,99 do
-		mID = tonumber( string.format("%02d", areaNum) .. string.format("%02d", stageNum) .. storyIdx .. string.format("%02d", line))
-		if fetterControlCfg[mID] then
-			for move=1,10 do
-				mID = tonumber( string.format("%02d", areaNum) .. string.format("%02d", stageNum) .. storyIdx .. string.format("%02d", line).. string.format("%02d", move))
-				if fetterMovementCfg[mID] and fetterMovementCfg[mID].actionType == DiaryTypeNew.HSPINE then
-					return line
-				end
-			end
-		end
-	end
+    -- 根據 nowType 決定每行的最大數量與乘數
+    local baseMultiply, maxLine
+    if nowType == Types.MainStory then
+        baseMultiply = 100   -- 99句 直接乘100
+        maxLine = 99
+    elseif nowType == Types.GirlGrowth then
+        baseMultiply = 1000  -- 999句 直接乘1000
+        maxLine = 999
+    else
+        return nil
+    end
+
+    for line = 1, maxLine do
+        local ConId = tonumber(MainId) * baseMultiply + line
+        if ControlCfg[ConId] then
+            for move = 1, 10 do
+                local actionId = ConId * 100 + move  -- 直接乘 100 再加 move
+                local movement = MovementCfg[actionId]
+                if movement and movement.actionType == DiaryTypeNew.HSPINE then
+                    return line
+                end
+            end
+        end
+    end
+
+    -- 如果整個迴圈都沒找到就回 nil
+    return nil
 end
+
 function FetterGirlsDiary:onClose(container)
 	if mSpineNode then
 		mSpineNode:unscheduleUpdate()
@@ -405,8 +430,11 @@ function FetterGirlsDiary:onTutorialSkip(container)
 end
 
 function FetterGirlsDiary:removeSpinesSafely()
-   local fetterCfgId = tonumber( string.format("%02d", areaNum) .. string.format("%02d", stageNum) .. storyIdx)
-   if fetterCfgId == 1052 then return end --1-5避免閃退不刪除
+   local fetterCfgId = 0
+   if nowType == Types.MainStory then       
+        fetterCfgId = tonumber( MainId)
+        if fetterCfgId == 1052 then return end --1-5避免閃退不刪除
+   end
    for i = 1, 3 do
        local spine = nowSpines[i]
        if spine and not tolua.isnull(spine) then
@@ -635,17 +663,18 @@ function FetterGirlsDiary:setAllLogContent(container)
 			table.insert (FetterLogContent.logTxt,lines[i])
 			FetterLogContent.logTxt[i] = lines[i]
 			--logName
-			local fetterCfgId = tonumber( string.format("%02d", areaNum) .. string.format("%02d", stageNum) .. storyIdx .. string.format("%02d", i))
-			local roleId = fetterControlCfg[fetterCfgId].role
+			local mID = 0
+            if nowType == Types.MainStory then
+                mID = tonumber( MainId .. string.format("%02d", i))
+            elseif nowType == Types.GirlGrowth then 
+                 mID = tonumber( MainId .. string.format("%03d", i))
+            end
+			local roleId = ControlCfg[mID].role
 			if roleId then
 				FetterLogContent.logName[i] = common:getLanguageString("@HeroName_" .. roleId)
 			else
 				FetterLogContent.logName[i] = ""
-			end
-			--logVoice
-			--local voiceName = "Voice" .. string.format("%02d", areaNum) .. string.format("%02d", stageNum) .. storyIdx .. string.format("%02d", i) .. ".mp3"
-			--local isFileExist = NodeHelper:isFileExist("audio/" .. voiceName)
-			--FetterLogContent.logVoice[i] = isFileExist
+			end			
 	  end
 end
 
@@ -656,7 +685,7 @@ function FetterGirlsDiary:onTouch(container, eventName)
 	--    MessageBoxPage:Msg_Box_Lan("@NewbieGuideStr152")
 	--    return
 	--end
-    if not container then container = self.container end
+    container = container or mainContainer
     if Limit and nowLine == Limit then
         local parentNode = container:getVarNode("mChangeSpine")
         if parentNode then
@@ -686,8 +715,8 @@ function FetterGirlsDiary:onTouch(container, eventName)
 			end
 			-- 當前fetterControlId
 			local nowControlId = FetterGirlsDiary:getNowControlId(diaryContainer )
-			-- 當前fetterControlCfg
-			local nowControlCfg = fetterControlCfg[nowControlId]
+			-- 當前ControlCfg
+			local nowControlCfg = ControlCfg[nowControlId]
 			--關閉對話提示
 			NodeHelper:setNodesVisible(diaryContainer , { mTalkArrowNode = false })
 			if string.find(lines[nowLine], "@") then --劇情結束
@@ -819,8 +848,15 @@ function FetterGirlsDiary:initSpine(container)
 	mSpineNode:removeAllChildrenWithCleanup(true)
 	mSpineFadeNode = container:getVarNode("mSpineFade")
 	mSpineFadeNode:removeAllChildrenWithCleanup(true)
-	local startId = tonumber( string.format("%02d", areaNum) .. string.format("%02d", stageNum) .. storyIdx .. "00")
-	local cfg = fetterMovementCfg[tonumber(startId .. "01")]
+	local startId = 0
+    local cfg = {}
+    if nowType == Types.MainStory then
+        startId = tonumber( MainId .. "00")
+        cfg = MovementCfg[tonumber(startId .. "01")]
+    elseif nowType == Types.GirlGrowth then
+        startId = tonumber( MainId .. "000")
+        cfg = MovementCfg[tonumber(startId .. "001")]
+    end
 	if not cfg then
 		return
 	end
@@ -866,10 +902,26 @@ end
 
 function FetterGirlsDiary:initSetting(container)
 	--end
-	local langForward = "@ChapterStory"
-	for i = 1, 99 do 
-		local str = common:getLanguageString(langForward .. string.format("%02d", areaNum) .. string.format("%02d", stageNum) .. storyIdx .. string.format("%02d", i))
-		--local str=NodeHelper:FunSetLinefeed(tmp,63)
+	local langForward = ""
+    local lineCount = 0
+    local cfgId = 0
+    if nowType == Types.MainStory then 
+        langForward =  "@ChapterStory"
+        lineCount = 99
+        cfgId = tonumber( MainId .. "01")
+    elseif nowType == Types.GirlGrowth then
+        langForward = "@GrowthStory"
+        lineCount = 999
+        cfgId = GrowthGirlId
+    end
+   
+	for i = 1, lineCount do 
+		local str = ""
+        if nowType == Types.MainStory then
+            str = common:getLanguageString(langForward .. MainId .. string.format("%02d", i))
+        elseif nowType == Types.GirlGrowth then
+            str = common:getLanguageString(langForward .. MainId..string.format("%03d", i))
+        end
 		if str == "#blank#" then
 			str=" "
 		end
@@ -900,15 +952,22 @@ function FetterGirlsDiary:initSetting(container)
 	NodeHelper:setMenuItemImage(container, { mAutoBtn = { normal = "Fetter_Btn_Auto_OFF.png", press = "Fetter_Btn_Auto_ON.png" } })
 	NodeHelper:setMenuItemImage(container, { mVoiceBtn = { normal = "Fetter_Btn_Voice_ON.png", press = "Fetter_Btn_Voice_OFF.png" } })
 	NodeHelper:setMenuItemImage(container, { mLogBtn = { normal = "Fetter_Btn_Log_OFF.png", press = "Fetter_Btn_Log_ON.png" } })
-	local cfgId = tonumber( string.format("%02d", areaNum) .. string.format("%02d", stageNum) .. storyIdx .. "01")
+
+
+	local cfgId = 0
+    if nowType == Types.MainStory then 
+        cfgId = tonumber(MainId.."01")
+    elseif nowType == Types.GirlGrowth then
+        cfgId = tonumber(MainId.."001")
+    end
 	
-	local roleId = fetterControlCfg[cfgId].role
+	local roleId = ControlCfg[cfgId].role
 	if roleId then   --少東
 		NodeHelper:setStringForLabel(container, { mTitle = common:getLanguageString("@HeroName_" .. roleId) })
 	else
 		NodeHelper:setStringForLabel(container, { mTitle = "" })
 	end
-	nowBgName = fetterControlCfg[cfgId].bg
+	nowBgName = ControlCfg[cfgId].bg
 	local sprite = container:getVarSprite("mBg")
 	if nowBgName == "" then
 		sprite:setTexture("UI/Mask/Image_Empty.png")
@@ -917,11 +976,11 @@ function FetterGirlsDiary:initSetting(container)
 	end
 	sprite:setScale(sprite:getScale())
 	SoundManager:getInstance():stopMusic()  --關閉BGM
-	SoundManager:getInstance():playMusic(fetterControlCfg[cfgId].bgm)
-	nowBgmName = fetterControlCfg[cfgId].bgm
-	autoTime = fetterControlCfg[cfgId].AutoWait or 2
+	SoundManager:getInstance():playMusic(ControlCfg[cfgId].bgm)
+	nowBgmName = ControlCfg[cfgId].bgm
+	autoTime = ControlCfg[cfgId].AutoWait or 2
     	if autoTime == 0 then autoTime = 2 end
-    	FetterGirlsDiary:PlayEffectTable(container, fetterControlCfg[cfgId].eff)
+    	FetterGirlsDiary:PlayEffectTable(container, ControlCfg[cfgId].eff)
 	--預設開啟黑幕
 	container:runAnimation("F4")
 	NodeHelper:setNodesVisible(container, {mTalkArrowNode = false})
@@ -966,7 +1025,7 @@ end
 --  NEW ACT FUNCTION
 -------------------------------------------------------------------------
 function FetterGirlsDiary:getMovementPara(container, id)
-	local movementCfg = fetterMovementCfg[id]
+	local movementCfg = MovementCfg[id]
 	if not movementCfg then
 		return
 	end
@@ -1234,7 +1293,7 @@ function FetterGirlsDiary:createAction(container, para, action, bgAction, chActi
 				px = tonumber(px)
 				py = tonumber(py)
 			end
-			spineNode:setPosition(ccp(px, py))
+			parentNode:setPosition(ccp(px, py))
 			spineNode:setScaleX(tonumber(scale))
 			spineNode:setRotation(rotate)
 			diarySpine:runAnimation(1, ani, -1)
@@ -1499,14 +1558,14 @@ function FetterGirlsDiary:setPlayMoiveVisible(container,isVisible)
     --CommTabStorage:setMovieVisible(isVisible)
 end
 function FetterGirlsDiary:getMovementActions(container, id)
-	local controlCfg = fetterControlCfg[id]
+	local controlCfg = ControlCfg[id]
 	local actionArr = CCArray:create()
 	local bgArrAct = CCArray:create()
 	local chArrAct = CCArray:create()
 	local EndId
 	for i=1,10 do
 		EndId=controlCfg.startMovementId+i
-		if not fetterMovementCfg[EndId] then break end
+		if not MovementCfg[EndId] then break end
 	end
 	if controlCfg.startMovementId and EndId then
 		for i = controlCfg.startMovementId, EndId do
@@ -1561,7 +1620,12 @@ function FetterGirlsDiary:playActionsNew(container)
 end
 
 function FetterGirlsDiary:getNowControlId(container)
-	local id = tonumber(string.format("%02d", areaNum) .. string.format("%02d", stageNum) .. storyIdx .. string.format("%02d", nowLine))
+	local id = 0
+    if nowType == Types.MainStory then
+        id = tonumber(MainId .. string.format("%02d", nowLine))
+    elseif nowType == Types.GirlGrowth then
+        id = tonumber(MainId .. string.format("%03d", nowLine))
+    end
 	return id
 end
 -------------------------------------------------------------------------
@@ -1593,31 +1657,29 @@ function FetterGirlsDiary:setLineState(container)
 	isEndLineAct = false
 	nowActionType = DiaryTypeNew.NONE
 	NodeHelper:setNodesVisible(container, { mTalkArrowNode = true })
-	-- 計算cfgId
-	startId = tonumber( string.format("%02d", areaNum) .. string.format("%02d", stageNum) .. storyIdx .. "00")
-	if isPhoto then
-		local cfg = fetterMovementCfg[tonumber(startId .. "01")]
-		local aniName, spinePath, spineFile = unpack(common:split((cfg.spine), ","))
-		newTrans = cfg.transform
-		newRotate = cfg.rotate
-		newScale = cfg.scale
-		newSpinePath = spinePath
-		newSpineFile = spineFile
-		bgTrans = "0,0"
-		bgRotate = 0
-		bgScale = 1
-	end
-	newSpineAni = fetterMovementCfg[tonumber(startId .. "01")].spine
+	local actionStartId,actionEndId
+    if nowType == Types.MainStory then
+        startId = tonumber( MainId .. "00")
+        newSpineAni = MovementCfg[tonumber(startId .. "01")].spine
+        testId = tonumber( MainId .. string.format("%02d", testNowLine))
+        actionStartId = "01"
+        actionEndId = "99"
+    elseif nowType == Types.GirlGrowth then
+        startId = tonumber( MainId .. "000")
+        newSpineAni = MovementCfg[tonumber(startId .. "001")].spine
+        testId = tonumber( MainId .. string.format("%03d", testNowLine))
+        actionStartId = "001"
+        actionEndId = "999"
+    end
 	newUiAni = "F4"
-	testId = tonumber( string.format("%02d", areaNum) .. string.format("%02d", stageNum) .. storyIdx .. string.format("%02d", testNowLine))
 	--超過劇情行數
-	if not fetterControlCfg[testId] then
+	if not ControlCfg[testId] then
 		return
 	end
 	--紀錄演出最後狀態
 	for i = startId, testId do
-		for j = tonumber(i .. "01"), tonumber(i .. "99") do
-			local cfg = fetterMovementCfg[j]
+		for j = tonumber(i .. actionStartId), tonumber(i .. actionEndId) do
+			local cfg = MovementCfg[j]
 			if not cfg then
 				break
 			end
@@ -1725,14 +1787,14 @@ function FetterGirlsDiary:setLineState(container)
 	isLabelPlaying = false
 	NodeHelper:setStringForLabel(container, { mContent = lines[testNowLine] })
 	-- 設定角色名顯示
-	local roleId = fetterControlCfg[testId].role
+	local roleId = ControlCfg[testId].role
 	if roleId then
 		NodeHelper:setStringForLabel(container, { mTitle = common:getLanguageString("@HeroName_" .. roleId) })
 	else
 		NodeHelper:setStringForLabel(container, { mTitle = "" })
 	end
 	-- 設定背景顯示
-	local bgImg = fetterControlCfg[testId].bg
+	local bgImg = ControlCfg[testId].bg
 	local sprite = container:getVarSprite("mBg")
 	if bgImg == "" then
 		sprite:setTexture("UI/Mask/Image_Empty.png")
@@ -1799,10 +1861,15 @@ function FetterGirlsDiary:showTargetSpine(container, name)
 	fadeNode:setVisible(true)
 end
 
-function FetterGirlsDiary_setPhotoRole(container, area, stage, Idx)
+function FetterGirlsDiary_setPhotoRole(container, area, stage, Idx,_type)
 	areaNum = area
 	stageNum = stage
 	storyIdx = Idx or 1
+    nowType = _type
+end
+function FetterGirlsDiary:setGrowthId(id)
+	MainId = id
+    nowType = 2
 end
 
 function FetterGirlsDiary_restartPage(container)
@@ -1811,7 +1878,6 @@ function FetterGirlsDiary_restartPage(container)
 		mSpineNode = nil
 	end
 	FetterGirlsDiary:stopVoice(container)
-	--FetterGirlsDiary:onLoad(container)
 	FetterGirlsDiary:onEnter(container)
 end
 function FetterGirlsDiary:playVoice(container)
@@ -1823,7 +1889,7 @@ function FetterGirlsDiary:playVoice(container)
 
 	local isFileExist = NodeHelper:isFileExist("audio/" .. voiceName)
 	if isFileExist then
-		local wait = fetterControlCfg[self:getNowControlId(container)].voiceWait
+		local wait = ControlCfg[self:getNowControlId(container)].voiceWait
 		local actionArr = CCArray:create()
 		actionArr:addObject(CCCallFunc:create(function()
 			isWaitingVoice = true
@@ -1836,9 +1902,7 @@ function FetterGirlsDiary:playVoice(container)
 			if CC_TARGET_PLATFORM_LUA == common.platform.CC_PLATFORM_WIN32 then
 				nowVoiceEffId = SoundManager:getInstance():playEffectByName(voiceName, false)
 			else
-				CCLuaLog("--------playVoice-----------")
 				SoundManager:getInstance():playOtherMusic(voiceName)
-				CCLuaLog("--------playVoice2-----------")
 				nowVoiceEffId = 1
 			end
 		end))
@@ -1875,9 +1939,7 @@ function FetterGirlsDiary:stopVoice(container)
 end
 
 function FetterGirlsDiary:isPlayingVoice(container)
-	CCLuaLog("--------isPlayingVoice-----------")
 	local isPlaying = SimpleAudioEngine:sharedEngine():getEffectIsPlaying(nowVoiceEffId) or isWaitingVoice
-	CCLuaLog("--------isPlayingVoice2-----------")
 	return isPlaying
 end
 
@@ -1887,13 +1949,8 @@ end
 -------------------------------------------------------------------------
 --Tutorial
 function FetterGirlsDiary:setTutorialState(container)
-	--if areaNum ~= 99 then
 	NodeHelper:setMenuItemImage(container, {mAutoBtn = {normal = "Fetter_Btn_Auto_OFF.png", press = "Fetter_Btn_Auto_ON.png"}})
 	PhotoSettingState.isAuto = false
---else
---    NodeHelper:setMenuItemImage(container, { mAutoBtn = { normal = "Fetter_Btn_Auto_ON.png", press = "Fetter_Btn_Auto_OFF.png" } })
---    PhotoSettingState.isAuto = true
---end
 end
 -------------------------------------------------------------------------
 local CommonPage = require("CommonPage")

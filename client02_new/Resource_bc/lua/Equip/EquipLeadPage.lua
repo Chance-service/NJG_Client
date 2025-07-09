@@ -328,7 +328,7 @@ end
 -- UI顯示切換
 function EquipLeadPage:setShowPage(container)
     -- 故事/服裝按鈕切換
-    NodeHelper:setNodesVisible(container, { mTopBtnNormal = (nowPageType ~= PAGE_TYPE.SKIN), mTopBtnCostume = (libOS:getInstance():getIsDebug()) })
+    NodeHelper:setNodesVisible(container, { mTopBtnNormal = (nowPageType ~= PAGE_TYPE.SKIN), mTopBtnCostume = true })
     -- 主UI切換
     NodeHelper:setNodesVisible(container, { mNormalUiNode = (nowPageType ~= PAGE_TYPE.SKIN), mCostumeUiNode = (nowPageType == PAGE_TYPE.SKIN) })
     -- 子UI切換
@@ -350,6 +350,7 @@ function EquipLeadPage:showTachieSpine(container, _spineName)
     if nowSpineName == spineName and not _spineName then
         return
     end
+    self:closeMovie(container)
     local parentNode = container:getVarNode("mSpine")
     parentNode:removeAllChildrenWithCleanup(true)
 
@@ -720,7 +721,7 @@ function EquipLeadPage:showSkill(container, eventName)
     require("HeroSkillPage")
     HeroSkillPage_setPageRoleInfo(curRoleInfo.level, curRoleInfo.starLevel,roleId,itemId)
     HeroSkillPage_setPageSkillLevel(skillLv)
-    HeroSkillPage_setPageSkillId(skill)
+    HeroSkillPage_setPageSkillId(skill, tonumber(id))
     PageManager.pushPage("HeroSkillPage")
 end
 
@@ -1585,11 +1586,14 @@ function EquipLeadPage:onReceivePacket(container)
         local msg = RoleOpr_pb.HPChangeMercenarySkinRes()
         msg:ParseFromString(msgBuff)
         COSTUME_DATA.NOW_SKIN = msg.toRoleId
-        self:showRoleSpine(container)
         --self:refreshSkinUI(selfContainer)
         self:showSkillInfo(container)
         self:refreshMainButton(container)
-        --MessageBoxPage:Msg_Box("@HasSwitch")
+        -- 皮膚頁面跟忍娘頁面都需要設定播放皮膚影片
+        self:playMovie(container)
+        self:playMovie(container, "NgSkinPage")
+        self:refreshPage(selfContainer)
+        self:showRoleSpine(selfContainer)
     elseif opcode == HP_pb.FETCH_ARCHIVE_INFO_S then
         local msg = RoleOpr_pb.HPArchiveInfoRes()
         local msgbuff = container:getRecPacketBuffer()
@@ -1661,14 +1665,15 @@ function EquipLeadPage:onExecute(container)
         LEVEL_UP_DATA.IS_TOUCHING = false   
     end
 end
-function EquipLeadPage:playMovie(container)
+function EquipLeadPage:playMovie(container, targetPageName)
     -- 播放影片
     if COSTUME_DATA.NOW_SKIN ~= 0 then
         local fileName = "Hero/Hero" .. string.format("%05d", COSTUME_DATA.NOW_SKIN)
-        local isFileExist =  CCFileUtils:sharedFileUtils():isFileExist("Video/" .. fileName .. ".mp4")
+        nowSpineName = fileName
+        local isFileExist =  NodeHelper:isFileExist("Video/" .. fileName .. ".mp4")
         if isFileExist then
             EquipLeadPage.libPlatformListener = LibPlatformScriptListener:new(libPlatformListener)
-            GamePrecedure:getInstance():playMovie(thisPageName, fileName, 1, 0)
+            GamePrecedure:getInstance():playMovie(targetPageName or thisPageName, fileName, 1, 0)
             NodeHelper:setNodesVisible(container, { mSpine = false })
         end
     end

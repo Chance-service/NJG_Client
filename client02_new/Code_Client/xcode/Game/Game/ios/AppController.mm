@@ -586,23 +586,31 @@ static AppDelegate s_sharedApplication;
     if (urlPath)
     {
         player = [AVPlayer playerWithURL:[NSURL fileURLWithPath:urlPath]];
-        playerViewController = [[AVPlayerViewController alloc] init];
+        AVPlayerLayer *playerLayer = [AVPlayerLayer playerLayerWithPlayer:player];
+        playerLayer.videoGravity = AVLayerVideoGravityResizeAspect;
+        //playerViewController = [[AVPlayerViewController alloc] init];
         
-        playerViewController.player = player;
+        //playerViewController.player = player;
         
-        playerViewController.showsPlaybackControls = FALSE; // Hide controls if not needed
+        //playerViewController.showsPlaybackControls = FALSE; // Hide controls if not needed
+        // Match size
+        playerLayer.frame = viewController.view.superview.bounds;
+
+        // Insert as background
+        [viewController.view.superview.layer insertSublayer:playerLayer atIndex:0];
+
         
         if (iFullScreen)
         {
-            playerViewController.view.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-            playerViewController.view.frame = viewController.view.superview.bounds;
-            playerViewController.videoGravity = AVLayerVideoGravityResizeAspect;
-            playerViewController.modalPresentationStyle = UIModalPresentationFullScreen;
+            //playerViewController.view.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+            //playerViewController.view.frame = viewController.view.superview.bounds;
+            //playerViewController.videoGravity = AVLayerVideoGravityResizeAspect;
+            //playerViewController.modalPresentationStyle = UIModalPresentationFullScreen;
         }
         
-        [viewController.view.superview addSubview:playerViewController.view];
+        //[viewController.view.superview addSubview:playerViewController.view];
         // Send the view to back so ui can still show
-        [viewController.view.superview sendSubviewToBack:playerViewController.view];
+        //[viewController.view.superview sendSubviewToBack:playerViewController.view];
         
         [[NSNotificationCenter defaultCenter]
          addObserver:self

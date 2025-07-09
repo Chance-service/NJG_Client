@@ -975,8 +975,27 @@ function Inst:playHighlight (reward, options)
             imageMap.highlightElementImg = PathAccesser:getElementImagePath(reward.element)
         end
             
-        target = reward.hl_spineDrawNode
-        if target ~= nil then
+        if reward.hl_spineDrawNode == nil and reward.spineDrawRes ~= nil then
+            local spineDrawFolderAndName = common:split(reward.spineDrawRes, ",")
+            -- 立繪 ----
+            local spineDraw = SpineContainer:create(spineDrawFolderAndName[1], spineDrawFolderAndName[2])
+            spineDraw:stopAllAnimations()
+            local spineDrawNode = tolua.cast(spineDraw, "CCNode")
+            if reward.spineDrawScale ~= nil then
+                spineDrawNode:setScale(reward.spineDrawScale)
+            end
+            spineDrawNode:setVisible(false)
+            reward.hl_spineDraw = spineDraw
+            reward.hl_spineDrawNode = spineDrawNode
+            local highlightDrawNode = self.container:getVarNode("highlightDrawNode")
+            highlightDrawNode:addChild(spineDrawNode)
+        end
+       target = reward.hl_spineDrawNode
+       if target == nil then
+        CCLuaLog("----------------------noTarget")
+       end
+       if target ~= nil then
+            CCLuaLog("----------------------hasTarget")
             
             reward.hl_spineDraw:runAnimation(1, "animation", -1)
             reward.hl_spineChibi:runAnimation(1, "wait_0", -1)

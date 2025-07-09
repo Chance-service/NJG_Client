@@ -195,7 +195,7 @@ body
 hand L
   rotate: false
   xy: 285, 354
-  size: 491, 298
+  size: 490, 298
   orig: 499, 306
   offset: 4, 4
   index: -1

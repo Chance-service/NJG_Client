@@ -578,8 +578,8 @@ function NodeHelper:setMenuEnabled(menuItem, isEnabled)
 end
 
 function NodeHelper:setMenuItemEnabled(container, menuItemName, isEnabled)
+    if not container then return end
     local item = container:getVarMenuItemImage(menuItemName)
-
     if item ~= nil then
         item:setEnabled(isEnabled)
     end

@@ -35,6 +35,7 @@ static bool IsMURA = false;
 static bool IsKUSO = false;
 static bool IsErolabs = false;
 static bool IsOP = false;
+static bool IsGP = false;
 static bool IsAPLUS = false;
 static std::string PayUrl = "";
 static int HoneyP = 0;
@@ -319,6 +320,7 @@ void lib91::setPlatformName(int platform)
 	IsErolabs = (platform == 7);
 	IsOP = (platform == 8);
 	IsAPLUS = (platform == 9);
+	IsGP = (platform == 10);
 }
 
 void  lib91::setHoneyP(int aMoney)

@@ -294,9 +294,9 @@ function HeroSkillPage_setPageRoleInfo(level, star,roleId,itemId)
     PAGE_INFO.ITEMID = itemId
 end
 
-function HeroSkillPage_setPageSkillId(id)
+function HeroSkillPage_setPageSkillId(id, skillIdx)
     PAGE_INFO.BASE_SKILL_ID = tostring(math.floor(id / 10))
-    PAGE_INFO.SKILL_NUM = math.floor(id / 10) % 10 + 1
+    PAGE_INFO.SKILL_NUM = skillIdx--math.floor(id / 10) % 10 + 1
     PAGE_INFO.BUFF_LIST = common:split(skillCfg[id].buff, ",")
     PAGE_INFO.FULL_SKILL_ID = tonumber(PAGE_INFO.BASE_SKILL_ID .. ((PAGE_INFO.SKILL_LEVEL == 0) and 1 or PAGE_INFO.SKILL_LEVEL))
     PAGE_INFO.ALL_LEVEL_BUFF_LIST = { }

@@ -549,6 +549,7 @@ function AlbumStoryDisplayBase:update(dt, container)
                 NodeHelper:setNodesVisible(container,{mTouchSpine=false})
             end
             if nowTime <= 0 then
+                --ев▒╤
                 if TapTimes < NeedTimes*0.8 then
                     local langType = CCUserDefault:sharedUserDefault():getIntegerForKey("LanguageType")
                     local parentNode = selfContainer:getVarNode("mResultSpine")
@@ -561,7 +562,7 @@ function AlbumStoryDisplayBase:update(dt, container)
                     parentNode:addChild(ResultNode)
                     local array = CCArray:create()
                     array:addObject(CCCallFunc:create(function()
-                        spine:runAnimation(1, "animation2", 0)
+                        spine:runAnimation(1, "animation3", 0)
                     end))
                     array:addObject(CCDelayTime:create(2))
                     array:addObject(CCCallFunc:create(function()
@@ -571,7 +572,7 @@ function AlbumStoryDisplayBase:update(dt, container)
                      TapDB_Data["#game_result"] = isAlbum and 5 or 2 
                      TapDBManager.trackEvent("#event_game",json.encode(TapDB_Data))
                     return
-               elseif not Gamepassed then                
+               elseif not Gamepassed and TapTimes >= NeedTimes*0.8 then--жие\             
                     local langType = CCUserDefault:sharedUserDefault():getIntegerForKey("LanguageType")    
                     Gamepassed = true
                     local parentNode = selfContainer:getVarNode("mResultSpine")
@@ -584,7 +585,7 @@ function AlbumStoryDisplayBase:update(dt, container)
                     parentNode:addChild(ResultNode)
                     local array = CCArray:create()
                     array:addObject(CCCallFunc:create(function()
-                        spine:runAnimation(1, "animation", 0)
+                        spine:runAnimation(1, "animation2", 0)
                         local tmp = tonumber (string.sub(SpineData[1].id, 5, 6))
                         FlagDataBase_DataChange(tmp,true)
                         TapDB_Data["#game_result"] = isAlbum and 4  or 1 

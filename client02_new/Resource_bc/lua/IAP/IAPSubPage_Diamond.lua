@@ -71,7 +71,6 @@ function RechargeSubPage_Diamond:onEnter(Parentcontainer)
     self:ItemInfoRequest()
     
     self:setVIPLevelInfo(InfoAccesser:getVIPLevelInfo())
-    
     NodeHelper:initScrollView(self.container, "contentScrollView", 9);
 end
 function RechargeSubPage_Diamond:ItemInfoRequest()
@@ -149,13 +148,16 @@ function RechargeSubPage_Diamond:refresh(container)
     NodeHelper:clearScrollView(self.container)
     local currencyDatas = parentPage:updateCurrency()
     local size = math.ceil(#self.rechargeListInfo / ITEM_COUNT_PER_ROW)
+    local scroll = container:getVarScrollView("contentScrollView")
+    local ViewH = scroll:getViewSize().height
     NodeHelperUZ:buildScrollViewVertical(self.container, size, "RechargeDiamondContentItem.ccbi",
         function(eventName, container)
             RechargeDiamondItem.onFunction(self, eventName, container)
         end,
         {
-            originScrollViewSize = CCSizeMake(700, 700),
-            startOffset = ccp(0, math.min(700, math.max(0, size * 350 - 700))),
+            
+            originScrollViewSize = CCSizeMake(700, ViewH),
+            startOffset = ccp(0, math.min(700, math.max(0, size * 330 - ViewH))),
         });
 end
 function RechargeSubPage_Diamond:receiveShopList(list)
@@ -335,6 +337,7 @@ end
 function RechargeSubPage_Diamond:onReceiveMessage(message)
 	local typeId = message:getTypeId()
 	if typeId == MSG_RECHARGE_SUCCESS then
+        CCLuaLog(">>>>>>onReceiveMessage RechargeSubPage_Diamond")
         if requestingLastShop then
             return
         end

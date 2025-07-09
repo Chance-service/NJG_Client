@@ -317,6 +317,7 @@ end
 
 function NgBattleEditTeamPage:onEnter(container)
     pageContainer = container
+    NodeHelper:setNodesVisible(container,{mBlackMask = CONST.IS_BATTLE_NEXT })
     mInfos = UserMercenaryManager:getUserMercenaryInfos()
     local mapId = NgBattleDataManager.battleMapId or 1
     local bgPath = ""
@@ -469,6 +470,13 @@ function NgBattleEditTeamPage:onEnter(container)
    
     NodeHelper:setNodesVisible(container,VisibleMap)
 	NodeHelper:setSpriteImage(container, { mBg = bgPath })
+
+    if CONST.IS_BATTLE_NEXT then
+        CONST.IS_BATTLE_NEXT = false
+        self:onConfirm(container)
+        return
+    end
+
     local GuideManager = require("Guide.GuideManager")
     if not GuideManager.isInGuide then
         container:runAnimation("OpenAni")
@@ -498,12 +506,17 @@ function NgBattleEditTeamPage:initEnemy(container)
     if not NgBattleDataManager.serverEnemyInfo then return end
     for i = 1, CONST.ENEMY_COUNT do
         if NgBattleDataManager.serverEnemyInfo[i] then
+            CCLuaLog("Hero"..i)
+            if NgBattleDataManager.serverEnemyInfo[i].posId then
+                CCLuaLog("Herooooooooo"..i)
+            end
             local spineNode = container:getVarNode("mSpine" .. NgBattleDataManager.serverEnemyInfo[i].posId)
             if spineNode then
                 spineNode:removeAllChildrenWithCleanup(true)
                 -- 判斷是什麼類型的敵人
                 if NgBattleDataManager.serverEnemyInfo[i].type == Const_pb.MERCENARY or   -- Hero
-                       NgBattleDataManager.serverEnemyInfo[i].type == Const_pb.RETINUE then   -- Free Hero
+                       NgBattleDataManager.serverEnemyInfo[i].type == Const_pb.RETINUE then  -- Free Hero
+                       CCLuaLog("___________Hero")
                     local cfg = heroCfg[tonumber(NgBattleDataManager.serverEnemyInfo[i].itemId)]
                     if cfg then
                         local spinePath, spineName = unpack(common:split(cfg.Spine, ","))
@@ -519,6 +532,7 @@ function NgBattleEditTeamPage:initEnemy(container)
                     end
                 elseif NgBattleDataManager.serverEnemyInfo[i].type == Const_pb.MONSTER or   -- Monster
                        NgBattleDataManager.serverEnemyInfo[i].type == Const_pb.WORLDBOSS then   -- WorldBoss
+                       CCLuaLog("___________Monster")
                     local monsterCfg = ConfigManager.getNewMonsterCfg()
                     local spinePath, spineName = unpack(common:split(monsterCfg[NgBattleDataManager.serverEnemyInfo[i].roleId].Spine, ","))
                     local enemySpine = SpineContainer:create(spinePath, spineName)
@@ -850,7 +864,7 @@ function NgBattleEditTeamPage:onConfirm(container)
 
     NgBattlePageInfo_sendTeamInfoToServer(teamInfo)
     local HP_pb = require("HP_pb")
-    common:sendEmptyPacket(HP_pb.ROLE_PANEL_INFOS_C, false)
+    common:sendEmptyPacket(HP_pb.ROLE_PANEL_INFOS_C, false)  
 end
 function NgBattleEditTeamPage:IsTeamValid()
     local ids = {}

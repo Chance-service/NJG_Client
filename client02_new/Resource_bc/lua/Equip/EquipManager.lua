@@ -551,15 +551,31 @@ function EquipManager:getBattleAttrEffect(attrId, attrVal, level)
     elseif attrId == Const_pb.DODGE then
         value = string.format("%.2f", NewBattleUtil:calRoundValue(100 * attrVal / (attrVal + NewBattleUtil:calRoundValue((1 + level / 2), 1) * (700 - level)), -2))
     elseif attrId == Const_pb.PHYDEF then
-        value = string.format("%.2f", NewBattleUtil:calRoundValue(100 * math.min(attrVal / (attrVal + NewBattleUtil:calRoundValue((1 + level / 3), 1) * (800 - level)), NewBattleConst.MAX_DEF_PER), -2))
+        value = string.format("%.2f", NewBattleUtil:calRoundValue(100 * math.min(attrVal / (attrVal + NewBattleUtil:calRoundValue((1 + level / 3), 1) * (800 - level)), self:calTargetMaxReduction(level)), -2))
     elseif attrId == Const_pb.MAGDEF then
-        value = string.format("%.2f", NewBattleUtil:calRoundValue(100 * math.min(attrVal / (attrVal + NewBattleUtil:calRoundValue((1 + level / 3), 1) * (800 - level)), NewBattleConst.MAX_DEF_PER), -2))
+        value = string.format("%.2f", NewBattleUtil:calRoundValue(100 * math.min(attrVal / (attrVal + NewBattleUtil:calRoundValue((1 + level / 3), 1) * (800 - level)), self:calTargetMaxReduction(level)), -2))
     elseif attrId == Const_pb.RESILIENCE then
         value = string.format("%.2f", NewBattleUtil:calRoundValue(100 * attrVal / (attrVal + NewBattleUtil:calRoundValue((1 + level / 3), 1) * (700 - level)), -2))
     elseif attrId == Const_pb.BUFF_PHYDEF_PENETRATE or attrId == Const_pb.BUFF_MAGDEF_PENETRATE then
         value = string.format("%.2f", NewBattleUtil:calRoundValue(attrVal, -2))
     end
 	return value
+end
+
+--計算(目標)物/魔減傷(%)上限
+function EquipManager:calTargetMaxReduction(level)
+    local params = { { 1, 0.15 }, { 31, 0.16 }, { 51, 0.18 }, { 71, 0.2 }, { 101, 0.22 }, { 121, 0.24 },
+                     { 161, 0.26 }, { 201, 0.28 }, { 241, 0.3 }
+    }
+    local maxReduction = 0.15
+    for i = 1, #params do
+        if level >= params[i][1] then
+            maxReduction = params[i][2]
+        else
+            break
+        end
+    end
+    return maxReduction
 end
 
 function EquipManager:getEquipDescBasicInfo(userEquip)

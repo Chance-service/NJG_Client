@@ -266,27 +266,7 @@ function ActTimeLimit_149ThreeQuest:onReceivePacket(container)
         self:refreshItem(container)
         self:refreshUI(self.container)
     elseif opcode == HP_pb.QUEST_SINGLE_UPDATE_S then
-        local msg = Quest_pb.HPQuestUpdate()
-        msg:ParseFromString(msgBuff)
-        local index = 1
-        for i = 1, #nowData.taskInfo do
-            if nowData.taskInfo[i].id == msg.quest.id then
-                nowData.taskInfo[i] = msg.quest
-                index = i
-            end
-        end
-        local CommonRewardPage = require("CommonRewardPage")
-        local rewards = common:split(nowData.taskInfo[index].taskRewards, ",")
-        local parseReward = { }
-        for i = 1, #rewards do
-            table.insert(parseReward, ConfigManager.parseItemOnlyWithUnderline(rewards[i]))
-        end
-        local CommonRewardPage = require("CommPop.CommItemReceivePage")
-        CommonRewardPage:setData(parseReward, common:getLanguageString("@ItemObtainded"), nil)
-        PageManager.pushPage("CommPop.CommItemReceivePage")
-        self:setGameState(container, GAME_STATE.STABLE)
-        self:refreshItem(container)
-        self:refreshUI(self.container)
+        common:sendEmptyPacket(HP_pb.QUEST_GET_ACHIVIMENT_LIST_C, true)
     end
 end
 function ActTimeLimit_149ThreeQuest:registerPacket(container)

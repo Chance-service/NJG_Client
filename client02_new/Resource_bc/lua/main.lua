@@ -102,6 +102,8 @@ Golb_Platform_Info = {
     is_kuso = false, --android_kuso
     is_erolabs = false, -- android_erolabs
     is_aplus = false, --android_aplus
+    is_op = false,
+    is_gp = false
 }
 local platformName = GamePrecedure:getInstance():getPlatformName()
 local resourcePath = GamePrecedure:getInstance():getWin32ResourcePath()
@@ -164,6 +166,14 @@ end
 
 if string.find(platformName, "_aplus") then  --aplus
     Golb_Platform_Info.is_aplus = true
+end
+
+if string.find(platformName, "_op") then  --op
+    Golb_Platform_Info.is_op = true
+end
+
+if string.find(platformName, "_gp") then  --gp
+    Golb_Platform_Info.is_gp = true
 end
 
 Golb_Platform_Info.is_gNetop_platform = true

@@ -619,6 +619,16 @@ function AWTSelectPageBase:onReceiveMessage(container)
     end
 end
 
+function AWTSelectPageBase:onReceivePacket(container)
+    local opcode = container:getRecPacketOpcode()
+    local msgBuff = container:getRecPacketBuffer()
+    if opcode == OPCODES.EQUIP_DRESS_S then
+        if GuideManager.isInGuide then
+            GuideManager.forceNextNewbieGuide()
+        end
+    end
+end
+
 -------------------------------------------------------------------------
 local CommonPage = require("CommonPage")
 

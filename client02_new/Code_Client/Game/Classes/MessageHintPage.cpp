@@ -61,6 +61,11 @@ void MessageHintPage::showHint( void )
 			htmlLabel->setTag(HTMLLABELTAG);
 		}*/
 	}
+	CCObject* btnNode = this->getVariable("mBtn");
+	if (btnNode) {
+		CCNode* node = dynamic_cast<CCNode*>(btnNode);
+		node->setVisible(mShowEnter);
+	}
 
 	/*CCB_FUNC(this, "mLoadingHint", CCLabelBMFont, setVisible(false));
 	CCObject* bmNode = this->getVariable("mLoadingHint");
@@ -139,6 +144,12 @@ void MessageHintPage::Msg_Hint(const std::string& msgString,int tag/* = 0*/)
 			{
 				pMessagePage->setMsgString(msgString);
 				pMessagePage->setListener(pMessagePage, tag);
+				if (tag == 999) {
+					pMessagePage->setShowEnter(false);
+				}
+				else {
+					pMessagePage->setShowEnter(true);
+				}
 
 				//pMessagePage->load();
 				State<MainFrame>* sta = dynamic_cast<State<MainFrame>* >(pMessagePage);
@@ -157,6 +168,7 @@ void MessageHintPage::Msg_Hint(const std::string& msgString,int tag/* = 0*/)
 		MessageHintPage* pMessagePage = dynamic_cast<MessageHintPage*>(CCBManager::Get()->getPage("MessageHintPage"));
 		pMessagePage->setMsgString(msgString);
 		pMessagePage->setListener(pMessagePage, tag);
+		pMessagePage->setShowEnter(true);
 
 		MsgMainFramePushPage msg;
 		msg.pageName = "MessageHintPage";

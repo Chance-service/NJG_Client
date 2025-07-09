@@ -166,7 +166,11 @@ function RechargeBonusPage:getSortedTable(Config)
                     insert = true
                 elseif v.platform == 7 and Golb_Platform_Info.is_erolabs then
                     insert = true
+                elseif v.platform == 8 and Golb_Platform_Info.is_op then
+                    insert = true
                 elseif v.platform == 9 and Golb_Platform_Info.is_aplus then
+                    insert = true
+                elseif v.platform == 10 and Golb_Platform_Info.is_gp then
                     insert = true
                 elseif CC_TARGET_PLATFORM_LUA == common.platform.CC_PLATFORM_WIN32 then
                     insert = true
@@ -302,11 +306,15 @@ function RechargeBonusItem:onRefreshContent(ccbRoot)
         if Golb_Platform_Info.is_h365 then
             NodeHelper:setStringForLabel(container, { mTxt2 = common:getLanguageString("@Total_RECHARGE", v1) })
         elseif Golb_Platform_Info.is_r18 then
-            NodeHelper:setStringForLabel(container, { mTxt2 = common:getLanguageString("@Total_RECHARGE", v1) })
+            NodeHelper:setStringForLabel(container, { mTxt2 = common:getLanguageString("@Total_RECHARGEHR18", v1) })
+        elseif Golb_Platform_Info.is_erolabs then
+            NodeHelper:setStringForLabel(container, { mTxt2 = common:getLanguageString("@Total_RECHARGEEcoin", v1) })
         elseif Golb_Platform_Info.is_kuso then
             NodeHelper:setStringForLabel(container, { mTxt2 = common:getLanguageString("@Total_RECHARGE69", v1) })
         elseif Golb_Platform_Info.is_aplus then
             NodeHelper:setStringForLabel(container, { mTxt2 = common:getLanguageString("@Total_RECHARGEAPLUS", v1) })
+        elseif Golb_Platform_Info.is_op then
+            NodeHelper:setStringForLabel(container, { mTxt2 = common:getLanguageString("@Total_RECHARGEOP", v1) })
         else
             NodeHelper:setStringForLabel(container, { mTxt2 = common:getLanguageString("@Total_RECHARGE", v1) })
         end
@@ -316,11 +324,15 @@ function RechargeBonusItem:onRefreshContent(ccbRoot)
         if Golb_Platform_Info.is_h365 then
             NodeHelper:setStringForLabel(container, { mTxt2 = common:getLanguageString("@Total_RECHARGE", v1) })
         elseif Golb_Platform_Info.is_r18 then
-            NodeHelper:setStringForLabel(container, { mTxt2 = common:getLanguageString("@Total_RECHARGE", v1) })
+            NodeHelper:setStringForLabel(container, { mTxt2 = common:getLanguageString("@Total_RECHARGEHR18", v1) })
+        elseif Golb_Platform_Info.is_erolabs then
+            NodeHelper:setStringForLabel(container, { mTxt2 = common:getLanguageString("@Total_RECHARGEEcoin", v1) })
         elseif Golb_Platform_Info.is_kuso then
             NodeHelper:setStringForLabel(container, { mTxt2 = common:getLanguageString("@Total_RECHARGE69", v1) })
         elseif Golb_Platform_Info.is_aplus then
             NodeHelper:setStringForLabel(container, { mTxt2 = common:getLanguageString("@Total_RECHARGEAPLUS", v1) })
+        elseif Golb_Platform_Info.is_op then
+            NodeHelper:setStringForLabel(container, { mTxt2 = common:getLanguageString("@Total_RECHARGEOP", v1) })
         else
             NodeHelper:setStringForLabel(container, { mTxt2 = common:getLanguageString("@Total_RECHARGE", v1) })
         end

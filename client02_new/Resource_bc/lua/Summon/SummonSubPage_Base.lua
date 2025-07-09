@@ -18,6 +18,7 @@ local Async = require("Util.Async")
 
 local SummonDataMgr = require("Summon.SummonDataMgr")
 local SummonResultPage = require("Summon.SummonResultPage")
+local SummonGuideResultPage = require("Summon.SummonGuideResultPage")
 
 --[[ 測試資料模式 ]]
 local IS_MOCK = false
@@ -210,6 +211,9 @@ function Inst:onEnter (selfContainer, parentPage)
     -- 請求初始資訊
     self:sendRequestInfo(true)
 
+    require("TransScenePopUp")
+    TransScenePopUp_closePage()
+
     -- 新手教學
     local GuideManager = require("Guide.GuideManager")
     GuideManager.PageContainerRef["SummonPageBase"] = selfContainer
@@ -223,8 +227,7 @@ function Inst:onEnter (selfContainer, parentPage)
     SoundManager:getInstance():playMusic("summon_page_bgm.mp3")
     SimpleAudioEngine:sharedEngine():stopAllEffects()
 
-    require("TransScenePopUp")
-    TransScenePopUp_closePage()
+
 end
 
 --[[ 當 頁面 執行 ]]
@@ -497,7 +500,7 @@ function Inst:handleResponseInfo (msgInfo, onReceiveDone)
 end
 
 --[[ 處理獎勵 ]]
-function Inst:handleRewards (itemStrs)
+function Inst:handleRewards (itemStrs, isGuide, isJump)
     local slf = self
 
     if itemStrs == nil then return end
@@ -623,6 +626,7 @@ function Inst:handleRewards (itemStrs)
         slf:showUISummonState(false)
     end
 
+    local trueResultPage = isGuide and SummonGuideResultPage or SummonResultPage
     Async:waterfall({
         -- 進入 召喚結算頁面
         function (nxt)
@@ -638,23 +642,23 @@ function Inst:handleRewards (itemStrs)
                 prepareData.resummonPriceStr = slf.summonPriceStr
             end
 
-            SummonResultPage:setEndLoadCallback(function() 
+            trueResultPage:setEndLoadCallback(function() 
                 self.isSkippable = true 
             end)
             
-            SummonResultPage:prepare(prepareData)
+            trueResultPage:prepare(prepareData)
             
 
             local summonTimes = #rewardDatas
 
-            SummonResultPage.onResummon_fn = function ()
+            trueResultPage.onResummon_fn = function ()
                 if slf:isSummonAble(summonTimes) == false then return end
 
                 slf.onSummonFailed_fn = function ()
                     summonBackToIdle()
                 end
 
-                SummonResultPage.onExit_fn = function ()
+                trueResultPage.onExit_fn = function ()
                     spineBackToIdle()
                     if summonTimes == 1 then
                         slf:summon1()
@@ -662,22 +666,26 @@ function Inst:handleRewards (itemStrs)
                         slf:summon10()
                     end
                 end
-                SummonResultPage:close()
+                trueResultPage:close()
             end
             
-            SummonResultPage.onEnter_fn = nxt
-            PageManager.pushPage("Summon.SummonResultPage")
+            trueResultPage.onEnter_fn = nxt
+            if isGuide then
+                PageManager.pushPage("Summon.SummonGuideResultPage")
+            else
+                PageManager.pushPage("Summon.SummonResultPage")
+            end
         end,
         -- 預載 獎品
         function (nxt)
-            SummonResultPage:preloadRewards()
+            trueResultPage:preloadRewards()
             nxt()
         end,
         -- 召喚 動畫
         function (nxt)
             slf.container:stopAllActions()
             local array = CCArray:create()
-            if Inst.JumpAnim then
+            if Inst.JumpAnim or isJump then
                 array:addObject(CCDelayTime:create(1 / 60))
                 array:addObject(CCCallFunc:create(function() 
                       if self.subPageCfg.summonBgm then
@@ -716,11 +724,11 @@ function Inst:handleRewards (itemStrs)
             -- 關閉抽卡音樂
             SoundManager:getInstance():stopMusic()
             -- 顯示 召喚結算頁面
-            SummonResultPage:show()
+            trueResultPage:show()
             -- 當離開頁面時下一步
-            SummonResultPage.onExit_fn = nxt
+            trueResultPage.onExit_fn = nxt
             -- 播放所有
-            SummonResultPage:playAll()
+            trueResultPage:playAll(isJump)
         end,
 
         function (nxt)

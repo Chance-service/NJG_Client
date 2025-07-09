@@ -137,6 +137,10 @@ void LoadingFrame::Enter( GamePrecedure* )
 	{
 		libPlatformManager::getPlatform()->login();
 	}
+	else if (SeverConsts::Get()->IsGP())
+	{
+		libPlatformManager::getPlatform()->login();
+	}
 	else if(SeverConsts::Get()->IsEroR18()) {
 		Lua_EcchiGamerSDKBridge::callinitbyC();
 	}
@@ -333,7 +337,7 @@ void LoadingFrame::onLogin(libPlatform* lib, bool success, const std::string& lo
     {
 		std::string uin = "";
 		std::string pass = "";
-		if (SeverConsts::Get()->IsH365() || SeverConsts::Get()->IsOP() || SeverConsts::Get()->IsJSG() || SeverConsts::Get()->IsLSJ()) // H365/JSG/LSJ
+		if (SeverConsts::Get()->IsH365() || SeverConsts::Get()->IsOP() || SeverConsts::Get()->IsGP() || SeverConsts::Get()->IsJSG() || SeverConsts::Get()->IsLSJ()) // H365/JSG/LSJ
 		{
 			#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 				std::string uinkey = "LastLoginPUID";
@@ -551,7 +555,7 @@ void LoadingFrame::onMenuItemAction( const std::string& itemName ,cocos2d::CCObj
 		if (m_IsCheckLogout)
 		{
 			CCLog("onConfirmLogout2");
-			if (SeverConsts::Get()->IsH365() || SeverConsts::Get()->IsOP() || SeverConsts::Get()->IsJSG() || SeverConsts::Get()->IsLSJ() || SeverConsts::Get()->IsKUSO() || SeverConsts::Get()->IsAPLUS())
+			if (SeverConsts::Get()->IsH365() || SeverConsts::Get()->IsOP() || SeverConsts::Get()->IsGP() || SeverConsts::Get()->IsJSG() || SeverConsts::Get()->IsLSJ() || SeverConsts::Get()->IsKUSO() || SeverConsts::Get()->IsAPLUS())
 			{
 				CCLog("onConfirmLogout3");
 				libPlatformManager::getPlatform()->logout();
@@ -576,7 +580,7 @@ void LoadingFrame::onMenuItemAction( const std::string& itemName ,cocos2d::CCObj
 	}
 	else if (itemName == "onOpenLogoutNode")
 	{
-		if (SeverConsts::Get()->IsH365() || SeverConsts::Get()->IsOP() || SeverConsts::Get()->IsJSG() || SeverConsts::Get()->IsLSJ() || SeverConsts::Get()->IsKUSO() || SeverConsts::Get()->IsAPLUS())
+		if (SeverConsts::Get()->IsH365() || SeverConsts::Get()->IsOP() || SeverConsts::Get()->IsGP() || SeverConsts::Get()->IsJSG() || SeverConsts::Get()->IsLSJ() || SeverConsts::Get()->IsKUSO() || SeverConsts::Get()->IsAPLUS())
 		{
 			libPlatformManager::getPlatform()->logout();
 		}
@@ -614,7 +618,8 @@ void LoadingFrame::onAnimationDone(const std::string& animationName){
 	{
 		showLoadingAniPage();
 		setPosLoadingAniPage();
-		checkVersion();
+		//checkVersion();
+		checkServerState();
 	}
 }
 
@@ -773,6 +778,8 @@ void LoadingFrame::loginGame(std::string& address, int port, bool isRegister)
 	mSendLogin=true;
 	LoginPacket::Get()->setEnabled(false);
 	PacketManager::Get()->sendPakcet(LOGIN_C,&loginPack);
+	CCLog("LOGIN_C : uin = %s, platformInfo = %s, password = %s, token = %s, serverId = %d, version = %s", 
+		uin.c_str(), platformInfo.c_str(), aPwd.c_str(), token.c_str(), mSelectedSeverID, SeverConsts::Get()->getServerVersion().c_str());
 	//caculate the time to kill game when player enter background
 	if(VaribleManager::Get()->getSetting("ExitGameTime")!="")
 	{
@@ -832,6 +839,14 @@ void LoadingFrame::load( void )
 		}
 		else {
 			logo->setTexture("LoadingUI_JP/loadingUI_logo_OP_SC.png");
+		}
+	}
+	else if (SeverConsts::Get()->IsGP()) {	//GP
+		if (langType == kLanguageCH_TW) {
+			logo->setTexture("LoadingUI_JP/loadingUI_logo.png");
+		}
+		else {
+			logo->setTexture("LoadingUI_JP/loadingUI_logo.png");
 		}
 	}
 	else {
@@ -1070,6 +1085,14 @@ void LoadingFrame::showSevers(bool _show)
 					std::list<SeverConsts::SEVER_ATTRIBUTE>::iterator itOrdered = orderlist.begin();
 					for(;itOrdered!=orderlist.end();++itOrdered)
 					{
+#if (CC_TARGET_PLATFORM != CC_PLATFORM_WIN32)
+						// H365, 69, aplus以外平台不顯示測試1-3服
+						if (!SeverConsts::Get()->IsH365() && !SeverConsts::Get()->IsKUSO() && !SeverConsts::Get()->IsAPLUS()) {
+							if (itOrdered->id <= 3) {
+								continue;
+							}
+						}
+#endif
 						CCBContainer* button = CCBContainer::create();
 						button->setListener(this,itOrdered->id);
 						button->loadCcbiFile("LoadingFrameSever.ccbi");
@@ -1143,7 +1166,7 @@ void LoadingFrame::showEnter()
 
 	hidLoadingAniPage();
 	CCLog("LoadingFrame::showEnter");
-	if (SeverConsts::Get()->IsH365() || SeverConsts::Get()->IsEroR18() || SeverConsts::Get()->IsErolabs() || SeverConsts::Get()->IsKUSO() || SeverConsts::Get()->IsAPLUS() || SeverConsts::Get()->IsOP()) {
+	if (SeverConsts::Get()->IsH365() || SeverConsts::Get()->IsEroR18() || SeverConsts::Get()->IsErolabs() || SeverConsts::Get()->IsKUSO() || SeverConsts::Get()->IsAPLUS() || SeverConsts::Get()->IsOP() || SeverConsts::Get()->IsGP()) {
 		setEnterGameNodeVisible(true);
 	}
 	else {
@@ -1151,7 +1174,7 @@ void LoadingFrame::showEnter()
 	}
     
 	setEnterServerListVisible(true);
-	if (SeverConsts::Get()->IsH365() || SeverConsts::Get()->IsEroR18() || SeverConsts::Get()->IsErolabs() || SeverConsts::Get()->IsKUSO() || SeverConsts::Get()->IsAPLUS() || SeverConsts::Get()->IsOP())
+	if (SeverConsts::Get()->IsH365() || SeverConsts::Get()->IsEroR18() || SeverConsts::Get()->IsErolabs() || SeverConsts::Get()->IsKUSO() || SeverConsts::Get()->IsAPLUS() || SeverConsts::Get()->IsOP() || SeverConsts::Get()->IsGP())
 	{
 		setLogoutBtnVisible(true);
 	}
@@ -1290,6 +1313,7 @@ void LoadingFrame::onReceivePacket( const int opcode, const ::google::protobuf::
 			MessageManager::Get()->sendMessage(&enterGameMsg);
 			PacketManager::Get()->removePacketHandler(this);
 			GamePrecedure::Get()->setAlertServerUpdating(true);
+			CurlDownload::Get()->removeListener(this);
 		}
 		else
 		{
@@ -1648,7 +1672,7 @@ void LoadingFrame::onEnterGame(bool isRegister)
 	if (!m_IsCanClickStartGameBtn)
 		return;
 
-	if (SeverConsts::Get()->IsH365() || SeverConsts::Get()->IsEroR18() || SeverConsts::Get()->IsErolabs() || SeverConsts::Get()->IsJSG() || SeverConsts::Get()->IsLSJ() || SeverConsts::Get()->IsKUSO() || SeverConsts::Get()->IsOP()) // H365,JSG,LSJ
+	if (SeverConsts::Get()->IsH365() || SeverConsts::Get()->IsEroR18() || SeverConsts::Get()->IsErolabs() || SeverConsts::Get()->IsJSG() || SeverConsts::Get()->IsLSJ() || SeverConsts::Get()->IsKUSO() || SeverConsts::Get()->IsOP() || SeverConsts::Get()->IsGP()) // H365,JSG,LSJ
 	{
 		std::string uuid = libPlatformManager::getPlatform()->loginUin();
 		if (uuid == "")
@@ -1728,6 +1752,39 @@ void LoadingFrame::onEnterGame(bool isRegister)
 		mSelectedSeverID = -1;
 		showSevers(true);
 		return;
+	}
+}
+
+void LoadingFrame::checkServerState()
+{
+	setTips("loading......");
+
+	getUpdateVersionTips();
+
+	versionStat = CHECK_SERVER;
+
+	cocos2d::CCFileUtils::sharedFileUtils()->setPopupNotify(true); // is read file fail show messageBox
+
+	try
+	{
+		std::string url = VaribleManager::Get()->getSetting("MaintainURL", "", "http://backend.quantagalaxies.com:34567/maintaincheck");
+
+		//数据只管发不做返回处理
+		auto request = new CCHttpRequest();
+		request->setUrl(url.c_str());
+		request->setRequestType(CCHttpRequest::HttpRequestType::kHttpPost);
+		const char* postData = "maintaincheck";
+		request->setRequestData(postData, strlen(postData));
+		request->setResponseCallback(this, callfuncND_selector(LoadingFrame::onServerStateRequestCompleted));
+		CCHttpClient::getInstance()->send(request);
+		CCHttpClient::getInstance()->setTimeoutForRead(10);
+
+		request->release();
+	}
+	catch (...)
+	{
+		checkVersion();
+		CCLog("URL REQUEST IS NOT  REACH");
 	}
 }
 
@@ -1959,53 +2016,27 @@ void LoadingFrame::loadingAsset(float dt)
 		return;
 	}
 
-	float alreadyLoadSize = (currentFileLoadSize * 1.0f) / 1024;
+	float alreadyLoadSize = 0.0f;//(currentFileLoadSize * 1.0f) / 1024;
 	for (auto it = alreadyDownloadData.begin(); it != alreadyDownloadData.end(); ++it) {
 		for (auto itNeed = needUpdateAsset.begin(); itNeed != needUpdateAsset.end(); ++itNeed) {
 			if ((*it) != (*itNeed)->url)
 			{
 				continue;
 			}
-
+	
 			alreadyLoadSize += (*itNeed)->size;
 		}
 	}
+	for (auto it = fileLoadSizeMap.begin(); it != fileLoadSizeMap.end(); ++it) {
+		alreadyLoadSize += (it->second / 1024);
+		if (it->second > 0) {
+			CCLog("Download size : %s : %f", it->first.c_str(), (it->second / 1024));
+		}
+	}
+
 	float persentage = alreadyLoadSize / downTotalSize;
 	char perTxt[64];
-	// TODO 預估剩餘時間顯示
-	//int newNeedTime = 0;
-	//if (downloadSpeed <= 0) {
-	//	newNeedTime = 1200;
-	//}
-	//else {
-	//	newNeedTime = (int)(((int)downTotalSize - (int)alreadyLoadSize) / downloadSpeed);
-	//	if (newNeedTime > 1200) {
-	//		newNeedTime = 1200;
-	//	}
-	//}
-	//if (needTime <= 0) {
-	//	needTime = newNeedTime;
-	//}
-	//else if (needTime > newNeedTime) {
-	//	needTime = needTime - 1;
-	//	if (needTime < 0) {
-	//		needTime = 0;
-	//	}
-	//}
-	//else if (needTime < newNeedTime) {
-	//	needTime = needTime + 1;
-	//	if (needTime > 1200) {
-	//		needTime = 1200;
-	//	}
-	//}
-	//int needMin = (int)(needTime / 60);
-	//int needSec = (int)(needTime % 60);
-	//if (needMin > 0) {
-	//	sprintf(perTxt, "(%dKB / %dKB)\n%s : %dMin %dSec", (int)alreadyLoadSize, (int)downTotalSize, "Need Time : ", needMin, needSec);
-	//}
-	//else {
-	//	sprintf(perTxt, "(%dKB / %dKB)\n%s : %dSec", (int)alreadyLoadSize, (int)downTotalSize, "Need Time : ", needSec);
-	//}
+
 	sprintf(perTxt, "(%dKB / %dKB)", (int)alreadyLoadSize, (int)downTotalSize);
 	showPersent(persentage, perTxt);
 	// 計算下載速度
@@ -2074,11 +2105,14 @@ void LoadingFrame::getLocalVersionCfg()
 		localVersionData->versionApp = CCUserDefault::sharedUserDefault()->getStringForKey("versionApp");
 		localVersionData->AndroidStoreURL = CCUserDefault::sharedUserDefault()->getStringForKey("AndroidStoreURL");
 		localVersionData->AppUpdateUrlH365 = CCUserDefault::sharedUserDefault()->getStringForKey("AppUpdateUrlH365");
+		localVersionData->AppUpdateUrlR18 = CCUserDefault::sharedUserDefault()->getStringForKey("AppUpdateUrlR18");
 		localVersionData->AppUpdateUrlKUSO = CCUserDefault::sharedUserDefault()->getStringForKey("AppUpdateUrlKUSO");
 		localVersionData->AppUpdateUrlAPLUS_CPS1 = CCUserDefault::sharedUserDefault()->getStringForKey("AppUpdateUrlAPLUS_CPS1");
+		localVersionData->AppUpdateUrlEROLABS = CCUserDefault::sharedUserDefault()->getStringForKey("AppUpdateUrlEROLABS");
+		localVersionData->AppUpdateUrlOP = CCUserDefault::sharedUserDefault()->getStringForKey("AppUpdateUrlOP");
+		localVersionData->AppUpdateUrlGP = CCUserDefault::sharedUserDefault()->getStringForKey("AppUpdateUrlGP");
 		localVersionData->isLoadSuccess = true;
 
-		CLogReport::Get()->webReportLog(CLogReport::Get()->getReportType(EnumReportType::CHKVERSION),libOS::getInstance()->getDeviceInfo(), libOS::getInstance()->getDeviceID(), localVersionData->versionResource, "get local version from userdefault");
 		//return;
 	}
 	getVersionData(localVersionData, content, true);
@@ -2088,8 +2122,7 @@ void LoadingFrame::getLocalVersionCfg()
 		std::string ver = "Ver" + localVersionData->versionApp;
 		setVersion(ver);
 		SeverConsts::getInstance()->setVersion(localVersionData->versionApp);
-		CLogReport::Get()->webReportLog(CLogReport::Get()->getReportType(EnumReportType::CHKVERSION), libOS::getInstance()->getDeviceInfo(), libOS::getInstance()->getDeviceID(), localVersionData->versionResource, "get local version cfg");
-
+		
 	}
 }
 
@@ -2203,8 +2236,12 @@ void LoadingFrame::getVersionData(VersionData* versionData, unsigned char* conte
 			versionData->versionApp = CCUserDefault::sharedUserDefault()->getStringForKey("versionApp");
 			versionData->AndroidStoreURL = CCUserDefault::sharedUserDefault()->getStringForKey("AndroidStoreURL");
 			versionData->AppUpdateUrlH365 = CCUserDefault::sharedUserDefault()->getStringForKey("AppUpdateUrlH365");
+			versionData->AppUpdateUrlR18 = CCUserDefault::sharedUserDefault()->getStringForKey("AppUpdateUrlR18");
 			versionData->AppUpdateUrlKUSO = CCUserDefault::sharedUserDefault()->getStringForKey("AppUpdateUrlKUSO");
 			versionData->AppUpdateUrlAPLUS_CPS1 = CCUserDefault::sharedUserDefault()->getStringForKey("AppUpdateUrlAPLUS_CPS1");
+			versionData->AppUpdateUrlEROLABS = CCUserDefault::sharedUserDefault()->getStringForKey("AppUpdateUrlEROLABS");
+			versionData->AppUpdateUrlOP = CCUserDefault::sharedUserDefault()->getStringForKey("AppUpdateUrlOP");
+			versionData->AppUpdateUrlGP = CCUserDefault::sharedUserDefault()->getStringForKey("AppUpdateUrlGP");
 			versionData->isLoadSuccess = true;
 		}
 		return;
@@ -2220,6 +2257,9 @@ void LoadingFrame::getVersionData(VersionData* versionData, unsigned char* conte
 	versionData->AppUpdateUrlKUSO = value["AppUpdateUrlKUSO"].asString();
 	versionData->AppUpdateUrlJSG = value["AppUpdateUrlJSG"].asString();
 	versionData->AppUpdateUrlAPLUS_CPS1 = value["AppUpdateUrlAPLUS_CPS1"].asString();
+	versionData->AppUpdateUrlEROLABS = value["AppUpdateUrlEROLABS"].asString();
+	versionData->AppUpdateUrlOP = value["AppUpdateUrlOP"].asString();
+	versionData->AppUpdateUrlGP = value["AppUpdateUrlGP"].asString();
 	versionData->versionResource = value["versionResource"].asString();
 	versionData->isNeedGoAppStore = value["isNeedGoAppStore"].asInt();
 	versionData->isLoadSuccess = true;
@@ -2232,8 +2272,12 @@ void LoadingFrame::getVersionData(VersionData* versionData, unsigned char* conte
 		CCUserDefault::sharedUserDefault()->setStringForKey("versionApp", versionData->versionApp);
 		CCUserDefault::sharedUserDefault()->setStringForKey("AndroidStoreURL", versionData->AndroidStoreURL);
 		CCUserDefault::sharedUserDefault()->setStringForKey("AppUpdateUrlH365", versionData->AppUpdateUrlH365);
+		CCUserDefault::sharedUserDefault()->setStringForKey("AppUpdateUrlR18", versionData->AppUpdateUrlR18);
 		CCUserDefault::sharedUserDefault()->setStringForKey("AppUpdateUrlKUSO", versionData->AppUpdateUrlKUSO);
 		CCUserDefault::sharedUserDefault()->setStringForKey("AppUpdateUrlAPLUS_CPS1", versionData->AppUpdateUrlAPLUS_CPS1);
+		CCUserDefault::sharedUserDefault()->setStringForKey("AppUpdateUrlEROLABS", versionData->AppUpdateUrlEROLABS);
+		CCUserDefault::sharedUserDefault()->setStringForKey("AppUpdateUrlOP", versionData->AppUpdateUrlOP);
+		CCUserDefault::sharedUserDefault()->setStringForKey("AppUpdateUrlGP", versionData->AppUpdateUrlGP);
 	}
 }
 
@@ -2438,8 +2482,6 @@ void LoadingFrame::compareVersion()
 	ostr << "result is : " << result;
 	string strLog = ostr.str();
 
-	CLogReport::Get()->webReportLog(CLogReport::Get()->getReportType(EnumReportType::CHKVERSION), libOS::getInstance()->getDeviceInfo(), libOS::getInstance()->getDeviceID(), localVersionData->versionResource, strLog);
-
 	if (result == 0)
 	{
 		resetVersion();
@@ -2516,6 +2558,9 @@ void LoadingFrame::appStoreUpdate()
 	else if (SeverConsts::Get()->IsOP()) {
 		libOS::getInstance()->openURL(serverVersionData->AppUpdateUrlOP);
 	}
+	else if (SeverConsts::Get()->IsGP()) {
+		libOS::getInstance()->openURL(serverVersionData->AppUpdateUrlGP);
+	}
 	else {
 		libOS::getInstance()->openURL(serverVersionData->AndroidStoreURL);
 	}
@@ -2563,7 +2608,8 @@ void LoadingFrame::downloaded(const std::string &url, const std::string& filenam
 	for (auto it = needUpdateAsset.begin(); it != needUpdateAsset.end(); ++it) {
 		if (url.compare((*it)->url) == 0)
 		{
-			currentFileLoadSize = 0.0;
+			currentFileLoadSize = 0.0f;
+			fileLoadSizeMap[url] = 0.0f;
 			alreadyDownloadData.push_back(url);
 			// 下載完先解壓縮
 			CCLog("--->hotUpdate downloaded save path: %s storage: %s ext path %s", (*it)->savePath.c_str(), (*it)->stroge.c_str(), filename.c_str());
@@ -2677,7 +2723,8 @@ void LoadingFrame::onAlreadyDownSize(unsigned long size, const std::string& url,
 {
 	
 	currentFileLoadSize = float(size);
-	//cocos2d::CCLog("--->hotUpdate : onAlreadyDownSize downloading : %f url: %s", currentFileLoadSize, url.c_str());
+	fileLoadSizeMap[url] = float(size);
+	cocos2d::CCLog("--->hotUpdate : onAlreadyDownSize downloading : %f url: %s", currentFileLoadSize / 1024, url.c_str());
 	std::string buildType = libPlatformManager::getPlatform()->getBuildType();
 	if (buildType == "qa") {
 		if (url.find(projectManifestName) == url.npos && url.find(versionManifestName) == url.npos) {
@@ -2749,12 +2796,10 @@ void LoadingFrame::onHttpRequestCompleted(cocos2d::CCNode *sender, void*data)
 		if (strcmp(response->getHttpRequest()->getTag(),"serverVersionCfg") == 0 && downVersionTimes < 10)
 		{
 			getServerVersionCfg();
-			CLogReport::Get()->webReportLog(CLogReport::Get()->getReportType(EnumReportType::CHKVERSION), libOS::getInstance()->getDeviceInfo(), libOS::getInstance()->getDeviceID(), localVersionData->versionResource, "get ServerVersion fail");
 		}
 		else if (strcmp(response->getHttpRequest()->getTag(), "serverProjectAsset") == 0 && downVersionTimes < 10)
 		{
 			getServerProjectAssets();
-			CLogReport::Get()->webReportLog(CLogReport::Get()->getReportType(EnumReportType::CHKVERSION), libOS::getInstance()->getDeviceInfo(), libOS::getInstance()->getDeviceID(), localVersionData->versionResource, "get ServerProject fail");
 		}
 		cocos2d::CCLog("hotUpdate: onHttpRequestCompleted fail : %s", response->getHttpRequest()->getTag());
 		const char* serverVersionTag = "serverVersionCfg";
@@ -2780,8 +2825,7 @@ void LoadingFrame::onHttpRequestCompleted(cocos2d::CCNode *sender, void*data)
 		ostr << "hotUpdate : codeIndex: " << codeIndex;
 		string strLog = ostr.str();
 	
-		CLogReport::Get()->webReportLog(CLogReport::Get()->getReportType(EnumReportType::CHKVERSION), libOS::getInstance()->getDeviceInfo(), libOS::getInstance()->getDeviceID(), localVersionData->versionResource, strLog);
-
+		
 	}
 	downVersionTimes = 0;
 	downProjectTimes = 0;
@@ -2812,6 +2856,40 @@ void LoadingFrame::onHttpRequestCompleted(cocos2d::CCNode *sender, void*data)
 		compareProjectAsset();
 		// 下載檔案訊息上報
 		downloadReport(serverVersionData->packageUrl + "/" + projectManifestName, -1, 0);
+	}
+}
+void LoadingFrame::onServerStateRequestCompleted(cocos2d::CCNode *sender, void *data)
+{
+	cocos2d::CCLog("LoadingFrame : onServerStateRequestCompleted");
+
+	CCHttpResponse *response = (CCHttpResponse*)data;
+	if (!response->isSucceed()) {
+		// 檢查失敗就放玩家過去
+		checkVersion();
+		return;
+	}
+
+	std::vector<char>* buffer = response->getResponseData();
+	std::string temp(buffer->begin(), buffer->end());
+	CCString* responseData = CCString::create(temp);
+	const char* content = responseData->getCString();
+
+	Json::Reader reader;
+	Json::Value value;
+
+	bool ret = reader.parse(content, value);
+	if (ret) {
+		Json::Value state = value["maintain"];
+		std::string maintainState = state.asString();
+		if (maintainState == "2") {	// 維護中
+			libOS::getInstance()->showMessagebox(Language::Get()->getString("@ERRORCODE_9"), 999);
+		}
+		else {
+			checkVersion();
+		}
+	}
+	else {
+		checkVersion();
 	}
 }
 void LoadingFrame::getServerProjectAssets()
@@ -2918,8 +2996,7 @@ void LoadingFrame::compareProjectAsset()
 	ostringstream   ostr;
 	ostr << "compareProjectAsset need update fileSzie: " << needUpdateAsset.size();
 	string strLog = ostr.str();
-	CLogReport::Get()->webReportLog(CLogReport::Get()->getReportType(EnumReportType::CHKVERSION), libOS::getInstance()->getDeviceInfo(), libOS::getInstance()->getDeviceID(), localVersionData->versionResource, strLog);
-
+	
 	if (m_updateVersionTips)
 	{
 		cocos2d::CCLog("compareProjectAsset 4");
@@ -3041,9 +3118,6 @@ void LoadingFrame::UpdateAssetFromServer()
 	ostringstream   ostr;
 	ostr << "UpdateAssetFromServer : " << needUpdateAsset.size();
 	string strLog = ostr.str();
-	
-	CLogReport::Get()->webReportLog(CLogReport::Get()->getReportType(EnumReportType::CHKVERSION), libOS::getInstance()->getDeviceInfo(), libOS::getInstance()->getDeviceID(), localVersionData->versionResource, strLog);
-
 
 	CCB_FUNC(this, "mUpdateBtnNode", cocos2d::CCNode, setVisible(false));
 
@@ -3059,6 +3133,7 @@ void LoadingFrame::UpdateAssetFromServer()
 	alreadyDownloadData.clear();
 	loadFailData.clear();
 	lastPercent = 0.0f;
+	fileLoadSizeMap.clear();
 
 	//进度条
 	setWaitGameNodeVisible(true);

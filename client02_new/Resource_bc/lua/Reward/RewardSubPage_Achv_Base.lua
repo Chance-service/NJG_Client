@@ -117,11 +117,7 @@ function Inst:onReceivePacket(packet)
         self:handle_QUEST_GET_ACTIVITY_LIST_S(msg)
     
     elseif packet.opcode == HP_pb.QUEST_SINGLE_UPDATE_S then
-
-        local msg = Quest_pb.HPQuestUpdate()
-        msg:ParseFromString(packet.msgBuff)
-        self:handle_QUEST_SINGLE_UPDATE_S(msg)
-
+       common:sendEmptyPacket(HP_pb.QUEST_GET_ACHIVIMENT_LIST_C, true)
     end
 end
 

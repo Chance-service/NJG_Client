@@ -61,7 +61,10 @@ local IS_DEBUG = false
 local NodeHelper = require("NodeHelper")
 local NodeHelperUZ = require("Util.NodeHelperUZ")
 local Activity4_pb = require("Activity4_pb")
-
+require("ActPopUpSale.ActPopUpSaleSubPage_132")
+require("ActPopUpSale.ActPopUpSaleSubPage_151")
+require("ActPopUpSale.ActPopUpSaleSubPage_177")
+require("ActPopUpSale.ActPopUpSaleSubPage_Content")
 local thisPageName = "ActPopUpSale.ActPopUpSalePage"
 
 -- 分頁頁面
@@ -199,11 +202,9 @@ function ActPopUpSalePage:onReceiveMessage(container)
         end
         ActPopUpSalePage.requestingLastShop = true
         --popUp資料要求
-        require("ActPopUpSale.ActPopUpSaleSubPage_132")
-        require("ActPopUpSale.ActPopUpSaleSubPage_177")
         ActPopUpSaleSubPage_132_sendInfoRequest()
+        ActPopUpSaleSubPage_151_sendInfoRequest()
         ActPopUpSaleSubPage_177_sendInfoRequest()      
-        require("ActPopUpSale.ActPopUpSaleSubPage_Content")
         ActPopUpSaleSubPage_Content_sendInfoRequest()
         CCLuaLog(">>>>>>onReceiveMessage ActPopUpSalePage")
         common:sendEmptyPacket(HP_pb.LAST_SHOP_ITEM_C, true)
@@ -281,7 +282,7 @@ function ActPopUpSalePage:onEnter (container)
     -- print("ActPopUpSalePage : createPage : "..tostring(self.container ~= nil))
 
     -- 紀錄 初始 滾動視圖尺寸
-    self._originScrollViewSize = CCSizeMake(650, 160)
+    self._originScrollViewSize = CCSizeMake(600, 120)
     -- self._originScrollViewSize = self.container:getVarNode("tabsScrollView"):getContentSize()
     -- 若從現有node取尺寸，會取到(0,0)，不確定原因
 
@@ -348,6 +349,10 @@ end
 
 --[[ 當 關閉按鈕 點選 ]]
 function ActPopUpSalePage:onCloseBtn (container)
+    ActPopUpSaleSubPage_132_sendInfoRequest()
+    ActPopUpSaleSubPage_151_sendInfoRequest()
+    ActPopUpSaleSubPage_177_sendInfoRequest()      
+    ActPopUpSaleSubPage_Content_sendInfoRequest()
     print("ActPopUpSalePage onCloseBtn")
     PageManager.popPage(thisPageName)
 end
@@ -381,64 +386,86 @@ function ActPopUpSalePage_getPrice(id)
             break
         end
     end
-    return Info.productPrice
+    return Info and Info.productPrice or 0
 end
 
 --[[ 取得 可用的活動數量 ]]
 function ActPopUpSalePage:getAvaliableActs()
-    local Table = common:deepCopy(TABINFOS)
-    --local cfg = ConfigManager.getPopUpCfg()
+    local Table = {}
+
+    -- 通用插入方法
+    local function insertSubPageItems(act,cfg, subPagePath, getShowFnName)
+        if not cfg then return end
+        for _, data in pairs(cfg) do
+            local giftId = data.id or data.GiftId
+            table.insert(Table, {
+                name = tostring(giftId),
+                ActId = act,
+                sort = 1,
+                subPage = subPagePath,
+                Cfg = cfg, 
+                isShowFn = function(self)
+                    if IS_DEBUG then return true end
+                    require(self.subPage)
+                    local fn = _G[getShowFnName]
+                    if type(fn) == "function" then
+                        local result = fn(giftId)
+                        return result and result.isShowIcon
+                    end
+                    return false
+                end,
+            })
+        end
+    end
+
+    local actList = { 132,151,177 }
     
-    -- 過濾與插入活動資料
-    --for _, data in pairs(cfg) do
-    --    if data.activityId ~= 132 and data.activityId ~= 177 then
-    --        table.insert(Table, {
-    --            name = tostring(data.activityId),
-    --            subPage = "ActPopUpSale.ActPopUpSaleSubPage_Content",
-    --            isShowFn = function(self)
-    --                if IS_DEBUG then return true end
-    --                require(self.subPage)
-    --                local result = ActPopUpSaleSubPage_Content_getIsShowMainSceneIcon(data.activityId)
-    --                return result.isShowIcon
-    --            end,
-    --        })
-    --    end
-    --end
+    for _, v in ipairs(actList) do
+        local id = v
+        local cfg      = ConfigManager["getAct" .. id .. "Cfg"]()
+        local subPage  = "ActPopUpSale.ActPopUpSaleSubPage_" .. id
+        local isShowFn = "ActPopUpSaleSubPage_" .. id .. "_getIsShowMainSceneIcon"
+        insertSubPageItems(v,cfg, subPage, isShowFn)
+    end
+
+    -- 處理 POPUP_GIFT 類型
     local cfg = ConfigManager.getPopUpCfg2()
     for _, data in pairs(cfg) do
-       if data.type == GameConfig.GIFT_TYPE.POPUP_GIFT then
+        if data.type == GameConfig.GIFT_TYPE.POPUP_GIFT then
             table.insert(Table, {
                 name = tostring(data.GiftId),
-                sort = data.Sort + 1 ,--空出戰敗或等級
+                sort = 4,
                 subPage = "ActPopUpSale.ActPopUpSaleSubPage_Content",
                 isShowFn = function(self)
                     if IS_DEBUG then return true end
                     require(self.subPage)
                     local result = ActPopUpSaleSubPage_Content_getIsShowMainSceneIcon(data.GiftId)
-                    return result.isShowIcon
+                    return result and result.isShowIcon
                 end,
             })
-       end
+        end
     end
 
+    -- 合併、過濾、排序
     local Infos = self:mergeServerData(Table)
     self:removeExpiredAndBoughtActivities(Infos)
-   table.sort(Infos, function(a, b)
-        if (a.sort or 0) == (b.sort or 0) then
+    table.sort(Infos, function(a, b)
+        local sortA, sortB = a.sort or 0, b.sort or 0
+        if sortA == sortB then
             return (a.time or 0) < (b.time or 0)
         else
-            return (a.sort or 0) < (b.sort or 0)
+            return sortA < sortB
         end
     end)
-
 
     return self:filterVisibleActivities(Infos)
 end
 
+
 function ActPopUpSalePage:mergeServerData(Table)
     local Infos = {}
     for _, v in pairs(Table) do
-        local serverInfo = serverData[tonumber(v.name)]
+        local serverInfo = serverData[tonumber(v.name)] or serverData[tonumber(v.ActId)]
         if serverInfo then
             v.time, v.isGot, v.id = serverInfo.time, serverInfo.isGot, serverInfo.id
         end
@@ -605,8 +632,10 @@ function ActPopUpSalePage:onTabSelect (nextTab, lastTab)
     self:clearSubPage()
     
     self.subPage = require(subPageName)
-
     ActPopUpSaleSubPage_setGiftId(tonumber(tabInfo.name))
+    ActPopUpSaleSubPage_132_setGiftId(tonumber(tabInfo.name))
+    ActPopUpSaleSubPage_151_setGiftId(tonumber(tabInfo.name))
+    ActPopUpSaleSubPage_177_setGiftId(tonumber(tabInfo.name))
     self.subPageContainer = self.subPage:onEnter(self.container)
 
     if self.subPageContainer ~= nil then
@@ -654,9 +683,16 @@ function TabContainer:onRefreshItemView(inst, itemContainer)
 
     -- 設置 圖標容器 至 分頁資料
     tabData.itemContainer = itemContainer
-
+    local cfg = {}
+    if tabInfo.Cfg then
+        for _,data in pairs (tabInfo.Cfg) do
+            data.Icon = "BG/Act_TimeLimit_132/"..data.IconName
+            cfg[data.id] = data
+        end
+    end
     -- 設置 圖標圖片 
-     local ImgData = common:getPopUpData(tonumber(tabInfo.name))
+     local id = tonumber(tabInfo.name)
+     local ImgData = common:getPopUpData(id) or cfg[id]
      if ImgData then
         local Img ,Text = ImgData.Icon , ImgData.Title
         if Img ~= nil then
@@ -671,31 +707,23 @@ function TabContainer:onRefreshItemView(inst, itemContainer)
                 text = common:getLanguageString(Text)
             })
         end   
-    elseif tonumber (tabInfo.name) == 132 then
-        NodeHelper:setSpriteImage(tabData.itemContainer, {
-           img = "popsale_151_icon.png"
-        })
-            NodeHelper:setStringForLabel(tabData.itemContainer, {
-                text = common:getLanguageString("@popsale_132_title")
-            })
-    elseif tonumber (tabInfo.name) == 177 then
-        NodeHelper:setSpriteImage(tabData.itemContainer, {
-           img = "popsale_151_icon.png"
-        })
-        NodeHelper:setStringForLabel(tabData.itemContainer, {
-            text = common:getLanguageString("@popsale_177_title")
-        })
     end
     -- 設置 圖標數字
-    if tabInfo.id ~= nil and tabInfo.Cfg~=nil then
-        local string=tabInfo.Cfg[tabInfo.id].minLv or tabInfo.Cfg[tabInfo.id].minStage
-        NodeHelper:setStringForLabel(tabData.itemContainer, {
-            mTxt = string
-        })
+    if tabInfo.Cfg then      
+        local string = ""--cfg[id].minLv or cfg[id].minStage
+        if cfg[id].minLv then
+            string = "Lv."..cfg[id].minLv
+        elseif cfg[id].minStage then
+            local mapCfg = ConfigManager.getNewMapCfg()[cfg[id].minStage]
+            local ch = mapCfg.Chapter
+            local lv = mapCfg.Level
+            string = ch .. "-" .. lv          
+        end       
+         NodeHelper:setStringForLabel(tabData.itemContainer,{mTxt = string})
     else
         NodeHelper:setNodesVisible(tabData.itemContainer,{mTxt=false})
     end
-
+    
     -- 透過 tabInfo / tabData 進行 其他設置行為 ------------
 
     -- 設置 圖標紅點

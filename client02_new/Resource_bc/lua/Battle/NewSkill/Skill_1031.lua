@@ -7,7 +7,7 @@ require("Battle.NewSkill.SkillUtil")
 local aliveIdTable = {}
 -------------------------------------------------------
 --[[
-指定當前HP比例最低的1位(params1)友方，為其恢復攻擊力120%/160%/240%(params2)的HP
+指定當前HP比例最低的1位(params1)友方，為其恢復攻擊力100%/130%/160%(params2)的HP
 ]]--
 --[[ OLD
 對隨機敵方單體造成200%/230%/260%(params1)傷害，並賦予"防禦破壞I/防禦破壞I/防禦破壞II"(params2)5秒(params3)

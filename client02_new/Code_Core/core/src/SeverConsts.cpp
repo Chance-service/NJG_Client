@@ -77,6 +77,9 @@ bool SeverConsts::_parseConfigFile( const std::string& configfile )
 			std::string channel = "android_NG";
 			time_t t;
 			time(&t);
+			if (SeverConsts::Get()->IsOP()) {
+				channel += "_OP";
+			}
 			CCString* _time = CCString::createWithFormat("%ld", t);
 			mSeverFile = data["sever"].asString() + "/" + "Server" + "/" + channel + "/" + serverListCfg;// + "?" + "time=" + _time->m_sString;
 			cocos2d::CCLog("*********SERVER FILE: %s", mSeverFile.c_str());

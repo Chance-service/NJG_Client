@@ -116,7 +116,9 @@ function AlbumMainPage:onEnter(container)
     mainContainer = container
     self:registerPacket(container)
     NodeHelper:setNodesVisible(mainContainer,{mElementNode=false})
-    container.mScrollView = container:getVarScrollView("mContent")
+    container.mScrollView = container:getVarScrollView("mContent2")
+    NodeHelper:autoAdjustResizeScrollview(container.mScrollView)
+    NodeHelper:setNodesVisible(container,{mBottom1 = false,mBottom2 = true})
    self:initScrollView(container)
 end
 function AlbumMainPage:setType(_type,id)
@@ -181,9 +183,14 @@ function AlbumSideStory:onRefreshContent(content)
     })
 
     -- 判斷鎖定狀態
-    local achieved = SecretMessageManager_LimitAchiveCount(data.itemId)
-    local isLocked = self.id > achieved
-    self.isLock = isLocked
+    local result = SecretMessageManager_LimitAchiveCount(data.itemId, self.id)
+    
+    if type(result) == "number" then
+        self.isLock = (result <= 0)
+    else
+        self.isLock = result
+    end
+
     -- 解析 lockType / lockValue
     local types = common:split(data.lockType, ",")
     local vals  = common:split(data.lockValue, ",")
@@ -204,10 +211,10 @@ function AlbumSideStory:onRefreshContent(content)
 
     -- 一次性設定所有節點可見性
     local vis = {
-        mMask      = isLocked,
+        mMask      = self.isLock,
         mLock      = false,
-        mStarNode  = isLocked and lockStar  ~= nil,
-        mLevelNode = isLocked and lockLevel ~= nil,
+        mStarNode  = self.isLock and lockStar  ~= nil,
+        mLevelNode = self.isLock and lockLevel ~= nil,
     }
     -- 星級圖示
     for i = 1, 13 do
@@ -324,9 +331,14 @@ function AlbumSideStory:onBtn(id,isAlbum)
         end
          local data = BuildTable[self.id]
          NgBattleResultManager.showAlbum = true
-         local AlbumStoryDisplayPage_Vertical=require('AlbumStoryDisplayPage_Vertical')
-         if AlbumStoryDisplayPage_Vertical:setData(data.avgId) then
-             PageManager.pushPage("AlbumStoryDisplayPage_Vertical")
+         if data.avgType == 0 then
+            local AlbumStoryDisplayPage_Vertical=require('AlbumStoryDisplayPage_Vertical')
+            if AlbumStoryDisplayPage_Vertical:setData(data.avgId) then
+                PageManager.pushPage("AlbumStoryDisplayPage_Vertical")
+            end
+         elseif data.avgType == 1 then
+            require("FetterGirlsDiary"):setGrowthId(data.avgId)
+            PageManager.pushPage("FetterGirlsDiary")
          end
     end
 end

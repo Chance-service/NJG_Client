@@ -43,9 +43,9 @@ function MissionWeelyTask.onFunction(eventName, container)
             ShowRewardPreview(WeeklyQuestPointCfg[curBoxId].award, common:getLanguageString("@TaskDailyRewardPreviewTitle"), common:getLanguageString("@TaskDailyRewardPreviewInfo"))
             PageManager.pushPage("DailyTaskRewardPreview");
         else
-            local CommonRewardPage = require("CommPop.CommItemReceivePage")
-            CommonRewardPage:setData(WeeklyQuestPointCfg[curBoxId].award, common:getLanguageString("@ItemObtainded"), nil)
-            PageManager.pushPage("CommPop.CommItemReceivePage")
+            --local CommonRewardPage = require("CommPop.CommItemReceivePage")
+            --CommonRewardPage:setData(WeeklyQuestPointCfg[curBoxId].award, common:getLanguageString("@ItemObtainded"), nil)
+            --PageManager.pushPage("CommPop.CommItemReceivePage")
 
             --CommonRewardPageBase_setPageParm(WeeklyQuestPointCfg[curBoxId].award, curState == 1)
             --PageManager.pushPage("CommonRewardPage")
@@ -593,9 +593,8 @@ function MissionWeelyTask:onReceivePacket(ParentContainer)
         local msg = dailyQuest_pb.HPTakeDailyPointAwardRet()
         msg:ParseFromString(msgBuff)
         for i = 1, #_weeklyPointCore do
-            if _weeklyPointCore[i].dailyPointNumber == msg.pointCount then
-                _weeklyPointCore[i].state = msg.state
-                break
+            if msg.takeInfo[i] and _weeklyPointCore[i].dailyPointNumber == msg.takeInfo[i].pointCount then
+                _weeklyPointCore[i].state = msg.takeInfo[i].state
             end
         end
         self:refreshPage()

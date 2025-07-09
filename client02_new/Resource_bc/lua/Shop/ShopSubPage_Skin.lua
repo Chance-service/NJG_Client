@@ -96,6 +96,10 @@ function ShopSubPage_Skin.new()
         self:filterSkinCard()
         self:settingFilterBtn(self.container)
 
+        self.controlPage:requestPanelScrollView(true, {
+            size = 1,
+        })
+
         return self.container
     end
 
@@ -145,7 +149,6 @@ function ShopSubPage_Skin.new()
         self.allCardItem = { }
         self.mScrollView:removeAllCell()
     end
-
     --[[ 組建 所有商品 ]]
     Inst.SubPage_Base.buildItem = Inst.buildItem
     function Inst:buildItem()
@@ -293,19 +296,23 @@ function ShopSubPage_Skin:createSkinAttrString(skinId, heroId)
     end
     local addAttrs = common:split(skinCfg.ownAdd, ",")
     local decAttrs = common:split(skinCfg.ownDec, ",")
-    for i = 1, #addAttrs do
-        local attrId, num = unpack(common:split(addAttrs[i], "_"))
-        if attrStr ~= "" then
-            attrStr = attrStr .. ", "
+    if addAttrs[1] and addAttrs[1] ~= "" then
+        for i = 1, #addAttrs do
+            local attrId, num = unpack(common:split(addAttrs[i], "_"))
+            if attrStr ~= "" then
+                attrStr = attrStr .. ", "
+            end
+            attrStr = attrStr .. common:getLanguageString("@SkinWindos_info_Add", common:getLanguageString("@AttrName_" .. attrId), num)
         end
-        attrStr = attrStr .. common:getLanguageString("@SkinWindos_info_Add", common:getLanguageString("@AttrName_" .. attrId), num)
     end
-    for i = 1, #decAttrs do
-        local attrId, num = unpack(common:split(decAttrs[i], "_"))
-        if attrStr ~= "" then
-            attrStr = attrStr .. ", "
+    if decAttrs[1] and decAttrs[1]  ~= "" then
+        for i = 1, #decAttrs do
+            local attrId, num = unpack(common:split(decAttrs[i], "_"))
+            if attrStr ~= "" then
+                attrStr = attrStr .. ", "
+            end
+            attrStr = attrStr .. common:getLanguageString("@SkinWindos_info_Dec", common:getLanguageString("@AttrName_" .. attrId), num)
         end
-        attrStr = attrStr .. common:getLanguageString("@SkinWindos_info_Dec", common:getLanguageString("@AttrName_" .. attrId), num)
     end
     return attrStr
 end
@@ -315,11 +322,15 @@ function ShopSubPage_Skin:createSkinDesc(txtNode, skinId, heroId, size)
         return
     end
     local attrStr = self:createSkinAttrString(skinId, heroId)
-    local htmlContent = common:fillHtmlStr("SkinShopDesc", common:getLanguageString("@HeroName_" .. heroId), common:getLanguageString(skinCfg.name), attrStr)
+    local htmlContent = common:fillHtmlStr("SkinShopDesc", common:getLanguageString(skinCfg.name), attrStr)
     local htmlLabel = NodeHelper:addHtmlLable(txtNode, htmlContent, 168, size)
     return htmlLabel
 end
 
+function ShopSubPage_Skin:hasItem()
+    local info = ShopDataMgr:getPacketInfo(Const_pb.SKIN_MARKET)
+    return #info.allItemInfo > 0
+end
 ------------------------------------------------------------
 -- SaleContent：UI cell 相關邏輯
 ------------------------------------------------------------
@@ -335,19 +346,27 @@ function SaleContent:onRefreshContent(ccbRoot)
         mIcon = "UI/RoleShowCards/Hero_" .. string.format("%05d", self.shopCfg.SkinId) .. ".png"
     }
     NodeHelper:setSpriteImage(container, img)
+    local timeTxt = self:calShowTimeTxt(self.data.endTime)
     -- string
     local str = {
         mCost = (self.shopType == Inst.GOODS_TYPE.BUY) and self.shopCfg.price[1].count or 0,
         mOffTxt = (self.shopType == Inst.GOODS_TYPE.BUY) and (self.shopCfg.discount .. "%"),
         mName = common:getLanguageString(skinCfg.name),
-        mTimeTxt = self:calShowTimeTxt(self.data.endTime) .. "H"
+        mTimeTxt = timeTxt
     }
+    local scale9 = container:getVarScale9Sprite("mBg")
+    if scale9 then
+        local oldSize = scale9:getContentSize()
+        oldSize.width = 40 + #timeTxt * 10
+        scale9:setContentSize(oldSize)
+    end
     NodeHelper:setStringForLabel(container, str)
     -- visible
     local visible = {
         mBuyInfoNode = (self.shopType == Inst.GOODS_TYPE.BUY),
         mJumpNode = (self.shopType == Inst.GOODS_TYPE.EVENT),
         mOffNode = (self.shopType == Inst.GOODS_TYPE.BUY) and (self.shopCfg.discount ~= 100),
+        mTimeNode = (self.shopCfg.timeType == 1),
     }
     NodeHelper:setNodesVisible(container, visible)
 end
@@ -363,24 +382,44 @@ function SaleContent:onHead(container)
     PageManager.pushPage("Shop.SkinShopPopUp")
 end
 function SaleContent:onConfirmation(container)
-    if self.shopType == Inst.GOODS_TYPE.BUY then  -- 購買
-        PageManager.showConfirm(common:getLanguageString("@ShopComfirmTitle"), common:getLanguageString("@ShopComfirm"), function(isSure)
-            local cost = self.shopCfg.price[1].count
-            local userCount = InfoAccesser:getUserItemCount(self.shopCfg.price[1].type, self.shopCfg.price[1].itemId)
-            if (userCount < cost) then
-                MessageBoxPage:Msg_Box(common:getLanguageString("@ERRORCODE_3002"))
-                return
-            end
-            if isSure then
-                local msg = Shop_pb.BuyShopItemsRequest()
-                msg.type = 1
-                msg.id = self.cfgIdx
-                msg.amount = 1
-                msg.shopType = Const_pb.SKIN_MARKET
-                common:sendPacket(HP_pb.SHOP_BUY_C, msg, true)
-            end
-        end, true)
-    elseif self.shopType == Inst.GOODS_TYPE.EVENT then  -- 活動
+    if self.shopType == Inst.GOODS_TYPE.BUY then
+        local priceInfo = self.shopCfg.price[1]
+        local cost = priceInfo.count
+        local userCount = InfoAccesser:getUserItemCount(priceInfo.type, priceInfo.itemId)
+
+        if userCount < cost then
+            PageManager.showConfirm(
+                common:getLanguageString("@ShopComfirmTitle"),
+                common:getLanguageString("@Outof6002"),
+                function(isSure)
+                    if isSure then
+                        require("IAP.IAPPage"):setEntrySubPage("Recharge")
+                        PageManager.pushPage("IAP.IAPPage")
+                    end
+                end,
+                true
+            )
+            return
+        end
+
+        -- 購買確認
+        PageManager.showConfirm(
+            common:getLanguageString("@ShopComfirmTitle"),
+            common:getLanguageString("@ShopComfirm"),
+            function(isSure)
+                if isSure then
+                    local msg = Shop_pb.BuyShopItemsRequest()
+                    msg.type = 1
+                    msg.id = self.cfgIdx
+                    msg.amount = 1
+                    msg.shopType = Const_pb.SKIN_MARKET
+                    common:sendPacket(HP_pb.SHOP_BUY_C, msg, true)
+                end
+            end,
+            true
+        )
+
+    elseif self.shopType == Inst.GOODS_TYPE.EVENT then
         local skinCfg = Inst.skinCfg[self.shopCfg.SkinId]
         if not skinCfg then
             return
@@ -390,15 +429,14 @@ function SaleContent:onConfirmation(container)
         LobbyMarqueeBanner:jumpActivityById(tonumber(ids[1]))
     end
 end
+
 function SaleContent:calShowTimeTxt(time)
-    local secTime = time / 1000
-    local leftTime = secTime - os.time()
-    if leftTime < 0 then
-        return 0
-    else
-        local leftHour = math.floor(leftTime / 3600)
-        return leftHour
-    end
+    local leftTime = math.floor(time / 1000) - os.time()
+    if leftTime <= 0 then return 0 end
+
+    local leftDay = math.floor(leftTime / 86400)
+    local leftHour = math.floor((leftTime % 86400) / 3600)   
+    return string.format("%dD %dH", leftDay, leftHour)
 end
 
 return ShopSubPage_Skin

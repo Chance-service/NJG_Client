@@ -48,7 +48,7 @@ function GuideStoryPage:onEnter(container)
     if langType == kLanguageChinese then
 		preName = preName
 	elseif langType == kLanguageCH_TW then
-		preName = preName .. "TW"
+		preName = preName-- .. "TW" -- 先移除繁中影片
 	else
 		preName = preName
     end
@@ -114,6 +114,7 @@ function GuideStoryPage:onReturn(container)
     PageManager.showConfirm(title, msg, function(isSure)
         if isSure then
             if CC_TARGET_PLATFORM_LUA == common.platform.CC_PLATFORM_WIN32 then
+                MainFrame:getInstance():removeMovieByPage(thisPageName)
                 GuideStoryPage:onClose(container)
             else
                 GamePrecedure:getInstance():closeMovie(thisPageName)
@@ -140,6 +141,7 @@ function GuideStoryPage:onTestSkip(container)
     GuideManager.currGuide[GuideManager.currGuideType] = 0
     GuideManager:setStepPacket(GuideManager.currGuideType, 0)
     if Golb_Platform_Info.is_win32_platform then
+        MainFrame:getInstance():removeMovieByPage(thisPageName)
         GuideStoryPage:onClose(container)
     else
         GamePrecedure:getInstance():closeMovie(thisPageName)

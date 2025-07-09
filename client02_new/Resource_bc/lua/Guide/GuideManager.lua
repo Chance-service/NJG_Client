@@ -148,28 +148,68 @@ function GuideManager.openOtherGuideFun(triggerType, isEnterMainScene)
         end
     end
 
-    -- 測試用
-    --if triggerType == GuideManager.guideType.ANCIENT_WEAPON then
-    --    GuideManager.currGuide[triggerType] = 140051
-    --end
-
-    if UserInfo.stateInfo.passMapId >= unlockMap and GuideManager.currGuide[triggerType] ~= 0 then
-        local step = GuideManager.currGuide[triggerType]
-        if step == nil then -- 還沒有記錄過
-            GuideManager.currGuide[triggerType] = triggerType * GuideManager.stepBaseIdx + 1   -- 從第一步開始
-        elseif NewbieGuideCfg[step] == nil or -- 紀錄的step跟表格type不相符/表格沒有設定
-               NewbieGuideCfg[step].guideType ~= triggerType then
-            GuideManager.currGuide[triggerType] = 0 -- 紀錄教學已完成
-        else
-            GuideManager.currGuide[triggerType] = NewbieGuideCfg[step].interruptStep    -- 從中斷的步驟開始
-        end
-        if GuideManager.currGuide[triggerType] ~= 0 then
-            GuideManager.currGuideType = triggerType
-            GuideManager.isInGuide = true
-            PageManager.pushPage("NewbieGuideForcedPage")
+    if triggerType == GuideManager.guideType.SUMMON then
+        if not ActivityInfo:getActivityIsOpenById(Const_pb.ACTIVITY172_PICKUP) then -- 檢查轉蛋活動
             return
         end
     end
+
+    -- 測試用
+    --if triggerType == GuideManager.guideType.DUNGEON then
+    --    GuideManager.currGuide[triggerType] = 40001
+    --end
+
+    if UserInfo.stateInfo.passMapId >= unlockMap  then
+        if GuideManager.currGuide[triggerType] ~= 0 then
+            local step = GuideManager.currGuide[triggerType]
+            if step == nil then -- 還沒有記錄過
+                GuideManager.currGuide[triggerType] = triggerType * GuideManager.stepBaseIdx + 1   -- 從第一步開始
+            elseif NewbieGuideCfg[step] == nil or -- 紀錄的step跟表格type不相符/表格沒有設定
+                   NewbieGuideCfg[step].guideType ~= triggerType then
+                GuideManager.currGuide[triggerType] = 0 -- 紀錄教學已完成
+            else
+                GuideManager.currGuide[triggerType] = NewbieGuideCfg[step].interruptStep    -- 從中斷的步驟開始
+            end
+            if GuideManager.currGuide[triggerType] ~= 0 then
+                GuideManager.currGuideType = triggerType
+                GuideManager.isInGuide = true
+                PageManager.pushPage("NewbieGuideForcedPage")
+                return
+            end
+        else
+            if triggerType == GuideManager.guideType.SUMMON then
+                -- 新手扭蛋特殊判斷
+                -- 轉蛋教學結束 > 關閉172活動
+                require("Activity.ActivityInfo")
+                ActivityInfo:addTempCloseActivity(Const_pb.ACTIVITY172_PICKUP)
+                --if ActivityInfo:getActivityIsOpenById(Const_pb.ACTIVITY172_PICKUP) then
+                --    GuideManager.currGuide[triggerType] = 70005
+                --    GuideManager.currGuideType = triggerType
+                --    GuideManager.isInGuide = true
+                --    PageManager.pushPage("NewbieGuideForcedPage")
+                --end
+            end
+        end
+    end
+end
+function GuideManager.isTriggerOtherGuide(triggerType)
+    if EFUNSHOWNEWBIE() == false then
+        return false
+    end
+    if GuideManager.isInGuide then
+        return false
+    end
+    if not NewbieGuideCfg[triggerType] then
+        return false
+    end
+    if NewbieGuideCfg[triggerType].guideType ~= 0 then  -- 不是解鎖條件設定
+        return false
+    end
+    local unlockMap = NewbieGuideCfg[triggerType].nextStep  -- 解鎖關卡
+    if UserInfo.stateInfo.passMapId >= unlockMap and GuideManager.currGuide[triggerType] ~= 0 then
+        return true
+    end
+    return false
 end
 ------------------------------------------------------------------------------
 -- 新手教學type7使用function

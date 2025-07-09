@@ -1,12 +1,4 @@
-----------------------------------------------------------------------------------
---[[
-	關卡特惠礼包
-    複製自 ActPopUpSalePSubPage_177
-    - 把 大部分132改成177 (除了 協定訊息格式 或 ccbi 仍是用132)
-    - 把 LEVEL_GIFT 改成 STAGE_GIFT
-    - minLv -> minStage, maxLv -> maxStage
---]]
-----------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 local NodeHelper = require("NodeHelper")
 local NodeHelperUZ = require("Util.NodeHelperUZ")
 local TimeDateUtil = require("Util.TimeDateUtil")
@@ -23,6 +15,7 @@ local _ConfigData = ConfigManager.getAct177Cfg()
 local _buyId = 1
 local _buyData = nil
 local _ConfigDatas = { }
+local GiftId = 501
 local ActPopUpSaleSubPage_177 = {
     rewardItems = {}
 }
@@ -69,14 +62,10 @@ function ActPopUpSaleSubPage_177:onEnter(parentContainer)
             func(slf, container)
         end
     end)
-
-    -- luaCreat_ActPopUpSaleSubPage_177(self.container)
     self:registerPacket(parentContainer)
     self:initData()
     self:initUi(self.container)
-
     self:getActivityInfo()
-
     return self.container
 end
 
@@ -84,46 +73,33 @@ end
 function ActPopUpSaleSubPage_177:initData()
     _buyData = ActPopUpSaleSubPage_177_getIsShowMainSceneIcon()
 end
-
+function ActPopUpSaleSubPage_177_setGiftId(_id)
+    GiftId = _id
+end
 -- 
 function ActPopUpSaleSubPage_177:initUi(container)
-    if container == nil then return end
-    local itemInfo = {}
-    for _,data in pairs(_ConfigData) do
-        if data.id == _buyData.id then
-            itemInfo = data
-            break
-        end
+    local cfg = {}
+    for _,data in pairs (_ConfigData) do
+        cfg[data.id] = data
     end
+    local itemInfo = cfg[GiftId]
     if not itemInfo then
         return
     end
-    local rewardItems = { }
-
-    itemInfo.price=ActPopUpSalePage_getPrice(itemInfo.id)
-
-    if itemInfo.reward ~= nil then
-        for _, item in ipairs(common:split(itemInfo.reward, ",")) do
-            local _type, _id, _count = unpack(common:split(item, "_"));
-            table.insert(rewardItems, {
-                type = tonumber(_type),
-                itemId = tonumber(_id),
-                count = tonumber(_count),
-            } );
-        end
-    end
-
-    self.rewardItems = rewardItems
+    NodeHelper:setNodesVisible(container,{leftCountText = false})
+	itemInfo.price = ActPopUpSalePage_getPrice(itemInfo.id )
+	self.rewardItems = itemInfo.reward
 
     -- 初始化 獲得列表
     NodeHelper:initScrollView(container, "mContent", #self.rewardItems);
 
     self:updateItems()
 
-    NodeHelper:setMenuItemEnabled(container, "mRechargeBtn", not _buyData.canbuy)
-    NodeHelper:setNodesVisible(container,{leftCountText = false})
-    local bg = container:getVarSprite("mBg")
-    bg:setScale(NodeHelper:getScaleProportion())
+	-- NodeHelper:setMenuItemEnabled(container, "mRechargeBtn", false)
+
+	NodeHelper:setStringForLabel(container, { mRecharge = itemInfo.price })
+	local bg = container:getVarSprite("mBg")
+	bg:setScale(NodeHelper:getTargetScaleProportion(1600, 720))
 
 	NodeHelper:setStringForLabel(container, { mRecharge = itemInfo.price })
 	NodeHelper:setSpriteImage(container, {mLvSprite = "BG/Act_TimeLimit_132/popsale_151_img.png" ,mBg = "BG/Act_TimeLimit_132/popsale_151_bg.png" })
@@ -242,24 +218,6 @@ function ActPopUpSaleSubPage_177:onScrollViewFunction(eventName, container)
     end
 end
 
-function ActPopUpSaleSubPage_177:initSpine(container)
-
-    local roldData = ConfigManager.getRoleCfg()[123]
-
-    NodeHelper:setSpriteImage(self.container, { mNameFontSprite = roldData.namePic })
-
-    local spineNode = container:getVarNode("mSpineNode");
-    if spineNode then
-        spineNode:removeAllChildren();
-        --        local spine = SpineContainer:create(unpack(common:split((roldData.spine), ",")))
-        --        local spineToNode = tolua.cast(spine, "CCNode")
-        --        spineNode:addChild(spineToNode);
-        --        spine:runAnimation(1, "Stand", -1)
-        --        local offset_X_Str  , offset_Y_Str = unpack(common:split(("150,0"), ","))
-        --        NodeHelper:setNodeOffset(spineToNode , tonumber(offset_X_Str) , tonumber(offset_Y_Str))
-        --        spineToNode:setScale(0.4)
-    end
-end
 
 
 -- 点击物品显示tips
@@ -282,54 +240,6 @@ function ActPopUpSaleSubPage_177:onClickItemFrame(container, eventName)
     GameUtil:showTip(container:getVarNode('mPic' .. nodeIndex), rewardItems[rewardIndex])
 end
 
-
--- function ActPopUpSaleSubPage_177:fillRewardItem(container, rewardCfg, maxSize, isShowNum)
---     local maxSize = maxSize or 4;
---     isShowNum = isShowNum or false
---     local nodesVisible = { };
---     local lb2Str = { };
---     local sprite2Img = { };
---     local scaleMap = { }
---     local menu2Quality = { };
---     local colorTabel = { }
---     for i = 1, maxSize do
---         local cfg = rewardCfg[i];
---         nodesVisible["mRewardNode" .. i] = cfg ~= nil;
---         if cfg ~= nil then
---             local resInfo = ResManagerForLua:getResInfoByTypeAndId(cfg.type, cfg.itemId, cfg.count);
---             if resInfo ~= nil then
---                 sprite2Img["mPic" .. i] = resInfo.icon;
---                 lb2Str["mNum" .. i] = "x" .. GameUtil:formatNumber(cfg.count);
---                 --lb2Str["mName" .. i] = resInfo.name;
-
---                 NodeHelper:setBlurryString(container, "mName" .. i, resInfo.name, GameConfig.BlurryLineWidth, 5)
-
-
---                 menu2Quality["mFrame" .. i] = resInfo.quality
---                 sprite2Img["mFrameShade" .. i] = NodeHelper:getImageBgByQuality(resInfo.quality);
---                 if resInfo.iconScale then
---                     scaleMap["mPic" .. i] = 1
---                 end
-
---                 colorTabel["mName" .. i] = ConfigManager.getQualityColor()[resInfo.quality].textColor
---                 if isShowNum then
---                     resInfo.count = resInfo.count or 0
---                     lb2Str["mNum" .. i] = resInfo.count .. "/" .. cfg.count;
---                 end
---             else
---                 CCLuaLog("Error::***reward item not found!!");
---             end
---         end
---     end
-
---     NodeHelper:setNodesVisible(container, nodesVisible);
---     NodeHelper:setStringForLabel(container, lb2Str);
---     NodeHelper:setSpriteImage(container, sprite2Img, scaleMap);
---     NodeHelper:setQualityFrames(container, menu2Quality);
---     NodeHelper:setColorForLabel(container, colorTabel);
--- end
-
-
 function ActPopUpSaleSubPage_177:onClose(container)
     
 end
@@ -342,37 +252,20 @@ function ActPopUpSaleSubPage_177:onExit(parentContainer)
 end
 
 function ActPopUpSaleSubPage_177:onRecharge(container)
-    require ("ActPopUpSale.ActPopUpSalePage")
-    ActPopUpSalePage_setReward(self.rewardItems)
-    self:sendBuyRequest(container)
-    --    if UserInfo.playerInfo.gold < _ConfigData[_buyData.id].price then
-    --        common:rechargePageFlag("ActPopUpSaleSubPage_177")
-    --        return
-    --    end
-    --    local msg = Activity4_pb.Activity132LevelGiftBuyReq()
-    --    msg.cfgId = _buyData.id
-    --    common:sendPacket(HP_pb.ACTIVITY177_ACTIVITY_GIFT_VERIFY_C, msg, true)
+	require ("ActPopUpSale.ActPopUpSalePage")
+	ActPopUpSalePage_setReward(self.rewardItems)
+	self:sendBuyRequest(container)
 end
 
 function ActPopUpSaleSubPage_177:onReceive(container)
-    self:sendBuyRequest(container)
-    --    if UserInfo.playerInfo.gold < _ConfigData[_buyData.id].price then
-    --        common:rechargePageFlag("ActPopUpSaleSubPage_177")
-    --        return
-    --    end
-    --    local msg = Activity4_pb.Activity132LevelGiftBuyReq()
-    --    msg.cfgId = _buyData.id
-    --    common:sendPacket(HP_pb.ACTIVITY177_ACTIVITY_GIFT_VERIFY_C, msg, true)
+	self:sendBuyRequest(container)
+
 end
 
 function ActPopUpSaleSubPage_177:sendBuyRequest(container)
-    --if UserInfo.playerInfo.gold < _ConfigData[1].price then
-    --    common:rechargePageFlag("ActPopUpSaleSubPage_177")
-    --    return
-    --end
     local msg = Activity5_pb.Activity177FailedGiftReq()
     msg.action = 1
-    msg.cfgId = _buyData.id
+	msg.cfgId = GiftId
     common:sendPacket(HP_pb.ACTIVITY177_FAILED_GIFT_C, msg, false)
 end
 
@@ -401,9 +294,7 @@ function ActPopUpSaleSubPage_177:onExecute(parentContainer)
         leftTimeText = isLeftTimeSeted
     });
      local MainPage=require("ActPopUpSale.ActPopUpSalePage")
-    if not isLeftTimeSeted then  
-        MainPage:onCloseBtn(self.container)  
-    end
+	--if not isLeftTimeSeted then  MainPage:onCloseBtn(self.container)  end
 end
 
 
@@ -411,32 +302,7 @@ function ActPopUpSaleSubPage_177:getActivityInfo()
 
 end
 
-function ActPopUpSaleSubPage_177:onReceivePacket(container)
-    local opcode = container:getRecPacketOpcode();
-    local msgBuff = container:getRecPacketBuffer();
-    if opcode == OPCODES.ACTIVITY177_FAILED_GIFT_S then
-        local msg = Activity5_pb.Activity177FailedGiftResp()
-        msg:ParseFromString(msgBuff)
-        -- local Const_pb = require("Const_pb")
-        -- ActivityInfo.changeActivityNotice(Const_pb.ACTIVITY177_Failed_Gift)
-        -- local gotCfgId = msg.gotCfgId
-        ActPopUpSaleSubPage_177_setServerData(msg)
-        _buyData = ActPopUpSaleSubPage_177_getIsShowMainSceneIcon()
-        PageManager.refreshPage("MainScenePage", "isShowActivity177Icon")
-        -- 检查小红点
-        if not _buyData.isShowRedPoint then
-            ActivityInfo.changeActivityNotice(Const_pb.ACTIVITY177_Failed_Gift)
-        end
-       ---if not _buyData.isShowIcon then
-       ---    local Const_pb = require("Const_pb")
-       ---
-       ---    self:onClose()
-       ---else
-       ---    self:initUi(self.container)
-       ---end
-       self:initUi(self.container)
-    end
-end
+
 function ActPopUpSaleSubPage_177:BuySucc(msg)
      ActPopUpSaleSubPage_177_setServerData(msg)
         _buyData = ActPopUpSaleSubPage_177_getIsShowMainSceneIcon()
@@ -445,13 +311,7 @@ function ActPopUpSaleSubPage_177:BuySucc(msg)
         if not _buyData.isShowRedPoint then
             ActivityInfo.changeActivityNotice(Const_pb.ACTIVITY177_Failed_Gift)
         end
-       ---if not _buyData.isShowIcon then
-       ---    local Const_pb = require("Const_pb")
-       ---
-       ---    self:onClose()
-       ---else
-       ---    self:initUi(self.container)
-       ---end
+    
        self:initUi(self.container)
 end
 function ActPopUpSaleSubPage_177:chakeRedPoint()
@@ -495,63 +355,58 @@ function ActPopUpSaleSubPage_177_sendInfoRequest()
     common:sendPacket(HP_pb.ACTIVITY177_FAILED_GIFT_C, msg, false)
 end
 
+function ActPopUpSaleSubPage_177_getShowData()
+	return _showData
+end
 
 function ActPopUpSaleSubPage_177_getServerData()
     return _serverData
 end
 
 function ActPopUpSaleSubPage_177_setServerData(msg)
-    _serverData = msg
-    if _serverData == nil then
-        _serverData = { }
-        return
-    end
-    _serverData = { }
-    if msg.giftInfo then
-        for i = 1, #msg.giftInfo do
-            local imteData = msg.giftInfo[i]
-            _serverData[imteData.cfgId] = { id = imteData.cfgId, isGot = imteData.isGot }
-            _buyId = imteData.cfgId
-            break
-        end
-    end
-    
-    if msg.limitDate ~= nil and msg.limitDate > 0 then
-        _serverData.limitDate = os.time() + msg.limitDate
-         _buyData=ActPopUpSaleSubPage_177_getIsShowMainSceneIcon()
-        if  _serverData[_buyId].isGot then _serverData.limitDate = 0 end
-        local PopUpPage=require("ActPopUpSale.ActPopUpSalePage")     
-         PopUpPage:setTime(177, _serverData.limitDate, _serverData[_buyId].isGot)
+	_serverData = msg
+	if _serverData == nil then
+		_serverData = { }
+		return
+	end
+	_serverData = { }
+	for i = 1, #msg.giftInfo do
+		local imteData = msg.giftInfo[i]
+		_serverData[imteData.cfgId] = { id = imteData.cfgId, isGot = imteData.isGot }
+	end
+    for id,data in pairs(_serverData) do
+	    if msg.limitDate > 0 and type(id) == "number" then
+	    	_serverData.limitDate = os.time() + msg.limitDate
+	    	local PopUpPage=require("ActPopUpSale.ActPopUpSalePage")
+	    	_buyData=ActPopUpSaleSubPage_177_getIsShowMainSceneIcon(id)
+	    	PopUpPage:setTime(177, _serverData.limitDate,_serverData[id].isGot,GiftId)
+	    end
     end
 end
-function ActPopUpSaleSubPage_177_getIsShowMainSceneIcon()
-    if _serverData == nil or next(_serverData) == nil then
-        --print("serverData is null 177")
-        _showData = { isShowIcon = false, id = 0, isFree = false, isShowRedPoint = false, isGot = false }
+function ActPopUpSaleSubPage_177_getIsShowMainSceneIcon(GiftId)
+    if not GiftId then  
+        _showData = { isShowIcon = false, id = 0, isFree = false, isShowRedPoint = false,isGot=false }
+        return _showData  
+    end
+    if not _serverData or _serverData[GiftId] == nil then
+        --print("serverData is null")
+        _showData = { isShowIcon = false, id = GiftId, isFree = false, isShowRedPoint = false,isGot=false }
+        return _showData
+    end
+    if not _serverData.limitDate or _serverData.limitDate and os.time() > _serverData.limitDate then
+        _showData = { isShowIcon = false, id = GiftId, isFree = false, isShowRedPoint = false ,isGot=false}
         return _showData
     end
 
-    if _serverData.limitDate ~= nil and os.time() > _serverData.limitDate then
-        _showData = { isShowIcon = false, id = _buyId, isFree = false, isShowRedPoint = false, isGot = _serverData[_buyId].isGot}
-        return _showData
-    end
-
-    _ConfigData = ConfigManager.getAct177Cfg()
-    _ConfigDatas = { }
-
-
-    for i = 1, #_ConfigData do
-        local data = _ConfigData[i]
-        table.insert(_ConfigDatas, data)
-    end
-    for k, v in pairs(_ConfigDatas) do
-        if _serverData[v.id] and not _serverData[v.id].isGot then
-            _showData = { isShowIcon = true, id = v.id, isFree = true, isShowRedPoint = false, isGot = false }
+    local _ConfigData = ConfigManager.getAct177Cfg()
+    for k, v in pairs(_ConfigData) do
+        if _serverData[GiftId] and not _serverData[GiftId].isGot then
+            _showData = { isShowIcon = true, id = GiftId, isFree = true, isShowRedPoint = false,isGot=false }
             return _showData
         end
     end
 
-    _showData = { isShowIcon = false, id = 0, isFree = false, isShowRedPoint = false, isGot = true }
+    _showData = { isShowIcon = false, id = GiftId, isFree = false, isShowRedPoint = false,isGot=true}
     return _showData
 end
 

@@ -64,6 +64,7 @@ public:
 	std::string AppUpdateUrlKUSO;
 	std::string AppUpdateUrlEROLABS;
 	std::string AppUpdateUrlOP;
+	std::string AppUpdateUrlGP;
 	std::string AppUpdateUrlJSG;
 	std::string AppUpdateUrlAPLUS_CPS1;
 	std::string versionResource;
@@ -101,6 +102,7 @@ public:
     std::string stroge;
 	std::string crc;
 	double time;
+	int state;
 };
 
 class ProjectAssetData

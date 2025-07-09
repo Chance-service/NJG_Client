@@ -111,7 +111,7 @@ local MainScenePage_BtnMap = {
     },
     {
         key    = "Story",
-        normal = "Lobby_Btn_11.png",--"Lobby_Btn_Recollect.png",
+        normal = "Lobby_Btn_Recollect.png",
         fun    = "onStory",
         Pos    = "Right",
         Lock   = false,

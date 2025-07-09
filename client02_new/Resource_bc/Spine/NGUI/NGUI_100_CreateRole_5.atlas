@@ -1,0 +1,167 @@
+
+NGUI_100_CreateRole_5.png
+size: 949,949
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+A_07
+  rotate: false
+  xy: 500, 372
+  size: 360, 575
+  orig: 360, 575
+  offset: 0, 0
+  index: -1
+Body
+  rotate: false
+  xy: 2, 412
+  size: 496, 535
+  orig: 496, 535
+  offset: 0, 0
+  index: -1
+Boobs
+  rotate: false
+  xy: 737, 219
+  size: 200, 151
+  orig: 200, 151
+  offset: 0, 0
+  index: -1
+Eye closed
+  rotate: true
+  xy: 902, 99
+  size: 118, 31
+  orig: 118, 31
+  offset: 0, 0
+  index: -1
+H1
+  rotate: false
+  xy: 862, 397
+  size: 60, 63
+  orig: 60, 63
+  offset: 0, 0
+  index: -1
+H2
+  rotate: false
+  xy: 275, 30
+  size: 51, 149
+  orig: 51, 149
+  offset: 0, 0
+  index: -1
+H3
+  rotate: false
+  xy: 862, 462
+  size: 78, 205
+  orig: 78, 205
+  offset: 0, 0
+  index: -1
+HB
+  rotate: false
+  xy: 328, 24
+  size: 188, 103
+  orig: 188, 103
+  offset: 0, 0
+  index: -1
+Head
+  rotate: false
+  xy: 212, 181
+  size: 230, 229
+  orig: 230, 229
+  offset: 0, 0
+  index: -1
+L Earing glow
+  rotate: true
+  xy: 212, 141
+  size: 38, 57
+  orig: 38, 57
+  offset: 0, 0
+  index: -1
+L Eye
+  rotate: false
+  xy: 695, 223
+  size: 39, 25
+  orig: 39, 25
+  offset: 0, 0
+  index: -1
+L Hand
+  rotate: false
+  xy: 2, 131
+  size: 208, 279
+  orig: 208, 279
+  offset: 0, 0
+  index: -1
+L Lash
+  rotate: false
+  xy: 386, 162
+  size: 42, 17
+  orig: 42, 17
+  offset: 0, 0
+  index: -1
+L Leg
+  rotate: false
+  xy: 2, 2
+  size: 271, 127
+  orig: 271, 127
+  offset: 0, 0
+  index: -1
+L Thigh
+  rotate: false
+  xy: 695, 93
+  size: 205, 124
+  orig: 205, 124
+  offset: 0, 0
+  index: -1
+Ponytail
+  rotate: true
+  xy: 444, 129
+  size: 119, 249
+  orig: 119, 249
+  offset: 0, 0
+  index: -1
+R Earing glow
+  rotate: true
+  xy: 328, 141
+  size: 38, 56
+  orig: 38, 56
+  offset: 0, 0
+  index: -1
+R Eye
+  rotate: false
+  xy: 862, 372
+  size: 42, 23
+  orig: 42, 23
+  offset: 0, 0
+  index: -1
+R Hand
+  rotate: true
+  xy: 444, 250
+  size: 120, 291
+  orig: 120, 291
+  offset: 0, 0
+  index: -1
+R Lash
+  rotate: false
+  xy: 275, 9
+  size: 48, 19
+  orig: 48, 19
+  offset: 0, 0
+  index: -1
+R Leg
+  rotate: true
+  xy: 862, 669
+  size: 278, 76
+  orig: 278, 76
+  offset: 0, 0
+  index: -1
+eye L BG
+  rotate: false
+  xy: 518, 102
+  size: 39, 25
+  orig: 39, 25
+  offset: 0, 0
+  index: -1
+eye R BG
+  rotate: false
+  xy: 444, 383
+  size: 44, 27
+  orig: 44, 27
+  offset: 0, 0
+  index: -1

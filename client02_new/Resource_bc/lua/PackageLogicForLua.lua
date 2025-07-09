@@ -82,10 +82,10 @@ curLoginDay = 0
 GlobalData = { }
 registDay = 0
 
-local jggOrderId = nil
-local jggTimer = 0
-local jggOrderCount = 0
-local jggDelayTime = { [0] = 0, [1] = 3000, [2] = 3000, [3] = 6000, [4] = 6000, [5] = 6000, [6] = 6000, [7] = 6000, [8] = 60000, [9] = 60000 }
+local opOrderId = nil
+local opTimer = 0
+local opOrderCount = 0
+local opDelayTime = { [0] = 0, [1] = 300, [2] = 300, [3] = 600, [4] = 600, [5] = 600, [6] = 600, [7] = 600, [8] = 6000, [9] = 6000 }
 
 local employRoleIds = { }   -- 送出啟用的roleId 避免重複請求
 
@@ -118,26 +118,27 @@ function ChatList_Reset()
     worldBroadCastList = { }
 end
 
-function PackageLogicForLua.Update(dt)
+function PackageLogicForLua.UpdateOp(dt)
     -- 空tick，用于保留PackageLogicForLua 对象，不被GC
-    if jggOrderCount >= #jggDelayTime then
-        jggOrderId = nil
-        jggTimer = 0
-        jggOrderCount = 0
+
+    if opOrderCount >= #opDelayTime then
+        opOrderId = nil
+        opTimer = 0
+        opOrderCount = 0
     end
-    if jggOrderId and jggDelayTime[jggOrderCount] then
-        if jggTimer >= jggDelayTime[jggOrderCount] then
+    if opOrderId and opDelayTime[opOrderCount] then
+        if opTimer >= opDelayTime[opOrderCount] then
             local message = Shop_pb.JggGetGoods()
             if message ~= nil then
-	            message.orderid = jggOrderId
+	            message.orderid = opOrderId
                 local pb_data = message:SerializeToString()
-                PacketManager:getInstance():sendPakcet(HP_pb.SHOP_JGG_ORDER_C, pb_data, #pb_data, true)
+                PacketManager:getInstance():sendPakcet(HP_pb.SHOP_OP_ORDER_C, pb_data, #pb_data, true)
             end
-            jggTimer = 0
-            jggOrderId = nil
-            jggOrderCount = jggOrderCount + 1
+            opTimer = 0
+            opOrderId = nil
+            opOrderCount = opOrderCount + 1
         else
-            jggTimer = jggTimer + dt
+            opTimer = opTimer + dt
         end
     end
 end
@@ -1685,6 +1686,8 @@ function PackageLogicForLua.onRecieveSyncShop(eventName, handler)
                 end
                 ALFManager:loadRedPointTask(fn, pageId * 100 + i)
             end
+        elseif msg.shopType == Const_pb.SKIN_MARKET then
+            require("Shop.ShopDataMgr"):setPacketInfo(msg)
         end
     end
 end
@@ -1808,7 +1811,7 @@ function PackageLogicForLua.onRecieveAttrChange(eventName, handler)
                     --else
                     --    valStr = string.format(" %+.2f%%", attr.attrValue / 100);
                     --end
-                    valStr = string.format(" %+.2f%%", attr.attrValue)
+                    valStr = string.format(" %+.2f%%", attr.attrValue / 100)
                 else
                     valStr = string.format(" %+d", attr.attrValue);
                 end
@@ -2754,7 +2757,7 @@ function PackageLogicForLua.onReceiveMercenaryExpeditionInfo(eventName, handler)
             if LockManager_getShowLockByPageName(GameConfig.LOCK_PAGE_KEY.BOUNTY) then
                 RedPointManager_setShowRedPoint(RedPointManager.PAGE_IDS.LOBBY_BOUNTY_BTN, 1, false)
             else
-                RedPointManager_setShowRedPoint(RedPointManager.PAGE_IDS.LOBBY_BOUNTY_BTN, 1, (TaskInfo.allTimes > TaskInfo.curTimes))
+                RedPointManager_setShowRedPoint(RedPointManager.PAGE_IDS.LOBBY_BOUNTY_BTN, 1, (TaskInfo.curTimes > 0))
             end
         end
     end
@@ -3064,6 +3067,11 @@ function PackageLogicForLua.onRolePanelInfo(eventName, handler)
                     ALFManager:loadRedPointTask(fn, pageId * 100 + i)
                 end
             end
+        end
+        require "Battle.NgBattleResultManager"
+        if not NgBattleResultManager.isNextStage then
+            require("TransScenePopUp")
+            TransScenePopUp_closePage()
         end
         if loadingOpcodes[HP_pb.ROLE_PANEL_INFOS_S].done == false then loadingOpcodes[HP_pb.ROLE_PANEL_INFOS_S].done = true end
         --checkAndCloseMainSceneLoadingEnd()
@@ -3766,6 +3774,24 @@ function PackageLogicForLua.KusoPayResult(eventName, handler)
 end
 PackageLogicForLua.HPKusoPayResult = PacketScriptHandler:new(HP_pb.SHOP_69COIN_TAKE_S, PackageLogicForLua.KusoPayResult)
 
+function PackageLogicForLua.GameParkPayResult(eventName, handler)
+    if eventName == "luaReceivePacket" then
+        local Shop_pb = require("Shop_pb")
+        local msgBuff = handler:getRecPacketBuffer()
+        local msg = Shop_pb.PlatformGetGoods()
+        msg:ParseFromString(msgBuff)
+        local reslut = msg.result
+
+        if reslut == 0 then
+            MessageBoxPage:Msg_Box_Lan("@BuyFailed")
+        else
+            local msg2 = MsgRechargeSuccess:new()
+            MessageManager:getInstance():sendMessageForScript(msg2)
+        end
+    end
+end
+PackageLogicForLua.HPGameParkPayResult = PacketScriptHandler:new(HP_pb.SHOP_GP_ORDER_S, PackageLogicForLua.GameParkPayResult)
+
 function PackageLogicForLua.TowerData(eventName, handler)
     if eventName == "luaReceivePacket" then
        local Activity6_pb = require("Activity6_pb")
@@ -3840,7 +3866,7 @@ function PackageLogicForLua.PickUpData(eventName, handler)
        TransScenePopUp_setCallbackFun(function()
            local GuideManager = require("Guide.GuideManager")
            if GuideManager.isInGuide then
-               require("Summon.SummonPage"):setEntrySubPage("Premium")
+               require("Summon.SummonPage"):setEntrySubPage("Guide")
            end
            PageManager.pushPage("Summon.SummonPage")
        end)
@@ -3864,29 +3890,33 @@ PackageLogicForLua.HPLoginReward = PacketScriptHandler:new(HP_pb.ACTIVITY200_EIG
 
 
 -----------JGG get order handler------------
---[[
-function PackageLogicForLua.onJggGetOrder(eventName, handler)
-	CCLuaLog("onJggGetOrder")
+function PackageLogicForLua.onOpGetOrder(eventName, handler)
+	CCLuaLog("onOpGetOrder")
     if eventName == "luaReceivePacket" then
         local Shop_pb = require("Shop_pb")
         local msg = Shop_pb.JggOrderNotice();
         local msgbuff = handler:getRecPacketBuffer()
         msg:ParseFromString(msgbuff)
         if msg.orderid and msg.status == 0 then --未確認
-            jggOrderId = msg.orderid
+            if msg.orderid ~= opOrderId then
+                opOrderCount = 0
+            end
+            opOrderId = msg.orderid
         elseif msg.orderid and msg.status == 1 then --已完成
-            jggOrderId = nil
-            jggOrderCount = 0
+            opOrderId = nil
+            opOrderCount = 0
+            local msg2 = MsgRechargeSuccess:new()
+			MessageManager:getInstance():sendMessageForScript(msg2)
         elseif msg.orderid and msg.status == 2 then --重複確認
-            jggOrderId = msg.orderid
+            opOrderId = msg.orderid
         elseif msg.orderid and msg.status == 3 then --已清除
-            jggOrderId = nil
-            jggOrderCount = 0
+            opOrderId = nil
+            opOrderCount = 0
         end
-        jggTimer = 0
+        opTimer = 0
     end
 end
-PackageLogicForLua.HPJggGetOrder = PacketScriptHandler:new(HP_pb.SHOP_JGG_ORDER_S, PackageLogicForLua.onJggGetOrder);]]--
+PackageLogicForLua.HPOpGetOrder = PacketScriptHandler:new(HP_pb.SHOP_OP_ORDER_S, PackageLogicForLua.onOpGetOrder);
 -----------------------------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -4043,13 +4073,15 @@ function validateAndRegisterAllHandler()
     PackageLogicForLua.HPRecyleStage:registerFunctionHandler(PackageLogicForLua.RecyleStage)
 
     PackageLogicForLua.HPKusoPayResult:registerFunctionHandler(PackageLogicForLua.KusoPayResult)
+    PackageLogicForLua.HPGameParkPayResult:registerFunctionHandler(PackageLogicForLua.GameParkPayResult)
+    
     PackageLogicForLua.HPTowerData:registerFunctionHandler(PackageLogicForLua.TowerData)
     PackageLogicForLua.HPTowerData_Limit:registerFunctionHandler(PackageLogicForLua.TowerData_Limit)
     PackageLogicForLua.HPTowerData_Fear:registerFunctionHandler(PackageLogicForLua.TowerData_Fear)
     PackageLogicForLua.PickUpData:registerFunctionHandler(PackageLogicForLua.PickUpData)
     PackageLogicForLua.HPLoginReward:registerFunctionHandler(PackageLogicForLua.LoginReward)
-    --JGG order
- --   PackageLogicForLua.HPJggGetOrder = PacketScriptHandler:new(HP_pb.SHOP_JGG_ORDER_S, PackageLogicForLua.onJggGetOrder)
+    --OP order
+    PackageLogicForLua.HPOpGetOrder = PacketScriptHandler:new(HP_pb.SHOP_JGG_ORDER_S, PackageLogicForLua.onOpGetOrder)
 
     local ArenaData = require("Arena.ArenaData")
     ArenaData.validateAndRegister()

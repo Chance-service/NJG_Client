@@ -52,7 +52,7 @@ id	繁中
 67	<font  color="#807e7d" face = "HelveticaBD22" size ="100">女神贈禮。</font>
 68	<font  color="#807e7d" face = "HelveticaBD22" size ="100">新手上路。</font>
 69	<font  color="#807e7d" face = "HelveticaBD22" size ="100">天降禮物。</font>
-100	<font  color="#807e7d" face = "HelveticaBD22" size ="100">#v1# 您購買了商品！<br/><font color="#807e7d" face = "HelveticaBD22">已贈送您#v2#</font>鑽石。</font>
+100	<font  color="#807e7d" face = "HelveticaBD22" size ="100">#v1# 您購買了商品！<br/><font color="#807e7d" face = "HelveticaBD22">【#v2#</font>鑽石】，此信件為購買紀錄信。</font>
 101	<font  color="#807e7d" face = "HelveticaBD22" size ="100">#v1# 您購買了月卡！<br/>從今日起30天有效。</font>
 102	<font  color="#807e7d" face = "HelveticaBD22" size ="100">#v1# 您購買了禮包。<br/>收到#v2#商品。</font>
 103	<font  color="#807e7d" face = "HelveticaBD22" size ="100">公會郵件：</font><br/><font  color="#189906" face = "HelveticaBD22">#v1#</font>

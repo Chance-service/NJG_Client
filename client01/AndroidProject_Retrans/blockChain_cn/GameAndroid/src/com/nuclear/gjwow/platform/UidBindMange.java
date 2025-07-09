@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.UUID;
 
-import chance.ninja.girl.R;
+import chance.release.ninja.girl.R;
 
 //import org.apache.http.HttpClientConnection;
 import org.json.JSONException;
