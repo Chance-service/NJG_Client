@@ -558,6 +558,10 @@ static AppDelegate s_sharedApplication;
 #endif
 }
 
+// Add these as instance variables if you want to track/remove later
+CALayer *topBlackLayer;
+CALayer *bottomBlackLayer;
+
 -(void)playVideo:(int)iStateAfterPlay fullScreen:(int)iFullScreen file:(NSString*)strFilenameNoExtension fileExtension:(NSString*)strExtension
 {
     // Stop current one if there is any
@@ -590,10 +594,60 @@ static AppDelegate s_sharedApplication;
         player = [AVPlayer playerWithURL:[NSURL fileURLWithPath:urlPath]];
         AVPlayerLayer *playerLayer = [AVPlayerLayer playerLayerWithPlayer:player];
         playerLayer.videoGravity = AVLayerVideoGravityResizeAspect;
-        // Match size
-        playerLayer.frame = viewController.view.superview.bounds;
+        CGSize containerSize = viewController.view.superview.bounds.size;
+        CGFloat topBarHeight = 0;
+        CGFloat bottomBarHeight = 0;
+        
+        // Load video track to get actual dimensions
+        AVAsset *asset = player.currentItem.asset;
+        NSArray *tracks = [asset tracksWithMediaType:AVMediaTypeVideo];
+        CGFloat width = containerSize.width;
+        CGFloat height = containerSize.height;
+        if (tracks.count > 0) {
+            AVAssetTrack *videoTrack = tracks[0];
+            CGSize naturalSize = videoTrack.naturalSize;
+            CGAffineTransform txf = videoTrack.preferredTransform;
+            CGSize actualVideoSize = CGSizeApplyAffineTransform(naturalSize, txf);
+            actualVideoSize = CGSizeMake(fabs(actualVideoSize.width), fabs(actualVideoSize.height));
+            
+            
+            // Scale to match container width
+            CGFloat videoAspectRatio = actualVideoSize.height / actualVideoSize.width;
+            height = width * videoAspectRatio;
+            
+            CGFloat x = 0;
+            CGFloat y = (containerSize.height - height) / 2.0; // Center vertically
+            
+            playerLayer.frame = CGRectMake(x, y, width, height);
+            
+            // Calculate overflow
+            topBarHeight = height - containerSize.height;
+            bottomBarHeight = height - containerSize.height;
+        }
         // Insert as background
         [viewController.view.superview.layer insertSublayer:playerLayer atIndex:0];
+        
+        CALayer *containerLayer = viewController.view.superview.layer;
+
+        // Clean up old bars
+        [topBlackLayer removeFromSuperlayer];
+        [bottomBlackLayer removeFromSuperlayer];
+
+        // Add top bar
+        if (topBarHeight > 0) {
+            topBlackLayer = [CALayer layer];
+            topBlackLayer.frame = CGRectMake(0, 0, width, topBarHeight);
+            topBlackLayer.backgroundColor = [UIColor blackColor].CGColor;
+            [containerLayer insertSublayer:topBlackLayer atIndex:1];
+        }
+
+        // Add bottom bar
+        if (bottomBarHeight > 0) {
+            bottomBlackLayer = [CALayer layer];
+            bottomBlackLayer.frame = CGRectMake(0, containerSize.height - bottomBarHeight, width, bottomBarHeight);
+            bottomBlackLayer.backgroundColor = [UIColor blackColor].CGColor;
+            [containerLayer insertSublayer:bottomBlackLayer atIndex:1];
+        }
         
         [[NSNotificationCenter defaultCenter]
          addObserver:self
@@ -643,13 +697,18 @@ static AppDelegate s_sharedApplication;
      name:AVPlayerItemDidPlayToEndTimeNotification
      object:nil];
     
+    [topBlackLayer removeFromSuperlayer];
+    bottomBlackLayer = nil;
+    topBlackLayer = nil;
+
+    [bottomBlackLayer removeFromSuperlayer];
+    bottomBlackLayer = nil;
+    
     [player pause];
     [player replaceCurrentItemWithPlayerItem:nil];
     [playerViewController.view removeFromSuperview];
     playerViewController = nil;
     player = nil;
-    
-    libPlatformManager::getPlatform()->sendMessageP2G("onPlayMovieEnd", "");
 }
 
 -(void)stopVideo
