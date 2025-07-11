@@ -621,7 +621,9 @@ CALayer *bottomBlackLayer;
             playerLayer.frame = CGRectMake(x, y, width, height);
             
             // Calculate overflow
-            topBarHeight = height - containerSize.height;
+            // Different movies have different resolution, so we fix the height
+            //topBarHeight = height - containerSize.height;
+            topBarHeight = 30;
             bottomBarHeight = height - containerSize.height;
         }
         // Insert as background
