@@ -35,7 +35,9 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Environment;
+import android.os.Handler;
 import android.os.LocaleList;
+import android.os.Looper;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
@@ -64,6 +66,9 @@ public class Cocos2dxHelper
 	private static String					sFileDirectory;
 	private static Context					sContext	= null;
 	private static Cocos2dxHelperListener	sCocos2dxHelperListener;
+	private static final int INPUT_DEBOUNCE_DELAY_MS = 500;
+	private static final Handler sHandler = new Handler(Looper.getMainLooper());
+	private static Runnable sPendingEditTextRunnable = null;
 	
 	// ===========================================================
 	// Constructors
@@ -413,17 +418,22 @@ public class Cocos2dxHelper
 		try
 		{
 			final byte[] bytesUTF8 = pResult.getBytes("UTF8");
-			Cocos2dxHelper.sCocos2dxHelperListener.runOnGLThread(new Runnable()
-			{
 
-				@Override
-				public void run()
-				{
-					Log.w(TAG, "__________setEditTextDialogResult1");
-					Cocos2dxHelper.nativeSetEditTextDialogResult(bytesUTF8);
-					Log.w(TAG, "__________setEditTextDialogResult2");
-				}
-			});
+			// Cancel previous pending execution if any
+			if (sPendingEditTextRunnable != null) {
+				sHandler.removeCallbacks(sPendingEditTextRunnable);
+			}
+
+			sPendingEditTextRunnable = () -> sCocos2dxHelperListener.runOnGLThread(new Runnable() {
+                @Override
+                public void run() {
+                    Log.w(TAG, "__________setEditTextDialogResult1");
+                    nativeSetEditTextDialogResult(bytesUTF8);
+                    Log.w(TAG, "__________setEditTextDialogResult2");
+                }
+            });
+
+			sHandler.postDelayed(sPendingEditTextRunnable, INPUT_DEBOUNCE_DELAY_MS);
 		}
 		catch (UnsupportedEncodingException pUnsupportedEncodingException)
 		{
