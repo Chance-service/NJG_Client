@@ -623,8 +623,9 @@ CALayer *bottomBlackLayer;
             // Calculate overflow
             // Different movies have different resolution, so we fix the height
             //topBarHeight = height - containerSize.height;
+            //bottomBarHeight = height - containerSize.height;
             topBarHeight = 30;
-            bottomBarHeight = height - containerSize.height;
+            bottomBarHeight = 25;
         }
         // Insert as background
         [viewController.view.superview.layer insertSublayer:playerLayer atIndex:0];
