@@ -45,7 +45,7 @@ public class PlatformAPI extends SDKService {
 	private static final String GAME_ID     = "624";
 	private static final String GAME_VERSION = "1.4.5.6";
 	private static final String CLIENT_SECRET = "84tD7sLx55q0dgXpGiUgeesUXZQz6aWjtD8hILjX";
-	private static final String REDIRECT_URI  = "chance.ninja.girl://chance";
+	private static final String REDIRECT_URI  = "chance.release.ninja.girl://chance";
 	private static final String AUTH_URL      = "https://www.game-park.co/oauth/login";
 	private static final String TOKEN_URL     = "https://api.game-park.co/oauth2/getToken";
 	private static final String PROFILE_URL   = "https://openapi.game-park.co/v1/user/profile";
@@ -91,9 +91,12 @@ public class PlatformAPI extends SDKService {
 	@Override
 	public void sdkLogin() {
 		SharedPreferences sp = home_activity.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
-		String token   = sp.getString(KEY_ACCESS, null);
-		String refresh = sp.getString(KEY_REFRESH, null);
+		String token   = sp.getString(KEY_ACCESS, "");
+		Log.d(TAG, "Login token=" + token);
+		String refresh = sp.getString(KEY_REFRESH, "");
+		Log.d(TAG, "Login refresh=" + refresh);
 		long expires   = sp.getLong(KEY_EXPIRES, 0);
+		Log.d(TAG, "Login expires=" + expires);
 		platformtoken = token;
 		if (token != null && System.currentTimeMillis() < expires) {
 			authDialog.hide();
@@ -133,7 +136,7 @@ public class PlatformAPI extends SDKService {
 				+"&game_version=" + GAME_VERSION
 				+ "&state=" + state
 				+ (APP_DBG ? "&environment=sandbox" : "");
-
+		Log.d(TAG, "Login authUrl=" + authUrl);
 		WebView webView = new WebView(act);
 		webView.getSettings().setJavaScriptEnabled(true);
 		webView.getSettings().setDomStorageEnabled(true);
@@ -153,7 +156,9 @@ public class PlatformAPI extends SDKService {
 					String returnedState = uri.getQueryParameter("state");
 					String expected = act.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
 							.getString("oauth_state", "");
-
+					Log.d(TAG, "Login code=" + code);
+					Log.d(TAG, "Login returnedState=" + returnedState);
+					Log.d(TAG, "Login expected=" + expected);
 					if (expected.equals(returnedState)) {
 						webContainer.removeAllViews();
 						authDialog.hide();
@@ -175,11 +180,11 @@ public class PlatformAPI extends SDKService {
 			try {
 				String body = "grant_type=authorization_code"
 						+ "&code=" + URLEncoder.encode(code, "UTF-8")
-						+ "&redirect_uri=" + URLEncoder.encode(REDIRECT_URI, "UTF-8")
+						+ "&redirect_uri=none"// + URLEncoder.encode(REDIRECT_URI, "UTF-8")
 						+ "&client_id=" + URLEncoder.encode(CLIENT_ID, "UTF-8")
 						+ "&client_secret=" + URLEncoder.encode(CLIENT_SECRET, "UTF-8")
 						+ (APP_DBG ? "&environment=sandbox" : "");
-
+				Log.d(TAG, "Login body=" + body);
 				HttpURLConnection conn = (HttpURLConnection) new URL(TOKEN_URL).openConnection();
 				conn.setRequestMethod("POST");
 				conn.setDoOutput(true);
@@ -196,11 +201,14 @@ public class PlatformAPI extends SDKService {
 				String line;
 				while ((line = br.readLine()) != null) resp.append(line);
 				br.close();
-
+				Log.d(TAG, "Login resp=" + resp.toString());
 				JSONObject json = new JSONObject(resp.toString());
 				String token   = json.getString("access_token");
 				String refresh = json.optString("refresh_token", null);
 				long expires   = json.optLong("expires_in", 0);
+				Log.d(TAG, "Login token2=" + token);
+				Log.d(TAG, "Login refresh2=" + refresh);
+				Log.d(TAG, "Login expires2=" + expires);
 
 				SharedPreferences sp = home_activity.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
 				sp.edit()
@@ -211,6 +219,7 @@ public class PlatformAPI extends SDKService {
 
 				authDialog.hide();
 				new Handler(Looper.getMainLooper()).post(() -> fetchUserProfile(token));
+				platformtoken = token;
 			} catch (Exception e) {
 				Log.e(TAG, "OAuth token exchange failed", e);
 			}
@@ -224,6 +233,7 @@ public class PlatformAPI extends SDKService {
 						+ "&refresh_token=" + URLEncoder.encode(refreshToken, "UTF-8")
 						+ "&client_id=" + URLEncoder.encode(CLIENT_ID, "UTF-8")
 						+ "&client_secret=" + URLEncoder.encode(CLIENT_SECRET, "UTF-8")
+						+ "&redirect_uri=none"
 						+ (APP_DBG ? "&environment=sandbox" : "");
 
 				HttpURLConnection conn = (HttpURLConnection) new URL(TOKEN_URL).openConnection();

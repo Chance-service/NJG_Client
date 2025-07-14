@@ -13,7 +13,8 @@ public enum E_APLUS_CPS {
     CPS96(96), CPS98(98),
     CPS114(114), CPS115(115), CPS116(116), CPS117(117),
     CPS120(120), CPS126(126), CPS129(129),
-    CPS143(143), CPS147(147),
+    CPS130(130), CPS131(131), CPS132(132), CPS133(133), CPS134(134), CPS135(135), CPS136(136), CPS137(137), CPS138(138), CPS139(139),
+    CPS140(140), CPS141(141), CPS142(142), CPS143(143), CPS147(147),
     CPS152(152), CPS155(155),
     CPS163(163), CPS167(167), CPS168(168), CPS169(169),
     CPS170(170), CPS174(174), CPS175(175), CPS176(176),
@@ -66,6 +67,19 @@ public enum E_APLUS_CPS {
             case 120: return CPS120;
             case 126: return CPS126;
             case 129: return CPS129;
+            case 130: return CPS130;
+            case 131: return CPS131;
+            case 132: return CPS132;
+            case 133: return CPS133;
+            case 134: return CPS134;
+            case 135: return CPS135;
+            case 136: return CPS136;
+            case 137: return CPS137;
+            case 138: return CPS138;
+            case 139: return CPS139;
+            case 140: return CPS140;
+            case 141: return CPS141;
+            case 142: return CPS142;
             case 143: return CPS143;
             case 147: return CPS147;
             case 152: return CPS152;
