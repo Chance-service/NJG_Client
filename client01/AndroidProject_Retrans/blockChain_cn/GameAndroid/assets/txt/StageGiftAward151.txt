@@ -2,3 +2,5 @@ id	關卡1	關卡2	ImageBG	ImageTitle	ImagePage	title	Pagetext	奖励
 1	10	999	popsale_2511_bg.png	popsale_2511_img.png	popsale_2511_icon.png	@popsale_2511_info	@popsale_2511_title	10000_1001_300,30000_7172_1,30000_6004_10
 2	20	999	popsale_2512_bg.png	popsale_2512_img.png	popsale_2512_icon.png	@popsale_2512_info	@popsale_2512_title	10000_1001_500,30000_7236_1,30000_7182_300,30000_6004_20
 3	28	999	popsale_2513_bg.png	popsale_2513_img.png	popsale_2513_icon.png	@popsale_2513_info	@popsale_2513_title	10000_1001_800,30000_7024_1,30000_6004_30
+4	119	999	popsale_404_bg.png	popsale_404_img.png	popsale_404_icon.png	@popsale_404_info	@popsale_404_title	10000_1001_500,30000_6014_1
+5	199	999	popsale_404_bg.png	popsale_404_img.png	popsale_404_icon.png	@popsale_404_info	@popsale_404_title	10000_1001_500,30000_6014_1

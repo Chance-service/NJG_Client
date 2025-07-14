@@ -2,7 +2,7 @@
   "packageUrl": "https://njgcdn.vslrx.com",
   "IOSAppStoreURL": "https://www.baidu.com/",
   "remoteVersionUrl": "https://njg-cdn-1.xxqzzx.cn",
-  "versionApp": "1.1.15.1",
+  "versionApp": "1.1.16.1",
   "remoteProjectManifestUrl": "https://njgcdn.vslrx.com",
   "AndroidStoreURL": "https://gstch.sng.link/Doeon/qhsz",
   "AppUpdateUrlH365": "https://365fun.sng.link/Dclxh/5hf6",
@@ -14,6 +14,6 @@
   "AppUpdateUrlOP": "https://a.ydna1-lp-1234567.org/",
   "AppUpdateUrlGP": "https://www.gamepark.co/store/detail?id=624",
   "versionCode": 1,
-  "versionResource": "1.1.15",
+  "versionResource": "1.1.16",
   "isNeedGoAppStore": 1
 }

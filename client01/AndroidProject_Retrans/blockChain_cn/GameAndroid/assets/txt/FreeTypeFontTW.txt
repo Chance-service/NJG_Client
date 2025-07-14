@@ -427,6 +427,9 @@ id	繁中
 10101	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >對目標造成300%必中傷害，該技能暴擊率額外提升15%</font></p>
 10102	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >對目標造成400%必中傷害，該技能暴擊率額外提升30%</font></p>
 10103	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >對目標造成500%必中傷害，該技能暴擊率額外提升60%</font></p>
+101071	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >對目標造成八重螢火攻擊力300%必中傷害，此技能額外爆擊率提升15%，並施加3層【燃燒】，持續8秒。</font></p>
+101072	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >對目標造成八重螢火攻擊力400%必中傷害，此技能額外爆擊率提升30%，並施加3層【燃燒】，持續8秒。</font></p>
+101073	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >對目標造成八重螢火攻擊力500%必中傷害，此技能額外爆擊率提升60%，並施加3層【燃燒】，持續8秒。</font></p>
 10111	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >給予自身周圍敵方1層【燃燒】5秒，並恢復15點魔力，冷卻時間10秒</font></p>
 10112	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >給予自身周圍敵方2層【燃燒】7秒，並恢復20點魔力，冷卻時間10秒</font></p>
 10113	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >給予自身周圍敵方3層【燃燒】9秒，並恢復25點魔力，冷卻時間10秒</font></p>
@@ -511,6 +514,9 @@ id	繁中
 10721	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >獲得自身血量10%的護盾，冷卻時間10秒</font></p>
 10722	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >獲得自身血量15%的護盾，冷卻時間8秒</font></p>
 10723	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >獲得自身血量20%的護盾，冷卻時間6秒</font></p>
+107061	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >獲得自身血量15%的護盾，冷卻時間10秒</font></p>
+107062	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >獲得自身血量20%的護盾，冷卻時間8秒</font></p>
+107063	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >獲得自身血量25%的護盾，冷卻時間6秒</font></p>
 10731	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >血量降至50%以下時，自身獲得【荊棘I】15秒</font></p>
 10732	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >血量降至50%以下時，自身獲得【荊棘II】20秒</font></p>
 10733	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >血量降至50%以下時，自身獲得【荊棘III】30秒</font></p>
@@ -523,12 +529,18 @@ id	繁中
 10821	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >隊伍中水屬性忍娘提升攻擊力15%、物理穿透+15%、魔力穿透+15%</font></p>
 10822	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >隊伍中水屬性忍娘提升攻擊力20%、物理穿透+20%、魔力穿透+20%</font></p>
 10823	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >隊伍中水屬性忍娘提升攻擊力25%、物理穿透+25%、魔力穿透+25%</font></p>
+108061	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >隊伍中友軍水屬性角色攻擊力＋15%， 物理穿透+20%，魔力穿透+20%</font></p>
+108062	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >隊伍中友軍水屬性角色攻擊力＋20%， 物理穿透+25%，魔力穿透+25%</font></p>
+108063	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >隊伍中友軍水屬性角色攻擊力＋25%， 物理穿透+30%，魔力穿透+30%</font></p>
 10831	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >開始戰鬥時，給予友方全體自身血量15%的護盾</font></p>
 10832	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >開始戰鬥時，給予友方全體自身血量25%的護盾</font></p>
 10833	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >開始戰鬥時，給予友方全體自身血量30%的護盾</font></p>
 10901	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >恢復血量最低的1名友方300%攻擊力血量，並驅散負面效果</font></p>
 10902	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >恢復血量最低的1名友方400%攻擊力血量，並驅散負面效果</font></p>
 10903	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >恢復血量最低的1名友方500%攻擊力血量，並驅散負面效果</font>< /p>
+109061	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >恢復生命值最低的友軍艾莉儿攻擊力320%生命值，並驅散所有負面狀態。</font></p>
+109062	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >恢復生命值最低的友軍艾莉儿攻擊力440%生命值，並驅散所有負面狀態。</font></p>
+109063	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >恢復生命值最低的友軍艾莉儿攻擊力560%生命值，並驅散所有負面狀態。</font></p>
 10911	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >給予敵方全體1層【凍傷】8秒，冷卻時間8秒</font></p>
 10912	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >給予敵方全體2層【凍傷】10秒，冷卻時間6秒</font></p>
 10913	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >給予敵方全體3層【凍傷】12秒，冷卻時間4秒</font></p>
@@ -625,6 +637,9 @@ id	繁中
 11621	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >普通攻擊後，自身獲得1層【風體I】</font></p>
 11622	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >普通攻擊後，自身獲得2層【風體I】</font></p>
 11623	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >普通攻擊後，自身獲得3層【風體I】</font></p>
+116061	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >普通攻擊後，自身獲得2層【風體I】</font></p>
+116062	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >普通攻擊後，自身獲得3層【風體I】</font></p>
+116063	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >普通攻擊後，自身獲得4層【風體I】</font></p>
 11631	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >自身存活時，發動【急速I】靈氣</font></p>
 11632	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >自身存活時，發動【急速II】靈氣</font></p>
 11633	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >自身存活時，發動【急速III】靈氣</font></p>
@@ -712,6 +727,9 @@ id	繁中
 12321	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >提升自身閃避值15%，每隔6秒，自身獲得【隱身I】</font></p>
 12322	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >提升自身閃避值20%，每隔5秒，自身獲得【隱身II】</font></p>
 12323	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >提升自身閃避值25%，每隔4秒，自身獲得【隱身III】</font></p>
+123061	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >提升自身閃避值35%，每隔6秒，自身獲得【隱身I】</font></p>
+123062	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >提升自身閃避值45%，每隔5秒，自身獲得【隱身II】</font></p>
+123063	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >提升自身閃避值55%，每隔4秒，自身獲得【隱身III】</font></p>
 12331	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >自身血量低於50%時，暴擊傷害提升50%</font></p>
 12332	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >自身血量低於50%時，暴擊傷害提升100%</font></p>
 12333	<p style="margin:8"><font face = "Barlow-SemiBold16" color = "#763306" >自身血量低於50%時，暴擊傷害提升150%</font></p>

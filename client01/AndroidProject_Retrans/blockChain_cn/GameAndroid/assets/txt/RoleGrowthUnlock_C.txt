@@ -1,32 +1,32 @@
-id	roleId	type	value	avgType	avgId	image	titleText
-0101	1	0	11	0	101	upgrade_01_01	@RoleGrowthUnlock_0101
-0201	2	0	11	0	201	upgrade_02_01	@RoleGrowthUnlock_0201
-0301	3	0	11	0	301	upgrade_03_01	@RoleGrowthUnlock_0301
-0401	4	0	11	0	401	upgrade_04_01	@RoleGrowthUnlock_0401
-0501	5	0	11	0	501	upgrade_05_01	@RoleGrowthUnlock_0501
-0601	6	0	11	0	601	upgrade_06_01	@RoleGrowthUnlock_0601
-0701	7	0	11	0	701	upgrade_07_01	@RoleGrowthUnlock_0701
-0801	8	0	11	0	801	upgrade_08_01	@RoleGrowthUnlock_0801
-0901	9	0	11	0	901	upgrade_09_01	@RoleGrowthUnlock_0901
-1001	10	0	11	0	1001	upgrade_10_01	@RoleGrowthUnlock_1001
-1101	11	0	11	0	1101	upgrade_11_01	@RoleGrowthUnlock_1101
-1201	12	0	11	0	1201	upgrade_12_01	@RoleGrowthUnlock_1201
-1301	13	0	11	0	1301	upgrade_13_01	@RoleGrowthUnlock_1301
-1401	14	0	11	0	1401	upgrade_14_01	@RoleGrowthUnlock_1401
-1501	15	0	11	0	1501	upgrade_15_01	@RoleGrowthUnlock_1501
-1601	16	0	11	0	1601	upgrade_16_01	@RoleGrowthUnlock_1601
-1701	17	0	11	0	1701	upgrade_17_01	@RoleGrowthUnlock_1701
-1801	18	0	11	0	1801	upgrade_18_01	@RoleGrowthUnlock_1801
-1901	19	0	11	0	1901	upgrade_19_01	@RoleGrowthUnlock_1901
-2001	20	0	11	0	2001	upgrade_20_01	@RoleGrowthUnlock_2001
-2101	21	0	11	0	2101	upgrade_21_01	@RoleGrowthUnlock_2101
-2201	22	0	11	0	2201	upgrade_22_01	@RoleGrowthUnlock_2201
-2301	23	0	11	0	2301	upgrade_23_01	@RoleGrowthUnlock_2301
-2401	24	0	11	0	2401	upgrade_24_01	@RoleGrowthUnlock_2401
-0302	3	1	160	1	0301	upgrade_03_02	@RoleGrowthUnlock_0302
-0502	5	1	160	1	0501	upgrade_05_02	@RoleGrowthUnlock_0502
-1502	15	1	160	1	1501	upgrade_15_02	@RoleGrowthUnlock_1502
-1802	18	1	160	1	1801	upgrade_18_02	@RoleGrowthUnlock_1802
-1902	19	1	160	1	1901	upgrade_19_02	@RoleGrowthUnlock_1902
-2102	21	1	160	1	2101	upgrade_21_02	@RoleGrowthUnlock_2102
-2402	24	1	160	1	2401	upgrade_24_02	@RoleGrowthUnlock_2402
+id	roleId	type	value	avgType	avgId	image	titleText	loadMP4
+0101	1	0	11	0	101	upgrade_01_01	@RoleGrowthUnlock_0101	
+0201	2	0	11	0	201	upgrade_02_01	@RoleGrowthUnlock_0201	
+0302	3	1	160	1	0301	upgrade_03_02	@RoleGrowthUnlock_0302	RGU_HV_0301
+0301	3	0	11	0	301	upgrade_03_01	@RoleGrowthUnlock_0301	
+0401	4	0	11	0	401	upgrade_04_01	@RoleGrowthUnlock_0401	
+0501	5	0	11	0	501	upgrade_05_01	@RoleGrowthUnlock_0501	
+0601	6	0	11	0	601	upgrade_06_01	@RoleGrowthUnlock_0601	
+0701	7	0	11	0	701	upgrade_07_01	@RoleGrowthUnlock_0701	
+0801	8	0	11	0	801	upgrade_08_01	@RoleGrowthUnlock_0801	
+0901	9	0	11	0	901	upgrade_09_01	@RoleGrowthUnlock_0901	
+1001	10	0	11	0	1001	upgrade_10_01	@RoleGrowthUnlock_1001	
+1101	11	0	11	0	1101	upgrade_11_01	@RoleGrowthUnlock_1101	
+1201	12	0	11	0	1201	upgrade_12_01	@RoleGrowthUnlock_1201	
+1301	13	0	11	0	1301	upgrade_13_01	@RoleGrowthUnlock_1301	
+1401	14	0	11	0	1401	upgrade_14_01	@RoleGrowthUnlock_1401	
+1501	15	0	11	0	1501	upgrade_15_01	@RoleGrowthUnlock_1501	
+1601	16	0	11	0	1601	upgrade_16_01	@RoleGrowthUnlock_1601	
+1701	17	0	11	0	1701	upgrade_17_01	@RoleGrowthUnlock_1701	
+1801	18	0	11	0	1801	upgrade_18_01	@RoleGrowthUnlock_1801	
+1901	19	0	11	0	1901	upgrade_19_01	@RoleGrowthUnlock_1901	
+2001	20	0	11	0	2001	upgrade_20_01	@RoleGrowthUnlock_2001	
+2101	21	0	11	0	2101	upgrade_21_01	@RoleGrowthUnlock_2101	
+2201	22	0	11	0	2201	upgrade_22_01	@RoleGrowthUnlock_2201	
+2301	23	0	11	0	2301	upgrade_23_01	@RoleGrowthUnlock_2301	
+2401	24	0	11	0	2401	upgrade_24_01	@RoleGrowthUnlock_2401	
+0502	5	1	160	1	0501	upgrade_05_02	@RoleGrowthUnlock_0502	RGU_HV_0501
+1502	15	1	160	1	1501	upgrade_15_02	@RoleGrowthUnlock_1502	RGU_HV_1501
+1802	18	1	160	1	1801	upgrade_18_02	@RoleGrowthUnlock_1802	RGU_HV_1801
+1902	19	1	160	1	1901	upgrade_19_02	@RoleGrowthUnlock_1902	RGU_HV_1901
+2102	21	1	160	1	2101	upgrade_21_02	@RoleGrowthUnlock_2102	RGU_HV_2101
+2402	24	1	160	1	2401	upgrade_24_02	@RoleGrowthUnlock_2402	RGU_HV_2401

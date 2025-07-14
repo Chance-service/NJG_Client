@@ -1,0 +1,2 @@
+id	skinShopID	mp4	banner
+1	9100	Hero/Hero09100	SkinAD_09100
