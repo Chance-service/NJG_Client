@@ -91,8 +91,10 @@ bool InGameDownloader::checkNeedDownload()
 bool InGameDownloader::checkNeedDownloadByName(const std::string& fileName)
 {
 	for (auto itNeed = needUpdateAsset.begin(); itNeed != needUpdateAsset.end(); ++itNeed) {
-		if ((*itNeed)->state != eOneStateSuccess){
-			return true;
+		if ((*itNeed)->name == fileName || (*itNeed)->name == (fileName + ".zip")) {
+			if ((*itNeed)->state != eOneStateSuccess) {
+				return true;
+			}
 		}
 	}
 	return false;
@@ -110,7 +112,7 @@ void InGameDownloader::downloadAllAsset()
 void InGameDownloader::downloadAssetByName(const std::string& fileName)
 {
 	for (auto itNeed = needUpdateAsset.begin(); itNeed != needUpdateAsset.end(); ++itNeed) {
-		if ((*itNeed)->name == fileName || (*itNeed)->name == (fileName + ".zip")){
+		if ((*itNeed)->name == fileName || (*itNeed)->name == (fileName + ".zip")) {
 			if ((*itNeed)->state != eOneStateSuccess) {
 				downloadAssetByData(*itNeed);
 			}

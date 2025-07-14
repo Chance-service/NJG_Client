@@ -1,7 +1,5 @@
 $#include "Gamelua.h"
 
-$pfile "InGameDownloader.pkg"
-
 $pfile "CCBScriptContainer.pkg"
 
 $pfile "CCScrollView.pkg"
@@ -69,3 +67,5 @@ $pfile "CurlDownloadForScript.pkg"
 $pfile "FeedBackPage.pkg"
 
 $pfile "AdjustManager.pkg"
+
+$pfile "InGameDownloader.pkg"
