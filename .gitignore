@@ -67,3 +67,4 @@ Code_Client/workspace
 Code_Core/obj
 Code_Core/scripting/javascript/bindings/generated
 Code_iOS/libOS/build
+client01/AndroidProject_Retrans/.gradle

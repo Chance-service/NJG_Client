@@ -23,13 +23,10 @@
 		4E341A462D6EF66B002FE81D /* liblibOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7F50702D5F9B2100DD4AA4 /* liblibOS.a */; };
 		4E341A472D6EF679002FE81D /* liblibOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7F50702D5F9B2100DD4AA4 /* liblibOS.a */; };
 		4E3C5EA62E142053002A66C1 /* Barlow-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E3C5E882E142041002A66C1 /* Barlow-SemiBold.ttf */; };
-		4E3C5EA72E142053002A66C1 /* ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 4E3C5E892E142041002A66C1 /* ccbi */; };
 		4E3C5EA82E142053002A66C1 /* UI in Resources */ = {isa = PBXBuildFile; fileRef = 4E3C5E8A2E142042002A66C1 /* UI */; };
 		4E3C5EA92E142053002A66C1 /* version_android_local.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4E3C5E8B2E142043002A66C1 /* version_android_local.cfg */; };
-		4E3C5EAA2E142053002A66C1 /* txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E3C5E8C2E142043002A66C1 /* txt */; };
 		4E3C5EAB2E142053002A66C1 /* audio in Resources */ = {isa = PBXBuildFile; fileRef = 4E3C5E8D2E142044002A66C1 /* audio */; };
 		4E3C5EAC2E142053002A66C1 /* RecourceFilePath.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E3C5E8E2E142045002A66C1 /* RecourceFilePath.txt */; };
-		4E3C5EAD2E142053002A66C1 /* map in Resources */ = {isa = PBXBuildFile; fileRef = 4E3C5E8F2E142046002A66C1 /* map */; };
 		4E3C5EAE2E142053002A66C1 /* Tips.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E3C5E902E142047002A66C1 /* Tips.txt */; };
 		4E3C5EAF2E142053002A66C1 /* shader in Resources */ = {isa = PBXBuildFile; fileRef = 4E3C5E912E142047002A66C1 /* shader */; };
 		4E3C5EB02E142053002A66C1 /* Spine in Resources */ = {isa = PBXBuildFile; fileRef = 4E3C5E922E142048002A66C1 /* Spine */; };
@@ -227,6 +224,12 @@
 		4E59C3722D603615006518A5 /* libpthread.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7F507D2D5F9F1900DD4AA4 /* libpthread.tbd */; };
 		4E59C3732D603620006518A5 /* libpthread.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7F507D2D5F9F1900DD4AA4 /* libpthread.tbd */; };
 		4E59C3762D620816006518A5 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E59C3752D620816006518A5 /* AVKit.framework */; };
+		4E68A71A2E24E7CD00F93718 /* ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 4E68A7192E24E7CD00F93718 /* ccbi */; };
+		4E68A71B2E24E7FE00F93718 /* ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 4E68A7192E24E7CD00F93718 /* ccbi */; };
+		4E68A71D2E24E85A00F93718 /* map in Resources */ = {isa = PBXBuildFile; fileRef = 4E68A71C2E24E85900F93718 /* map */; };
+		4E68A71E2E24E86200F93718 /* map in Resources */ = {isa = PBXBuildFile; fileRef = 4E68A71C2E24E85900F93718 /* map */; };
+		4E68A7202E24E89800F93718 /* txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E68A71F2E24E89800F93718 /* txt */; };
+		4E68A7212E24E89F00F93718 /* txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E68A71F2E24E89800F93718 /* txt */; };
 		4E77C5E22DDC4961000823F7 /* AppController.mm in Sources */ = {isa = PBXBuildFile; fileRef = CFFC4BF216D230D3001F65C9 /* AppController.mm */; };
 		4E77C5E32DDC4961000823F7 /* RootViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = CFFC4BF516D230D3001F65C9 /* RootViewController.mm */; };
 		4E77C5E42DDC4961000823F7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFC4BF716D230D3001F65C9 /* main.m */; };
@@ -517,17 +520,14 @@
 		4E89DAED2E1439B300FA7679 /* Barlow-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E3C5E992E14204C002A66C1 /* Barlow-Regular.ttf */; };
 		4E89DAEE2E1439B900FA7679 /* audio in Resources */ = {isa = PBXBuildFile; fileRef = 4E3C5E8D2E142044002A66C1 /* audio */; };
 		4E89DAEF2E1439CE00FA7679 /* Video in Resources */ = {isa = PBXBuildFile; fileRef = 4E3C5EA02E14204F002A66C1 /* Video */; };
-		4E89DAF02E1439CE00FA7679 /* txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E3C5E8C2E142043002A66C1 /* txt */; };
 		4E89DAF12E1439CE00FA7679 /* HalfBody in Resources */ = {isa = PBXBuildFile; fileRef = 4E3C5E942E142049002A66C1 /* HalfBody */; };
 		4E89DAF22E1439CE00FA7679 /* Lang in Resources */ = {isa = PBXBuildFile; fileRef = 4E3C5E9C2E14204E002A66C1 /* Lang */; };
 		4E89DAF32E1439CE00FA7679 /* BG in Resources */ = {isa = PBXBuildFile; fileRef = 4E3C5EA12E142050002A66C1 /* BG */; };
 		4E89DAF42E1439CE00FA7679 /* UI in Resources */ = {isa = PBXBuildFile; fileRef = 4E3C5E8A2E142042002A66C1 /* UI */; };
 		4E89DAF52E1439CE00FA7679 /* lua in Resources */ = {isa = PBXBuildFile; fileRef = 4E3C5E952E14204A002A66C1 /* lua */; };
-		4E89DAF62E1439CE00FA7679 /* map in Resources */ = {isa = PBXBuildFile; fileRef = 4E3C5E8F2E142046002A66C1 /* map */; };
 		4E89DAF72E1439CE00FA7679 /* shader in Resources */ = {isa = PBXBuildFile; fileRef = 4E3C5E912E142047002A66C1 /* shader */; };
 		4E89DAF82E1439CE00FA7679 /* Spine in Resources */ = {isa = PBXBuildFile; fileRef = 4E3C5E922E142048002A66C1 /* Spine */; };
 		4E89DAF92E1439CE00FA7679 /* LoadingUI_JP in Resources */ = {isa = PBXBuildFile; fileRef = 4E3C5EA32E142051002A66C1 /* LoadingUI_JP */; };
-		4E89DAFA2E1439CE00FA7679 /* ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 4E3C5E892E142041002A66C1 /* ccbi */; };
 		4E89DAFB2E1439CE00FA7679 /* monster in Resources */ = {isa = PBXBuildFile; fileRef = 4E3C5EA52E142052002A66C1 /* monster */; };
 		4E89DAFC2E1439E400FA7679 /* Tips.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E3C5E902E142047002A66C1 /* Tips.txt */; };
 		4E89DAFD2E1439E400FA7679 /* version.manifest in Resources */ = {isa = PBXBuildFile; fileRef = 4E3C5E972E14204B002A66C1 /* version.manifest */; };
@@ -1201,13 +1201,10 @@
 		4D9741FB8B473B68880AF15A /* CCBContainer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = CCBContainer.cpp; path = ../../Game/Classes/CCBContainer.cpp; sourceTree = SOURCE_ROOT; };
 		4E1C06C92DDDFE3C0029BDBF /* analytics_sdk_ios_framework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = analytics_sdk_ios_framework.framework; path = ../../../Code_iOS/lib91/SDK/91SDK/framework5/framework/analytics_sdk_ios_framework.framework; sourceTree = "<group>"; };
 		4E3C5E882E142041002A66C1 /* Barlow-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Barlow-SemiBold.ttf"; path = "../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/Barlow-SemiBold.ttf"; sourceTree = "<group>"; };
-		4E3C5E892E142041002A66C1 /* ccbi */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ccbi; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/ccbi; sourceTree = "<group>"; };
 		4E3C5E8A2E142042002A66C1 /* UI */ = {isa = PBXFileReference; lastKnownFileType = folder; name = UI; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/UI; sourceTree = "<group>"; };
 		4E3C5E8B2E142043002A66C1 /* version_android_local.cfg */ = {isa = PBXFileReference; lastKnownFileType = text; name = version_android_local.cfg; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/version_android_local.cfg; sourceTree = "<group>"; };
-		4E3C5E8C2E142043002A66C1 /* txt */ = {isa = PBXFileReference; lastKnownFileType = folder; name = txt; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/txt; sourceTree = "<group>"; };
 		4E3C5E8D2E142044002A66C1 /* audio */ = {isa = PBXFileReference; lastKnownFileType = folder; name = audio; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/audio; sourceTree = "<group>"; };
 		4E3C5E8E2E142045002A66C1 /* RecourceFilePath.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = RecourceFilePath.txt; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/RecourceFilePath.txt; sourceTree = "<group>"; };
-		4E3C5E8F2E142046002A66C1 /* map */ = {isa = PBXFileReference; lastKnownFileType = folder; name = map; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/map; sourceTree = "<group>"; };
 		4E3C5E902E142047002A66C1 /* Tips.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = Tips.txt; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/Tips.txt; sourceTree = "<group>"; };
 		4E3C5E912E142047002A66C1 /* shader */ = {isa = PBXFileReference; lastKnownFileType = folder; name = shader; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/shader; sourceTree = "<group>"; };
 		4E3C5E922E142048002A66C1 /* Spine */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Spine; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/Spine; sourceTree = "<group>"; };
@@ -1238,6 +1235,9 @@
 		4E499DEA2DDCB7A300922FAD /* liblib91Kuso.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = liblib91Kuso.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E499DEC2DDCB7C800922FAD /* liblib91Erolabs.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = liblib91Erolabs.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E59C3752D620816006518A5 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
+		4E68A7192E24E7CD00F93718 /* ccbi */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ccbi; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/ccbi; sourceTree = "<group>"; };
+		4E68A71C2E24E85900F93718 /* map */ = {isa = PBXFileReference; lastKnownFileType = folder; name = map; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/map; sourceTree = "<group>"; };
+		4E68A71F2E24E89800F93718 /* txt */ = {isa = PBXFileReference; lastKnownFileType = folder; name = txt; path = ../../../../../client01/AndroidProject_Retrans/blockChain_cn/GameAndroid/assets/txt; sourceTree = "<group>"; };
 		4E77C6CD2DDC4961000823F7 /* NinjaGirlErolabs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NinjaGirlErolabs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E77C6CE2DDC496E000823F7 /* NinjaGirlErolabs-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "NinjaGirlErolabs-Info.plist"; path = "/Users/misomacair02/Desktop/Projects/NinjaGirl/NJG_Client/client02_new/Code_Client/xcode/Game/NinjaGirlErolabs-Info.plist"; sourceTree = "<absolute>"; };
 		4E77C6CF2DDC6107000823F7 /* Erolabs.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Erolabs.xcassets; sourceTree = "<group>"; };
@@ -2150,19 +2150,19 @@
 		4ECEA0DA2DCB558F0027FDA9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4E68A71F2E24E89800F93718 /* txt */,
+				4E68A71C2E24E85900F93718 /* map */,
 				4E3C5E8D2E142044002A66C1 /* audio */,
 				4E3C5E982E14204C002A66C1 /* Barlow-Bold.ttf */,
 				4E3C5E992E14204C002A66C1 /* Barlow-Regular.ttf */,
 				4E3C5E882E142041002A66C1 /* Barlow-SemiBold.ttf */,
 				4E3C5EA12E142050002A66C1 /* BG */,
-				4E3C5E892E142041002A66C1 /* ccbi */,
 				4E3C5E9E2E14204F002A66C1 /* ecchigamer_domain_v1.txt */,
 				4E3C5EA42E142051002A66C1 /* erolabs_domain_v1.txt */,
 				4E3C5E942E142049002A66C1 /* HalfBody */,
 				4E3C5E9C2E14204E002A66C1 /* Lang */,
 				4E3C5EA32E142051002A66C1 /* LoadingUI_JP */,
 				4E3C5E952E14204A002A66C1 /* lua */,
-				4E3C5E8F2E142046002A66C1 /* map */,
 				4E3C5EA52E142052002A66C1 /* monster */,
 				4E3C5E9F2E14204F002A66C1 /* platform.cfg */,
 				4E3C5E962E14204B002A66C1 /* projectLocal.manifest */,
@@ -2170,7 +2170,6 @@
 				4E3C5E912E142047002A66C1 /* shader */,
 				4E3C5E922E142048002A66C1 /* Spine */,
 				4E3C5E902E142047002A66C1 /* Tips.txt */,
-				4E3C5E8C2E142043002A66C1 /* txt */,
 				4E3C5E8A2E142042002A66C1 /* UI */,
 				4E3C5E9B2E14204D002A66C1 /* UpdateVersionTips.cfg */,
 				4E3C5E9D2E14204E002A66C1 /* UpdateVersionTipsTW.cfg */,
@@ -2180,6 +2179,7 @@
 				4E3C5EA22E142050002A66C1 /* version_ios.cfg */,
 				4E3C5E932E142048002A66C1 /* versionApp.manifest */,
 				4E3C5EA02E14204F002A66C1 /* Video */,
+				4E68A7192E24E7CD00F93718 /* ccbi */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -3126,10 +3126,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E89DAEB2E1439B300FA7679 /* Barlow-SemiBold.ttf in Resources */,
+				4E68A7212E24E89F00F93718 /* txt in Resources */,
 				4E89DAEF2E1439CE00FA7679 /* Video in Resources */,
-				4E89DAF02E1439CE00FA7679 /* txt in Resources */,
 				4E89DAF12E1439CE00FA7679 /* HalfBody in Resources */,
 				4E89DAF22E1439CE00FA7679 /* Lang in Resources */,
+				4E68A71E2E24E86200F93718 /* map in Resources */,
 				4E89DAF32E1439CE00FA7679 /* BG in Resources */,
 				4E89DAFC2E1439E400FA7679 /* Tips.txt in Resources */,
 				4E89DAFD2E1439E400FA7679 /* version.manifest in Resources */,
@@ -3141,16 +3142,15 @@
 				4E89DB032E1439E400FA7679 /* version_ios.cfg in Resources */,
 				4E89DB042E1439E400FA7679 /* UpdateVersionTipsTW.cfg in Resources */,
 				4E89DB052E1439E400FA7679 /* versionApp.manifest in Resources */,
+				4E68A71B2E24E7FE00F93718 /* ccbi in Resources */,
 				4E89DB062E1439E400FA7679 /* erolabs_domain_v1.txt in Resources */,
 				4E89DB072E1439E400FA7679 /* version_android.cfg in Resources */,
 				4E89DB082E1439E400FA7679 /* UpdateVersionTips.cfg in Resources */,
 				4E89DAF42E1439CE00FA7679 /* UI in Resources */,
 				4E89DAF52E1439CE00FA7679 /* lua in Resources */,
-				4E89DAF62E1439CE00FA7679 /* map in Resources */,
 				4E89DAF72E1439CE00FA7679 /* shader in Resources */,
 				4E89DAF82E1439CE00FA7679 /* Spine in Resources */,
 				4E89DAF92E1439CE00FA7679 /* LoadingUI_JP in Resources */,
-				4E89DAFA2E1439CE00FA7679 /* ccbi in Resources */,
 				4E89DAFB2E1439CE00FA7679 /* monster in Resources */,
 				4E89DAEC2E1439B300FA7679 /* Barlow-Bold.ttf in Resources */,
 				4E89DAEE2E1439B900FA7679 /* audio in Resources */,
@@ -3163,14 +3163,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E68A7202E24E89800F93718 /* txt in Resources */,
+				4E68A71D2E24E85A00F93718 /* map in Resources */,
+				4E68A71A2E24E7CD00F93718 /* ccbi in Resources */,
 				4E3C5EA62E142053002A66C1 /* Barlow-SemiBold.ttf in Resources */,
-				4E3C5EA72E142053002A66C1 /* ccbi in Resources */,
 				4E3C5EA82E142053002A66C1 /* UI in Resources */,
 				4E3C5EA92E142053002A66C1 /* version_android_local.cfg in Resources */,
-				4E3C5EAA2E142053002A66C1 /* txt in Resources */,
 				4E3C5EAB2E142053002A66C1 /* audio in Resources */,
 				4E3C5EAC2E142053002A66C1 /* RecourceFilePath.txt in Resources */,
-				4E3C5EAD2E142053002A66C1 /* map in Resources */,
 				4E3C5EAE2E142053002A66C1 /* Tips.txt in Resources */,
 				4E3C5EAF2E142053002A66C1 /* shader in Resources */,
 				4E3C5EB02E142053002A66C1 /* Spine in Resources */,
