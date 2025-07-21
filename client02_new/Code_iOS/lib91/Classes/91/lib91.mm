@@ -22,9 +22,16 @@ static std::string loginName = "";
 static std::string token = "";
 static NSString* paymentCallbackUrl = @"https://debug.paycallback.quantagalaxies.com/KusoPay?params=";
 static int serverId = 9;
+#ifdef PROJECT_KUSO
 static NSString* tapDBId = @"38557e71wa26gpy8";
 static NSString* tapDBChannel = @"quanta";
 static bool enableTapDBLog = true;
+#endif
+#ifdef PROJECT_EROLABS
+static NSString* tapDBId = nil;
+static NSString* tapDBChannel = @"quanta";
+static bool enableTapDBLog = true;
+#endif
 static int HoneyP = 0;
 
 @interface Helpers : NSObject
@@ -207,10 +214,14 @@ void lib91::setupSDK(int platformId)
     //[Hyena setAdvertiserIDCollectionEnabled:NO];
     [Hyena appStart:@"70A857C60DF94AACB8C48D6EE6A5C594"];
 #endif
-    // Init tapDB
-    NSLog(@"TapDB: Setup");
-    [TapDB enableLog:enableTapDBLog];
-    [TapDB onStart:tapDBId channel:tapDBChannel version:nil properties:nil];
+    
+    if (tapDBId != nil)
+    {
+        // Init tapDB
+        NSLog(@"TapDB: Setup");
+        [TapDB enableLog:enableTapDBLog];
+        [TapDB onStart:tapDBId channel:tapDBChannel version:nil properties:nil];
+    }
 }
 
 #pragma mark
@@ -600,7 +611,8 @@ std::string lib91::sendMessageG2P(const std::string& tag, const std::string& msg
             
             if (jsonDict != nil)
             {
-                [TapDB trackEvent:eventName properties:jsonDict];
+                if (tapDBId != nil)
+                    [TapDB trackEvent:eventName properties:jsonDict];
             }
             
         }
@@ -611,29 +623,34 @@ std::string lib91::sendMessageG2P(const std::string& tag, const std::string& msg
             NSDictionary* jsonDict = [Helpers stringToDictionary:jsonStr];
             if (jsonDict == nil)
             {
-                [TapDB setUser:userId];
+                if (tapDBId != nil)
+                    [TapDB setUser:userId];
             }
             else
             {
-                [TapDB setUser:userId properties:jsonDict];
+                if (tapDBId != nil)
+                    [TapDB setUser:userId properties:jsonDict];
             }
             
         }
         else if ([key isEqualToString:@"setName"])
         {
             NSString* name = jsonObject[@"param"];
-            [TapDB setName:name];
+            if (tapDBId != nil)
+                [TapDB setName:name];
 
         }
         else if ([key isEqualToString:@"setServer"])
         {
             NSString* server = jsonObject[@"param"];
-            [TapDB setServer:server];
+            if (tapDBId != nil)
+                [TapDB setServer:server];
         }
         else if ([key isEqualToString:@"setLevel"])
         {
             NSNumber* level = jsonObject[@"param"];
-            [TapDB setLevel:[level intValue]];
+            if (tapDBId != nil)
+                [TapDB setLevel:[level intValue]];
         }
         else if ([key isEqualToString:@"deviceUpdate"])
         {
@@ -641,7 +658,8 @@ std::string lib91::sendMessageG2P(const std::string& tag, const std::string& msg
             NSDictionary* jsonDict = [Helpers stringToDictionary:jsonStr];
             if (jsonDict != nil)
             {
-                [TapDB deviceUpdate:jsonDict];
+                if (tapDBId != nil)
+                    [TapDB deviceUpdate:jsonDict];
             }
         }
         else if ([key isEqualToString:@"deviceInitialize"])
@@ -651,7 +669,8 @@ std::string lib91::sendMessageG2P(const std::string& tag, const std::string& msg
             
             if (jsonDict != nil)
             {
-                [TapDB deviceInitialize:jsonDict];
+                if (tapDBId != nil)
+                    [TapDB deviceInitialize:jsonDict];
             }
         }
         else if ([key isEqualToString:@"deviceAdd"])
@@ -660,7 +679,8 @@ std::string lib91::sendMessageG2P(const std::string& tag, const std::string& msg
             NSDictionary* jsonDict = [Helpers stringToDictionary:jsonStr];
             if (jsonDict != nil)
             {
-                [TapDB deviceAdd:jsonDict];
+                if (tapDBId != nil)
+                    [TapDB deviceAdd:jsonDict];
             }
         }
         else if ([key isEqualToString:@"userUpdate"])
@@ -669,7 +689,8 @@ std::string lib91::sendMessageG2P(const std::string& tag, const std::string& msg
             NSDictionary* jsonDict = [Helpers stringToDictionary:jsonStr];
             if (jsonDict != nil)
             {
-                [TapDB userUpdate:jsonDict];
+                if (tapDBId != nil)
+                    [TapDB userUpdate:jsonDict];
             }
         }
         else if ([key isEqualToString:@"userInitialize"])
@@ -678,7 +699,8 @@ std::string lib91::sendMessageG2P(const std::string& tag, const std::string& msg
             NSDictionary* jsonDict = [Helpers stringToDictionary:jsonStr];
             if (jsonDict != nil)
             {
-                [TapDB userInitialize:jsonDict];
+                if (tapDBId != nil)
+                    [TapDB userInitialize:jsonDict];
             }
         }
         else if ([key isEqualToString:@"userAdd"])
@@ -687,7 +709,8 @@ std::string lib91::sendMessageG2P(const std::string& tag, const std::string& msg
             NSDictionary* jsonDict = [Helpers stringToDictionary:jsonStr];
             if (jsonDict != nil)
             {
-                [TapDB userAdd:jsonDict];
+                if (tapDBId != nil)
+                    [TapDB userAdd:jsonDict];
             }
         }
     }
