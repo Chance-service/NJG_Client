@@ -1,0 +1,12 @@
+id	content
+1	<font color="#24b23e" face="Barlow-SemiBold32"><p style="margin:10px">竞标 </p></font><br/>
+2	<font color="#6f2f00" face="Barlow-SemiBold24"><p style="margin:10px">● 商品竞标期间，可以出价竞标，直到竞标结束由出价高的玩家得标 </p></font><br/>
+3	<font color="#6f2f00" face="Barlow-SemiBold24"><p style="margin:10px">● 每次投标必须高于目前竞标商品的竞标价格100以上 </p></font><br/>
+4	<font color="#6f2f00" face="Barlow-SemiBold24"><p style="margin:10px">● 每次竞标会有两项商品分别竞标 </p></font><br/>
+5	<font color="#6f2f00" face="Barlow-SemiBold32"><p style="margin:10px">● 每次投标会暂时收取投标费用，直到得标时会正式收取 </p></font><br/>
+6	<font color="#6f2f00" face="Barlow-SemiBold32"><p style="margin:10px">● 竞标结束时，商品会透过信件发送至得标者的信箱 </p></font><br/>
+7	<font color="#6f2f00" face="Barlow-SemiBold32"><p style="margin:10px">● 竞标结束时，未得标者的投标费用会透过信件返还 </p></font><br/>
+8	<font color="#24b23e" face="Barlow-SemiBold24"><p style="margin:10px">直购 </p></font><br/>
+9	<font color="#6f2f00" face="Barlow-SemiBold24"><p style="margin:10px">● 部分竞标商品会有直购价格，若投标价格超过直购价格，会使用直购价格得标 </p></font><br/>
+10	<font color="#6f2f00" face="Barlow-SemiBold24"><p style="margin:10px">● 设有直购价格的商品会在竞标结束后开启直购阶段，期间为6小时(以商品实际开放时间设定为主) </p></font><br/>
+11	<font color="#6f2f00" face="Barlow-SemiBold24"><p style="margin:10px">● 相同商品的得标者无法透过直购阶段重复购买商品 </p></font>

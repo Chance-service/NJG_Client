@@ -71,7 +71,7 @@ public class PlatformAPI extends SDKService {
 
 		if (APP_DBG)
 		{
-			tabDBId = "nzh5yq3ncmpf4gbb"; // chance use
+			tabDBId = "hskrojuyh6ysndd1"; // chance use
 			channel = "quanta";
 		} else
 		{

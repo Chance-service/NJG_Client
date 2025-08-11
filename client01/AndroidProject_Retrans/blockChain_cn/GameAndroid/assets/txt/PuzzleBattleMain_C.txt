@@ -20,3 +20,10 @@ id	subStageId	item	image	trialNumber	heroId	albumImage	groupId
 19	98,99,100,101,102,103,104,105,106	30000_7221_60,10000_1001_200	UI/Common/PuzzleBattle/PuzzleBattle_06015.jpg	5	6	UI/Common/PuzzleBattle/PuzzleAlbum/PuzzleAlbum_06015.jpg	0601
 20	107,108,109,110	30000_5001_60,30000_7203_3,30000_7212_5	UI/Common/PuzzleBattle/PuzzleBattle_06016.jpg	6	6	UI/Common/PuzzleBattle/PuzzleAlbum/PuzzleAlbum_06016.jpg	0601
 21	111,112,113,114	30000_7222_30,30000_7223_30	UI/Common/PuzzleBattle/PuzzleBattle_06017.jpg	7	6	UI/Common/PuzzleBattle/PuzzleAlbum/PuzzleAlbum_06017.jpg	0601
+22	115,116,117,118	30000_5007_30,30000_5011_30	UI/Common/PuzzleBattle/PuzzleBattle_22011.jpg	1	22	UI/Common/PuzzleBattle/PuzzleAlbum/PuzzleAlbum_22011.jpg	2201
+23	119,120,121,122,123,124,125,126,127	30000_7221_60,10000_1001_200	UI/Common/PuzzleBattle/PuzzleBattle_22012.jpg	2	22	UI/Common/PuzzleBattle/PuzzleAlbum/PuzzleAlbum_22012.jpg	2201
+24	128,129,130,131	30000_5001_60,30000_7203_3,30000_7212_5	UI/Common/PuzzleBattle/PuzzleBattle_22013.jpg	3	22	UI/Common/PuzzleBattle/PuzzleAlbum/PuzzleAlbum_22013.jpg	2201
+25	132,133,134,135	30000_5007_30,30000_5011_30	UI/Common/PuzzleBattle/PuzzleBattle_22014.jpg	4	22	UI/Common/PuzzleBattle/PuzzleAlbum/PuzzleAlbum_22014.jpg	2201
+26	136,137,138,139,140,141,142,143,144	30000_7221_60,10000_1001_200	UI/Common/PuzzleBattle/PuzzleBattle_22015.jpg	5	22	UI/Common/PuzzleBattle/PuzzleAlbum/PuzzleAlbum_22015.jpg	2201
+27	145,146,147,148	30000_5001_60,30000_7203_3,30000_7212_5	UI/Common/PuzzleBattle/PuzzleBattle_22016.jpg	6	22	UI/Common/PuzzleBattle/PuzzleAlbum/PuzzleAlbum_22016.jpg	2201
+28	149,150,151,152	30000_7222_30,30000_7223_30	UI/Common/PuzzleBattle/PuzzleBattle_22017.jpg	7	22	UI/Common/PuzzleBattle/PuzzleAlbum/PuzzleAlbum_22017.jpg	2201

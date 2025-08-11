@@ -25,6 +25,7 @@ id	quality	profession	type	price	chatIcon	MainPageIcon	isShow	isSkin	order
 22000	5	3	2	600	UI/Role/Portrait_22000.png	UI/Role/Portrait_22000.png	1	0	1022
 23000	5	1	2	1000	UI/Role/Portrait_23000.png	UI/Role/Portrait_23000.png	1	0	1023
 24000	5	1	2	600	UI/Role/Portrait_24000.png	UI/Role/Portrait_24000.png	1	0	1024
+25000	5	3	2	1000	UI/Role/Portrait_25000.png	UI/Role/Portrait_25000.png	1	0	1025
 1001	5	3	2	400	UI/Role/Portrait_01001.png	UI/Role/Portrait_01001.png	1	1	2001
 2002	5	2	2	400	UI/Role/Portrait_02002.png	UI/Role/Portrait_02002.png	1	1	2002
 3003	5	1	2	400	UI/Role/Portrait_03003.png	UI/Role/Portrait_03003.png	1	1	2003

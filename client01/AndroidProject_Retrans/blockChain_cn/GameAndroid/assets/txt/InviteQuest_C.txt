@@ -1,0 +1,7 @@
+id	isShow	type	newUserReward	inviterReward	textKey	inviteFinalReward	newGuyLimit
+1	0	0	10000_1001_1000,30000_7209_12,30000_7197_5	10000_1001_1000	@InvitationCode_InviteMission1	20000_21100_1	98
+2	1	1	30000_6004_20	30000_7224_2	@InvitationCode_InviteMission2		7
+3	1	1	30000_7225_1	30000_7199_2	@InvitationCode_InviteMission3		59,83
+4	1	1	30000_7020_1	30000_7176_1	@InvitationCode_InviteMission4		
+5	1	1	30000_7233_5	30000_6012_5	@InvitationCode_InviteMission5		
+6	1	1	30000_7233_5	30000_7233_4	@InvitationCode_InviteMission6		

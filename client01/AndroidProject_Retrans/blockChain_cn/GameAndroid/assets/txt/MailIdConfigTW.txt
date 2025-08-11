@@ -30,8 +30,6 @@ id	繁中
 30	<font  color="#807e7d" face = "HelveticaBD22" size ="100">>第#v1#次王者之戰中，#v2#獲得優勝。優勝服特別獎勵:</font>
 31	<font  color="#807e7d" face = "HelveticaBD22" size ="100">伺服器開放競技場排位第#v1#名。獲得獎勵：</font>
 32	<font  color="#807e7d" face = "HelveticaBD22" size ="100">伺服器開放競技場排位第#v1#名。獲得獎勵：</font>
-32	<font  color="#807e7d" face = "HelveticaBD22" size ="100">伺服器開放經驗值排行榜第#v1#d#v2#d#v3#d#v4#名。獲得獎勵：</font>
-32	<font  color="#807e7d" face = "HelveticaBD22" size ="100">伺服器開放經驗值排行榜第#v1#d#v2#名。獲得獎勵：</font>
 33	<font  color="#807e7d" face = "HelveticaBD22" size ="100">蔣歡排行榜第#v1#名。總交換#v2#萌豆。獲得獎勵：</font>
 40	<font  color="#807e7d" face = "HelveticaBD22" size ="100">在#v1#活動“皇室的陰謀”中，獲得#v2#名。獲得日常獎勵：</font>
 41	<font  color="#807e7d" face = "HelveticaBD22" size ="100">#v1#的本季“皇室陰謀”中，獲得#v2#名。獲得季賽獎勵：</font>
@@ -92,6 +90,7 @@ id	繁中
 148	<font  color="#807e7d" face = "HelveticaBD22" size ="100">#v1# 所屬公會在“世界BOSS”中補刀成功，請領取獎勵吧！</font>
 149	<font  color="#807e7d" face = "HelveticaBD22" size ="100">#v1# 購買了周卡！<br/>今天開始即可生效！</font>
 150	<font  color="#807e7d" face = "HelveticaBD22" size ="100">您在 #v1# 購買了進階月卡，從本日起30天有效。</font>
+151	<font  color="#807e7d" face = "HelveticaBD22" size ="100">持有的符石已達上限，因此送入到信箱。</font>
 4001	<font  color="#807e7d" face = "HelveticaBD22" size ="100">將#v1#加入好友！</font>
 4002	<font  color="#807e7d" face = "HelveticaBD22" size ="100">#v1#拒絕了你的好友申請。</font>
 5001	<font  color="#807e7d" face = "HelveticaBD22" size ="100">用#v1#購買成了#v2#聊天泡泡。從今天開始#v3#天內有效。</font>
@@ -117,3 +116,4 @@ id	繁中
 7018	<font  color="#807e7d" face = "HelveticaBD22" size ="100">出價已被超越\n已退還#V1#鑽石</font>
 7019	<font  color="#807e7d" face = "HelveticaBD22" size ="100">恭喜競標成功!</font>
 7020	<font  color="#807e7d" face = "HelveticaBD22" size ="100">恭喜你在活動「無畏之塔」中獲得#v1# - 第#v2#名，以下是您的獎勵。</font>
+7021	<font  color="#807e7d" face = "HelveticaBD22" size ="100">#v1#「賽季戰令」-以下為你尚未領取的獎勵。</font>

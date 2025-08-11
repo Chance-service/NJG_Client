@@ -36,3 +36,5 @@ ItemID	page名字	是否有Push动画	Push动画是否在Enter之前	是否有Po
 35	AncientWeaponPreview_PopUp	1	0	1	0	0	專武預覽
 36	Shop.SkinShopPopUp	1	0	1	0	0	皮膚商店資訊視窗
 37	Shop.SkinShopJumpPopUp	1	0	1	0	0	皮膚商店跳轉視窗
+38	LobbyChosenPopUp	1	0	1	0	0	大廳選擇視窗
+39	InviteADPopUp	1	0	1	0	0	邀請碼廣告視窗

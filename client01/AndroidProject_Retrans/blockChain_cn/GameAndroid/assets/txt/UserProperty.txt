@@ -53,6 +53,7 @@ Fid	名称	品质	描述	对应Icon图片路径
 22	@RoleSoul_22	5	@RoleSoul_Desc_22	Item/Shard_022.png
 23	@RoleSoul_23	5	@RoleSoul_Desc_23	Item/Shard_023.png
 24	@RoleSoul_24	5	@RoleSoul_Desc_24	Item/Shard_024.png
+25	@RoleSoul_25	5	@RoleSoul_Desc_25	Item/Shard_025.png
 501	@RoleSoul_501	6	@RoleSoul_Desc_501	Item/Shard_501.png
 502	@RoleSoul_502	6	@RoleSoul_Desc_502	Item/Shard_502.png
 503	@RoleSoul_503	6	@RoleSoul_Desc_503	Item/Shard_503.png
