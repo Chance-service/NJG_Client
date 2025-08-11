@@ -28,8 +28,8 @@ static NSString* tapDBChannel = @"quanta";
 static bool enableTapDBLog = true;
 #endif
 #ifdef PROJECT_EROLABS
-static NSString* tapDBId = nil;
-static NSString* tapDBChannel = @"quanta";
+static NSString* tapDBId = @"nzh5yq3ncmpf4gbb";
+static NSString* tapDBChannel = @"EROLABS";
 static bool enableTapDBLog = true;
 #endif
 static int HoneyP = 0;

@@ -201,7 +201,7 @@ private:
 
 	bool m_haveLoadAnnounce;
 
-
+	bool hotUpdateFailed;
 
 public:
 	LoadingFrame(void);

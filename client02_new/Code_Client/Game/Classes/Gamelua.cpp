@@ -1,6 +1,6 @@
 /*
 ** Lua binding: Gamelua
-** Generated automatically by tolua++-1.0.92 on 07/14/25 10:37:50.
+** Generated automatically by tolua++-1.0.92 on 07/28/25 15:34:46.
 */
 
 /****************************************************************************
@@ -4731,6 +4731,39 @@ static int tolua_Gamelua_TableReaderManager_getTableReader00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'getTableReader'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: reloadTableReader of class  TableReaderManager */
+#ifndef TOLUA_DISABLE_tolua_Gamelua_TableReaderManager_reloadTableReader00
+static int tolua_Gamelua_TableReaderManager_reloadTableReader00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"TableReaderManager",0,&tolua_err) ||
+     !tolua_isstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  TableReaderManager* self = (TableReaderManager*)  tolua_tousertype(tolua_S,1,0);
+  const char* filename = ((const char*)  tolua_tostring(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'reloadTableReader'", NULL);
+#endif
+  {
+   self->reloadTableReader(filename);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'reloadTableReader'.",&tolua_err);
  return 0;
 #endif
 }
@@ -41638,6 +41671,41 @@ static int tolua_Gamelua_InGameDownloader_checkNeedDownloadByName00(lua_State* t
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: checkDownloadStateByName of class  InGameDownloader */
+#ifndef TOLUA_DISABLE_tolua_Gamelua_InGameDownloader_checkDownloadStateByName00
+static int tolua_Gamelua_InGameDownloader_checkDownloadStateByName00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"InGameDownloader",0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  InGameDownloader* self = (InGameDownloader*)  tolua_tousertype(tolua_S,1,0);
+  const std::string fileName = ((const std::string)  tolua_tocppstring(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'checkDownloadStateByName'", NULL);
+#endif
+  {
+   int tolua_ret = (int)  self->checkDownloadStateByName(fileName);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+   tolua_pushcppstring(tolua_S,(const char*)fileName);
+  }
+ }
+ return 2;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'checkDownloadStateByName'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: downloadAllAsset of class  InGameDownloader */
 #ifndef TOLUA_DISABLE_tolua_Gamelua_InGameDownloader_downloadAllAsset00
 static int tolua_Gamelua_InGameDownloader_downloadAllAsset00(lua_State* tolua_S)
@@ -41889,6 +41957,7 @@ TOLUA_API int tolua_Gamelua_open (lua_State* tolua_S)
   tolua_beginmodule(tolua_S,"TableReaderManager");
    tolua_function(tolua_S,"getInstance",tolua_Gamelua_TableReaderManager_getInstance00);
    tolua_function(tolua_S,"getTableReader",tolua_Gamelua_TableReaderManager_getTableReader00);
+   tolua_function(tolua_S,"reloadTableReader",tolua_Gamelua_TableReaderManager_reloadTableReader00);
    tolua_function(tolua_S,"reloadAllReader",tolua_Gamelua_TableReaderManager_reloadAllReader00);
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"TapDB","TapDB","",NULL);
@@ -43858,6 +43927,7 @@ TOLUA_API int tolua_Gamelua_open (lua_State* tolua_S)
    tolua_function(tolua_S,"checkManifest",tolua_Gamelua_InGameDownloader_checkManifest00);
    tolua_function(tolua_S,"checkNeedDownload",tolua_Gamelua_InGameDownloader_checkNeedDownload00);
    tolua_function(tolua_S,"checkNeedDownloadByName",tolua_Gamelua_InGameDownloader_checkNeedDownloadByName00);
+   tolua_function(tolua_S,"checkDownloadStateByName",tolua_Gamelua_InGameDownloader_checkDownloadStateByName00);
    tolua_function(tolua_S,"downloadAllAsset",tolua_Gamelua_InGameDownloader_downloadAllAsset00);
    tolua_function(tolua_S,"downloadAssetByName",tolua_Gamelua_InGameDownloader_downloadAssetByName00);
    tolua_variable(tolua_S,"__Singleton_InGameDownloader___",tolua_get_InGameDownloader___Singleton_InGameDownloader___,NULL);

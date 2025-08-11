@@ -3,7 +3,6 @@
 #include <string>
 #include <map>
 
-
 namespace cocos2d{
 	class CCNode;
 };

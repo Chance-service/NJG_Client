@@ -40,6 +40,7 @@
 #include "Lua_EcchiGamerSDKBridge.h"
 #include "LoginBCPage.h"
 #include "ConfirmPage.h"
+#include "InGameDownloader.h"
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) 
 #include "jni/Java_org_cocos2dx_lib_Cocos2dxHelper.h"
 #endif
@@ -55,6 +56,7 @@ USING_NS_CC_EXT;
 #define versionManifestNameTmp   "versionTmp.manifest"
 #define projectManifestName      "project.manifest"
 #define projectManifestLocalName "projectLocal.manifest"
+#define projectIngameManifestName "projectInGame.manifest"
 #define updateVersionTipsName    "UpdateVersionTips.cfg"
 
 
@@ -73,9 +75,8 @@ REGISTER_PAGE("LoadingFrame",LoadingFrame);
 #define CONNECT_DIRECT_ENABLE 0
 #define CONNECT_DIRECT_ADDRESS "127.0.0.1"
 #define CONNECT_DIRECT_PORT 25524
-#define MaxResumeTime 50
+#define MaxResumeTime 2
 int g_iSelectedSeverIDCopy;
-int needTime = 0;
 float downloadSpeed = 0.0f;
 float preAlreadyDownloadSize = 0.0f;
 
@@ -105,6 +106,7 @@ LoadingFrame::LoadingFrame(void)
 	, txMap(NULL)
 	, m_IsCheckLogout(false)
 	, ResumeCount(MaxResumeTime)
+	, hotUpdateFailed(false)
 {}
 
 LoadingFrame::~LoadingFrame(void)
@@ -796,12 +798,9 @@ void LoadingFrame::onMenuItemAction( const std::string& itemName, cocos2d::CCObj
 	mSelectedSeverID = tag;
 	updateSeverName();
 	showSevers(false);
-	if (!SeverConsts::Get()->IsEroR18() && !SeverConsts::Get()->IsErolabs()) //H365
-	{
-		#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
-			showLoginUser();
-		#endif
-	}
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	ontestLogin();
+#endif
 }
 
 void LoadingFrame::updateLocalSeverId()
@@ -1081,7 +1080,9 @@ void LoadingFrame::showSevers(bool _show)
 					{
 						orderlist.push_back(*it->second);
 					}
-					//orderlist.sort();
+					orderlist.sort([](const SeverConsts::SEVER_ATTRIBUTE& a, const SeverConsts::SEVER_ATTRIBUTE& b) {
+						return a.order > b.order;
+					});
 					std::list<SeverConsts::SEVER_ATTRIBUTE>::iterator itOrdered = orderlist.begin();
 					for(;itOrdered!=orderlist.end();++itOrdered)
 					{
@@ -1998,6 +1999,7 @@ void LoadingFrame::loadingAsset(float dt)
 
 	if (alreadyDownloadData.size() + loadFailData.size() >= needUpdateAsset.size())
 	{
+		CCLog("downloading alreadyDownloadData.size() + loadFailData.size() >= needUpdateAsset.size(");
 		if (ResumeCount > 0)
 		{
 			ResumeUpdateAsset();
@@ -2005,33 +2007,15 @@ void LoadingFrame::loadingAsset(float dt)
 		else
 		{
 			versionStat = UPDATE_FAIL;
-			CCB_FUNC(this, "mUpdateBtnNode", cocos2d::CCNode, setVisible(true));
-			if (m_updateVersionTips)
-			{
-				CCLog("hotUpdate : Updatefailed ----step1");
-				setTips(m_updateVersionTips->updateFailTxT);
-				showFailedMessage(m_updateVersionTips->updateFailTxT, 100);
-			}
+			hotUpdateFailed = true;
+			checkNewAssets();	// 重新更新project.manifest
 		}
 		return;
 	}
 
-	float alreadyLoadSize = 0.0f;//(currentFileLoadSize * 1.0f) / 1024;
-	for (auto it = alreadyDownloadData.begin(); it != alreadyDownloadData.end(); ++it) {
-		for (auto itNeed = needUpdateAsset.begin(); itNeed != needUpdateAsset.end(); ++itNeed) {
-			if ((*it) != (*itNeed)->url)
-			{
-				continue;
-			}
-	
-			alreadyLoadSize += (*itNeed)->size;
-		}
-	}
+	float alreadyLoadSize = 0.0f;
 	for (auto it = fileLoadSizeMap.begin(); it != fileLoadSizeMap.end(); ++it) {
-		alreadyLoadSize += (it->second / 1024);
-		if (it->second > 0) {
-			CCLog("Download size : %s : %f", it->first.c_str(), (it->second / 1024));
-		}
+		alreadyLoadSize += it->second;
 	}
 
 	float persentage = alreadyLoadSize / downTotalSize;
@@ -2074,10 +2058,21 @@ void LoadingFrame::resetVersion()
 	CCString* _time = CCString::createWithFormat("%d", t);
 	std::string writeRootPath = cocos2d::CCFileUtils::sharedFileUtils()->getWritablePath();
 
+	//下载最新的 ingame peojectManifest 文件
+	std::string ingameProjectUrl = serverVersionData->packageUrl + "/InGame/" + projectIngameManifestName;
+	if (libOS::getInstance()->getIsDebug()){
+		std::string str = "hotUpdate/";
+		size_t start_pos = ingameProjectUrl.find(str);
+		if (start_pos != std::string::npos) {
+			ingameProjectUrl.replace(start_pos, str.length(), "");
+		}
+	}
+	InGameDownloader::getInstance()->checkManifest(ingameProjectUrl);
+
 	//下载最新的 peojectManifest 文件
-    std::string saveProjrctPath = writeRootPath + versionPath + "/" + projectManifestName;
-	std::string downloadProjectUrl = serverVersionData->packageUrl + "/" + projectManifestName;// + "?" + "time=" + _time->m_sString;
-	CurlDownload::Get()->downloadFile(downloadProjectUrl, saveProjrctPath);
+    //std::string saveProjrctPath = writeRootPath + versionPath + "/" + projectManifestName;
+	//std::string downloadProjectUrl = serverVersionData->packageUrl + "/" + projectManifestName;// + "?" + "time=" + _time->m_sString;
+	//CurlDownload::Get()->downloadFile(downloadProjectUrl, saveProjrctPath);
 
 	//更新version文件操作 把之前的下载versionTmp.mainfest文件存到version.manifest文件里面 下次读取使用
 	std::string versionPathTmp = writeRootPath + versionPath + "/" + versionManifestNameTmp;
@@ -2475,8 +2470,14 @@ void LoadingFrame::compareVersion()
 	//WINDOWS不檢查APP版本
 	versionAppCompareStat = HIGH;
 	result = 0;
+	TableAutoReader* reader = TableReaderManager::getInstance()->getTableReader("Win32Setting.cfg");
+	if (reader) {
+		std::string isClose = reader->getDataIndex(14, 1);
+		if (isClose.find("0") != std::string::npos) {
+			result = 1;
+		}
+	}
 #endif
-	//result = 1;
 	cocos2d::CCLog("compareVersion result is %d", result);
 	ostringstream   ostr;
 	ostr << "result is : " << result;
@@ -2584,7 +2585,6 @@ void LoadingFrame::getLocalProjectAssets()
 		assetData* data = new assetData();
 		data->name = "hotUpdate.zip";
 		data->md5 = "123456789";
-		data->crc = "123456789";
 		data->size = 38348;
 		data->time = 0.0f;
 		localProjectAssetData->isLoadSuccess = true;
@@ -2609,7 +2609,7 @@ void LoadingFrame::downloaded(const std::string &url, const std::string& filenam
 		if (url.compare((*it)->url) == 0)
 		{
 			currentFileLoadSize = 0.0f;
-			fileLoadSizeMap[url] = 0.0f;
+			fileLoadSizeMap[filename] = (*it)->size;
 			alreadyDownloadData.push_back(url);
 			// 下載完先解壓縮
 			CCLog("--->hotUpdate downloaded save path: %s storage: %s ext path %s", (*it)->savePath.c_str(), (*it)->stroge.c_str(), filename.c_str());
@@ -2619,15 +2619,13 @@ void LoadingFrame::downloaded(const std::string &url, const std::string& filenam
 			remove((*it)->savePath.c_str());
 			// 解壓縮後更新projectManifest 避免重新下載
 			assetData* data = new assetData();
+			data->size = (*it)->size;
 			data->name = (*it)->name;
 			data->md5 = (*it)->md5;
-			data->crc = (*it)->crc.c_str();
-			data->size = (*it)->size;
 			data->time = (*it)->time;
 			localProjectAssetData->assetDataMap.insert(std::make_pair((*it)->name, data));
 			auto localIt = localProjectAssetData->assetDataMap.find((*it)->name);
 			localIt->second->size = (*it)->size;
-			localIt->second->crc = (*it)->crc;
 			localIt->second->md5 = (*it)->md5;
 			localIt->second->time = (*it)->time;
 			writeProjectManifest();
@@ -2660,7 +2658,7 @@ void LoadingFrame::downloadFailed(const std::string& url, const std::string &fil
 	int failedTime = (MaxResumeTime - ResumeCount) + 1;
 	CCLog("--->hotUpdate downloadFailed  url: %s    : filename : %s error: %d", url.c_str(), filename.c_str(), errorType);
 	for (auto it = needUpdateAsset.begin(); it != needUpdateAsset.end(); ++it) {
-		if (url.compare((*it)->url) == 0)
+		if ((*it)->url.find(filename) != std::string::npos)
 		{
 			CCLog("hotUpdate downloadFailed  url push_back to loadFailData: %s    : filename : %s ", url.c_str(), filename.c_str());
 			loadFailData.insert(url);
@@ -2723,7 +2721,14 @@ void LoadingFrame::onAlreadyDownSize(unsigned long size, const std::string& url,
 {
 	
 	currentFileLoadSize = float(size);
-	fileLoadSizeMap[url] = float(size);
+	if (fileLoadSizeMap[filename]) {
+		if (fileLoadSizeMap[filename] < float(size) / 1024) {
+			fileLoadSizeMap[filename] = float(size) / 1024;
+		}
+	}
+	else {
+		fileLoadSizeMap[filename] = float(size) / 1024;
+	}
 	cocos2d::CCLog("--->hotUpdate : onAlreadyDownSize downloading : %f url: %s", currentFileLoadSize / 1024, url.c_str());
 	std::string buildType = libPlatformManager::getPlatform()->getBuildType();
 	if (buildType == "qa") {
@@ -2929,9 +2934,24 @@ void LoadingFrame::compareProjectAsset()
 	cocos2d::CCLog("compareProjectAsset 2");
 	needUpdateAsset.clear();
 	int downSize = 0;
+	int langType = cocos2d::CCUserDefault::sharedUserDefault()->getIntegerForKey("LanguageType");
 	for (std::map<std::string, assetData *>::const_iterator it = serverProjectAssetData->assetDataMap.begin(); it != serverProjectAssetData->assetDataMap.end(); ++it) {
 		std::string name = it->first;
 		assetData* data = it->second;
+
+		// 語系判斷
+		if (name.find("i18n_") != std::string::npos) {
+			if (langType == kLanguageCH_TW) {	// 繁中
+				if (name.find("i18n_tw") == std::string::npos) {	// 跳過非i18n_tw檔案
+					continue;
+				}
+			}
+			else {
+				if (name.find("i18n_cn") == std::string::npos) {	// 跳過非i18n_cn檔案
+					continue;
+				}
+			}
+		}
 
 		auto localIt = localProjectAssetData->assetDataMap.find(name);
 
@@ -2997,22 +3017,30 @@ void LoadingFrame::compareProjectAsset()
 	ostr << "compareProjectAsset need update fileSzie: " << needUpdateAsset.size();
 	string strLog = ostr.str();
 	
-	if (m_updateVersionTips)
-	{
-		cocos2d::CCLog("compareProjectAsset 4");
-		downSize /= 1024;
-		downSize = (downSize > 1) ? downSize : 1;
-		const char* size = CCString::createWithFormat("%d", downSize)->getCString();
+	if (m_updateVersionTips) {
+		if (hotUpdateFailed) {
+			hotUpdateFailed = false;
+			CCB_FUNC(this, "mUpdateBtnNode", cocos2d::CCNode, setVisible(true));
+			CCLog("hotUpdate : Updatefailed ----step1");
+			setTips(m_updateVersionTips->updateFailTxT);
+			showFailedMessage(m_updateVersionTips->updateFailTxT, 100);
+		}
+		else {
+			cocos2d::CCLog("compareProjectAsset 4");
+			downSize /= 1024;
+			downSize = (downSize > 1) ? downSize : 1;
+			const char* size = CCString::createWithFormat("%d", downSize)->getCString();
 
-		std::string needUpdateAsset = m_updateVersionTips->newAssetNeedUpdateTxT + std::string(size) + "M";
+			std::string needUpdateAsset = m_updateVersionTips->newAssetNeedUpdateTxT + std::string(size) + "M";
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) 
-		needUpdateAsset = needUpdateAsset + "\n" + m_updateVersionTips->bgDownloadTip;
+			needUpdateAsset = needUpdateAsset + "\n" + m_updateVersionTips->bgDownloadTip;
 #endif
-		//setTips(needUpdateAsset);
-		libOS::getInstance()->showMessagebox(needUpdateAsset, 100);
-		loginReport(REPORT_STEP::REPORT_STEP_START_DOWNLOAD_PATCH);
+			//setTips(needUpdateAsset);
+			libOS::getInstance()->showMessagebox(needUpdateAsset, 100);
+			loginReport(REPORT_STEP::REPORT_STEP_START_DOWNLOAD_PATCH);
 
-		downloadSize = downSize;
+			downloadSize = downSize;
+		}
 	}
 }
 void LoadingFrame::getProjectAssetData(ProjectAssetData* projectAssetData, unsigned char* content, bool isLocal, unsigned char* contentLocal)
@@ -3035,7 +3063,6 @@ void LoadingFrame::getProjectAssetData(ProjectAssetData* projectAssetData, unsig
 			assetData* data = new assetData();
 			data->name = "hotUpdate.zip";
 			data->md5 = "123456789";
-			data->crc = "45866";
 			data->size = 38348;
 			projectAssetData->isLoadSuccess = true;
 			projectAssetData->addAssetData(data);
@@ -3094,7 +3121,6 @@ void LoadingFrame::getProjectAssetData(ProjectAssetData* projectAssetData, unsig
 			assetData* data = new assetData();
 			data->name = unit["name"].asString();
 			data->md5 = unit["md5"].asString();
-			data->crc = unit["crc"].asString();
 			data->size = unit["size"].asDouble();
 			data->time = unit["time"].asDouble();
 			projectAssetData->addAssetData(data);
@@ -3162,11 +3188,9 @@ void LoadingFrame::UpdateAssetFromServer()
 		(*it)->savePath = writePath;
 		(*it)->stroge = writeablePath + downLoadSavePath + "/";
 		downTotalSize += (*it)->size;
-		std::string crc = (*it)->crc;
 		std::string md5 = (*it)->md5;
 		std::string filename = (*it)->name;
 		std::string path = downLoadSavePath;
-		unsigned short crcCmp = atoi((char*)crc.c_str());
 		
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) 
 		// Call java to download file so it can run while app is paused
@@ -3191,13 +3215,13 @@ void LoadingFrame::ResumeUpdateAsset()
 	time(&t);
 	CCString* _time = CCString::createWithFormat("%d", t);
 	for (auto it = needUpdateAsset.begin(); it != needUpdateAsset.end(); ++it) {
-		std::string timeStr = "?time=" + _time->m_sString;
+		//std::string timeStr = "?time=" + _time->m_sString;
 		std::string assetUrl = packageUrl + "/" + (*it)->name;
 		if (loadFailData.find(assetUrl) != loadFailData.end())
 		{
 			std::string writePath = writeablePath + downLoadSavePath + "/" + (*it)->name;
 
-			(*it)->url = assetUrl + timeStr;
+			(*it)->url = assetUrl;// +timeStr;
 			(*it)->savePath = writePath;
 			(*it)->stroge = writeablePath + downLoadSavePath + "/";
 			CCLog("ResumeUpdateAsset loadFailData : %s", (*it)->url.c_str());
@@ -3323,12 +3347,17 @@ void LoadingFrame::writeProjectManifest()
 	Json::Value root;
 	Json::Value assets;
 	for (auto it = localProjectAssetData->assetDataMap.begin(); it != localProjectAssetData->assetDataMap.end(); ++it) {
+		if (it->second->name.find("i18n_cn_") != std::string::npos) {
+			int a = 1;
+		}
+		if (it->second->name.find("i18n_tw_") != std::string::npos) {
+			int a = 1;
+		}
 		Json::Value data;
-		data["crc"] = it->second->crc;
-		data["md5"] = it->second->md5;
-		data["name"] = it->second->name;
-		data["size"] = it->second->size;
 		data["time"] = it->second->time;
+		data["size"] = it->second->size;
+		data["name"] = it->second->name;
+		data["md5"] = it->second->md5;
 		assets.append(data);
 	}
 	root["assets"] = assets;
@@ -3362,7 +3391,7 @@ void LoadingFrame::OnDownloadProgress(const std::string& url, const std::string&
 
 void LoadingFrame::OnDownloadComplete(const std::string& url, const std::string& filename, const std::string& filenameWithPath, const std::string& md5Str)
 {
-	//CCLog("--->OnDownloadComplete: %s", filenameWithPath.c_str());
+	CCLog("--->OnDownloadComplete: %s", filenameWithPath.c_str());
 	downloaded(url, filenameWithPath); 
 	//moveDownloaded(url, filenameWithPath);
 };

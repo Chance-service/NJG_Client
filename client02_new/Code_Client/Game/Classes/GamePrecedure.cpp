@@ -650,6 +650,7 @@ void GamePrecedure::update( float dt )
 
 		}*/
 		//--end
+#if (CC_TARGET_PLATFORM != CC_PLATFORM_WIN32)
 		static int stCount = 0;
 		++stCount;
 		long mem = libOS::getInstance()->avalibleMemory();//取不准
@@ -697,6 +698,7 @@ void GamePrecedure::update( float dt )
 				PRELOAD("BattleHealNum04.ccbi", 1);
 			}
 		}
+#endif
 	}
 	else if(!isInLoadingScene())
 	{
@@ -874,7 +876,7 @@ void GamePrecedure::loadPlsit()
 
 
 	sbgo = true;
-
+#if (CC_TARGET_PLATFORM != CC_PLATFORM_WIN32)
 	//重新加载一次  本地化文件
 	Language::Get()->clear();
 	int userType = cocos2d::CCUserDefault::sharedUserDefault()->getIntegerForKey("LanguageType");
@@ -889,7 +891,7 @@ void GamePrecedure::loadPlsit()
 		Language::Get()->init("Lang/Language.lang");
 		break;
 	}
-	
+#endif
 
 	/*if (itr.hasMoreElements())
 	{

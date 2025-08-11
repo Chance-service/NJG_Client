@@ -32,6 +32,7 @@ class InGameDownloader : public CCObject, public Singleton<InGameDownloader>, pu
 
 	bool checkNeedDownload();
 	bool checkNeedDownloadByName(const std::string& fileName);
+	int checkDownloadStateByName(const std::string& fileName);
 	void downloadAllAsset();
 	void downloadAssetByName(const std::string& fileName);
 };

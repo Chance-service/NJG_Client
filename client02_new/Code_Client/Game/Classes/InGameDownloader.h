@@ -56,6 +56,7 @@ public:
 
 	bool checkNeedDownload();
 	bool checkNeedDownloadByName(const std::string& fileName);
+	int checkDownloadStateByName(const std::string& fileName);
 	void downloadAllAsset();
 	void downloadAssetByName(const std::string& fileName);
 
@@ -71,6 +72,7 @@ private:
 	void downloaded(const std::string& url, const std::string& filename);
 	void downloadFailed(const std::string& url, const std::string& filename, int errorType);
 	void onAlreadyDownSize(unsigned long size, const std::string& url, const std::string& filename);
+	void redownloadAll();
 	virtual void OnDownloadProgress(const std::string& urlStr, const std::string& filenameStr, const std::string& basePathStr, long progress);
 	virtual void OnDownloadComplete(const std::string& urlStr, const std::string& filenameStr, const std::string& basePathStr, const std::string& md5Str);
 	virtual void OnDownloadFailed(const std::string& urlStr, const std::string& filenameStr, const std::string& basePathStr, int errorCode);
@@ -81,7 +83,10 @@ private:
 	ProjectAssetData* localProjectAssetData;
 	ProjectAssetData* serverProjectAssetData;
 	std::vector<assetData*> needUpdateAsset;
+	std::vector<assetData*> failedUpdateAsset;
 	int downloadFailedTime;
 	float totalNeedLoadSize;
 	std::map<std::string, float> fileLoadSizeMap;
+
+	std::string tempUrl;
 };
