@@ -30,9 +30,20 @@ id	StartTime	EndTime	PopPage	PopPageBackGround	PopTitle	PopText	GiftId	JumpDesti
 29	2025-06-09_00:00:00	2025-06-11_23:59:59	LobbyPopout_img2.png	LobbyPopout_img3.png	LobbyPopout_label.png	@PopSaleAD	3081	12
 30	2025-06-12_00:00:00	2025-06-14_23:59:59	LobbyPopout_img2.png	LobbyPopout_img3.png	LobbyPopout_label.png	@PopSaleAD	3121	12
 31	2025-06-15_00:00:00	2025-06-17_23:59:59	LobbyPopout_img2.png	LobbyPopout_img3.png	LobbyPopout_label.png	@PopSaleAD	3181	12
-32	2025-06-18_00:00:00	2025-06-20_23:59:59	LobbyPopout_img2.png	LobbyPopout_img3.png	LobbyPopout_label.png	@PopSaleAD	3161	12
-33	2025-06-21_00:00:00	2025-06-23_23:59:59	LobbyPopout_img2.png	LobbyPopout_img3.png	LobbyPopout_label.png	@PopSaleAD	3211	12
-34	2025-06-24_00:00:00	2025-06-26_23:59:59	LobbyPopout_img2.png	LobbyPopout_img3.png	LobbyPopout_label.png	@PopSaleAD	3221	12
-35	2025-06-27_00:00:00	2025-06-29_23:59:59	LobbyPopout_img2.png	LobbyPopout_img3.png	LobbyPopout_label.png	@PopSaleAD	3051	12
-36	2025-06-30_00:00:00	2025-07-02_23:59:59	LobbyPopout_img2.png	LobbyPopout_img3.png	LobbyPopout_label.png	@PopSaleAD	3010	12
-								
+32	2025-06-18_00:00:00	2025-06-18_23:59:59	LobbyPopout_img2.png	LobbyPopout_img3.png	LobbyPopout_label.png	@PopSaleAD	3161	12
+33	2025-06-19_00:00:00	2025-06-22_23:59:59	LobbyPopout_img2.png	LobbyPopout_img3.png	LobbyPopout_label.png	@PopSaleAD	19	1
+34	2025-06-23_00:00:00	2025-06-23_23:59:59	LobbyPopout_img2.png	LobbyPopout_img3.png	LobbyPopout_label.png	@PopSaleAD	3211	12
+35	2025-06-24_00:00:00	2025-06-26_23:59:59	LobbyPopout_img2.png	LobbyPopout_img3.png	LobbyPopout_label.png	@PopSaleAD	3221	12
+36	2025-06-27_00:00:00	2025-06-29_23:59:59	LobbyPopout_img2.png	LobbyPopout_img3.png	LobbyPopout_label.png	@PopSaleAD	3051	12
+37	2025-06-30_00:00:00	2025-07-02_23:59:59	LobbyPopout_img2.png	LobbyPopout_img3.png	LobbyPopout_label.png	@PopSaleAD	3010	12
+38	2025-07-03_00:00:00	2025-07-05_23:59:59	LobbyPopout_img2.png	LobbyPopout_img3.png	LobbyPopout_label.png	@PopSaleAD	20	1
+39	2025-07-06_00:00:00	2025-07-08_23:59:59	LobbyPopout_img2.png	LobbyPopout_img3.png	LobbyPopout_label.png	@PopSaleAD	3110	12
+40	2025-07-09_00:00:00	2025-07-11_23:59:59	LobbyPopout_img2.png	LobbyPopout_img3.png	LobbyPopout_label.png	@PopSaleAD	3139	12
+41	2025-07-12_00:00:00	2025-07-14_23:59:59	LobbyPopout_img2.png	LobbyPopout_img3.png	LobbyPopout_label.png	@PopSaleAD	3169	12
+42	2025-07-15_00:00:00	2025-07-17_23:59:59	LobbyPopout_img2.png	LobbyPopout_img3.png	LobbyPopout_label.png	@PopSaleAD	3192	12
+43	2025-07-18_00:00:00	2025-07-20_23:59:59	LobbyPopout_img2.png	LobbyPopout_img3.png	LobbyPopout_label.png	@PopSaleAD	3243	12
+44	2025-07-21_00:00:00	2025-07-23_23:59:59	LobbyPopout_img2.png	LobbyPopout_img3.png	LobbyPopout_label.png	@PopSaleAD	3042	12
+45	2025-07-24_00:00:00	2025-07-26_23:59:59	LobbyPopout_img2.png	LobbyPopout_img3.png	LobbyPopout_label.png	@PopSaleAD	3063	12
+46	2025-07-27_00:00:00	2025-07-27_23:59:59	LobbyPopout_img2.png	LobbyPopout_img3.png	LobbyPopout_label.png	@PopSaleAD	2516	6
+47	2025-07-28_00:00:00	2025-07-29_23:59:59	LobbyPopout_img2.png	LobbyPopout_img3.png	LobbyPopout_label.png	@PopSaleAD	3072	12
+48	2025-07-30_00:00:00	2025-08-06_23:59:59	LobbyPopout_img2.png	LobbyPopout_img3.png	LobbyPopout_label.png	@PopSaleAD	6027	7

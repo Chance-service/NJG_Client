@@ -1,6 +1,6 @@
 /*
 ** Lua binding: Gamelua
-** Generated automatically by tolua++-1.0.92 on 05/06/25 11:41:00.
+** Generated automatically by tolua++-1.0.92 on 07/28/25 15:34:46.
 */
 
 /****************************************************************************
@@ -87,6 +87,7 @@ TOLUA_API int  tolua_Gamelua_open (lua_State* tolua_S);
 #include "CurlDownload.h"
 #include "FeedBackPage.h"
 #include "AdjustManager.h"
+#include "InGameDownloader.h"
 
 /* function to release collected object via destructor */
 #ifdef __cplusplus
@@ -507,6 +508,7 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"FeedBackPage");
  tolua_usertype(tolua_S,"libPlatformManager");
  tolua_usertype(tolua_S,"DragonSoulTableManager");
+ tolua_usertype(tolua_S,"InGameDownloader");
  tolua_usertype(tolua_S,"std::set<unsigned long>");
  tolua_usertype(tolua_S,"CCParticleSystem");
  tolua_usertype(tolua_S,"MsgRechargeSuccess");
@@ -551,6 +553,7 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"CCMenuItemImage");
  tolua_usertype(tolua_S,"AboutItem");
  tolua_usertype(tolua_S,"Singleton<ServerDateManager>");
+ tolua_usertype(tolua_S,"Singleton<InGameDownloader>");
  tolua_usertype(tolua_S,"MsgAdventureRemoveItem");
  tolua_usertype(tolua_S,"MessageBoxPage");
  tolua_usertype(tolua_S,"GameMaths");
@@ -4728,6 +4731,39 @@ static int tolua_Gamelua_TableReaderManager_getTableReader00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'getTableReader'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: reloadTableReader of class  TableReaderManager */
+#ifndef TOLUA_DISABLE_tolua_Gamelua_TableReaderManager_reloadTableReader00
+static int tolua_Gamelua_TableReaderManager_reloadTableReader00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"TableReaderManager",0,&tolua_err) ||
+     !tolua_isstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  TableReaderManager* self = (TableReaderManager*)  tolua_tousertype(tolua_S,1,0);
+  const char* filename = ((const char*)  tolua_tostring(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'reloadTableReader'", NULL);
+#endif
+  {
+   self->reloadTableReader(filename);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'reloadTableReader'.",&tolua_err);
  return 0;
 #endif
 }
@@ -41408,6 +41444,367 @@ static int tolua_Gamelua_AdjustManager_onTrackRevenueEvent00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: getInstance of class  InGameDownloader */
+#ifndef TOLUA_DISABLE_tolua_Gamelua_InGameDownloader_getInstance00
+static int tolua_Gamelua_InGameDownloader_getInstance00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"InGameDownloader",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  {
+   InGameDownloader* tolua_ret = (InGameDownloader*)  InGameDownloader::getInstance();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"InGameDownloader");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getInstance'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getDownloadState of class  InGameDownloader */
+#ifndef TOLUA_DISABLE_tolua_Gamelua_InGameDownloader_getDownloadState00
+static int tolua_Gamelua_InGameDownloader_getDownloadState00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"InGameDownloader",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  InGameDownloader* self = (InGameDownloader*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getDownloadState'", NULL);
+#endif
+  {
+   int tolua_ret = (int)  self->getDownloadState();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getDownloadState'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getTotalDownloadPercent of class  InGameDownloader */
+#ifndef TOLUA_DISABLE_tolua_Gamelua_InGameDownloader_getTotalDownloadPercent00
+static int tolua_Gamelua_InGameDownloader_getTotalDownloadPercent00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"InGameDownloader",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  InGameDownloader* self = (InGameDownloader*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getTotalDownloadPercent'", NULL);
+#endif
+  {
+   float tolua_ret = (float)  self->getTotalDownloadPercent();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getTotalDownloadPercent'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getFileDownloadPercent of class  InGameDownloader */
+#ifndef TOLUA_DISABLE_tolua_Gamelua_InGameDownloader_getFileDownloadPercent00
+static int tolua_Gamelua_InGameDownloader_getFileDownloadPercent00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"InGameDownloader",0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  InGameDownloader* self = (InGameDownloader*)  tolua_tousertype(tolua_S,1,0);
+  const std::string fileName = ((const std::string)  tolua_tocppstring(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getFileDownloadPercent'", NULL);
+#endif
+  {
+   float tolua_ret = (float)  self->getFileDownloadPercent(fileName);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getFileDownloadPercent'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: checkManifest of class  InGameDownloader */
+#ifndef TOLUA_DISABLE_tolua_Gamelua_InGameDownloader_checkManifest00
+static int tolua_Gamelua_InGameDownloader_checkManifest00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"InGameDownloader",0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  InGameDownloader* self = (InGameDownloader*)  tolua_tousertype(tolua_S,1,0);
+  const std::string url = ((const std::string)  tolua_tocppstring(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'checkManifest'", NULL);
+#endif
+  {
+   self->checkManifest(url);
+   tolua_pushcppstring(tolua_S,(const char*)url);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'checkManifest'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: checkNeedDownload of class  InGameDownloader */
+#ifndef TOLUA_DISABLE_tolua_Gamelua_InGameDownloader_checkNeedDownload00
+static int tolua_Gamelua_InGameDownloader_checkNeedDownload00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"InGameDownloader",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  InGameDownloader* self = (InGameDownloader*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'checkNeedDownload'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->checkNeedDownload();
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'checkNeedDownload'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: checkNeedDownloadByName of class  InGameDownloader */
+#ifndef TOLUA_DISABLE_tolua_Gamelua_InGameDownloader_checkNeedDownloadByName00
+static int tolua_Gamelua_InGameDownloader_checkNeedDownloadByName00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"InGameDownloader",0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  InGameDownloader* self = (InGameDownloader*)  tolua_tousertype(tolua_S,1,0);
+  const std::string fileName = ((const std::string)  tolua_tocppstring(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'checkNeedDownloadByName'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->checkNeedDownloadByName(fileName);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+   tolua_pushcppstring(tolua_S,(const char*)fileName);
+  }
+ }
+ return 2;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'checkNeedDownloadByName'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: checkDownloadStateByName of class  InGameDownloader */
+#ifndef TOLUA_DISABLE_tolua_Gamelua_InGameDownloader_checkDownloadStateByName00
+static int tolua_Gamelua_InGameDownloader_checkDownloadStateByName00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"InGameDownloader",0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  InGameDownloader* self = (InGameDownloader*)  tolua_tousertype(tolua_S,1,0);
+  const std::string fileName = ((const std::string)  tolua_tocppstring(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'checkDownloadStateByName'", NULL);
+#endif
+  {
+   int tolua_ret = (int)  self->checkDownloadStateByName(fileName);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+   tolua_pushcppstring(tolua_S,(const char*)fileName);
+  }
+ }
+ return 2;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'checkDownloadStateByName'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: downloadAllAsset of class  InGameDownloader */
+#ifndef TOLUA_DISABLE_tolua_Gamelua_InGameDownloader_downloadAllAsset00
+static int tolua_Gamelua_InGameDownloader_downloadAllAsset00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"InGameDownloader",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  InGameDownloader* self = (InGameDownloader*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'downloadAllAsset'", NULL);
+#endif
+  {
+   self->downloadAllAsset();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'downloadAllAsset'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: downloadAssetByName of class  InGameDownloader */
+#ifndef TOLUA_DISABLE_tolua_Gamelua_InGameDownloader_downloadAssetByName00
+static int tolua_Gamelua_InGameDownloader_downloadAssetByName00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"InGameDownloader",0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  InGameDownloader* self = (InGameDownloader*)  tolua_tousertype(tolua_S,1,0);
+  const std::string fileName = ((const std::string)  tolua_tocppstring(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'downloadAssetByName'", NULL);
+#endif
+  {
+   self->downloadAssetByName(fileName);
+   tolua_pushcppstring(tolua_S,(const char*)fileName);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'downloadAssetByName'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: __Singleton<InGameDownloader>__ of class  InGameDownloader */
+#ifndef TOLUA_DISABLE_tolua_get_InGameDownloader___Singleton_InGameDownloader___
+static int tolua_get_InGameDownloader___Singleton_InGameDownloader___(lua_State* tolua_S)
+{
+  InGameDownloader* self = (InGameDownloader*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable '__Singleton<InGameDownloader>__'",NULL);
+#endif
+#ifdef __cplusplus
+   tolua_pushusertype(tolua_S,(void*)static_cast<Singleton<InGameDownloader>*>(self), "Singleton<InGameDownloader>");
+#else
+   tolua_pushusertype(tolua_S,(void*)((Singleton<InGameDownloader>*)self), "Singleton<InGameDownloader>");
+#endif
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: __CurlDownload of class  InGameDownloader */
+#ifndef TOLUA_DISABLE_tolua_get_InGameDownloader___CurlDownload__DownloadListener__
+static int tolua_get_InGameDownloader___CurlDownload__DownloadListener__(lua_State* tolua_S)
+{
+  InGameDownloader* self = (InGameDownloader*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable '__CurlDownload'",NULL);
+#endif
+#ifdef __cplusplus
+   tolua_pushusertype(tolua_S,(void*)static_cast<CurlDownload::DownloadListener*>(self), "CurlDownload::DownloadListener");
+#else
+   tolua_pushusertype(tolua_S,(void*)((CurlDownload::DownloadListener*)self), "CurlDownload::DownloadListener");
+#endif
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* Open function */
 TOLUA_API int tolua_Gamelua_open (lua_State* tolua_S)
 {
@@ -41560,6 +41957,7 @@ TOLUA_API int tolua_Gamelua_open (lua_State* tolua_S)
   tolua_beginmodule(tolua_S,"TableReaderManager");
    tolua_function(tolua_S,"getInstance",tolua_Gamelua_TableReaderManager_getInstance00);
    tolua_function(tolua_S,"getTableReader",tolua_Gamelua_TableReaderManager_getTableReader00);
+   tolua_function(tolua_S,"reloadTableReader",tolua_Gamelua_TableReaderManager_reloadTableReader00);
    tolua_function(tolua_S,"reloadAllReader",tolua_Gamelua_TableReaderManager_reloadAllReader00);
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"TapDB","TapDB","",NULL);
@@ -43505,6 +43903,35 @@ TOLUA_API int tolua_Gamelua_open (lua_State* tolua_S)
   tolua_beginmodule(tolua_S,"AdjustManager");
    tolua_function(tolua_S,"onTrackEvent",tolua_Gamelua_AdjustManager_onTrackEvent00);
    tolua_function(tolua_S,"onTrackRevenueEvent",tolua_Gamelua_AdjustManager_onTrackRevenueEvent00);
+  tolua_endmodule(tolua_S);
+  tolua_constant(tolua_S,"eAllStateNone",eAllStateNone);
+  tolua_constant(tolua_S,"eAllStateManifestDling",eAllStateManifestDling);
+  tolua_constant(tolua_S,"eAllStateManifestDlSuccess",eAllStateManifestDlSuccess);
+  tolua_constant(tolua_S,"eAllStateManifestDlFailed",eAllStateManifestDlFailed);
+  tolua_constant(tolua_S,"eAllStateManifestCompare",eAllStateManifestCompare);
+  tolua_constant(tolua_S,"eAllStateManifestCompareFailed",eAllStateManifestCompareFailed);
+  tolua_constant(tolua_S,"eAllStateDownloadComplete",eAllStateDownloadComplete);
+  tolua_constant(tolua_S,"eAllStateDownloadNeed",eAllStateDownloadNeed);
+  tolua_constant(tolua_S,"eAllStateDownloading",eAllStateDownloading);
+  tolua_constant(tolua_S,"eAllStateDownloadFailed",eAllStateDownloadFailed);
+  tolua_constant(tolua_S,"eOneStateNone",eOneStateNone);
+  tolua_constant(tolua_S,"eOneStateIng",eOneStateIng);
+  tolua_constant(tolua_S,"eOneStateSuccess",eOneStateSuccess);
+  tolua_constant(tolua_S,"eOneStateFailed",eOneStateFailed);
+  tolua_cclass(tolua_S,"InGameDownloader","InGameDownloader","CCObject",NULL);
+  tolua_beginmodule(tolua_S,"InGameDownloader");
+   tolua_function(tolua_S,"getInstance",tolua_Gamelua_InGameDownloader_getInstance00);
+   tolua_function(tolua_S,"getDownloadState",tolua_Gamelua_InGameDownloader_getDownloadState00);
+   tolua_function(tolua_S,"getTotalDownloadPercent",tolua_Gamelua_InGameDownloader_getTotalDownloadPercent00);
+   tolua_function(tolua_S,"getFileDownloadPercent",tolua_Gamelua_InGameDownloader_getFileDownloadPercent00);
+   tolua_function(tolua_S,"checkManifest",tolua_Gamelua_InGameDownloader_checkManifest00);
+   tolua_function(tolua_S,"checkNeedDownload",tolua_Gamelua_InGameDownloader_checkNeedDownload00);
+   tolua_function(tolua_S,"checkNeedDownloadByName",tolua_Gamelua_InGameDownloader_checkNeedDownloadByName00);
+   tolua_function(tolua_S,"checkDownloadStateByName",tolua_Gamelua_InGameDownloader_checkDownloadStateByName00);
+   tolua_function(tolua_S,"downloadAllAsset",tolua_Gamelua_InGameDownloader_downloadAllAsset00);
+   tolua_function(tolua_S,"downloadAssetByName",tolua_Gamelua_InGameDownloader_downloadAssetByName00);
+   tolua_variable(tolua_S,"__Singleton_InGameDownloader___",tolua_get_InGameDownloader___Singleton_InGameDownloader___,NULL);
+   tolua_variable(tolua_S,"__CurlDownload__DownloadListener__",tolua_get_InGameDownloader___CurlDownload__DownloadListener__,NULL);
   tolua_endmodule(tolua_S);
  tolua_endmodule(tolua_S);
  return 1;

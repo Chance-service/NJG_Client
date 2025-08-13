@@ -225,6 +225,13 @@ TableAutoReader* TableReaderManager::getTableReader( const char* filename )
 	}
 }
 
+void TableReaderManager::reloadTableReader(const char* filename)
+{
+	if (mTableReaders[filename]) {
+		mTableReaders[filename]->parse(filename);
+	}
+}
+
 void TableReaderManager::reloadAllReader()
 {
 	std::map<std::string,TableAutoReader*>::iterator it = mTableReaders.begin();

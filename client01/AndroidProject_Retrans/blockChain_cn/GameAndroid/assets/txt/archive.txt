@@ -23,6 +23,7 @@
 22	2	22	22	60	@HeroName_22	@HeroStory_22	1	0
 23	2	23	23	60	@HeroName_23	@HeroStory_23	1	0
 24	2	24	24	60	@HeroName_24	@HeroStory_24	1	0
+25	2	25	25	60	@HeroName_25	@HeroStory_25	1	0
 501	3	1	501	100	@SpiritName_501		1	0
 502	3	2	502	100	@SpiritName_502		1	0
 503	3	3	503	100	@SpiritName_503		1	0

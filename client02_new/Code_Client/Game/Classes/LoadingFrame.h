@@ -118,6 +118,7 @@ private:
 	};
 	enum VERSIONSTAT
 	{
+		CHECK_SERVER,
 		CHECK_VERSION,
 		CHECK_PROJECT_ASSETS,
 		CHECK_PROJECT_ASSETS_DONE,
@@ -177,6 +178,7 @@ private:
 	float downTotalSize;
 	float currentFileLoadSize;
 	std::string currentLoadFile;
+	std::map<std::string, float> fileLoadSizeMap;
 
 	std::vector<std::string> alreadyDownloadData;
 	std::set<std::string> loadFailData;
@@ -199,7 +201,7 @@ private:
 
 	bool m_haveLoadAnnounce;
 
-
+	bool hotUpdateFailed;
 
 public:
 	LoadingFrame(void);
@@ -271,6 +273,7 @@ public:
 
 
 	void checkVersion();
+	void checkServerState();
 	void setTips(std::string meg);
 	void setVersion(std::string meg);
 
@@ -278,6 +281,7 @@ public:
 	void getLocalVersionCfg();
 	void getServerVersionCfg();
 	void onHttpRequestCompleted(cocos2d::CCNode *sender, void*data);
+	void onServerStateRequestCompleted(cocos2d::CCNode *sender, void*data);
 	void showPersent(float persentage, std::string sizeTip);
 
 	void sendGetServerCfg();

@@ -16,5 +16,6 @@ class TableReaderManager
 {
 	static TableReaderManager* getInstance();
 	TableAutoReader* getTableReader(const char* filename);
+	void reloadTableReader(const char* filename);
 	void reloadAllReader();
 };

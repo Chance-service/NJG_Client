@@ -48,3 +48,5 @@ ReconnectMaxTimes = 5
 AnnouncementURL = https://njgcdn.vslrx.com/announcement
 #是否是審核版本(1=true 0=false)
 IsCloseR18 = 0
+#維護狀態確認URL
+MaintainURL = http://backend.quantagalaxies.com:34567/maintaincheck

@@ -5,11 +5,21 @@
 #include "json/json.h"
 #include "cocos2d.h"
 #include "GamePlatform.h"
+#include "TableReader.h"
 
 USING_NS_CC;
 
 void Language::init( const std::string& languagefile )
 {
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	TableAutoReader* reader = TableReaderManager::getInstance()->getTableReader("Win32Setting.cfg");
+	if (reader) {
+		std::string isClose = reader->getDataIndex(0, 1);
+		if (isClose.find("1") != std::string::npos) {
+			return;
+		}
+	}
+#endif
 	addLanguageFile(languagefile);
 }
 

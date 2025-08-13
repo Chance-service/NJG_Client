@@ -296,6 +296,9 @@ void UpdateVersion::getUpdateVersionTips()
 	int userType = cocos2d::CCUserDefault::sharedUserDefault()->getIntegerForKey("LanguageType");
 	std::string fileName = "";
 	switch (userType) {
+	case kLanguageEnglish:
+		fileName = "UpdateVersionTipsEN.cfg";
+		break;
 	case kLanguageChinese:
 		fileName = "UpdateVersionTips.cfg";
 		break;
@@ -560,6 +563,9 @@ void UpdateVersion::appStoreUpdate()
 	}
 	else if (SeverConsts::Get()->IsOP()) {
 		libOS::getInstance()->openURL(serverVersionData->AppUpdateUrlOP);
+	}
+	else if (SeverConsts::Get()->IsGP()) {
+		libOS::getInstance()->openURL(serverVersionData->AppUpdateUrlGP);
 	}
 	else if (SeverConsts::Get()->IsKUSO()) {
 		libOS::getInstance()->openURL(serverVersionData->AppUpdateUrlKUSO);

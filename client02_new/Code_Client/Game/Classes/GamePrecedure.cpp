@@ -104,6 +104,9 @@ void GamePrecedure::init()
 	TimeCalculator::Get()->init();
 	int userType = cocos2d::CCUserDefault::sharedUserDefault()->getIntegerForKey("LanguageType");
 	switch (userType) {
+	case kLanguageEnglish:
+		Language::Get()->init("Lang/LanguageEN.lang");
+		break;
 	case kLanguageChinese:
 		Language::Get()->init("Lang/Language.lang");
 		break;
@@ -650,6 +653,7 @@ void GamePrecedure::update( float dt )
 
 		}*/
 		//--end
+#if (CC_TARGET_PLATFORM != CC_PLATFORM_WIN32)
 		static int stCount = 0;
 		++stCount;
 		long mem = libOS::getInstance()->avalibleMemory();//取不准
@@ -697,6 +701,7 @@ void GamePrecedure::update( float dt )
 				PRELOAD("BattleHealNum04.ccbi", 1);
 			}
 		}
+#endif
 	}
 	else if(!isInLoadingScene())
 	{
@@ -846,6 +851,12 @@ void GamePrecedure::loadPlsit()
 				int userType = cocos2d::CCUserDefault::sharedUserDefault()->getIntegerForKey("LanguageType");
 				int pos = std::string::npos;
 				switch (userType) {
+				case kLanguageEnglish:
+					pos = filename.find("i18n_en");
+					if (pos != std::string::npos){
+						frameCache->addSpriteFramesNameWithFile(filename.c_str());
+					}
+					break;
 				case kLanguageChinese:
 					pos = filename.find("i18n_cn");
 					if (pos != std::string::npos){
@@ -874,11 +885,14 @@ void GamePrecedure::loadPlsit()
 
 
 	sbgo = true;
-
+#if (CC_TARGET_PLATFORM != CC_PLATFORM_WIN32)
 	//重新加载一次  本地化文件
 	Language::Get()->clear();
 	int userType = cocos2d::CCUserDefault::sharedUserDefault()->getIntegerForKey("LanguageType");
 	switch (userType) {
+	case kLanguageEnglish:
+		Language::Get()->init("Lang/LanguageEN.lang");
+		break;
 	case kLanguageChinese:
 		Language::Get()->init("Lang/Language.lang");
 		break;
@@ -889,7 +903,7 @@ void GamePrecedure::loadPlsit()
 		Language::Get()->init("Lang/Language.lang");
 		break;
 	}
-	
+#endif
 
 	/*if (itr.hasMoreElements())
 	{

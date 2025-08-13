@@ -39,8 +39,10 @@ public:
 
 	void setMsgString(const std::string& msgSteing){mMsgString = msgSteing;}
 
+	void setShowEnter(bool showEnter){ mShowEnter = showEnter; }
+
 	static void Msg_Hint(const std::string& msgString,int tag = 0);
 private:
 	std::string mMsgString;
-	
+	bool mShowEnter = true;
 };

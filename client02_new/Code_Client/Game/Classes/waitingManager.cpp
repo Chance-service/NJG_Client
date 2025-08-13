@@ -42,7 +42,7 @@ void waitingManager::endWaiting()
 }
 
 //GamePacketManager内的onPostSend方法调用
-void waitingManager::startWaiting(int send_opcode, int opcode_to_hide, float showtime /*= 10.0f*/ )
+void waitingManager::startWaiting(int send_opcode, int opcode_to_hide, float showtime /*= 15.0f*/ )
 {
 	if(GamePrecedure::Get()->isInLoadingScene())
 	{

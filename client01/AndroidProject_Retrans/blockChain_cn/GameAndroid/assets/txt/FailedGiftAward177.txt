@@ -1,4 +1,4 @@
-id	奖励	价格
-501	30000_3001_16,30000_3501_16,30000_3801_8	100
-502	10000_1001_100,30000_3001_35,30000_3501_35,30000_3801_16	200
-503	10000_1001_300,30000_3001_50,30000_3501_50,30000_3801_25	300
+id	ImageBG	ImageTitle	ImagePage	title	Pagetext	奖励
+501	popsale_151_bg.png	popsale_151_img.png	popsale_icon_151.png	@popsale_177_info	@popsale_177_title	30000_3001_20,30000_3501_20,30000_3801_10
+502	popsale_151_bg.png	popsale_151_img.png	popsale_icon_151.png	@popsale_177_info	@popsale_177_title	10000_1001_100,30000_3001_35,30000_3501_35,30000_3801_16
+503	popsale_151_bg.png	popsale_151_img.png	popsale_icon_151.png	@popsale_177_info	@popsale_177_title	10000_1001_300,30000_3001_50,30000_3501_50,30000_3801_25

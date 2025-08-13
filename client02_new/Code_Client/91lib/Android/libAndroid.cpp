@@ -117,6 +117,7 @@ static bool IsMURA = false;
 static bool IsKUSO = false;
 static bool IsErolabs = false;
 static bool IsOP = false;
+static bool IsGP = false;
 static bool IsAPLUS = false;
 static std::string PayUrl = "";
 static int HoneyP = 0;
@@ -140,7 +141,7 @@ void libAndroid::login()
 {
 	//libAndroid_mLoginTime = timeGetTime();
 	loginName = "";
-	if (IsH365 || IsJSG || IsLSJ || IsKUSO || IsAPLUS || IsOP )
+	if (IsH365 || IsJSG || IsLSJ || IsKUSO || IsAPLUS || IsOP || IsGP )
 	{
 		LOGD("login standby");
 		callPlatformLoginJNI();//call java
@@ -154,7 +155,7 @@ void libAndroid::login()
 
 void libAndroid::logout()
 {
-	if (IsH365 || IsJSG || IsLSJ || IsKUSO || IsAPLUS || IsOP)
+	if (IsH365 || IsJSG || IsLSJ || IsKUSO || IsAPLUS || IsOP || IsGP)
 	{
 		callPlatformLogoutJNI();
 	}
@@ -205,7 +206,7 @@ int libAndroid::getIsGuest()
 
 const std::string& libAndroid::loginUin()
 {
-	if (IsH365 || IsJSG || IsLSJ || IsKUSO || IsAPLUS || IsOP)
+	if (IsH365 || IsJSG || IsLSJ || IsKUSO || IsAPLUS || IsOP || IsGP)
 	{
 		loginName = getPlatformLoginUinJNI();
 	}
@@ -258,7 +259,7 @@ void libAndroid::switchUsers()
 void libAndroid::buyGoods( BUYINFO& info)
 {
 	//BUYINFO��productCount���ܼۣ�����*����
-	if (IsH365 || IsKUSO || IsAPLUS || IsOP)
+	if (IsH365 || IsKUSO || IsAPLUS || IsOP || IsGP)
 	{
 		int iCount = 1;
 		callPlatformPayRechargeJNI(info.productType, info.name.c_str(), info.cooOrderSerial.c_str(), info.productId.c_str(),
@@ -437,6 +438,7 @@ void libAndroid::setPlatformName(int platform)
 	IsErolabs = (platform == 7);
 	IsOP = (platform == 8);
 	IsAPLUS = (platform == 9);
+	IsGP = (platform == 10);
 //	setPlatformNameJNI(platform);
 	//H365API::setH365CheckJNI(IsH365);
 }
@@ -448,9 +450,9 @@ void libAndroid::setPayR18(int mid, int serverid, const std::string& url)
 	PayUrl = url + cdata;
 }
 
-void  libAndroid::setPayH365(const std::string& url)
+void libAndroid::setPayH365(const std::string& url)
 {
-	if (IsH365 || IsKUSO || IsAPLUS || IsOP)
+	if (IsH365 || IsKUSO || IsAPLUS || IsOP || IsGP)
 	{
 		setPayUrlJNI(url.c_str()); // JNI to jave
 	}

@@ -163,7 +163,8 @@ public class Cocos2dxEditBoxDialog extends Dialog {
 		this.mInputMode = pInputMode;
 		this.mInputFlag = pInputFlag;
 		this.mReturnType = pReturnType;
-		this.mMaxLength = pMaxLength;
+		//this.mMaxLength = pMaxLength;
+		this.mMaxLength = 50;
 	}
 
 	@SuppressLint("NewApi")
@@ -222,7 +223,7 @@ public class Cocos2dxEditBoxDialog extends Dialog {
     public boolean onTouchEvent(MotionEvent event) {
 		Log.w(TAG, "__________onTouchEvent " + event.getAction());
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
-            Cocos2dxHelper.setEditTextDialogResult(Cocos2dxEditBoxDialog.this.mInputEditText.getText().toString());
+            //Cocos2dxHelper.setEditTextDialogResult(Cocos2dxEditBoxDialog.this.mInputEditText.getText().toString());
 			Cocos2dxEditBoxDialog.this.closeKeyboard();
 			Cocos2dxEditBoxDialog.this.dismiss();
         }
@@ -258,11 +259,13 @@ public class Cocos2dxEditBoxDialog extends Dialog {
 
 	public  void closeKeyboard() {
 		Log.e("cocos2dxDialog", "---closeKeyboard-------");
-		Cocos2dxHelper.EditcloseKeyboard();
-		final InputMethodManager imm;
-		if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.CUPCAKE) {
-			imm = (InputMethodManager) this.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-			imm.hideSoftInputFromWindow(this.mInputEditText.getWindowToken(), 0);
+		if (this.mInputEditText != null) {
+			Cocos2dxHelper.EditcloseKeyboard();
+			final InputMethodManager imm;
+			if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.CUPCAKE) {
+				imm = (InputMethodManager) this.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+				imm.hideSoftInputFromWindow(this.mInputEditText.getWindowToken(), 0);
+			}
 		}
 		mInputEditTextRef = null;
 		Log.e("cocos2dxDialog", "---closeKeyboard END-------");
@@ -369,6 +372,12 @@ public class Cocos2dxEditBoxDialog extends Dialog {
 
 			@Override
 			public void afterTextChanged(Editable arg0) {
+				// Clamp text length
+				if (arg0.length() > Cocos2dxEditBoxDialog.this.mMaxLength) {
+					// Option 1: trim to max length
+					arg0.delete(Cocos2dxEditBoxDialog.this.mMaxLength, arg0.length());
+
+				}
 				String txt = Cocos2dxEditBoxDialog.this.mInputEditText.getText().toString();
 				Log.w(TAG, "__________afterTextChanged");
 				Cocos2dxHelper.setEditTextDialogResult(txt);

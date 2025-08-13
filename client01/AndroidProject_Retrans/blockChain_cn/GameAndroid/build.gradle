@@ -242,6 +242,15 @@ android {
             }
         }
     }
+    variantFilter { variant ->
+        if (!variant.buildType.name.contains("debug")) {
+            variant.ignore = true
+        }
+        def flavors = variant.flavors*.name
+        if (flavors.contains("APLUS_CPS1") || flavors.contains("JSG")) {
+            variant.ignore = true
+        }
+    }
     applicationVariants.all { variant ->
         def flavorName = variant.flavorName ?: ""
         def buildType = variant.buildType.name

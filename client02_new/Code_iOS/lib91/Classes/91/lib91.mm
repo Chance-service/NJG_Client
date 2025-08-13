@@ -6,6 +6,7 @@
 
 #ifdef PROJECT_KUSO
 #import <KUSOPlaySDK/KUSOPlaySDK.h>
+#import "analytics_sdk_ios_framework/analytics_sdk_ios_framework.m"
 #endif
 
 #ifdef PROJECT_EROLABS

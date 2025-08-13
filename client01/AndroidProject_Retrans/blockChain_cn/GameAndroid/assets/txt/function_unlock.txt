@@ -34,7 +34,7 @@ id	type	功能(字串/代號)	解鎖條件類型	解鎖條件	解鎖字串	是�
 33	2	106	0	10000	@WaitingOpen	0
 34	2	107	1	118	@StageOpen	0
 35	2	201	1	28	@StageOpen	0
-36	2	202	1	28	@StageOpen	0
+36	2	202	1	58	@StageOpen	0
 37	2	203	1	28	@StageOpen	1
 38	2	204	1	28	@StageOpen	0
 39	2	205	1	28	@StageOpen	0
@@ -50,8 +50,8 @@ id	type	功能(字串/代號)	解鎖條件類型	解鎖條件	解鎖字串	是�
 49	2	801	1	26	@StageOpen	0
 50	2	802	1	54	@RuneUnlock01	0
 51	2	803	1,4	54,7	@RuneUnlock02	0
-52	2	804	0	10000	@WaitingOpen	0
-53	2	805	0	10000	@WaitingOpen	0
+52	2	804	1	54	@RuneUnlock01	0
+53	2	805	1	54	@RuneUnlock01	0
 54	2	901	1	23	@StageOpen	0
 55	2	902	1	9	@StageOpen	0
 56	2	108	1	73	@StageOpen	0

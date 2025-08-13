@@ -67,3 +67,5 @@ $pfile "CurlDownloadForScript.pkg"
 $pfile "FeedBackPage.pkg"
 
 $pfile "AdjustManager.pkg"
+
+$pfile "InGameDownloader.pkg"

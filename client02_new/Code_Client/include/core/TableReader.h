@@ -106,5 +106,6 @@ public:
 	static TableReaderManager* getInstance(){return TableReaderManager::Get();}
 
 	TableAutoReader* getTableReader(const char* filename);
+	void reloadTableReader(const char* filename);
 	void reloadAllReader();
 };

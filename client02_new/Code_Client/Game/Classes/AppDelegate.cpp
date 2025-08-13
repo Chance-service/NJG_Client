@@ -56,6 +56,7 @@ static float s_recycle_frequence = 5.f;
 
 // 可選語系設定
 std::map<int, bool> canSelectLang = {
+	{ kLanguageEnglish, true },
 	{ kLanguageChinese, true },
 	{ kLanguageCH_TW, true },
 };
@@ -544,7 +545,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     
 	GamePrecedure::Get()->init();
 	//添加啟動後統計訊息
-	GamePrecedure::Get()->startupreport();
+	//GamePrecedure::Get()->startupreport();
 	//GamePrecedure::Get()->enterMainMenu();
 	// 安卓平台的logomovie是在java層實現的，所以直接進入loading狀態
 	GamePrecedure::Get()->enterLoading();
